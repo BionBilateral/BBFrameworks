@@ -89,8 +89,8 @@
 		794535F31B03C33200651F57 /* BBFrameworksOSXDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		794535F81B03C33200651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		794535F91B03C33200651F57 /* BBFrameworksOSXDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksOSXDemoTests.m; sourceTree = "<group>"; };
-		794536071B03C37000651F57 /* BBFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundation.h; sourceTree = "<group>"; };
-		794536091B03C5B400651F57 /* BBFoundationDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationDebugging.h; sourceTree = "<group>"; };
+		794536071B03C37000651F57 /* BBFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBFoundation.h; path = BBFrameworks/BBFoundation/BBFoundation.h; sourceTree = SOURCE_ROOT; };
+		794536091B03C5B400651F57 /* BBFoundationDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBFoundationDebugging.h; path = BBFrameworks/BBFoundation/BBFoundationDebugging.h; sourceTree = SOURCE_ROOT; };
 		7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,10 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				7945359C1B03C31700651F57 /* BBFrameworks.h */,
-				794536091B03C5B400651F57 /* BBFoundationDebugging.h */,
-				794536071B03C37000651F57 /* BBFoundation.h */,
-				7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */,
-				7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */,
+				7945360F1B03C83400651F57 /* BBFoundation */,
 				7945359A1B03C31700651F57 /* Supporting Files */,
 			);
 			path = BBFrameworks;
@@ -297,6 +294,17 @@
 				794535F81B03C33200651F57 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7945360F1B03C83400651F57 /* BBFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				794536071B03C37000651F57 /* BBFoundation.h */,
+				794536091B03C5B400651F57 /* BBFoundationDebugging.h */,
+				7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */,
+				7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */,
+			);
+			path = BBFoundation;
 			sourceTree = "<group>";
 		};
 		A60131BA99F48FEF1860D1A4 /* Pods */ = {
