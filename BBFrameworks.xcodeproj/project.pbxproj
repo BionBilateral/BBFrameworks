@@ -25,11 +25,8 @@
 		794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */; };
 		7945361A1B03CD7000651F57 /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536191B03CD7000651F57 /* BBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7945361B1B03D2E300651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
-		7945361C1B03D2E800651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
 		794536411B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794536361B03D9AC00651F57 /* BBFrameworks.framework */; };
 		7945364A1B03D9AC00651F57 /* BBFrameworksOSXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536491B03D9AC00651F57 /* BBFrameworksOSXTests.m */; };
-		7945364D1B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794536361B03D9AC00651F57 /* BBFrameworks.framework */; };
 		7945364E1B03D9AC00651F57 /* BBFrameworks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 794536361B03D9AC00651F57 /* BBFrameworks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7945365F1B03D9E000651F57 /* BBFrameworksiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7945365E1B03D9E000651F57 /* BBFrameworksiOSTests.m */; };
 		794536601B03D9E000651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
@@ -145,8 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7945364D1B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */,
-				7945361C1B03D2E800651F57 /* BBFrameworks.framework in Frameworks */,
 				F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,7 +150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7945361B1B03D2E300651F57 /* BBFrameworks.framework in Frameworks */,
 				DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

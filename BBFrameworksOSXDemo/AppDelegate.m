@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+#import <BBFrameworks/BBFrameworks.h>
 
 @interface AppDelegate ()
 
