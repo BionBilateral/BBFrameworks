@@ -26,6 +26,8 @@
 		7945360A1B03C5B400651F57 /* BBFoundationDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536091B03C5B400651F57 /* BBFoundationDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7945360D1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */; };
+		794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */; };
+		794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -51,6 +53,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 794535E01B03C33200651F57;
 			remoteInfo = BBFrameworksOSXDemo;
+		};
+		794536151B03CB1200651F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 794535961B03C31700651F57;
+			remoteInfo = BBFrameworks;
+		};
+		794536171B03CB1700651F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 794535961B03C31700651F57;
+			remoteInfo = BBFrameworks;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -93,6 +109,8 @@
 		794536091B03C5B400651F57 /* BBFoundationDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBFoundationDebugging.h; path = BBFrameworks/BBFoundation/BBFoundationDebugging.h; sourceTree = SOURCE_ROOT; };
 		7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+BBFoundationExtensions.m"; sourceTree = "<group>"; };
+		794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBKitExtensions.h"; sourceTree = "<group>"; };
+		794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBKitExtensions.m"; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +205,7 @@
 			children = (
 				7945359C1B03C31700651F57 /* BBFrameworks.h */,
 				7945360F1B03C83400651F57 /* BBFoundation */,
+				794536101B03CA3900651F57 /* BBKit */,
 				7945359A1B03C31700651F57 /* Supporting Files */,
 			);
 			path = BBFrameworks;
@@ -307,6 +326,15 @@
 			path = BBFoundation;
 			sourceTree = "<group>";
 		};
+		794536101B03CA3900651F57 /* BBKit */ = {
+			isa = PBXGroup;
+			children = (
+				794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */,
+				794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */,
+			);
+			path = BBKit;
+			sourceTree = "<group>";
+		};
 		A60131BA99F48FEF1860D1A4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +357,7 @@
 				794536081B03C37000651F57 /* BBFoundation.h in Headers */,
 				7945360D1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				7945360A1B03C5B400651F57 /* BBFoundationDebugging.h in Headers */,
+				794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +413,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				794536161B03CB1200651F57 /* PBXTargetDependency */,
 			);
 			name = BBFrameworksiOSDemo;
 			productName = BBFrameworksiOSDemo;
@@ -421,6 +451,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				794536181B03CB1700651F57 /* PBXTargetDependency */,
 			);
 			name = BBFrameworksOSXDemo;
 			productName = BBFrameworksOSXDemo;
@@ -618,6 +649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */,
+				794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +713,16 @@
 			isa = PBXTargetDependency;
 			target = 794535E01B03C33200651F57 /* BBFrameworksOSXDemo */;
 			targetProxy = 794535F41B03C33200651F57 /* PBXContainerItemProxy */;
+		};
+		794536161B03CB1200651F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 794535961B03C31700651F57 /* BBFrameworks */;
+			targetProxy = 794536151B03CB1200651F57 /* PBXContainerItemProxy */;
+		};
+		794536181B03CB1700651F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 794535961B03C31700651F57 /* BBFrameworks */;
+			targetProxy = 794536171B03CB1700651F57 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
