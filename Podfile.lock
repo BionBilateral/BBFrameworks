@@ -23,4 +23,4 @@ SPEC CHECKSUMS:
   ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.1

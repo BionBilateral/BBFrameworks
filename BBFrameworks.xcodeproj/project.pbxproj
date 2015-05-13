@@ -486,6 +486,7 @@
 		7945358E1B03C31700651F57 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = BB;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Bion Bilateral, LLC.";
 				TargetAttributes = {
