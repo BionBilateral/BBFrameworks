@@ -8,53 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945359C1B03C31700651F57 /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		794535A31B03C31700651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
-		794535AA1B03C31700651F57 /* BBFrameworksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535A91B03C31700651F57 /* BBFrameworksTests.m */; };
 		794535BC1B03C32800651F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BB1B03C32800651F57 /* main.m */; };
 		794535BF1B03C32800651F57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BE1B03C32800651F57 /* AppDelegate.m */; };
 		794535C21B03C32800651F57 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535C11B03C32800651F57 /* ViewController.m */; };
 		794535C51B03C32800651F57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794535C31B03C32800651F57 /* Main.storyboard */; };
 		794535C71B03C32800651F57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794535C61B03C32800651F57 /* Images.xcassets */; };
 		794535CA1B03C32800651F57 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 794535C81B03C32800651F57 /* LaunchScreen.xib */; };
-		794535D61B03C32800651F57 /* BBFrameworksiOSDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535D51B03C32800651F57 /* BBFrameworksiOSDemoTests.m */; };
 		794535E71B03C33200651F57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535E61B03C33200651F57 /* AppDelegate.m */; };
 		794535E91B03C33200651F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535E81B03C33200651F57 /* main.m */; };
 		794535EB1B03C33200651F57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794535EA1B03C33200651F57 /* Images.xcassets */; };
 		794535EE1B03C33200651F57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 794535EC1B03C33200651F57 /* MainMenu.xib */; };
-		794535FA1B03C33200651F57 /* BBFrameworksOSXDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535F91B03C33200651F57 /* BBFrameworksOSXDemoTests.m */; };
 		794536081B03C37000651F57 /* BBFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536071B03C37000651F57 /* BBFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7945360A1B03C5B400651F57 /* BBFoundationDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536091B03C5B400651F57 /* BBFoundationDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7945360D1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */; };
 		794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */; };
-		7945361A1B03CD7000651F57 /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536191B03CD7000651F57 /* BBKit.h */; };
+		7945361A1B03CD7000651F57 /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536191B03CD7000651F57 /* BBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7945361B1B03D2E300651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
+		7945361C1B03D2E800651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
+		794536411B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794536361B03D9AC00651F57 /* BBFrameworks.framework */; };
+		7945364A1B03D9AC00651F57 /* BBFrameworksOSXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536491B03D9AC00651F57 /* BBFrameworksOSXTests.m */; };
+		7945364D1B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794536361B03D9AC00651F57 /* BBFrameworks.framework */; };
+		7945364E1B03D9AC00651F57 /* BBFrameworks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 794536361B03D9AC00651F57 /* BBFrameworks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7945365F1B03D9E000651F57 /* BBFrameworksiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7945365E1B03D9E000651F57 /* BBFrameworksiOSTests.m */; };
+		794536601B03D9E000651F57 /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		794535A41B03C31700651F57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 794535961B03C31700651F57;
-			remoteInfo = BBFrameworks;
-		};
-		794535D01B03C32800651F57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 794535B61B03C32800651F57;
-			remoteInfo = BBFrameworksiOSDemo;
-		};
-		794535F41B03C33200651F57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 794535E01B03C33200651F57;
-			remoteInfo = BBFrameworksOSXDemo;
-		};
 		794536151B03CB1200651F57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
@@ -62,14 +45,49 @@
 			remoteGlobalIDString = 794535961B03C31700651F57;
 			remoteInfo = BBFrameworks;
 		};
-		794536171B03CB1700651F57 /* PBXContainerItemProxy */ = {
+		794536421B03D9AC00651F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 794536351B03D9AC00651F57;
+			remoteInfo = BBFrameworksOSX;
+		};
+		794536441B03D9AC00651F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 794535B61B03C32800651F57;
+			remoteInfo = BBFrameworksiOSDemo;
+		};
+		794536611B03D9E000651F57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 794535961B03C31700651F57;
-			remoteInfo = BBFrameworks;
+			remoteInfo = BBFrameworksiOS;
+		};
+		794536681B03DBCB00651F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7945358E1B03C31700651F57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 794536351B03D9AC00651F57;
+			remoteInfo = BBFrameworksOSX;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		794536521B03D9AC00651F57 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7945364E1B03D9AC00651F57 /* BBFrameworks.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0FA56EA18661F8C74EBBF115 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,11 +96,7 @@
 		51DB3C8ABAAE4713365480AC /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		794535971B03C31700651F57 /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7945359B1B03C31700651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7945359C1B03C31700651F57 /* BBFrameworks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
-		794535A21B03C31700651F57 /* BBFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		794535A81B03C31700651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		794535A91B03C31700651F57 /* BBFrameworksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksTests.m; sourceTree = "<group>"; };
 		794535B71B03C32800651F57 /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794535BA1B03C32800651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		794535BB1B03C32800651F57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,9 +107,6 @@
 		794535C41B03C32800651F57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		794535C61B03C32800651F57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		794535C91B03C32800651F57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		794535CF1B03C32800651F57 /* BBFrameworksiOSDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksiOSDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		794535D41B03C32800651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		794535D51B03C32800651F57 /* BBFrameworksiOSDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksiOSDemoTests.m; sourceTree = "<group>"; };
 		794535E11B03C33200651F57 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794535E41B03C33200651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		794535E51B03C33200651F57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,9 +114,6 @@
 		794535E81B03C33200651F57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		794535EA1B03C33200651F57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		794535ED1B03C33200651F57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		794535F31B03C33200651F57 /* BBFrameworksOSXDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		794535F81B03C33200651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		794535F91B03C33200651F57 /* BBFrameworksOSXDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksOSXDemoTests.m; sourceTree = "<group>"; };
 		794536071B03C37000651F57 /* BBFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBFoundation.h; path = BBFrameworks/BBFoundation/BBFoundation.h; sourceTree = SOURCE_ROOT; };
 		794536091B03C5B400651F57 /* BBFoundationDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBFoundationDebugging.h; path = BBFrameworks/BBFoundation/BBFoundationDebugging.h; sourceTree = SOURCE_ROOT; };
 		7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+BBFoundationExtensions.h"; sourceTree = "<group>"; };
@@ -113,6 +121,15 @@
 		794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBKitExtensions.h"; sourceTree = "<group>"; };
 		794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBKitExtensions.m"; sourceTree = "<group>"; };
 		794536191B03CD7000651F57 /* BBKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKit.h; sourceTree = "<group>"; };
+		794536361B03D9AC00651F57 /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		794536401B03D9AC00651F57 /* BBFrameworksOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		794536481B03D9AC00651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		794536491B03D9AC00651F57 /* BBFrameworksOSXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksOSXTests.m; sourceTree = "<group>"; };
+		7945365A1B03D9E000651F57 /* BBFrameworksiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7945365D1B03D9E000651F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7945365E1B03D9E000651F57 /* BBFrameworksiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksiOSTests.m; sourceTree = "<group>"; };
+		794536661B03DB0A00651F57 /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
+		794536671B03DB0A00651F57 /* BBFrameworksOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksOSX-Info.plist"; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,26 +141,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7945359F1B03C31700651F57 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				794535A31B03C31700651F57 /* BBFrameworks.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		794535B41B03C32800651F57 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7945364D1B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */,
+				7945361C1B03D2E800651F57 /* BBFrameworks.framework in Frameworks */,
 				F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		794535CC1B03C32800651F57 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,14 +155,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7945361B1B03D2E300651F57 /* BBFrameworks.framework in Frameworks */,
 				DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		794535F01B03C33200651F57 /* Frameworks */ = {
+		794536321B03D9AC00651F57 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7945363D1B03D9AC00651F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				794536411B03D9AC00651F57 /* BBFrameworks.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		794536571B03D9E000651F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				794536601B03D9E000651F57 /* BBFrameworks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +199,10 @@
 			isa = PBXGroup;
 			children = (
 				794535991B03C31700651F57 /* BBFrameworks */,
-				794535A61B03C31700651F57 /* BBFrameworksTests */,
+				7945365B1B03D9E000651F57 /* BBFrameworksiOSTests */,
+				794536461B03D9AC00651F57 /* BBFrameworksOSXTests */,
 				794535B81B03C32800651F57 /* BBFrameworksiOSDemo */,
-				794535D21B03C32800651F57 /* BBFrameworksiOSDemoTests */,
 				794535E21B03C33200651F57 /* BBFrameworksOSXDemo */,
-				794535F61B03C33200651F57 /* BBFrameworksOSXDemoTests */,
 				794535981B03C31700651F57 /* Products */,
 				A60131BA99F48FEF1860D1A4 /* Pods */,
 				62830E25A463C2CF8599501A /* Frameworks */,
@@ -193,11 +213,11 @@
 			isa = PBXGroup;
 			children = (
 				794535971B03C31700651F57 /* BBFrameworks.framework */,
-				794535A21B03C31700651F57 /* BBFrameworksTests.xctest */,
 				794535B71B03C32800651F57 /* BBFrameworksiOSDemo.app */,
-				794535CF1B03C32800651F57 /* BBFrameworksiOSDemoTests.xctest */,
 				794535E11B03C33200651F57 /* BBFrameworksOSXDemo.app */,
-				794535F31B03C33200651F57 /* BBFrameworksOSXDemoTests.xctest */,
+				794536361B03D9AC00651F57 /* BBFrameworks.framework */,
+				794536401B03D9AC00651F57 /* BBFrameworksOSXTests.xctest */,
+				7945365A1B03D9E000651F57 /* BBFrameworksiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,24 +236,8 @@
 		7945359A1B03C31700651F57 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7945359B1B03C31700651F57 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		794535A61B03C31700651F57 /* BBFrameworksTests */ = {
-			isa = PBXGroup;
-			children = (
-				794535A91B03C31700651F57 /* BBFrameworksTests.m */,
-				794535A71B03C31700651F57 /* Supporting Files */,
-			);
-			path = BBFrameworksTests;
-			sourceTree = "<group>";
-		};
-		794535A71B03C31700651F57 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				794535A81B03C31700651F57 /* Info.plist */,
+				794536661B03DB0A00651F57 /* BBFrameworksiOS-Info.plist */,
+				794536671B03DB0A00651F57 /* BBFrameworksOSX-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -262,23 +266,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		794535D21B03C32800651F57 /* BBFrameworksiOSDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				794535D51B03C32800651F57 /* BBFrameworksiOSDemoTests.m */,
-				794535D31B03C32800651F57 /* Supporting Files */,
-			);
-			path = BBFrameworksiOSDemoTests;
-			sourceTree = "<group>";
-		};
-		794535D31B03C32800651F57 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				794535D41B03C32800651F57 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		794535E21B03C33200651F57 /* BBFrameworksOSXDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,23 +283,6 @@
 			children = (
 				794535E41B03C33200651F57 /* Info.plist */,
 				794535E81B03C33200651F57 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		794535F61B03C33200651F57 /* BBFrameworksOSXDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				794535F91B03C33200651F57 /* BBFrameworksOSXDemoTests.m */,
-				794535F71B03C33200651F57 /* Supporting Files */,
-			);
-			path = BBFrameworksOSXDemoTests;
-			sourceTree = "<group>";
-		};
-		794535F71B03C33200651F57 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				794535F81B03C33200651F57 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -336,6 +306,40 @@
 				794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */,
 			);
 			path = BBKit;
+			sourceTree = "<group>";
+		};
+		794536461B03D9AC00651F57 /* BBFrameworksOSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				794536491B03D9AC00651F57 /* BBFrameworksOSXTests.m */,
+				794536471B03D9AC00651F57 /* Supporting Files */,
+			);
+			path = BBFrameworksOSXTests;
+			sourceTree = "<group>";
+		};
+		794536471B03D9AC00651F57 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				794536481B03D9AC00651F57 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7945365B1B03D9E000651F57 /* BBFrameworksiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				7945365E1B03D9E000651F57 /* BBFrameworksiOSTests.m */,
+				7945365C1B03D9E000651F57 /* Supporting Files */,
+			);
+			path = BBFrameworksiOSTests;
+			sourceTree = "<group>";
+		};
+		7945365C1B03D9E000651F57 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7945365D1B03D9E000651F57 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A60131BA99F48FEF1860D1A4 /* Pods */ = {
@@ -365,12 +369,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		794536331B03D9AC00651F57 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		794535961B03C31700651F57 /* BBFrameworks */ = {
+		794535961B03C31700651F57 /* BBFrameworksiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 794535AD1B03C31700651F57 /* Build configuration list for PBXNativeTarget "BBFrameworks" */;
+			buildConfigurationList = 794535AD1B03C31700651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */;
 			buildPhases = (
 				794535921B03C31700651F57 /* Sources */,
 				794535931B03C31700651F57 /* Frameworks */,
@@ -381,28 +392,10 @@
 			);
 			dependencies = (
 			);
-			name = BBFrameworks;
+			name = BBFrameworksiOS;
 			productName = BBFrameworks;
 			productReference = 794535971B03C31700651F57 /* BBFrameworks.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		794535A11B03C31700651F57 /* BBFrameworksTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 794535B01B03C31700651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksTests" */;
-			buildPhases = (
-				7945359E1B03C31700651F57 /* Sources */,
-				7945359F1B03C31700651F57 /* Frameworks */,
-				794535A01B03C31700651F57 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				794535A51B03C31700651F57 /* PBXTargetDependency */,
-			);
-			name = BBFrameworksTests;
-			productName = BBFrameworksTests;
-			productReference = 794535A21B03C31700651F57 /* BBFrameworksTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		794535B61B03C32800651F57 /* BBFrameworksiOSDemo */ = {
 			isa = PBXNativeTarget;
@@ -413,6 +406,7 @@
 				794535B41B03C32800651F57 /* Frameworks */,
 				794535B51B03C32800651F57 /* Resources */,
 				3B3C76BAC47FAC358E22946B /* Copy Pods Resources */,
+				794536521B03D9AC00651F57 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,24 +417,6 @@
 			productName = BBFrameworksiOSDemo;
 			productReference = 794535B71B03C32800651F57 /* BBFrameworksiOSDemo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		794535CE1B03C32800651F57 /* BBFrameworksiOSDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 794535DA1B03C32800651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOSDemoTests" */;
-			buildPhases = (
-				794535CB1B03C32800651F57 /* Sources */,
-				794535CC1B03C32800651F57 /* Frameworks */,
-				794535CD1B03C32800651F57 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				794535D11B03C32800651F57 /* PBXTargetDependency */,
-			);
-			name = BBFrameworksiOSDemoTests;
-			productName = BBFrameworksiOSDemoTests;
-			productReference = 794535CF1B03C32800651F57 /* BBFrameworksiOSDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		794535E01B03C33200651F57 /* BBFrameworksOSXDemo */ = {
 			isa = PBXNativeTarget;
@@ -455,29 +431,66 @@
 			buildRules = (
 			);
 			dependencies = (
-				794536181B03CB1700651F57 /* PBXTargetDependency */,
+				794536691B03DBCB00651F57 /* PBXTargetDependency */,
 			);
 			name = BBFrameworksOSXDemo;
 			productName = BBFrameworksOSXDemo;
 			productReference = 794535E11B03C33200651F57 /* BBFrameworksOSXDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		794535F21B03C33200651F57 /* BBFrameworksOSXDemoTests */ = {
+		794536351B03D9AC00651F57 /* BBFrameworksOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 794535FE1B03C33200651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXDemoTests" */;
+			buildConfigurationList = 7945364F1B03D9AC00651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */;
 			buildPhases = (
-				794535EF1B03C33200651F57 /* Sources */,
-				794535F01B03C33200651F57 /* Frameworks */,
-				794535F11B03C33200651F57 /* Resources */,
+				794536311B03D9AC00651F57 /* Sources */,
+				794536321B03D9AC00651F57 /* Frameworks */,
+				794536331B03D9AC00651F57 /* Headers */,
+				794536341B03D9AC00651F57 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				794535F51B03C33200651F57 /* PBXTargetDependency */,
 			);
-			name = BBFrameworksOSXDemoTests;
-			productName = BBFrameworksOSXDemoTests;
-			productReference = 794535F31B03C33200651F57 /* BBFrameworksOSXDemoTests.xctest */;
+			name = BBFrameworksOSX;
+			productName = BBFrameworksOSX;
+			productReference = 794536361B03D9AC00651F57 /* BBFrameworks.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7945363F1B03D9AC00651F57 /* BBFrameworksOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 794536531B03D9AC00651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXTests" */;
+			buildPhases = (
+				7945363C1B03D9AC00651F57 /* Sources */,
+				7945363D1B03D9AC00651F57 /* Frameworks */,
+				7945363E1B03D9AC00651F57 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				794536431B03D9AC00651F57 /* PBXTargetDependency */,
+				794536451B03D9AC00651F57 /* PBXTargetDependency */,
+			);
+			name = BBFrameworksOSXTests;
+			productName = BBFrameworksOSXTests;
+			productReference = 794536401B03D9AC00651F57 /* BBFrameworksOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		794536591B03D9E000651F57 /* BBFrameworksiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 794536631B03D9E000651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOSTests" */;
+			buildPhases = (
+				794536561B03D9E000651F57 /* Sources */,
+				794536571B03D9E000651F57 /* Frameworks */,
+				794536581B03D9E000651F57 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				794536621B03D9E000651F57 /* PBXTargetDependency */,
+			);
+			name = BBFrameworksiOSTests;
+			productName = BBFrameworksiOSTests;
+			productReference = 7945365A1B03D9E000651F57 /* BBFrameworksiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -493,22 +506,21 @@
 					794535961B03C31700651F57 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
-					794535A11B03C31700651F57 = {
-						CreatedOnToolsVersion = 6.3.1;
-					};
 					794535B61B03C32800651F57 = {
 						CreatedOnToolsVersion = 6.3.1;
-					};
-					794535CE1B03C32800651F57 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 794535B61B03C32800651F57;
 					};
 					794535E01B03C33200651F57 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
-					794535F21B03C33200651F57 = {
+					794536351B03D9AC00651F57 = {
 						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 794535E01B03C33200651F57;
+					};
+					7945363F1B03D9AC00651F57 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 794535B61B03C32800651F57;
+					};
+					794536591B03D9E000651F57 = {
+						CreatedOnToolsVersion = 6.3.1;
 					};
 				};
 			};
@@ -525,25 +537,18 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				794535961B03C31700651F57 /* BBFrameworks */,
-				794535A11B03C31700651F57 /* BBFrameworksTests */,
+				794535961B03C31700651F57 /* BBFrameworksiOS */,
+				794536591B03D9E000651F57 /* BBFrameworksiOSTests */,
+				794536351B03D9AC00651F57 /* BBFrameworksOSX */,
+				7945363F1B03D9AC00651F57 /* BBFrameworksOSXTests */,
 				794535B61B03C32800651F57 /* BBFrameworksiOSDemo */,
-				794535CE1B03C32800651F57 /* BBFrameworksiOSDemoTests */,
 				794535E01B03C33200651F57 /* BBFrameworksOSXDemo */,
-				794535F21B03C33200651F57 /* BBFrameworksOSXDemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		794535951B03C31700651F57 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		794535A01B03C31700651F57 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -560,13 +565,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		794535CD1B03C32800651F57 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		794535DF1B03C33200651F57 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -576,7 +574,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		794535F11B03C33200651F57 /* Resources */ = {
+		794536341B03D9AC00651F57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7945363E1B03D9AC00651F57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		794536581B03D9E000651F57 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -658,14 +670,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7945359E1B03C31700651F57 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				794535AA1B03C31700651F57 /* BBFrameworksTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		794535B31B03C32800651F57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,14 +677,6 @@
 				794535C21B03C32800651F57 /* ViewController.m in Sources */,
 				794535BF1B03C32800651F57 /* AppDelegate.m in Sources */,
 				794535BC1B03C32800651F57 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		794535CB1B03C32800651F57 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				794535D61B03C32800651F57 /* BBFrameworksiOSDemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,41 +689,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		794535EF1B03C33200651F57 /* Sources */ = {
+		794536311B03D9AC00651F57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				794535FA1B03C33200651F57 /* BBFrameworksOSXDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7945363C1B03D9AC00651F57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7945364A1B03D9AC00651F57 /* BBFrameworksOSXTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		794536561B03D9E000651F57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7945365F1B03D9E000651F57 /* BBFrameworksiOSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		794535A51B03C31700651F57 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 794535961B03C31700651F57 /* BBFrameworks */;
-			targetProxy = 794535A41B03C31700651F57 /* PBXContainerItemProxy */;
-		};
-		794535D11B03C32800651F57 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 794535B61B03C32800651F57 /* BBFrameworksiOSDemo */;
-			targetProxy = 794535D01B03C32800651F57 /* PBXContainerItemProxy */;
-		};
-		794535F51B03C33200651F57 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 794535E01B03C33200651F57 /* BBFrameworksOSXDemo */;
-			targetProxy = 794535F41B03C33200651F57 /* PBXContainerItemProxy */;
-		};
 		794536161B03CB1200651F57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 794535961B03C31700651F57 /* BBFrameworks */;
+			target = 794535961B03C31700651F57 /* BBFrameworksiOS */;
 			targetProxy = 794536151B03CB1200651F57 /* PBXContainerItemProxy */;
 		};
-		794536181B03CB1700651F57 /* PBXTargetDependency */ = {
+		794536431B03D9AC00651F57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 794535961B03C31700651F57 /* BBFrameworks */;
-			targetProxy = 794536171B03CB1700651F57 /* PBXContainerItemProxy */;
+			target = 794536351B03D9AC00651F57 /* BBFrameworksOSX */;
+			targetProxy = 794536421B03D9AC00651F57 /* PBXContainerItemProxy */;
+		};
+		794536451B03D9AC00651F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 794535B61B03C32800651F57 /* BBFrameworksiOSDemo */;
+			targetProxy = 794536441B03D9AC00651F57 /* PBXContainerItemProxy */;
+		};
+		794536621B03D9E000651F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 794535961B03C31700651F57 /* BBFrameworksiOS */;
+			targetProxy = 794536611B03D9E000651F57 /* PBXContainerItemProxy */;
+		};
+		794536691B03DBCB00651F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 794536351B03D9AC00651F57 /* BBFrameworksOSX */;
+			targetProxy = 794536681B03DBCB00651F57 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -854,10 +865,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = BBFrameworks/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BBFrameworks;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -869,41 +880,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = BBFrameworks/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BBFrameworks;
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		794535B11B03C31700651F57 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BBFrameworksTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		794535B21B03C31700651F57 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BBFrameworksTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -930,40 +911,6 @@
 				INFOPLIST_FILE = BBFrameworksiOSDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		794535DB1B03C32800651F57 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BBFrameworksiOSDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBFrameworksiOSDemo.app/BBFrameworksiOSDemo";
-			};
-			name = Debug;
-		};
-		794535DC1B03C32800651F57 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BBFrameworksiOSDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBFrameworksiOSDemo.app/BBFrameworksiOSDemo";
 			};
 			name = Release;
 		};
@@ -1002,10 +949,52 @@
 			};
 			name = Release;
 		};
-		794535FF1B03C33200651F57 /* Debug */ = {
+		794536501B03D9AC00651F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = BBFrameworks;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		794536511B03D9AC00651F57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = BBFrameworks;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		794536541B03D9AC00651F57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1016,30 +1005,59 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = BBFrameworksOSXDemoTests/Info.plist;
+				INFOPLIST_FILE = BBFrameworksOSXTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBFrameworksOSXDemo.app/Contents/MacOS/BBFrameworksOSXDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBFrameworksiOSDemo.app/BBFrameworksiOSDemo";
 			};
 			name = Debug;
 		};
-		794536001B03C33200651F57 /* Release */ = {
+		794536551B03D9AC00651F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = BBFrameworksOSXDemoTests/Info.plist;
+				INFOPLIST_FILE = BBFrameworksOSXTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBFrameworksOSXDemo.app/Contents/MacOS/BBFrameworksOSXDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBFrameworksiOSDemo.app/BBFrameworksiOSDemo";
+			};
+			name = Release;
+		};
+		794536641B03D9E000651F57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BBFrameworksiOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		794536651B03D9E000651F57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BBFrameworksiOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1055,20 +1073,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		794535AD1B03C31700651F57 /* Build configuration list for PBXNativeTarget "BBFrameworks" */ = {
+		794535AD1B03C31700651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				794535AE1B03C31700651F57 /* Debug */,
 				794535AF1B03C31700651F57 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		794535B01B03C31700651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				794535B11B03C31700651F57 /* Debug */,
-				794535B21B03C31700651F57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1082,15 +1091,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		794535DA1B03C32800651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOSDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				794535DB1B03C32800651F57 /* Debug */,
-				794535DC1B03C32800651F57 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		794535FB1B03C33200651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1100,14 +1100,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		794535FE1B03C33200651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXDemoTests" */ = {
+		7945364F1B03D9AC00651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				794535FF1B03C33200651F57 /* Debug */,
-				794536001B03C33200651F57 /* Release */,
+				794536501B03D9AC00651F57 /* Debug */,
+				794536511B03D9AC00651F57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		794536531B03D9AC00651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				794536541B03D9AC00651F57 /* Debug */,
+				794536551B03D9AC00651F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		794536631B03D9E000651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				794536641B03D9E000651F57 /* Debug */,
+				794536651B03D9E000651F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
