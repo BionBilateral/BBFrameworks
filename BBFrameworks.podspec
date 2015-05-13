@@ -12,9 +12,20 @@ Pod::Spec.new do |spec|
   
   spec.requires_arc = true
   
+  spec.dependency "BlocksKit/Core", "~> 2.2.0"
+  
   spec.subspec "BBFoundation" do |subspec|
     subspec.source_files = "BBFrameworks/BBFoundation"
     
     subspec.frameworks = "Foundation"
+  end
+  
+  spec.subspec "BBKit" do |subspec|
+    subspec.source_files = "BBFrameworks/BBKit"
+    
+    subspec.ios.frameworks = "UIKit"
+    subspec.osx.frameworks = "AppKit"
+    
+    subspec.dependency "Archimedes", "~> 1.1.0"
   end
 end
