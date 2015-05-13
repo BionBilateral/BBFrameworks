@@ -20,6 +20,12 @@ Pod::Spec.new do |spec|
     subspec.frameworks = "Foundation"
   end
   
+  spec.subspec "BBCoreData" do |subspec|
+    subspec.source_files = "BBFrameworks/BBCoreData"
+    
+    subspec.frameworks = "CoreData"
+  end
+  
   spec.subspec "BBKit" do |subspec|
     subspec.source_files = "BBFrameworks/BBKit"
     
