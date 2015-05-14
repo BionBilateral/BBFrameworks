@@ -15,8 +15,16 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Name constant used to retrieve shared instance of BBSnakeCaseToLlamaCaseValueTransformer via `+valueTransformerForName:`.
+ */
 extern NSString *const BBSnakeCaseToLlamaCaseValueTransformerName;
 
+/**
+ BBSnakeCaseToLlamaCaseValueTransformer is a NSValueTransformer subclass whose `-transformedValue:` method converts snake_case strings to camelCase strings.
+ 
+ The `+load` method is overridden to register a shared instance via `+setValueTransformer:forName:`.
+ */
 @interface BBSnakeCaseToLlamaCaseValueTransformer : NSValueTransformer
 
 @end
