@@ -20,9 +20,7 @@ NSString *const BBSnakeCaseToLlamaCaseValueTransformerName = @"BBSnakeCaseToLlam
 @implementation BBSnakeCaseToLlamaCaseValueTransformer
 
 + (void)load {
-    if (self == [BBSnakeCaseToLlamaCaseValueTransformerName class]) {
-        [NSValueTransformer setValueTransformer:[[BBSnakeCaseToLlamaCaseValueTransformer alloc] init] forName:BBSnakeCaseToLlamaCaseValueTransformerName];
-    }
+    [NSValueTransformer setValueTransformer:[[BBSnakeCaseToLlamaCaseValueTransformer alloc] init] forName:BBSnakeCaseToLlamaCaseValueTransformerName];
 }
 
 + (Class)transformedValueClass {
