@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <XCTest/XCTest.h>
+
 #import <BBFrameworks/BBCoreData.h>
 
 @interface BBFrameworksCoreDataImportTests : XCTestCase
@@ -37,12 +38,20 @@
 }
 
 - (void)testCoreDataImport {
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"test" withExtension:@"json"]] options:0 error:NULL];
+    NSString *const kID = @"4E44DCEB-695D-4CA1-B672-5383230C4EC5";
+    NSString *const kName = @"Project Name";
+    NSNumber *const kNumberOfIssues = @1234;
+    NSNumber *const kIsCurrent = @YES;
     
     XCTestExpectation *expect = [self expectationWithDescription:@"Testing core data import"];
     
-    [self.context BB_importJSON:json entityOrder:nil entityMapping:nil completion:^(BOOL success, NSError *error) {
-        XCTAssert(success);
+    [self.context BB_importJSON:@{@"project": @[@{@"id": kID, @"name": kName, @"number_of_issues": kNumberOfIssues, @"is_current": kIsCurrent}]} entityOrder:nil entityMapping:nil completion:^(BOOL success, NSError *error) {
+        NSManagedObject *project = [self.context BB_fetchEntityNamed:@"Project" predicate:[NSPredicate predicateWithFormat:@"%K == %@",@"id",kID] sortDescriptors:nil limit:1 error:NULL].firstObject;
+        
+        XCTAssertEqualObjects([project valueForKey:@"id"], kID);
+        XCTAssertEqualObjects([project valueForKey:@"name"], kName);
+        XCTAssertEqualObjects([project valueForKey:@"numberOfIssues"], kNumberOfIssues);
+        XCTAssertEqualObjects([project valueForKey:@"isCurrent"], kIsCurrent);
         
         [expect fulfill];
     }];
