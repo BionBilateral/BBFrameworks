@@ -15,6 +15,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Category on NSFileManager providing various convenience methods.
+ */
 @interface NSFileManager (BBFoundationExtensions)
 
 /**
