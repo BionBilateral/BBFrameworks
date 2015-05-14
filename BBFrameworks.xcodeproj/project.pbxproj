@@ -52,6 +52,18 @@
 		794536851B03E3FB00651F57 /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536871B03E42D00651F57 /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536861B03E42D00651F57 /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536881B03E42D00651F57 /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536861B03E42D00651F57 /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7945368D1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945368B1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7945368E1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945368B1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7945368F1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7945368C1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
+		794536901B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7945368C1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
+		794536931B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536911B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h */; };
+		794536941B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536911B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h */; };
+		794536951B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536921B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m */; };
+		794536961B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536921B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m */; };
+		794536991B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536971B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h */; };
+		7945369A1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536971B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h */; };
+		7945369B1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536981B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m */; };
+		7945369C1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536981B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -157,6 +169,12 @@
 		794536781B03E12900651F57 /* BBManagedObjectPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBManagedObjectPropertyMapping.h; sourceTree = "<group>"; };
 		7945367E1B03E3A400651F57 /* BBFoundationFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationFunctions.h; sourceTree = "<group>"; };
 		794536861B03E42D00651F57 /* BBCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCoreData.h; sourceTree = "<group>"; };
+		7945368B1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSnakeCaseToLlamaCaseValueTransformer.h; sourceTree = "<group>"; };
+		7945368C1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformer.m; sourceTree = "<group>"; };
+		794536911B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDefaultManagedObjectEntityMapping.h; sourceTree = "<group>"; };
+		794536921B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBDefaultManagedObjectEntityMapping.m; sourceTree = "<group>"; };
+		794536971B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDefaultManagedObjectPropertyMapping.h; sourceTree = "<group>"; };
+		794536981B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBDefaultManagedObjectPropertyMapping.m; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,8 +336,8 @@
 				794536071B03C37000651F57 /* BBFoundation.h */,
 				794536091B03C5B400651F57 /* BBFoundationDebugging.h */,
 				7945367E1B03E3A400651F57 /* BBFoundationFunctions.h */,
-				7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */,
-				7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */,
+				7945368A1B041CD200651F57 /* Classes */,
+				794536891B041CCB00651F57 /* Categories */,
 			);
 			path = BBFoundation;
 			sourceTree = "<group>";
@@ -378,8 +396,30 @@
 				794536781B03E12900651F57 /* BBManagedObjectPropertyMapping.h */,
 				7945366D1B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.h */,
 				7945366E1B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m */,
+				794536911B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h */,
+				794536921B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m */,
+				794536971B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h */,
+				794536981B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m */,
 			);
 			path = BBCoreData;
+			sourceTree = "<group>";
+		};
+		794536891B041CCB00651F57 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7945360B1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h */,
+				7945360C1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		7945368A1B041CD200651F57 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7945368B1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h */,
+				7945368C1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		A60131BA99F48FEF1860D1A4 /* Pods */ = {
@@ -401,7 +441,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				794536791B03E12900651F57 /* BBManagedObjectEntityMapping.h in Headers */,
+				7945368D1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */,
+				794536991B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				794536081B03C37000651F57 /* BBFoundation.h in Headers */,
 				7945360D1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				7945367B1B03E12900651F57 /* BBManagedObjectPropertyMapping.h in Headers */,
@@ -412,6 +454,7 @@
 				7945366F1B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
 				794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */,
 				7945367F1B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
+				794536931B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +463,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				794536811B03E3DC00651F57 /* BBFoundation.h in Headers */,
+				7945368E1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				794536831B03E3E900651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */,
+				7945369A1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				7945367A1B03E12900651F57 /* BBManagedObjectEntityMapping.h in Headers */,
 				794536801B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
 				794536701B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
@@ -431,6 +476,7 @@
 				794536741B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				794536841B03E3F400651F57 /* BBKit.h in Headers */,
 				794536851B03E3FB00651F57 /* NSURL+BBKitExtensions.h in Headers */,
+				794536941B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,10 +769,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				794536951B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				794536711B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				794536751B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */,
+				7945369B1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
+				7945368F1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +803,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				794536761B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
+				794536901B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				794536961B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
+				7945369C1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				794536721B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,6 +979,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -942,6 +995,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1025,6 +1079,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1044,6 +1099,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";

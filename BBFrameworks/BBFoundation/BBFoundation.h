@@ -21,4 +21,6 @@
 
 #import <BBFrameworks/NSFileManager+BBFoundationExtensions.h>
 
+#import <BBFrameworks/BBSnakeCaseToLlamaCaseValueTransformer.h>
+
 #endif

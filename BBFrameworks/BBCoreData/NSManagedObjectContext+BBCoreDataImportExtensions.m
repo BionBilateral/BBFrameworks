@@ -17,6 +17,9 @@
 #import "NSManagedObjectContext+BBCoreDataExtensions.h"
 #import "BBFoundationDebugging.h"
 #import "BBFoundationFunctions.h"
+#import "BBSnakeCaseToLlamaCaseValueTransformer.h"
+#import "BBDefaultManagedObjectEntityMapping.h"
+#import "BBDefaultManagedObjectPropertyMapping.h"
 
 #import <objc/runtime.h>
 
@@ -36,7 +39,7 @@ static void *kBB_defaultIdentityKey = &kBB_defaultIdentityKey;
 
 static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMappingForEntityNamed;
 + (NSDictionary *)BB_propertyMappingForEntityNamed:(NSString *)entityName; {
-    return [self _BB_propertyMappingDictionary][entityName];
+    return [self _BB_propertyMappingDictionary][entityName] ?: [[BBDefaultManagedObjectPropertyMapping alloc] init];
 }
 + (void)BB_registerPropertyMapping:(NSDictionary *)propertyMapping forEntityNamed:(NSString *)entityName; {
     [[self _BB_propertyMappingDictionary] setObject:propertyMapping forKey:entityName];
@@ -75,7 +78,7 @@ static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMa
     
     [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *JSONKey, id JSONValue, BOOL *stop) {
         NSString *const kPropertyKey = [propertyMapping entityPropertyKeyForJSONKey:JSONKey entityName:entityName];
-        id const kPropertyValue = [propertyMapping entityPropertyValueForEntityPropertyKey:kPropertyKey value:JSONValue entityName:entityName];
+        id const kPropertyValue = [propertyMapping entityPropertyValueForEntityPropertyKey:kPropertyKey value:JSONValue entityName:entityName context:self];
         
         [retval setValue:kPropertyValue forKey:kPropertyKey];
     }];
@@ -86,14 +89,18 @@ static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMa
 - (void)BB_importJSON:(id<NSFastEnumeration,NSObject>)JSON entityOrder:(NSArray *)entityOrder entityMapping:(id<BBManagedObjectEntityMapping>)entityMapping completion:(void(^)(BOOL success, NSError *error))completion; {
     NSParameterAssert([JSON isKindOfClass:[NSDictionary class]] || (JSON && entityOrder.count > 0));
     
+    if (!entityMapping) {
+        entityMapping = [[BBDefaultManagedObjectEntityMapping alloc] init];
+    }
+    
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     
     [context setUndoManager:nil];
     [context setParentContext:self];
     [context performBlock:^{
+        NSMutableArray *entityNames = [[NSMutableArray alloc] init];
+        
         if ([JSON isKindOfClass:[NSDictionary class]]) {
-            NSMutableArray *entityNames = [[NSMutableArray alloc] init];
-            
             if (entityOrder.count > 0) {
                 [entityNames addObjectsFromArray:entityOrder];
             }
@@ -101,10 +108,31 @@ static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMa
                 [entityNames addObjectsFromArray:[(NSDictionary *)JSON allKeys]];
             }
             
-            
+            for (NSString *JSONEntityName in entityNames) {
+                NSString *const kEntityName = [entityMapping entityNameForJSONEntityName:JSONEntityName];
+                id<BBManagedObjectPropertyMapping> const kPropertyMapping = [self.class BB_propertyMappingForEntityNamed:kEntityName];
+                NSArray *const kEntityDicts = [(NSDictionary *)JSON objectForKey:JSONEntityName];
+                
+                for (NSDictionary *entityDict in kEntityDicts) {
+                    NSError *outError;
+                    if (![context BB_managedObjectWithDictionary:entityDict entityName:kEntityName propertyMapping:kPropertyMapping error:&outError]) {
+                        BBLogObject(outError);
+                    }
+                }
+            }
         }
         else {
+            [entityNames addObjectsFromArray:entityOrder];
             
+            NSString *const kEntityName = [entityMapping entityNameForJSONEntityName:entityOrder.lastObject];
+            id<BBManagedObjectPropertyMapping> const kPropertyMapping = [self.class BB_propertyMappingForEntityNamed:kEntityName];
+            
+            for (NSDictionary *entityDict in JSON) {
+                NSError *outError;
+                if (![context BB_managedObjectWithDictionary:entityDict entityName:kEntityName propertyMapping:kPropertyMapping error:&outError]) {
+                    BBLogObject(outError);
+                }
+            }
         }
         
         NSError *outError;

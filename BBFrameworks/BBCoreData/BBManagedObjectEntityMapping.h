@@ -18,4 +18,6 @@
 @protocol BBManagedObjectEntityMapping <NSObject>
 @required
 - (NSString *)entityNameForJSONEntityName:(NSString *)JSONName;
+@optional
+- (NSString *)JSONEntityNameForEntityName:(NSString *)entityName;
 @end
