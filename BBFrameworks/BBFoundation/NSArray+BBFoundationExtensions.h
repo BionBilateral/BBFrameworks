@@ -23,12 +23,18 @@
  @return The NSSet created from the receiver
  */
 - (NSSet *)BB_set;
-
 /**
  Creates and returns an NSMutableSet with the receiver's objects.
  
  @return The NSMutableSet created from the receiver
  */
 - (NSMutableSet *)BB_mutableSet;
+
+/**
+ Creates and returns a shuffled copy of the receiver.
+ 
+ @return The shuffled NSArray
+ */
+- (NSArray *)BB_shuffledArray;
 
 @end
