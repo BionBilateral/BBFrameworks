@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBDefaultManagedObjectPropertyMapping.h"
+#import "NSManagedObjectContext+BBCoreDataExtensions.h"
 #import "NSManagedObjectContext+BBCoreDataImportExtensions.h"
 #import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 
@@ -40,6 +41,7 @@
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     NSAttributeDescription *attributeDesc = entityDesc.attributesByName[propertyKey];
+    NSRelationshipDescription *relationshipDesc = entityDesc.relationshipsByName[propertyKey];
     id retval = nil;
     
     if (attributeDesc) {
@@ -95,6 +97,56 @@
                 break;
             default:
                 break;
+        }
+    }
+    else if (relationshipDesc) {
+        NSString *destEntityName = relationshipDesc.destinationEntity.name;
+        
+        if (relationshipDesc.isToMany) {
+            id destEntities = relationshipDesc.isOrdered ? [[NSMutableOrderedSet alloc] init] : [[NSMutableSet alloc] init];
+            
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                NSManagedObject *destEntity = [context BB_managedObjectWithDictionary:value entityName:destEntityName propertyMapping:self error:NULL];
+                
+                if (destEntity) {
+                    [destEntities addObject:destEntity];
+                }
+            }
+            else if ([value conformsToProtocol:@protocol(NSFastEnumeration)]) {
+                for (id destEntityIdentityOrDict in value) {
+                    if ([destEntityIdentityOrDict isKindOfClass:[NSDictionary class]]) {
+                        NSManagedObject *destEntity = [context BB_managedObjectWithDictionary:destEntityIdentityOrDict entityName:destEntityName propertyMapping:self error:NULL];
+                        
+                        if (destEntity) {
+                            [destEntities addObject:destEntity];
+                        }
+                    }
+                    else if ([destEntityIdentityOrDict isKindOfClass:[NSNumber class]]) {
+                        NSManagedObject *destEntity = [context BB_fetchEntityNamed:destEntityName predicate:[NSPredicate predicateWithFormat:@"%K == %@",[NSManagedObjectContext BB_defaultIdentityKey],value] sortDescriptors:nil limit:1 error:NULL].firstObject;
+                        
+                        if (destEntity) {
+                            [destEntities addObject:destEntity];
+                        }
+                    }
+                }
+            }
+            else {
+                destEntities = nil;
+            }
+            
+            retval = destEntities;
+        }
+        else {
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                NSManagedObject *destEntity = [context BB_managedObjectWithDictionary:value entityName:destEntityName propertyMapping:self error:NULL];
+                
+                retval = destEntity;
+            }
+            else if ([value isKindOfClass:[NSNumber class]]) {
+                NSManagedObject *destEntity = [context BB_fetchEntityNamed:destEntityName predicate:[NSPredicate predicateWithFormat:@"%K == %@",[NSManagedObjectContext BB_defaultIdentityKey],value] sortDescriptors:nil limit:1 error:NULL].firstObject;
+                
+                retval = destEntity;
+            }
         }
     }
     
