@@ -23,4 +23,21 @@
     }
 }
 
+- (void)BB_push:(id)object; {
+    [self insertObject:object atIndex:0];
+}
+- (void)BB_pop; {
+    [self BB_removeFirstObject];
+}
+
+- (void)BB_shuffle {
+    NSUInteger max = self.count - 1;
+    
+    for (NSUInteger i=0; i<self.count; i++) {
+        NSUInteger n = arc4random_uniform((u_int32_t)max) + i;
+        
+        [self exchangeObjectAtIndex:i withObjectAtIndex:n];
+    }
+}
+
 @end

@@ -15,11 +15,30 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Category on NSMutableArray adding various convenience methods.
+ */
 @interface NSMutableArray (BBExtensions)
 
 /**
  If self.count > 0, removes the first object in the receiver; otherwise does nothing.
  */
 - (void)BB_removeFirstObject;
+
+/**
+ Inserts _object_ at index 0 of the receiver.
+ 
+ @param object The object to insert
+ */
+- (void)BB_push:(id)object;
+/**
+ Removes the first object of the receiver. Equivalent to calling `[self BB_removeFirstObject]`.
+ */
+- (void)BB_pop;
+
+/**
+ Shuffles the receiver. See http://stackoverflow.com/questions/56648/whats-the-best-way-to-shuffle-an-nsmutablearray for implementation reference.
+ */
+- (void)BB_shuffle;
 
 @end
