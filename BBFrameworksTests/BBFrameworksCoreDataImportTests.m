@@ -43,9 +43,23 @@
     NSNumber *const kNumberOfIssues = @1234;
     NSNumber *const kIsCurrent = @YES;
     
+    NSString *const kIssueID = @"4F77CB74-5449-4429-BF49-BB7B13E10A4A";
+    
+    NSString *const kUserID = @"01148E51-DFBF-4695-89F9-846921AA73CF";
+    
+    NSDictionary *const kDict = @{@"project": @[@{@"id": kID,
+                                                  @"name": kName,
+                                                  @"number_of_issues": kNumberOfIssues,
+                                                  @"is_current": kIsCurrent,
+                                                  @"issues": @[@{@"id": kIssueID,
+                                                                 @"name": @"Fix all the things"}],
+                                                  @"user": @{@"id": kUserID,
+                                                             @"first_name": @"John",
+                                                             @"last_name": @"Smith"}}]};
+    
     XCTestExpectation *expect = [self expectationWithDescription:@"Testing core data import"];
     
-    [self.context BB_importJSON:@{@"project": @[@{@"id": kID, @"name": kName, @"number_of_issues": kNumberOfIssues, @"is_current": kIsCurrent}]} entityOrder:nil entityMapping:nil completion:^(BOOL success, NSError *error) {
+    [self.context BB_importJSON:kDict entityOrder:nil entityMapping:nil completion:^(BOOL success, NSError *error) {
         NSManagedObject *project = [self.context BB_fetchEntityNamed:@"Project" predicate:[NSPredicate predicateWithFormat:@"%K == %@",@"id",kID] sortDescriptors:nil limit:1 error:NULL].firstObject;
         
         XCTAssertEqualObjects([project valueForKey:@"id"], kID);
@@ -53,10 +67,14 @@
         XCTAssertEqualObjects([project valueForKey:@"numberOfIssues"], kNumberOfIssues);
         XCTAssertEqualObjects([project valueForKey:@"isCurrent"], kIsCurrent);
         
+        XCTAssertEqualObjects([project valueForKeyPath:@"issues.id"] , [NSSet setWithArray:@[kIssueID]]);
+        
+        XCTAssertEqualObjects([project valueForKeyPath:@"user.id"], kUserID);
+        
         [expect fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
 @end
