@@ -37,7 +37,28 @@ static void *kBB_defaultIdentityKey = &kBB_defaultIdentityKey;
     objc_setAssociatedObject(self, kBB_defaultIdentityKey, key, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMappingForEntityNamed;
+static void *kBB_defaultDateFormatterKey = &kBB_defaultDateFormatterKey;
++ (NSDateFormatter *)BB_defaultDateFormatter; {
+    NSDateFormatter *retval = objc_getAssociatedObject(self, kBB_defaultDateFormatterKey);
+    
+    if (!retval) {
+        static NSDateFormatter *kRetval;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            kRetval = [[NSDateFormatter alloc] init];
+            
+            [kRetval setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+        });
+        
+        retval = kRetval;
+    }
+    
+    return retval;
+}
++ (void)BB_setDefaultDateFormatter:(NSDateFormatter *)dateFormatter; {
+    objc_setAssociatedObject(self, kBB_defaultDateFormatterKey, dateFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 + (NSDictionary *)BB_propertyMappingForEntityNamed:(NSString *)entityName; {
     return [self _BB_propertyMappingDictionary][entityName] ?: [[BBDefaultManagedObjectPropertyMapping alloc] init];
 }
@@ -157,6 +178,7 @@ static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMa
 
 @implementation NSManagedObjectContext (BBImportExtensionsPrivate)
 
+static void *kBB_registerPropertyMappingForEntityNamed = &kBB_registerPropertyMappingForEntityNamed;
 + (NSDictionary *)_BB_propertyMappingDictionary; {
     NSDictionary *retval = objc_getAssociatedObject(self, kBB_registerPropertyMappingForEntityNamed);
     

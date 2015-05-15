@@ -14,9 +14,15 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBDefaultManagedObjectPropertyMapping.h"
+#import "NSManagedObjectContext+BBCoreDataImportExtensions.h"
 #import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 
 #import <CoreData/CoreData.h>
+#if (TARGET_OS_IPHONE)
+#import <UIKit/UIImage.h>
+#else
+#import <AppKit/NSImage.h>
+#endif
 
 @implementation BBDefaultManagedObjectPropertyMapping
 
@@ -51,10 +57,41 @@
                 retval = [[NSDecimalNumber alloc] initWithString:value];
                 break;
             case NSDateAttributeType:
-                retval = [NSDate dateWithTimeIntervalSince1970:[value doubleValue]];
+                if ([value isKindOfClass:[NSString class]]) {
+                    retval = [[NSManagedObjectContext BB_defaultDateFormatter] dateFromString:value];
+                }
+                else if ([value isKindOfClass:[NSNumber class]]) {
+                    retval = [NSDate dateWithTimeIntervalSince1970:[value doubleValue]];
+                }
                 break;
             case NSBinaryDataAttributeType:
                 retval = [[NSData alloc] initWithBase64EncodedString:value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                break;
+            case NSTransformableAttributeType: {
+                NSString *const kAttributeValueClassName = @"attributeValueClassName";
+                
+                if (attributeDesc.attributeValueClassName ||
+                    attributeDesc.userInfo[kAttributeValueClassName]) {
+#if (TARGET_OS_IPHONE)
+                    if ([attributeDesc.userInfo[kAttributeValueClassName] isEqualToString:NSStringFromClass([UIImage class])]) {
+                        retval = [[UIImage alloc] initWithData:[[NSData alloc] initWithBase64EncodedString:value options:NSDataBase64DecodingIgnoreUnknownCharacters]];
+                    }
+#else
+                    if ([attributeDesc.userInfo[kAttributeValueClassName] isEqualToString:NSStringFromClass([NSImage class])]) {
+                        retval = [[NSImage alloc] initWithData:[[NSData alloc] initWithBase64EncodedString:value options:NSDataBase64DecodingIgnoreUnknownCharacters]];
+                    }
+#endif
+                    else if ([value isKindOfClass:[NSString class]]) {
+                        retval = [[NSData alloc] initWithBase64EncodedString:value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                    }
+                    else if (attributeDesc.valueTransformerName) {
+                        retval = [[NSValueTransformer valueTransformerForName:attributeDesc.valueTransformerName] transformedValue:value];
+                    }
+                    else {
+                        retval = value;
+                    }
+                }
+            }
                 break;
             default:
                 break;

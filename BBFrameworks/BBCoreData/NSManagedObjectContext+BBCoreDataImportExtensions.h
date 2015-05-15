@@ -22,6 +22,9 @@
 + (NSString *)BB_defaultIdentityKey;
 + (void)BB_setDefaultIdentityKey:(NSString *)key;
 
++ (NSDateFormatter *)BB_defaultDateFormatter;
++ (void)BB_setDefaultDateFormatter:(NSDateFormatter *)dateFormatter;
+
 + (id<BBManagedObjectPropertyMapping>)BB_propertyMappingForEntityNamed:(NSString *)entityName;
 + (void)BB_registerPropertyMapping:(id<BBManagedObjectPropertyMapping>)propertyMapping forEntityNamed:(NSString *)entityName;
 
