@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		749CC5B61B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */; };
-		749CC5B71B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */; };
+		749CC5B61B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		749CC5B81B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */; };
 		749CC5B91B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */; };
 		7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945359C1B03C31700651F57 /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -521,7 +520,6 @@
 				7945368E1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				794536C51B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				794536D11B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */,
-				749CC5B71B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */,
 				794536831B03E3E900651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				7945369A1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				7945367A1B03E12900651F57 /* BBManagedObjectEntityMapping.h in Headers */,

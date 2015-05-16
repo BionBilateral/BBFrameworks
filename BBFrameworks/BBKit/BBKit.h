@@ -17,5 +17,6 @@
 #define __BB_FRAMEWORKS_KIT__
 
 #import <BBFrameworks/NSURL+BBKitExtensions.h>
+#import <BBFrameworks/UIImage+BBKitExtensions.h>
 
 #endif

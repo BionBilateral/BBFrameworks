@@ -15,6 +15,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Category providing methods to alter UIImages.
+ */
 @interface UIImage (BBKitExtensions)
 
 /**
