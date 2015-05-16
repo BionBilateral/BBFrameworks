@@ -25,7 +25,8 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBCoreData"
     
-    subspec.frameworks = "CoreData"
+    subspec.ios.frameworks = "CoreData", "UIKit"
+    subspec.osx.frameworks = "CoreData", "AppKit"
   end
   
   spec.subspec "BBKit" do |subspec|
