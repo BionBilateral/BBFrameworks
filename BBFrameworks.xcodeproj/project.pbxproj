@@ -86,6 +86,8 @@
 		794536D71B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536D41B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h */; };
 		794536D81B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */; };
 		794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */; };
+		794536DC1B06C3B100651F57 /* UIColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */; };
+		794536DD1B06C3B100651F57 /* UIColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -214,6 +216,8 @@
 		794536CF1B06BAA900651F57 /* NSString+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		794536D41B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BBFoundationExtensions.m"; sourceTree = "<group>"; };
+		794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BBKitExtensions.h"; sourceTree = "<group>"; };
+		794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBKitExtensions.m"; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -386,6 +390,8 @@
 				794536191B03CD7000651F57 /* BBKit.h */,
 				794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */,
 				794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */,
+				794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */,
+				794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */,
 			);
 			path = BBKit;
 			sourceTree = "<group>";
@@ -485,6 +491,7 @@
 				7945367B1B03E12900651F57 /* BBManagedObjectPropertyMapping.h in Headers */,
 				794536871B03E42D00651F57 /* BBCoreData.h in Headers */,
 				794536BE1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */,
+				794536DC1B06C3B100651F57 /* UIColor+BBKitExtensions.h in Headers */,
 				794536CA1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */,
 				7945361A1B03CD7000651F57 /* BBKit.h in Headers */,
 				7945360A1B03C5B400651F57 /* BBFoundationDebugging.h in Headers */,
@@ -819,6 +826,7 @@
 				794536711B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				794536C01B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */,
 				7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */,
+				794536DD1B06C3B100651F57 /* UIColor+BBKitExtensions.m in Sources */,
 				794536751B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */,
 				794536D21B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
