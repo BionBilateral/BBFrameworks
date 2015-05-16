@@ -88,6 +88,10 @@
 		794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */; };
 		794536DC1B06C3B100651F57 /* UIColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */; };
 		794536DD1B06C3B100651F57 /* UIColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */; };
+		794536DF1B0797B900651F57 /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536DE1B0797B300651F57 /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536E01B0797BA00651F57 /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536DE1B0797B300651F57 /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536E31B0799BE00651F57 /* NSColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E11B0799BE00651F57 /* NSColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536E41B0799BE00651F57 /* NSColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E21B0799BE00651F57 /* NSColor+BBKitExtensions.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -218,6 +222,9 @@
 		794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BBKitExtensions.h"; sourceTree = "<group>"; };
 		794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBKitExtensions.m"; sourceTree = "<group>"; };
+		794536DE1B0797B300651F57 /* BBKitColorMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBKitColorMacros.h; sourceTree = "<group>"; };
+		794536E11B0799BE00651F57 /* NSColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+BBKitExtensions.h"; sourceTree = "<group>"; };
+		794536E21B0799BE00651F57 /* NSColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+BBKitExtensions.m"; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -390,8 +397,11 @@
 				794536191B03CD7000651F57 /* BBKit.h */,
 				794536111B03CAAE00651F57 /* NSURL+BBKitExtensions.h */,
 				794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */,
+				794536DE1B0797B300651F57 /* BBKitColorMacros.h */,
 				794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */,
 				794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */,
+				794536E11B0799BE00651F57 /* NSColor+BBKitExtensions.h */,
+				794536E21B0799BE00651F57 /* NSColor+BBKitExtensions.m */,
 			);
 			path = BBKit;
 			sourceTree = "<group>";
@@ -500,6 +510,7 @@
 				794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */,
 				7945367F1B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
 				794536931B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
+				794536DF1B0797B900651F57 /* BBKitColorMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +520,7 @@
 			files = (
 				794536D71B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */,
 				794536811B03E3DC00651F57 /* BBFoundation.h in Headers */,
+				794536E01B0797BA00651F57 /* BBKitColorMacros.h in Headers */,
 				7945368E1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				794536C51B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				794536D11B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */,
@@ -524,6 +536,7 @@
 				7945367C1B03E12900651F57 /* BBManagedObjectPropertyMapping.h in Headers */,
 				7945367D1B03E34300651F57 /* BBFrameworks.h in Headers */,
 				794536741B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
+				794536E31B0799BE00651F57 /* NSColor+BBKitExtensions.h in Headers */,
 				794536841B03E3F400651F57 /* BBKit.h in Headers */,
 				794536851B03E3FB00651F57 /* NSURL+BBKitExtensions.h in Headers */,
 				794536941B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
@@ -865,6 +878,7 @@
 				794536CD1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,
 				794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */,
 				794536901B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				794536E41B0799BE00651F57 /* NSColor+BBKitExtensions.m in Sources */,
 				794536961B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				7945369C1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				794536721B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,

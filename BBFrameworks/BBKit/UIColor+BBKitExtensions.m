@@ -17,6 +17,24 @@
 
 @implementation UIColor (BBKitExtensions)
 
++ (UIColor *)BB_colorRandomRGB; {
+    u_int32_t max = 255;
+    u_int32_t red = arc4random_uniform(max);
+    u_int32_t green = arc4random_uniform(max);
+    u_int32_t blue = arc4random_uniform(max);
+    
+    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
+}
++ (UIColor *)BB_colorRandomRGBA; {
+    u_int32_t max = 255;
+    u_int32_t red = arc4random_uniform(max);
+    u_int32_t green = arc4random_uniform(max);
+    u_int32_t blue = arc4random_uniform(max);
+    u_int32_t alpha = arc4random_uniform(max);
+    
+    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:alpha/255.0];
+}
+
 + (UIColor *)BB_colorWithHexadecimalString:(NSString *)hexadecimalString; {
     if (hexadecimalString.length == 0) {
         return nil;
