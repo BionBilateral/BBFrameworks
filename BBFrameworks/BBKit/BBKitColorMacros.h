@@ -27,22 +27,64 @@
  */
 #define BBColorW(w) BBColorWA((w),1.0)
 /**
- Alias for `+[UIColor colorWithWhite:alpha:]`, passing _w_ and _a_ respectively.
+ Alias for `+[UIColor colorWithWhite:alpha:]` or `+[NSColor colorWithCalibratedWhite:alpha:]`, passing _w_ and _a_ respectively.
  */
+#if (TARGET_OS_IPHONE)
 #define BBColorWA(w,a) [UIColor colorWithWhite:(w) alpha:(a)]
+#else
+#define BBColorWA(w,a) [NSColor colorWithCalibratedWhite:(w) alpha:(a)]
+#endif
 
+/**
+ Alias for BBColorRGBA(), passing _r_, _g_, _b_, and 1.0 respectively.
+ */
 #define BBColorRGB(r,g,b) BBColorRGBA((r),(g),(b),1.0)
-
+/**
+ Alias for `+[UIColor colorWithRed:green:blue:alpha:]` or `+[NSColor colorWithCalibratedRed:green:blue:alpha:]`, passing _r_, _g_, _b_, and _a_ respectively.
+ */
+#if (TARGET_OS_IPHONE)
 #define BBColorRGBA(r,g,b,a) [UIColor colorWithRed:(r) green:(g) blue:(b) alpha:(a)]
+#else
+#define BBColorRGBA(r,g,b,a) [NSColor colorWithCalibratedRed:(r) green:(g) blue:(b) alpha:(a)]
+#endif
 
+/**
+ Alias for `+[UIColor BB_colorRandomRGB]` or `+[NSColor BB_colorRandomRGB]`.
+ */
+#if (TARGET_OS_IPHONE)
 #define BBColorRandomRGB() [UIColor BB_colorRandomRGB]
-
+#else
+#define BBColorRandomRGB() [NSColor BB_colorRandomRGB]
+#endif
+/**
+ Alias for `+[UIColor BB_colorRandomRGBA]` or `+[NSColor BB_colorRandomRGBA]`.
+ */
+#if (TARGET_OS_IPHONE)
 #define BBColorRandomRGBA() [UIColor BB_colorRandomRGBA]
+#else
+#define BBColorRandomRGBA() [NSColor BB_colorRandomRGBA]
+#endif
 
+/**
+ Alias for BBColorHSBA(), passing _h_, _s_, _b_, and 1.0 respectively.
+ */
 #define BBColorHSB(h,s,b) BBColorHSBA((h),(s),(b),1.0)
-
+/**
+ Alias for `+[UIColor colorWithHue:saturation:brightness:alpha:]` or `+[NSColor colorWithCalibratedHue:saturation:brightness:alpha:]`, passing _h_, _s_, _b_, and _a_ respectively.
+ */
+#if (TARGET_OS_IPHONE)
 #define BBColorHSBA(h,s,b,a) [UIColor colorWithHue:(h) saturation:(s) brightness:(b) alpha:(a)]
+#else
+#define BBColorHSBA(h,s,b,a) [NSColor colorWithCalibratedHue:(h) saturation:(s) brightness:(b) alpha:(a)]
+#endif
 
+/**
+ Alias for `+[UIColor BB_colorWithHexadecimalString:]` or `+[NSColor BB_colorWithHexadecimalString:]`, passing _s_.
+ */
+#if (TARGET_OS_IPHONE)
 #define BBColorHexadecimal(s) [UIColor BB_colorWithHexadecimalString:(s)]
+#else
+#define BBColorHexadecimal(s) [NSColor BB_colorWithHexadecimalString:(s)]
+#endif
 
 #endif
