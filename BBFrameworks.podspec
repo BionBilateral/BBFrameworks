@@ -13,6 +13,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
   spec.dependency "BlocksKit/Core", "~> 2.2.0"
+  spec.dependency "ReactiveCocoa", "~> 2.5.0"
   
   spec.subspec "BBFoundation" do |subspec|
     subspec.source_files = "BBFrameworks/BBFoundation"
@@ -30,6 +31,8 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBKit" do |subspec|
+    subspec.dependency "ReactiveViewModel", "~> 0.3.0"
+    
     subspec.dependency "BBFrameworks/BBFoundation"
     
     subspec.source_files = "BBFrameworks/BBKit"
