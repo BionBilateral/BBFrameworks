@@ -16,7 +16,13 @@
 #ifndef __BB_FRAMEWORKS_KIT__
 #define __BB_FRAMEWORKS_KIT__
 
+#import <BBFrameworks/BBKitColorMacros.h>
+
 #import <BBFrameworks/NSURL+BBKitExtensions.h>
+#if (TARGET_OS_IPHONE)
 #import <BBFrameworks/UIImage+BBKitExtensions.h>
+#else
+
+#endif
 
 #endif

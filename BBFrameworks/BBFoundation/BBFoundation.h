@@ -20,6 +20,11 @@
 #import <BBFrameworks/BBFoundationFunctions.h>
 
 #import <BBFrameworks/NSFileManager+BBFoundationExtensions.h>
+#import <BBFrameworks/NSArray+BBFoundationExtensions.h>
+#import <BBFrameworks/NSMutableArray+BBFoundationExtensions.h>
+#import <BBFrameworks/NSData+BBFoundationExtensions.h>
+#import <BBFrameworks/NSString+BBFoundationExtensions.h>
+#import <BBFrameworks/NSBundle+BBFoundationExtensions.h>
 
 #import <BBFrameworks/BBSnakeCaseToLlamaCaseValueTransformer.h>
 
