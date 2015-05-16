@@ -34,6 +34,8 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBKit"
     
+    subspec.ios.exclude_files = "BBFrameworks/BBKit/NS*.{h,m}"
+    
     subspec.ios.frameworks = "UIKit", "Accelerate", "CoreImage"
     subspec.osx.frameworks = "AppKit", "Accelerate", "CoreImage"
     
