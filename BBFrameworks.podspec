@@ -34,8 +34,8 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBKit"
     
-    subspec.ios.frameworks = "UIKit"
-    subspec.osx.frameworks = "AppKit"
+    subspec.ios.frameworks = "UIKit", "Accelerate", "CoreImage"
+    subspec.osx.frameworks = "AppKit", "Accelerate", "CoreImage"
     
     subspec.dependency "Archimedes", "~> 1.1.0"
   end
