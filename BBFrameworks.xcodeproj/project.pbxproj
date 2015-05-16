@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		749CC5B61B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */; };
+		749CC5B71B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */; };
+		749CC5B81B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */; };
+		749CC5B91B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */; };
 		7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945359C1B03C31700651F57 /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794535BC1B03C32800651F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BB1B03C32800651F57 /* main.m */; };
 		794535BF1B03C32800651F57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BE1B03C32800651F57 /* AppDelegate.m */; };
@@ -157,6 +161,8 @@
 		46E6EAAFAF16877F5A1046F0 /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
 		51DB3C8ABAAE4713365480AC /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
+		749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
 		794535971B03C31700651F57 /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7945359C1B03C31700651F57 /* BBFrameworks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		794535B71B03C32800651F57 /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -392,6 +398,8 @@
 				794536121B03CAAE00651F57 /* NSURL+BBKitExtensions.m */,
 				794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */,
 				794536DB1B06C3B100651F57 /* UIColor+BBKitExtensions.m */,
+				749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */,
+				749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */,
 			);
 			path = BBKit;
 			sourceTree = "<group>";
@@ -492,6 +500,7 @@
 				794536871B03E42D00651F57 /* BBCoreData.h in Headers */,
 				794536BE1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */,
 				794536DC1B06C3B100651F57 /* UIColor+BBKitExtensions.h in Headers */,
+				749CC5B61B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */,
 				794536CA1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */,
 				7945361A1B03CD7000651F57 /* BBKit.h in Headers */,
 				7945360A1B03C5B400651F57 /* BBFoundationDebugging.h in Headers */,
@@ -512,6 +521,7 @@
 				7945368E1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				794536C51B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				794536D11B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */,
+				749CC5B71B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */,
 				794536831B03E3E900651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				7945369A1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				7945367A1B03E12900651F57 /* BBManagedObjectEntityMapping.h in Headers */,
@@ -825,6 +835,7 @@
 				794536D81B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */,
 				794536711B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				794536C01B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */,
+				749CC5B81B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */,
 				7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				794536DD1B06C3B100651F57 /* UIColor+BBKitExtensions.m in Sources */,
 				794536751B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
@@ -860,6 +871,7 @@
 			files = (
 				794536D31B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
 				794536C71B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */,
+				749CC5B91B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */,
 				794536C11B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */,
 				794536761B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				794536CD1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,
@@ -1291,6 +1303,7 @@
 				794536511B03D9AC00651F57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		794536531B03D9AC00651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1299,6 +1312,7 @@
 				794536551B03D9AC00651F57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		794536631B03D9E000651F57 /* Build configuration list for PBXNativeTarget "BBFrameworksiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1307,6 +1321,7 @@
 				794536651B03D9E000651F57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
