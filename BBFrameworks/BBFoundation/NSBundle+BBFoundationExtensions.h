@@ -15,6 +15,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Category on NSBundle adding various convenience methods.
+ */
 @interface NSBundle (BBFoundationExtensions)
 
 /**
