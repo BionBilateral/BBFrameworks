@@ -27,6 +27,13 @@
  */
 - (NSDictionary *)BB_queryDictionary;
 
+/**
+ Create and return an NSURL with _baseString_ and optional query _parameters_.
+ 
+ @param baseString The base string of the NSURL
+ @param parameters Optional parameters dictionary
+ @return The NSURL created from _baseString_ and _parameters_
+ */
 + (NSURL *)BB_URLWithBaseString:(NSString *)baseString parameters:(NSDictionary *)parameters;
 
 @end
