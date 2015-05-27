@@ -68,24 +68,24 @@
 		794536A01B05215200651F57 /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7945369D1B05215200651F57 /* Test.xcdatamodeld */; };
 		794536B51B05246400651F57 /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536B41B05246400651F57 /* BBFrameworksCoreDataImportTests.m */; };
 		794536B61B05246400651F57 /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536B41B05246400651F57 /* BBFrameworksCoreDataImportTests.m */; };
-		794536BE1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536BC1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h */; };
-		794536BF1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536BC1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h */; };
+		794536BE1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536BC1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536BF1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536BC1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536C01B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536BD1B068F7C00651F57 /* NSArray+BBFoundationExtensions.m */; };
 		794536C11B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536BD1B068F7C00651F57 /* NSArray+BBFoundationExtensions.m */; };
-		794536C41B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C21B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h */; };
-		794536C51B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C21B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h */; };
+		794536C41B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C21B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536C51B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C21B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536C61B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536C31B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m */; };
 		794536C71B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536C31B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m */; };
-		794536CA1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C81B06B43200651F57 /* NSData+BBFoundationExtensions.h */; };
-		794536CB1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C81B06B43200651F57 /* NSData+BBFoundationExtensions.h */; };
+		794536CA1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C81B06B43200651F57 /* NSData+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536CB1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536C81B06B43200651F57 /* NSData+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536CC1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536C91B06B43200651F57 /* NSData+BBFoundationExtensions.m */; };
 		794536CD1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536C91B06B43200651F57 /* NSData+BBFoundationExtensions.m */; };
-		794536D01B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536CE1B06BAA900651F57 /* NSString+BBFoundationExtensions.h */; };
-		794536D11B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536CE1B06BAA900651F57 /* NSString+BBFoundationExtensions.h */; };
+		794536D01B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536CE1B06BAA900651F57 /* NSString+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536D11B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536CE1B06BAA900651F57 /* NSString+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536D21B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536CF1B06BAA900651F57 /* NSString+BBFoundationExtensions.m */; };
 		794536D31B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536CF1B06BAA900651F57 /* NSString+BBFoundationExtensions.m */; };
-		794536D61B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536D41B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h */; };
-		794536D71B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536D41B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h */; };
+		794536D61B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536D41B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536D71B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536D41B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536D81B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */; };
 		794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536D51B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m */; };
 		794536DC1B06C3B100651F57 /* UIColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536DA1B06C3B100651F57 /* UIColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -94,14 +94,15 @@
 		794536E01B0797BA00651F57 /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536DE1B0797B300651F57 /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536E31B0799BE00651F57 /* NSColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E11B0799BE00651F57 /* NSColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536E41B0799BE00651F57 /* NSColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E21B0799BE00651F57 /* NSColor+BBKitExtensions.m */; };
-		794536E81B091E0400651F57 /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */; };
-		794536E91B091E0400651F57 /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */; };
+		794536E81B091E0400651F57 /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		794536E91B091E0400651F57 /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536EA1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */; };
 		794536EB1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
 		79D0EAA01B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
+		79F18A811B1563F200F25042 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F18A801B1563F200F25042 /* ViewController.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -241,6 +242,8 @@
 		794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeView.h; sourceTree = "<group>"; };
 		79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeView.m; sourceTree = "<group>"; };
+		79F18A7F1B1563F200F25042 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		79F18A801B1563F200F25042 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -379,6 +382,8 @@
 			children = (
 				794535E51B03C33200651F57 /* AppDelegate.h */,
 				794535E61B03C33200651F57 /* AppDelegate.m */,
+				79F18A7F1B1563F200F25042 /* ViewController.h */,
+				79F18A801B1563F200F25042 /* ViewController.m */,
 				794535EA1B03C33200651F57 /* Images.xcassets */,
 				794535EC1B03C33200651F57 /* MainMenu.xib */,
 				794535E31B03C33200651F57 /* Supporting Files */,
@@ -908,6 +913,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F18A811B1563F200F25042 /* ViewController.m in Sources */,
 				794535E91B03C33200651F57 /* main.m in Sources */,
 				794535E71B03C33200651F57 /* AppDelegate.m in Sources */,
 			);
@@ -1110,6 +1116,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1126,6 +1137,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1210,6 +1226,11 @@
 					"$(inherited)",
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1230,6 +1251,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";

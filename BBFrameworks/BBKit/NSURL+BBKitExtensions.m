@@ -46,7 +46,7 @@
         BBLogObject(outError);
     }
     
-    return retval;
+    return retval.boolValue;
 }
 - (NSString *)BB_typeIdentifier; {
     NSError *outError;

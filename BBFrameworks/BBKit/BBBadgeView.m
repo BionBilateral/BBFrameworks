@@ -16,11 +16,6 @@
 #import "BBBadgeView.h"
 
 @interface BBBadgeView ()
-#if (TARGET_OS_IPHONE)
-@property (strong,nonatomic) UILabel *label;
-#else
-@property (strong,nonatomic) NSTextField *label;
-#endif
 
 - (void)_BBBadgeViewInit;
 
@@ -68,10 +63,6 @@
 }
 #pragma mark UIView
 #if (TARGET_OS_IPHONE)
-- (void)layoutSubviews {
-    [self.label setFrame:UIEdgeInsetsInsetRect(self.bounds, self.badgeEdgeInsets)];
-}
-
 - (CGSize)intrinsicContentSize {
     return [self sizeThatFits:CGSizeZero];
 }
@@ -81,7 +72,7 @@
         return CGSizeZero;
     }
     
-    CGSize retval = [self.label sizeThatFits:size];
+    CGSize retval = [self.badge sizeWithAttributes:@{NSFontAttributeName: self.badgeFont}];
     
     retval.width += self.badgeEdgeInsets.left + self.badgeEdgeInsets.right;
     retval.height += self.badgeEdgeInsets.top + self.badgeEdgeInsets.bottom;
@@ -93,20 +84,16 @@
     return retval;
 }
 #else
-- (void)resizeSubviewsWithOldSize:(NSSize)oldSize {
-    [self.label setFrame:NSMakeRect(self.badgeEdgeInsets.left, self.badgeEdgeInsets.top, NSWidth(self.bounds) - self.badgeEdgeInsets.left - self.badgeEdgeInsets.right, NSHeight(self.bounds) - self.badgeEdgeInsets.top - self.badgeEdgeInsets.bottom)];
-}
-    
-- (CGSize)intrinsicContentSize {
-    return [self sizeThatFits:CGSizeZero];
+- (NSSize)intrinsicContentSize {
+    return [self sizeThatFits:NSZeroSize];
 }
 
-- (CGSize)sizeThatFits:(CGSize)size {
+- (NSSize)sizeThatFits:(NSSize)size {
     if (self.badge.length == 0) {
-        return CGSizeZero;
+        return NSZeroSize;
     }
     
-    CGSize retval = [self.label sizeThatFits:size];
+    NSSize retval = [self.badge sizeWithAttributes:@{NSFontAttributeName: self.badgeFont}];
     
     retval.width += self.badgeEdgeInsets.left + self.badgeEdgeInsets.right;
     retval.height += self.badgeEdgeInsets.top + self.badgeEdgeInsets.bottom;
@@ -128,7 +115,6 @@
 #else
 - (void)drawRect:(NSRect)rect {
 #endif
-#if (TARGET_OS_IPHONE)
     if (self.isHighlighted) {
         [self.badgeHighlightedBackgroundColor setFill];
     }
@@ -136,10 +122,19 @@
         [self.badgeBackgroundColor setFill];
     }
     
+#if (TARGET_OS_IPHONE)
     [[UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.badgeCornerRadius] fill];
 #else
-    
+    [[NSBezierPath bezierPathWithRoundedRect:self.bounds xRadius:self.badgeCornerRadius yRadius:self.badgeCornerRadius] fill];
 #endif
+    
+#if (TARGET_OS_IPHONE)
+    CGSize size = [self.badge sizeWithAttributes:@{NSFontAttributeName: self.badgeFont}];
+#else
+    NSSize size = [self.badge sizeWithAttributes:@{NSFontAttributeName: self.badgeFont}];
+#endif
+    
+    [self.badge drawInRect:CGRectMake(CGRectGetMidX(self.bounds) - size.width * 0.5, CGRectGetMidY(self.bounds) - size.height * 0.5, size.width, size.height) withAttributes:@{NSFontAttributeName: self.badgeFont, NSForegroundColorAttributeName: self.isHighlighted ? self.badgeHighlightedForegroundColor : self.badgeForegroundColor}];
 }
 #pragma mark ** Public Methods **
 #pragma mark Properties
@@ -151,24 +146,11 @@
 #else
     [self setNeedsDisplay:YES];
 #endif
-    
-    [self.label setHighlighted:highlighted];
 }
 
-@dynamic badge;
-- (NSString *)badge {
-#if (TARGET_OS_IPHONE)
-    return self.label.text;
-#else
-    return self.label.stringValue;
-#endif
-}
 - (void)setBadge:(NSString *)badge {
-#if (TARGET_OS_IPHONE)
-    [self.label setText:badge];
-#else
-    [self.label setStringValue:badge];
-#endif
+    _badge = badge;
+    
     [self invalidateIntrinsicContentSize];
 }
 
@@ -178,8 +160,6 @@
 - (void)setBadgeForegroundColor:(NSColor *)badgeForegroundColor {
 #endif
     _badgeForegroundColor = badgeForegroundColor ?: [self.class _defaultBadgeForegroundColor];
-    
-    [self.label setTextColor:_badgeForegroundColor];
 }
 
 #if (TARGET_OS_IPHONE)
@@ -204,7 +184,9 @@
     _badgeHighlightedForegroundColor = badgeHighlightedForegroundColor ?: [self.class _defaultBadgeHighlightedForegroundColor];
     
 #if (TARGET_OS_IPHONE)
-    [self.label setHighlightedTextColor:_badgeHighlightedForegroundColor];
+    [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
 #endif
 }
 #if (TARGET_OS_IPHONE)
@@ -227,8 +209,6 @@
 - (void)setBadgeFont:(NSFont *)badgeFont {
 #endif
     _badgeFont = badgeFont ?: [self.class _defaultBadgeFont];
-    
-    [self.label setFont:_badgeFont];
 }
 - (void)setBadgeCornerRadius:(CGFloat)badgeCornerRadius {
     _badgeCornerRadius = (badgeCornerRadius < 0.0) ? [self.class _defaultBadgeCornerRadius] : badgeCornerRadius;
@@ -257,19 +237,6 @@
     _badgeFont = [self.class _defaultBadgeFont];
     _badgeCornerRadius = [self.class _defaultBadgeCornerRadius];
     _badgeEdgeInsets = [self.class _defaultBadgeEdgeInsets];
-    
-#if (TARGET_OS_IPHONE)
-    [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.label setTextAlignment:NSTextAlignmentCenter];
-    [self.label setTextColor:_badgeForegroundColor];
-    [self.label setHighlightedTextColor:_badgeHighlightedForegroundColor];
-    [self addSubview:self.label];
-#else
-    [self setLabel:[[NSTextField alloc] initWithFrame:NSZeroRect]];
-    [self.label setAlignment:NSCenterTextAlignment];
-    [self.label setTextColor:_badgeForegroundColor];
-    [self addSubview:self.label];
-#endif
 }
 
 #if (TARGET_OS_IPHONE)
