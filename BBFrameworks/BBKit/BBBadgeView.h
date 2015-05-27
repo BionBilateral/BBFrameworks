@@ -49,7 +49,7 @@
 /**
  Set and get the text color used to display `badge` value when `highlighted` is NO.
  
- The default is `[UIColor whiteColor]`.
+ The default is `[UIColor whiteColor]` or `[NSColor whiteColor]`.
  */
 #if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) UIColor *badgeForegroundColor UI_APPEARANCE_SELECTOR;
@@ -59,7 +59,7 @@
 /**
  Set and get the background color used to display `badge` value when `highlighted` is NO.
  
- The default is `[UIColor blackColor]`.
+ The default is `[UIColor blackColor]` or `[NSColor blackColor]`.
  */
 #if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) UIColor *badgeBackgroundColor UI_APPEARANCE_SELECTOR;
@@ -70,7 +70,7 @@
 /**
  Set and get the text color used to display `badge` value when `highlighted` is YES.
  
- The default is `[UIColor lightGrayColor]`.
+ The default is `[UIColor lightGrayColor]` or `[NSColor lightGrayColor]`.
  */
 #if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) UIColor *badgeHighlightedForegroundColor UI_APPEARANCE_SELECTOR;
@@ -80,7 +80,7 @@
 /**
  Set and get the background color used to display `badge` value when `highlighted` is YES.
  
- The default is `[UIColor whiteColor]`.
+ The default is `[UIColor whiteColor]` or `[NSColor whiteColor]`.
  */
 #if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) UIColor *badgeHighlightedBackgroundColor UI_APPEARANCE_SELECTOR;
@@ -91,7 +91,7 @@
 /**
  Set and get the font used to display `badge` value.
  
- The default is `[UIFont WDY_preferredBoldFontForTextStyle:UIFontTextStyleCaption1]`.
+ The default is `[UIFont boldSystemFontOfSize:17.0]` or `[NSFont boldSystemFontOfSize:17.0]`.
  */
 #if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) UIFont *badgeFont UI_APPEARANCE_SELECTOR;
@@ -111,7 +111,7 @@
 /**
  Set and get the edge insets used to layout the `badge` value text.
  
- The default is `UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)`.
+ The default is `UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)` or `NSEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)`.
  */
 #if (TARGET_OS_IPHONE)
 @property (assign,nonatomic) UIEdgeInsets badgeEdgeInsets UI_APPEARANCE_SELECTOR;
@@ -120,6 +120,12 @@
 #endif
 
 #if (!TARGET_OS_IPHONE)
+/**
+ Equivalent to `-[UIView sizeThatFits:]` for cross platform reasons.
+ 
+ @param size The preferred size of the receiver
+ @return A new size that fits the receiver's subviews
+ */
 - (NSSize)sizeThatFits:(NSSize)size;
 #endif
 
