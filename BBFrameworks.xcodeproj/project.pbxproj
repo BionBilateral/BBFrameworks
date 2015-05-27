@@ -98,6 +98,10 @@
 		794536E91B091E0400651F57 /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */; };
 		794536EA1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */; };
 		794536EB1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */; };
+		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
+		79D0EAA01B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -235,6 +239,8 @@
 		794536E21B0799BE00651F57 /* NSColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+BBKitExtensions.m"; sourceTree = "<group>"; };
 		794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBFoundationExtensions.m"; sourceTree = "<group>"; };
+		79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeView.h; sourceTree = "<group>"; };
+		79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeView.m; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -406,6 +412,7 @@
 			children = (
 				794536191B03CD7000651F57 /* BBKit.h */,
 				794536DE1B0797B300651F57 /* BBKitColorMacros.h */,
+				79D0EA9A1B15436C00E9CFC6 /* Classes */,
 				794536E51B07D4DB00651F57 /* Categories */,
 			);
 			path = BBKit;
@@ -493,6 +500,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		79D0EA9A1B15436C00E9CFC6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */,
+				79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		A60131BA99F48FEF1860D1A4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +549,7 @@
 				7945366F1B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
 				794536131B03CAAE00651F57 /* NSURL+BBKitExtensions.h in Headers */,
 				7945367F1B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
+				79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */,
 				794536931B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 				794536DF1B0797B900651F57 /* BBKitColorMacros.h in Headers */,
 			);
@@ -555,6 +572,7 @@
 				794536801B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
 				794536701B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
 				794536881B03E42D00651F57 /* BBCoreData.h in Headers */,
+				79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */,
 				794536BF1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */,
 				794536CB1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */,
 				794536821B03E3E300651F57 /* BBFoundationDebugging.h in Headers */,
@@ -867,6 +885,7 @@
 				749CC5B81B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */,
 				7945360E1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				794536DD1B06C3B100651F57 /* UIColor+BBKitExtensions.m in Sources */,
+				79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */,
 				794536751B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				794536141B03CAAE00651F57 /* NSURL+BBKitExtensions.m in Sources */,
 				794536D21B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
@@ -907,6 +926,7 @@
 				794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */,
 				794536901B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				794536E41B0799BE00651F57 /* NSColor+BBKitExtensions.m in Sources */,
+				79D0EAA01B15443E00E9CFC6 /* BBBadgeView.m in Sources */,
 				794536961B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				7945369C1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				794536721B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,

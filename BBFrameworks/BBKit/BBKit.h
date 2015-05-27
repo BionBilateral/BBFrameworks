@@ -24,5 +24,5 @@
 #else
 
 #endif
-
+#import <BBFrameworks/BBBadgeView.h>
 #endif
