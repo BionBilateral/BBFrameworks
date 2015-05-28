@@ -22,7 +22,7 @@
 #endif
 
 /**
- `WDYRBadgeView` is a `UIView` subclass that represents a badge value. Text with a background color and rounded corners.
+ `WDYRBadgeView` is a `UIView` or `NSView` subclass that represents a badge value, like those seen in the Mail application.
  */
 #if (TARGET_OS_IPHONE)
 @interface BBBadgeView : UIView

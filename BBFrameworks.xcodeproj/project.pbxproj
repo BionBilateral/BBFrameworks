@@ -1161,6 +1161,18 @@
 				);
 				INFOPLIST_FILE = BBFrameworksiOSDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-iOSDemo-Archimedes\"",
+					"-l\"Pods-iOSDemo-BlocksKit\"",
+					"-l\"Pods-iOSDemo-ReactiveCocoa\"",
+					"-l\"Pods-iOSDemo-ReactiveViewModel\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1172,6 +1184,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BBFrameworksiOSDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-iOSDemo-Archimedes\"",
+					"-l\"Pods-iOSDemo-BlocksKit\"",
+					"-l\"Pods-iOSDemo-ReactiveCocoa\"",
+					"-l\"Pods-iOSDemo-ReactiveViewModel\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
