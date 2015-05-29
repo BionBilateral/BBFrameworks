@@ -40,6 +40,9 @@
     
     return retval;
 }
+- (UIImage *)BB_imageByRenderingWithColor:(UIColor *)color; {
+    return [self.class BB_imageByRenderingImage:self withColor:color];
+}
 
 + (UIImage *)BB_imageByTintingImage:(UIImage *)image withColor:(UIColor *)color
 {
@@ -64,6 +67,9 @@
     UIGraphicsEndImageContext();
     
     return retval;
+}
+- (UIImage *)BB_imageByTintingWithColor:(UIColor *)color; {
+    return [self.class BB_imageByTintingImage:self withColor:color];
 }
 
 + (UIImage *)BB_imageByBlurringImage:(UIImage *)image radius:(CGFloat)radius
@@ -117,6 +123,9 @@
     CGImageRelease(imageRef);
     
     return retval;
+}
+- (UIImage *)BB_imageByBlurringWithRadius:(CGFloat)radius; {
+    return [self.class BB_imageByBlurringImage:self radius:radius];
 }
 
 @end
