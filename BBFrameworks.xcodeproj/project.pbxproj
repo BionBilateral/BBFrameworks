@@ -186,6 +186,7 @@
 		749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
 		74AB78C81B18EB410056B01E /* NSImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BBKitExtensions.h"; sourceTree = "<group>"; };
 		74AB78C91B18EB410056B01E /* NSImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BBKitExtensions.m"; sourceTree = "<group>"; };
+		74AB78CD1B18F55A0056B01E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		794535971B03C31700651F57 /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7945359C1B03C31700651F57 /* BBFrameworks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		794535B71B03C32800651F57 /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,6 +319,7 @@
 		62830E25A463C2CF8599501A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74AB78CD1B18F55A0056B01E /* Accelerate.framework */,
 				6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */,
 				3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */,
 			);

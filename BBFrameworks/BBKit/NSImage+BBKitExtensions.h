@@ -39,6 +39,6 @@
  @return The blurred image
  @exception NSException Thrown if _image_ is nil
  */
-//+ (NSImage *)BB_imageByBlurringImage:(NSImage *)image radius:(CGFloat)radius;
++ (NSImage *)BB_imageByBlurringImage:(NSImage *)image radius:(CGFloat)radius;
 
 @end
