@@ -15,6 +15,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Category on NSArray adding various convenience methods.
+ */
 @interface NSArray (BBFoundationExtensions)
 
 /**

@@ -18,6 +18,46 @@
 
 @implementation NSURL (BBKitExtensions)
 
+- (NSDate *)BB_creationDate; {
+    NSError *outError;
+    NSDate *retval = nil;
+    
+    if (![self getResourceValue:&retval forKey:NSURLCreationDateKey error:&outError]) {
+        BBLogObject(outError);
+    }
+    
+    return retval;
+}
+- (NSDate *)BB_contentModificationDate; {
+    NSError *outError;
+    NSDate *retval = nil;
+    
+    if (![self getResourceValue:&retval forKey:NSURLContentModificationDateKey error:&outError]) {
+        BBLogObject(outError);
+    }
+    
+    return retval;
+}
+- (BOOL)BB_isDirectory; {
+    NSError *outError;
+    NSNumber *retval = nil;
+    
+    if (![self getResourceValue:&retval forKey:NSURLIsDirectoryKey error:&outError]) {
+        BBLogObject(outError);
+    }
+    
+    return retval.boolValue;
+}
+- (NSString *)BB_typeIdentifier; {
+    NSError *outError;
+    NSString *retval = nil;
+    
+    if (![self getResourceValue:&retval forKey:NSURLTypeIdentifierKey error:&outError]) {
+        BBLogObject(outError);
+    }
+    
+    return retval;
+}
 #if (TARGET_OS_IPHONE)
 - (UIImage *)BB_effectiveIcon {
 #else

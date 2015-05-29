@@ -15,10 +15,30 @@
 
 #import <UIKit/UIKit.h>
 
-
-
+/**
+ Category on UIColor adding various convenience methods.
+ */
 @interface UIColor (BBKitExtensions)
 
+/**
+ Creates and returns a UIColor in the RGB color space with random values between 0 and 255 for R, G, and B respectively. Alpha is always 1.0.
+ 
+ @return The random UIColor
+ */
++ (UIColor *)BB_colorRandomRGB;
+/**
+ Creates and returns a UIColor in the RGB color space with random values between 0 and 255 for R, G, B, and A respectively.
+ 
+ @return The random UIColor
+ */
++ (UIColor *)BB_colorRandomRGBA;
+
+/**
+ Creates and returns an UIColor by parsing _hexadecimalString_. See http://www.karelia.com/cocoa_legacy/Foundation_Categories/NSColor__Instantiat.m for implementation reference.
+ 
+ @param hexadecimalString The string to parse
+ @return The UIColor created from _hexadecimalString_
+ */
 + (UIColor *)BB_colorWithHexadecimalString:(NSString *)hexadecimalString;
 
 @end

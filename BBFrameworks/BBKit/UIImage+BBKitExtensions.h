@@ -21,14 +21,38 @@
 @interface UIImage (BBKitExtensions)
 
 /**
+ Creates and returns a UIImage by rendering _image_ with _color_.
+ 
+ @param image The UIImage to render as a template
+ @param color The UIColor to use when rendering _image_
+ @return The rendered template image
+ @exception NSException Thrown if _image_ or _color_ are nil
+ */
++ (UIImage *)BB_imageByRenderingImage:(UIImage *)image withColor:(UIColor *)color;
+/**
+ Calls `+[UIImage BB_imageByRenderingImage:withColor:]`, passing self and _color_ respectively.
+ 
+ @param color The UIColor to use when rendering self
+ @return The rendered template image
+ */
+- (UIImage *)BB_imageByRenderingWithColor:(UIColor *)color;
+
+/**
  Creates a new image by first drawing the image then drawing a rectangle of color over it.
  
  @param image The original image
  @param color The color to overlay on top of the image, it should have some level of opacity
- @return The new image
+ @return The tinted image
  @exception NSException Thrown if _image_ or _color_ are nil
  */
 + (UIImage *)BB_imageByTintingImage:(UIImage *)image withColor:(UIColor *)color;
+/**
+ Calls `+[UIImage BB_imageByTintingImage:withColor:]`, passing self and _color_ respectively.
+ 
+ @param color The color to overlay on top of the image, it should have some level of opacity
+ @return The tinted image
+ */
+- (UIImage *)BB_imageByTintingWithColor:(UIColor *)color;
 
 /**
  Creates a new image by blurring _image_ using a box blur.
@@ -39,5 +63,12 @@
  @exception NSException Thrown if _image_ is nil
  */
 + (UIImage *)BB_imageByBlurringImage:(UIImage *)image radius:(CGFloat)radius;
+/**
+ Calls `+[UIImage BB_imageByBlurringImage:radius:]`, passing self and _radius_ respectively.
+ 
+ @param radius A value between 0.0 and 1.0 describing how much to blur the image. The value will be clamped automatically
+ @return The blurred image
+ */
+- (UIImage *)BB_imageByBlurringWithRadius:(CGFloat)radius;
 
 @end

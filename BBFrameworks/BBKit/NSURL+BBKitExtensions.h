@@ -27,6 +27,30 @@
 @interface NSURL (BBKitExtensions)
 
 /**
+ Returns the value associated with the NSURLCreationDateKey key.
+ 
+ @return The associated creation date
+ */
+- (NSDate *)BB_creationDate;
+/**
+ Returns the value associated with the NSURLContentModificationDateKey key.
+ 
+ @return The associated content modification date
+ */
+- (NSDate *)BB_contentModificationDate;
+/**
+ Returns the value associated with the NSURLIsDirectoryKey key.
+ 
+ @return The associated isDirectory value
+ */
+- (BOOL)BB_isDirectory;
+/**
+ Returns the value associated with the NSURLTypeIdentifierKey key.
+ 
+ @return The associated type identifier
+ */
+- (NSString *)BB_typeIdentifier;
+/**
  Returns the value associated with the NSURLEffectiveIconKey key or nil if no such value exists.
  
  @return The associated image
