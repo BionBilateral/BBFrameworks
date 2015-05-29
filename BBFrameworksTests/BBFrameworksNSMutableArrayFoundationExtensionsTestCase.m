@@ -1,5 +1,5 @@
 //
-//  BBFrameworksNSArrayFoundationExtensionsTestCase.m
+//  BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m
 //  BBFrameworks
 //
 //  Created by William Towe on 5/29/15.
@@ -16,25 +16,37 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import <BBFrameworks/NSArray+BBFoundationExtensions.h>
+#import <BBFrameworks/NSMutableArray+BBFoundationExtensions.h>
 
-@interface BBFrameworksNSArrayFoundationExtensionsTestCase : XCTestCase
+@interface BBFrameworksNSMutableArrayFoundationExtensionsTestCase : XCTestCase
 
 @end
 
-@implementation BBFrameworksNSArrayFoundationExtensionsTestCase
+@implementation BBFrameworksNSMutableArrayFoundationExtensionsTestCase
 
-- (void)testSet {
-    NSArray *const array = @[@1,@2,@3];
-    NSSet *const set = [NSSet setWithArray:array];
+- (void)testRemoveFirstObject {
+    NSMutableArray *const first = @[@1,@2,@3].mutableCopy;
+    NSArray *const second = @[@2,@3];
     
-    XCTAssertEqualObjects([array BB_set], set);
+    [first BB_removeFirstObject];
+    
+    XCTAssertEqualObjects(first, second);
 }
-- (void)setMutableSet {
-    NSArray *const array = @[@1,@2,@3];
-    NSMutableSet *const set = [NSMutableSet setWithArray:array];
+- (void)testPush {
+    NSMutableArray *const first = @[@2,@3].mutableCopy;
+    NSArray *const second = @[@1,@2,@3];
     
-    XCTAssertEqualObjects([array BB_mutableSet], set);
+    [first BB_push:@1];
+    
+    XCTAssertEqualObjects(first, second);
+}
+- (void)testPop {
+    NSMutableArray *const first = @[@1,@2,@3].mutableCopy;
+    NSArray *const second = @[@2,@3];
+    
+    [first BB_pop];
+    
+    XCTAssertEqualObjects(first, second);
 }
 
 @end
