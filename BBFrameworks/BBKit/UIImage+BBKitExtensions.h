@@ -21,6 +21,16 @@
 @interface UIImage (BBKitExtensions)
 
 /**
+ Creates and returns a UIImage by rendering _image_ with _color_.
+ 
+ @param image The UIImage to render as a template
+ @param color The UIColor to use when rendering _image_
+ @return The rendered template image
+ @exception NSException Thrown if _image_ or _color_ are nil
+ */
++ (UIImage *)BB_imageByRenderingImage:(UIImage *)image withColor:(UIColor *)color;
+
+/**
  Creates a new image by first drawing the image then drawing a rectangle of color over it.
  
  @param image The original image

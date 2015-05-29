@@ -25,6 +25,22 @@
 
 @implementation UIImage (BBKitExtensions)
 
++ (UIImage *)BB_imageByRenderingImage:(UIImage *)image withColor:(UIColor *)color; {
+    NSParameterAssert(image);
+    NSParameterAssert(color);
+    
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
+    
+    [color setFill];
+    [[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] drawAtPoint:CGPointZero blendMode:kCGBlendModeNormal alpha:1.0];
+    
+    UIImage *retval = [UIGraphicsGetImageFromCurrentImageContext() imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIGraphicsEndImageContext();
+    
+    return retval;
+}
+
 + (UIImage *)BB_imageByTintingImage:(UIImage *)image withColor:(UIColor *)color
 {
     NSParameterAssert(image);
