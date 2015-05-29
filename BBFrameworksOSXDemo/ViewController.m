@@ -19,6 +19,7 @@
 
 @interface ViewController ()
 @property (strong,nonatomic) BBBadgeView *badgeView;
+@property (strong,nonatomic) NSImageView *imageView;
 @end
 
 @implementation ViewController
@@ -36,6 +37,11 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.badgeView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30.0-[view]" options:0 metrics:nil views:@{@"view": self.badgeView}]];
+    
+    NSImage *image = [NSImage BB_imageByTintingImage:[NSImage imageNamed:@"testIcon"] withColor:[NSColor redColor]];
+    [self setImageView:[[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, image.size.width, image.size.height)]];
+    [self.imageView setImage:image];
+    [self.view addSubview:self.imageView];
 }
 
 @end

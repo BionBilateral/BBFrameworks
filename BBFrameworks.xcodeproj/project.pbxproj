@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		749CC5B61B07727700E0DF6D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		749CC5B81B07727700E0DF6D /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */; };
-		74DA56B81B0831430098A0F0 /* NSImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DA56B61B0831430098A0F0 /* NSImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74DA56B91B0831430098A0F0 /* NSImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DA56B71B0831430098A0F0 /* NSImage+BBKitExtensions.m */; };
+		74AB78CA1B18EB410056B01E /* NSImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AB78C81B18EB410056B01E /* NSImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74AB78CB1B18EB410056B01E /* NSImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AB78C91B18EB410056B01E /* NSImage+BBKitExtensions.m */; };
 		7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945359C1B03C31700651F57 /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794535BC1B03C32800651F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BB1B03C32800651F57 /* main.m */; };
 		794535BF1B03C32800651F57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BE1B03C32800651F57 /* AppDelegate.m */; };
@@ -184,8 +184,8 @@
 		6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
 		749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
-		74DA56B61B0831430098A0F0 /* NSImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BBKitExtensions.h"; sourceTree = "<group>"; };
-		74DA56B71B0831430098A0F0 /* NSImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BBKitExtensions.m"; sourceTree = "<group>"; };
+		74AB78C81B18EB410056B01E /* NSImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BBKitExtensions.h"; sourceTree = "<group>"; };
+		74AB78C91B18EB410056B01E /* NSImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BBKitExtensions.m"; sourceTree = "<group>"; };
 		794535971B03C31700651F57 /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7945359C1B03C31700651F57 /* BBFrameworks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		794535B71B03C32800651F57 /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -521,6 +521,8 @@
 				794536E21B0799BE00651F57 /* NSColor+BBKitExtensions.m */,
 				749CC5B41B07727700E0DF6D /* UIImage+BBKitExtensions.h */,
 				749CC5B51B07727700E0DF6D /* UIImage+BBKitExtensions.m */,
+				74AB78C81B18EB410056B01E /* NSImage+BBKitExtensions.h */,
+				74AB78C91B18EB410056B01E /* NSImage+BBKitExtensions.m */,
 				79F9926A1B1849AE00FE6432 /* UIView+BBKitExtensions.h */,
 				79F9926B1B1849AE00FE6432 /* UIView+BBKitExtensions.m */,
 				79F9926E1B184B3B00FE6432 /* UIViewController+BBKitExtensions.h */,
@@ -591,9 +593,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				794536D71B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */,
-				74DA56B81B0831430098A0F0 /* NSImage+BBKitExtensions.h in Headers */,
 				794536811B03E3DC00651F57 /* BBFoundation.h in Headers */,
 				794536E01B0797BA00651F57 /* BBKitColorMacros.h in Headers */,
+				74AB78CA1B18EB410056B01E /* NSImage+BBKitExtensions.h in Headers */,
 				7945368E1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				794536C51B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				794536D11B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */,
@@ -952,7 +954,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74DA56B91B0831430098A0F0 /* NSImage+BBKitExtensions.m in Sources */,
+				74AB78CB1B18EB410056B01E /* NSImage+BBKitExtensions.m in Sources */,
 				794536D31B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
 				794536C71B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				794536C11B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */,
