@@ -103,8 +103,8 @@
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
 		79D0EAA01B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
 		79F18A811B1563F200F25042 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F18A801B1563F200F25042 /* ViewController.m */; };
-		79F992651B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F992641B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m */; };
-		79F992661B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F992641B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m */; };
+		79F992651B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F992641B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
+		79F992661B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F992641B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
 		DD82EF07CC9AA3F443F36783 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1F9F680CDB02BAAE1CA834 /* libPods-OSXDemo.a */; };
 		F989FCFB0DE175E3DB8EA151 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3463BD90209F8F1891F48B2E /* libPods-iOSDemo.a */; };
 /* End PBXBuildFile section */
@@ -246,7 +246,7 @@
 		79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeView.m; sourceTree = "<group>"; };
 		79F18A7F1B1563F200F25042 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		79F18A801B1563F200F25042 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		79F992641B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationNSArrayExtensionsTestCase.m; sourceTree = "<group>"; };
+		79F992641B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -430,7 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				794536B41B05246400651F57 /* BBFrameworksCoreDataImportTests.m */,
-				79F992641B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m */,
+				79F992641B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */,
 				7945365C1B03D9E000651F57 /* Supporting Files */,
 			);
 			path = BBFrameworksTests;
@@ -949,7 +949,7 @@
 			files = (
 				794536B61B05246400651F57 /* BBFrameworksCoreDataImportTests.m in Sources */,
 				794536A01B05215200651F57 /* Test.xcdatamodeld in Sources */,
-				79F992661B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m in Sources */,
+				79F992661B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,7 +959,7 @@
 			files = (
 				794536B51B05246400651F57 /* BBFrameworksCoreDataImportTests.m in Sources */,
 				7945369F1B05215200651F57 /* Test.xcdatamodeld in Sources */,
-				79F992651B18229900FE6432 /* BBFoundationNSArrayExtensionsTestCase.m in Sources */,
+				79F992651B18229900FE6432 /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

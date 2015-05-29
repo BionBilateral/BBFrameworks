@@ -1,5 +1,5 @@
 //
-//  BBFoundationNSArrayExtensionsTestCase.m
+//  BBFrameworksNSArrayFoundationExtensionsTestCase.m
 //  BBFrameworks
 //
 //  Created by William Towe on 5/29/15.
@@ -11,11 +11,11 @@
 
 #import <BBFrameworks/NSArray+BBFoundationExtensions.h>
 
-@interface BBFoundationNSArrayExtensionsTestCase : XCTestCase
+@interface BBFrameworksNSArrayFoundationExtensionsTestCase : XCTestCase
 
 @end
 
-@implementation BBFoundationNSArrayExtensionsTestCase
+@implementation BBFrameworksNSArrayFoundationExtensionsTestCase
 
 - (void)testBBSet {
     NSArray *const array = @[@1,@2,@3];
