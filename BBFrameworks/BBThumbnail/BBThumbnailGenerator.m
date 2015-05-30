@@ -20,6 +20,7 @@
 #import "NSString+BBFoundationExtensions.h"
 #import "BBThumbnailOperationWrapper.h"
 #import "BBThumbnailImageOperation.h"
+#import "BBThumbnailMovieOperation.h"
 
 #import <ReactiveCocoa/RACEXTScope.h>
 #if (TARGET_OS_IPHONE)
@@ -150,14 +151,28 @@ static NSTimeInterval const kDefaultTime = 1.0;
                         completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
                     });
                 }]];
-                
-                [self.operationQueue addOperation:retval.operation];
+            }
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
+                [retval setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:URL size:size time:time completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
+                    BBDispatchMainSyncSafe(^{
+                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
+                    });
+                }]];
+            }
+            else {
+                BBDispatchMainSyncSafe(^{
+                    completion(nil,nil,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
+                });
             }
         }
         else {
             BBDispatchMainSyncSafe(^{
                 completion(nil,nil,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
             });
+        }
+        
+        if (retval.operation) {
+            [self.operationQueue addOperation:retval.operation];
         }
     }];
     
