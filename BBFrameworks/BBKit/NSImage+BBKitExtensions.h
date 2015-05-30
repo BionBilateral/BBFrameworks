@@ -16,10 +16,33 @@
 #import <AppKit/AppKit.h>
 
 /**
- Category providing methods to alter NSImages.
+ Category on NSImage providing various convenience methods.
  */
 
 @interface NSImage (BBKitExtensions)
+
+/**
+ Returns whether the receiver has an alpha component.
+ 
+ @return YES if the receiver has alpha, otherwise NO
+ */
+- (BOOL)BB_hasAlpha;
+
+/**
+ Creates and returns a NSImage by resizing _image_ to _size_ while maintaining its aspect ratio.
+ 
+ @param image The NSImage to resize
+ @param size The target size
+ @return The resized image
+ */
++ (NSImage *)BB_imageByResizingImage:(NSImage *)image toSize:(NSSize)size;
+/**
+ Calls `+[NSImage BB_imageByResizingImage:toSize:]`, passing self and _size_ respectively.
+ 
+ @param size The target size
+ @return The resized image
+ */
+- (NSImage *)BB_imageByResizingToSize:(NSSize)size;
 
 /**
  Creates and returns a NSImage by rendering _image_ with _color_.

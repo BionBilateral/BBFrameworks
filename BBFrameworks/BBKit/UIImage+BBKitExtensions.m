@@ -15,6 +15,7 @@
 
 #import "UIImage+BBKitExtensions.h"
 #import "BBFoundationDebugging.h"
+#import "BBKitCGImageFunctions.h"
 
 #import <Accelerate/Accelerate.h>
 
@@ -23,6 +24,22 @@
 #endif
 
 @implementation UIImage (BBKitExtensions)
+
+- (BOOL)BB_hasAlpha; {
+    return BBKitCGImageHasAlpha(self.CGImage);
+}
+
++ (UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size; {
+    CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSize(image.CGImage, size);
+    UIImage *retval = [UIImage imageWithCGImage:imageRef];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (UIImage *)BB_imageByResizingToSize:(CGSize)size; {
+    return [self.class BB_imageByResizingImage:self toSize:size];
+}
 
 + (UIImage *)BB_imageByRenderingImage:(UIImage *)image withColor:(UIColor *)color; {
     NSParameterAssert(image);

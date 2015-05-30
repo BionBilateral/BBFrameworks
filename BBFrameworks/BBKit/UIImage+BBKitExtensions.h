@@ -16,9 +16,32 @@
 #import <UIKit/UIKit.h>
 
 /**
- Category providing methods to alter UIImages.
+ Category on UIImage providing various convenience methods.
  */
 @interface UIImage (BBKitExtensions)
+
+/**
+ Returns whether the receiver has an alpha component.
+ 
+ @return YES if the receiver has alpha, otherwise NO
+ */
+- (BOOL)BB_hasAlpha;
+
+/**
+ Creates and returns a UIImage by resizing _image_ to _size_ while maintaining its aspect ratio.
+ 
+ @param image The UIImage to resize
+ @param size The target size
+ @return The resized image
+ */
++ (UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size;
+/**
+ Calls `+[UIImage BB_imageByResizingImage:toSize:]`, passing self and _size_ respectively.
+ 
+ @param size The target size
+ @return The resized image
+ */
+- (UIImage *)BB_imageByResizingToSize:(CGSize)size;
 
 /**
  Creates and returns a UIImage by rendering _image_ with _color_.
