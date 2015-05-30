@@ -14,7 +14,7 @@
 		7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 7945359C1B03C31700651F57 /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794535BC1B03C32800651F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BB1B03C32800651F57 /* main.m */; };
 		794535BF1B03C32800651F57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535BE1B03C32800651F57 /* AppDelegate.m */; };
-		794535C21B03C32800651F57 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535C11B03C32800651F57 /* ViewController.m */; };
+		794535C21B03C32800651F57 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794535C11B03C32800651F57 /* FirstViewController.m */; };
 		794535C51B03C32800651F57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794535C31B03C32800651F57 /* Main.storyboard */; };
 		794535C71B03C32800651F57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794535C61B03C32800651F57 /* Images.xcassets */; };
 		794535CA1B03C32800651F57 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 794535C81B03C32800651F57 /* LaunchScreen.xib */; };
@@ -110,6 +110,18 @@
 		79A5660C1B19669B00DFD142 /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566081B19669B00DFD142 /* BBThumbnailGenerator.m */; };
 		79A5660E1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79A5660F1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A566121B1A4D2800DFD142 /* BBThumbnailImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566101B1A4D2800DFD142 /* BBThumbnailImageOperation.h */; };
+		79A566131B1A4D2800DFD142 /* BBThumbnailImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566101B1A4D2800DFD142 /* BBThumbnailImageOperation.h */; };
+		79A566141B1A4D2800DFD142 /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566111B1A4D2800DFD142 /* BBThumbnailImageOperation.m */; };
+		79A566151B1A4D2800DFD142 /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566111B1A4D2800DFD142 /* BBThumbnailImageOperation.m */; };
+		79A566171B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566161B1A4ECB00DFD142 /* BBThumbnailDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A566181B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566161B1A4ECB00DFD142 /* BBThumbnailDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A5661B1B1A59A500DFD142 /* BBThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566191B1A59A500DFD142 /* BBThumbnailOperationWrapper.h */; };
+		79A5661C1B1A59A500DFD142 /* BBThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566191B1A59A500DFD142 /* BBThumbnailOperationWrapper.h */; };
+		79A5661D1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5661A1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m */; };
+		79A5661E1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5661A1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m */; };
+		79A566211B1A627B00DFD142 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566201B1A627B00DFD142 /* SecondViewController.m */; };
+		79A566231B1A67D500DFD142 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 79A566221B1A67D500DFD142 /* docs */; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
@@ -204,8 +216,8 @@
 		794535BB1B03C32800651F57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		794535BD1B03C32800651F57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		794535BE1B03C32800651F57 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		794535C01B03C32800651F57 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		794535C11B03C32800651F57 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		794535C01B03C32800651F57 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		794535C11B03C32800651F57 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		794535C41B03C32800651F57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		794535C61B03C32800651F57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		794535C91B03C32800651F57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -268,6 +280,14 @@
 		79A566071B19669B00DFD142 /* BBThumbnailGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailGenerator.h; sourceTree = "<group>"; };
 		79A566081B19669B00DFD142 /* BBThumbnailGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailGenerator.m; sourceTree = "<group>"; };
 		79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailOperation.h; sourceTree = "<group>"; };
+		79A566101B1A4D2800DFD142 /* BBThumbnailImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailImageOperation.h; sourceTree = "<group>"; };
+		79A566111B1A4D2800DFD142 /* BBThumbnailImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailImageOperation.m; sourceTree = "<group>"; };
+		79A566161B1A4ECB00DFD142 /* BBThumbnailDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailDefines.h; sourceTree = "<group>"; };
+		79A566191B1A59A500DFD142 /* BBThumbnailOperationWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailOperationWrapper.h; sourceTree = "<group>"; };
+		79A5661A1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailOperationWrapper.m; sourceTree = "<group>"; };
+		79A5661F1B1A627B00DFD142 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		79A566201B1A627B00DFD142 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		79A566221B1A67D500DFD142 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeView.h; sourceTree = "<group>"; };
 		79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeView.m; sourceTree = "<group>"; };
 		79F18A7F1B1563F200F25042 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -394,8 +414,10 @@
 			children = (
 				794535BD1B03C32800651F57 /* AppDelegate.h */,
 				794535BE1B03C32800651F57 /* AppDelegate.m */,
-				794535C01B03C32800651F57 /* ViewController.h */,
-				794535C11B03C32800651F57 /* ViewController.m */,
+				794535C01B03C32800651F57 /* FirstViewController.h */,
+				794535C11B03C32800651F57 /* FirstViewController.m */,
+				79A5661F1B1A627B00DFD142 /* SecondViewController.h */,
+				79A566201B1A627B00DFD142 /* SecondViewController.m */,
 				794535C31B03C32800651F57 /* Main.storyboard */,
 				794535C61B03C32800651F57 /* Images.xcassets */,
 				794535C81B03C32800651F57 /* LaunchScreen.xib */,
@@ -407,6 +429,7 @@
 		794535B91B03C32800651F57 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				79A566221B1A67D500DFD142 /* docs */,
 				794535BA1B03C32800651F57 /* Info.plist */,
 				794535BB1B03C32800651F57 /* main.m */,
 			);
@@ -554,9 +577,14 @@
 			isa = PBXGroup;
 			children = (
 				79A566041B19663600DFD142 /* BBThumbnail.h */,
+				79A566161B1A4ECB00DFD142 /* BBThumbnailDefines.h */,
 				79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */,
 				79A566071B19669B00DFD142 /* BBThumbnailGenerator.h */,
 				79A566081B19669B00DFD142 /* BBThumbnailGenerator.m */,
+				79A566191B1A59A500DFD142 /* BBThumbnailOperationWrapper.h */,
+				79A5661A1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m */,
+				79A566101B1A4D2800DFD142 /* BBThumbnailImageOperation.h */,
+				79A566111B1A4D2800DFD142 /* BBThumbnailImageOperation.m */,
 			);
 			path = BBThumbnail;
 			sourceTree = "<group>";
@@ -595,12 +623,15 @@
 				794536C41B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				794536D01B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */,
 				7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */,
+				79A566171B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */,
 				79A5660E1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */,
 				794536991B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				794536081B03C37000651F57 /* BBFoundation.h in Headers */,
+				79A5661B1B1A59A500DFD142 /* BBThumbnailOperationWrapper.h in Headers */,
 				7945360D1B03C5F600651F57 /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				7945367B1B03E12900651F57 /* BBManagedObjectPropertyMapping.h in Headers */,
 				79A566091B19669B00DFD142 /* BBThumbnailGenerator.h in Headers */,
+				79A566121B1A4D2800DFD142 /* BBThumbnailImageOperation.h in Headers */,
 				794536871B03E42D00651F57 /* BBCoreData.h in Headers */,
 				794536BE1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */,
 				794536DC1B06C3B100651F57 /* UIColor+BBKitExtensions.h in Headers */,
@@ -639,6 +670,7 @@
 				7945369A1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				7945367A1B03E12900651F57 /* BBManagedObjectEntityMapping.h in Headers */,
 				794536801B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
+				79A5661C1B1A59A500DFD142 /* BBThumbnailOperationWrapper.h in Headers */,
 				794536701B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
 				79A566021B195C6600DFD142 /* BBKitCGImageFunctions.h in Headers */,
 				79A566061B19663600DFD142 /* BBThumbnail.h in Headers */,
@@ -646,6 +678,7 @@
 				79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */,
 				794536BF1B068F7C00651F57 /* NSArray+BBFoundationExtensions.h in Headers */,
 				794536CB1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */,
+				79A566181B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */,
 				794536821B03E3E300651F57 /* BBFoundationDebugging.h in Headers */,
 				7945367C1B03E12900651F57 /* BBManagedObjectPropertyMapping.h in Headers */,
 				7945367D1B03E34300651F57 /* BBFrameworks.h in Headers */,
@@ -653,6 +686,7 @@
 				794536E31B0799BE00651F57 /* NSColor+BBKitExtensions.h in Headers */,
 				794536841B03E3F400651F57 /* BBKit.h in Headers */,
 				79A5660F1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */,
+				79A566131B1A4D2800DFD142 /* BBThumbnailImageOperation.h in Headers */,
 				794536851B03E3FB00651F57 /* NSURL+BBKitExtensions.h in Headers */,
 				794536941B04235600651F57 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 			);
@@ -842,6 +876,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				794535C51B03C32800651F57 /* Main.storyboard in Resources */,
+				79A566231B1A67D500DFD142 /* docs in Resources */,
 				794535CA1B03C32800651F57 /* LaunchScreen.xib in Resources */,
 				794535C71B03C32800651F57 /* Images.xcassets in Resources */,
 			);
@@ -949,6 +984,7 @@
 			files = (
 				794536C61B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				794536CC1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,
+				79A566141B1A4D2800DFD142 /* BBThumbnailImageOperation.m in Sources */,
 				794536951B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				79F992711B184B3B00FE6432 /* UIViewController+BBKitExtensions.m in Sources */,
 				794536D81B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */,
@@ -966,6 +1002,7 @@
 				794536D21B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
 				7945369B1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				7945368F1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				79A5661D1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,7 +1010,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				794535C21B03C32800651F57 /* ViewController.m in Sources */,
+				79A566211B1A627B00DFD142 /* SecondViewController.m in Sources */,
+				794535C21B03C32800651F57 /* FirstViewController.m in Sources */,
 				794535BF1B03C32800651F57 /* AppDelegate.m in Sources */,
 				794535BC1B03C32800651F57 /* main.m in Sources */,
 			);
@@ -995,9 +1033,11 @@
 			files = (
 				74AB78CB1B18EB410056B01E /* NSImage+BBKitExtensions.m in Sources */,
 				794536D31B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
+				79A566151B1A4D2800DFD142 /* BBThumbnailImageOperation.m in Sources */,
 				794536C71B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				794536C11B068F7C00651F57 /* NSArray+BBFoundationExtensions.m in Sources */,
 				794536EB1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */,
+				79A5661E1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m in Sources */,
 				794536761B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79A5660C1B19669B00DFD142 /* BBThumbnailGenerator.m in Sources */,
 				794536CD1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,

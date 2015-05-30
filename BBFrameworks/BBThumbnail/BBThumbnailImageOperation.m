@@ -1,8 +1,8 @@
 //
-//  BBFrameworksNSArrayFoundationExtensionsTestCase.m
+//  BBThumbnailImageOperation.m
 //  BBFrameworks
 //
-//  Created by William Towe on 5/29/15.
+//  Created by William Towe on 5/30/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,27 +13,48 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <XCTest/XCTest.h>
+#import "BBThumbnailImageOperation.h"
+#if (TARGET_OS_IPHONE)
+#import "UIImage+BBKitExtensions.h"
+#else
+#import "NSImage+BBKitExtensions.h"
+#endif
 
-#import <BBFrameworks/NSArray+BBFoundationExtensions.h>
-
-@interface BBFrameworksNSArrayFoundationExtensionsTestCase : XCTestCase
-
+@interface BBThumbnailImageOperation ()
+@property (strong,nonatomic) NSURL *URL;
+@property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
+@property (copy,nonatomic) BBThumbnailOperationCompletionBlock operationCompletionBlock;
 @end
 
-@implementation BBFrameworksNSArrayFoundationExtensionsTestCase
+@implementation BBThumbnailImageOperation
 
-- (void)testSet {
-    NSArray *const array = @[@1,@2,@3];
-    NSSet *const set = [NSSet setWithArray:array];
+- (void)main {
+    if (self.isCancelled) {
+        self.operationCompletionBlock(nil,nil);
+        return;
+    }
     
-    XCTAssertEqualObjects([array BB_set], set);
+    BBThumbnailGeneratorImageClass *image = [[BBThumbnailGeneratorImageClass alloc] initWithContentsOfFile:self.URL.path];
+    
+    if (self.isCancelled) {
+        self.operationCompletionBlock(nil,nil);
+        return;
+    }
+    
+    BBThumbnailGeneratorImageClass *retval = [image BB_imageByResizingToSize:self.size];
+    
+    self.operationCompletionBlock(retval,nil);
 }
-- (void)setMutableSet {
-    NSArray *const array = @[@1,@2,@3];
-    NSMutableSet *const set = [NSMutableSet setWithArray:array];
+
+- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {
+    if (!(self = [super init]))
+        return nil;
     
-    XCTAssertEqualObjects([array BB_mutableSet], set);
+    [self setURL:URL];
+    [self setSize:size];
+    [self setOperationCompletionBlock:completion];
+    
+    return self;
 }
 
 @end

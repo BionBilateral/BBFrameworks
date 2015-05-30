@@ -15,11 +15,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CGGeometry.h>
-#if (TARGET_OS_IPHONE)
-#import <UIKit/UIImage.h>
-#else
-#import <AppKit/NSImage.h>
-#endif
+#import "BBThumbnailDefines.h"
 #import "BBThumbnailOperation.h"
 
 typedef NS_ENUM(NSInteger, BBThumbnailGeneratorCacheType) {
@@ -34,29 +30,34 @@ typedef NS_OPTIONS(NSInteger, BBThumbnailGeneratorCacheOptions) {
     BBThumbnailGeneratorCacheOptionsMemory = 1 << 1
 };
 
-#if (TARGET_OS_IPHONE)
-typedef void(^BBThumbnailCompletionBlock)(UIImage *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, CGSize size, NSInteger page, NSTimeInterval time);
-#else
-typedef void(^BBThumbnailCompletionBlock)(NSImage *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, NSSize size, NSInteger page, NSTimeInterval time);
-#endif
+typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, BBThumbnailGeneratorSizeStruct size, NSInteger page, NSTimeInterval time);
 
 @interface BBThumbnailGenerator : NSObject
 
 @property (assign,nonatomic) BBThumbnailGeneratorCacheOptions cacheOptions;
+@property (readonly,nonatomic,getter=isFileCachingEnabled) BOOL fileCachingEnabled;
+@property (readonly,nonatomic,getter=isMemoryCachingEnabled) BOOL memoryCachingEnabled;
 
 @property (readonly,copy,nonatomic) NSURL *fileCacheDirectoryURL;
 
-@property (assign,nonatomic) CGSize defaultSize;
+@property (assign,nonatomic) BBThumbnailGeneratorSizeStruct defaultSize;
 @property (assign,nonatomic) NSInteger defaultPage;
 @property (assign,nonatomic) NSTimeInterval defaultTime;
 
 - (void)clearFileCache;
 - (void)clearMemoryCache;
 
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailCompletionBlock)completion;
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size completion:(BBThumbnailCompletionBlock)completion;
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size page:(NSInteger)page completion:(BBThumbnailCompletionBlock)completion;
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size time:(NSTimeInterval)time completion:(BBThumbnailCompletionBlock)completion;
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailCompletionBlock)completion;
+- (NSString *)memoryCacheKeyForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time;
+
+- (NSURL *)fileCacheURLForMemoryCacheKey:(NSString *)key;
+- (NSURL *)fileCacheURLForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time;
+
+- (void)cancelAllThumbnailGeneration;
+
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
 
 @end

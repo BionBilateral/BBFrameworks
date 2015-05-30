@@ -17,12 +17,18 @@
 #import "NSBundle+BBFoundationExtensions.h"
 #import "BBFoundationDebugging.h"
 #import "BBFoundationFunctions.h"
+#import "NSString+BBFoundationExtensions.h"
+#import "BBThumbnailOperationWrapper.h"
+#import "BBThumbnailImageOperation.h"
 
+#import <ReactiveCocoa/RACEXTScope.h>
 #if (TARGET_OS_IPHONE)
+#import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
 #endif
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
+static NSString *const kThumbnailCacheDirectoryName = @"thumbnails";
 
 static CGSize const kDefaultSize = {.width=175.0, .height=175.0};
 static NSInteger const kDefaultPage = 1;
@@ -55,7 +61,9 @@ static NSTimeInterval const kDefaultTime = 1.0;
     fileCacheDirectoryURL = [fileCacheDirectoryURL URLByAppendingPathComponent:[[NSBundle mainBundle] BB_bundleIdentifier] isDirectory:YES];
 #endif
     
-    [self setFileCacheDirectoryURL:fileCacheDirectoryURL];
+    NSURL *thumbnailFileCacheDirectoryURL = [fileCacheDirectoryURL URLByAppendingPathComponent:kThumbnailCacheDirectoryName isDirectory:YES];
+    
+    [self setFileCacheDirectoryURL:thumbnailFileCacheDirectoryURL];
     
     [self setDefaultSize:kDefaultSize];
     [self setDefaultPage:kDefaultPage];
@@ -66,6 +74,10 @@ static NSTimeInterval const kDefaultTime = 1.0;
     [self.memoryCache setDelegate:self];
     
     [self setFileCacheQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.filecache.%p",kCacheDirectoryName,self].UTF8String, DISPATCH_QUEUE_CONCURRENT)];
+    
+    [self setOperationQueue:[[NSOperationQueue alloc] init]];
+    [self.operationQueue setName:[NSString stringWithFormat:@"%@.operationqueue.%p",kCacheDirectoryName,self]];
+    [self.operationQueue setQualityOfService:NSQualityOfServiceUtility];
  
 #if (TARGET_OS_IPHONE)
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
@@ -73,28 +85,90 @@ static NSTimeInterval const kDefaultTime = 1.0;
     
     return self;
 }
+#pragma mark NSCacheDelegate
+- (void)cache:(NSCache *)cache willEvictObject:(id)obj {
+    BBLog(@"%@ %@",cache.name,obj);
+}
 #pragma mark *** Public Methods ***
 - (void)clearFileCache; {
-    
+    NSError *outError;
+    if ([[NSFileManager defaultManager] removeItemAtURL:self.fileCacheDirectoryURL error:&outError]) {
+        [self setFileCacheDirectoryURL:self.fileCacheDirectoryURL];
+    }
+    else {
+        BBLogObject(outError);
+    }
 }
 - (void)clearMemoryCache; {
     [self.memoryCache removeAllObjects];
 }
 
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailCompletionBlock)completion; {
+- (NSString *)memoryCacheKeyForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time; {
+#if (TARGET_OS_IPHONE)
+    return [NSString stringWithFormat:@"%@%@%@%@",[URL.absoluteString BB_MD5String],NSStringFromCGSize(size),@(page),@(time)];
+#else
+    return [NSString stringWithFormat:@"%@%@%@%@",[URL.absoluteString BB_MD5String],NSStringFromSize(NSSizeFromCGSize(size)),@(page),@(time)];
+#endif
+}
+
+- (NSURL *)fileCacheURLForMemoryCacheKey:(NSString *)key; {
+    return [self.fileCacheDirectoryURL URLByAppendingPathComponent:key isDirectory:NO];
+}
+- (NSURL *)fileCacheURLForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time; {
+    return [self fileCacheURLForMemoryCacheKey:[self memoryCacheKeyForURL:URL size:size page:page time:time]];
+}
+
+- (void)cancelAllThumbnailGeneration; {
+    [self.operationQueue cancelAllOperations];
+}
+
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:self.defaultSize page:self.defaultPage time:self.defaultTime completion:completion];
 }
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size completion:(BBThumbnailCompletionBlock)completion; {
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:size page:self.defaultPage time:self.defaultTime completion:completion];
 }
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size page:(NSInteger)page completion:(BBThumbnailCompletionBlock)completion; {
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:size page:page time:self.defaultTime completion:completion];
 }
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size time:(NSTimeInterval)time completion:(BBThumbnailCompletionBlock)completion; {
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:size page:self.defaultPage time:time completion:completion];
 }
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(CGSize)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailCompletionBlock)completion; {
-    return nil;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion; {
+    BBThumbnailOperationWrapper *retval = [[BBThumbnailOperationWrapper alloc] init];
+    
+    @weakify(self);
+    [self.operationQueue addOperationWithBlock:^{
+        @strongify(self);
+        
+        if (URL.isFileURL) {
+            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.lastPathComponent.pathExtension, NULL);
+            
+            if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+                [retval setOperation:[[BBThumbnailImageOperation alloc] initWithURL:URL size:size completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
+                    BBDispatchMainSyncSafe(^{
+                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
+                    });
+                }]];
+                
+                [self.operationQueue addOperation:retval.operation];
+            }
+        }
+        else {
+            BBDispatchMainSyncSafe(^{
+                completion(nil,nil,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
+            });
+        }
+    }];
+    
+    return retval;
+}
+#pragma mark Properties
+- (BOOL)isFileCachingEnabled {
+    return (self.cacheOptions & BBThumbnailGeneratorCacheOptionsFile) != 0;
+}
+- (BOOL)isMemoryCachingEnabled {
+    return (self.cacheOptions & BBThumbnailGeneratorCacheOptionsMemory) != 0;
 }
 #pragma mark *** Private Methods ***
 #pragma mark Properties

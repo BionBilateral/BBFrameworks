@@ -24,3 +24,4 @@ FOUNDATION_EXPORT const unsigned char BBFrameworksVersionString[];
 #import <BBFrameworks/BBFoundation.h>
 #import <BBFrameworks/BBCoreData.h>
 #import <BBFrameworks/BBKit.h>
+#import <BBFrameworks/BBThumbnail.h>
