@@ -22,22 +22,22 @@
 @interface NSImage (BBKitExtensions)
 
 /**
- Creates a new image by first drawing the image then drawing a rectangle of color over it.
+ Creates and returns a NSImage by rendering _image_ with _color_.
  
- @param image The original image
- @param color The color to overlay on top of the image, it should have some level of opacity
- @return The new image
+ @param image The NSImage to render as a template
+ @param color The NSColor to use when rendering _image_
+ @return The rendered template image
  @exception NSException Thrown if _image_ or _color_ are nil
  */
-+ (NSImage *)BB_imageByTintingImage:(NSImage *)image withColor:(NSColor *)color;
++ (NSImage *)BB_imageByRenderingImage:(NSImage *)image withColor:(NSColor *)color;
 
 /**
- Calls `+[NSImage BB_imageByTintingImage:withColor:]`, passing self and _color_ respectively.
+ Calls `+[NSImage BB_imageByRenderingImage:withColor:]`, passing self and _color_ respectively.
  
- @param color The color to overlay on top of the image, it should have some level of opacity
- @return The tinted image
+ @param color The NSColor to use when rendering self
+ @return The rendered template image
  */
-- (NSImage *)BB_imageByTintingWithColor:(NSColor *)color;
+- (NSImage *)BB_imageByRenderingWithColor:(NSColor *)color;
 
 /**
  Creates a new image by blurring _image_ using a box blur.

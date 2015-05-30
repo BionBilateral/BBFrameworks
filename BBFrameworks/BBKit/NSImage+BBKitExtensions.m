@@ -18,7 +18,7 @@
 
 @implementation NSImage (BBKitExtensions)
 
-+ (NSImage *)BB_imageByTintingImage:(NSImage *)image withColor:(NSColor *)color
++ (NSImage *)BB_imageByRenderingImage:(NSImage *)image withColor:(NSColor *)color
 {
     NSParameterAssert(image);
     NSParameterAssert(color);
@@ -33,9 +33,9 @@
     return retval;
 }
 
-- (NSImage *)BB_imageByTintingWithColor:(NSColor *)color
+- (NSImage *)BB_imageByRenderingWithColor:(NSColor *)color
 {
-    return [self.class BB_imageByTintingImage:self withColor:color];
+    return [self.class BB_imageByRenderingImage:self withColor:color];
 }
 
 + (NSImage *)BB_imageByBlurringImage:(NSImage *)image radius:(CGFloat)radius
