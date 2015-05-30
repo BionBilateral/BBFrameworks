@@ -108,8 +108,8 @@
 		79A5660A1B19669B00DFD142 /* BBThumbnailGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566071B19669B00DFD142 /* BBThumbnailGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79A5660B1B19669B00DFD142 /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566081B19669B00DFD142 /* BBThumbnailGenerator.m */; };
 		79A5660C1B19669B00DFD142 /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566081B19669B00DFD142 /* BBThumbnailGenerator.m */; };
-		79A5660E1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */; };
-		79A5660F1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */; };
+		79A5660E1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A5660F1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5660D1B1973A700DFD142 /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
