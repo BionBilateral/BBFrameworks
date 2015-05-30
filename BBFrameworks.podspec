@@ -45,4 +45,13 @@ Pod::Spec.new do |spec|
     
     subspec.dependency "Archimedes", "~> 1.1.0"
   end
+  
+  spec.subspec "BBThumbnail" do |subspec|
+    subspec.dependency "BBFrameworks/BBKit"
+    
+    subspec.source_files = "BBFrameworks/BBThumbnail"
+    
+    subspec.ios.frameworks = "MobileCoreServices"
+    subspec.osx.frameworks = "QuickLook"
+  end
 end
