@@ -22,6 +22,12 @@
 #import <Accelerate/Accelerate.h>
 #import <AVFoundation/AVFoundation.h>
 
+/**
+ Returns whether _imageRef_ has an alpha component.
+ 
+ @param imageRef The CGImage to inspect
+ @return YES if _imageRef_ has alpha, otherwise NO
+ */
 static inline BOOL BBKitCGImageHasAlpha(CGImageRef imageRef) {
     CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
     
@@ -31,6 +37,16 @@ static inline BOOL BBKitCGImageHasAlpha(CGImageRef imageRef) {
             alphaInfo == kCGImageAlphaPremultipliedLast);
 }
 
+/**
+ Creates a new CGImage by resizing _imageRef_ to _size_ while maintaining the aspect ratio of _imageRef_.
+ 
+ The returned CGImage follows the create rule and must be released by the caller. See https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html for more information.
+ 
+ @param imageRef The CGImage to use in thumbnail creation
+ @param size That target size of the thumbnail
+ @return The CGImage thumbnail
+ @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
+ */
 static inline CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size) {
     NSCParameterAssert(imageRef);
     NSCParameterAssert(!CGSizeEqualToSize(size, CGSizeZero));

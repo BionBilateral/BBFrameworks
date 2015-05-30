@@ -100,8 +100,8 @@
 		794536E91B091E0400651F57 /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 794536E61B091E0400651F57 /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		794536EA1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */; };
 		794536EB1B091E0400651F57 /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 794536E71B091E0400651F57 /* NSURL+BBFoundationExtensions.m */; };
-		79A566011B195C6600DFD142 /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566001B195C6600DFD142 /* BBKitCGImageFunctions.h */; };
-		79A566021B195C6600DFD142 /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566001B195C6600DFD142 /* BBKitCGImageFunctions.h */; };
+		79A566011B195C6600DFD142 /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566001B195C6600DFD142 /* BBKitCGImageFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A566021B195C6600DFD142 /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566001B195C6600DFD142 /* BBKitCGImageFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
