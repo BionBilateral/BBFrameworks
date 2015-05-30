@@ -40,8 +40,8 @@ Pod::Spec.new do |spec|
     subspec.ios.exclude_files = "BBFrameworks/BBKit/NS*.{h,m}"
     subspec.osx.exclude_files = "BBFrameworks/BBKit/UI*.{h,m}"
     
-    subspec.ios.frameworks = "UIKit", "Accelerate"
-    subspec.osx.frameworks = "AppKit", "Accelerate"
+    subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation"
+    subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
     
     subspec.dependency "Archimedes", "~> 1.1.0"
   end
