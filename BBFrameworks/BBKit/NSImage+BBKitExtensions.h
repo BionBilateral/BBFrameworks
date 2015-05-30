@@ -32,6 +32,14 @@
 + (NSImage *)BB_imageByTintingImage:(NSImage *)image withColor:(NSColor *)color;
 
 /**
+ Calls `+[NSImage BB_imageByTintingImage:withColor:]`, passing self and _color_ respectively.
+ 
+ @param color The color to overlay on top of the image, it should have some level of opacity
+ @return The tinted image
+ */
+- (NSImage *)BB_imageByTintingWithColor:(NSColor *)color;
+
+/**
  Creates a new image by blurring _image_ using a box blur.
  
  @param image The original image
@@ -40,5 +48,13 @@
  @exception NSException Thrown if _image_ is nil
  */
 + (NSImage *)BB_imageByBlurringImage:(NSImage *)image radius:(CGFloat)radius;
+
+/**
+ Calls `+[NSImage BB_imageByBlurringImage:radius:]`, passing self and _radius_ respectively.
+ 
+ @param radius A value between 0.0 and 1.0 describing how much to blur the image. The value will be clamped automatically
+ @return The blurred image
+ */
+- (NSImage *)BB_imageByBlurringWithRadius:(CGFloat)radius;
 
 @end

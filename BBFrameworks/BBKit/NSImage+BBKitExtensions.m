@@ -33,6 +33,11 @@
     return retval;
 }
 
+- (NSImage *)BB_imageByTintingWithColor:(NSColor *)color
+{
+    return [self.class BB_imageByTintingImage:self withColor:color];
+}
+
 + (NSImage *)BB_imageByBlurringImage:(NSImage *)image radius:(CGFloat)radius
 {
     NSParameterAssert(image);
@@ -74,8 +79,6 @@
     }
     
     CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-//    CGContextRef context = CGBitmapContextCreate(NULL, outBuffer.width, outBuffer.height, 8, 0, colorSpaceRef, kCGBitmapByteOrder32Host|kCGImageAlphaPremultipliedFirst);
-    
     CGContextRef context = CGBitmapContextCreate(outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpaceRef, CGImageGetBitmapInfo(inImageRef));
     
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
@@ -88,6 +91,11 @@
     CGImageRelease(imageRef);
     
     return retval;
+}
+
+- (NSImage *)BB_imageByBlurringWithRadius:(CGFloat)radius
+{
+    return [self.class BB_imageByBlurringImage:self radius:radius];
 }
 
 @end
