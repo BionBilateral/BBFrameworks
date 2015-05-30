@@ -38,6 +38,26 @@
     return [self.class BB_imageByRenderingImage:self withColor:color];
 }
 
++ (NSImage *)BB_imageByTintingImage:(NSImage *)image withColor:(NSColor *)color
+{
+    NSParameterAssert(image);
+    NSParameterAssert(color);
+    
+    NSImage *retval = [image copy];
+    NSRect imageRect = NSMakeRect(0, 0, retval.size.width, retval.size.height);
+    [retval lockFocus];
+    [color set];
+    NSRectFillUsingOperation(imageRect, NSCompositeColor);
+    [retval unlockFocus];
+    
+    return retval;
+}
+
+- (NSImage *)BB_imageByTintingWithColor:(NSColor *)color
+{
+    return [self.class BB_imageByTintingImage:self withColor:color];
+}
+
 + (NSImage *)BB_imageByBlurringImage:(NSImage *)image radius:(CGFloat)radius
 {
     NSParameterAssert(image);

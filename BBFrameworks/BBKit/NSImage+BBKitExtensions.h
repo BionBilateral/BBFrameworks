@@ -40,6 +40,24 @@
 - (NSImage *)BB_imageByRenderingWithColor:(NSColor *)color;
 
 /**
+ Creates a new image by first drawing the image then drawing a rectangle of color over it.
+ 
+ @param image The original image
+ @param color The color to overlay on top of the image, it should have some level of opacity
+ @return The tinted image
+ @exception NSException Thrown if _image_ or _color_ are nil
+ */
++ (NSImage *)BB_imageByTintingImage:(NSImage *)image withColor:(NSColor *)color;
+
+/**
+ Calls `+[NSImage BB_imageByTintingImage:withColor:]`, passing self and _color_ respectively.
+ 
+ @param color The color to overlay on top of the image, it should have some level of opacity
+ @return The tinted image
+ */
+- (NSImage *)BB_imageByTintingWithColor:(NSColor *)color;
+
+/**
  Creates a new image by blurring _image_ using a box blur.
  
  @param image The original image
