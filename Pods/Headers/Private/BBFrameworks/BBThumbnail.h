@@ -1,0 +1,1 @@
+../../../../BBFrameworks/BBThumbnail/BBThumbnail.h

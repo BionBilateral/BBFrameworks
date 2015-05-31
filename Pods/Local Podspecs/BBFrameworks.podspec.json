@@ -1,0 +1,126 @@
+{
+  "name": "BBFrameworks",
+  "version": "0.0.1",
+  "authors": {
+    "William Towe": "will@bionbilateral.com",
+    "Jason Anderson": "jason@bionbilateral.com"
+  },
+  "license": {
+    "type": "BSD",
+    "file": "license.txt"
+  },
+  "homepage": "https://github.com/BionBilateral/BBFrameworks",
+  "source": {
+    "git": "git@github.com:BionBilateral/BBFrameworks.git",
+    "tag": "0.0.1"
+  },
+  "summary": "Repository for common iOS/OSX categories, classes, and functions.",
+  "platforms": {
+    "ios": "8.3",
+    "osx": "10.10"
+  },
+  "requires_arc": true,
+  "dependencies": {
+    "BlocksKit/Core": [
+      "~> 2.2.0"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "BBFoundation",
+      "source_files": "BBFrameworks/BBFoundation",
+      "frameworks": "Foundation"
+    },
+    {
+      "name": "BBCoreData",
+      "dependencies": {
+        "BBFrameworks/BBFoundation": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBCoreData",
+      "ios": {
+        "frameworks": [
+          "CoreData",
+          "UIKit"
+        ]
+      },
+      "osx": {
+        "frameworks": [
+          "CoreData",
+          "AppKit"
+        ]
+      }
+    },
+    {
+      "name": "BBKit",
+      "dependencies": {
+        "Archimedes": [
+          "~> 1.1.0"
+        ],
+        "BBFrameworks/BBFoundation": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBKit",
+      "ios": {
+        "exclude_files": "BBFrameworks/BBKit/NS*.{h,m}",
+        "frameworks": [
+          "UIKit",
+          "Accelerate",
+          "AVFoundation"
+        ]
+      },
+      "osx": {
+        "exclude_files": "BBFrameworks/BBKit/UI*.{h,m}",
+        "frameworks": [
+          "AppKit",
+          "Accelerate",
+          "AVFoundation"
+        ]
+      }
+    },
+    {
+      "name": "BBReactiveKit",
+      "dependencies": {
+        "ReactiveCocoa": [
+          "~> 2.5.0"
+        ],
+        "ReactiveViewModel": [
+          "~> 0.3.0"
+        ],
+        "BBFrameworks/BBKit": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBReactiveKit"
+    },
+    {
+      "name": "BBThumbnail",
+      "dependencies": {
+        "ReactiveCocoa": [
+          "~> 2.5.0"
+        ],
+        "BBFrameworks/BBKit": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBThumbnail",
+      "ios": {
+        "frameworks": "MobileCoreServices"
+      },
+      "osx": {
+        "frameworks": "QuickLook"
+      }
+    },
+    {
+      "name": "BBReactiveThumbnail",
+      "dependencies": {
+        "BBFrameworks/BBThumbnail": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBReactiveThumbnail"
+    }
+  ]
+}

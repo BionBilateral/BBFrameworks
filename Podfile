@@ -9,7 +9,7 @@ def common_pods
   pod "ReactiveViewModel", "~> 0.3.0"
 end
 
-target :iOSDemo do
+target :iOSFrameworks do
   platform :ios, "8.3"
   
   common_pods
@@ -17,12 +17,28 @@ target :iOSDemo do
   link_with ["BBFrameworksiOS"]
 end
 
-target :OSXDemo do
+target :OSXFrameworks do
   platform :osx, "10.10"
   
   common_pods
   
   link_with ["BBFrameworksOSX"]
+end
+
+target :iOSDemo do
+  platform :ios, "8.3"
+  
+  pod "BBFrameworks", :path => "BBFrameworks.podspec"
+  
+  link_with ["BBFrameworksiOSDemo"]
+end
+
+target :OSXDemo do
+  platform :osx, "10.10"
+  
+  pod "BBFrameworks", :path => "BBFrameworks.podspec"
+  
+  link_with ["BBFrameworksOSXDemo"]
 end
 
 workspace "BBFrameworks"

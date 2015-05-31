@@ -1,5 +1,34 @@
 PODS:
   - Archimedes (1.1)
+  - BBFrameworks (0.0.1):
+    - BBFrameworks/BBCoreData (= 0.0.1)
+    - BBFrameworks/BBFoundation (= 0.0.1)
+    - BBFrameworks/BBKit (= 0.0.1)
+    - BBFrameworks/BBReactiveKit (= 0.0.1)
+    - BBFrameworks/BBReactiveThumbnail (= 0.0.1)
+    - BBFrameworks/BBThumbnail (= 0.0.1)
+    - BlocksKit/Core (~> 2.2.0)
+  - BBFrameworks/BBCoreData (0.0.1):
+    - BBFrameworks/BBFoundation
+    - BlocksKit/Core (~> 2.2.0)
+  - BBFrameworks/BBFoundation (0.0.1):
+    - BlocksKit/Core (~> 2.2.0)
+  - BBFrameworks/BBKit (0.0.1):
+    - Archimedes (~> 1.1.0)
+    - BBFrameworks/BBFoundation
+    - BlocksKit/Core (~> 2.2.0)
+  - BBFrameworks/BBReactiveKit (0.0.1):
+    - BBFrameworks/BBKit
+    - BlocksKit/Core (~> 2.2.0)
+    - ReactiveCocoa (~> 2.5.0)
+    - ReactiveViewModel (~> 0.3.0)
+  - BBFrameworks/BBReactiveThumbnail (0.0.1):
+    - BBFrameworks/BBThumbnail
+    - BlocksKit/Core (~> 2.2.0)
+  - BBFrameworks/BBThumbnail (0.0.1):
+    - BBFrameworks/BBKit
+    - BlocksKit/Core (~> 2.2.0)
+    - ReactiveCocoa (~> 2.5.0)
   - BlocksKit/Core (2.2.5)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -13,12 +42,18 @@ PODS:
 
 DEPENDENCIES:
   - Archimedes (~> 1.1.0)
+  - BBFrameworks (from `BBFrameworks.podspec`)
   - BlocksKit/Core (~> 2.2.0)
   - ReactiveCocoa (~> 2.5.0)
   - ReactiveViewModel (~> 0.3.0)
 
+EXTERNAL SOURCES:
+  BBFrameworks:
+    :path: BBFrameworks.podspec
+
 SPEC CHECKSUMS:
   Archimedes: a181c40a4de8d6bb8ee21bb0f89e9cd758fbb3ce
+  BBFrameworks: 46af3cb91bb9a948e2bfc0437c7302e8dbbecf71
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999

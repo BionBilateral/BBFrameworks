@@ -1,0 +1,1 @@
+../../../../BBFrameworks/BBCoreData/BBDefaultManagedObjectEntityMapping.h
