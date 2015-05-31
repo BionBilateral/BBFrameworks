@@ -38,8 +38,6 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
 @property (readonly,nonatomic,getter=isFileCachingEnabled) BOOL fileCachingEnabled;
 @property (readonly,nonatomic,getter=isMemoryCachingEnabled) BOOL memoryCachingEnabled;
 
-@property (readonly,copy,nonatomic) NSURL *fileCacheDirectoryURL;
-
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct defaultSize;
 @property (assign,nonatomic) NSInteger defaultPage;
 @property (assign,nonatomic) NSTimeInterval defaultTime;

@@ -1,5 +1,7 @@
 source "https://github.com/CocoaPods/Specs.git"
 
+use_frameworks!
+
 def common_pods
   pod "Archimedes", "~> 1.1.0"
   pod "BlocksKit/Core", "~> 2.2.0"
@@ -12,7 +14,7 @@ target :iOSDemo do
   
   common_pods
   
-  link_with ["BBFrameworksiOSDemo"]
+  link_with ["BBFrameworksiOS"]
 end
 
 target :OSXDemo do
@@ -20,7 +22,7 @@ target :OSXDemo do
   
   common_pods
   
-  link_with ["BBFrameworksOSXDemo"]
+  link_with ["BBFrameworksOSX"]
 end
 
 workspace "BBFrameworks"

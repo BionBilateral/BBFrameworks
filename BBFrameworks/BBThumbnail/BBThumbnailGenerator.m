@@ -24,6 +24,9 @@
 #import "BBThumbnailPDFOperation.h"
 #import "BBThumbnailRTFOperation.h"
 #import "BBThumbnailTextOperation.h"
+#if (TARGET_OS_IPHONE)
+#import "UIImage+BBKitExtensions.h"
+#endif
 
 #import <ReactiveCocoa/RACEXTScope.h>
 #if (TARGET_OS_IPHONE)
@@ -39,7 +42,7 @@ static NSInteger const kDefaultPage = 1;
 static NSTimeInterval const kDefaultTime = 1.0;
 
 @interface BBThumbnailGenerator () <NSCacheDelegate>
-@property (readwrite,copy,nonatomic) NSURL *fileCacheDirectoryURL;
+@property (copy,nonatomic) NSURL *fileCacheDirectoryURL;
 
 @property (strong,nonatomic) dispatch_queue_t fileCacheQueue;
 @property (strong,nonatomic) NSCache *memoryCache;
@@ -145,55 +148,100 @@ static NSTimeInterval const kDefaultTime = 1.0;
     [self.operationQueue addOperationWithBlock:^{
         @strongify(self);
         
+        NSString *key = [self memoryCacheKeyForURL:URL size:size page:page time:time];
+        NSURL *fileCacheURL = [self fileCacheURLForMemoryCacheKey:key];
+        
+        void(^cacheImageBlock)(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType) = ^(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType){
+            @strongify(self);
+            
+            if (image) {
+                switch (cacheType) {
+                    case BBThumbnailGeneratorCacheTypeNone: {
+                        if (self.isFileCachingEnabled) {
+                            dispatch_async(self.fileCacheQueue, ^{
+#if (TARGET_OS_IPHONE)
+                                NSData *data = [image BB_hasAlpha] ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1.0);
+#else
+                                CGImageRef imageRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
+                                CGDataProviderRef dataProviderRef = CGImageGetDataProvider(imageRef);
+                                NSData *data = (__bridge_transfer NSData *)CGDataProviderCopyData(dataProviderRef);
+#endif
+                                
+                                NSError *outError;
+                                if (![data writeToURL:fileCacheURL options:0 error:&outError]) {
+                                    BBLogObject(outError);
+                                }
+                            });
+                        }
+                    }
+                    case BBThumbnailGeneratorCacheTypeFile:
+                        if (self.isMemoryCachingEnabled) {
+#if (TARGET_OS_IPHONE)
+                            [self.memoryCache setObject:image forKey:key cost:image.size.width * image.size.height * image.scale];
+#else
+                            [self.memoryCache setObject:image forKey:key cost:image.size.width * image.size.height];
+#endif
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            BBDispatchMainSyncSafe(^{
+                completion(image,error,cacheType,URL,size,page,time);
+            });
+        };
+        
+        if (self.isMemoryCachingEnabled) {
+            BBThumbnailGeneratorImageClass *retval = [self.memoryCache objectForKey:key];
+            
+            if (retval) {
+                cacheImageBlock(retval,nil,BBThumbnailGeneratorCacheTypeMemory);
+                return;
+            }
+        }
+        
+        if (self.isFileCachingEnabled) {
+            if ([fileCacheURL checkResourceIsReachableAndReturnError:NULL]) {
+                BBThumbnailGeneratorImageClass *retval = [[BBThumbnailGeneratorImageClass alloc] initWithContentsOfFile:fileCacheURL.path];
+                
+                if (retval) {
+                    cacheImageBlock(retval,nil,BBThumbnailGeneratorCacheTypeFile);
+                    return;
+                }
+            }
+        }
+        
+        void(^operationCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error) = ^(BBThumbnailGeneratorImageClass *image, NSError *error){
+            cacheImageBlock(image,error,BBThumbnailGeneratorCacheTypeNone);
+        };
+        
         if (URL.isFileURL) {
             NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.lastPathComponent.pathExtension, NULL);
             
             if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
-                [retval setOperation:[[BBThumbnailImageOperation alloc] initWithURL:URL size:size completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
-                    BBDispatchMainSyncSafe(^{
-                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-                    });
-                }]];
+                [retval setOperation:[[BBThumbnailImageOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
-                [retval setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:URL size:size time:time completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
-                    BBDispatchMainSyncSafe(^{
-                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-                    });
-                }]];
+                [retval setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:URL size:size time:time completion:operationCompletionBlock]];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
-                [retval setOperation:[[BBThumbnailPDFOperation alloc] initWithURL:URL size:size page:page completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
-                    BBDispatchMainSyncSafe(^{
-                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-                    });
-                }]];
+                [retval setOperation:[[BBThumbnailPDFOperation alloc] initWithURL:URL size:size page:page completion:operationCompletionBlock]];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF) ||
                      UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD)) {
-                [retval setOperation:[[BBThumbnailRTFOperation alloc] initWithURL:URL size:size completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
-                    BBDispatchMainSyncSafe(^{
-                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-                    });
-                }]];
+                [retval setOperation:[[BBThumbnailRTFOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
-                [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
-                    BBDispatchMainSyncSafe(^{
-                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-                    });
-                }]];
+                [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
-                BBDispatchMainSyncSafe(^{
-                    completion(nil,nil,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-                });
+                cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
             }
         }
         else {
-            BBDispatchMainSyncSafe(^{
-                completion(nil,nil,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
-            });
+            cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
         }
         
         if (retval.operation) {

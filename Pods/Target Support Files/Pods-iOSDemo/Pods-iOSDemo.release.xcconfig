@@ -1,6 +1,8 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Archimedes" "${PODS_ROOT}/Headers/Public/BlocksKit" "${PODS_ROOT}/Headers/Public/ReactiveCocoa" "${PODS_ROOT}/Headers/Public/ReactiveViewModel"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Archimedes" -isystem "${PODS_ROOT}/Headers/Public/BlocksKit" -isystem "${PODS_ROOT}/Headers/Public/ReactiveCocoa" -isystem "${PODS_ROOT}/Headers/Public/ReactiveViewModel"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-iOSDemo-Archimedes" -l"Pods-iOSDemo-BlocksKit" -l"Pods-iOSDemo-ReactiveCocoa" -l"Pods-iOSDemo-ReactiveViewModel" -framework "CoreGraphics" -framework "Foundation"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/Archimedes.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/BlocksKit.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/ReactiveCocoa.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/ReactiveViewModel.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "Archimedes" -framework "BlocksKit" -framework "ReactiveCocoa" -framework "ReactiveViewModel"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-iOSDemo
 PODS_ROOT = ${SRCROOT}/Pods
