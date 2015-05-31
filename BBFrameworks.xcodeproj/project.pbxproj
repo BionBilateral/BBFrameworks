@@ -149,6 +149,7 @@
 		79A5664E1B1A975C00DFD142 /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5664A1B1A975C00DFD142 /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
 		79A566511B1A9BCE00DFD142 /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566501B1A9BC500DFD142 /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79A566521B1A9BCE00DFD142 /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566501B1A9BC500DFD142 /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79D04EAA1B1AC9B900BBC57F /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794535971B03C31700651F57 /* BBFrameworks.framework */; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
@@ -338,6 +339,8 @@
 		79F9926E1B184B3B00FE6432 /* UIViewController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79F9926F1B184B3B00FE6432 /* UIViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9322406F0FFEA82C1FBC9510 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB8C17B8A7BE50FDF3206EBF /* Pods_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +356,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D04EAA1B1AC9B900BBC57F /* BBFrameworks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +400,8 @@
 				74AB78CD1B18F55A0056B01E /* Accelerate.framework */,
 				5C4244F5E7F06DE69A383200 /* Pods_OSXDemo.framework */,
 				3E62B73ADB7CD39B320971DF /* Pods_iOSDemo.framework */,
+				EB8C17B8A7BE50FDF3206EBF /* Pods_OSX.framework */,
+				9322406F0FFEA82C1FBC9510 /* Pods_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1370,57 +1376,42 @@
 		};
 		794535D81B03C32800651F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FA56EA18661F8C74EBBF115 /* Pods-iOSDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = BBFrameworksiOSDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"Pods-iOSDemo-Archimedes\"",
-					"-l\"Pods-iOSDemo-BlocksKit\"",
-					"-l\"Pods-iOSDemo-ReactiveCocoa\"",
-					"-l\"Pods-iOSDemo-ReactiveViewModel\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"Foundation\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		794535D91B03C32800651F57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46E6EAAFAF16877F5A1046F0 /* Pods-iOSDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = BBFrameworksiOSDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"Pods-iOSDemo-Archimedes\"",
-					"-l\"Pods-iOSDemo-BlocksKit\"",
-					"-l\"Pods-iOSDemo-ReactiveCocoa\"",
-					"-l\"Pods-iOSDemo-ReactiveViewModel\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"Foundation\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 		794535FC1B03C33200651F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51DB3C8ABAAE4713365480AC /* Pods-OSXDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
@@ -1430,9 +1421,15 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = BBFrameworksOSXDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1440,14 +1437,19 @@
 		};
 		794535FD1B03C33200651F57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BDC20F7D1B0AF197AF22F17 /* Pods-OSXDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/Pods/Headers/Public\"",
+				);
 				INFOPLIST_FILE = BBFrameworksOSXDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};

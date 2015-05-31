@@ -15,6 +15,8 @@
 
 #import "BBBadgeView.h"
 
+#import <Archimedes/Archimedes.h>
+
 @interface BBBadgeView ()
 
 - (void)_BBBadgeViewInit;
@@ -134,7 +136,7 @@
     NSSize size = [self.badge sizeWithAttributes:@{NSFontAttributeName: self.badgeFont}];
 #endif
     
-    [self.badge drawInRect:CGRectMake(CGRectGetMidX(self.bounds) - size.width * 0.5, CGRectGetMidY(self.bounds) - size.height * 0.5, size.width, size.height) withAttributes:@{NSFontAttributeName: self.badgeFont, NSForegroundColorAttributeName: self.isHighlighted ? self.badgeHighlightedForegroundColor : self.badgeForegroundColor}];
+    [self.badge drawInRect:MEDRectCenterInRect(CGRectMake(0, 0, size.width, size.height), self.bounds) withAttributes:@{NSFontAttributeName: self.badgeFont, NSForegroundColorAttributeName: self.isHighlighted ? self.badgeHighlightedForegroundColor : self.badgeForegroundColor}];
 }
 #pragma mark ** Public Methods **
 #pragma mark Properties
