@@ -13,7 +13,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
   spec.dependency "BlocksKit/Core", "~> 2.2.0"
-  spec.dependency "ReactiveCocoa", "~> 2.5.0"
   
   spec.subspec "BBFoundation" do |subspec|
     subspec.source_files = "BBFrameworks/BBFoundation"
@@ -31,7 +30,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBKit" do |subspec|
-    subspec.dependency "ReactiveViewModel", "~> 0.3.0"
+    subspec.dependency "Archimedes", "~> 1.1.0"
     
     subspec.dependency "BBFrameworks/BBFoundation"
     
@@ -42,16 +41,31 @@ Pod::Spec.new do |spec|
     
     subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation"
     subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
+  end
+  
+  spec.subspec "BBReactiveKit" do |subspec|
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.dependency "ReactiveViewModel", "~> 0.3.0"
     
-    subspec.dependency "Archimedes", "~> 1.1.0"
+    subspec.dependency "BBFrameworks/BBKit"
+    
+    subspec.source_files = "BBFrameworks/BBReactiveKit"
   end
   
   spec.subspec "BBThumbnail" do |subspec|
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBThumbnail"
     
     subspec.ios.frameworks = "MobileCoreServices"
     subspec.osx.frameworks = "QuickLook"
+  end
+  
+  spec.subspec "BBReactiveThumbnail" do |subspec|
+    subspec.dependency "BBFrameworks/BBThumbnail"
+    
+    subspec.source_files = "BBFrameworks/BBReactiveThumbnail"
   end
 end
