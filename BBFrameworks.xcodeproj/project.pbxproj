@@ -126,6 +126,12 @@
 		79A566271B1A762D00DFD142 /* BBThumbnailMovieOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566241B1A762D00DFD142 /* BBThumbnailMovieOperation.h */; };
 		79A566281B1A762D00DFD142 /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566251B1A762D00DFD142 /* BBThumbnailMovieOperation.m */; };
 		79A566291B1A762D00DFD142 /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566251B1A762D00DFD142 /* BBThumbnailMovieOperation.m */; };
+		79A5662C1B1A80D800DFD142 /* BBThumbnailPDFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5662A1B1A80D800DFD142 /* BBThumbnailPDFOperation.h */; };
+		79A5662D1B1A80D800DFD142 /* BBThumbnailPDFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A5662A1B1A80D800DFD142 /* BBThumbnailPDFOperation.h */; };
+		79A5662E1B1A80D800DFD142 /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */; };
+		79A5662F1B1A80D800DFD142 /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */; };
+		79A566311B1A82E600DFD142 /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566301B1A82E600DFD142 /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A566321B1A82E600DFD142 /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566301B1A82E600DFD142 /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
@@ -294,6 +300,9 @@
 		79A566221B1A67D500DFD142 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		79A566241B1A762D00DFD142 /* BBThumbnailMovieOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailMovieOperation.h; sourceTree = "<group>"; };
 		79A566251B1A762D00DFD142 /* BBThumbnailMovieOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailMovieOperation.m; sourceTree = "<group>"; };
+		79A5662A1B1A80D800DFD142 /* BBThumbnailPDFOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailPDFOperation.h; sourceTree = "<group>"; };
+		79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailPDFOperation.m; sourceTree = "<group>"; };
+		79A566301B1A82E600DFD142 /* BBFoundationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationMacros.h; sourceTree = "<group>"; };
 		79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeView.h; sourceTree = "<group>"; };
 		79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeView.m; sourceTree = "<group>"; };
 		79F18A7F1B1563F200F25042 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -470,6 +479,7 @@
 			children = (
 				794536071B03C37000651F57 /* BBFoundation.h */,
 				794536091B03C5B400651F57 /* BBFoundationDebugging.h */,
+				79A566301B1A82E600DFD142 /* BBFoundationMacros.h */,
 				7945367E1B03E3A400651F57 /* BBFoundationFunctions.h */,
 				7945368A1B041CD200651F57 /* Classes */,
 				794536891B041CCB00651F57 /* Categories */,
@@ -593,6 +603,8 @@
 				79A566111B1A4D2800DFD142 /* BBThumbnailImageOperation.m */,
 				79A566241B1A762D00DFD142 /* BBThumbnailMovieOperation.h */,
 				79A566251B1A762D00DFD142 /* BBThumbnailMovieOperation.m */,
+				79A5662A1B1A80D800DFD142 /* BBThumbnailPDFOperation.h */,
+				79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */,
 			);
 			path = BBThumbnail;
 			sourceTree = "<group>";
@@ -630,6 +642,8 @@
 				7945368D1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				794536C41B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				794536D01B06BAA900651F57 /* NSString+BBFoundationExtensions.h in Headers */,
+				79A566311B1A82E600DFD142 /* BBFoundationMacros.h in Headers */,
+				79A5662C1B1A80D800DFD142 /* BBThumbnailPDFOperation.h in Headers */,
 				7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */,
 				79A566171B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */,
 				79A5660E1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */,
@@ -668,6 +682,7 @@
 			files = (
 				794536D71B06BDB600651F57 /* NSBundle+BBFoundationExtensions.h in Headers */,
 				794536811B03E3DC00651F57 /* BBFoundation.h in Headers */,
+				79A566321B1A82E600DFD142 /* BBFoundationMacros.h in Headers */,
 				794536E01B0797BA00651F57 /* BBKitColorMacros.h in Headers */,
 				79A5660A1B19669B00DFD142 /* BBThumbnailGenerator.h in Headers */,
 				74AB78CA1B18EB410056B01E /* NSImage+BBKitExtensions.h in Headers */,
@@ -690,6 +705,7 @@
 				794536CB1B06B43200651F57 /* NSData+BBFoundationExtensions.h in Headers */,
 				79A566181B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */,
 				794536821B03E3E300651F57 /* BBFoundationDebugging.h in Headers */,
+				79A5662D1B1A80D800DFD142 /* BBThumbnailPDFOperation.h in Headers */,
 				7945367C1B03E12900651F57 /* BBManagedObjectPropertyMapping.h in Headers */,
 				7945367D1B03E34300651F57 /* BBFrameworks.h in Headers */,
 				794536741B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
@@ -1013,6 +1029,7 @@
 				794536D21B06BAA900651F57 /* NSString+BBFoundationExtensions.m in Sources */,
 				7945369B1B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				7945368F1B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				79A5662E1B1A80D800DFD142 /* BBThumbnailPDFOperation.m in Sources */,
 				79A5661D1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1054,6 +1071,7 @@
 				79A566291B1A762D00DFD142 /* BBThumbnailMovieOperation.m in Sources */,
 				794536CD1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,
 				794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */,
+				79A5662F1B1A80D800DFD142 /* BBThumbnailPDFOperation.m in Sources */,
 				794536901B041D0700651F57 /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				794536E41B0799BE00651F57 /* NSColor+BBKitExtensions.m in Sources */,
 				79D0EAA01B15443E00E9CFC6 /* BBBadgeView.m in Sources */,

@@ -21,6 +21,7 @@
 #import "BBThumbnailOperationWrapper.h"
 #import "BBThumbnailImageOperation.h"
 #import "BBThumbnailMovieOperation.h"
+#import "BBThumbnailPDFOperation.h"
 
 #import <ReactiveCocoa/RACEXTScope.h>
 #if (TARGET_OS_IPHONE)
@@ -154,6 +155,13 @@ static NSTimeInterval const kDefaultTime = 1.0;
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
                 [retval setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:URL size:size time:time completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
+                    BBDispatchMainSyncSafe(^{
+                        completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
+                    });
+                }]];
+            }
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
+                [retval setOperation:[[BBThumbnailPDFOperation alloc] initWithURL:URL size:size page:page completion:^(BBThumbnailGeneratorImageClass *image, NSError *error) {
                     BBDispatchMainSyncSafe(^{
                         completion(image,error,BBThumbnailGeneratorCacheTypeNone,URL,size,page,time);
                     });
