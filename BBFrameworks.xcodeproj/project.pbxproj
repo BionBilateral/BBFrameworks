@@ -132,6 +132,10 @@
 		79A5662F1B1A80D800DFD142 /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */; };
 		79A566311B1A82E600DFD142 /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566301B1A82E600DFD142 /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79A566321B1A82E600DFD142 /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566301B1A82E600DFD142 /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A566351B1A89E600DFD142 /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566331B1A89E600DFD142 /* BBThumbnailRTFOperation.h */; };
+		79A566361B1A89E600DFD142 /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A566331B1A89E600DFD142 /* BBThumbnailRTFOperation.h */; };
+		79A566371B1A89E600DFD142 /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566341B1A89E600DFD142 /* BBThumbnailRTFOperation.m */; };
+		79A566381B1A89E600DFD142 /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A566341B1A89E600DFD142 /* BBThumbnailRTFOperation.m */; };
 		79D0EA9D1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9E1B15443E00E9CFC6 /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D0EA9F1B15443E00E9CFC6 /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */; };
@@ -303,6 +307,8 @@
 		79A5662A1B1A80D800DFD142 /* BBThumbnailPDFOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailPDFOperation.h; sourceTree = "<group>"; };
 		79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailPDFOperation.m; sourceTree = "<group>"; };
 		79A566301B1A82E600DFD142 /* BBFoundationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationMacros.h; sourceTree = "<group>"; };
+		79A566331B1A89E600DFD142 /* BBThumbnailRTFOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailRTFOperation.h; sourceTree = "<group>"; };
+		79A566341B1A89E600DFD142 /* BBThumbnailRTFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailRTFOperation.m; sourceTree = "<group>"; };
 		79D0EA9B1B15443E00E9CFC6 /* BBBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeView.h; sourceTree = "<group>"; };
 		79D0EA9C1B15443E00E9CFC6 /* BBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeView.m; sourceTree = "<group>"; };
 		79F18A7F1B1563F200F25042 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -605,6 +611,8 @@
 				79A566251B1A762D00DFD142 /* BBThumbnailMovieOperation.m */,
 				79A5662A1B1A80D800DFD142 /* BBThumbnailPDFOperation.h */,
 				79A5662B1B1A80D800DFD142 /* BBThumbnailPDFOperation.m */,
+				79A566331B1A89E600DFD142 /* BBThumbnailRTFOperation.h */,
+				79A566341B1A89E600DFD142 /* BBThumbnailRTFOperation.m */,
 			);
 			path = BBThumbnail;
 			sourceTree = "<group>";
@@ -646,6 +654,7 @@
 				79A5662C1B1A80D800DFD142 /* BBThumbnailPDFOperation.h in Headers */,
 				7945359D1B03C31700651F57 /* BBFrameworks.h in Headers */,
 				79A566171B1A4ECB00DFD142 /* BBThumbnailDefines.h in Headers */,
+				79A566351B1A89E600DFD142 /* BBThumbnailRTFOperation.h in Headers */,
 				79A5660E1B1973A700DFD142 /* BBThumbnailOperation.h in Headers */,
 				794536991B0424A900651F57 /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				794536081B03C37000651F57 /* BBFoundation.h in Headers */,
@@ -696,6 +705,7 @@
 				794536801B03E3A400651F57 /* BBFoundationFunctions.h in Headers */,
 				79A5661C1B1A59A500DFD142 /* BBThumbnailOperationWrapper.h in Headers */,
 				794536701B03E10900651F57 /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
+				79A566361B1A89E600DFD142 /* BBThumbnailRTFOperation.h in Headers */,
 				79A566271B1A762D00DFD142 /* BBThumbnailMovieOperation.h in Headers */,
 				79A566021B195C6600DFD142 /* BBKitCGImageFunctions.h in Headers */,
 				79A566061B19663600DFD142 /* BBThumbnail.h in Headers */,
@@ -1009,6 +1019,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				794536C61B0690C500651F57 /* NSMutableArray+BBFoundationExtensions.m in Sources */,
+				79A566371B1A89E600DFD142 /* BBThumbnailRTFOperation.m in Sources */,
 				794536CC1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,
 				79A566141B1A4D2800DFD142 /* BBThumbnailImageOperation.m in Sources */,
 				794536951B04235600651F57 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
@@ -1068,6 +1079,7 @@
 				79A5661E1B1A59A500DFD142 /* BBThumbnailOperationWrapper.m in Sources */,
 				794536761B03E10900651F57 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79A5660C1B19669B00DFD142 /* BBThumbnailGenerator.m in Sources */,
+				79A566381B1A89E600DFD142 /* BBThumbnailRTFOperation.m in Sources */,
 				79A566291B1A762D00DFD142 /* BBThumbnailMovieOperation.m in Sources */,
 				794536CD1B06B43200651F57 /* NSData+BBFoundationExtensions.m in Sources */,
 				794536D91B06BDB600651F57 /* NSBundle+BBFoundationExtensions.m in Sources */,
