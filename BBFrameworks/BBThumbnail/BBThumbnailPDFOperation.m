@@ -18,8 +18,6 @@
 #import "BBKitCGImageFunctions.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
-#else
-#import "NSImage+BBKitExtensions.h"
 #endif
 
 static size_t const kMinimumPage = 1;

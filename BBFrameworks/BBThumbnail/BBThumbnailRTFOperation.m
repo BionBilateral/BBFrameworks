@@ -16,8 +16,6 @@
 #import "BBThumbnailRTFOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
-#else
-#import "NSImage+BBKitExtensions.h"
 #endif
 
 @interface BBThumbnailRTFOperation ()
