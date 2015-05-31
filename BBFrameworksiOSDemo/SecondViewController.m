@@ -15,14 +15,15 @@
 
 #import "SecondViewController.h"
 
-#import <BBFrameworks/BBThumbnail.h>
+#import <BBFrameworks/BBReactiveThumbnail.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
 @interface ThumbnailCell : UICollectionViewCell
 
 @property (strong,nonatomic) UIImageView *imageView;
 
-@property (strong,nonatomic) id<BBThumbnailOperation> operation;
+@property (strong,nonatomic) RACDisposable *disposable;
 
 @end
 
@@ -48,7 +49,7 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    [self.operation cancel];
+    [self.disposable dispose];
 }
 
 @end
@@ -86,10 +87,11 @@
     ThumbnailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ThumbnailCell class]) forIndexPath:indexPath];
     
     @weakify(cell);
-    [cell setOperation:[self.thumbnailGenerator generateThumbnailForURL:self.thumbnailURLs[indexPath.row] completion:^(UIImage *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, CGSize size, NSInteger page, NSTimeInterval time) {
+    [cell setDisposable:[[[self.thumbnailGenerator BB_generateThumbnailForURL:self.thumbnailURLs[indexPath.row]] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple *value) {
         @strongify(cell);
-        
-        [cell.imageView setImage:image];
+        [cell.imageView setImage:value.first];
+    } error:^(NSError *error) {
+        [cell.imageView setImage:nil];
     }]];
     
     return cell;

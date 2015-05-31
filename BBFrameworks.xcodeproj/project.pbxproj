@@ -398,33 +398,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7927CF5C1B1AD29A0034288D /* Classes */ = {
+		7927CF5C1B1AD29A0034288D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF691B1AD2B90034288D /* BBFoundation */,
+				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
 				7927CF921B1AD2B90034288D /* BBReactiveKit */,
-				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 				7927CF981B1AD2B90034288D /* BBThumbnail */,
+				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 			);
-			name = Classes;
+			name = Modules;
 			sourceTree = "<group>";
 		};
 		7927CF5D1B1AD2B90034288D /* BBCoreData */ = {
 			isa = PBXGroup;
 			children = (
 				7927CF5E1B1AD2B90034288D /* BBCoreData.h */,
-				7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */,
-				7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */,
-				7927CF611B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h */,
-				7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */,
-				7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */,
-				7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */,
-				7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */,
-				7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */,
-				7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */,
-				7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */,
+				79C2E1591B1AF9A500CCACF9 /* Categories */,
+				79C2E15B1B1AF9DA00CCACF9 /* Import */,
 			);
 			path = BBCoreData;
 			sourceTree = "<group>";
@@ -433,25 +425,9 @@
 			isa = PBXGroup;
 			children = (
 				7927CF6A1B1AD2B90034288D /* BBFoundation.h */,
-				7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */,
-				7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */,
-				7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */,
-				7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */,
-				7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */,
-				7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */,
-				7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */,
-				7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */,
-				7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */,
-				7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */,
-				7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */,
-				7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */,
-				7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */,
-				7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */,
-				7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */,
-				7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */,
-				7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */,
-				7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */,
-				7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */,
+				79C2E15C1B1AFA7600CCACF9 /* Headers */,
+				79C2E15D1B1AFA7E00CCACF9 /* Classes */,
+				79C2E15E1B1AFA8600CCACF9 /* Categories */,
 			);
 			path = BBFoundation;
 			sourceTree = "<group>";
@@ -459,25 +435,10 @@
 		7927CF7E1B1AD2B90034288D /* BBKit */ = {
 			isa = PBXGroup;
 			children = (
-				7927CF7F1B1AD2B90034288D /* BBBadgeView.h */,
-				7927CF801B1AD2B90034288D /* BBBadgeView.m */,
 				7927CF811B1AD2B90034288D /* BBKit.h */,
-				7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */,
-				7927CF831B1AD2B90034288D /* BBKitColorMacros.h */,
-				7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */,
-				7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */,
-				7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */,
-				7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */,
-				7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */,
-				7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */,
-				7927CF8A1B1AD2B90034288D /* UIColor+BBKitExtensions.h */,
-				7927CF8B1B1AD2B90034288D /* UIColor+BBKitExtensions.m */,
-				7927CF8C1B1AD2B90034288D /* UIImage+BBKitExtensions.h */,
-				7927CF8D1B1AD2B90034288D /* UIImage+BBKitExtensions.m */,
-				7927CF8E1B1AD2B90034288D /* UIView+BBKitExtensions.h */,
-				7927CF8F1B1AD2B90034288D /* UIView+BBKitExtensions.m */,
-				7927CF901B1AD2B90034288D /* UIViewController+BBKitExtensions.h */,
-				7927CF911B1AD2B90034288D /* UIViewController+BBKitExtensions.m */,
+				79C2E1601B1AFAD800CCACF9 /* Headers */,
+				79C2E15F1B1AFACF00CCACF9 /* Classes */,
+				79C2E1611B1AFADF00CCACF9 /* Categories */,
 			);
 			path = BBKit;
 			sourceTree = "<group>";
@@ -494,8 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */,
-				7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */,
-				7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */,
+				79C2E1621B1AFAF900CCACF9 /* Categories */,
 			);
 			path = BBReactiveThumbnail;
 			sourceTree = "<group>";
@@ -504,22 +464,8 @@
 			isa = PBXGroup;
 			children = (
 				7927CF991B1AD2B90034288D /* BBThumbnail.h */,
-				7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */,
-				7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */,
-				7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */,
-				7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */,
-				7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */,
-				7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */,
-				7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */,
-				7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */,
-				7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */,
-				7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */,
-				7927CFA41B1AD2B90034288D /* BBThumbnailPDFOperation.h */,
-				7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */,
-				7927CFA61B1AD2B90034288D /* BBThumbnailRTFOperation.h */,
-				7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */,
-				7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */,
-				7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */,
+				79C2E1631B1AFB0900CCACF9 /* Headers */,
+				79C2E1651B1AFB4000CCACF9 /* Classes */,
 			);
 			path = BBThumbnail;
 			sourceTree = "<group>";
@@ -577,7 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */,
-				7927CF5C1B1AD29A0034288D /* Classes */,
+				7927CF5C1B1AD29A0034288D /* Modules */,
 				79C000A11B1ACC7C004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworks;
@@ -617,6 +563,148 @@
 				7989C9C51B1ADD14009B1CE9 /* docs */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79C2E1591B1AF9A500CCACF9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */,
+				7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		79C2E15B1B1AF9DA00CCACF9 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */,
+				7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */,
+				7927CF611B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h */,
+				7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */,
+				7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */,
+				7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */,
+				7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */,
+				7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */,
+			);
+			name = Import;
+			sourceTree = "<group>";
+		};
+		79C2E15C1B1AFA7600CCACF9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */,
+				7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */,
+				7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		79C2E15D1B1AFA7E00CCACF9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */,
+				7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		79C2E15E1B1AFA8600CCACF9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */,
+				7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */,
+				7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */,
+				7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */,
+				7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */,
+				7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */,
+				7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */,
+				7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */,
+				7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */,
+				7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */,
+				7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */,
+				7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */,
+				7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */,
+				7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		79C2E15F1B1AFACF00CCACF9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF7F1B1AD2B90034288D /* BBBadgeView.h */,
+				7927CF801B1AD2B90034288D /* BBBadgeView.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		79C2E1601B1AFAD800CCACF9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */,
+				7927CF831B1AD2B90034288D /* BBKitColorMacros.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		79C2E1611B1AFADF00CCACF9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */,
+				7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */,
+				7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */,
+				7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */,
+				7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */,
+				7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */,
+				7927CF8A1B1AD2B90034288D /* UIColor+BBKitExtensions.h */,
+				7927CF8B1B1AD2B90034288D /* UIColor+BBKitExtensions.m */,
+				7927CF8C1B1AD2B90034288D /* UIImage+BBKitExtensions.h */,
+				7927CF8D1B1AD2B90034288D /* UIImage+BBKitExtensions.m */,
+				7927CF8E1B1AD2B90034288D /* UIView+BBKitExtensions.h */,
+				7927CF8F1B1AD2B90034288D /* UIView+BBKitExtensions.m */,
+				7927CF901B1AD2B90034288D /* UIViewController+BBKitExtensions.h */,
+				7927CF911B1AD2B90034288D /* UIViewController+BBKitExtensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		79C2E1621B1AFAF900CCACF9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */,
+				7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		79C2E1631B1AFB0900CCACF9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		79C2E1651B1AFB4000CCACF9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */,
+				7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */,
+				7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */,
+				7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */,
+				7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */,
+				7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */,
+				7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */,
+				7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */,
+				7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */,
+				7927CFA41B1AD2B90034288D /* BBThumbnailPDFOperation.h */,
+				7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */,
+				7927CFA61B1AD2B90034288D /* BBThumbnailRTFOperation.h */,
+				7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */,
+				7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */,
+				7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		B57C4002BFB6D5C1DBE48B35 /* Frameworks */ = {
