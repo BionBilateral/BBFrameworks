@@ -1,5 +1,5 @@
 //
-//  BBThumbnailRTFOperation.m
+//  BBThumbnailTextOperation.m
 //  BBFrameworks
 //
 //  Created by William Towe on 5/30/15.
@@ -13,20 +13,20 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBThumbnailRTFOperation.h"
+#import "BBThumbnailTextOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #else
 #import <AppKit/AppKit.h>
 #endif
 
-@interface BBThumbnailRTFOperation ()
+@interface BBThumbnailTextOperation ()
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
 @property (copy,nonatomic) BBThumbnailOperationCompletionBlock operationCompletionBlock;
 @end
 
-@implementation BBThumbnailRTFOperation
+@implementation BBThumbnailTextOperation
 
 - (void)main {
     if (self.isCancelled) {
@@ -36,9 +36,9 @@
     
     NSError *outError;
 #if (TARGET_OS_IPHONE)
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithFileURL:self.URL options:@{NSDocumentTypeDocumentAttribute: [self.URL.lastPathComponent.pathExtension isEqualToString:@"rtfd"] ? NSRTFDTextDocumentType : NSRTFTextDocumentType} documentAttributes:nil error:&outError];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithFileURL:self.URL options:@{NSDocumentTypeDocumentAttribute: NSPlainTextDocumentType, NSDefaultAttributesDocumentAttribute: @{NSForegroundColorAttributeName: [UIColor blackColor], NSBackgroundColorAttributeName: [UIColor whiteColor]}} documentAttributes:nil error:&outError];
 #else
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithURL:self.URL options:@{NSDocumentTypeDocumentAttribute: [self.URL.lastPathComponent.pathExtension isEqualToString:@"rtfd"] ? NSRTFDTextDocumentType : NSRTFTextDocumentType} documentAttributes:nil error:&outError];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithURL:self.URL options:@{NSDocumentTypeDocumentAttribute: NSPlainTextDocumentType, NSDefaultAttributesDocumentOption: @{NSForegroundColorAttributeName: [NSColor blackColor], NSBackgroundColorAttributeName: [NSColor whiteColor]}} documentAttributes:nil error:&outError];
 #endif
     
     if (!attributedString) {
