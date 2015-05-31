@@ -30,7 +30,7 @@ target :iOSDemo do
   
   pod "BBFrameworks", :path => "BBFrameworks.podspec"
   
-  link_with ["BBFrameworksiOSDemo"]
+  link_with ["BBFrameworksiOSDemo", "BBFrameworksiOSTests"]
 end
 
 target :OSXDemo do
@@ -38,7 +38,7 @@ target :OSXDemo do
   
   pod "BBFrameworks", :path => "BBFrameworks.podspec"
   
-  link_with ["BBFrameworksOSXDemo"]
+  link_with ["BBFrameworksOSXDemo", "BBFrameworksOSXTests"]
 end
 
 workspace "BBFrameworks"
