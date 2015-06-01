@@ -18,44 +18,178 @@
 #import "BBThumbnailDefines.h"
 #import "BBThumbnailOperation.h"
 
+/**
+ Enum describing the cache type that was used to access the thumbnail.
+ */
 typedef NS_ENUM(NSInteger, BBThumbnailGeneratorCacheType) {
+    /**
+     No cache was accessed, the thumbnail was generated for the first time.
+     */
     BBThumbnailGeneratorCacheTypeNone,
+    /**
+     The file cache was accessed, the thumbnail was loaded from disk.
+     */
     BBThumbnailGeneratorCacheTypeFile,
+    /**
+     The memory cache was accessed, the thumbnail was retrieved from the internal NSCache.
+     */
     BBThumbnailGeneratorCacheTypeMemory
 };
 
+/**
+ Flags describing the cache type that is used to store generated thumbnails.
+ */
 typedef NS_OPTIONS(NSInteger, BBThumbnailGeneratorCacheOptions) {
+    /**
+     Caching is not enabled, the thumbnail will be generated each time it is requested.
+     */
     BBThumbnailGeneratorCacheOptionsNone = 0,
+    /**
+     File caching is enabled, the generated thumbnail will be stored on disk.
+     */
     BBThumbnailGeneratorCacheOptionsFile = 1 << 0,
+    /**
+     Memory caching is enabled, the generated thumbnail will be stored in memory.
+     */
     BBThumbnailGeneratorCacheOptionsMemory = 1 << 1
 };
 
+/**
+ Block signature for thumbnail generation callback.
+ 
+ @param image The generated thumbnail image or nil
+ @param error The reason the thumbnail could not be generated or nil
+ @param cacheType If image is non-nil, the cache type used to access the thumbnail image
+ @param URL The original url used to generate the image
+ @param size The size of the requested thumbnail
+ @param page The page of the requested thumbnail, applicable for PDF thumbnails
+ @param time The time of the requested thumbnail, applicable for movie thumbnails
+ */
 typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, BBThumbnailGeneratorSizeStruct size, NSInteger page, NSTimeInterval time);
 
+/**
+ BBThumbnailGenerator is an NSObject subclass used for generating thumbnail images from various sources.
+ */
 @interface BBThumbnailGenerator : NSObject
 
+/**
+ Set and get the cache options for the receiver.
+ 
+ The default is `BBThumbnailGeneratorCacheOptionsFile | BBThumbnailGeneratorCacheOptionsMemory`.
+ */
 @property (assign,nonatomic) BBThumbnailGeneratorCacheOptions cacheOptions;
+/**
+ Get whether file caching is enabled.
+ */
 @property (readonly,nonatomic,getter=isFileCachingEnabled) BOOL fileCachingEnabled;
+/**
+ Get whether memory caching is enabled.
+ */
 @property (readonly,nonatomic,getter=isMemoryCachingEnabled) BOOL memoryCachingEnabled;
 
+/**
+ Get and set the default thumbnail size. This is used for methods that do not contain an explicit size argument.
+ 
+ The default is `CGSizeMake(175.0, 175.0)`.
+ */
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct defaultSize;
+/**
+ Get and set the default thumbnail page. This is used for methods that do not contain an explicit page argument.
+ 
+ The default is `1`.
+ */
 @property (assign,nonatomic) NSInteger defaultPage;
+/**
+ Get and set the default thumbnail time. This is used for methods that do not contain an explicit time argument.
+ 
+ The default is `1.0`.
+ */
 @property (assign,nonatomic) NSTimeInterval defaultTime;
 
+/**
+ Clears the on disk cache.
+ */
 - (void)clearFileCache;
+/**
+ Clears the internal memory cache.
+ */
 - (void)clearMemoryCache;
 
+/**
+ Returns the memory cache key for a given URL, size, page, and time.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The desired size of the generated thumbnail
+ @param page The page of the generated thumbnail, applicable to PDF thumbnails
+ @param time The time of the generated thumbnail, applicable to movie thumbnails
+ @return The memory cache key
+ */
 - (NSString *)memoryCacheKeyForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time;
 
+/**
+ Returns the file cache URL for the provided memory cache key.
+ 
+ @param key The memory cache key
+ @return The file cache URL
+ */
 - (NSURL *)fileCacheURLForMemoryCacheKey:(NSString *)key;
+/**
+ Returns the file cache URL for the provided URL.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param page The page of the generated thumbnail, applicable to PDF thumbnails
+ @param time The time of the generated thumbnail, applicable to movie thumbnails
+ */
 - (NSURL *)fileCacheURLForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time;
 
+/**
+ Cancels all remaining thumbnail generation. Outstanding requests will have their completion blocks invoked with nil for image and error.
+ */
 - (void)cancelAllThumbnailGeneration;
 
+/**
+ Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_ and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param completion The completion block to invoke upon completion
+ */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param completion The completion block to invoke upon completion
+ */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, _page_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param page The page of the generated thumbnail, applicable to PDF thumbnails
+ @param completion The completion block to invoke upon completion
+ */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, _time_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param time The time of the generated thumbnail, applicable to movie thumbnails
+ @param completion The completion block to invoke upon completion
+ */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Generates a thumbnail, optionally accessing the memory or disk cache, and invokes the completion block once finished.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param page The page of the generated thumbnail, applicable to PDF thumbnails
+ @param time The time of the generated thumbnail, applicable to movie thumbnails
+ @param completion The completion block to invoke upon completion
+ */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
 
 @end
