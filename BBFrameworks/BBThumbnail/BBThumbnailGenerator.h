@@ -153,6 +153,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  
  @param URL The URL to use when generating the thumbnail
  @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
@@ -161,6 +162,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param URL The URL to use when generating the thumbnail
  @param size The size of the generated thumbnail
  @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
@@ -170,6 +172,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param size The size of the generated thumbnail
  @param page The page of the generated thumbnail, applicable to PDF thumbnails
  @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
@@ -179,6 +182,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param size The size of the generated thumbnail
  @param time The time of the generated thumbnail, applicable to movie thumbnails
  @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
@@ -189,6 +193,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param page The page of the generated thumbnail, applicable to PDF thumbnails
  @param time The time of the generated thumbnail, applicable to movie thumbnails
  @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
 
