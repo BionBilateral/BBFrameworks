@@ -165,6 +165,8 @@
 		79C0011C1B1AD081004C9A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011A1B1AD081004C9A6E /* Main.storyboard */; };
 		79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011D1B1AD081004C9A6E /* Images.xcassets */; };
 		79C001211B1AD081004C9A6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011F1B1AD081004C9A6E /* LaunchScreen.xib */; };
+		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; };
+		79E0BBFE1B263CC300892D81 /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */; };
 		9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC227553E469BEC94FDCC32E /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -301,6 +303,8 @@
 		79C0011B1B1AD081004C9A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C0011D1B1AD081004C9A6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		79C001201B1AD081004C9A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BBKitExtensions.m"; sourceTree = "<group>"; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -664,6 +668,8 @@
 				7927CF8F1B1AD2B90034288D /* UIView+BBKitExtensions.m */,
 				7927CF901B1AD2B90034288D /* UIViewController+BBKitExtensions.h */,
 				7927CF911B1AD2B90034288D /* UIViewController+BBKitExtensions.m */,
+				79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */,
+				79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -743,6 +749,7 @@
 				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
 				7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
+				79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */,
 				7927D0021B1AD2B90034288D /* UIImage+BBKitExtensions.h in Headers */,
 				7927D00A1B1AD2B90034288D /* UIViewController+BBKitExtensions.h in Headers */,
 				7927CFC01B1AD2B90034288D /* BBFoundation.h in Headers */,
@@ -1343,6 +1350,7 @@
 				7927CFAE1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */,
 				7927D01C1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */,
+				79E0BBFE1B263CC300892D81 /* UIFont+BBKitExtensions.m in Sources */,
 				7927D0001B1AD2B90034288D /* UIColor+BBKitExtensions.m in Sources */,
 				7927D0241B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */,
 				7927D0141B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
