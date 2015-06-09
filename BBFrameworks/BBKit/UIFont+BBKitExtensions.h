@@ -15,8 +15,19 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Category on UIFont providing various convenience methods.
+ */
 @interface UIFont (BBKitExtensions)
 
+/**
+ Returns a UIFont with _fontName_ at appropriate point size for _textStyle_.
+ 
+ @param fontName The name of the font
+ @param textStyle The text style of the font. See UIFontDescriptor for constants
+ @return The font or nil
+ @exception NSException Thrown if _fontName_ or _textStyle_ are nil
+ */
 + (UIFont *)BB_fontWithName:(NSString *)fontName textStyle:(NSString *)textStyle;
 
 @end

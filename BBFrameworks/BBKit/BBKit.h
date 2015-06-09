@@ -23,6 +23,7 @@
 #import <BBFrameworks/UIImage+BBKitExtensions.h>
 #import <BBFrameworks/UIView+BBKitExtensions.h>
 #import <BBFrameworks/UIViewController+BBKitExtensions.h>
+#import <BBFrameworks/UIFont+BBKitExtensions.h>
 #else
 #import <BBFrameworks/NSImage+BBKitExtensions.h>
 #endif

@@ -165,7 +165,7 @@
 		79C0011C1B1AD081004C9A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011A1B1AD081004C9A6E /* Main.storyboard */; };
 		79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011D1B1AD081004C9A6E /* Images.xcassets */; };
 		79C001211B1AD081004C9A6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011F1B1AD081004C9A6E /* LaunchScreen.xib */; };
-		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; };
+		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BBFE1B263CC300892D81 /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */; };
 		9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
