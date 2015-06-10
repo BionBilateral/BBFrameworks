@@ -64,7 +64,10 @@
       },
       "source_files": "BBFrameworks/BBKit",
       "ios": {
-        "exclude_files": "BBFrameworks/BBKit/NS*.{h,m}",
+        "exclude_files": [
+          "NSColor+BBKitExtensions.{h,m}",
+          "NSImage+BBKitExtensions.{h,m}"
+        ],
         "frameworks": [
           "UIKit",
           "Accelerate",
@@ -72,7 +75,14 @@
         ]
       },
       "osx": {
-        "exclude_files": "BBFrameworks/BBKit/UI*.{h,m}",
+        "exclude_files": [
+          "UIColor+BBKitExtensions.{h,m}",
+          "UIImage+BBKitExtensions.{h,m}",
+          "UIView+BBKitExtensions.{h,m}",
+          "UIViewController+BBKitExtensions.{h,m}",
+          "UIFont+BBKitExtensions.{h,m}",
+          "UIBarButtonItem+BBKitExtensions.{h,m}"
+        ],
         "frameworks": [
           "AppKit",
           "Accelerate",
@@ -93,7 +103,25 @@
 
         ]
       },
-      "source_files": "BBFrameworks/BBReactiveKit"
+      "ios": {
+        "dependencies": {
+          "TUSafariActivity": [
+            "~> 1.0.0"
+          ],
+          "ARChromeActivity": [
+            "~> 1.0.0"
+          ]
+        }
+      },
+      "source_files": "BBFrameworks/BBReactiveKit",
+      "osx": {
+        "exclude_files": [
+          "BBProgressNavigationBar.{h,m}",
+          "BBWebKitViewController.{h,m}",
+          "BBWebKitViewControllerDelegate.h",
+          "BBWebKitTitleView.{h,m}"
+        ]
+      }
     },
     {
       "name": "BBThumbnail",

@@ -36,8 +36,8 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBKit"
     
-    subspec.ios.exclude_files = "BBFrameworks/BBKit/NS*.{h,m}"
-    subspec.osx.exclude_files = "BBFrameworks/BBKit/UI*.{h,m}"
+    subspec.ios.exclude_files = "NSColor+BBKitExtensions.{h,m}", "NSImage+BBKitExtensions.{h,m}"
+    subspec.osx.exclude_files = "UIColor+BBKitExtensions.{h,m}", "UIImage+BBKitExtensions.{h,m}", "UIView+BBKitExtensions.{h,m}", "UIViewController+BBKitExtensions.{h,m}", "UIFont+BBKitExtensions.{h,m}", "UIBarButtonItem+BBKitExtensions.{h,m}"
     
     subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation"
     subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
@@ -47,9 +47,14 @@ Pod::Spec.new do |spec|
     subspec.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.dependency "ReactiveViewModel", "~> 0.3.0"
     
+    subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
+    subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
+    
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBReactiveKit"
+    
+    subspec.osx.exclude_files = "BBProgressNavigationBar.{h,m}", "BBWebKitViewController.{h,m}", "BBWebKitViewControllerDelegate.h", "BBWebKitTitleView.{h,m}"
   end
   
   spec.subspec "BBThumbnail" do |subspec|

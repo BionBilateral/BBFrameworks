@@ -6,12 +6,6 @@
 // project.
 
 
-// Archimedes
-#define COCOAPODS_POD_AVAILABLE_Archimedes
-#define COCOAPODS_VERSION_MAJOR_Archimedes 1
-#define COCOAPODS_VERSION_MINOR_Archimedes 1
-#define COCOAPODS_VERSION_PATCH_Archimedes 0
-
 // BlocksKit/Core
 #define COCOAPODS_POD_AVAILABLE_BlocksKit_Core
 #define COCOAPODS_VERSION_MAJOR_BlocksKit_Core 2
@@ -41,10 +35,4 @@
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 5
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 0
-
-// ReactiveViewModel
-#define COCOAPODS_POD_AVAILABLE_ReactiveViewModel
-#define COCOAPODS_VERSION_MAJOR_ReactiveViewModel 0
-#define COCOAPODS_VERSION_MINOR_ReactiveViewModel 3
-#define COCOAPODS_VERSION_PATCH_ReactiveViewModel 0
 

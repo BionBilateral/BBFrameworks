@@ -1,6 +1,0 @@
-framework module Archimedes {
-  umbrella header "Pods-iOSFrameworks-Archimedes-umbrella.h"
-
-  export *
-  module * { export * }
-}

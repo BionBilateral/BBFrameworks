@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_REACTIVE_KIT__
 #define __BB_FRAMEWORKS_REACTIVE_KIT__
 
+#import <BBFrameworks/BBProgressNavigationBar.h>
 
+#import <BBFrameworks/BBWebKitViewController.h>
 
 #endif

@@ -24,6 +24,7 @@
 #import <BBFrameworks/UIView+BBKitExtensions.h>
 #import <BBFrameworks/UIViewController+BBKitExtensions.h>
 #import <BBFrameworks/UIFont+BBKitExtensions.h>
+#import <BBFrameworks/UIBarButtonItem+BBKitExtensions.h>
 #else
 #import <BBFrameworks/NSImage+BBKitExtensions.h>
 #endif

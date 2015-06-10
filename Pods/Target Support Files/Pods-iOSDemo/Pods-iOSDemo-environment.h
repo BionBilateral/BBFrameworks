@@ -6,6 +6,12 @@
 // project.
 
 
+// ARChromeActivity
+#define COCOAPODS_POD_AVAILABLE_ARChromeActivity
+#define COCOAPODS_VERSION_MAJOR_ARChromeActivity 1
+#define COCOAPODS_VERSION_MINOR_ARChromeActivity 0
+#define COCOAPODS_VERSION_PATCH_ARChromeActivity 4
+
 // Archimedes
 #define COCOAPODS_POD_AVAILABLE_Archimedes
 #define COCOAPODS_VERSION_MAJOR_Archimedes 1
@@ -89,4 +95,10 @@
 #define COCOAPODS_VERSION_MAJOR_ReactiveViewModel 0
 #define COCOAPODS_VERSION_MINOR_ReactiveViewModel 3
 #define COCOAPODS_VERSION_PATCH_ReactiveViewModel 0
+
+// TUSafariActivity
+#define COCOAPODS_POD_AVAILABLE_TUSafariActivity
+#define COCOAPODS_VERSION_MAJOR_TUSafariActivity 1
+#define COCOAPODS_VERSION_MINOR_TUSafariActivity 0
+#define COCOAPODS_VERSION_PATCH_TUSafariActivity 4
 
