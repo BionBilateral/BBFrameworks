@@ -24,14 +24,14 @@
 /*
  Get and set the receiver's delegate.
  
- @see WDYRWebKitViewControllerDelegate
+ @see BBWebKitViewControllerDelegate
  */
 @property (weak,nonatomic) id<BBWebKitViewControllerDelegate> delegate;
 
 /*
  Get and set whether the navigation toolbar should be shown.
  
- Calls `setShowNavigationToolbar:animated:`, passing _showNavigationToolbar_ and NO respectively.
+ Calls `-[self setShowNavigationToolbar:animated:]`, passing _showNavigationToolbar_ and NO respectively.
  */
 @property (assign,nonatomic) BOOL showNavigationToolbar;
 /*
@@ -100,36 +100,36 @@
 @interface UIViewController (BBWebKitViewControllerExtensions)
 
 /*
- Calls `WDYR_presentWebKitViewControllerForURL:` passing `[NSURL URLWithString:_URLString_]`.
+ Calls `BB_presentWebKitViewControllerForURL:` passing `[NSURL URLWithString:_URLString_]`.
  
- @param URLString The url string to load in the presented `WDYRWebKitViewController`
+ @param URLString The url string to load in the presented `BBWebKitViewController`
  */
 - (void)BB_presentWebKitViewControllerForURLString:(NSString *)URLString;
 /*
- Calls `WDYR_presentedWebKitViewControllerForURLRequest:` passing `[NSURLRequest requestWithURL:_URL_]`.
+ Calls `BB_presentedWebKitViewControllerForURLRequest:` passing `[NSURLRequest requestWithURL:_URL_]`.
  
- @param URL The url to load in the presented `WDYRWebKitViewController`
+ @param URL The url to load in the presented `BBWebKitViewController`
  */
 - (void)BB_presentWebKitViewControllerForURL:(NSURL *)URL;
 /*
- Calls `WDYR_presentWebKitViewControllerForURLRequest:navigationControllerClass:`, passing _URLRequest_ and `[UINavigationController class]` respectively.
+ Calls `BB_presentWebKitViewControllerForURLRequest:navigationControllerClass:`, passing _URLRequest_ and `[UINavigationController class]` respectively.
  
- @param URLRequest The request to load in the presented `WDYRWebKitViewController`
+ @param URLRequest The request to load in the presented `BBWebKitViewController`
  */
 - (void)BB_presentWebKitViewControllerForURLRequest:(NSURLRequest *)URLRequest;
 
 /*
- Calls `WDYR_presentWebKitViewControllerForURL:navigationControllerClass:`, passing `[NSURL URLWithString:_URLString_]` and _navigationControllerClass_ respectively.
+ Calls `BB_presentWebKitViewControllerForURL:navigationControllerClass:`, passing `[NSURL URLWithString:_URLString_]` and _navigationControllerClass_ respectively.
  
- @param URLString The url string to load in the presented `WDYRWebKitViewController`
- @param navigationControllerClass The custom `UINavigationController` subclass to use when presenting the `WDYRWebKitViewController`
+ @param URLString The url string to load in the presented `BBWebKitViewController`
+ @param navigationControllerClass The custom `UINavigationController` subclass to use when presenting the `BBWebKitViewController`
  */
 - (void)BB_presentWebKitViewControllerForURLString:(NSString *)URLString navigationControllerClass:(Class)navigationControllerClass;
 /*
- Calls `WDYR_presentWebKitViewControllerForURLRequest:navigationControllerClass:`, passing `[NSURLRequest requestWithURL:_URL_]` and _navigationControllerClass_ respectively.
+ Calls `BB_presentWebKitViewControllerForURLRequest:navigationControllerClass:`, passing `[NSURLRequest requestWithURL:_URL_]` and _navigationControllerClass_ respectively.
  
- @param URL The url to load in the presented `WDYRWebKitViewController`
- @param navigationControllerClass The custom `UINavigationController` subclass to use when presenting the `WDYRWebKitViewController`
+ @param URL The url to load in the presented `BBWebKitViewController`
+ @param navigationControllerClass The custom `UINavigationController` subclass to use when presenting the `BBWebKitViewController`
  */
 - (void)BB_presentWebKitViewControllerForURL:(NSURL *)URL navigationControllerClass:(Class)navigationControllerClass;
 /*
@@ -137,8 +137,8 @@
  
  This method will create a `UINavigationController` with a `WDYRProgressNavigationBar` for the presented `WDYRWebKitViewController` to access.
  
- @param URLRequest The url request to load in the presented `WDYRWebKitViewController`
- @param navigationControllerClass The custom `UINavigationController` subclass to use when presenting the `WDYRWebKitViewController`
+ @param URLRequest The url request to load in the presented `BBWebKitViewController`
+ @param navigationControllerClass The custom `UINavigationController` subclass to use when presenting the `BBWebKitViewController`
  @exception NSException Thrown if _URLRequest_ or _navigationControllerClass_ are nil
  */
 - (void)BB_presentWebKitViewControllerForURLRequest:(NSURLRequest *)URLRequest navigationControllerClass:(Class)navigationControllerClass;

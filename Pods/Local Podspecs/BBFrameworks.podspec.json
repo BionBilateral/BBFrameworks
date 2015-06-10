@@ -65,8 +65,8 @@
       "source_files": "BBFrameworks/BBKit",
       "ios": {
         "exclude_files": [
-          "NSColor+BBKitExtensions.{h,m}",
-          "NSImage+BBKitExtensions.{h,m}"
+          "BBFrameworks/BBKit/NSColor+BBKitExtensions.{h,m}",
+          "BBFrameworks/BBKit/NSImage+BBKitExtensions.{h,m}"
         ],
         "frameworks": [
           "UIKit",
@@ -76,12 +76,12 @@
       },
       "osx": {
         "exclude_files": [
-          "UIColor+BBKitExtensions.{h,m}",
-          "UIImage+BBKitExtensions.{h,m}",
-          "UIView+BBKitExtensions.{h,m}",
-          "UIViewController+BBKitExtensions.{h,m}",
-          "UIFont+BBKitExtensions.{h,m}",
-          "UIBarButtonItem+BBKitExtensions.{h,m}"
+          "BBFrameworks/BBKit/UIColor+BBKitExtensions.{h,m}",
+          "BBFrameworks/BBKit/UIImage+BBKitExtensions.{h,m}",
+          "BBFrameworks/BBKit/UIView+BBKitExtensions.{h,m}",
+          "BBFrameworks/BBKit/UIViewController+BBKitExtensions.{h,m}",
+          "BBFrameworks/BBKit/UIFont+BBKitExtensions.{h,m}",
+          "BBFrameworks/BBKit/UIBarButtonItem+BBKitExtensions.{h,m}"
         ],
         "frameworks": [
           "AppKit",
@@ -116,10 +116,10 @@
       "source_files": "BBFrameworks/BBReactiveKit",
       "osx": {
         "exclude_files": [
-          "BBProgressNavigationBar.{h,m}",
-          "BBWebKitViewController.{h,m}",
-          "BBWebKitViewControllerDelegate.h",
-          "BBWebKitTitleView.{h,m}"
+          "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}",
+          "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}",
+          "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h",
+          "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}"
         ]
       }
     },

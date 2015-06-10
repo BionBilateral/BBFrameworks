@@ -23,8 +23,6 @@
 #import "BBKit.h"
 #import "BBKitCGImageFunctions.h"
 #import "BBKitColorMacros.h"
-#import "NSColor+BBKitExtensions.h"
-#import "NSImage+BBKitExtensions.h"
 #import "NSURL+BBKitExtensions.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "UIColor+BBKitExtensions.h"

@@ -171,11 +171,12 @@
 		79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */; };
 		79E0BC081B27BD1500892D81 /* BBWebKitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC061B27BD1500892D81 /* BBWebKitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BC091B27BD1500892D81 /* BBWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC071B27BD1500892D81 /* BBWebKitViewController.m */; };
-		79E0BC0B1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC0A1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h */; };
-		79E0BC0E1B27C0C500892D81 /* BBWebKitTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC0C1B27C0C500892D81 /* BBWebKitTitleView.h */; };
+		79E0BC0B1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC0A1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79E0BC0E1B27C0C500892D81 /* BBWebKitTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC0C1B27C0C500892D81 /* BBWebKitTitleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BC0F1B27C0C500892D81 /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */; };
 		79E0BC121B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BC131B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */; };
+		79E0BC161B27CEDD00892D81 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* ThirdViewController.m */; };
 		9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC227553E469BEC94FDCC32E /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -323,6 +324,8 @@
 		79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79E0BC141B27CEDD00892D81 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		79E0BC151B27CEDD00892D81 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -571,6 +574,8 @@
 				79C001151B1AD081004C9A6E /* FirstViewController.m */,
 				79C001171B1AD081004C9A6E /* SecondViewController.h */,
 				79C001181B1AD081004C9A6E /* SecondViewController.m */,
+				79E0BC141B27CEDD00892D81 /* ThirdViewController.h */,
+				79E0BC151B27CEDD00892D81 /* ThirdViewController.m */,
 				79C0011A1B1AD081004C9A6E /* Main.storyboard */,
 				79C0011D1B1AD081004C9A6E /* Images.xcassets */,
 				79C0011F1B1AD081004C9A6E /* LaunchScreen.xib */,
@@ -1460,6 +1465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79C001191B1AD081004C9A6E /* SecondViewController.m in Sources */,
+				79E0BC161B27CEDD00892D81 /* ThirdViewController.m in Sources */,
 				79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */,
 				79C001161B1AD081004C9A6E /* FirstViewController.m in Sources */,
 				79C001101B1AD081004C9A6E /* main.m in Sources */,

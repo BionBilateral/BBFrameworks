@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Thumbnails-->
         <scene sceneID="VBe-0f-oVL">
             <objects>
                 <viewController id="jbw-nP-eQN" customClass="FirstViewController" sceneMemberID="viewController">
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="FvU-um-vJd"/>
+                    <tabBarItem key="tabBarItem" title="Thumbnails" id="FvU-um-vJd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz3-OL-e0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="667" y="478"/>
         </scene>
-        <!--Item 1-->
+        <!--Views-->
         <scene sceneID="Q6p-aB-UvQ">
             <objects>
                 <viewController id="RcJ-iE-NRI" customClass="SecondViewController" sceneMemberID="viewController">
@@ -60,7 +60,7 @@
                             <constraint firstItem="a9p-DT-ViP" firstAttribute="leading" secondItem="dtm-aa-okx" secondAttribute="leadingMargin" constant="-16" id="cBk-in-zC1"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="VKm-4E-pCb"/>
+                    <tabBarItem key="tabBarItem" title="Views" id="VKm-4E-pCb"/>
                     <connections>
                         <outlet property="collectionView" destination="a9p-DT-ViP" id="VAt-xF-kMl"/>
                     </connections>
@@ -82,11 +82,54 @@
                     <connections>
                         <segue destination="RcJ-iE-NRI" kind="relationship" relationship="viewControllers" id="44d-b4-FSa"/>
                         <segue destination="jbw-nP-eQN" kind="relationship" relationship="viewControllers" id="7qF-cW-Jgw"/>
+                        <segue destination="lIj-hh-giY" kind="relationship" relationship="viewControllers" id="lx9-UJ-kZw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDo-mo-thK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-153" y="147"/>
+        </scene>
+        <!--Web View-->
+        <scene sceneID="LOG-8Y-qWg">
+            <objects>
+                <viewController id="lIj-hh-giY" customClass="ThirdViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PgD-7r-4Rl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fz4-4o-Auc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jM5-Xb-M6D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website URL" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xkn-EL-eJY">
+                                <rect key="frame" x="16" y="28" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ame-ZS-Ny2">
+                                <rect key="frame" x="274" y="66" width="53" height="30"/>
+                                <state key="normal" title="Present">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xkn-EL-eJY" firstAttribute="top" secondItem="PgD-7r-4Rl" secondAttribute="bottom" constant="8" id="EaY-FR-UmX"/>
+                            <constraint firstAttribute="centerX" secondItem="ame-ZS-Ny2" secondAttribute="centerX" id="G1o-91-Wco"/>
+                            <constraint firstItem="ame-ZS-Ny2" firstAttribute="top" secondItem="Xkn-EL-eJY" secondAttribute="bottom" constant="8" id="mkf-2a-T6a"/>
+                            <constraint firstItem="Xkn-EL-eJY" firstAttribute="trailing" secondItem="jM5-Xb-M6D" secondAttribute="trailingMargin" id="u0d-lw-xd3"/>
+                            <constraint firstItem="Xkn-EL-eJY" firstAttribute="leading" secondItem="jM5-Xb-M6D" secondAttribute="leadingMargin" id="zR4-o8-Vz4"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Web View" id="Aoq-HW-90a"/>
+                    <connections>
+                        <outlet property="button" destination="ame-ZS-Ny2" id="Ftx-jM-EuC"/>
+                        <outlet property="textField" destination="Xkn-EL-eJY" id="jeS-XQ-YZv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPY-nK-Ztf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>
