@@ -407,7 +407,7 @@ static void *kGoForwardImageKey = &kGoForwardImageKey;
     
     [viewController loadURLRequest:URLRequest];
     
-    UINavigationController *navigationController = [[navigationControllerClass alloc] initWithNavigationBarClass:[BBProgressNavigationBar class] toolbarClass:Nil];
+    UINavigationController *navigationController = [[navigationControllerClass alloc] initWithNavigationBarClass:Nil toolbarClass:Nil];
     
     [navigationController setViewControllers:@[viewController]];
     

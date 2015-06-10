@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Thumbnails-->
+        <!--Views-->
         <scene sceneID="VBe-0f-oVL">
             <objects>
                 <viewController id="jbw-nP-eQN" customClass="FirstViewController" sceneMemberID="viewController">
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Thumbnails" id="FvU-um-vJd"/>
+                    <tabBarItem key="tabBarItem" title="Views" id="FvU-um-vJd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz3-OL-e0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="667" y="478"/>
         </scene>
-        <!--Views-->
+        <!--Thumbnails-->
         <scene sceneID="Q6p-aB-UvQ">
             <objects>
                 <viewController id="RcJ-iE-NRI" customClass="SecondViewController" sceneMemberID="viewController">
@@ -60,7 +60,7 @@
                             <constraint firstItem="a9p-DT-ViP" firstAttribute="leading" secondItem="dtm-aa-okx" secondAttribute="leadingMargin" constant="-16" id="cBk-in-zC1"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Views" id="VKm-4E-pCb"/>
+                    <tabBarItem key="tabBarItem" title="Thumbnails" id="VKm-4E-pCb"/>
                     <connections>
                         <outlet property="collectionView" destination="a9p-DT-ViP" id="VAt-xF-kMl"/>
                     </connections>
