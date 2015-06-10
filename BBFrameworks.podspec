@@ -36,8 +36,8 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBKit"
     
-    subspec.ios.exclude_files = "NSColor+BBKitExtensions.{h,m}", "NSImage+BBKitExtensions.{h,m}"
-    subspec.osx.exclude_files = "UIColor+BBKitExtensions.{h,m}", "UIImage+BBKitExtensions.{h,m}", "UIView+BBKitExtensions.{h,m}", "UIViewController+BBKitExtensions.{h,m}", "UIFont+BBKitExtensions.{h,m}", "UIBarButtonItem+BBKitExtensions.{h,m}"
+    subspec.ios.exclude_files = "BBFrameworks/BBKit/NSColor+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/NSImage+BBKitExtensions.{h,m}"
+    subspec.osx.exclude_files = "BBFrameworks/BBKit/UIColor+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIImage+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIView+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIViewController+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIFont+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIBarButtonItem+BBKitExtensions.{h,m}"
     
     subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation"
     subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
@@ -54,7 +54,7 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBReactiveKit"
     
-    subspec.osx.exclude_files = "BBProgressNavigationBar.{h,m}", "BBWebKitViewController.{h,m}", "BBWebKitViewControllerDelegate.h", "BBWebKitTitleView.{h,m}"
+    subspec.osx.exclude_files = "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h", "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}"
   end
   
   spec.subspec "BBThumbnail" do |subspec|
