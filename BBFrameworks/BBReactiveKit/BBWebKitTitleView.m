@@ -102,10 +102,15 @@
     [self setSecureImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.secureImageView];
     
+    @weakify(self);
+    
     RAC(self.titleLabel,text) = [RACObserve(self.webView, title) deliverOn:[RACScheduler mainThreadScheduler]];
-    RAC(self.urlLabel,text) = [[RACObserve(self.webView, URL) map:^id(NSURL *value) {
+    RAC(self.urlLabel,text) = [[[RACObserve(self.webView, URL) map:^id(NSURL *value) {
         return value.absoluteString;
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
+    }] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {
+        @strongify(self);
+        [self setNeedsLayout];
+    }];
     RAC(self.secureImageView,hidden) = [[RACObserve(self.webView, hasOnlySecureContent) not] deliverOn:[RACScheduler mainThreadScheduler]];
     RAC(self.secureImageView,image) = [RACObserve(self, hasOnlySecureContentImage) deliverOn:[RACScheduler mainThreadScheduler]];
     
@@ -143,7 +148,7 @@
     return [UIFont systemFontOfSize:12.0];
 }
 + (UIColor *)_defaultURLTextColor; {
-    return [UIColor lightGrayColor];
+    return [UIColor darkGrayColor];
 }
 
 @end

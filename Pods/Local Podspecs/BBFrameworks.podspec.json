@@ -121,7 +121,8 @@
           "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h",
           "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}"
         ]
-      }
+      },
+      "frameworks": "WebKit"
     },
     {
       "name": "BBThumbnail",
