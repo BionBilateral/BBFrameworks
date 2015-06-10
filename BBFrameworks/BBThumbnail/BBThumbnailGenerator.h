@@ -88,19 +88,19 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
 @property (readonly,nonatomic,getter=isMemoryCachingEnabled) BOOL memoryCachingEnabled;
 
 /**
- Get and set the default thumbnail size. This is used for methods that do not contain an explicit size argument.
+ Set and get the default thumbnail size. This is used for methods that do not contain an explicit size argument.
  
  The default is `CGSizeMake(175.0, 175.0)`.
  */
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct defaultSize;
 /**
- Get and set the default thumbnail page. This is used for methods that do not contain an explicit page argument.
+ Set and get the default thumbnail page. This is used for methods that do not contain an explicit page argument.
  
  The default is `1`.
  */
 @property (assign,nonatomic) NSInteger defaultPage;
 /**
- Get and set the default thumbnail time. This is used for methods that do not contain an explicit time argument.
+ Set and get the default thumbnail time. This is used for methods that do not contain an explicit time argument.
  
  The default is `1.0`.
  */
