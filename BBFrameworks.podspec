@@ -55,6 +55,8 @@ Pod::Spec.new do |spec|
     subspec.source_files = "BBFrameworks/BBReactiveKit"
     
     subspec.osx.exclude_files = "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h", "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}"
+    
+    subspec.frameworks = "WebKit"
   end
   
   spec.subspec "BBThumbnail" do |subspec|
