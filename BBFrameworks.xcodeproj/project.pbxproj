@@ -151,6 +151,12 @@
 		7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7927D0371B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
+		7953FA331B31C8A60005E3FD /* BBTooltipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA311B31C8A60005E3FD /* BBTooltipViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7953FA341B31C8A60005E3FD /* BBTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA321B31C8A60005E3FD /* BBTooltipViewController.m */; };
+		7953FA361B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA351B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA391B31CE590005E3FD /* BBTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3A1B31CE590005E3FD /* BBTooltipView.m */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
 		7989C9D31B1ADE65009B1CE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D21B1ADE65009B1CE9 /* main.m */; };
 		7989C9D61B1ADE65009B1CE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D51B1ADE65009B1CE9 /* ViewController.m */; };
@@ -287,6 +293,12 @@
 		7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailTextOperation.h; sourceTree = "<group>"; };
 		7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailTextOperation.m; sourceTree = "<group>"; };
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
+		7953FA311B31C8A60005E3FD /* BBTooltipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewController.h; sourceTree = "<group>"; };
+		7953FA321B31C8A60005E3FD /* BBTooltipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipViewController.m; sourceTree = "<group>"; };
+		7953FA351B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDataSource.h; sourceTree = "<group>"; };
+		7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDelegate.h; sourceTree = "<group>"; };
+		7953FA391B31CE590005E3FD /* BBTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipView.h; sourceTree = "<group>"; };
+		7953FA3A1B31CE590005E3FD /* BBTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipView.m; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -495,6 +507,19 @@
 				79C2E1651B1AFB4000CCACF9 /* Classes */,
 			);
 			path = BBThumbnail;
+			sourceTree = "<group>";
+		};
+		7953FA301B31C8480005E3FD /* Tooltip View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7953FA351B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h */,
+				7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */,
+				7953FA311B31C8A60005E3FD /* BBTooltipViewController.h */,
+				7953FA321B31C8A60005E3FD /* BBTooltipViewController.m */,
+				7953FA391B31CE590005E3FD /* BBTooltipView.h */,
+				7953FA3A1B31CE590005E3FD /* BBTooltipView.m */,
+			);
+			name = "Tooltip View Controller";
 			sourceTree = "<group>";
 		};
 		796B00E61B1ACBEC0087D3FD = {
@@ -752,6 +777,7 @@
 		79E0BC041B27BBD200892D81 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7953FA301B31C8480005E3FD /* Tooltip View Controller */,
 				79E0BC051B27BBDF00892D81 /* WebKit View Controller */,
 			);
 			name = "View Controllers";
@@ -802,11 +828,14 @@
 				79E0BC0B1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h in Headers */,
 				7927D0341B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */,
 				7927CFB61B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */,
+				7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */,
 				7927D01A1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
 				7927D0121B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
 				7927CFE41B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */,
+				7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */,
 				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
+				7953FA331B31C8A60005E3FD /* BBTooltipViewController.h in Headers */,
 				79E0BC081B27BD1500892D81 /* BBWebKitViewController.h in Headers */,
 				7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 				79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */,
@@ -826,6 +855,7 @@
 				7927D0221B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */,
 				7927D0281B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */,
 				7927CFFA1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */,
+				7953FA361B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h in Headers */,
 				7927CFFE1B1AD2B90034288D /* UIColor+BBKitExtensions.h in Headers */,
 				7927CFCC1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */,
 				7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */,
@@ -1397,6 +1427,7 @@
 			files = (
 				7927D02A1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */,
 				7927CFDE1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */,
+				7953FA341B31C8A60005E3FD /* BBTooltipViewController.m in Sources */,
 				7927D0041B1AD2B90034288D /* UIImage+BBKitExtensions.m in Sources */,
 				7927CFCE1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */,
 				7927D0081B1AD2B90034288D /* UIView+BBKitExtensions.m in Sources */,
@@ -1423,6 +1454,7 @@
 				7927CFEA1B1AD2B90034288D /* BBBadgeView.m in Sources */,
 				7927D0321B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,
 				7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
+				7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */,
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
