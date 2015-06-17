@@ -20,4 +20,7 @@
 
 #import <BBFrameworks/BBWebKitViewController.h>
 
+#import <BBFrameworks/BBTooltipView.h>
+#import <BBFrameworks/BBTooltipViewController.h>
+
 #endif

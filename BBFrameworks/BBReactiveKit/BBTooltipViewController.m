@@ -113,6 +113,11 @@ static CGFloat const kSpringDamping = 0.5;
          [self setTooltipIndex:self.tooltipIndex + 1 animated:YES completion:nil];
      }];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self setTooltipIndex:0 animated:YES completion:nil];
+}
 #pragma mark UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     return self;
@@ -122,7 +127,7 @@ static CGFloat const kSpringDamping = 0.5;
 }
 #pragma mark UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return self.tooltipAnimationDuration;
+    return self.tooltipAnimationDuration * 0.5;
 }
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *containerView = [transitionContext containerView];
@@ -130,20 +135,18 @@ static CGFloat const kSpringDamping = 0.5;
     UIView *fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
     
     if (toView == self.view) {
-        [toView setFrame:containerView.bounds];
-        
         [containerView addSubview:toView];
+        
+        [toView setFrame:containerView.bounds];
         
         if ([transitionContext isAnimated]) {
             @weakify(self);
-            [UIView animateWithDuration:self.tooltipAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 @strongify(self);
                 [toView setBackgroundColor:self.tooltipOverlayBackgroundColor];
-                
-                [self setTooltipIndex:0 animated:YES completion:^{
-                    [transitionContext completeTransition:YES];
-                }];
-            } completion:nil];
+            } completion:^(BOOL finished) {
+                [transitionContext completeTransition:YES];
+            }];
         }
         else {
             [toView setBackgroundColor:self.tooltipOverlayBackgroundColor];
@@ -156,7 +159,7 @@ static CGFloat const kSpringDamping = 0.5;
     else {
         if ([transitionContext isAnimated]) {
             @weakify(self);
-            [UIView animateWithDuration:self.tooltipAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 @strongify(self);
                 [fromView setBackgroundColor:[UIColor clearColor]];
                 
@@ -178,7 +181,7 @@ static CGFloat const kSpringDamping = 0.5;
     return UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
 }
 + (UIColor *)_defaultTooltipOverlayBackgroundColor; {
-    return BBColorWA(0.0, 0.5);
+    return BBColorWA(0.0, 0.33);
 }
 #pragma mark Properties
 - (void)setTooltipIndex:(NSInteger)tooltipIndex {
@@ -192,8 +195,10 @@ static CGFloat const kSpringDamping = 0.5;
     @weakify(self);
     void(^animateInTooltipViewBlock)(BBTooltipView *) = ^(BBTooltipView *tooltipView){
         @strongify(self);
-        [tooltipView setTransform:CGAffineTransformMakeScale(0.25, 0.25)];
-        [tooltipView setAlpha:0.0];
+        [UIView performWithoutAnimation:^{
+            [tooltipView setTransform:CGAffineTransformMakeScale(0.25, 0.25)];
+            [tooltipView setAlpha:0.0];
+        }];
         
         [UIView animateWithDuration:self.tooltipAnimationDuration delay:0 usingSpringWithDamping:kSpringDamping initialSpringVelocity:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             [tooltipView setTransform:CGAffineTransformIdentity];
@@ -250,7 +255,36 @@ static CGFloat const kSpringDamping = 0.5;
         UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex];
         CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentView.bounds toView:nil] fromWindow:nil] fromView:nil];
         CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-        CGRect tooltipFrame =
+        CGRect tooltipFrame = MEDRectCenterInRect(CGRectMake(0, 0, tooltipSize.width, tooltipSize.height), attachmentViewFrame);
+        
+        tooltipFrame.origin.y = CGRectGetMaxY(attachmentViewFrame);
+        
+        // check left edge
+        if (CGRectGetMinX(tooltipFrame) < self.tooltipMinimumEdgeInsets.left) {
+            tooltipFrame.origin.x = self.tooltipMinimumEdgeInsets.left;
+        }
+        // check right edge
+        else if (CGRectGetMaxX(tooltipFrame) > CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.right) {
+            tooltipFrame.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(tooltipFrame) - self.tooltipMinimumEdgeInsets.right;
+        }
+        
+        // check top edge
+        if (CGRectGetMinY(tooltipFrame) < self.tooltipMinimumEdgeInsets.top) {
+            tooltipFrame.origin.y = self.tooltipMinimumEdgeInsets.top;
+        }
+        // check bottom edge
+        else if (CGRectGetMaxY(tooltipFrame) > CGRectGetHeight(self.view.bounds) - self.tooltipMinimumEdgeInsets.bottom) {
+            tooltipFrame.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(tooltipFrame) - self.tooltipMinimumEdgeInsets.bottom;
+            
+            if (CGRectIntersectsRect(tooltipFrame, attachmentViewFrame)) {
+                tooltipFrame.origin.y = CGRectGetMinY(attachmentViewFrame) - CGRectGetHeight(tooltipFrame);
+                
+                [self.tooltipView setArrowDirection:BBTooltipViewArrowDirectionDown];
+            }
+        }
+        
+        [self.tooltipView setFrame:tooltipFrame];
+        [self.tooltipView setAttachmentView:attachmentView];
         
         animateInTooltipViewBlock(self.tooltipView);
         

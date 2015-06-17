@@ -50,6 +50,15 @@
     
     RAC(self.textLabel,attributedText) = [RACObserve(self, attributedText) deliverOn:[RACScheduler mainThreadScheduler]];
     
+    @weakify(self);
+    [[[RACObserve(self, arrowDirection)
+     distinctUntilChanged]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self setNeedsLayout];
+     }];
+    
     return self;
 }
 #pragma mark Layout
@@ -73,7 +82,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize retval = CGSizeMake(floor(size.width * 0.66), 0);
+    CGSize retval = CGSizeMake(floor(size.width * 0.5), 0);
     
     switch (self.arrowDirection) {
         case BBTooltipViewArrowDirectionUp:

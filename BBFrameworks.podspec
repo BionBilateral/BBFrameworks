@@ -44,6 +44,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBReactiveKit" do |subspec|
+    subspec.dependency "Archimedes", "~> 1.1.0"
     subspec.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.dependency "ReactiveViewModel", "~> 0.3.0"
     

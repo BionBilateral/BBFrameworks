@@ -83,11 +83,76 @@
                         <segue destination="RcJ-iE-NRI" kind="relationship" relationship="viewControllers" id="44d-b4-FSa"/>
                         <segue destination="jbw-nP-eQN" kind="relationship" relationship="viewControllers" id="7qF-cW-Jgw"/>
                         <segue destination="lIj-hh-giY" kind="relationship" relationship="viewControllers" id="lx9-UJ-kZw"/>
+                        <segue destination="GQi-wo-CQc" kind="relationship" relationship="viewControllers" id="leB-PN-qgZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDo-mo-thK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-153" y="147"/>
+        </scene>
+        <!--Tooltips-->
+        <scene sceneID="UoT-qS-lRM">
+            <objects>
+                <viewController title="Tooltips" id="GQi-wo-CQc" customClass="FourthViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DtS-NZ-e9V"/>
+                        <viewControllerLayoutGuide type="bottom" id="PqI-sF-yex"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L6a-gW-1iJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJm-i8-LQh">
+                                <rect key="frame" x="252" y="285" width="97" height="30"/>
+                                <state key="normal" title="Show Tooltips">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="_buttonAction:" destination="GQi-wo-CQc" eventType="touchUpInside" id="cMY-99-hdw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFr-hY-shN">
+                                <rect key="frame" x="16" y="28" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svc-4R-40c">
+                                <rect key="frame" x="116" y="522" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBH-6J-VYf">
+                                <rect key="frame" x="542" y="120" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bBH-6J-VYf" firstAttribute="top" secondItem="DtS-NZ-e9V" secondAttribute="bottom" constant="100" id="6OV-hI-KyP"/>
+                            <constraint firstItem="PqI-sF-yex" firstAttribute="top" secondItem="Svc-4R-40c" secondAttribute="bottom" constant="8" id="Lrj-js-EIO"/>
+                            <constraint firstItem="Svc-4R-40c" firstAttribute="leading" secondItem="L6a-gW-1iJ" secondAttribute="leadingMargin" constant="100" id="NqR-bZ-Ikf"/>
+                            <constraint firstItem="UFr-hY-shN" firstAttribute="leading" secondItem="L6a-gW-1iJ" secondAttribute="leadingMargin" id="cJp-Bp-NEt"/>
+                            <constraint firstItem="bBH-6J-VYf" firstAttribute="trailing" secondItem="L6a-gW-1iJ" secondAttribute="trailingMargin" id="ffe-m9-YhD"/>
+                            <constraint firstItem="UFr-hY-shN" firstAttribute="top" secondItem="DtS-NZ-e9V" secondAttribute="bottom" constant="8" id="gXd-01-Xj5"/>
+                            <constraint firstAttribute="centerX" secondItem="uJm-i8-LQh" secondAttribute="centerX" id="q21-ws-iC1"/>
+                            <constraint firstAttribute="centerY" secondItem="uJm-i8-LQh" secondAttribute="centerY" id="vJw-Kf-EhT"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Tooltips" id="nfY-Vg-M1Z"/>
+                    <connections>
+                        <outlet property="button" destination="uJm-i8-LQh" id="dAA-5P-oks"/>
+                        <outlet property="label1" destination="UFr-hY-shN" id="8ay-oL-fBG"/>
+                        <outlet property="label2" destination="Svc-4R-40c" id="hrZ-bb-Cz2"/>
+                        <outlet property="label3" destination="bBH-6J-VYf" id="iep-UU-atA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fa-pi-RPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-672" y="-254"/>
         </scene>
         <!--Web View-->
         <scene sceneID="LOG-8Y-qWg">

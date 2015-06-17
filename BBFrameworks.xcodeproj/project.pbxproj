@@ -157,6 +157,7 @@
 		7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA391B31CE590005E3FD /* BBTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3A1B31CE590005E3FD /* BBTooltipView.m */; };
+		7953FA3F1B31FA600005E3FD /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* FourthViewController.m */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
 		7989C9D31B1ADE65009B1CE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D21B1ADE65009B1CE9 /* main.m */; };
 		7989C9D61B1ADE65009B1CE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D51B1ADE65009B1CE9 /* ViewController.m */; };
@@ -299,6 +300,8 @@
 		7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDelegate.h; sourceTree = "<group>"; };
 		7953FA391B31CE590005E3FD /* BBTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipView.h; sourceTree = "<group>"; };
 		7953FA3A1B31CE590005E3FD /* BBTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipView.m; sourceTree = "<group>"; };
+		7953FA3D1B31FA600005E3FD /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
+		7953FA3E1B31FA600005E3FD /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -601,6 +604,8 @@
 				79C001181B1AD081004C9A6E /* SecondViewController.m */,
 				79E0BC141B27CEDD00892D81 /* ThirdViewController.h */,
 				79E0BC151B27CEDD00892D81 /* ThirdViewController.m */,
+				7953FA3D1B31FA600005E3FD /* FourthViewController.h */,
+				7953FA3E1B31FA600005E3FD /* FourthViewController.m */,
 				79C0011A1B1AD081004C9A6E /* Main.storyboard */,
 				79C0011D1B1AD081004C9A6E /* Images.xcassets */,
 				79C0011F1B1AD081004C9A6E /* LaunchScreen.xib */,
@@ -1498,6 +1503,7 @@
 			files = (
 				79C001191B1AD081004C9A6E /* SecondViewController.m in Sources */,
 				79E0BC161B27CEDD00892D81 /* ThirdViewController.m in Sources */,
+				7953FA3F1B31FA600005E3FD /* FourthViewController.m in Sources */,
 				79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */,
 				79C001161B1AD081004C9A6E /* FirstViewController.m in Sources */,
 				79C001101B1AD081004C9A6E /* main.m in Sources */,
