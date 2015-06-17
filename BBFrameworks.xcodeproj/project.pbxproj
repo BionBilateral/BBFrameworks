@@ -150,7 +150,7 @@
 		7927D0351B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */; };
 		7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7927D0371B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
-		7989C9C61B1ADD14009B1CE9 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9C51B1ADD14009B1CE9 /* docs */; };
+		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
 		7989C9D31B1ADE65009B1CE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D21B1ADE65009B1CE9 /* main.m */; };
 		7989C9D61B1ADE65009B1CE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D51B1ADE65009B1CE9 /* ViewController.m */; };
@@ -286,7 +286,7 @@
 		7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailRTFOperation.m; sourceTree = "<group>"; };
 		7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailTextOperation.h; sourceTree = "<group>"; };
 		7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailTextOperation.m; sourceTree = "<group>"; };
-		7989C9C51B1ADD14009B1CE9 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
+		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -587,9 +587,9 @@
 		79C0010D1B1AD081004C9A6E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7953FA2E1B31C4820005E3FD /* docs */,
 				79C0010E1B1AD081004C9A6E /* Info.plist */,
 				79C0010F1B1AD081004C9A6E /* main.m */,
-				7989C9C51B1ADD14009B1CE9 /* docs */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1107,7 +1107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79C0011C1B1AD081004C9A6E /* Main.storyboard in Resources */,
-				7989C9C61B1ADD14009B1CE9 /* docs in Resources */,
+				7953FA2F1B31C4820005E3FD /* docs in Resources */,
 				79C001211B1AD081004C9A6E /* LaunchScreen.xib in Resources */,
 				79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */,
 			);
