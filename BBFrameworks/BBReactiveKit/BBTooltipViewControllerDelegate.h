@@ -17,8 +17,21 @@
 
 @class BBTooltipViewController;
 
+/**
+ Protocol for BBTooltipViewController delegate.
+ */
 @protocol BBTooltipViewControllerDelegate <NSObject>
 @optional
+/**
+ Called immediately before the tooltip view controller is dismissed.
+ 
+ @param viewController The tooltip view controller that sent the message
+ */
 - (void)tooltipViewControllerWillDismiss:(BBTooltipViewController *)viewController;
+/**
+ Called immediately after the tooltip view controller is dimissed.
+ 
+ @param viewController The tooltip view controller that sent the message
+ */
 - (void)tooltipViewControllerDidDismiss:(BBTooltipViewController *)viewController;
 @end

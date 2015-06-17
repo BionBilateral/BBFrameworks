@@ -17,11 +17,43 @@
 
 @class BBTooltipViewController;
 
+/**
+ Protocol for the BBTooltipViewController data source.
+ */
 @protocol BBTooltipViewControllerDataSource <NSObject>
 @required
+/**
+ Return the number of tooltips that will be displayed by the provided tooltip view controller.
+ 
+ @param viewController The tooltip view controller that sent the message
+ @return The number of tooltips to display
+ */
 - (NSInteger)numberOfTooltipsForTooltipViewController:(BBTooltipViewController *)viewController;
+/**
+ Return the view the tooltip at the provided index should be attached to.
+ 
+ @param viewController The tooltip view controller that sent the message
+ @param index The index of the tooltip
+ @return The attachment view for the tooltip
+ */
 - (UIView *)tooltipViewController:(BBTooltipViewController *)viewController attachmentViewForTooltipAtIndex:(NSInteger)index;
 @optional
+/**
+ Return the text for the tooltip at the provided index.
+ 
+ @param viewController The tooltip view controller that sent the message
+ @param index The index of the tooltip
+ @return The text for the tooltip
+ */
 - (NSString *)tooltipViewController:(BBTooltipViewController *)viewController textForTooltipAtIndex:(NSInteger)index;
+/**
+ Return the attributed text for the tooltip at the provided index.
+ 
+ If this method is implemented and returns a non-zero length attributed string, it is preferred over `-[self tooltipViewController:textForTooltipAtIndex:]`.
+ 
+ @param viewController The tooltip view controller that sent the message
+ @param index The index of the tooltip
+ @return The attributed text for the tooltip
+ */
 - (NSAttributedString *)tooltipViewController:(BBTooltipViewController *)viewController attributedTextForTooltipAtIndex:(NSInteger)index;
 @end

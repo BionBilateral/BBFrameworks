@@ -27,21 +27,66 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
  */
 @interface BBTooltipView : UIView
 
+/**
+ Set and get the arrow direction of the receiver.
+ */
 @property (assign,nonatomic) BBTooltipViewArrowDirection arrowDirection;
 
+/**
+ Set and get the text of the receiver.
+ 
+ Calls `-[self setAttributedText:[[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: self.tooltipFont, NSForegroundColorAttributeName: self.tooltipTextColor}]]`.
+ */
 @property (copy,nonatomic) NSString *text;
+/**
+ Set and get the attributed text of the receiver.
+ */
 @property (copy,nonatomic) NSAttributedString *attributedText;
 
+/**
+ Set and get the attachment view of the receiver.
+ */
 @property (weak,nonatomic) UIView *attachmentView;
 
+/**
+ Set and get the tooltip font of the receiver.
+ */
 @property (strong,nonatomic) UIFont *tooltipFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the tooltip text color of the receiver.
+ */
 @property (strong,nonatomic) UIColor *tooltipTextColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the tooltip background color.
+ */
 @property (strong,nonatomic) UIColor *tooltipBackgroundColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the tooltip edge insets.
+ */
 @property (assign,nonatomic) UIEdgeInsets tooltipEdgeInsets UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the tooltip arrow height.
+ */
 @property (assign,nonatomic) CGFloat tooltipArrowHeight UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the tooltip corner radius.
+ */
 @property (assign,nonatomic) CGFloat tooltipCornerRadius UI_APPEARANCE_SELECTOR;
 
+/**
+ Returns the background rect for the provided bounds.
+ 
+ @param bounds The bounds of the receiver
+ @return The background rect
+ */
 - (CGRect)backgroundRectForBounds:(CGRect)bounds;
+/**
+ Returns the arrow rect for the provided bounds and attachment view.
+ 
+ @param The bounds of the receiver
+ @param attachmentView The attachment view for the receiver
+ @return The arrow rect
+ */
 - (CGRect)arrowRectForBounds:(CGRect)bounds attachmentView:(UIView *)attachmentView;
 
 @end
