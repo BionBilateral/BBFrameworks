@@ -151,8 +151,6 @@ static CGFloat const kSpringDamping = 0.5;
         else {
             [toView setBackgroundColor:self.tooltipOverlayBackgroundColor];
             
-            [self setTooltipIndex:0];
-            
             [transitionContext completeTransition:YES];
         }
     }
