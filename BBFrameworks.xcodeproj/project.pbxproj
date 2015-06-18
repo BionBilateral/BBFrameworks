@@ -177,6 +177,10 @@
 		79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001181B1AD081004C9A6E /* ThumbnailsRowViewController.m */; };
 		79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011D1B1AD081004C9A6E /* Images.xcassets */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
+		79DD3E7F1B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
+		79DD3E821B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
 		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BBFE1B263CC300892D81 /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */; };
 		79E0BC021B27B5C700892D81 /* BBProgressNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -343,6 +347,8 @@
 		79C0011D1B1AD081004C9A6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
+		79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGradientView.h; sourceTree = "<group>"; };
+		79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBGradientView.m; sourceTree = "<group>"; };
 		79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBProgressNavigationBar.h; sourceTree = "<group>"; };
@@ -718,6 +724,8 @@
 			children = (
 				7927CF7F1B1AD2B90034288D /* BBBadgeView.h */,
 				7927CF801B1AD2B90034288D /* BBBadgeView.m */,
+				79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */,
+				79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -852,6 +860,7 @@
 				7927CFBC1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				7927D0181B1AD2B90034288D /* BBThumbnailDefines.h in Headers */,
 				7927CFD81B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */,
+				79DD3E7F1B337B6F00EF4E44 /* BBGradientView.h in Headers */,
 				7927D00E1B1AD2B90034288D /* BBReactiveKit.h in Headers */,
 				7927CFE01B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */,
 				7927CFC81B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
@@ -920,6 +929,7 @@
 				7927D0311B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7927CFF11B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
 				7927CFAD1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
+				79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */,
 				7927CFC11B1AD2B90034288D /* BBFoundation.h in Headers */,
 				7927CFDD1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				7927D0171B1AD2B90034288D /* BBThumbnail.h in Headers */,
@@ -1488,6 +1498,7 @@
 				7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */,
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
+				79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */,
 				7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1520,6 +1531,7 @@
 				7927CFFD1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				7927CFBB1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				7927CFCB1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				79DD3E821B337B6F00EF4E44 /* BBGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
