@@ -16,7 +16,7 @@
 #import "BaseRowViewController.h"
 #import "TableViewControllerRowClass.h"
 
-@interface FirstViewController : BaseRowViewController <TableViewControllerRowClass>
+@interface ViewsRowViewController : BaseRowViewController <TableViewControllerRowClass>
 
 
 @end

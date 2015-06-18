@@ -15,7 +15,7 @@
 
 #import "RootViewController.h"
 #import "TableViewController.h"
-#import "FirstViewController.h"
+#import "ViewsRowViewController.h"
 
 @interface RootViewController () <UISplitViewControllerDelegate>
 
@@ -28,7 +28,7 @@
         return nil;
     
     [self setViewControllers:@[[[UINavigationController alloc] initWithRootViewController:[[TableViewController alloc] init]],
-                               [[UINavigationController alloc] initWithRootViewController:[[FirstViewController alloc] init]]]];
+                               [[UINavigationController alloc] initWithRootViewController:[[ViewsRowViewController alloc] init]]]];
     [self setDelegate:self];
     
     return self;

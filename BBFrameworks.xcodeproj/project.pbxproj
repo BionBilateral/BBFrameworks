@@ -24,8 +24,8 @@
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
-		791551661B333FEF009FA353 /* ThirdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* ThirdViewController.xib */; };
-		791551681B3340B9009FA353 /* FourthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* FourthViewController.xib */; };
+		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
+		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
 		7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFAB1B1AD2B90034288D /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */; };
@@ -163,7 +163,7 @@
 		7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA391B31CE590005E3FD /* BBTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3A1B31CE590005E3FD /* BBTooltipView.m */; };
-		7953FA3F1B31FA600005E3FD /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* FourthViewController.m */; };
+		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
 		7989C9D31B1ADE65009B1CE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D21B1ADE65009B1CE9 /* main.m */; };
 		7989C9D61B1ADE65009B1CE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D51B1ADE65009B1CE9 /* ViewController.m */; };
@@ -173,8 +173,8 @@
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
-		79C001161B1AD081004C9A6E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* FirstViewController.m */; };
-		79C001191B1AD081004C9A6E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001181B1AD081004C9A6E /* SecondViewController.m */; };
+		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
+		79C001191B1AD081004C9A6E /* ThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001181B1AD081004C9A6E /* ThumbnailsViewController.m */; };
 		79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011D1B1AD081004C9A6E /* Images.xcassets */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
 		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -188,7 +188,7 @@
 		79E0BC0F1B27C0C500892D81 /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */; };
 		79E0BC121B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BC131B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */; };
-		79E0BC161B27CEDD00892D81 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* ThirdViewController.m */; };
+		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
 		9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC227553E469BEC94FDCC32E /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -235,8 +235,8 @@
 		791551601B3336D5009FA353 /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		791551621B3336ED009FA353 /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		791551641B33388D009FA353 /* TableViewControllerRowClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerRowClass.h; sourceTree = "<group>"; };
-		791551651B333FEF009FA353 /* ThirdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdViewController.xib; sourceTree = "<group>"; };
-		791551671B3340B9009FA353 /* FourthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthViewController.xib; sourceTree = "<group>"; };
+		791551651B333FEF009FA353 /* WebViewRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewRowViewController.xib; sourceTree = "<group>"; };
+		791551671B3340B9009FA353 /* TooltipsRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TooltipsRowViewController.xib; sourceTree = "<group>"; };
 		7927CF5E1B1AD2B90034288D /* BBCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCoreData.h; sourceTree = "<group>"; };
 		7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDefaultManagedObjectEntityMapping.h; sourceTree = "<group>"; };
 		7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBDefaultManagedObjectEntityMapping.m; sourceTree = "<group>"; };
@@ -315,8 +315,8 @@
 		7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDelegate.h; sourceTree = "<group>"; };
 		7953FA391B31CE590005E3FD /* BBTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipView.h; sourceTree = "<group>"; };
 		7953FA3A1B31CE590005E3FD /* BBTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipView.m; sourceTree = "<group>"; };
-		7953FA3D1B31FA600005E3FD /* FourthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
-		7953FA3E1B31FA600005E3FD /* FourthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
+		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
+		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -336,10 +336,10 @@
 		79C0010F1B1AD081004C9A6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		79C001111B1AD081004C9A6E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		79C001121B1AD081004C9A6E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		79C001141B1AD081004C9A6E /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		79C001151B1AD081004C9A6E /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		79C001171B1AD081004C9A6E /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		79C001181B1AD081004C9A6E /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		79C001141B1AD081004C9A6E /* ViewsRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewsRowViewController.h; sourceTree = "<group>"; };
+		79C001151B1AD081004C9A6E /* ViewsRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewsRowViewController.m; sourceTree = "<group>"; };
+		79C001171B1AD081004C9A6E /* ThumbnailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThumbnailsViewController.h; sourceTree = "<group>"; };
+		79C001181B1AD081004C9A6E /* ThumbnailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsViewController.m; sourceTree = "<group>"; };
 		79C0011D1B1AD081004C9A6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
@@ -354,8 +354,8 @@
 		79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BBKitExtensions.m"; sourceTree = "<group>"; };
-		79E0BC141B27CEDD00892D81 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
-		79E0BC151B27CEDD00892D81 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewRowViewController.h; sourceTree = "<group>"; };
+		79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewRowViewController.m; sourceTree = "<group>"; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -623,16 +623,16 @@
 				7915515D1B3335E7009FA353 /* TableViewController.m */,
 				79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */,
 				79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */,
-				79C001141B1AD081004C9A6E /* FirstViewController.h */,
-				79C001151B1AD081004C9A6E /* FirstViewController.m */,
-				79C001171B1AD081004C9A6E /* SecondViewController.h */,
-				79C001181B1AD081004C9A6E /* SecondViewController.m */,
-				79E0BC141B27CEDD00892D81 /* ThirdViewController.h */,
-				79E0BC151B27CEDD00892D81 /* ThirdViewController.m */,
-				791551651B333FEF009FA353 /* ThirdViewController.xib */,
-				7953FA3D1B31FA600005E3FD /* FourthViewController.h */,
-				7953FA3E1B31FA600005E3FD /* FourthViewController.m */,
-				791551671B3340B9009FA353 /* FourthViewController.xib */,
+				79C001141B1AD081004C9A6E /* ViewsRowViewController.h */,
+				79C001151B1AD081004C9A6E /* ViewsRowViewController.m */,
+				79C001171B1AD081004C9A6E /* ThumbnailsViewController.h */,
+				79C001181B1AD081004C9A6E /* ThumbnailsViewController.m */,
+				79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */,
+				79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */,
+				791551651B333FEF009FA353 /* WebViewRowViewController.xib */,
+				7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */,
+				7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */,
+				791551671B3340B9009FA353 /* TooltipsRowViewController.xib */,
 				79C0011D1B1AD081004C9A6E /* Images.xcassets */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
@@ -1168,8 +1168,8 @@
 			files = (
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
 				7953FA2F1B31C4820005E3FD /* docs in Resources */,
-				791551681B3340B9009FA353 /* FourthViewController.xib in Resources */,
-				791551661B333FEF009FA353 /* ThirdViewController.xib in Resources */,
+				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
+				791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */,
 				79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1527,14 +1527,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79C001191B1AD081004C9A6E /* SecondViewController.m in Sources */,
+				79C001191B1AD081004C9A6E /* ThumbnailsViewController.m in Sources */,
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
 				791551611B3336D5009FA353 /* LaunchViewController.m in Sources */,
-				79E0BC161B27CEDD00892D81 /* ThirdViewController.m in Sources */,
-				7953FA3F1B31FA600005E3FD /* FourthViewController.m in Sources */,
+				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
+				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,
 				79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */,
 				79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */,
-				79C001161B1AD081004C9A6E /* FirstViewController.m in Sources */,
+				79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */,
 				79C001101B1AD081004C9A6E /* main.m in Sources */,
 				7915515E1B3335E7009FA353 /* TableViewController.m in Sources */,
 			);

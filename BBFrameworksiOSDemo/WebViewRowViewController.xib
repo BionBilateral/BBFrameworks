@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ThirdViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewRowViewController">
             <connections>
                 <outlet property="button" destination="cn8-nw-Bxr" id="Isn-SA-sq6"/>
                 <outlet property="textField" destination="DFq-V1-5Rb" id="Np9-K2-HgQ"/>

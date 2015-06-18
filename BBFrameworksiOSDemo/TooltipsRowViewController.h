@@ -16,6 +16,6 @@
 #import "BaseRowViewController.h"
 #import "TableViewControllerRowClass.h"
 
-@interface FourthViewController : BaseRowViewController <TableViewControllerRowClass>
+@interface TooltipsRowViewController : BaseRowViewController <TableViewControllerRowClass>
 
 @end

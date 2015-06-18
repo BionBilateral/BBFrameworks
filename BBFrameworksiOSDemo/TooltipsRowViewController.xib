@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FourthViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TooltipsRowViewController">
             <connections>
                 <outlet property="button" destination="gHc-uX-rP0" id="zoR-zo-g5q"/>
                 <outlet property="label1" destination="98b-Z9-n4F" id="4hb-h8-4TP"/>
