@@ -15,7 +15,7 @@
 
 #import "TableViewController.h"
 #import "ViewsRowViewController.h"
-#import "ThumbnailsViewController.h"
+#import "ThumbnailsRowViewController.h"
 #import "WebViewRowViewController.h"
 #import "TooltipsRowViewController.h"
 
@@ -34,7 +34,7 @@
         return nil;
     
     [self setRowClasses:@[[ViewsRowViewController class],
-                          [ThumbnailsViewController class],
+                          [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class]]];
     

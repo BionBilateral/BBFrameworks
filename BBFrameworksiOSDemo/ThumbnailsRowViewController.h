@@ -16,6 +16,6 @@
 #import <UIKit/UIKit.h>
 #import "TableViewControllerRowClass.h"
 
-@interface ThumbnailsViewController : UICollectionViewController <TableViewControllerRowClass>
+@interface ThumbnailsRowViewController : UICollectionViewController <TableViewControllerRowClass>
 
 @end

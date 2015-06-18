@@ -174,7 +174,7 @@
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
-		79C001191B1AD081004C9A6E /* ThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001181B1AD081004C9A6E /* ThumbnailsViewController.m */; };
+		79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001181B1AD081004C9A6E /* ThumbnailsRowViewController.m */; };
 		79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011D1B1AD081004C9A6E /* Images.xcassets */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
 		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -338,8 +338,8 @@
 		79C001121B1AD081004C9A6E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		79C001141B1AD081004C9A6E /* ViewsRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewsRowViewController.h; sourceTree = "<group>"; };
 		79C001151B1AD081004C9A6E /* ViewsRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewsRowViewController.m; sourceTree = "<group>"; };
-		79C001171B1AD081004C9A6E /* ThumbnailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThumbnailsViewController.h; sourceTree = "<group>"; };
-		79C001181B1AD081004C9A6E /* ThumbnailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsViewController.m; sourceTree = "<group>"; };
+		79C001171B1AD081004C9A6E /* ThumbnailsRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThumbnailsRowViewController.h; sourceTree = "<group>"; };
+		79C001181B1AD081004C9A6E /* ThumbnailsRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsRowViewController.m; sourceTree = "<group>"; };
 		79C0011D1B1AD081004C9A6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
@@ -625,8 +625,8 @@
 				79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */,
 				79C001141B1AD081004C9A6E /* ViewsRowViewController.h */,
 				79C001151B1AD081004C9A6E /* ViewsRowViewController.m */,
-				79C001171B1AD081004C9A6E /* ThumbnailsViewController.h */,
-				79C001181B1AD081004C9A6E /* ThumbnailsViewController.m */,
+				79C001171B1AD081004C9A6E /* ThumbnailsRowViewController.h */,
+				79C001181B1AD081004C9A6E /* ThumbnailsRowViewController.m */,
 				79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */,
 				79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */,
 				791551651B333FEF009FA353 /* WebViewRowViewController.xib */,
@@ -1527,7 +1527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79C001191B1AD081004C9A6E /* ThumbnailsViewController.m in Sources */,
+				79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */,
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
 				791551611B3336D5009FA353 /* LaunchViewController.m in Sources */,
 				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
