@@ -37,10 +37,18 @@
     }
 }
 
+- (NSString *)title {
+    return [self.class rowClassTitle];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTooltipDicts:@[@{@"string": @"This is a tooltip for bottom label, it should use the bottom arrow style automatically.", @"view": self.label2},@{@"string": @"This is a tooltip for the right label, it should be pushed back to the left automatically.", @"view": self.label3},@{@"string": @"This is a tooltip for the left label, it should be pushed back to the right automatically.", @"view": self.label1},@{@"string": @"This is a tooltip for the button that is longer and should wrap to multiple lines. At least I think it should.", @"view": self.button}]];
+    [self setTooltipDicts:@[@{@"string": @"This is a tooltip for the bottom label, it should use the bottom arrow style automatically.", @"view": self.label2},@{@"string": @"This is a tooltip for the right label, it should be pushed back to the left automatically.", @"view": self.label3},@{@"string": @"This is a tooltip for the left label, it should be pushed back to the right automatically.", @"view": self.label1},@{@"string": @"This is a tooltip for the button that is longer and should wrap to multiple lines. At least I think it should.", @"view": self.button}]];
+}
+
++ (NSString *)rowClassTitle {
+    return @"Tooltips";
 }
 
 - (NSInteger)numberOfTooltipsForTooltipViewController:(BBTooltipViewController *)viewController {

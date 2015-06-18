@@ -25,6 +25,10 @@
 
 @implementation ThirdViewController
 
+- (NSString *)title {
+    return [self.class rowClassTitle];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
  
@@ -53,6 +57,10 @@
          @strongify(self);
          [self.view endEditing:NO];
      }];
+}
+
++ (NSString *)rowClassTitle {
+    return @"Web View Controller";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

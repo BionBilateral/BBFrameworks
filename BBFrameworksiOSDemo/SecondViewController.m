@@ -55,8 +55,6 @@
 @end
 
 @interface SecondViewController () <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-@property (weak,nonatomic) IBOutlet UICollectionView *collectionView;
-
 @property (strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
 
 @property (copy,nonatomic) NSArray *thumbnailURLs;
@@ -64,8 +62,28 @@
 
 @implementation SecondViewController
 
+- (NSString *)title {
+    return [self.class rowClassTitle];
+}
+
+- (instancetype)init {
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
+    [layout setMinimumInteritemSpacing:8.0];
+    [layout setMinimumLineSpacing:8.0];
+    [layout setSectionInset:UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)];
+    
+    if (!(self = [super initWithCollectionViewLayout:layout]))
+        return nil;
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationItem setLeftBarButtonItems:@[self.splitViewController.displayModeButtonItem]];
+    [self.navigationItem setLeftItemsSupplementBackButton:YES];
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
@@ -78,6 +96,10 @@
     [self setThumbnailGenerator:[[BBThumbnailGenerator alloc] init]];
     
     [self.collectionView registerClass:[ThumbnailCell class] forCellWithReuseIdentifier:NSStringFromClass([ThumbnailCell class])];
+}
+
++ (NSString *)rowClassTitle {
+    return @"Thumbnails";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
