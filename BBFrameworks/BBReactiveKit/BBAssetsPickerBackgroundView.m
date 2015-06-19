@@ -38,10 +38,11 @@
         
         switch (status) {
             case ALAuthorizationStatusAuthorized:
-            case ALAuthorizationStatusNotDetermined:
                 return @"";
+            case ALAuthorizationStatusNotDetermined:
+                return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_NOT_DETERMINED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Requesting access to Photos…", @"assets picker background view authorization status not determined text");
             case ALAuthorizationStatusDenied:
-                return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos was denied. Adjust access to photos in Settings -> Privacy.", @"assets picker background view authorization status denied text");
+                return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos was denied. Adjust access to photos in Settings -> Privacy -> Photos.", @"assets picker background view authorization status denied text");
             case ALAuthorizationStatusRestricted:
                 return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_RESTRICTED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos has been restricted. Ask your administrator to provide access to photos on this device.", @"assets picker background view authorization status restricted text");
         }
@@ -51,7 +52,7 @@
 }
 
 - (void)layoutSubviews {
-    [self.statusLabel setFrame:CGRectInset(self.bounds, 50.0, 100.0)];
+    [self.statusLabel setFrame:CGRectInset(self.bounds, 25.0, 75.0)];
 }
 
 @end

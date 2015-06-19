@@ -25,6 +25,8 @@
 @property (strong,nonatomic) BBAssetsPickerBackgroundView *backgroundView;
 
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
+
+@property (strong,nonatomic) RACDisposable *assetsLibraryNotificationDisposable;
 @end
 
 @implementation BBAssetsPickerViewController
@@ -62,6 +64,28 @@
             [self.backgroundView setAuthorizationStatus:[ALAssetsLibrary authorizationStatus]];
         }];
     }
+}
+
+- (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
+    [self setAssetsLibraryNotificationDisposable:nil];
+    
+    _assetsLibrary = assetsLibrary;
+    
+    if (_assetsLibrary) {
+        [self setAssetsLibraryNotificationDisposable:
+         [[[[NSNotificationCenter defaultCenter]
+            rac_addObserverForName:ALAssetsLibraryChangedNotification object:_assetsLibrary]
+           takeUntil:[self rac_willDeallocSignal]]
+          subscribeNext:^(NSNotification *value) {
+              BBLogObject(value);
+          }]];
+    }
+}
+
+- (void)setAssetsLibraryNotificationDisposable:(RACDisposable *)assetsLibraryNotificationDisposable {
+    [_assetsLibraryNotificationDisposable dispose];
+    
+    _assetsLibraryNotificationDisposable = assetsLibraryNotificationDisposable;
 }
 
 @end
