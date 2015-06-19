@@ -16,6 +16,7 @@
 #import "BBAssetsPickerViewController.h"
 #import "BBAssetsPickerBackgroundView.h"
 #import "BBFoundationDebugging.h"
+#import "BBAssetsPickerViewModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -24,9 +25,9 @@
 @interface BBAssetsPickerViewController ()
 @property (strong,nonatomic) BBAssetsPickerBackgroundView *backgroundView;
 
-@property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
+@property (strong,nonatomic) BBAssetsPickerViewModel *viewModel;
 
-@property (strong,nonatomic) RACDisposable *assetsLibraryNotificationDisposable;
+@property (assign,nonatomic) BOOL hasRequestedAuthorization;
 @end
 
 @implementation BBAssetsPickerViewController
@@ -35,7 +36,7 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setAssetsLibrary:[[ALAssetsLibrary alloc] init]];
+    [self setViewModel:[[BBAssetsPickerViewModel alloc] init]];
     
     return self;
 }
@@ -47,6 +48,28 @@
     
     [self setBackgroundView:[[BBAssetsPickerBackgroundView alloc] initWithFrame:CGRectZero]];
     [self.view addSubview:self.backgroundView];
+    
+    if (self.presentingViewController) {
+        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL];
+        
+        [cancelItem setRac_command:self.viewModel.cancelCommand];
+        
+        [self.navigationItem setLeftBarButtonItems:@[cancelItem]];
+        
+        @weakify(self);
+        [[[self.viewModel.cancelCommand.executionSignals
+           concat]
+          deliverOn:[RACScheduler mainThreadScheduler]]
+         subscribeNext:^(id _) {
+             @strongify(self);
+             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                 @strongify(self);
+                 if ([self.delegate respondsToSelector:@selector(assetsPickerViewControllerDidCancel:)]) {
+                     [self.delegate assetsPickerViewControllerDidCancel:self];
+                 }
+             }];
+         }];
+    }
 }
 - (void)viewDidLayoutSubviews {
     [self.backgroundView setFrame:self.view.bounds];
@@ -54,38 +77,20 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if ([ALAssetsLibrary authorizationStatus] != ALAuthorizationStatusAuthorized) {
+    if (!self.hasRequestedAuthorization) {
+        [self setHasRequestedAuthorization:YES];
+        
         @weakify(self);
-        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupLibrary usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        [[[self.viewModel requestAssetsLibraryAuthorizationStatus]
+         deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(NSNumber *value) {
             @strongify(self);
-            [self.backgroundView setAuthorizationStatus:ALAuthorizationStatusAuthorized];
-        } failureBlock:^(NSError *error) {
+            [self.backgroundView setAuthorizationStatus:value.integerValue];
+        } error:^(NSError *error) {
             @strongify(self);
-            [self.backgroundView setAuthorizationStatus:[ALAssetsLibrary authorizationStatus]];
+            [self.backgroundView setAuthorizationStatus:[error.userInfo[BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus] integerValue]];
         }];
     }
-}
-
-- (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
-    [self setAssetsLibraryNotificationDisposable:nil];
-    
-    _assetsLibrary = assetsLibrary;
-    
-    if (_assetsLibrary) {
-        [self setAssetsLibraryNotificationDisposable:
-         [[[[NSNotificationCenter defaultCenter]
-            rac_addObserverForName:ALAssetsLibraryChangedNotification object:_assetsLibrary]
-           takeUntil:[self rac_willDeallocSignal]]
-          subscribeNext:^(NSNotification *value) {
-              BBLogObject(value);
-          }]];
-    }
-}
-
-- (void)setAssetsLibraryNotificationDisposable:(RACDisposable *)assetsLibraryNotificationDisposable {
-    [_assetsLibraryNotificationDisposable dispose];
-    
-    _assetsLibraryNotificationDisposable = assetsLibraryNotificationDisposable;
 }
 
 @end

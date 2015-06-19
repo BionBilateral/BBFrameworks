@@ -33,6 +33,7 @@
 #import "UIViewController+BBKitExtensions.h"
 #import "BBAssetsPickerBackgroundView.h"
 #import "BBAssetsPickerViewController.h"
+#import "BBAssetsPickerViewModel.h"
 #import "BBProgressNavigationBar.h"
 #import "BBReactiveKit.h"
 #import "BBTooltipView.h"
