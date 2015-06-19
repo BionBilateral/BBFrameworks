@@ -17,6 +17,7 @@
 #import "BBAssetsPickerViewModel.h"
 #import "BBAssetsPickerAssetGroupViewModel.h"
 #import "BBAssetsPickerAssetGroupTableViewCell.h"
+#import "BBAssetsPickerAssetCollectionViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -53,7 +54,7 @@
 }
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self.navigationController pushViewController:[[BBAssetsPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel.assetGroupViewModels[indexPath.row]] animated:YES];
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBAssetsPickerViewModel *)viewModel; {

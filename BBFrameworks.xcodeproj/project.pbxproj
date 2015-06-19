@@ -32,6 +32,7 @@
 		7907C6C01B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */; };
 		7907C6C11B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6BF1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m */; };
 		7907C6C31B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */; };
+		7907C6C61B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -266,6 +267,7 @@
 		7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetViewModel.h; sourceTree = "<group>"; };
 		7907C6BF1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetViewModel.m; sourceTree = "<group>"; };
 		7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAssetsPickerAssetCollectionViewCell.xib; sourceTree = "<group>"; };
+		7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"; sourceTree = "<group>"; };
 		791551591B33353B009FA353 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7915515A1B33353B009FA353 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7915515C1B3335E7009FA353 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -665,6 +667,7 @@
 				7989DD5C1B34785E0001F7C3 /* BBAssetsPickerViewControllerDelegate.h */,
 				7989DD4B1B3457D50001F7C3 /* BBAssetsPickerViewController.h */,
 				7989DD4C1B3457D50001F7C3 /* BBAssetsPickerViewController.m */,
+				7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */,
 				7989DD541B3469A60001F7C3 /* BBAssetsPickerBackgroundView.h */,
 				7989DD551B3469A60001F7C3 /* BBAssetsPickerBackgroundView.m */,
 				7907C6B41B34A4CA003EA1AE /* Asset Groups */,
@@ -1006,6 +1009,7 @@
 				7927CFEE1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */,
 				7907C6BC1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.h in Headers */,
 				7907C6AC1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.h in Headers */,
+				7907C6C61B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				7927CFB81B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
 				7927CFB41B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */,
 				7927CFC41B1AD2B90034288D /* BBFoundationFunctions.h in Headers */,

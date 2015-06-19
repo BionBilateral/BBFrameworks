@@ -25,6 +25,9 @@
                 <constraint firstAttribute="trailing" secondItem="A8i-O8-qsJ" secondAttribute="trailing" id="Qgw-C0-A0n"/>
                 <constraint firstAttribute="bottom" secondItem="A8i-O8-qsJ" secondAttribute="bottom" id="VmD-dG-GMw"/>
             </constraints>
+            <connections>
+                <outlet property="thumbnailImageView" destination="A8i-O8-qsJ" id="pRz-5G-HG7"/>
+            </connections>
             <point key="canvasLocation" x="383" y="427"/>
         </collectionViewCell>
     </objects>

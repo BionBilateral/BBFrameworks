@@ -49,13 +49,15 @@
 
 - (NSArray *)assetViewModels {
     if (!_assetViewModels) {
-//        NSMutableArray *assetViewModels = [[NSMutableArray alloc] init];
-//        
-//        @weakify(self);
+        NSMutableArray *assetViewModels = [[NSMutableArray alloc] init];
+        
         [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-            BBLogObject(result);
+            if (result) {
+                [assetViewModels addObject:[[BBAssetsPickerAssetViewModel alloc] initWithAsset:result]];
+            }
         }];
-        BBLog(@"finished enumerating assets");
+        
+        [self setAssetViewModels:assetViewModels.count > 0 ? assetViewModels : nil];
     }
     return _assetViewModels;
 }

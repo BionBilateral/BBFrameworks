@@ -21,4 +21,6 @@
 
 @property (strong,nonatomic) BBAssetsPickerAssetViewModel *viewModel;
 
++ (CGSize)defaultCellSize;
+
 @end

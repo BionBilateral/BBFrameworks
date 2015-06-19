@@ -27,7 +27,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    
+    RAC(self.thumbnailImageView,image) = [RACObserve(self, viewModel.thumbnailImage) deliverOn:[RACScheduler mainThreadScheduler]];
+}
+
++ (CGSize)defaultCellSize; {
+    return CGSizeMake(78.0, 78.0);
 }
 
 @end

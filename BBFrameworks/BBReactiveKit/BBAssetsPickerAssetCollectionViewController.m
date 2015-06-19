@@ -16,6 +16,8 @@
 #import "BBAssetsPickerAssetCollectionViewController.h"
 #import "BBAssetsPickerAssetGroupViewModel.h"
 #import "BBAssetsPickerAssetCollectionViewCell.h"
+#import "BBAssetsPickerAssetViewModel.h"
+#import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -25,11 +27,14 @@
 
 @implementation BBAssetsPickerAssetCollectionViewController
 #pragma mark *** Subclass Overrides ***
+- (NSString *)title {
+    return self.viewModel.name;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
+    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class]) bundle:[NSBundle bundleForClass:[BBAssetsPickerAssetCollectionViewCell class]]] forCellWithReuseIdentifier:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class])];
     
     @weakify(self);
@@ -39,6 +44,13 @@
          @strongify(self);
          [self.collectionView reloadData];
      }];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if ([self BB_assetsPickerViewController].cancelBarButtonItem) {
+        [self.navigationItem setRightBarButtonItems:@[[self BB_assetsPickerViewController].cancelBarButtonItem]];
+    }
 }
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -55,10 +67,10 @@
 - (instancetype)initWithViewModel:(BBAssetsPickerAssetGroupViewModel *)viewModel; {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    [layout setSectionInset:UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)];
-    [layout setMinimumInteritemSpacing:8.0];
-    [layout setMinimumLineSpacing:8.0];
-    [layout setItemSize:CGSizeMake(48.0, 48.0)];
+    [layout setSectionInset:UIEdgeInsetsMake(8.0, 0.0, 8.0, 0.0)];
+    [layout setMinimumInteritemSpacing:2.0];
+    [layout setMinimumLineSpacing:2.0];
+    [layout setItemSize:[BBAssetsPickerAssetCollectionViewCell defaultCellSize]];
     
     if (!(self = [super initWithCollectionViewLayout:layout]))
         return nil;

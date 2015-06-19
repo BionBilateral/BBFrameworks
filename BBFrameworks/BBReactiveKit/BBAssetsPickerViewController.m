@@ -18,12 +18,15 @@
 #import "BBFoundationDebugging.h"
 #import "BBAssetsPickerViewModel.h"
 #import "BBAssetsPickerAssetGroupTableViewController.h"
+#import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BBAssetsPickerViewController ()
+@property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
+
 @property (strong,nonatomic) BBAssetsPickerBackgroundView *backgroundView;
 @property (strong,nonatomic) BBAssetsPickerAssetGroupTableViewController *tableViewController;
 
@@ -34,6 +37,10 @@
 
 @implementation BBAssetsPickerViewController
 #pragma mark *** Subclass Overrides ***
+- (NSString *)title {
+    return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_VIEW_CONTROLLER_TITLE", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Photos", @"assets picker view controller title");
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -52,11 +59,11 @@
     [self.view addSubview:self.backgroundView];
     
     if (self.presentingViewController) {
-        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL];
+        [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
         
-        [cancelItem setRac_command:self.viewModel.cancelCommand];
+        [self.cancelBarButtonItem setRac_command:self.viewModel.cancelCommand];
         
-        [self.navigationItem setLeftBarButtonItems:@[cancelItem]];
+        [self.navigationItem setRightBarButtonItems:@[self.cancelBarButtonItem]];
         
         @weakify(self);
         [[[self.viewModel.cancelCommand.executionSignals
@@ -108,6 +115,23 @@
         [self.view addSubview:_tableViewController.view];
         [_tableViewController didMoveToParentViewController:self];
     }
+}
+
+@end
+
+@implementation UIViewController (BBReactiveKitExtensionsPrivate)
+
+- (BBAssetsPickerViewController *)BB_assetsPickerViewController {
+    BBAssetsPickerViewController *retval = nil;
+    
+    for (UIViewController *viewController in self.navigationController.viewControllers) {
+        if ([viewController isKindOfClass:[BBAssetsPickerViewController class]]) {
+            retval = (BBAssetsPickerViewController *)viewController;
+            break;
+        }
+    }
+    
+    return retval;
 }
 
 @end

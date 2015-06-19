@@ -1,5 +1,5 @@
 //
-//  BBAssetsPickerAssetGroupTableViewCell.m
+//  BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/19/15.
@@ -13,27 +13,16 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBAssetsPickerAssetGroupTableViewCell.h"
-#import "BBAssetsPickerAssetGroupViewModel.h"
+#import <BBFrameworks/BBAssetsPickerViewController.h>
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@interface BBAssetsPickerViewController (BBReactiveKitExtensionsPrivate)
 
-@interface BBAssetsPickerAssetGroupTableViewCell ()
-@property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak,nonatomic) IBOutlet UILabel *nameLabel;
+@property (readonly,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
+
 @end
 
-@implementation BBAssetsPickerAssetGroupTableViewCell
+@interface UIViewController (BBReactiveKitExtensionsPrivate)
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    RAC(self.thumbnailImageView,image) = [RACObserve(self, viewModel.thumbnailImage) deliverOn:[RACScheduler mainThreadScheduler]];
-    RAC(self.nameLabel,text) = [RACObserve(self, viewModel.name) deliverOn:[RACScheduler mainThreadScheduler]];
-}
-
-+ (CGFloat)rowHeight {
-    return 100.0;
-}
+- (BBAssetsPickerViewController *)BB_assetsPickerViewController;
 
 @end
