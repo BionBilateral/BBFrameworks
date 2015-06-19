@@ -128,7 +128,8 @@
           "BBFrameworks/BBReactiveKit/BBAssetsPicker*"
         ]
       },
-      "frameworks": "WebKit"
+      "frameworks": "WebKit",
+      "resources": "BBFrameworks/BBReactiveKit/*.xib"
     },
     {
       "name": "BBThumbnail",

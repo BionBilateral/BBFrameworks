@@ -73,6 +73,9 @@
          }];
     }
 }
+- (void)viewWillLayoutSubviews {
+    [self.tableViewController.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0)];
+}
 - (void)viewDidLayoutSubviews {
     [self.backgroundView setFrame:self.view.bounds];
     [self.tableViewController.view setFrame:self.view.bounds];
