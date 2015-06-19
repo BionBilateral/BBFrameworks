@@ -32,6 +32,8 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
 
 @property (strong,nonatomic) RACDisposable *assetsLibraryNotificationDisposable;
+
+- (void)_reloadAssetGroupViewModels;
 @end
 
 @implementation BBAssetsPickerViewModel
@@ -73,37 +75,58 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
 
 - (NSArray *)assetGroupViewModels {
     if (!_assetGroupViewModels) {
-        NSMutableArray *assetGroupViewModels = [[NSMutableArray alloc] init];
-        
-        @weakify(self);
-        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-            @strongify(self);
-            if (group) {
-                [assetGroupViewModels addObject:[[BBAssetsPickerAssetGroupViewModel alloc] initWithAssetsGroup:group]];
-            }
-            else {
-                [self setAssetGroupViewModels:assetGroupViewModels];
-            }
-        } failureBlock:^(NSError *error) {
-            @strongify(self);
-            [self setAssetGroupViewModels:nil];
-        }];
+        [self _reloadAssetGroupViewModels];
     }
     return _assetGroupViewModels;
 }
 #pragma mark *** Private Methods ***
+- (void)_reloadAssetGroupViewModels; {
+    NSMutableArray *assetGroupViewModels = [[NSMutableArray alloc] init];
+    
+    @weakify(self);
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        @strongify(self);
+        if (group) {
+            [assetGroupViewModels addObject:[[BBAssetsPickerAssetGroupViewModel alloc] initWithAssetsGroup:group]];
+        }
+        else {
+            [self setAssetGroupViewModels:assetGroupViewModels];
+        }
+    } failureBlock:^(NSError *error) {
+        @strongify(self);
+        [self setAssetGroupViewModels:nil];
+    }];
+}
+#pragma mark Properties
 - (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
     [self setAssetsLibraryNotificationDisposable:nil];
     
     _assetsLibrary = assetsLibrary;
     
     if (_assetsLibrary) {
+        @weakify(self);
         [self setAssetsLibraryNotificationDisposable:
-         [[[[NSNotificationCenter defaultCenter]
+         [[[[[NSNotificationCenter defaultCenter]
             rac_addObserverForName:ALAssetsLibraryChangedNotification object:_assetsLibrary]
            takeUntil:[self rac_willDeallocSignal]]
+           deliverOn:[RACScheduler mainThreadScheduler]]
           subscribeNext:^(NSNotification *value) {
-              BBLogObject(value);
+              @strongify(self);
+              if (value.userInfo.count > 0) {
+                  if (value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                      for (NSURL *assetGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                          for (BBAssetsPickerAssetGroupViewModel *viewModel in self.assetGroupViewModels) {
+                              if ([viewModel.URL isEqual:assetGroupURL]) {
+                                  [viewModel reloadAssetViewModels];
+                              }
+                          }
+                      }
+                  }
+              }
+              // reload everything
+              else if (!value.userInfo) {
+                  [self _reloadAssetGroupViewModels];
+              }
           }]];
     }
 }

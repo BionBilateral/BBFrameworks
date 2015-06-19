@@ -28,7 +28,7 @@
 @end
 
 @implementation BBAssetsPickerAssetGroupViewModel
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup; {
     if (!(self = [super init]))
         return nil;
@@ -40,6 +40,22 @@
     return self;
 }
 
+- (void)reloadAssetViewModels; {
+    NSMutableArray *assetViewModels = [[NSMutableArray alloc] init];
+    
+    [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if (result) {
+            [assetViewModels addObject:[[BBAssetsPickerAssetViewModel alloc] initWithAsset:result]];
+        }
+    }];
+    
+    [self setAssetViewModels:assetViewModels.count > 0 ? assetViewModels : nil];
+}
+#pragma mark Properties
+- (NSURL *)URL {
+    return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyURL];
+}
+
 - (NSString *)name {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
 }
@@ -49,15 +65,7 @@
 
 - (NSArray *)assetViewModels {
     if (!_assetViewModels) {
-        NSMutableArray *assetViewModels = [[NSMutableArray alloc] init];
-        
-        [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-            if (result) {
-                [assetViewModels addObject:[[BBAssetsPickerAssetViewModel alloc] initWithAsset:result]];
-            }
-        }];
-        
-        [self setAssetViewModels:assetViewModels.count > 0 ? assetViewModels : nil];
+        [self reloadAssetViewModels];
     }
     return _assetViewModels;
 }

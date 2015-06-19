@@ -20,11 +20,15 @@
 
 @interface BBAssetsPickerAssetGroupViewModel : RVMViewModel
 
+@property (readonly,nonatomic) NSURL *URL;
+
 @property (readonly,nonatomic) NSString *name;
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
 @property (readonly,copy,nonatomic) NSArray *assetViewModels;
 
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup NS_DESIGNATED_INITIALIZER;
+
+- (void)reloadAssetViewModels;
 
 @end
