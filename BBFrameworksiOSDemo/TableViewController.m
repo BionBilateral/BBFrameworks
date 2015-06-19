@@ -18,6 +18,7 @@
 #import "ThumbnailsRowViewController.h"
 #import "WebViewRowViewController.h"
 #import "TooltipsRowViewController.h"
+#import "AssetsPickerViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -36,7 +37,8 @@
     [self setRowClasses:@[[ViewsRowViewController class],
                           [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
-                          [TooltipsRowViewController class]]];
+                          [TooltipsRowViewController class],
+                          [AssetsPickerViewController class]]];
     
     return self;
 }
