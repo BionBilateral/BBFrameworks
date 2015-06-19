@@ -1,5 +1,5 @@
 //
-//  BBAssetsPickerViewModel.h
+//  BBAssetsPickerAssetGroupTableViewCell.m
 //  BBFrameworks
 //
 //  Created by William Towe on 6/19/15.
@@ -13,20 +13,27 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <ReactiveViewModel/ReactiveViewModel.h>
+#import "BBAssetsPickerAssetGroupTableViewCell.h"
+#import "BBAssetsPickerAssetGroupViewModel.h"
 
-extern NSString *const BBAssetsPickerViewModelErrorDomain;
-extern NSInteger const BBAssetsPickerViewModelErrorCodeAuthorizationStatus;
-extern NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus;
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@class RACCommand;
+@interface BBAssetsPickerAssetGroupTableViewCell ()
+@property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak,nonatomic) IBOutlet UILabel *nameLabel;
+@end
 
-@interface BBAssetsPickerViewModel : RVMViewModel
+@implementation BBAssetsPickerAssetGroupTableViewCell
 
-@property (readonly,copy,nonatomic) NSArray *assetGroupViewModels;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    RAC(self.thumbnailImageView,image) = [RACObserve(self, viewModel.thumbnailImage) deliverOn:[RACScheduler mainThreadScheduler]];
+    RAC(self.nameLabel,text) = [RACObserve(self, viewModel.name) deliverOn:[RACScheduler mainThreadScheduler]];
+}
 
-@property (readonly,strong,nonatomic) RACCommand *cancelCommand;
-
-- (RACSignal *)requestAssetsLibraryAuthorizationStatus;
++ (CGFloat)rowHeight {
+    return 60.0;
+}
 
 @end

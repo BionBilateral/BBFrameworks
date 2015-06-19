@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBAssetsPickerViewModel.h"
+#import "BBAssetsPickerAssetGroupViewModel.h"
 #import "BBFoundationDebugging.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -25,6 +26,7 @@ NSInteger const BBAssetsPickerViewModelErrorCodeAuthorizationStatus = 1;
 NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus";
 
 @interface BBAssetsPickerViewModel ()
+@property (readwrite,copy,nonatomic) NSArray *assetGroupViewModels;
 @property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
 
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
@@ -33,7 +35,7 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
 @end
 
 @implementation BBAssetsPickerViewModel
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -48,7 +50,7 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
     
     return self;
 }
-
+#pragma mark *** Public Methods ***
 - (RACSignal *)requestAssetsLibraryAuthorizationStatus; {
     @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -69,6 +71,27 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
     }];
 }
 
+- (NSArray *)assetGroupViewModels {
+    if (!_assetGroupViewModels) {
+        NSMutableArray *assetGroupViewModels = [[NSMutableArray alloc] init];
+        
+        @weakify(self);
+        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            @strongify(self);
+            if (group) {
+                [assetGroupViewModels addObject:[[BBAssetsPickerAssetGroupViewModel alloc] initWithAssetsGroup:group]];
+            }
+            else {
+                [self setAssetGroupViewModels:assetGroupViewModels];
+            }
+        } failureBlock:^(NSError *error) {
+            @strongify(self);
+            [self setAssetGroupViewModels:nil];
+        }];
+    }
+    return _assetGroupViewModels;
+}
+#pragma mark *** Private Methods ***
 - (void)setAssetsLibrary:(ALAssetsLibrary *)assetsLibrary {
     [self setAssetsLibraryNotificationDisposable:nil];
     

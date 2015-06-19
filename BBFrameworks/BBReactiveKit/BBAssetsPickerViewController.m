@@ -17,6 +17,7 @@
 #import "BBAssetsPickerBackgroundView.h"
 #import "BBFoundationDebugging.h"
 #import "BBAssetsPickerViewModel.h"
+#import "BBAssetsPickerAssetGroupTableViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -24,6 +25,7 @@
 
 @interface BBAssetsPickerViewController ()
 @property (strong,nonatomic) BBAssetsPickerBackgroundView *backgroundView;
+@property (strong,nonatomic) BBAssetsPickerAssetGroupTableViewController *tableViewController;
 
 @property (strong,nonatomic) BBAssetsPickerViewModel *viewModel;
 
@@ -31,7 +33,7 @@
 @end
 
 @implementation BBAssetsPickerViewController
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -73,6 +75,7 @@
 }
 - (void)viewDidLayoutSubviews {
     [self.backgroundView setFrame:self.view.bounds];
+    [self.tableViewController.view setFrame:self.view.bounds];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -86,10 +89,21 @@
         subscribeNext:^(NSNumber *value) {
             @strongify(self);
             [self.backgroundView setAuthorizationStatus:value.integerValue];
+            [self setTableViewController:[[BBAssetsPickerAssetGroupTableViewController alloc] initWithViewModel:self.viewModel]];
         } error:^(NSError *error) {
             @strongify(self);
             [self.backgroundView setAuthorizationStatus:[error.userInfo[BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus] integerValue]];
         }];
+    }
+}
+
+- (void)setTableViewController:(BBAssetsPickerAssetGroupTableViewController *)tableViewController {
+    _tableViewController = tableViewController;
+    
+    if (_tableViewController) {
+        [self addChildViewController:_tableViewController];
+        [self.view addSubview:_tableViewController.view];
+        [_tableViewController didMoveToParentViewController:self];
     }
 }
 

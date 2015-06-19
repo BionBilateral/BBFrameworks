@@ -1,5 +1,5 @@
 //
-//  BBAssetsPickerViewModel.h
+//  BBAssetsPickerAssetGroupViewModel.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/19/15.
@@ -15,18 +15,13 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 
-extern NSString *const BBAssetsPickerViewModelErrorDomain;
-extern NSInteger const BBAssetsPickerViewModelErrorCodeAuthorizationStatus;
-extern NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus;
+@class ALAssetsGroup;
 
-@class RACCommand;
+@interface BBAssetsPickerAssetGroupViewModel : RVMViewModel
 
-@interface BBAssetsPickerViewModel : RVMViewModel
+@property (readonly,nonatomic) NSString *name;
+@property (readonly,nonatomic) UIImage *thumbnailImage;
 
-@property (readonly,copy,nonatomic) NSArray *assetGroupViewModels;
-
-@property (readonly,strong,nonatomic) RACCommand *cancelCommand;
-
-- (RACSignal *)requestAssetsLibraryAuthorizationStatus;
+- (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup NS_DESIGNATED_INITIALIZER;
 
 @end
