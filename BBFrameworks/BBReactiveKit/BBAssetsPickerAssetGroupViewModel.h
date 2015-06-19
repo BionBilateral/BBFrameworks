@@ -20,6 +20,8 @@
 
 @interface BBAssetsPickerAssetGroupViewModel : RVMViewModel
 
+@property (assign,nonatomic,getter=isDeleted) BOOL deleted;
+
 @property (readonly,nonatomic) NSURL *URL;
 
 @property (readonly,nonatomic) NSString *name;

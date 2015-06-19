@@ -38,6 +38,14 @@
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class]) bundle:[NSBundle bundleForClass:[BBAssetsPickerAssetCollectionViewCell class]]] forCellWithReuseIdentifier:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class])];
     
     @weakify(self);
+    [[[RACObserve(self.viewModel, deleted)
+      ignore:@NO]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.navigationController popViewControllerAnimated:YES];
+     }];
+    
     [[RACObserve(self.viewModel, assetViewModels)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {

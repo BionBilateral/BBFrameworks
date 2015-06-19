@@ -18,6 +18,7 @@
 #import "BBFoundationDebugging.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <BlocksKit/BlocksKit.h>
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -109,11 +110,100 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
          [[[[[NSNotificationCenter defaultCenter]
             rac_addObserverForName:ALAssetsLibraryChangedNotification object:_assetsLibrary]
            takeUntil:[self rac_willDeallocSignal]]
-           deliverOn:[RACScheduler mainThreadScheduler]]
+           deliverOn:[RACScheduler schedulerWithPriority:RACSchedulerPriorityHigh]]
           subscribeNext:^(NSNotification *value) {
               @strongify(self);
               if (value.userInfo.count > 0) {
+                  // one or more asset groups were inserted, create new view models for each group
+                  if (value.userInfo[ALAssetLibraryInsertedAssetGroupsKey]) {
+                      NSMutableArray *assetGroupViewModels = [self.assetGroupViewModels mutableCopy];
+                      
+                      for (NSURL *assetGroupURL in value.userInfo[ALAssetLibraryInsertedAssetGroupsKey]) {
+                          dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                          
+                          void(^signalSemaphoreBlock)(dispatch_semaphore_t) = ^(dispatch_semaphore_t semaphore){
+                              dispatch_semaphore_signal(semaphore);
+                          };
+                          
+                          __block BBAssetsPickerAssetGroupViewModel *viewModel = nil;
+                          
+                          [self.assetsLibrary groupForURL:assetGroupURL resultBlock:^(ALAssetsGroup *group) {
+                              viewModel = [[BBAssetsPickerAssetGroupViewModel alloc] initWithAssetsGroup:group];
+                              signalSemaphoreBlock(semaphore);
+                          } failureBlock:^(NSError *error) {
+                              signalSemaphoreBlock(semaphore);
+                          }];
+                          
+                          dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                          
+                          if (viewModel) {
+                              [assetGroupViewModels addObject:viewModel];
+                          }
+                      }
+                      
+                      [self setAssetGroupViewModels:assetGroupViewModels];
+                  }
+                  
+                  // one or more asset groups were deleted, find the corresponding view models and remove them
+                  if (value.userInfo[ALAssetLibraryDeletedAssetGroupsKey]) {
+                      NSMutableArray *assetGroupViewModels = [self.assetGroupViewModels mutableCopy];
+                      
+                      for (NSURL *assetGroupURL in value.userInfo[ALAssetLibraryDeletedAssetGroupsKey]) {
+                          BBAssetsPickerAssetGroupViewModel *viewModel = [assetGroupViewModels bk_match:^BOOL(BBAssetsPickerAssetGroupViewModel *obj) {
+                              return [assetGroupURL isEqual:obj.URL];
+                          }];
+                          
+                          if (viewModel) {
+                              [viewModel setDeleted:YES];
+                              
+                              [assetGroupViewModels removeObject:viewModel];
+                          }
+                      }
+                      
+                      [self setAssetGroupViewModels:assetGroupViewModels];
+                  }
+                  
+                  // an asset group was updated, reload only that group (e.g. the Camera Roll group updates when the user takes a new camera photo)
                   if (value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                      // loop through each updated asset group url and see if the asset library will return a valid group for it, if not, it was deleted and we need to mark the corresponding view model as such
+                      for (NSURL *assetGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                          dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                          
+                          void(^signalSemaphoreBlock)(dispatch_semaphore_t) = ^(dispatch_semaphore_t semaphore){
+                              dispatch_semaphore_signal(semaphore);
+                          };
+                          
+                          void(^markViewModelWithURLDeletedBlock)(NSURL *) = ^(NSURL *URL){
+                              BBAssetsPickerAssetGroupViewModel *viewModel = [self.assetGroupViewModels bk_match:^BOOL(BBAssetsPickerAssetGroupViewModel *obj) {
+                                  return [URL isEqual:obj.URL];
+                              }];
+                              
+                              [viewModel setDeleted:YES];
+                          };
+                          
+                          [self.assetsLibrary groupForURL:assetGroupURL resultBlock:^(ALAssetsGroup *group) {
+                              if (!group) {
+                                  markViewModelWithURLDeletedBlock(assetGroupURL);
+                              }
+                              signalSemaphoreBlock(semaphore);
+                          } failureBlock:^(NSError *error) {
+                              markViewModelWithURLDeletedBlock(assetGroupURL);
+                              signalSemaphoreBlock(semaphore);
+                          }];
+                          
+                          dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                      }
+                      
+                      // if any of our asset group view models are marked as deleted, filter the entire array for the non deleted view models
+                      if ([self.assetGroupViewModels bk_any:^BOOL(BBAssetsPickerAssetGroupViewModel *obj) {
+                          return obj.isDeleted;
+                      }]) {
+                          [self setAssetGroupViewModels:[self.assetGroupViewModels bk_select:^BOOL(BBAssetsPickerAssetGroupViewModel *obj) {
+                              return !obj.isDeleted;
+                          }]];
+                      }
+                      
+                      // for every asset group url, if the corresponding view model is still in our array, reload the assets for that view model
                       for (NSURL *assetGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
                           for (BBAssetsPickerAssetGroupViewModel *viewModel in self.assetGroupViewModels) {
                               if ([viewModel.URL isEqual:assetGroupURL]) {

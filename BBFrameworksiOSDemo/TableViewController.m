@@ -51,6 +51,8 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([UITableViewCell class])];
+        
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     
     [cell.textLabel setText:[self.rowClasses[indexPath.row] rowClassTitle]];
