@@ -100,7 +100,7 @@
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
-    
+
     [(BBAssetsPickerAssetCollectionViewLayout *)self.collectionView.collectionViewLayout setNumberOfColumns:self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? 5 : 3];
 }
 #pragma mark UICollectionViewDataSource
