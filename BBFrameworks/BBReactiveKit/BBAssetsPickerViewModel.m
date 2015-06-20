@@ -86,6 +86,10 @@
 - (RACSignal *)requestThumbnailImageForAsset:(PHAsset *)asset size:(CGSize)size; {
     NSParameterAssert(asset);
     
+    if (CGSizeEqualToSize(size, CGSizeZero)) {
+        return [RACSignal return:nil];
+    }
+    
     @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);

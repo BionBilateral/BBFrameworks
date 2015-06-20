@@ -55,7 +55,7 @@
         @weakify(self);
         [self setRequestThumbnailDisposable:
          [[[_viewModel
-            requestThumbnailImageWithSize:[self.class defaultCellSize]]
+            requestThumbnailImageWithSize:CGSizeMake(CGRectGetWidth(self.thumbnailImageView.frame), CGRectGetHeight(self.thumbnailImageView.frame))]
            deliverOn:[RACScheduler mainThreadScheduler]]
           subscribeNext:^(UIImage *value) {
               @strongify(self);

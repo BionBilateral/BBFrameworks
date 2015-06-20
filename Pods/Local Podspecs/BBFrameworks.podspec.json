@@ -128,7 +128,10 @@
           "BBFrameworks/BBReactiveKit/BBAssetsPicker*"
         ]
       },
-      "frameworks": "WebKit",
+      "frameworks": [
+        "WebKit",
+        "Photos"
+      ],
       "resources": "BBFrameworks/BBReactiveKit/*.xib"
     },
     {

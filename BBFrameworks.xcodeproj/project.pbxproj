@@ -34,6 +34,8 @@
 		7907C6C31B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */; };
 		7907C6C61B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */; };
 		7907C6C91B34D466003EA1AE /* BBAssetsPickerAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6C81B34D466003EA1AE /* BBAssetsPickerAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7907C6CC1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6CA1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.h */; };
+		7907C6CD1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6CB1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.m */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -270,6 +272,8 @@
 		7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAssetsPickerAssetCollectionViewCell.xib; sourceTree = "<group>"; };
 		7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"; sourceTree = "<group>"; };
 		7907C6C81B34D466003EA1AE /* BBAssetsPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAsset.h; sourceTree = "<group>"; };
+		7907C6CA1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetCollectionViewLayout.h; sourceTree = "<group>"; };
+		7907C6CB1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetCollectionViewLayout.m; sourceTree = "<group>"; };
 		791551591B33353B009FA353 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7915515A1B33353B009FA353 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7915515C1B3335E7009FA353 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 			children = (
 				7907C6B61B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.h */,
 				7907C6B71B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m */,
+				7907C6CA1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.h */,
+				7907C6CB1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.m */,
 				7907C6BA1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.h */,
 				7907C6BB1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.m */,
 				7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */,
@@ -977,6 +983,7 @@
 				7927CFE41B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */,
 				7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */,
 				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
+				7907C6CC1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.h in Headers */,
 				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
 				7907C6C01B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h in Headers */,
 				7907C6C91B34D466003EA1AE /* BBAssetsPickerAsset.h in Headers */,
@@ -1620,6 +1627,7 @@
 				7927D0321B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,
 				7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
 				7907C6BD1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.m in Sources */,
+				7907C6CD1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.m in Sources */,
 				7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */,
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,

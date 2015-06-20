@@ -18,6 +18,7 @@
 #import "BBAssetsPickerAssetCollectionViewCell.h"
 #import "BBAssetsPickerAssetViewModel.h"
 #import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
+#import "BBAssetsPickerAssetCollectionViewLayout.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -96,6 +97,12 @@
         [self.viewModel setActive:NO];
     }
 }
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    
+    [(BBAssetsPickerAssetCollectionViewLayout *)self.collectionView.collectionViewLayout setNumberOfColumns:self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? 5 : 3];
+}
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.viewModel.assetViewModels.count;
@@ -147,14 +154,7 @@
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBAssetsPickerAssetsGroupViewModel *)viewModel; {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
-    [layout setSectionInset:UIEdgeInsetsMake(8.0, 0.0, 8.0, 0.0)];
-    [layout setMinimumInteritemSpacing:2.0];
-    [layout setMinimumLineSpacing:2.0];
-    [layout setItemSize:[BBAssetsPickerAssetCollectionViewCell defaultCellSize]];
-    
-    if (!(self = [super initWithCollectionViewLayout:layout]))
+    if (!(self = [super initWithCollectionViewLayout:[[BBAssetsPickerAssetCollectionViewLayout alloc] init]]))
         return nil;
     
     NSParameterAssert(viewModel);

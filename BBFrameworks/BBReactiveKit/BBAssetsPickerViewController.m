@@ -40,7 +40,7 @@
 }
 
 - (instancetype)init {
-    if (!(self = [super init]))
+    if (!(self = [super initWithNibName:nil bundle:nil]))
         return nil;
     
     [self setViewModel:[[BBAssetsPickerViewModel alloc] init]];
