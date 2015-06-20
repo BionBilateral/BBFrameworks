@@ -20,6 +20,8 @@
 
 @interface BBAssetsPickerAssetCollectionViewCell ()
 @property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
+
+@property (strong,nonatomic) RACDisposable *requestThumbnailDisposable;
 @end
 
 @implementation BBAssetsPickerAssetCollectionViewCell
@@ -27,11 +29,16 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    RAC(self.thumbnailImageView,image) = [RACObserve(self, viewModel.thumbnailImage) deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (void)tintColorDidChange {
     [self.thumbnailImageView.layer setBorderColor:self.tintColor.CGColor];
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    [self setRequestThumbnailDisposable:nil];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -40,8 +47,33 @@
     [self.thumbnailImageView.layer setBorderWidth:selected ? 4.0 : 0.0];
 }
 
+- (void)setViewModel:(BBAssetsPickerAssetViewModel *)viewModel {
+    _viewModel = viewModel;
+    
+    if (_viewModel) {
+        @weakify(self);
+        [self setRequestThumbnailDisposable:
+         [[[_viewModel
+            requestThumbnailImageWithSize:[self.class defaultCellSize]]
+           deliverOn:[RACScheduler mainThreadScheduler]]
+          subscribeNext:^(UIImage *value) {
+              @strongify(self);
+              [self.thumbnailImageView setImage:value];
+          }]];
+    }
+    else {
+        [self setRequestThumbnailDisposable:nil];
+    }
+}
+
+- (void)setRequestThumbnailDisposable:(RACDisposable *)requestThumbnailDisposable {
+    [_requestThumbnailDisposable dispose];
+    
+    _requestThumbnailDisposable = requestThumbnailDisposable;
+}
+
 + (CGSize)defaultCellSize; {
-    return CGSizeMake(78.0, 78.0);
+    return CGSizeMake(92.0, 92.0);
 }
 
 @end

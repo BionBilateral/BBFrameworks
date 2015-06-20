@@ -21,8 +21,8 @@
 
 @interface BBAssetsPickerAssetViewModel : RVMViewModel <BBAssetsPickerAsset>
 
-@property (readonly,nonatomic) UIImage *thumbnailImage;
-
 - (instancetype)initWithAsset:(PHAsset *)asset assetsGroupViewModel:(BBAssetsPickerAssetsGroupViewModel *)assetsGroupViewModel NS_DESIGNATED_INITIALIZER;
+
+- (RACSignal *)requestThumbnailImageWithSize:(CGSize)size;
 
 @end

@@ -86,6 +86,16 @@
         [self.navigationItem setRightBarButtonItems:@[[self BB_assetsPickerViewController].cancelBarButtonItem]];
     }
 }
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+    [super willMoveToParentViewController:parent];
+    
+    if (parent) {
+        [self.viewModel setActive:YES];
+    }
+    else {
+        [self.viewModel setActive:NO];
+    }
+}
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.viewModel.assetViewModels.count;

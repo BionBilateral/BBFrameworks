@@ -39,4 +39,6 @@ typedef NS_ENUM(NSInteger, BBAssetsPickerViewModelAuthorizationStatus) {
 
 - (RACSignal *)requestAssetsLibraryAuthorizationStatus;
 
+- (RACSignal *)requestThumbnailImageForAsset:(PHAsset *)asset size:(CGSize)size;
+
 @end

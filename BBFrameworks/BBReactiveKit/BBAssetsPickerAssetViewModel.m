@@ -15,6 +15,7 @@
 
 #import "BBAssetsPickerAssetViewModel.h"
 #import "BBAssetsPickerAssetsGroupViewModel.h"
+#import "BBAssetsPickerViewModel.h"
 
 #import <Photos/Photos.h>
 
@@ -42,8 +43,8 @@
     return self;
 }
 
-- (UIImage *)thumbnailImage {
-    
+- (RACSignal *)requestThumbnailImageWithSize:(CGSize)size; {
+    return [self.assetsGroupViewModel.viewModel requestThumbnailImageForAsset:self.asset size:size];
 }
 
 @end

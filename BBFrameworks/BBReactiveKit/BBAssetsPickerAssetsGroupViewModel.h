@@ -32,6 +32,8 @@
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
+@property (readonly,weak,nonatomic) BBAssetsPickerViewModel *viewModel;
+
 - (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBAssetsPickerViewModel *)viewModel NS_DESIGNATED_INITIALIZER;
 
 - (void)reloadAssetViewModels;

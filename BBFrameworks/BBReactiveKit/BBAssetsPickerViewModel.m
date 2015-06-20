@@ -82,6 +82,28 @@
     }];
 }
 
+- (RACSignal *)requestThumbnailImageForAsset:(PHAsset *)asset size:(CGSize)size; {
+    NSParameterAssert(asset);
+    
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        
+        [options setDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
+        [options setNetworkAccessAllowed:YES];
+        
+        PHImageRequestID requestID = [self.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *result, NSDictionary *info) {
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            @strongify(self);
+            [self.imageManager cancelImageRequest:requestID];
+        }];
+    }];
+}
 #pragma mark Properties
 - (NSArray *)assetGroupViewModels {
     if (!_assetGroupViewModels) {

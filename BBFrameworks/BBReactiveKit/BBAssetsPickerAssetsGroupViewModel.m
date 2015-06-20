@@ -29,7 +29,7 @@
 @property (readwrite,strong,nonatomic) RACCommand *doneCommand;
 
 @property (strong,nonatomic) PHCollection *assetsGroup;
-@property (weak,nonatomic) BBAssetsPickerViewModel *viewModel;
+@property (readwrite,weak,nonatomic) BBAssetsPickerViewModel *viewModel;
 @end
 
 @implementation BBAssetsPickerAssetsGroupViewModel
@@ -51,6 +51,16 @@
         @strongify(self);
         return [RACSignal return:self];
     }]];
+    
+    [self.didBecomeActiveSignal
+     subscribeNext:^(BBAssetsPickerAssetsGroupViewModel *value) {
+         [value reloadAssetViewModels];
+     }];
+    
+    [self.didBecomeInactiveSignal
+     subscribeNext:^(BBAssetsPickerAssetsGroupViewModel *value) {
+         [value setSelectedAssetViewModels:nil];
+     }];
     
     return self;
 }
@@ -103,20 +113,7 @@
         }
         
         if (asset) {
-            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-            
-            [options setDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
-            [options setNetworkAccessAllowed:YES];
-            
-            PHImageRequestID requestID = [self.viewModel.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-                [subscriber sendNext:result];
-                [subscriber sendCompleted];
-            }];
-            
-            return [RACDisposable disposableWithBlock:^{
-                @strongify(self);
-                [self.viewModel.imageManager cancelImageRequest:requestID];
-            }];
+            return [[self.viewModel requestThumbnailImageForAsset:asset size:size] subscribe:subscriber];
         }
         else {
             [subscriber sendNext:nil];
@@ -141,13 +138,6 @@
     }
     
     return retval;
-}
-
-- (NSArray *)assetViewModels {
-    if (!_assetViewModels) {
-        [self reloadAssetViewModels];
-    }
-    return _assetViewModels;
 }
 
 @end
