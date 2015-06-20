@@ -16,7 +16,9 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <UIKit/UIImage.h>
 
+@class BBAssetsPickerAssetViewModel;
 @class ALAssetsGroup;
+@class RACCommand;
 
 @interface BBAssetsPickerAssetGroupViewModel : RVMViewModel
 
@@ -28,9 +30,15 @@
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
 @property (readonly,copy,nonatomic) NSArray *assetViewModels;
+@property (readonly,copy,nonatomic) NSArray *selectedAssetViewModels;
+
+@property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup NS_DESIGNATED_INITIALIZER;
 
 - (void)reloadAssetViewModels;
+
+- (void)selectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel;
+- (void)deselectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel;
 
 @end

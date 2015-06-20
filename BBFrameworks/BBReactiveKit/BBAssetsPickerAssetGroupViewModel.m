@@ -23,6 +23,9 @@
 
 @interface BBAssetsPickerAssetGroupViewModel ()
 @property (readwrite,copy,nonatomic) NSArray *assetViewModels;
+@property (readwrite,copy,nonatomic) NSArray *selectedAssetViewModels;
+
+@property (readwrite,strong,nonatomic) RACCommand *doneCommand;
 
 @property (strong,nonatomic) ALAssetsGroup *assetsGroup;
 @end
@@ -37,6 +40,14 @@
     
     [self setAssetsGroup:assetsGroup];
     
+    @weakify(self);
+    [self setDoneCommand:[[RACCommand alloc] initWithEnabled:[RACObserve(self, selectedAssetViewModels) map:^id(NSArray *value) {
+        return @(value.count > 0);
+    }] signalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        return [RACSignal return:self];
+    }]];
+    
     return self;
 }
 
@@ -50,6 +61,23 @@
     }];
     
     [self setAssetViewModels:assetViewModels.count > 0 ? assetViewModels : nil];
+    
+    [self setSelectedAssetViewModels:nil];
+}
+
+- (void)selectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel; {
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithArray:self.selectedAssetViewModels];
+    
+    [temp addObject:viewModel];
+    
+    [self setSelectedAssetViewModels:temp.array];
+}
+- (void)deselectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel; {
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithArray:self.selectedAssetViewModels];
+    
+    [temp removeObject:viewModel];
+    
+    [self setSelectedAssetViewModels:temp.array];
 }
 #pragma mark Properties
 - (NSURL *)URL {

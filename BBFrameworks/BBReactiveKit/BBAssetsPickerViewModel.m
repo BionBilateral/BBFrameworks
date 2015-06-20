@@ -28,6 +28,7 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
 
 @interface BBAssetsPickerViewModel ()
 @property (readwrite,copy,nonatomic) NSArray *assetGroupViewModels;
+
 @property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
 
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
@@ -74,6 +75,7 @@ NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus = @"B
     }];
 }
 
+#pragma mark Properties
 - (NSArray *)assetGroupViewModels {
     if (!_assetGroupViewModels) {
         [self _reloadAssetGroupViewModels];

@@ -52,11 +52,37 @@
          @strongify(self);
          [self.collectionView reloadData];
      }];
+    
+    [[[self.viewModel.doneCommand.executionSignals
+     concat]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         
+         BBAssetsPickerViewController *viewController = [self BB_assetsPickerViewController];
+         
+         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+             @strongify(self);
+             if ([viewController.delegate respondsToSelector:@selector(assetsPickerViewController:didFinishPickingAssets:)]) {
+                 
+                 [viewController.delegate assetsPickerViewController:viewController didFinishPickingAssets:self.viewModel.selectedAssetViewModels];
+             }
+         }];
+     }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([self BB_assetsPickerViewController].cancelBarButtonItem) {
+    if ([self BB_assetsPickerViewController].allowsMultipleSelection) {
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
+        
+        [doneItem setRac_command:self.viewModel.doneCommand];
+        
+        [self.navigationItem setRightBarButtonItems:@[doneItem]];
+        
+        [self.collectionView setAllowsMultipleSelection:YES];
+    }
+    else if ([self BB_assetsPickerViewController].cancelBarButtonItem) {
         [self.navigationItem setRightBarButtonItems:@[[self BB_assetsPickerViewController].cancelBarButtonItem]];
     }
 }
@@ -67,9 +93,47 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BBAssetsPickerAssetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class]) forIndexPath:indexPath];
     
+    [cell setTintColor:collectionView.tintColor];
     [cell setViewModel:self.viewModel.assetViewModels[indexPath.row]];
     
     return cell;
+}
+#pragma mark UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    BBAssetsPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
+    
+    if ([self.viewModel.selectedAssetViewModels containsObject:viewModel]) {
+        [cell setSelected:YES];
+    }
+    else {
+        [cell setSelected:NO];
+    }
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    BBAssetsPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
+    
+    if ([self BB_assetsPickerViewController].allowsMultipleSelection) {
+        if ([self.viewModel.selectedAssetViewModels containsObject:viewModel]) {
+            [self.viewModel deselectAssetViewModel:viewModel];
+        }
+        else {
+            [self.viewModel selectAssetViewModel:viewModel];
+        }
+    }
+    else {
+        [self.viewModel selectAssetViewModel:viewModel];
+        
+        BBAssetsPickerViewController *viewController = [self BB_assetsPickerViewController];
+        
+        @weakify(self);
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            @strongify(self);
+            
+            if ([viewController.delegate respondsToSelector:@selector(assetsPickerViewController:didFinishPickingAssets:)]) {
+                [viewController.delegate assetsPickerViewController:viewController didFinishPickingAssets:self.viewModel.selectedAssetViewModels];
+            }
+        }];
+    }
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBAssetsPickerAssetGroupViewModel *)viewModel; {

@@ -30,6 +30,16 @@
     RAC(self.thumbnailImageView,image) = [RACObserve(self, viewModel.thumbnailImage) deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
+- (void)tintColorDidChange {
+    [self.thumbnailImageView.layer setBorderColor:self.tintColor.CGColor];
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    [self.thumbnailImageView.layer setBorderWidth:selected ? 4.0 : 0.0];
+}
+
 + (CGSize)defaultCellSize; {
     return CGSizeMake(78.0, 78.0);
 }

@@ -21,7 +21,7 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface AssetsPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface AssetsPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBAssetsPickerViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 @end
@@ -45,6 +45,10 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)assetsPickerViewController:(BBAssetsPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets {
+    BBLogObject(assets);
+}
+
 - (IBAction)_systemButtonAction:(id)sender {
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     
@@ -57,6 +61,9 @@
 }
 - (IBAction)_customButtonAction:(id)sender {
     BBAssetsPickerViewController *viewController = [[BBAssetsPickerViewController alloc] init];
+    
+    [viewController setAllowsMultipleSelection:YES];
+    [viewController setDelegate:self];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }

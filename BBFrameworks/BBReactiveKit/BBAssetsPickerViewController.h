@@ -20,4 +20,6 @@
 
 @property (weak,nonatomic) id<BBAssetsPickerViewControllerDelegate> delegate;
 
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 @end

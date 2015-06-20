@@ -23,6 +23,10 @@
 
 @implementation BBAssetsPickerAssetViewModel
 
+- (UIImage *)assetOriginalImage {
+    return nil;
+}
+
 - (instancetype)initWithAsset:(ALAsset *)asset {
     if (!(self = [super init]))
         return nil;
