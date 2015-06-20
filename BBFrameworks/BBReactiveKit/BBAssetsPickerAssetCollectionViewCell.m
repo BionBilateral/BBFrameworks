@@ -29,6 +29,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self.thumbnailImageView setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 - (void)tintColorDidChange {
@@ -73,7 +74,7 @@
 }
 
 + (CGSize)defaultCellSize; {
-    return CGSizeMake(92.0, 92.0);
+    return CGSizeMake(100.0, 100.0);
 }
 
 @end

@@ -31,6 +31,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self.thumbnailImageView setBackgroundColor:[UIColor lightGrayColor]];
+    
     RAC(self.nameLabel,text) = [RACObserve(self, viewModel.name) deliverOn:[RACScheduler mainThreadScheduler]];
     RAC(self.countLabel,text) = [RACObserve(self, viewModel.estimatedAssetCountString) deliverOn:[RACScheduler mainThreadScheduler]];
 }
