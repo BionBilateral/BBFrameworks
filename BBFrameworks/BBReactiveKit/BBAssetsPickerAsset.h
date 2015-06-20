@@ -16,7 +16,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
 
+@class RACSignal;
+
 @protocol BBAssetsPickerAsset <NSObject>
 @required
-- (UIImage *)assetOriginalImage;
+- (RACSignal *)requestAssetImageIncludingEdits:(BOOL)includeEdits progressBlock:(void(^)(CGFloat progress))progressBlock;
 @end

@@ -59,6 +59,7 @@
      }];
     
     [self setImageManager:[[PHCachingImageManager alloc] init]];
+    [self.imageManager setAllowsCachingHighQualityImages:NO];
     
     return self;
 }

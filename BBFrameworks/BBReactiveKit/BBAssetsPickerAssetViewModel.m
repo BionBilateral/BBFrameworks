@@ -17,6 +17,8 @@
 #import "BBAssetsPickerAssetsGroupViewModel.h"
 #import "BBAssetsPickerViewModel.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import <Photos/Photos.h>
 
 @interface BBAssetsPickerAssetViewModel ()
@@ -26,8 +28,36 @@
 
 @implementation BBAssetsPickerAssetViewModel
 
-- (UIImage *)assetOriginalImage {
-    return nil;
+- (RACSignal *)requestAssetImageIncludingEdits:(BOOL)includeEdits progressBlock:(void(^)(CGFloat progress))progressBlock; {
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        
+        [options setVersion:includeEdits ? PHImageRequestOptionsVersionCurrent : PHImageRequestOptionsVersionOriginal];
+        [options setDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
+        [options setNetworkAccessAllowed:YES];
+        
+        if (progressBlock) {
+            [options setProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info){
+                progressBlock(progress);
+            }];
+        }
+        
+        PHImageRequestID requestID = [[PHImageManager defaultManager] requestImageForAsset:self.asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage *result, NSDictionary *info) {
+            if (result) {
+                [subscriber sendNext:result];
+                [subscriber sendCompleted];
+            }
+            else {
+                [subscriber sendError:info[PHImageErrorKey]];
+            }
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [[PHImageManager defaultManager] cancelImageRequest:requestID];
+        }];
+    }];
 }
 
 - (instancetype)initWithAsset:(PHAsset *)asset assetsGroupViewModel:(BBAssetsPickerAssetsGroupViewModel *)assetsGroupViewModel {
