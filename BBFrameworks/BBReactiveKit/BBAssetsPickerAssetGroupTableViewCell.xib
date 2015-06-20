@@ -13,29 +13,51 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0rW-Xl-pFi" id="4h7-hA-bzv">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oND-sX-90Q">
-                        <rect key="frame" x="8" y="12.5" width="75" height="75"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oND-sX-90Q">
+                        <rect key="frame" x="8" y="12" width="75" height="75"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="JD9-uL-44o"/>
                             <constraint firstAttribute="height" constant="75" id="zU9-ib-T5c"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VI-78-cpv">
-                        <rect key="frame" x="91" y="39.5" width="196" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7em-uf-iuQ">
+                        <rect key="frame" x="91" y="28.5" width="196" height="42.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VI-78-cpv">
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-Cf-LbZ">
+                                <rect key="frame" x="0.0" y="28" width="196" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dKO-Cf-LbZ" secondAttribute="trailing" id="5kc-JX-b9H"/>
+                            <constraint firstAttribute="bottom" secondItem="dKO-Cf-LbZ" secondAttribute="bottom" id="77c-5m-GRX"/>
+                            <constraint firstAttribute="trailing" secondItem="0VI-78-cpv" secondAttribute="trailing" id="GQO-Do-JIr"/>
+                            <constraint firstItem="0VI-78-cpv" firstAttribute="top" secondItem="7em-uf-iuQ" secondAttribute="top" id="dlU-08-puG"/>
+                            <constraint firstItem="dKO-Cf-LbZ" firstAttribute="top" secondItem="0VI-78-cpv" secondAttribute="bottom" constant="8" id="eYs-a7-GqL"/>
+                            <constraint firstItem="dKO-Cf-LbZ" firstAttribute="leading" secondItem="7em-uf-iuQ" secondAttribute="leading" id="igp-Dk-vjd"/>
+                            <constraint firstItem="0VI-78-cpv" firstAttribute="leading" secondItem="7em-uf-iuQ" secondAttribute="leading" id="rMY-dm-8MT"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="0VI-78-cpv" firstAttribute="leading" secondItem="oND-sX-90Q" secondAttribute="trailing" constant="8" id="0UA-12-zuU"/>
-                    <constraint firstAttribute="centerY" secondItem="0VI-78-cpv" secondAttribute="centerY" id="5WO-S4-lpb"/>
                     <constraint firstAttribute="centerY" secondItem="oND-sX-90Q" secondAttribute="centerY" id="QaH-dF-xBT"/>
                     <constraint firstItem="oND-sX-90Q" firstAttribute="leading" secondItem="4h7-hA-bzv" secondAttribute="leadingMargin" id="V2C-kI-WBR"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="0VI-78-cpv" secondAttribute="trailing" constant="-8" id="veD-6U-Xom"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7em-uf-iuQ" secondAttribute="trailing" constant="-8" id="gUZ-LS-8aS"/>
+                    <constraint firstItem="7em-uf-iuQ" firstAttribute="leading" secondItem="oND-sX-90Q" secondAttribute="trailing" constant="8" id="l1m-RA-oUF"/>
+                    <constraint firstAttribute="centerY" secondItem="7em-uf-iuQ" secondAttribute="centerY" id="xgx-VN-LIa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="countLabel" destination="dKO-Cf-LbZ" id="bfV-5t-XoQ"/>
                 <outlet property="nameLabel" destination="0VI-78-cpv" id="cva-0L-hlB"/>
                 <outlet property="thumbnailImageView" destination="oND-sX-90Q" id="20v-5n-f8R"/>
             </connections>

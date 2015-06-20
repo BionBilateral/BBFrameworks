@@ -34,16 +34,16 @@
     [self addSubview:self.statusLabel];
     
     RAC(self.statusLabel,text) = [[RACObserve(self, authorizationStatus) map:^id(NSNumber *value) {
-        ALAuthorizationStatus status = value.integerValue;
+        PHAuthorizationStatus status = value.integerValue;
         
         switch (status) {
-            case ALAuthorizationStatusAuthorized:
+            case PHAuthorizationStatusAuthorized:
                 return @"";
-            case ALAuthorizationStatusNotDetermined:
+            case PHAuthorizationStatusNotDetermined:
                 return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_NOT_DETERMINED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Requesting access to Photos…", @"assets picker background view authorization status not determined text");
-            case ALAuthorizationStatusDenied:
+            case PHAuthorizationStatusDenied:
                 return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos was denied. Adjust access to photos in Settings -> Privacy -> Photos.", @"assets picker background view authorization status denied text");
-            case ALAuthorizationStatusRestricted:
+            case PHAuthorizationStatusRestricted:
                 return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_RESTRICTED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos has been restricted. Ask your administrator to provide access to photos on this device.", @"assets picker background view authorization status restricted text");
         }
     }] deliverOn:[RACScheduler mainThreadScheduler]];

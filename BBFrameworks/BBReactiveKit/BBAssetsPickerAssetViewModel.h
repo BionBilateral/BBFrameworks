@@ -16,12 +16,13 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "BBAssetsPickerAsset.h"
 
-@class ALAsset;
+@class BBAssetsPickerAssetsGroupViewModel;
+@class PHAsset;
 
 @interface BBAssetsPickerAssetViewModel : RVMViewModel <BBAssetsPickerAsset>
 
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
-- (instancetype)initWithAsset:(ALAsset *)asset NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAsset:(PHAsset *)asset assetsGroupViewModel:(BBAssetsPickerAssetsGroupViewModel *)assetsGroupViewModel NS_DESIGNATED_INITIALIZER;
 
 @end

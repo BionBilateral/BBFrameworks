@@ -16,29 +16,29 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <UIKit/UIImage.h>
 
-@class BBAssetsPickerAssetViewModel;
-@class ALAssetsGroup;
+@class BBAssetsPickerAssetViewModel,BBAssetsPickerViewModel;
+@class PHCollection;
 @class RACCommand;
 
-@interface BBAssetsPickerAssetGroupViewModel : RVMViewModel
+@interface BBAssetsPickerAssetsGroupViewModel : RVMViewModel
 
 @property (assign,nonatomic,getter=isDeleted) BOOL deleted;
 
-@property (readonly,nonatomic) NSURL *URL;
-
 @property (readonly,nonatomic) NSString *name;
-@property (readonly,nonatomic) UIImage *thumbnailImage;
+@property (readonly,nonatomic) NSString *estimatedAssetCountString;
 
 @property (readonly,copy,nonatomic) NSArray *assetViewModels;
 @property (readonly,copy,nonatomic) NSArray *selectedAssetViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
-- (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBAssetsPickerViewModel *)viewModel NS_DESIGNATED_INITIALIZER;
 
 - (void)reloadAssetViewModels;
 
 - (void)selectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel;
 - (void)deselectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel;
+
+- (RACSignal *)requestThumbnailImageWithSize:(CGSize)size;
 
 @end

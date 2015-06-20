@@ -15,7 +15,7 @@
 
 #import "BBAssetsPickerAssetGroupTableViewController.h"
 #import "BBAssetsPickerViewModel.h"
-#import "BBAssetsPickerAssetGroupViewModel.h"
+#import "BBAssetsPickerAssetsGroupViewModel.h"
 #import "BBAssetsPickerAssetGroupTableViewCell.h"
 #import "BBAssetsPickerAssetCollectionViewController.h"
 

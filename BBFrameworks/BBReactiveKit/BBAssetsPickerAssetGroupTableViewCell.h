@@ -15,11 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBAssetsPickerAssetGroupViewModel;
+@class BBAssetsPickerAssetsGroupViewModel;
 
 @interface BBAssetsPickerAssetGroupTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) BBAssetsPickerAssetGroupViewModel *viewModel;
+@property (strong,nonatomic) BBAssetsPickerAssetsGroupViewModel *viewModel;
 
 + (CGFloat)rowHeight;
 

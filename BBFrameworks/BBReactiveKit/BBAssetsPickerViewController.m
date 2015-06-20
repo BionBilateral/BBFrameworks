@@ -22,8 +22,6 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import <AssetsLibrary/AssetsLibrary.h>
-
 @interface BBAssetsPickerViewController ()
 @property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 
@@ -57,6 +55,8 @@
     
     [self setBackgroundView:[[BBAssetsPickerBackgroundView alloc] initWithFrame:CGRectZero]];
     [self.view addSubview:self.backgroundView];
+    
+    RAC(self.backgroundView,authorizationStatus) = [RACObserve(self.viewModel, authorizationStatus) deliverOn:[RACScheduler mainThreadScheduler]];
     
     if (self.presentingViewController) {
         [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
@@ -98,12 +98,18 @@
          deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *value) {
             @strongify(self);
-            [self.backgroundView setAuthorizationStatus:value.integerValue];
-            [self setTableViewController:[[BBAssetsPickerAssetGroupTableViewController alloc] initWithViewModel:self.viewModel]];
-        } error:^(NSError *error) {
-            @strongify(self);
-            [self.backgroundView setAuthorizationStatus:[error.userInfo[BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus] integerValue]];
+            if (value.boolValue) {
+                [self setTableViewController:[[BBAssetsPickerAssetGroupTableViewController alloc] initWithViewModel:self.viewModel]];
+            }
         }];
+    }
+}
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+    if (parent) {
+        [self.viewModel setActive:YES];
+    }
+    else {
+        [self.viewModel setActive:NO];
     }
 }
 

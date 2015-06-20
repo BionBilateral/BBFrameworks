@@ -15,18 +15,27 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 
-extern NSString *const BBAssetsPickerViewModelErrorDomain;
-extern NSInteger const BBAssetsPickerViewModelErrorCodeAuthorizationStatus;
-extern NSString *const BBAssetsPickerViewModelErrorUserInfoKeyAuthorizationStatus;
+#import <Photos/Photos.h>
+
+typedef NS_ENUM(NSInteger, BBAssetsPickerViewModelAuthorizationStatus) {
+    BBAssetsPickerViewModelAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
+    BBAssetsPickerViewModelAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
+    BBAssetsPickerViewModelAuthorizationStatusDenied = PHAuthorizationStatusDenied,
+    BBAssetsPickerViewModelAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
+};
 
 @class BBAssetsPickerAssetViewModel;
 @class RACCommand;
 
 @interface BBAssetsPickerViewModel : RVMViewModel
 
+@property (readonly,assign,nonatomic) BBAssetsPickerViewModelAuthorizationStatus authorizationStatus;
+
 @property (readonly,copy,nonatomic) NSArray *assetGroupViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *cancelCommand;
+
+@property (readonly,strong,nonatomic) PHCachingImageManager *imageManager;
 
 - (RACSignal *)requestAssetsLibraryAuthorizationStatus;
 
