@@ -13,7 +13,7 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBAssetsPickerAssetsGroupViewModel.h"
+#import "BBMediaPickerCollectionViewModel.h"
 #import "BBAssetsPickerAssetViewModel.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBFoundationDebugging.h"
@@ -22,7 +22,7 @@
 
 #import <Photos/Photos.h>
 
-@interface BBAssetsPickerAssetsGroupViewModel ()
+@interface BBMediaPickerCollectionViewModel ()
 @property (readwrite,copy,nonatomic) NSArray *assetViewModels;
 @property (readwrite,copy,nonatomic) NSArray *selectedAssetViewModels;
 
@@ -32,7 +32,7 @@
 @property (readwrite,weak,nonatomic) BBMediaPickerViewModel *viewModel;
 @end
 
-@implementation BBAssetsPickerAssetsGroupViewModel
+@implementation BBMediaPickerCollectionViewModel
 #pragma mark *** Public Methods ***
 - (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBMediaPickerViewModel *)viewModel; {
     if (!(self = [super init]))

@@ -15,11 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBAssetsPickerAssetsGroupViewModel;
+@class BBMediaPickerCollectionViewModel;
 
 @interface BBAssetsPickerAssetGroupTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) BBAssetsPickerAssetsGroupViewModel *viewModel;
+@property (strong,nonatomic) BBMediaPickerCollectionViewModel *viewModel;
 
 + (CGFloat)rowHeight;
 

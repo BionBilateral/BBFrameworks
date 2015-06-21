@@ -22,8 +22,8 @@
 		79052B251B1AF4010097B7AF /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */; };
 		7907C6AC1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6AA1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.h */; };
 		7907C6AD1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6AB1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.m */; };
-		7907C6B01B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6AE1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.h */; };
-		7907C6B11B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6AF1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.m */; };
+		7907C6B01B34912C003EA1AE /* BBMediaPickerCollectionViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6AE1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.h */; };
+		7907C6B11B34912C003EA1AE /* BBMediaPickerCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6AF1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.m */; };
 		7907C6B31B349335003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7907C6B21B349335003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.xib */; };
 		7907C6B81B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6B61B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.h */; };
 		7907C6B91B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6B71B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m */; };
@@ -260,8 +260,8 @@
 		79052B271B1AF4120097B7AF /* BBFrameworksOSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksOSXTests-Info.plist"; sourceTree = "<group>"; };
 		7907C6AA1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetGroupTableViewCell.h; sourceTree = "<group>"; };
 		7907C6AB1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetGroupTableViewCell.m; sourceTree = "<group>"; };
-		7907C6AE1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetsGroupViewModel.h; sourceTree = "<group>"; };
-		7907C6AF1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetsGroupViewModel.m; sourceTree = "<group>"; };
+		7907C6AE1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerCollectionViewModel.h; sourceTree = "<group>"; };
+		7907C6AF1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerCollectionViewModel.m; sourceTree = "<group>"; };
 		7907C6B21B349335003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAssetsPickerAssetGroupTableViewCell.xib; sourceTree = "<group>"; };
 		7907C6B61B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetCollectionViewController.h; sourceTree = "<group>"; };
 		7907C6B71B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetCollectionViewController.m; sourceTree = "<group>"; };
@@ -668,8 +668,8 @@
 			children = (
 				7989DD581B34740B0001F7C3 /* BBMediaPickerViewModel.h */,
 				7989DD591B34740B0001F7C3 /* BBMediaPickerViewModel.m */,
-				7907C6AE1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.h */,
-				7907C6AF1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.m */,
+				7907C6AE1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.h */,
+				7907C6AF1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.m */,
 				7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */,
 				7907C6BF1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m */,
 				7907C6C81B34D466003EA1AE /* BBAssetsPickerAsset.h */,
@@ -961,7 +961,7 @@
 				7927D0101B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */,
 				79E0BC0E1B27C0C500892D81 /* BBWebKitTitleView.h in Headers */,
 				7927CFD01B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */,
-				7907C6B01B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.h in Headers */,
+				7907C6B01B34912C003EA1AE /* BBMediaPickerCollectionViewModel.h in Headers */,
 				7927CFE81B1AD2B90034288D /* BBBadgeView.h in Headers */,
 				79E0BC121B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h in Headers */,
 				7927D01E1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */,
@@ -1619,7 +1619,7 @@
 				7927D0001B1AD2B90034288D /* UIColor+BBKitExtensions.m in Sources */,
 				7927D0241B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */,
 				7989DD571B3469A60001F7C3 /* BBMediaPickerBackgroundView.m in Sources */,
-				7907C6B11B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.m in Sources */,
+				7907C6B11B34912C003EA1AE /* BBMediaPickerCollectionViewModel.m in Sources */,
 				7907C6AD1B3490FE003EA1AE /* BBAssetsPickerAssetGroupTableViewCell.m in Sources */,
 				7927D0141B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
 				7927CFD21B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */,

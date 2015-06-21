@@ -15,10 +15,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBAssetsPickerAssetsGroupViewModel;
+@class BBMediaPickerCollectionViewModel;
 
 @interface BBAssetsPickerAssetCollectionViewController : UICollectionViewController
 
-- (instancetype)initWithViewModel:(BBAssetsPickerAssetsGroupViewModel *)viewModel;
+- (instancetype)initWithViewModel:(BBMediaPickerCollectionViewModel *)viewModel;
 
 @end

@@ -20,7 +20,7 @@
 @class PHCollection;
 @class RACCommand;
 
-@interface BBAssetsPickerAssetsGroupViewModel : RVMViewModel
+@interface BBMediaPickerCollectionViewModel : RVMViewModel
 
 @property (assign,nonatomic,getter=isDeleted) BOOL deleted;
 
