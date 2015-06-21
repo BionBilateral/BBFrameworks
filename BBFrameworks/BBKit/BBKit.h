@@ -28,6 +28,7 @@
 #else
 #import <BBFrameworks/NSImage+BBKitExtensions.h>
 #endif
+
 #import <BBFrameworks/BBBadgeView.h>
 #import <BBFrameworks/BBGradientView.h>
 #endif

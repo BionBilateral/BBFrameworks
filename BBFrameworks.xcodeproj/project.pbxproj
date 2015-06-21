@@ -201,6 +201,13 @@
 		79B4FFBF1B364384007B8629 /* UIView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */; };
 		79B4FFC01B364384007B8629 /* UIViewController+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79B4FFC11B364384007B8629 /* UIViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */; };
+		79B4FFC91B3647F8007B8629 /* BBTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC31B3647F8007B8629 /* BBTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFCA1B3647F8007B8629 /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC41B3647F8007B8629 /* BBTooltipView.m */; };
+		79B4FFCB1B3647F8007B8629 /* BBTooltipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC51B3647F8007B8629 /* BBTooltipViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFCC1B3647F8007B8629 /* BBTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC61B3647F8007B8629 /* BBTooltipViewController.m */; };
+		79B4FFCD1B3647F8007B8629 /* BBTooltipViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFCE1B3647F8007B8629 /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFD01B364842007B8629 /* BBTooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFCF1B364842007B8629 /* BBTooltip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
@@ -386,6 +393,13 @@
 		79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+BBKitExtensions.m"; path = "iOS/UIView+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+BBKitExtensions.h"; path = "iOS/UIViewController+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+BBKitExtensions.m"; path = "iOS/UIViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79B4FFC31B3647F8007B8629 /* BBTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipView.h; sourceTree = "<group>"; };
+		79B4FFC41B3647F8007B8629 /* BBTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipView.m; sourceTree = "<group>"; };
+		79B4FFC51B3647F8007B8629 /* BBTooltipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewController.h; sourceTree = "<group>"; };
+		79B4FFC61B3647F8007B8629 /* BBTooltipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipViewController.m; sourceTree = "<group>"; };
+		79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDataSource.h; sourceTree = "<group>"; };
+		79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDelegate.h; sourceTree = "<group>"; };
+		79B4FFCF1B364842007B8629 /* BBTooltip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltip.h; sourceTree = "<group>"; };
 		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -517,6 +531,7 @@
 				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 				79B4FF661B363B04007B8629 /* BBMediaPicker */,
 				79B4FF9B1B363F1F007B8629 /* BBWebKit */,
+				79B4FFC21B3647DD007B8629 /* BBTooltip */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -677,6 +692,20 @@
 				79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */,
 			);
 			path = BBWebKit;
+			sourceTree = "<group>";
+		};
+		79B4FFC21B3647DD007B8629 /* BBTooltip */ = {
+			isa = PBXGroup;
+			children = (
+				79B4FFCF1B364842007B8629 /* BBTooltip.h */,
+				79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */,
+				79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */,
+				79B4FFC51B3647F8007B8629 /* BBTooltipViewController.h */,
+				79B4FFC61B3647F8007B8629 /* BBTooltipViewController.m */,
+				79B4FFC31B3647F8007B8629 /* BBTooltipView.h */,
+				79B4FFC41B3647F8007B8629 /* BBTooltipView.m */,
+			);
+			path = BBTooltip;
 			sourceTree = "<group>";
 		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
@@ -953,6 +982,7 @@
 				79B4FFA11B363F55007B8629 /* BBWebKitTitleView.h in Headers */,
 				79B4FF8C1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.h in Headers */,
 				79B4FF811B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h in Headers */,
+				79B4FFCD1B3647F8007B8629 /* BBTooltipViewControllerDataSource.h in Headers */,
 				79B4FF8A1B363D4E007B8629 /* BBMediaPickerBackgroundView.h in Headers */,
 				79B4FFA51B363F55007B8629 /* BBWebKitViewControllerDelegate.h in Headers */,
 				7927D01A1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
@@ -961,11 +991,13 @@
 				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
 				79B4FFB81B364384007B8629 /* UIColor+BBKitExtensions.h in Headers */,
+				79B4FFCE1B3647F8007B8629 /* BBTooltipViewControllerDelegate.h in Headers */,
 				7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 				79B4FFA71B363FC1007B8629 /* BBWebKit.h in Headers */,
 				79B4FFBC1B364384007B8629 /* UIImage+BBKitExtensions.h in Headers */,
 				79B4FF911B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h in Headers */,
 				79E0BC021B27B5C700892D81 /* BBProgressNavigationBar.h in Headers */,
+				79B4FFD01B364842007B8629 /* BBTooltip.h in Headers */,
 				79B4FF971B363D4E007B8629 /* BBMediaPickerViewModel.h in Headers */,
 				7927CFC01B1AD2B90034288D /* BBFoundation.h in Headers */,
 				7927CFDC1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */,
@@ -975,9 +1007,11 @@
 				79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				79B4FF881B363D4E007B8629 /* BBMediaPickerAssetViewModel.h in Headers */,
 				7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
+				79B4FFC91B3647F8007B8629 /* BBTooltipView.h in Headers */,
 				7927CFC21B1AD2B90034288D /* BBFoundationDebugging.h in Headers */,
 				79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */,
 				7927CFC61B1AD2B90034288D /* BBFoundationMacros.h in Headers */,
+				79B4FFCB1B3647F8007B8629 /* BBTooltipViewController.h in Headers */,
 				7927CFEC1B1AD2B90034288D /* BBKit.h in Headers */,
 				79B4FF861B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.h in Headers */,
 				7927D0221B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */,
@@ -1597,7 +1631,9 @@
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */,
+				79B4FFCC1B3647F8007B8629 /* BBTooltipViewController.m in Sources */,
 				79B4FFBD1B364384007B8629 /* UIImage+BBKitExtensions.m in Sources */,
+				79B4FFCA1B3647F8007B8629 /* BBTooltipView.m in Sources */,
 				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */,
 				7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
