@@ -17,7 +17,7 @@
 
 @class BBMediaPickerViewModel;
 
-@interface BBAssetsPickerAssetGroupTableViewController : UITableViewController
+@interface BBMediaPickerCollectionTableViewController : UITableViewController
 
 - (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel;
 

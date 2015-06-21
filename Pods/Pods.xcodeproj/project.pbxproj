@@ -418,7 +418,7 @@
 		595943E5E6D147C4A04B08FB /* RACSerialDisposable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E100F14C1571A1223E4490 /* RACSerialDisposable.m */; };
 		596AAD4467F46FB6064EE52C /* RACEXTKeyPathCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 718BDF4AB3D8468B19F8E638 /* RACEXTKeyPathCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		59F8B281F3D489EA13932681 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB0C727BF8EBCC0A1294F /* ja.lproj */; };
-		5A409DBB23F14603AA41E5E8 /* BBAssetsPickerAssetGroupTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DBF96A2D4312E6EABDF3062B /* BBAssetsPickerAssetGroupTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A409DBB23F14603AA41E5E8 /* BBMediaPickerCollectionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DBF96A2D4312E6EABDF3062B /* BBMediaPickerCollectionTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5A9D7ADF60909B16554913F4 /* NSSet+RACSequenceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A74E4E30C3415A2FDCB56467 /* NSSet+RACSequenceAdditions.m */; };
 		5B21DCCCF6C87F9ADF36236F /* RACSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3F9C4F2720716796E12FA /* RACSubscriber.m */; };
 		5B6EABC2999830741F1BF3A8 /* RACTestScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B0CBD58479E775C74B3FC /* RACTestScheduler.m */; };
@@ -623,7 +623,7 @@
 		849080D59DCE0EEFF5C198FC /* BBAssetsPickerAssetCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C1921F3DC1AD6EEFEF452988 /* BBAssetsPickerAssetCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84EB2E2B76543BBEBBDB2A7A /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA037298AB875ECEBB2797DD /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		854F0120EE17F46F3CDD98E5 /* NSNotificationCenter+RACSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = FCC1AAC437A7F7D0E867AE0A /* NSNotificationCenter+RACSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8552BA22A375B47AB902B26A /* BBAssetsPickerAssetGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF3B2838D488F8B41B4849 /* BBAssetsPickerAssetGroupTableViewController.m */; };
+		8552BA22A375B47AB902B26A /* BBMediaPickerCollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF3B2838D488F8B41B4849 /* BBMediaPickerCollectionTableViewController.m */; };
 		85714F0DD108D9133033003C /* NSMutableDictionary+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6573EE6A2DC625D511E83FD6 /* NSMutableDictionary+BlocksKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		857A6A21DCFE606003983039 /* Pods-iOSDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A3C70A7331FC5AA3CF0D627 /* Pods-iOSDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		85A0A28551439A125ED8E7EF /* NSMutableArray+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F9CCAE451D293704A10F6E28 /* NSMutableArray+BlocksKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1594,7 +1594,7 @@
 		5BCA6DC7425FADE5C1E1ED64 /* NSString+BBFoundationExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		5CAFC47793254A9AA922DCEB /* RACObjCRuntime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACObjCRuntime.m; path = ReactiveCocoa/RACObjCRuntime.m; sourceTree = "<group>"; };
 		5CEAA4031BCC247D770697F4 /* Pods-iOSFrameworks-ReactiveCocoa-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks-ReactiveCocoa-Private.xcconfig"; path = "../Pods-iOSFrameworks-ReactiveCocoa/Pods-iOSFrameworks-ReactiveCocoa-Private.xcconfig"; sourceTree = "<group>"; };
-		5EAF3B2838D488F8B41B4849 /* BBAssetsPickerAssetGroupTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetGroupTableViewController.m; sourceTree = "<group>"; };
+		5EAF3B2838D488F8B41B4849 /* BBMediaPickerCollectionTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerCollectionTableViewController.m; sourceTree = "<group>"; };
 		609951D29FE706CAA51554F8 /* RACDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACDisposable.h; path = ReactiveCocoa/RACDisposable.h; sourceTree = "<group>"; };
 		6132BE83B19B6140DEBAC379 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61819AECAFF528BC972210F0 /* NSSet+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+RACSequenceAdditions.h"; path = "ReactiveCocoa/NSSet+RACSequenceAdditions.h"; sourceTree = "<group>"; };
@@ -1877,7 +1877,7 @@
 		DB4AD884B76AEFAFB0686407 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		DB4D645EB9E1EBD6E027042B /* Pods-OSXFrameworks-ReactiveCocoa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks-ReactiveCocoa.xcconfig"; path = "../Pods-OSXFrameworks-ReactiveCocoa/Pods-OSXFrameworks-ReactiveCocoa.xcconfig"; sourceTree = "<group>"; };
 		DBC0CFAAADB461536E990043 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBF96A2D4312E6EABDF3062B /* BBAssetsPickerAssetGroupTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetGroupTableViewController.h; sourceTree = "<group>"; };
+		DBF96A2D4312E6EABDF3062B /* BBMediaPickerCollectionTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerCollectionTableViewController.h; sourceTree = "<group>"; };
 		DC1A06FBEAEED6048D82CC80 /* RACReplaySubject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACReplaySubject.h; path = ReactiveCocoa/RACReplaySubject.h; sourceTree = "<group>"; };
 		DCCBEDD48437D5D4481F7734 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = es.lproj; path = Pod/Assets/es.lproj; sourceTree = "<group>"; };
 		DD016E05B192943D44B40375 /* NSManagedObjectContext+BBCoreDataImportExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+BBCoreDataImportExtensions.h"; sourceTree = "<group>"; };
@@ -2254,8 +2254,8 @@
 				0AFB89FFC1D7AF933F97759E /* BBAssetsPickerAssetCollectionViewLayout.m */,
 				6891973D438C8D4F065B01AB /* BBAssetsPickerAssetGroupTableViewCell.h */,
 				93C69155B762EB811A670EF1 /* BBAssetsPickerAssetGroupTableViewCell.m */,
-				DBF96A2D4312E6EABDF3062B /* BBAssetsPickerAssetGroupTableViewController.h */,
-				5EAF3B2838D488F8B41B4849 /* BBAssetsPickerAssetGroupTableViewController.m */,
+				DBF96A2D4312E6EABDF3062B /* BBMediaPickerCollectionTableViewController.h */,
+				5EAF3B2838D488F8B41B4849 /* BBMediaPickerCollectionTableViewController.m */,
 				8F4EE34E4EAEF6F2915337BA /* BBMediaPickerAssetViewModel.h */,
 				BD2655F7D0C7AD922D510EE8 /* BBMediaPickerAssetViewModel.m */,
 				E9F180F215F3670EF2E0AA81 /* BBMediaPickerCollectionViewModel.h */,
@@ -3763,7 +3763,7 @@
 				72228E74B1A1A59F508928A6 /* BBAssetsPickerAssetCollectionViewController.h in Headers */,
 				937EFE5462299D6390DE0212 /* BBAssetsPickerAssetCollectionViewLayout.h in Headers */,
 				4F85F2AD6829EE9D364E5C42 /* BBAssetsPickerAssetGroupTableViewCell.h in Headers */,
-				5A409DBB23F14603AA41E5E8 /* BBAssetsPickerAssetGroupTableViewController.h in Headers */,
+				5A409DBB23F14603AA41E5E8 /* BBMediaPickerCollectionTableViewController.h in Headers */,
 				97783504A286679B4CFE53F9 /* BBMediaPickerAssetViewModel.h in Headers */,
 				BDC5BDD57C8C37505DEBB37A /* BBMediaPickerCollectionViewModel.h in Headers */,
 				62B9B67CB2BA1AAEDEB620E1 /* BBMediaPickerBackgroundView.h in Headers */,
@@ -4791,7 +4791,7 @@
 				9040D36A4C6E6BF2C15BCC0F /* BBAssetsPickerAssetCollectionViewController.m in Sources */,
 				1A957A296E5ACC672725E2BB /* BBAssetsPickerAssetCollectionViewLayout.m in Sources */,
 				F36F51DC7D3FB4A64200779E /* BBAssetsPickerAssetGroupTableViewCell.m in Sources */,
-				8552BA22A375B47AB902B26A /* BBAssetsPickerAssetGroupTableViewController.m in Sources */,
+				8552BA22A375B47AB902B26A /* BBMediaPickerCollectionTableViewController.m in Sources */,
 				F9F65B0F44134BED7C39AC72 /* BBMediaPickerAssetViewModel.m in Sources */,
 				11E33970771524169DBD198A /* BBMediaPickerCollectionViewModel.m in Sources */,
 				90DC8AC19783DE4D800B5D3D /* BBMediaPickerBackgroundView.m in Sources */,

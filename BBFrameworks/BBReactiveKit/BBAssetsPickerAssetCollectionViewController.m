@@ -17,7 +17,7 @@
 #import "BBMediaPickerCollectionViewModel.h"
 #import "BBAssetsPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetViewModel.h"
-#import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
+#import "BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h"
 #import "BBAssetsPickerAssetCollectionViewLayout.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>

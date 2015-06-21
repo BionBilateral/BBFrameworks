@@ -17,7 +17,7 @@
 #import "BBMediaPickerBackgroundView.h"
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerViewModel.h"
-#import "BBAssetsPickerAssetGroupTableViewController.h"
+#import "BBMediaPickerCollectionTableViewController.h"
 #import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -26,7 +26,7 @@
 @property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 
 @property (strong,nonatomic) BBMediaPickerBackgroundView *backgroundView;
-@property (strong,nonatomic) BBAssetsPickerAssetGroupTableViewController *tableViewController;
+@property (strong,nonatomic) BBMediaPickerCollectionTableViewController *tableViewController;
 
 @property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 
@@ -99,7 +99,7 @@
         subscribeNext:^(NSNumber *value) {
             @strongify(self);
             if (value.boolValue) {
-                [self setTableViewController:[[BBAssetsPickerAssetGroupTableViewController alloc] initWithViewModel:self.viewModel]];
+                [self setTableViewController:[[BBMediaPickerCollectionTableViewController alloc] initWithViewModel:self.viewModel]];
             }
         }];
     }
@@ -113,7 +113,7 @@
     }
 }
 
-- (void)setTableViewController:(BBAssetsPickerAssetGroupTableViewController *)tableViewController {
+- (void)setTableViewController:(BBMediaPickerCollectionTableViewController *)tableViewController {
     _tableViewController = tableViewController;
     
     if (_tableViewController) {
