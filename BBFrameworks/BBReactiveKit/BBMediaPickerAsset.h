@@ -18,7 +18,7 @@
 
 @class RACSignal;
 
-@protocol BBAssetsPickerAsset <NSObject>
+@protocol BBMediaPickerAsset <NSObject>
 @required
 - (RACSignal *)requestAssetImageIncludingEdits:(BOOL)includeEdits progressBlock:(void(^)(CGFloat progress))progressBlock;
 @end
