@@ -33,7 +33,7 @@
 		05352409E39E13AAA90AFA6C /* NSObject+RACKVOWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB930B136501FDCD09CA869 /* NSObject+RACKVOWrapper.m */; };
 		05CBE503B17761293DDACFCD /* RACStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 876C9FD618D027B3C544D8D0 /* RACStream.m */; };
 		05CC273E6892DC041B067F7D /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = BF82EFC9C0F612F598096BD6 /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05EE70A55455E59618C1CC6A /* BBAssetsPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E09BE3AD8BAE112BCABC37A3 /* BBAssetsPickerViewModel.m */; };
+		05EE70A55455E59618C1CC6A /* BBMediaPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E09BE3AD8BAE112BCABC37A3 /* BBMediaPickerViewModel.m */; };
 		06496E81575A1BD38102B9BA /* RACStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 876C9FD618D027B3C544D8D0 /* RACStream.m */; };
 		067BA532ED6BE253BF9CA2C7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222864F42DE3500C3FA49D8 /* CoreData.framework */; };
 		06AFF88611E698D71CB13208 /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = FCEF27528CCB289797F810B7 /* cs.lproj */; };
@@ -48,7 +48,7 @@
 		08E6C52DBF4BF1824000CEC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2B05AD8C52367C8623D70C /* Foundation.framework */; };
 		095658BEA40BF163E0249443 /* UITableViewCell+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 41D355BE24002F60ABB290AB /* UITableViewCell+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A69348B3B70A36E9C285D2F /* Pods-iOSDemo-ReactiveCocoa-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34F61DA8F5D72907F6D7C8 /* Pods-iOSDemo-ReactiveCocoa-dummy.m */; };
-		0A91A43D8CF1ACEA545A986C /* BBAssetsPickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A1FB9563FDF87E107CE2098A /* BBAssetsPickerViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A91A43D8CF1ACEA545A986C /* BBMediaPickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = A1FB9563FDF87E107CE2098A /* BBMediaPickerViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AAB3CEB1C3BE1D526131589 /* NSURLConnection+RACSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EA432B4E5F69998190E498 /* NSURLConnection+RACSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B68161B38C2BC85B8EB22E6 /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1042F9E6E949D93FEF84B26B /* NSData+BBFoundationExtensions.m */; };
 		0B6A107F71298D5725BF59E3 /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 10687315B23BCABDF045D541 /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1759,7 +1759,7 @@
 		A16D935D34CC2BF84C2EB7F2 /* BBKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBKit.h; sourceTree = "<group>"; };
 		A188FE324D8127C86A8A168C /* Pods-OSXFrameworks-BlocksKit-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks-BlocksKit-Private.xcconfig"; path = "../Pods-OSXFrameworks-BlocksKit/Pods-OSXFrameworks-BlocksKit-Private.xcconfig"; sourceTree = "<group>"; };
 		A1E43882FC7D2A0B2FD6AE4B /* Pods-iOSDemo-ReactiveViewModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-iOSDemo-ReactiveViewModel.modulemap"; path = "../Pods-iOSDemo-ReactiveViewModel/Pods-iOSDemo-ReactiveViewModel.modulemap"; sourceTree = "<group>"; };
-		A1FB9563FDF87E107CE2098A /* BBAssetsPickerViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerViewModel.h; sourceTree = "<group>"; };
+		A1FB9563FDF87E107CE2098A /* BBMediaPickerViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModel.h; sourceTree = "<group>"; };
 		A28F2F917BA76DF026CF26F9 /* BBReactiveThumbnail.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBReactiveThumbnail.h; sourceTree = "<group>"; };
 		A2B5FC356C44CEC00D151B42 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = pt.lproj; path = Pod/Assets/pt.lproj; sourceTree = "<group>"; };
 		A33AB7630D19BB83601C81A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-iOSDemo-BlocksKit/Info.plist"; sourceTree = "<group>"; };
@@ -1891,7 +1891,7 @@
 		DFF9392905A2DF747F2FA903 /* UIImage+BBKitExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
 		DFFE86162B6D04C3496ACBBC /* Pods-iOSDemo-Archimedes.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo-Archimedes.xcconfig"; path = "../Pods-iOSDemo-Archimedes/Pods-iOSDemo-Archimedes.xcconfig"; sourceTree = "<group>"; };
 		E00EEF2383F15140A538F425 /* RACKVOTrampoline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACKVOTrampoline.h; path = ReactiveCocoa/RACKVOTrampoline.h; sourceTree = "<group>"; };
-		E09BE3AD8BAE112BCABC37A3 /* BBAssetsPickerViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerViewModel.m; sourceTree = "<group>"; };
+		E09BE3AD8BAE112BCABC37A3 /* BBMediaPickerViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerViewModel.m; sourceTree = "<group>"; };
 		E09D39782102D43FE671249A /* BBKitColorMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBKitColorMacros.h; sourceTree = "<group>"; };
 		E0D84DDD649868CA03A70049 /* RACReturnSignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACReturnSignal.m; path = ReactiveCocoa/RACReturnSignal.m; sourceTree = "<group>"; };
 		E0EA432B4E5F69998190E498 /* NSURLConnection+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLConnection+RACSupport.h"; path = "ReactiveCocoa/NSURLConnection+RACSupport.h"; sourceTree = "<group>"; };
@@ -2266,8 +2266,8 @@
 				7CC1CA8A1E96883BCBFE18C3 /* BBMediaPickerViewController.m */,
 				953A8E7F3AFC8C39941895D9 /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */,
 				D20FA04D8BE45F5A455C07FF /* BBAssetsPickerViewControllerDelegate.h */,
-				A1FB9563FDF87E107CE2098A /* BBAssetsPickerViewModel.h */,
-				E09BE3AD8BAE112BCABC37A3 /* BBAssetsPickerViewModel.m */,
+				A1FB9563FDF87E107CE2098A /* BBMediaPickerViewModel.h */,
+				E09BE3AD8BAE112BCABC37A3 /* BBMediaPickerViewModel.m */,
 				78DE8D7A488D40CB05814ECA /* BBProgressNavigationBar.h */,
 				A5428A61A4A69982463AB43C /* BBProgressNavigationBar.m */,
 				BF82EFC9C0F612F598096BD6 /* BBReactiveKit.h */,
@@ -3770,7 +3770,7 @@
 				F7E55D9E54CF3AED780BA5E5 /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				B89F50991E0675012A1A19A8 /* BBMediaPickerViewController.h in Headers */,
 				4C1B53171FC96EB8B01B5914 /* BBAssetsPickerViewControllerDelegate.h in Headers */,
-				0A91A43D8CF1ACEA545A986C /* BBAssetsPickerViewModel.h in Headers */,
+				0A91A43D8CF1ACEA545A986C /* BBMediaPickerViewModel.h in Headers */,
 				510025C0356A07410CF3E610 /* BBBadgeView.h in Headers */,
 				8B9FA67D40BE7CD20E7897F3 /* BBCoreData.h in Headers */,
 				D467AF14B9F31C9564FF96C4 /* BBDefaultManagedObjectEntityMapping.h in Headers */,
@@ -4796,7 +4796,7 @@
 				11E33970771524169DBD198A /* BBAssetsPickerAssetsGroupViewModel.m in Sources */,
 				90DC8AC19783DE4D800B5D3D /* BBMediaPickerBackgroundView.m in Sources */,
 				35E2C304EB6AF043EFB70B46 /* BBMediaPickerViewController.m in Sources */,
-				05EE70A55455E59618C1CC6A /* BBAssetsPickerViewModel.m in Sources */,
+				05EE70A55455E59618C1CC6A /* BBMediaPickerViewModel.m in Sources */,
 				80A64BB2B2C5CCBC1AC9409A /* BBBadgeView.m in Sources */,
 				E061AA24F8C68FB38DAC8012 /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				CD53F4B8F9F90ECE78301BB0 /* BBDefaultManagedObjectPropertyMapping.m in Sources */,

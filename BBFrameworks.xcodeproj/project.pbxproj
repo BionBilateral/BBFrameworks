@@ -191,8 +191,8 @@
 		7989DD531B345A3E0001F7C3 /* AssetsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7989DD521B345A3E0001F7C3 /* AssetsPickerViewController.xib */; };
 		7989DD561B3469A60001F7C3 /* BBMediaPickerBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7989DD541B3469A60001F7C3 /* BBMediaPickerBackgroundView.h */; };
 		7989DD571B3469A60001F7C3 /* BBMediaPickerBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD551B3469A60001F7C3 /* BBMediaPickerBackgroundView.m */; };
-		7989DD5A1B34740B0001F7C3 /* BBAssetsPickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7989DD581B34740B0001F7C3 /* BBAssetsPickerViewModel.h */; };
-		7989DD5B1B34740B0001F7C3 /* BBAssetsPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD591B34740B0001F7C3 /* BBAssetsPickerViewModel.m */; };
+		7989DD5A1B34740B0001F7C3 /* BBMediaPickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7989DD581B34740B0001F7C3 /* BBMediaPickerViewModel.h */; };
+		7989DD5B1B34740B0001F7C3 /* BBMediaPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD591B34740B0001F7C3 /* BBMediaPickerViewModel.m */; };
 		7989DD5D1B34785E0001F7C3 /* BBMediaPickerViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7989DD5C1B34785E0001F7C3 /* BBMediaPickerViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7989DD601B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7989DD5E1B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.h */; };
 		7989DD611B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD5F1B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.m */; };
@@ -380,8 +380,8 @@
 		7989DD521B345A3E0001F7C3 /* AssetsPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsPickerViewController.xib; sourceTree = "<group>"; };
 		7989DD541B3469A60001F7C3 /* BBMediaPickerBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerBackgroundView.h; sourceTree = "<group>"; };
 		7989DD551B3469A60001F7C3 /* BBMediaPickerBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerBackgroundView.m; sourceTree = "<group>"; };
-		7989DD581B34740B0001F7C3 /* BBAssetsPickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerViewModel.h; sourceTree = "<group>"; };
-		7989DD591B34740B0001F7C3 /* BBAssetsPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerViewModel.m; sourceTree = "<group>"; };
+		7989DD581B34740B0001F7C3 /* BBMediaPickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModel.h; sourceTree = "<group>"; };
+		7989DD591B34740B0001F7C3 /* BBMediaPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerViewModel.m; sourceTree = "<group>"; };
 		7989DD5C1B34785E0001F7C3 /* BBMediaPickerViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewControllerDelegate.h; sourceTree = "<group>"; };
 		7989DD5E1B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetGroupTableViewController.h; sourceTree = "<group>"; };
 		7989DD5F1B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetGroupTableViewController.m; sourceTree = "<group>"; };
@@ -666,8 +666,8 @@
 		7989DD4A1B3457B40001F7C3 /* Media Picker View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7989DD581B34740B0001F7C3 /* BBAssetsPickerViewModel.h */,
-				7989DD591B34740B0001F7C3 /* BBAssetsPickerViewModel.m */,
+				7989DD581B34740B0001F7C3 /* BBMediaPickerViewModel.h */,
+				7989DD591B34740B0001F7C3 /* BBMediaPickerViewModel.m */,
 				7907C6AE1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.h */,
 				7907C6AF1B34912C003EA1AE /* BBAssetsPickerAssetsGroupViewModel.m */,
 				7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */,
@@ -975,7 +975,7 @@
 				7989DD561B3469A60001F7C3 /* BBMediaPickerBackgroundView.h in Headers */,
 				79E0BC0B1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h in Headers */,
 				7927D0341B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */,
-				7989DD5A1B34740B0001F7C3 /* BBAssetsPickerViewModel.h in Headers */,
+				7989DD5A1B34740B0001F7C3 /* BBMediaPickerViewModel.h in Headers */,
 				7927CFB61B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */,
 				7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */,
 				7927D01A1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
@@ -1596,7 +1596,7 @@
 				7927CFCE1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */,
 				7927D0081B1AD2B90034288D /* UIView+BBKitExtensions.m in Sources */,
 				7927D00C1B1AD2B90034288D /* UIViewController+BBKitExtensions.m in Sources */,
-				7989DD5B1B34740B0001F7C3 /* BBAssetsPickerViewModel.m in Sources */,
+				7989DD5B1B34740B0001F7C3 /* BBMediaPickerViewModel.m in Sources */,
 				79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */,
 				79E0BC0F1B27C0C500892D81 /* BBWebKitTitleView.m in Sources */,
 				7907C6C11B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m in Sources */,

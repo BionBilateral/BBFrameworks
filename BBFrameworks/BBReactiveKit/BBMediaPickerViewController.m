@@ -16,7 +16,7 @@
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerBackgroundView.h"
 #import "BBFoundationDebugging.h"
-#import "BBAssetsPickerViewModel.h"
+#import "BBMediaPickerViewModel.h"
 #import "BBAssetsPickerAssetGroupTableViewController.h"
 #import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
 
@@ -28,7 +28,7 @@
 @property (strong,nonatomic) BBMediaPickerBackgroundView *backgroundView;
 @property (strong,nonatomic) BBAssetsPickerAssetGroupTableViewController *tableViewController;
 
-@property (strong,nonatomic) BBAssetsPickerViewModel *viewModel;
+@property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 
 @property (assign,nonatomic) BOOL hasRequestedAuthorization;
 @end
@@ -43,7 +43,7 @@
     if (!(self = [super initWithNibName:nil bundle:nil]))
         return nil;
     
-    [self setViewModel:[[BBAssetsPickerViewModel alloc] init]];
+    [self setViewModel:[[BBMediaPickerViewModel alloc] init]];
     
     return self;
 }

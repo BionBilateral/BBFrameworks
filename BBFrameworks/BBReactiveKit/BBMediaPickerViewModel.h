@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, BBAssetsPickerViewModelAuthorizationStatus) {
 @class BBAssetsPickerAssetViewModel;
 @class RACCommand;
 
-@interface BBAssetsPickerViewModel : RVMViewModel
+@interface BBMediaPickerViewModel : RVMViewModel
 
 @property (readonly,assign,nonatomic) BBAssetsPickerViewModelAuthorizationStatus authorizationStatus;
 

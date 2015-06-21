@@ -16,7 +16,7 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <UIKit/UIImage.h>
 
-@class BBAssetsPickerAssetViewModel,BBAssetsPickerViewModel;
+@class BBAssetsPickerAssetViewModel,BBMediaPickerViewModel;
 @class PHCollection;
 @class RACCommand;
 
@@ -32,9 +32,9 @@
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
-@property (readonly,weak,nonatomic) BBAssetsPickerViewModel *viewModel;
+@property (readonly,weak,nonatomic) BBMediaPickerViewModel *viewModel;
 
-- (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBAssetsPickerViewModel *)viewModel NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBMediaPickerViewModel *)viewModel NS_DESIGNATED_INITIALIZER;
 
 - (void)reloadAssetViewModels;
 

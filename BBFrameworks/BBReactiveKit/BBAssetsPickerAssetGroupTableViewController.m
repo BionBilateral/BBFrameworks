@@ -14,7 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBAssetsPickerAssetGroupTableViewController.h"
-#import "BBAssetsPickerViewModel.h"
+#import "BBMediaPickerViewModel.h"
 #import "BBAssetsPickerAssetsGroupViewModel.h"
 #import "BBAssetsPickerAssetGroupTableViewCell.h"
 #import "BBAssetsPickerAssetCollectionViewController.h"
@@ -22,7 +22,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBAssetsPickerAssetGroupTableViewController ()
-@property (strong,nonatomic) BBAssetsPickerViewModel *viewModel;
+@property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 @end
 
 @implementation BBAssetsPickerAssetGroupTableViewController
@@ -57,7 +57,7 @@
     [self.navigationController pushViewController:[[BBAssetsPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel.assetGroupViewModels[indexPath.row]] animated:YES];
 }
 #pragma mark *** Public Methods ***
-- (instancetype)initWithViewModel:(BBAssetsPickerViewModel *)viewModel; {
+- (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel; {
     if (!(self = [super initWithStyle:UITableViewStylePlain]))
         return nil;
     

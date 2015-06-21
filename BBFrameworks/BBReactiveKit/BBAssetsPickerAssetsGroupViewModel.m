@@ -15,7 +15,7 @@
 
 #import "BBAssetsPickerAssetsGroupViewModel.h"
 #import "BBAssetsPickerAssetViewModel.h"
-#import "BBAssetsPickerViewModel.h"
+#import "BBMediaPickerViewModel.h"
 #import "BBFoundationDebugging.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -29,12 +29,12 @@
 @property (readwrite,strong,nonatomic) RACCommand *doneCommand;
 
 @property (strong,nonatomic) PHCollection *assetsGroup;
-@property (readwrite,weak,nonatomic) BBAssetsPickerViewModel *viewModel;
+@property (readwrite,weak,nonatomic) BBMediaPickerViewModel *viewModel;
 @end
 
 @implementation BBAssetsPickerAssetsGroupViewModel
 #pragma mark *** Public Methods ***
-- (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBAssetsPickerViewModel *)viewModel; {
+- (instancetype)initWithAssetsGroup:(PHCollection *)assetsGroup viewModel:(BBMediaPickerViewModel *)viewModel; {
     if (!(self = [super init]))
         return nil;
     
