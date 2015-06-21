@@ -55,9 +55,9 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBReactiveKit"
     
-    subspec.osx.exclude_files = "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h", "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}", "BBFrameworks/BBReactiveKit/BBTooltip*", "BBFrameworks/BBReactiveKit/BBWebKit*", "BBFrameworks/BBReactiveKit/BBAssetsPicker*"
+    subspec.osx.exclude_files = "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h", "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}", "BBFrameworks/BBReactiveKit/BBTooltip*", "BBFrameworks/BBReactiveKit/BBWebKit*"
     
-    subspec.frameworks = "WebKit", "Photos"
+    subspec.frameworks = "WebKit"
     
     subspec.resources = "BBFrameworks/BBReactiveKit/*.xib"
   end
@@ -77,5 +77,18 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBThumbnail"
     
     subspec.source_files = "BBFrameworks/BBReactiveThumbnail"
+  end
+  
+  spec.subspec "BBMediaPicker" do |subspec|
+    subspec.platform = :ios, "8.3"
+    
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.dependency "ReactiveViewModel", "~> 0.3.0"
+    
+    subspec.dependency "BBFrameworks/BBKit"
+    
+    subspec.source_files = "BBFrameworks/BBMediaPicker/*.{h,m}"
+    
+    subspec.frameworks = "Photos"
   end
 end
