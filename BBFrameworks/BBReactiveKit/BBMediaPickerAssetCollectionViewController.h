@@ -17,7 +17,7 @@
 
 @class BBMediaPickerCollectionViewModel;
 
-@interface BBAssetsPickerAssetCollectionViewController : UICollectionViewController
+@interface BBMediaPickerAssetCollectionViewController : UICollectionViewController
 
 - (instancetype)initWithViewModel:(BBMediaPickerCollectionViewModel *)viewModel;
 
