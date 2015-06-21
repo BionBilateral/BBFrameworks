@@ -16,7 +16,7 @@
 #import "BBMediaPickerCollectionTableViewController.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPickerCollectionViewModel.h"
-#import "BBAssetsPickerAssetGroupTableViewCell.h"
+#import "BBMediaPickerCollectionTableViewCell.h"
 #import "BBAssetsPickerAssetCollectionViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -30,8 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView setRowHeight:[BBAssetsPickerAssetGroupTableViewCell rowHeight]];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBAssetsPickerAssetGroupTableViewCell class]) bundle:[NSBundle bundleForClass:[BBAssetsPickerAssetGroupTableViewCell class]]] forCellReuseIdentifier:NSStringFromClass([BBAssetsPickerAssetGroupTableViewCell class])];
+    [self.tableView setRowHeight:[BBMediaPickerCollectionTableViewCell rowHeight]];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerCollectionTableViewCell class]) bundle:[NSBundle bundleForClass:[BBMediaPickerCollectionTableViewCell class]]] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerCollectionTableViewCell class])];
     
     @weakify(self);
     [[RACObserve(self.viewModel, assetGroupViewModels)
@@ -46,7 +46,7 @@
     return self.viewModel.assetGroupViewModels.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BBAssetsPickerAssetGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBAssetsPickerAssetGroupTableViewCell class]) forIndexPath:indexPath];
+    BBMediaPickerCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBMediaPickerCollectionTableViewCell class]) forIndexPath:indexPath];
     
     [cell setViewModel:self.viewModel.assetGroupViewModels[indexPath.row]];
     

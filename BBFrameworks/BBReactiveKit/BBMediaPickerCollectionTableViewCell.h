@@ -17,7 +17,7 @@
 
 @class BBMediaPickerCollectionViewModel;
 
-@interface BBAssetsPickerAssetGroupTableViewCell : UITableViewCell
+@interface BBMediaPickerCollectionTableViewCell : UITableViewCell
 
 @property (strong,nonatomic) BBMediaPickerCollectionViewModel *viewModel;
 
