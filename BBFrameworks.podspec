@@ -35,29 +35,21 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBFoundation"
     
     subspec.source_files = "BBFrameworks/BBKit"
-    
-    subspec.ios.exclude_files = "BBFrameworks/BBKit/NSColor+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/NSImage+BBKitExtensions.{h,m}"
-    subspec.osx.exclude_files = "BBFrameworks/BBKit/UIColor+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIImage+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIView+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIViewController+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIFont+BBKitExtensions.{h,m}", "BBFrameworks/BBKit/UIBarButtonItem+BBKitExtensions.{h,m}"
+    subspec.ios.source_files = "BBFrameworks/BBKit/iOS"
+    subspec.osx.source_files = "BBFrameworks/BBKit/OSX"
     
     subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation"
     subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
   end
   
   spec.subspec "BBReactiveKit" do |subspec|
-    subspec.dependency "Archimedes", "~> 1.1.0"
     subspec.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.dependency "ReactiveViewModel", "~> 0.3.0"
-    
-    subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
-    subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
     
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBReactiveKit"
-    
-    subspec.osx.exclude_files = "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}", "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h", "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}", "BBFrameworks/BBReactiveKit/BBTooltip*", "BBFrameworks/BBReactiveKit/BBWebKit*"
-    
-    subspec.frameworks = "WebKit"
+    subspec.ios.source_files = "BBFrameworks/BBReactiveKit/iOS"
+    subspec.osx.source_files = "BBFrameworks/BBReactiveKit/OSX"
     
     subspec.resources = "BBFrameworks/BBReactiveKit/*.xib"
   end
@@ -87,8 +79,34 @@ Pod::Spec.new do |spec|
     
     subspec.dependency "BBFrameworks/BBKit"
     
-    subspec.source_files = "BBFrameworks/BBMediaPicker/*.{h,m}"
+    subspec.source_files = "BBFrameworks/BBMediaPicker"
     
     subspec.frameworks = "Photos"
+  end
+  
+  spec.subspec "BBWebKit" do |subspec|
+    subspec.platform = :ios, "8.3"
+    
+    subspec.dependency "Archimedes", "~> 1.1.0"
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.dependency "TUSafariActivity", "~> 1.0.0"
+    subspec.dependency "ARChromeActivity", "~> 1.0.0"
+    
+    subspec.dependency "BBFrameworks/BBReactiveKit"
+    
+    subspec.source_files = "BBFrameworks/BBWebKit"
+    
+    subspec.frameworks = "WebKit"
+  end
+  
+  spec.subspec "BBTooltip" do |subspec|
+    subspec.platform = :ios, "8.3"
+    
+    subspec.dependency "Archimedes", "~> 1.1.0"
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    
+    subspec.dependency "BBFrameworks/BBKit"
+    
+    subspec.source_files = "BBFrameworks/BBTooltip"
   end
 end

@@ -16,13 +16,8 @@
 #ifndef __BB_FRAMEWORKS_REACTIVE_KIT__
 #define __BB_FRAMEWORKS_REACTIVE_KIT__
 
+#if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBProgressNavigationBar.h>
-
-#import <BBFrameworks/BBWebKitViewController.h>
-
-#import <BBFrameworks/BBTooltipView.h>
-#import <BBFrameworks/BBTooltipViewController.h>
-
-#import <BBFrameworks/BBMediaPickerViewController.h>
+#endif
 
 #endif

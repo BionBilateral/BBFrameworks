@@ -27,3 +27,5 @@ FOUNDATION_EXPORT const unsigned char BBFrameworksVersionString[];
 #import <BBFrameworks/BBReactiveKit.h>
 #import <BBFrameworks/BBThumbnail.h>
 #import <BBFrameworks/BBReactiveThumbnail.h>
+#import <BBFrameworks/BBMediaPicker.h>
+#import <BBFrameworks/BBWebKit.h>

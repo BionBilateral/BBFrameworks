@@ -106,14 +106,6 @@
 		7927CFFB1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
 		7927CFFD1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
-		7927CFFE1B1AD2B90034288D /* UIColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF8A1B1AD2B90034288D /* UIColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0001B1AD2B90034288D /* UIColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF8B1B1AD2B90034288D /* UIColor+BBKitExtensions.m */; };
-		7927D0021B1AD2B90034288D /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF8C1B1AD2B90034288D /* UIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0041B1AD2B90034288D /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF8D1B1AD2B90034288D /* UIImage+BBKitExtensions.m */; };
-		7927D0061B1AD2B90034288D /* UIView+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF8E1B1AD2B90034288D /* UIView+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0081B1AD2B90034288D /* UIView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF8F1B1AD2B90034288D /* UIView+BBKitExtensions.m */; };
-		7927D00A1B1AD2B90034288D /* UIViewController+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF901B1AD2B90034288D /* UIViewController+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D00C1B1AD2B90034288D /* UIViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF911B1AD2B90034288D /* UIViewController+BBKitExtensions.m */; };
 		7927D00E1B1AD2B90034288D /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D00F1B1AD2B90034288D /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D0101B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,12 +149,6 @@
 		7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7927D0371B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
-		7953FA331B31C8A60005E3FD /* BBTooltipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA311B31C8A60005E3FD /* BBTooltipViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7953FA341B31C8A60005E3FD /* BBTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA321B31C8A60005E3FD /* BBTooltipViewController.m */; };
-		7953FA361B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA351B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FA391B31CE590005E3FD /* BBTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3A1B31CE590005E3FD /* BBTooltipView.m */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
 		7989C9D31B1ADE65009B1CE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D21B1ADE65009B1CE9 /* main.m */; };
@@ -171,7 +157,7 @@
 		7989C9DB1B1ADE66009B1CE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9D91B1ADE65009B1CE9 /* Main.storyboard */; };
 		7989DD511B345A2D0001F7C3 /* AssetsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD501B345A2D0001F7C3 /* AssetsPickerViewController.m */; };
 		7989DD531B345A3E0001F7C3 /* AssetsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7989DD521B345A3E0001F7C3 /* AssetsPickerViewController.xib */; };
-		79B4FF801B363D4E007B8629 /* BBMediaPickerAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */; };
+		79B4FF801B363D4E007B8629 /* BBMediaPickerAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79B4FF811B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */; };
 		79B4FF821B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */; };
 		79B4FF831B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FF6A1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib */; };
@@ -190,12 +176,31 @@
 		79B4FF901B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF771B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m */; };
 		79B4FF911B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF781B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h */; };
 		79B4FF921B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF791B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m */; };
-		79B4FF931B363D4E007B8629 /* BBMediaPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7A1B363D4E007B8629 /* BBMediaPickerViewController.h */; };
+		79B4FF931B363D4E007B8629 /* BBMediaPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7A1B363D4E007B8629 /* BBMediaPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79B4FF941B363D4E007B8629 /* BBMediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF7B1B363D4E007B8629 /* BBMediaPickerViewController.m */; };
 		79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7C1B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h */; };
-		79B4FF961B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7D1B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h */; };
+		79B4FF961B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7D1B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79B4FF971B363D4E007B8629 /* BBMediaPickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7E1B363D4E007B8629 /* BBMediaPickerViewModel.h */; };
 		79B4FF981B363D4E007B8629 /* BBMediaPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF7F1B363D4E007B8629 /* BBMediaPickerViewModel.m */; };
+		79B4FFA11B363F55007B8629 /* BBWebKitTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFA21B363F55007B8629 /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */; };
+		79B4FFA31B363F55007B8629 /* BBWebKitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */; };
+		79B4FFA51B363F55007B8629 /* BBWebKitViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFA71B363FC1007B8629 /* BBWebKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA61B363FC1007B8629 /* BBWebKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFA91B364017007B8629 /* BBMediaPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA81B36400D007B8629 /* BBMediaPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFB61B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFAA1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFB71B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAB1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m */; };
+		79B4FFB81B364384007B8629 /* UIColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFAC1B364384007B8629 /* UIColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFB91B364384007B8629 /* UIColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAD1B364384007B8629 /* UIColor+BBKitExtensions.m */; };
+		79B4FFBA1B364384007B8629 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFAE1B364384007B8629 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFBB1B364384007B8629 /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAF1B364384007B8629 /* UIFont+BBKitExtensions.m */; };
+		79B4FFBC1B364384007B8629 /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB01B364384007B8629 /* UIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFBD1B364384007B8629 /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB11B364384007B8629 /* UIImage+BBKitExtensions.m */; };
+		79B4FFBE1B364384007B8629 /* UIView+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB21B364384007B8629 /* UIView+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFBF1B364384007B8629 /* UIView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */; };
+		79B4FFC01B364384007B8629 /* UIViewController+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFC11B364384007B8629 /* UIViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */; };
 		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
@@ -208,17 +213,8 @@
 		79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
 		79DD3E821B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
-		79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E0BBFE1B263CC300892D81 /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */; };
 		79E0BC021B27B5C700892D81 /* BBProgressNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */; };
-		79E0BC081B27BD1500892D81 /* BBWebKitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC061B27BD1500892D81 /* BBWebKitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E0BC091B27BD1500892D81 /* BBWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC071B27BD1500892D81 /* BBWebKitViewController.m */; };
-		79E0BC0B1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC0A1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E0BC0E1B27C0C500892D81 /* BBWebKitTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC0C1B27C0C500892D81 /* BBWebKitTitleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E0BC0F1B27C0C500892D81 /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */; };
-		79E0BC121B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E0BC131B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */; };
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
 		9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -304,20 +300,12 @@
 		7927CF811B1AD2B90034288D /* BBKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKit.h; sourceTree = "<group>"; };
 		7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKitCGImageFunctions.h; sourceTree = "<group>"; };
 		7927CF831B1AD2B90034288D /* BBKitColorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKitColorMacros.h; sourceTree = "<group>"; };
-		7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+BBKitExtensions.h"; sourceTree = "<group>"; };
-		7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+BBKitExtensions.m"; sourceTree = "<group>"; };
-		7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BBKitExtensions.h"; sourceTree = "<group>"; };
-		7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BBKitExtensions.m"; sourceTree = "<group>"; };
+		7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+BBKitExtensions.h"; path = "OSX/NSColor+BBKitExtensions.h"; sourceTree = "<group>"; };
+		7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+BBKitExtensions.m"; path = "OSX/NSColor+BBKitExtensions.m"; sourceTree = "<group>"; };
+		7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+BBKitExtensions.h"; path = "OSX/NSImage+BBKitExtensions.h"; sourceTree = "<group>"; };
+		7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+BBKitExtensions.m"; path = "OSX/NSImage+BBKitExtensions.m"; sourceTree = "<group>"; };
 		7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBKitExtensions.h"; sourceTree = "<group>"; };
 		7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBKitExtensions.m"; sourceTree = "<group>"; };
-		7927CF8A1B1AD2B90034288D /* UIColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BBKitExtensions.h"; sourceTree = "<group>"; };
-		7927CF8B1B1AD2B90034288D /* UIColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBKitExtensions.m"; sourceTree = "<group>"; };
-		7927CF8C1B1AD2B90034288D /* UIImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
-		7927CF8D1B1AD2B90034288D /* UIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
-		7927CF8E1B1AD2B90034288D /* UIView+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBKitExtensions.h"; sourceTree = "<group>"; };
-		7927CF8F1B1AD2B90034288D /* UIView+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBKitExtensions.m"; sourceTree = "<group>"; };
-		7927CF901B1AD2B90034288D /* UIViewController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BBKitExtensions.h"; sourceTree = "<group>"; };
-		7927CF911B1AD2B90034288D /* UIViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		7927CF931B1AD2B90034288D /* BBReactiveKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBReactiveKit.h; sourceTree = "<group>"; };
 		7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBReactiveThumbnail.h; sourceTree = "<group>"; };
 		7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBThumbnailGenerator+BBReactiveThumbnailExtensions.h"; sourceTree = "<group>"; };
@@ -340,12 +328,6 @@
 		7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailTextOperation.h; sourceTree = "<group>"; };
 		7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailTextOperation.m; sourceTree = "<group>"; };
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
-		7953FA311B31C8A60005E3FD /* BBTooltipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewController.h; sourceTree = "<group>"; };
-		7953FA321B31C8A60005E3FD /* BBTooltipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipViewController.m; sourceTree = "<group>"; };
-		7953FA351B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDataSource.h; sourceTree = "<group>"; };
-		7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDelegate.h; sourceTree = "<group>"; };
-		7953FA391B31CE590005E3FD /* BBTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipView.h; sourceTree = "<group>"; };
-		7953FA3A1B31CE590005E3FD /* BBTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTooltipView.m; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,6 +367,25 @@
 		79B4FF7D1B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewControllerDelegate.h; sourceTree = "<group>"; };
 		79B4FF7E1B363D4E007B8629 /* BBMediaPickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModel.h; sourceTree = "<group>"; };
 		79B4FF7F1B363D4E007B8629 /* BBMediaPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerViewModel.m; sourceTree = "<group>"; };
+		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
+		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
+		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
+		79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitViewController.m; sourceTree = "<group>"; };
+		79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewControllerDelegate.h; sourceTree = "<group>"; };
+		79B4FFA61B363FC1007B8629 /* BBWebKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKit.h; sourceTree = "<group>"; };
+		79B4FFA81B36400D007B8629 /* BBMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMediaPicker.h; sourceTree = "<group>"; };
+		79B4FFAA1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+BBKitExtensions.h"; path = "iOS/UIBarButtonItem+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79B4FFAB1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+BBKitExtensions.m"; path = "iOS/UIBarButtonItem+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79B4FFAC1B364384007B8629 /* UIColor+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+BBKitExtensions.h"; path = "iOS/UIColor+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79B4FFAD1B364384007B8629 /* UIColor+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+BBKitExtensions.m"; path = "iOS/UIColor+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79B4FFAE1B364384007B8629 /* UIFont+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+BBKitExtensions.h"; path = "iOS/UIFont+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79B4FFAF1B364384007B8629 /* UIFont+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+BBKitExtensions.m"; path = "iOS/UIFont+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79B4FFB01B364384007B8629 /* UIImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BBKitExtensions.h"; path = "iOS/UIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79B4FFB11B364384007B8629 /* UIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BBKitExtensions.m"; path = "iOS/UIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79B4FFB21B364384007B8629 /* UIView+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+BBKitExtensions.h"; path = "iOS/UIView+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+BBKitExtensions.m"; path = "iOS/UIView+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+BBKitExtensions.h"; path = "iOS/UIViewController+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+BBKitExtensions.m"; path = "iOS/UIViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,17 +405,8 @@
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
 		79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGradientView.h; sourceTree = "<group>"; };
 		79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBGradientView.m; sourceTree = "<group>"; };
-		79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+BBKitExtensions.h"; sourceTree = "<group>"; };
-		79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+BBKitExtensions.m"; sourceTree = "<group>"; };
-		79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBProgressNavigationBar.h; sourceTree = "<group>"; };
-		79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBProgressNavigationBar.m; sourceTree = "<group>"; };
-		79E0BC061B27BD1500892D81 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
-		79E0BC071B27BD1500892D81 /* BBWebKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitViewController.m; sourceTree = "<group>"; };
-		79E0BC0A1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewControllerDelegate.h; sourceTree = "<group>"; };
-		79E0BC0C1B27C0C500892D81 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
-		79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
-		79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BBKitExtensions.h"; sourceTree = "<group>"; };
-		79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressNavigationBar.h; path = iOS/BBProgressNavigationBar.h; sourceTree = "<group>"; };
+		79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressNavigationBar.m; path = iOS/BBProgressNavigationBar.m; sourceTree = "<group>"; };
 		79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewRowViewController.h; sourceTree = "<group>"; };
 		79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewRowViewController.m; sourceTree = "<group>"; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -524,6 +516,7 @@
 				7927CF981B1AD2B90034288D /* BBThumbnail */,
 				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 				79B4FF661B363B04007B8629 /* BBMediaPicker */,
+				79B4FF9B1B363F1F007B8629 /* BBWebKit */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -564,7 +557,6 @@
 			isa = PBXGroup;
 			children = (
 				7927CF931B1AD2B90034288D /* BBReactiveKit.h */,
-				79E0BC041B27BBD200892D81 /* View Controllers */,
 				79E0BBFF1B27B49000892D81 /* Views */,
 			);
 			path = BBReactiveKit;
@@ -587,19 +579,6 @@
 				79C2E1651B1AFB4000CCACF9 /* Classes */,
 			);
 			path = BBThumbnail;
-			sourceTree = "<group>";
-		};
-		7953FA301B31C8480005E3FD /* Tooltip View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				7953FA351B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h */,
-				7953FA371B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h */,
-				7953FA311B31C8A60005E3FD /* BBTooltipViewController.h */,
-				7953FA321B31C8A60005E3FD /* BBTooltipViewController.m */,
-				7953FA391B31CE590005E3FD /* BBTooltipView.h */,
-				7953FA3A1B31CE590005E3FD /* BBTooltipView.m */,
-			);
-			name = "Tooltip View Controller";
 			sourceTree = "<group>";
 		};
 		796B00E61B1ACBEC0087D3FD = {
@@ -641,6 +620,7 @@
 		79B4FF661B363B04007B8629 /* BBMediaPicker */ = {
 			isa = PBXGroup;
 			children = (
+				79B4FFA81B36400D007B8629 /* BBMediaPicker.h */,
 				79B4FF7E1B363D4E007B8629 /* BBMediaPickerViewModel.h */,
 				79B4FF7F1B363D4E007B8629 /* BBMediaPickerViewModel.m */,
 				79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */,
@@ -684,6 +664,19 @@
 				79B4FF751B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib */,
 			);
 			name = Collections;
+			sourceTree = "<group>";
+		};
+		79B4FF9B1B363F1F007B8629 /* BBWebKit */ = {
+			isa = PBXGroup;
+			children = (
+				79B4FFA61B363FC1007B8629 /* BBWebKit.h */,
+				79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */,
+				79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */,
+				79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */,
+				79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */,
+				79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */,
+			);
+			path = BBWebKit;
 			sourceTree = "<group>";
 		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
@@ -855,18 +848,18 @@
 				7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */,
 				7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */,
 				7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */,
-				7927CF8A1B1AD2B90034288D /* UIColor+BBKitExtensions.h */,
-				7927CF8B1B1AD2B90034288D /* UIColor+BBKitExtensions.m */,
-				7927CF8C1B1AD2B90034288D /* UIImage+BBKitExtensions.h */,
-				7927CF8D1B1AD2B90034288D /* UIImage+BBKitExtensions.m */,
-				7927CF8E1B1AD2B90034288D /* UIView+BBKitExtensions.h */,
-				7927CF8F1B1AD2B90034288D /* UIView+BBKitExtensions.m */,
-				7927CF901B1AD2B90034288D /* UIViewController+BBKitExtensions.h */,
-				7927CF911B1AD2B90034288D /* UIViewController+BBKitExtensions.m */,
-				79E0BBFB1B263CC300892D81 /* UIFont+BBKitExtensions.h */,
-				79E0BBFC1B263CC300892D81 /* UIFont+BBKitExtensions.m */,
-				79E0BC101B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h */,
-				79E0BC111B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m */,
+				79B4FFAA1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h */,
+				79B4FFAB1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m */,
+				79B4FFAC1B364384007B8629 /* UIColor+BBKitExtensions.h */,
+				79B4FFAD1B364384007B8629 /* UIColor+BBKitExtensions.m */,
+				79B4FFAE1B364384007B8629 /* UIFont+BBKitExtensions.h */,
+				79B4FFAF1B364384007B8629 /* UIFont+BBKitExtensions.m */,
+				79B4FFB01B364384007B8629 /* UIImage+BBKitExtensions.h */,
+				79B4FFB11B364384007B8629 /* UIImage+BBKitExtensions.m */,
+				79B4FFB21B364384007B8629 /* UIView+BBKitExtensions.h */,
+				79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */,
+				79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */,
+				79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -919,27 +912,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		79E0BC041B27BBD200892D81 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7953FA301B31C8480005E3FD /* Tooltip View Controller */,
-				79E0BC051B27BBDF00892D81 /* WebKit View Controller */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		79E0BC051B27BBDF00892D81 /* WebKit View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				79E0BC0A1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h */,
-				79E0BC061B27BD1500892D81 /* BBWebKitViewController.h */,
-				79E0BC071B27BD1500892D81 /* BBWebKitViewController.m */,
-				79E0BC0C1B27C0C500892D81 /* BBWebKitTitleView.h */,
-				79E0BC0D1B27C0C500892D81 /* BBWebKitTitleView.m */,
-			);
-			name = "WebKit View Controller";
-			sourceTree = "<group>";
-		};
 		B57C4002BFB6D5C1DBE48B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,40 +931,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				7927D0101B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */,
-				79E0BC0E1B27C0C500892D81 /* BBWebKitTitleView.h in Headers */,
 				7927CFD01B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */,
+				79B4FFA31B363F55007B8629 /* BBWebKitViewController.h in Headers */,
 				7927CFE81B1AD2B90034288D /* BBBadgeView.h in Headers */,
-				79E0BC121B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.h in Headers */,
 				7927D01E1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */,
+				79B4FFBE1B364384007B8629 /* UIView+BBKitExtensions.h in Headers */,
+				79B4FFB61B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h in Headers */,
 				7927CFBC1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				7927D0181B1AD2B90034288D /* BBThumbnailDefines.h in Headers */,
 				7927CFD81B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */,
+				79B4FFBA1B364384007B8629 /* UIFont+BBKitExtensions.h in Headers */,
 				79DD3E7F1B337B6F00EF4E44 /* BBGradientView.h in Headers */,
+				79B4FFC01B364384007B8629 /* UIViewController+BBKitExtensions.h in Headers */,
 				7927D00E1B1AD2B90034288D /* BBReactiveKit.h in Headers */,
 				7927CFE01B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */,
 				79B4FF8F1B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.h in Headers */,
 				7927CFC81B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
-				79E0BC0B1B27BF3D00892D81 /* BBWebKitViewControllerDelegate.h in Headers */,
 				7927D0341B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */,
 				79B4FF961B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h in Headers */,
 				7927CFB61B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */,
-				7953FA381B31C9B80005E3FD /* BBTooltipViewControllerDelegate.h in Headers */,
+				79B4FFA11B363F55007B8629 /* BBWebKitTitleView.h in Headers */,
 				79B4FF8C1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.h in Headers */,
 				79B4FF811B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h in Headers */,
 				79B4FF8A1B363D4E007B8629 /* BBMediaPickerBackgroundView.h in Headers */,
+				79B4FFA51B363F55007B8629 /* BBWebKitViewControllerDelegate.h in Headers */,
 				7927D01A1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
 				7927D0121B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
 				7927CFE41B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */,
-				7953FA3B1B31CE590005E3FD /* BBTooltipView.h in Headers */,
 				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
-				7953FA331B31C8A60005E3FD /* BBTooltipViewController.h in Headers */,
-				79E0BC081B27BD1500892D81 /* BBWebKitViewController.h in Headers */,
+				79B4FFB81B364384007B8629 /* UIColor+BBKitExtensions.h in Headers */,
 				7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
-				79E0BBFD1B263CC300892D81 /* UIFont+BBKitExtensions.h in Headers */,
-				7927D0021B1AD2B90034288D /* UIImage+BBKitExtensions.h in Headers */,
+				79B4FFA71B363FC1007B8629 /* BBWebKit.h in Headers */,
+				79B4FFBC1B364384007B8629 /* UIImage+BBKitExtensions.h in Headers */,
 				79B4FF911B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h in Headers */,
-				7927D00A1B1AD2B90034288D /* UIViewController+BBKitExtensions.h in Headers */,
 				79E0BC021B27B5C700892D81 /* BBProgressNavigationBar.h in Headers */,
 				79B4FF971B363D4E007B8629 /* BBMediaPickerViewModel.h in Headers */,
 				7927CFC01B1AD2B90034288D /* BBFoundation.h in Headers */,
@@ -1003,7 +975,6 @@
 				79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				79B4FF881B363D4E007B8629 /* BBMediaPickerAssetViewModel.h in Headers */,
 				7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
-				7927D0061B1AD2B90034288D /* UIView+BBKitExtensions.h in Headers */,
 				7927CFC21B1AD2B90034288D /* BBFoundationDebugging.h in Headers */,
 				79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */,
 				7927CFC61B1AD2B90034288D /* BBFoundationMacros.h in Headers */,
@@ -1012,8 +983,7 @@
 				7927D0221B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */,
 				7927D0281B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */,
 				7927CFFA1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */,
-				7953FA361B31C99C0005E3FD /* BBTooltipViewControllerDataSource.h in Headers */,
-				7927CFFE1B1AD2B90034288D /* UIColor+BBKitExtensions.h in Headers */,
+				79B4FFA91B364017007B8629 /* BBMediaPicker.h in Headers */,
 				7927CFCC1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */,
 				7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */,
 				7927CFB01B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
@@ -1592,32 +1562,29 @@
 				7927D02A1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */,
 				7927CFDE1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79B4FF8D1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.m in Sources */,
-				7953FA341B31C8A60005E3FD /* BBTooltipViewController.m in Sources */,
-				7927D0041B1AD2B90034288D /* UIImage+BBKitExtensions.m in Sources */,
 				7927CFCE1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */,
-				7927D0081B1AD2B90034288D /* UIView+BBKitExtensions.m in Sources */,
-				7927D00C1B1AD2B90034288D /* UIViewController+BBKitExtensions.m in Sources */,
 				79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */,
-				79E0BC0F1B27C0C500892D81 /* BBWebKitTitleView.m in Sources */,
 				7927CFB21B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				7927CFE61B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */,
+				79B4FFB71B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m in Sources */,
+				79B4FFB91B364384007B8629 /* UIColor+BBKitExtensions.m in Sources */,
+				79B4FFBF1B364384007B8629 /* UIView+BBKitExtensions.m in Sources */,
 				7927CFDA1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				79B4FF821B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				7927CFBE1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				7927CFD61B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */,
 				7927D0201B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */,
+				79B4FFC11B364384007B8629 /* UIViewController+BBKitExtensions.m in Sources */,
 				79B4FF851B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.m in Sources */,
 				79B4FF941B363D4E007B8629 /* BBMediaPickerViewController.m in Sources */,
 				7927D02E1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */,
 				7927CFAE1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */,
-				79E0BC091B27BD1500892D81 /* BBWebKitViewController.m in Sources */,
-				79E0BC131B27C65600892D81 /* UIBarButtonItem+BBKitExtensions.m in Sources */,
+				79B4FFA21B363F55007B8629 /* BBWebKitTitleView.m in Sources */,
+				79B4FFBB1B364384007B8629 /* UIFont+BBKitExtensions.m in Sources */,
 				7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */,
 				7927D01C1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */,
-				79E0BBFE1B263CC300892D81 /* UIFont+BBKitExtensions.m in Sources */,
 				79B4FF901B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m in Sources */,
 				79B4FF891B363D4E007B8629 /* BBMediaPickerAssetViewModel.m in Sources */,
-				7927D0001B1AD2B90034288D /* UIColor+BBKitExtensions.m in Sources */,
 				7927D0241B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */,
 				7927D0141B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
 				7927CFD21B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */,
@@ -1627,9 +1594,10 @@
 				7927D0321B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,
 				7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
 				79B4FF921B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m in Sources */,
-				7953FA3C1B31CE590005E3FD /* BBTooltipView.m in Sources */,
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
+				79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */,
+				79B4FFBD1B364384007B8629 /* UIImage+BBKitExtensions.m in Sources */,
 				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */,
 				7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
