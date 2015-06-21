@@ -1,5 +1,5 @@
 //
-//  BBAssetsPickerViewControllerDelegate.h
+//  BBMediaPickerViewControllerDelegate.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/19/15.
@@ -18,7 +18,7 @@
 
 @class BBMediaPickerViewController;
 
-@protocol BBAssetsPickerViewControllerDelegate <NSObject>
+@protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
 - (void)assetsPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets;
 - (void)assetsPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;

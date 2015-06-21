@@ -21,7 +21,7 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface AssetsPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBAssetsPickerViewControllerDelegate>
+@interface AssetsPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBMediaPickerViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 @end
