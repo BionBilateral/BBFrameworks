@@ -17,7 +17,6 @@
 
 #import <BBFrameworks/BBReactiveThumbnail.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface ThumbnailCell : UICollectionViewCell
 
@@ -91,9 +90,13 @@
         [temp addObject:URL];
     }
     
+    [temp insertObject:[NSURL URLWithString:@"https://www.youtube.com/watch?v=roRGPI1PwNQ"] atIndex:0];
+    
     [self setThumbnailURLs:temp];
     
     [self setThumbnailGenerator:[[BBThumbnailGenerator alloc] init]];
+    [self.thumbnailGenerator setCacheOptions:BBThumbnailGeneratorCacheOptionsNone];
+    [self.thumbnailGenerator setYouTubeAPIKey:[NSBundle mainBundle].infoDictionary[@"thumbnail_youtube_api_key"]];
     
     [self.collectionView registerClass:[ThumbnailCell class] forCellWithReuseIdentifier:NSStringFromClass([ThumbnailCell class])];
 }

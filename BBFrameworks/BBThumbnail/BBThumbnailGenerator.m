@@ -24,6 +24,7 @@
 #import "BBThumbnailPDFOperation.h"
 #import "BBThumbnailRTFOperation.h"
 #import "BBThumbnailTextOperation.h"
+#import "BBThumbnailYouTubeOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #endif
@@ -245,7 +246,14 @@ static NSTimeInterval const kDefaultTime = 1.0;
             }
         }
         else {
-            cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
+            if ([URL.host isEqualToString:@"www.youtube.com"] &&
+                self.youTubeAPIKey.length > 0) {
+                
+                [retval setOperation:[[BBThumbnailYouTubeOperation alloc] initWithURL:URL size:size APIKey:self.youTubeAPIKey completion:operationCompletionBlock]];
+            }
+            else {
+                cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
+            }
         }
         
         if (retval.operation) {

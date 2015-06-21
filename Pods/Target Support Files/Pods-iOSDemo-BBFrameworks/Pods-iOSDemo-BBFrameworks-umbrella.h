@@ -59,6 +59,7 @@
 #import "BBThumbnailPDFOperation.h"
 #import "BBThumbnailRTFOperation.h"
 #import "BBThumbnailTextOperation.h"
+#import "BBThumbnailYouTubeOperation.h"
 #import "BBTooltip.h"
 #import "BBTooltipView.h"
 #import "BBTooltipViewController.h"

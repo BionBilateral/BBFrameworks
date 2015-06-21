@@ -114,6 +114,13 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
 @property (strong,nonatomic) NSOperationQueue *completionQueue;
 
 /**
+ Set and get the YouTube API key used by the receiver when making thumbnail requests to the YouTube APIs.
+ 
+ The default is nil. Set this value when creating the thumbnail generator with your API key.
+ */
+@property (copy,nonatomic) NSString *youTubeAPIKey;
+
+/**
  Clears the on disk cache.
  */
 - (void)clearFileCache;

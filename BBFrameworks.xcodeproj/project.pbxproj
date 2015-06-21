@@ -208,6 +208,10 @@
 		79B4FFCD1B3647F8007B8629 /* BBTooltipViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79B4FFCE1B3647F8007B8629 /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79B4FFD01B364842007B8629 /* BBTooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFCF1B364842007B8629 /* BBTooltip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFD31B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
+		79B4FFD41B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
+		79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
+		79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
 		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
@@ -400,6 +404,8 @@
 		79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDataSource.h; sourceTree = "<group>"; };
 		79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewControllerDelegate.h; sourceTree = "<group>"; };
 		79B4FFCF1B364842007B8629 /* BBTooltip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltip.h; sourceTree = "<group>"; };
+		79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailYouTubeOperation.h; sourceTree = "<group>"; };
+		79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailYouTubeOperation.m; sourceTree = "<group>"; };
 		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -928,6 +934,8 @@
 				7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */,
 				7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */,
 				7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */,
+				79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */,
+				79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -980,6 +988,7 @@
 				79B4FF961B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h in Headers */,
 				7927CFB61B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */,
 				79B4FFA11B363F55007B8629 /* BBWebKitTitleView.h in Headers */,
+				79B4FFD31B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */,
 				79B4FF8C1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.h in Headers */,
 				79B4FF811B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h in Headers */,
 				79B4FFCD1B3647F8007B8629 /* BBTooltipViewControllerDataSource.h in Headers */,
@@ -1056,6 +1065,7 @@
 				79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */,
 				7927CFC11B1AD2B90034288D /* BBFoundation.h in Headers */,
 				7927CFDD1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */,
+				79B4FFD41B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */,
 				7927D0171B1AD2B90034288D /* BBThumbnail.h in Headers */,
 				7927D0271B1AD2B90034288D /* BBThumbnailOperation.h in Headers */,
 				7927CFD51B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
@@ -1629,6 +1639,7 @@
 				7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
 				79B4FF921B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m in Sources */,
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
+				79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
 				79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */,
 				79B4FFCC1B3647F8007B8629 /* BBTooltipViewController.m in Sources */,
@@ -1652,6 +1663,7 @@
 				7927CFE71B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */,
 				7927CFDB1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				7927CFBF1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
+				79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
 				7927CFD71B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */,
 				7927D0211B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */,
 				7927D02F1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */,

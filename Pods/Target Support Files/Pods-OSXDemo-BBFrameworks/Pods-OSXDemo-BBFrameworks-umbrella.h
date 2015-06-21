@@ -40,6 +40,7 @@
 #import "BBThumbnailPDFOperation.h"
 #import "BBThumbnailRTFOperation.h"
 #import "BBThumbnailTextOperation.h"
+#import "BBThumbnailYouTubeOperation.h"
 
 FOUNDATION_EXPORT double BBFrameworksVersionNumber;
 FOUNDATION_EXPORT const unsigned char BBFrameworksVersionString[];
