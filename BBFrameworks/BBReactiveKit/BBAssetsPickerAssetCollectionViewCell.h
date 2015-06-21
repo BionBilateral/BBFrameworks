@@ -15,11 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBAssetsPickerAssetViewModel;
+@class BBMediaPickerAssetViewModel;
 
 @interface BBAssetsPickerAssetCollectionViewCell : UICollectionViewCell
 
-@property (strong,nonatomic) BBAssetsPickerAssetViewModel *viewModel;
+@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
 
 + (CGSize)defaultCellSize;
 

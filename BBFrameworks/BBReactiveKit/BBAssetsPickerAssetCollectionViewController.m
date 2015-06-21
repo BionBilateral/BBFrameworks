@@ -16,7 +16,7 @@
 #import "BBAssetsPickerAssetCollectionViewController.h"
 #import "BBMediaPickerCollectionViewModel.h"
 #import "BBAssetsPickerAssetCollectionViewCell.h"
-#import "BBAssetsPickerAssetViewModel.h"
+#import "BBMediaPickerAssetViewModel.h"
 #import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
 #import "BBAssetsPickerAssetCollectionViewLayout.h"
 
@@ -117,7 +117,7 @@
 }
 #pragma mark UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    BBAssetsPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
+    BBMediaPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
     
     if ([self.viewModel.selectedAssetViewModels containsObject:viewModel]) {
         [cell setSelected:YES];
@@ -127,7 +127,7 @@
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    BBAssetsPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
+    BBMediaPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
     
     if ([self BB_mediaPickerViewController].allowsMultipleSelection) {
         if ([self.viewModel.selectedAssetViewModels containsObject:viewModel]) {

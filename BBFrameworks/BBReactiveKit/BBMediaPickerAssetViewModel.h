@@ -19,7 +19,7 @@
 @class BBMediaPickerCollectionViewModel;
 @class PHAsset;
 
-@interface BBAssetsPickerAssetViewModel : RVMViewModel <BBAssetsPickerAsset>
+@interface BBMediaPickerAssetViewModel : RVMViewModel <BBAssetsPickerAsset>
 
 - (instancetype)initWithAsset:(PHAsset *)asset assetsGroupViewModel:(BBMediaPickerCollectionViewModel *)assetsGroupViewModel NS_DESIGNATED_INITIALIZER;
 

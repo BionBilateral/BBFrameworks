@@ -16,7 +16,7 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <UIKit/UIImage.h>
 
-@class BBAssetsPickerAssetViewModel,BBMediaPickerViewModel;
+@class BBMediaPickerAssetViewModel,BBMediaPickerViewModel;
 @class PHCollection;
 @class RACCommand;
 
@@ -38,8 +38,8 @@
 
 - (void)reloadAssetViewModels;
 
-- (void)selectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel;
-- (void)deselectAssetViewModel:(BBAssetsPickerAssetViewModel *)viewModel;
+- (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
+- (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 
 - (RACSignal *)requestThumbnailImageWithSize:(CGSize)size;
 

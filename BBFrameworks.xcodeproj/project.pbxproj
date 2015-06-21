@@ -29,8 +29,8 @@
 		7907C6B91B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6B71B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m */; };
 		7907C6BC1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6BA1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.h */; };
 		7907C6BD1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6BB1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.m */; };
-		7907C6C01B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */; };
-		7907C6C11B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6BF1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m */; };
+		7907C6C01B34A610003EA1AE /* BBMediaPickerAssetViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6BE1B34A610003EA1AE /* BBMediaPickerAssetViewModel.h */; };
+		7907C6C11B34A610003EA1AE /* BBMediaPickerAssetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907C6BF1B34A610003EA1AE /* BBMediaPickerAssetViewModel.m */; };
 		7907C6C31B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */; };
 		7907C6C61B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */; };
 		7907C6C91B34D466003EA1AE /* BBAssetsPickerAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 7907C6C81B34D466003EA1AE /* BBAssetsPickerAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -267,8 +267,8 @@
 		7907C6B71B34A4F5003EA1AE /* BBAssetsPickerAssetCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetCollectionViewController.m; sourceTree = "<group>"; };
 		7907C6BA1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		7907C6BB1B34A5C4003EA1AE /* BBAssetsPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
-		7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAssetViewModel.h; sourceTree = "<group>"; };
-		7907C6BF1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetViewModel.m; sourceTree = "<group>"; };
+		7907C6BE1B34A610003EA1AE /* BBMediaPickerAssetViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetViewModel.h; sourceTree = "<group>"; };
+		7907C6BF1B34A610003EA1AE /* BBMediaPickerAssetViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetViewModel.m; sourceTree = "<group>"; };
 		7907C6C21B34A662003EA1AE /* BBAssetsPickerAssetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAssetsPickerAssetCollectionViewCell.xib; sourceTree = "<group>"; };
 		7907C6C41B34AE6A003EA1AE /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"; sourceTree = "<group>"; };
 		7907C6C81B34D466003EA1AE /* BBAssetsPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerAsset.h; sourceTree = "<group>"; };
@@ -670,8 +670,8 @@
 				7989DD591B34740B0001F7C3 /* BBMediaPickerViewModel.m */,
 				7907C6AE1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.h */,
 				7907C6AF1B34912C003EA1AE /* BBMediaPickerCollectionViewModel.m */,
-				7907C6BE1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h */,
-				7907C6BF1B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m */,
+				7907C6BE1B34A610003EA1AE /* BBMediaPickerAssetViewModel.h */,
+				7907C6BF1B34A610003EA1AE /* BBMediaPickerAssetViewModel.m */,
 				7907C6C81B34D466003EA1AE /* BBAssetsPickerAsset.h */,
 				7989DD5C1B34785E0001F7C3 /* BBMediaPickerViewControllerDelegate.h */,
 				7989DD4B1B3457D50001F7C3 /* BBMediaPickerViewController.h */,
@@ -985,7 +985,7 @@
 				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7907C6CC1B362958003EA1AE /* BBAssetsPickerAssetCollectionViewLayout.h in Headers */,
 				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
-				7907C6C01B34A610003EA1AE /* BBAssetsPickerAssetViewModel.h in Headers */,
+				7907C6C01B34A610003EA1AE /* BBMediaPickerAssetViewModel.h in Headers */,
 				7907C6C91B34D466003EA1AE /* BBAssetsPickerAsset.h in Headers */,
 				7953FA331B31C8A60005E3FD /* BBTooltipViewController.h in Headers */,
 				7989DD601B348D190001F7C3 /* BBAssetsPickerAssetGroupTableViewController.h in Headers */,
@@ -1599,7 +1599,7 @@
 				7989DD5B1B34740B0001F7C3 /* BBMediaPickerViewModel.m in Sources */,
 				79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */,
 				79E0BC0F1B27C0C500892D81 /* BBWebKitTitleView.m in Sources */,
-				7907C6C11B34A610003EA1AE /* BBAssetsPickerAssetViewModel.m in Sources */,
+				7907C6C11B34A610003EA1AE /* BBMediaPickerAssetViewModel.m in Sources */,
 				7927CFB21B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				7927CFE61B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */,
 				7927CFDA1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
