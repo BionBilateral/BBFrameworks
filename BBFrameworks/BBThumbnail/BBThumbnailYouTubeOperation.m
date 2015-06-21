@@ -15,7 +15,6 @@
 
 #import "BBThumbnailYouTubeOperation.h"
 #import "NSURL+BBFoundationExtensions.h"
-#import "BBFoundationDebugging.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #else
@@ -25,40 +24,22 @@
 NSString *const BBThumbnailYouTubeOperationErrorDomain = @"com.bionbilateral.bbthumbnail.operation.youtube";
 
 @interface BBThumbnailYouTubeOperation ()
-@property (readwrite,assign,getter=isExecuting) BOOL executing;
-@property (readwrite,assign,getter=isFinished) BOOL finished;
-
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
 @property (copy,nonatomic) NSString *APIKey;
-@property (copy,nonatomic) BBThumbnailOperationCompletionBlock operationCompletionBlock;
-
-@property (strong) NSURLSessionDataTask *task;
 @end
 
 @implementation BBThumbnailYouTubeOperation
 
-- (void)start {
-    if (self.isCancelled) {
-        self.operationCompletionBlock(nil,nil);
-        [self setFinished:YES];
-        return;
-    }
-    
-    [self main];
-}
-
 - (void)main {
-    [self setExecuting:YES];
+    [super main];
     
     NSString *URLString = self.URL.absoluteString;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"v=([A-Za-z0-9]+)" options:0 error:NULL];
     NSTextCheckingResult *result = [regex firstMatchInString:URLString options:0 range:NSMakeRange(0, URLString.length)];
     
     if (!result) {
-        self.operationCompletionBlock(nil,nil);
-        [self setExecuting:NO];
-        [self setFinished:YES];
+        [self finishOperationWithImage:nil error:nil];
         return;
     }
     
@@ -90,10 +71,10 @@ NSString *const BBThumbnailYouTubeOperationErrorDomain = @"com.bionbilateral.bbt
                         BBThumbnailGeneratorImageClass *image = [[BBThumbnailGeneratorImageClass alloc] initWithData:data];
                         BBThumbnailGeneratorImageClass *retval = [image BB_imageByResizingToSize:self.size];
                         
-                        self.operationCompletionBlock(retval,nil);
+                        [self finishOperationWithImage:retval error:nil];
                     }
                     else {
-                        self.operationCompletionBlock(nil,error);
+                        [self finishOperationWithImage:nil error:error];
                     }
                 }];
                 
@@ -101,29 +82,16 @@ NSString *const BBThumbnailYouTubeOperationErrorDomain = @"com.bionbilateral.bbt
                 [self.task resume];
             }
             else {
-                self.operationCompletionBlock(nil,error);
+                [self finishOperationWithImage:nil error:error];
             }
         }
         else {
-            self.operationCompletionBlock(nil,[NSError errorWithDomain:BBThumbnailYouTubeOperationErrorDomain code:[(NSHTTPURLResponse *)response statusCode] userInfo:@{NSLocalizedDescriptionKey: [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]}]);
+            [self finishOperationWithImage:nil error:[NSError errorWithDomain:BBThumbnailYouTubeOperationErrorDomain code:[(NSHTTPURLResponse *)response statusCode] userInfo:@{NSLocalizedDescriptionKey: [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]}]];
         }
-        
-        [self setExecuting:NO];
-        [self setFinished:YES];
     }];
     
     [self setTask:task];
     [self.task resume];
-}
-
-- (void)cancel {
-    [super cancel];
-    
-    [self.task cancel];
-}
-
-- (BOOL)isAsynchronous {
-    return YES;
 }
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size APIKey:(NSString *)APIKey completion:(BBThumbnailOperationCompletionBlock)completion; {
@@ -137,8 +105,5 @@ NSString *const BBThumbnailYouTubeOperationErrorDomain = @"com.bionbilateral.bbt
     
     return self;
 }
-
-@synthesize executing=_executing;
-@synthesize finished=_finished;
 
 @end

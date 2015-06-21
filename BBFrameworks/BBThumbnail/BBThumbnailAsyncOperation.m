@@ -1,8 +1,8 @@
 //
-//  BBThumbnailYouTubeOperation.h
+//  BBThumbnailAsyncOperation.m
 //  BBFrameworks
 //
-//  Created by William Towe on 6/20/15.
+//  Created by William Towe on 6/21/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,10 +15,39 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
-extern NSString *const BBThumbnailYouTubeOperationErrorDomain;
+@implementation BBThumbnailAsyncOperation
 
-@interface BBThumbnailYouTubeOperation : BBThumbnailAsyncOperation
+- (void)start {
+    if (self.isCancelled) {
+        [self finishOperationWithImage:nil error:nil];
+        return;
+    }
+    
+    [self main];
+}
 
-- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size APIKey:(NSString *)APIKey completion:(BBThumbnailOperationCompletionBlock)completion;
+- (void)main {
+    [self setExecuting:YES];
+}
+
+- (void)cancel {
+    [super cancel];
+    
+    [self.task cancel];
+}
+
+- (BOOL)isAsynchronous {
+    return YES;
+}
+
+- (void)finishOperationWithImage:(BBThumbnailGeneratorImageClass *)image error:(NSError *)error; {
+    self.operationCompletionBlock(image,error);
+    
+    [self setExecuting:NO];
+    [self setFinished:YES];
+}
+
+@synthesize executing=_executing;
+@synthesize finished=_finished;
 
 @end

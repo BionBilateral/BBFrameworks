@@ -31,6 +31,7 @@
 #import "BBReactiveThumbnail.h"
 #import "BBThumbnailGenerator+BBReactiveThumbnailExtensions.h"
 #import "BBThumbnail.h"
+#import "BBThumbnailAsyncOperation.h"
 #import "BBThumbnailDefines.h"
 #import "BBThumbnailGenerator.h"
 #import "BBThumbnailImageOperation.h"
@@ -40,6 +41,7 @@
 #import "BBThumbnailPDFOperation.h"
 #import "BBThumbnailRTFOperation.h"
 #import "BBThumbnailTextOperation.h"
+#import "BBThumbnailVimeoOperation.h"
 #import "BBThumbnailYouTubeOperation.h"
 
 FOUNDATION_EXPORT double BBFrameworksVersionNumber;

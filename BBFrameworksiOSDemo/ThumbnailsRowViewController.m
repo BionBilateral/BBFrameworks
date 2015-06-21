@@ -91,6 +91,7 @@
     }
     
     [temp insertObject:[NSURL URLWithString:@"https://www.youtube.com/watch?v=dQw4w9WgXcQ"] atIndex:0];
+    [temp insertObject:[NSURL URLWithString:@"https://vimeo.com/38195013"] atIndex:0];
     
     [self setThumbnailURLs:temp];
     

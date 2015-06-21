@@ -214,6 +214,15 @@
 		79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
 		79B4FFD81B368E90007B8629 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FFD71B368E90007B8629 /* APIKeys.plist */; };
 		79B4FFD91B368E90007B8629 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FFD71B368E90007B8629 /* APIKeys.plist */; };
+		79B4FFDC1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
+		79B4FFDD1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
+		79B4FFDE1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
+		79B4FFDF1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
+		79B4FFE01B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
+		79B4FFE31B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */; };
+		79B4FFE41B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */; };
+		79B4FFE51B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
+		79B4FFE61B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
 		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
@@ -409,6 +418,10 @@
 		79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailYouTubeOperation.h; sourceTree = "<group>"; };
 		79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailYouTubeOperation.m; sourceTree = "<group>"; };
 		79B4FFD71B368E90007B8629 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
+		79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailVimeoOperation.h; sourceTree = "<group>"; };
+		79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailVimeoOperation.m; sourceTree = "<group>"; };
+		79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailAsyncOperation.h; sourceTree = "<group>"; };
+		79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailAsyncOperation.m; sourceTree = "<group>"; };
 		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -938,8 +951,12 @@
 				7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */,
 				7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */,
 				7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */,
+				79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */,
+				79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */,
 				79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */,
 				79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */,
+				79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */,
+				79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1035,9 +1052,11 @@
 				7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */,
 				7927CFB01B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				7927D02C1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */,
+				79B4FFE31B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */,
 				7927CFEE1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */,
 				79B4FF801B363D4E007B8629 /* BBMediaPickerAsset.h in Headers */,
 				7927CFB81B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
+				79B4FFDC1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */,
 				7927CFB41B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */,
 				7927CFC41B1AD2B90034288D /* BBFoundationFunctions.h in Headers */,
 				79B4FF841B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.h in Headers */,
@@ -1052,6 +1071,7 @@
 				7927CFD11B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */,
 				7927CFE91B1AD2B90034288D /* BBBadgeView.h in Headers */,
 				7927D01F1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */,
+				79B4FFDD1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */,
 				7927CFBD1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				7927D0191B1AD2B90034288D /* BBThumbnailDefines.h in Headers */,
 				7927CFD91B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */,
@@ -1063,6 +1083,7 @@
 				7927D01B1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
 				7927D0131B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
 				7927CFE51B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */,
+				79B4FFE41B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */,
 				7927D0311B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
 				7927CFF11B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
 				7927CFAD1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
@@ -1602,6 +1623,7 @@
 				7989C9D61B1ADE65009B1CE9 /* ViewController.m in Sources */,
 				7989C9D31B1ADE65009B1CE9 /* main.m in Sources */,
 				7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */,
+				79B4FFE01B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1648,10 +1670,12 @@
 				79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
 				79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */,
+				79B4FFE51B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */,
 				79B4FFCC1B3647F8007B8629 /* BBTooltipViewController.m in Sources */,
 				79B4FFBD1B364384007B8629 /* UIImage+BBKitExtensions.m in Sources */,
 				79B4FFCA1B3647F8007B8629 /* BBTooltipView.m in Sources */,
 				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
+				79B4FFDE1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */,
 				79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */,
 				7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 			);
@@ -1670,6 +1694,7 @@
 				7927CFDB1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				7927CFBF1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
+				79B4FFE61B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */,
 				7927CFD71B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */,
 				7927D0211B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */,
 				7927D02F1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */,
@@ -1679,6 +1704,7 @@
 				7927D0251B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */,
 				7927D0151B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
 				7927CFD31B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */,
+				79B4FFDF1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */,
 				7927CFF51B1AD2B90034288D /* NSColor+BBKitExtensions.m in Sources */,
 				7927CFEB1B1AD2B90034288D /* BBBadgeView.m in Sources */,
 				7927D0331B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,

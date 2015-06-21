@@ -25,6 +25,7 @@
 #import "BBThumbnailRTFOperation.h"
 #import "BBThumbnailTextOperation.h"
 #import "BBThumbnailYouTubeOperation.h"
+#import "BBThumbnailVimeoOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #endif
@@ -250,6 +251,9 @@ static NSTimeInterval const kDefaultTime = 1.0;
                 self.youTubeAPIKey.length > 0) {
                 
                 [retval setOperation:[[BBThumbnailYouTubeOperation alloc] initWithURL:URL size:size APIKey:self.youTubeAPIKey completion:operationCompletionBlock]];
+            }
+            else if ([URL.host isEqualToString:@"vimeo.com"]) {
+                [retval setOperation:[[BBThumbnailVimeoOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
                 cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
