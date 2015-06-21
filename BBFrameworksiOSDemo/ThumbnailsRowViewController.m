@@ -95,7 +95,10 @@
     [self setThumbnailURLs:temp];
     
     [self setThumbnailGenerator:[[BBThumbnailGenerator alloc] init]];
-    [self.thumbnailGenerator setYouTubeAPIKey:[NSBundle mainBundle].infoDictionary[@"thumbnail_youtube_api_key"]];
+    
+    NSDictionary *APIKeys = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"]];
+    
+    [self.thumbnailGenerator setYouTubeAPIKey:APIKeys[@"thumbnail_youtube_api_key"]];
     
     [self.collectionView registerClass:[ThumbnailCell class] forCellWithReuseIdentifier:NSStringFromClass([ThumbnailCell class])];
 }
