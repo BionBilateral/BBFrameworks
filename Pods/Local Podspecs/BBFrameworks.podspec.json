@@ -143,6 +143,7 @@
         ]
       },
       "source_files": "BBFrameworks/BBMediaPicker",
+      "resources": "BBFrameworks/BBMediaPicker/*.xib",
       "frameworks": "Photos"
     },
     {
