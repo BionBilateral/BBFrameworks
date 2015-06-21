@@ -16,7 +16,7 @@
 #import "AssetsPickerViewController.h"
 #import "BBFoundationDebugging.h"
 
-#import <BBFrameworks/BBAssetsPickerViewController.h>
+#import <BBFrameworks/BBMediaPickerViewController.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -48,7 +48,7 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)assetsPickerViewController:(BBAssetsPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets {
+- (void)assetsPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets {
     BBLogObject(assets);
 }
 
@@ -63,7 +63,7 @@
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 - (IBAction)_customButtonAction:(id)sender {
-    BBAssetsPickerViewController *viewController = [[BBAssetsPickerViewController alloc] init];
+    BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
     [viewController setAllowsMultipleSelection:YES];
     [viewController setDelegate:self];

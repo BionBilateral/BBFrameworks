@@ -16,10 +16,10 @@
 #import <Foundation/Foundation.h>
 #import "BBAssetsPickerAsset.h"
 
-@class BBAssetsPickerViewController;
+@class BBMediaPickerViewController;
 
 @protocol BBAssetsPickerViewControllerDelegate <NSObject>
 @optional
-- (void)assetsPickerViewController:(BBAssetsPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets;
-- (void)assetsPickerViewControllerDidCancel:(BBAssetsPickerViewController *)viewController;
+- (void)assetsPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets;
+- (void)assetsPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end

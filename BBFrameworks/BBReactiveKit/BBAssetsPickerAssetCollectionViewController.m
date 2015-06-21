@@ -60,7 +60,7 @@
      subscribeNext:^(id _) {
          @strongify(self);
          
-         BBAssetsPickerViewController *viewController = [self BB_assetsPickerViewController];
+         BBMediaPickerViewController *viewController = [self BB_assetsPickerViewController];
          
          [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
              @strongify(self);
@@ -140,7 +140,7 @@
     else {
         [self.viewModel selectAssetViewModel:viewModel];
         
-        BBAssetsPickerViewController *viewController = [self BB_assetsPickerViewController];
+        BBMediaPickerViewController *viewController = [self BB_assetsPickerViewController];
         
         @weakify(self);
         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{

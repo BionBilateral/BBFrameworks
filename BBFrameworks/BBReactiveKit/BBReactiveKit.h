@@ -23,6 +23,6 @@
 #import <BBFrameworks/BBTooltipView.h>
 #import <BBFrameworks/BBTooltipViewController.h>
 
-#import <BBFrameworks/BBAssetsPickerViewController.h>
+#import <BBFrameworks/BBMediaPickerViewController.h>
 
 #endif

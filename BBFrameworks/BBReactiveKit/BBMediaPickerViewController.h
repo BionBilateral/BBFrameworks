@@ -1,5 +1,5 @@
 //
-//  BBAssetsPickerViewController.h
+//  BBMediaPickerViewController.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/19/15.
@@ -16,7 +16,7 @@
 #import <UIKit/UIKit.h>
 #import "BBAssetsPickerViewControllerDelegate.h"
 
-@interface BBAssetsPickerViewController : UIViewController
+@interface BBMediaPickerViewController : UIViewController
 
 @property (weak,nonatomic) id<BBAssetsPickerViewControllerDelegate> delegate;
 
