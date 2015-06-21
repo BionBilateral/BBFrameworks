@@ -47,6 +47,8 @@ static NSTimeInterval const kDefaultTime = 1.0;
 @property (strong,nonatomic) dispatch_queue_t fileCacheQueue;
 @property (strong,nonatomic) NSCache *memoryCache;
 @property (strong,nonatomic) NSOperationQueue *operationQueue;
+
++ (NSOperationQueue *)_defaultCompletionQueue;
 @end
 
 @implementation BBThumbnailGenerator
@@ -75,6 +77,8 @@ static NSTimeInterval const kDefaultTime = 1.0;
     [self setDefaultSize:kDefaultSize];
     [self setDefaultPage:kDefaultPage];
     [self setDefaultTime:kDefaultTime];
+    
+    [self setCompletionQueue:[self.class _defaultCompletionQueue]];
     
     [self setMemoryCache:[[NSCache alloc] init]];
     [self.memoryCache setName:[NSString stringWithFormat:@"%@.%p",kCacheDirectoryName,self]];
@@ -188,9 +192,9 @@ static NSTimeInterval const kDefaultTime = 1.0;
                 }
             }
             
-            BBDispatchMainSyncSafe(^{
+            [self.completionQueue addOperationWithBlock:^{
                 completion(image,error,cacheType,URL,size,page,time);
-            });
+            }];
         };
         
         if (self.isMemoryCachingEnabled) {
@@ -258,7 +262,14 @@ static NSTimeInterval const kDefaultTime = 1.0;
 - (BOOL)isMemoryCachingEnabled {
     return (self.cacheOptions & BBThumbnailGeneratorCacheOptionsMemory) != 0;
 }
+
+- (void)setCompletionQueue:(NSOperationQueue *)completionQueue {
+    _completionQueue = completionQueue ?: [self.class _defaultCompletionQueue];
+}
 #pragma mark *** Private Methods ***
++ (NSOperationQueue *)_defaultCompletionQueue; {
+    return [NSOperationQueue mainQueue];
+}
 #pragma mark Properties
 - (void)setFileCacheDirectoryURL:(NSURL *)fileCacheDirectoryURL {
     _fileCacheDirectoryURL = fileCacheDirectoryURL;

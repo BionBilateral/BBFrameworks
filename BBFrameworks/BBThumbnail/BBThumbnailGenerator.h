@@ -107,6 +107,13 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
 @property (assign,nonatomic) NSTimeInterval defaultTime;
 
 /**
+ Set and get the operation queue used when invoking completion blocks.
+ 
+ The default is `[NSOperationQueue mainQueue]`.
+ */
+@property (strong,nonatomic) NSOperationQueue *completionQueue;
+
+/**
  Clears the on disk cache.
  */
 - (void)clearFileCache;
