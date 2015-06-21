@@ -81,6 +81,8 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBMediaPicker"
     
+    subspec.resources = "BBFrameworks/BBMediaPicker/*.xib"
+    
     subspec.frameworks = "Photos"
   end
   
