@@ -16,7 +16,7 @@
 #import <UIKit/UIKit.h>
 #import "BBAssetsPickerViewModel.h"
 
-@interface BBAssetsPickerBackgroundView : UIView
+@interface BBMediaPickerBackgroundView : UIView
 
 @property (assign,nonatomic) BBAssetsPickerViewModelAuthorizationStatus authorizationStatus;
 

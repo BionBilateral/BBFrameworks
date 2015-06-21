@@ -1,5 +1,5 @@
 //
-//  BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h
+//  BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/19/15.

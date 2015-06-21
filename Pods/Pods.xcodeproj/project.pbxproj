@@ -454,7 +454,7 @@
 		6224E5AB1D0428C6974C503A /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 137E4EF3A2718AFA664FB49D /* BBThumbnailRTFOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		622E72C8DBEA46E49CDB91D6 /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D3FB05AA663F9CC2C58B5B /* NSManagedObjectContext+BBCoreDataImportExtensions.m */; };
 		628C39A26880B5098B20A440 /* RACObjCRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = D8E00B421333BDC448B3DDE2 /* RACObjCRuntime.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62B9B67CB2BA1AAEDEB620E1 /* BBAssetsPickerBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E50D36BB69D2DA9BC74650F /* BBAssetsPickerBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62B9B67CB2BA1AAEDEB620E1 /* BBMediaPickerBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E50D36BB69D2DA9BC74650F /* BBMediaPickerBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		632E373BD8F63FDF7E4D0A06 /* RACDisposable.m in Sources */ = {isa = PBXBuildFile; fileRef = D40C72F54DACC143AA96636A /* RACDisposable.m */; };
 		63550058817B9E6F257813F5 /* NSSet+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 61819AECAFF528BC972210F0 /* NSSet+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63C9D65D229D256EAB7CCADF /* NSNotificationCenter+RACSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7240677DBD7BADC4F63FC8EF /* NSNotificationCenter+RACSupport.m */; };
@@ -680,7 +680,7 @@
 		907209459CCDFE5CDF551168 /* NSControl+RACTextSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D5FD138AC710663BD04D36 /* NSControl+RACTextSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90807AEFB62E29D65C59FE6A /* NSObject+RACKVOWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 330BCD0E4A0330D067F0323C /* NSObject+RACKVOWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90BC080C0EA111332E47E8E8 /* RACScopedDisposable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81295F9102FC346401A9EC2 /* RACScopedDisposable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90DC8AC19783DE4D800B5D3D /* BBAssetsPickerBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD08CCA4D7BA271FABB9F261 /* BBAssetsPickerBackgroundView.m */; };
+		90DC8AC19783DE4D800B5D3D /* BBMediaPickerBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD08CCA4D7BA271FABB9F261 /* BBMediaPickerBackgroundView.m */; };
 		90ECC6CF9B6AA3EE54D263E0 /* RACDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0709FE0D3B139B62BF55C9BF /* RACDelegateProxy.m */; };
 		9143EAE7C5F4B5A1CC503D66 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56363092D2E221502699EA5B /* ReactiveCocoa.framework */; };
 		917AD5E7FDA39EC48B0790BA /* NSSet+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 737F86B9E72F0411A64B23B9 /* NSSet+BlocksKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1412,7 +1412,7 @@
 		0D942C3F53C75B1377841203 /* BBDefaultManagedObjectEntityMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBDefaultManagedObjectEntityMapping.h; sourceTree = "<group>"; };
 		0E20C6B4A44C27AABBF65C04 /* NSObject+RACPropertySubscribing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RACPropertySubscribing.m"; path = "ReactiveCocoa/NSObject+RACPropertySubscribing.m"; sourceTree = "<group>"; };
 		0E2924DF251EDCB73D6C7AFA /* RACKVOProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACKVOProxy.h; path = ReactiveCocoa/RACKVOProxy.h; sourceTree = "<group>"; };
-		0E50D36BB69D2DA9BC74650F /* BBAssetsPickerBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBAssetsPickerBackgroundView.h; sourceTree = "<group>"; };
+		0E50D36BB69D2DA9BC74650F /* BBMediaPickerBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerBackgroundView.h; sourceTree = "<group>"; };
 		0F64B11BE9B53240D958181F /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACCompoundDisposableProvider.d; path = ReactiveCocoa/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
 		0F6AD00A66850B63BDB57310 /* NSEnumerator+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSEnumerator+RACSequenceAdditions.h"; path = "ReactiveCocoa/NSEnumerator+RACSequenceAdditions.h"; sourceTree = "<group>"; };
 		0F7361476FC4566DBBCA4630 /* RACEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEvent.h; path = ReactiveCocoa/RACEvent.h; sourceTree = "<group>"; };
@@ -1811,7 +1811,7 @@
 		BCD1F874A62FE0490DDA3845 /* UIStepper+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIStepper+RACSignalSupport.h"; path = "ReactiveCocoa/UIStepper+RACSignalSupport.h"; sourceTree = "<group>"; };
 		BCD9FC02F5EAE5D8602FAC75 /* BBAssetsPickerAssetGroupTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = BBAssetsPickerAssetGroupTableViewCell.xib; sourceTree = "<group>"; };
 		BCDD999EF2F60735F34BD962 /* zh_CN.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = zh_CN.lproj; path = Pod/Assets/zh_CN.lproj; sourceTree = "<group>"; };
-		BD08CCA4D7BA271FABB9F261 /* BBAssetsPickerBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerBackgroundView.m; sourceTree = "<group>"; };
+		BD08CCA4D7BA271FABB9F261 /* BBMediaPickerBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerBackgroundView.m; sourceTree = "<group>"; };
 		BD2655F7D0C7AD922D510EE8 /* BBAssetsPickerAssetViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BBAssetsPickerAssetViewModel.m; sourceTree = "<group>"; };
 		BD8E2BB575CCC9320D3FBB95 /* RACChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACChannel.h; path = ReactiveCocoa/RACChannel.h; sourceTree = "<group>"; };
 		BDAC226D9E69B8095E3F7249 /* Archimedes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Archimedes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2260,8 +2260,8 @@
 				BD2655F7D0C7AD922D510EE8 /* BBAssetsPickerAssetViewModel.m */,
 				E9F180F215F3670EF2E0AA81 /* BBAssetsPickerAssetsGroupViewModel.h */,
 				08C22C9BCBCA1502B98D9A2B /* BBAssetsPickerAssetsGroupViewModel.m */,
-				0E50D36BB69D2DA9BC74650F /* BBAssetsPickerBackgroundView.h */,
-				BD08CCA4D7BA271FABB9F261 /* BBAssetsPickerBackgroundView.m */,
+				0E50D36BB69D2DA9BC74650F /* BBMediaPickerBackgroundView.h */,
+				BD08CCA4D7BA271FABB9F261 /* BBMediaPickerBackgroundView.m */,
 				8698F58514CC92A8DC83E782 /* BBMediaPickerViewController.h */,
 				7CC1CA8A1E96883BCBFE18C3 /* BBMediaPickerViewController.m */,
 				953A8E7F3AFC8C39941895D9 /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h */,
@@ -3766,7 +3766,7 @@
 				5A409DBB23F14603AA41E5E8 /* BBAssetsPickerAssetGroupTableViewController.h in Headers */,
 				97783504A286679B4CFE53F9 /* BBAssetsPickerAssetViewModel.h in Headers */,
 				BDC5BDD57C8C37505DEBB37A /* BBAssetsPickerAssetsGroupViewModel.h in Headers */,
-				62B9B67CB2BA1AAEDEB620E1 /* BBAssetsPickerBackgroundView.h in Headers */,
+				62B9B67CB2BA1AAEDEB620E1 /* BBMediaPickerBackgroundView.h in Headers */,
 				F7E55D9E54CF3AED780BA5E5 /* BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				B89F50991E0675012A1A19A8 /* BBMediaPickerViewController.h in Headers */,
 				4C1B53171FC96EB8B01B5914 /* BBAssetsPickerViewControllerDelegate.h in Headers */,
@@ -4794,7 +4794,7 @@
 				8552BA22A375B47AB902B26A /* BBAssetsPickerAssetGroupTableViewController.m in Sources */,
 				F9F65B0F44134BED7C39AC72 /* BBAssetsPickerAssetViewModel.m in Sources */,
 				11E33970771524169DBD198A /* BBAssetsPickerAssetsGroupViewModel.m in Sources */,
-				90DC8AC19783DE4D800B5D3D /* BBAssetsPickerBackgroundView.m in Sources */,
+				90DC8AC19783DE4D800B5D3D /* BBMediaPickerBackgroundView.m in Sources */,
 				35E2C304EB6AF043EFB70B46 /* BBMediaPickerViewController.m in Sources */,
 				05EE70A55455E59618C1CC6A /* BBAssetsPickerViewModel.m in Sources */,
 				80A64BB2B2C5CCBC1AC9409A /* BBBadgeView.m in Sources */,
