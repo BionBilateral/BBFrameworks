@@ -18,7 +18,7 @@
 #import "BBAssetsPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h"
-#import "BBAssetsPickerAssetCollectionViewLayout.h"
+#import "BBMediaPickerAssetCollectionViewLayout.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -101,7 +101,7 @@
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 
-    [(BBAssetsPickerAssetCollectionViewLayout *)self.collectionView.collectionViewLayout setNumberOfColumns:self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? 5 : 3];
+    [(BBMediaPickerAssetCollectionViewLayout *)self.collectionView.collectionViewLayout setNumberOfColumns:self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? 5 : 3];
 }
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -154,7 +154,7 @@
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBMediaPickerCollectionViewModel *)viewModel; {
-    if (!(self = [super initWithCollectionViewLayout:[[BBAssetsPickerAssetCollectionViewLayout alloc] init]]))
+    if (!(self = [super initWithCollectionViewLayout:[[BBMediaPickerAssetCollectionViewLayout alloc] init]]))
         return nil;
     
     NSParameterAssert(viewModel);

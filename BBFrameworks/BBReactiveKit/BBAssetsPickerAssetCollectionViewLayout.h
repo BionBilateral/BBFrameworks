@@ -15,7 +15,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBAssetsPickerAssetCollectionViewLayout : UICollectionViewFlowLayout
+@interface BBMediaPickerAssetCollectionViewLayout : UICollectionViewFlowLayout
 
 @property (assign,nonatomic) NSUInteger numberOfColumns;
 
