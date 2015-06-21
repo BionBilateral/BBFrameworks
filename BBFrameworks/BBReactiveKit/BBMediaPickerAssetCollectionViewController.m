@@ -15,7 +15,7 @@
 
 #import "BBMediaPickerAssetCollectionViewController.h"
 #import "BBMediaPickerCollectionViewModel.h"
-#import "BBAssetsPickerAssetCollectionViewCell.h"
+#import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h"
 #import "BBMediaPickerAssetCollectionViewLayout.h"
@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
-    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class]) bundle:[NSBundle bundleForClass:[BBAssetsPickerAssetCollectionViewCell class]]] forCellWithReuseIdentifier:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class])];
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:[NSBundle bundleForClass:[BBMediaPickerAssetCollectionViewCell class]]] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
     [[[RACObserve(self.viewModel, deleted)
@@ -108,7 +108,7 @@
     return self.viewModel.assetViewModels.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BBAssetsPickerAssetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBAssetsPickerAssetCollectionViewCell class]) forIndexPath:indexPath];
+    BBMediaPickerAssetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) forIndexPath:indexPath];
     
     [cell setTintColor:collectionView.tintColor];
     [cell setViewModel:self.viewModel.assetViewModels[indexPath.row]];
