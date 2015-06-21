@@ -227,8 +227,6 @@
 		79B4FFEA1B36ADF6007B8629 /* BBThumbnailHTMLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */; };
 		79B4FFEB1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
 		79B4FFEC1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
-		79B4FFEE1B377146007B8629 /* thumbnail_webview_script.js in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FFED1B377146007B8629 /* thumbnail_webview_script.js */; };
-		79B4FFEF1B377146007B8629 /* thumbnail_webview_script.js in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FFED1B377146007B8629 /* thumbnail_webview_script.js */; };
 		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
@@ -430,7 +428,6 @@
 		79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailAsyncOperation.m; sourceTree = "<group>"; };
 		79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailHTMLOperation.h; sourceTree = "<group>"; };
 		79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailHTMLOperation.m; sourceTree = "<group>"; };
-		79B4FFED1B377146007B8629 /* thumbnail_webview_script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = thumbnail_webview_script.js; sourceTree = "<group>"; };
 		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -623,7 +620,6 @@
 				7927CF991B1AD2B90034288D /* BBThumbnail.h */,
 				79C2E1631B1AFB0900CCACF9 /* Headers */,
 				79C2E1651B1AFB4000CCACF9 /* Classes */,
-				79B4FFF01B37714E007B8629 /* Resources */,
 			);
 			path = BBThumbnail;
 			sourceTree = "<group>";
@@ -738,14 +734,6 @@
 				79B4FFC41B3647F8007B8629 /* BBTooltipView.m */,
 			);
 			path = BBTooltip;
-			sourceTree = "<group>";
-		};
-		79B4FFF01B37714E007B8629 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				79B4FFED1B377146007B8629 /* thumbnail_webview_script.js */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
@@ -1344,7 +1332,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79B4FFEE1B377146007B8629 /* thumbnail_webview_script.js in Resources */,
 				79B4FF8E1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
 				79B4FF831B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
 			);
@@ -1354,7 +1341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79B4FFEF1B377146007B8629 /* thumbnail_webview_script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

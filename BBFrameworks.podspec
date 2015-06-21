@@ -61,8 +61,6 @@ Pod::Spec.new do |spec|
     
     subspec.source_files = "BBFrameworks/BBThumbnail"
     
-    subspec.resources = "BBFrameworks/BBThumbnail/*.js"
-    
     subspec.frameworks = "WebKit"
     subspec.ios.frameworks = "MobileCoreServices"
     subspec.osx.frameworks = "QuickLook"

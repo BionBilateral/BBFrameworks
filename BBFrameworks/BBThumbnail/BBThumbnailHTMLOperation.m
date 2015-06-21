@@ -53,7 +53,6 @@
 #if (TARGET_OS_IPHONE)
     [self setWebView:[[WKWebView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds]];
     [self.webView setUserInteractionEnabled:NO];
-    [self.webView setNavigationDelegate:self];
     
     [[UIApplication sharedApplication].keyWindow insertSubview:self.webView atIndex:0];
     
@@ -74,7 +73,23 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
-         [self.webView evaluateJavaScript:[NSString stringWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"thumbnail_webview_script" withExtension:@"js"] encoding:NSUTF8StringEncoding error:NULL] completionHandler:nil];
+         UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
+         
+         [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
+         
+         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+         
+         UIGraphicsEndImageContext();
+         
+         [self.webView removeFromSuperview];
+         
+         @weakify(self);
+         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+             @strongify(self);
+             UIImage *retval = [image BB_imageByResizingToSize:self.size];
+             
+             [self finishOperationWithImage:retval error:nil];
+         });
      }];
 #else
     [self finishOperationWithImage:nil error:nil];
@@ -83,33 +98,6 @@
 
 - (BOOL)isAsynchronous {
     return YES;
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    if ([navigationAction.request.URL.absoluteString rangeOfString:@"combionbilateralthumbnail:ready"].length > 0) {
-        decisionHandler(WKNavigationActionPolicyCancel);
-        
-        UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
-        
-        [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
-        
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        
-        [self.webView removeFromSuperview];
-        
-        @weakify(self);
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            @strongify(self);
-            UIImage *retval = [image BB_imageByResizingToSize:self.size];
-            
-            [self finishOperationWithImage:retval error:nil];
-        });
-    }
-    else {
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
 }
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {

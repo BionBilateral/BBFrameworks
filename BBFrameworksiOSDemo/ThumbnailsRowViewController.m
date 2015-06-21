@@ -17,6 +17,7 @@
 
 #import <BBFrameworks/BBReactiveThumbnail.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <BBFrameworks/BBFoundation.h>
 
 @interface ThumbnailCell : UICollectionViewCell
 
@@ -33,7 +34,8 @@
         return nil;
     
     [self setImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
-    [self.imageView setContentMode:UIViewContentModeCenter];
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self.imageView setClipsToBounds:YES];
     [self.contentView addSubview:self.imageView];
     
     return self;
@@ -92,7 +94,7 @@
     
     [temp insertObject:[NSURL URLWithString:@"https://www.youtube.com/watch?v=dQw4w9WgXcQ"] atIndex:0];
     [temp insertObject:[NSURL URLWithString:@"https://vimeo.com/38195013"] atIndex:0];
-    [temp insertObject:[NSURL URLWithString:@"https://www.google.com"] atIndex:0];
+    [temp insertObject:[NSURL URLWithString:@"https://www.arstechnica.com"] atIndex:0];
     
     [self setThumbnailURLs:temp];
     
@@ -119,7 +121,10 @@
     @weakify(cell);
     [cell setDisposable:[[[self.thumbnailGenerator BB_generateThumbnailForURL:self.thumbnailURLs[indexPath.row]] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple *value) {
         @strongify(cell);
-        [cell.imageView setImage:value.first];
+        BBLogObject(value);
+        if (cell.superview) {
+            [cell.imageView setImage:value.first];
+        }
     } error:^(NSError *error) {
         [cell.imageView setImage:nil];
     }]];
