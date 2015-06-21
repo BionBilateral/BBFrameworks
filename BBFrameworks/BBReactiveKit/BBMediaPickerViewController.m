@@ -127,7 +127,7 @@
 
 @implementation UIViewController (BBReactiveKitExtensionsPrivate)
 
-- (BBMediaPickerViewController *)BB_assetsPickerViewController {
+- (BBMediaPickerViewController *)BB_mediaPickerViewController {
     BBMediaPickerViewController *retval = nil;
     
     for (UIViewController *viewController in self.navigationController.viewControllers) {

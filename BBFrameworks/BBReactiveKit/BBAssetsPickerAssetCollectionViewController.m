@@ -60,7 +60,7 @@
      subscribeNext:^(id _) {
          @strongify(self);
          
-         BBMediaPickerViewController *viewController = [self BB_assetsPickerViewController];
+         BBMediaPickerViewController *viewController = [self BB_mediaPickerViewController];
          
          [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
              @strongify(self);
@@ -74,7 +74,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([self BB_assetsPickerViewController].allowsMultipleSelection) {
+    if ([self BB_mediaPickerViewController].allowsMultipleSelection) {
         UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
         
         [doneItem setRac_command:self.viewModel.doneCommand];
@@ -83,8 +83,8 @@
         
         [self.collectionView setAllowsMultipleSelection:YES];
     }
-    else if ([self BB_assetsPickerViewController].cancelBarButtonItem) {
-        [self.navigationItem setRightBarButtonItems:@[[self BB_assetsPickerViewController].cancelBarButtonItem]];
+    else if ([self BB_mediaPickerViewController].cancelBarButtonItem) {
+        [self.navigationItem setRightBarButtonItems:@[[self BB_mediaPickerViewController].cancelBarButtonItem]];
     }
 }
 - (void)willMoveToParentViewController:(UIViewController *)parent {
@@ -129,7 +129,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBAssetsPickerAssetViewModel *viewModel = self.viewModel.assetViewModels[indexPath.row];
     
-    if ([self BB_assetsPickerViewController].allowsMultipleSelection) {
+    if ([self BB_mediaPickerViewController].allowsMultipleSelection) {
         if ([self.viewModel.selectedAssetViewModels containsObject:viewModel]) {
             [self.viewModel deselectAssetViewModel:viewModel];
         }
@@ -140,7 +140,7 @@
     else {
         [self.viewModel selectAssetViewModel:viewModel];
         
-        BBMediaPickerViewController *viewController = [self BB_assetsPickerViewController];
+        BBMediaPickerViewController *viewController = [self BB_mediaPickerViewController];
         
         @weakify(self);
         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{

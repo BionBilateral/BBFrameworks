@@ -23,6 +23,6 @@
 
 @interface UIViewController (BBReactiveKitExtensionsPrivate)
 
-- (BBMediaPickerViewController *)BB_assetsPickerViewController;
+- (BBMediaPickerViewController *)BB_mediaPickerViewController;
 
 @end
