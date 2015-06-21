@@ -110,6 +110,7 @@
         ]
       },
       "source_files": "BBFrameworks/BBThumbnail",
+      "frameworks": "WebKit",
       "ios": {
         "frameworks": "MobileCoreServices"
       },

@@ -26,6 +26,7 @@
 #import "BBThumbnailTextOperation.h"
 #import "BBThumbnailYouTubeOperation.h"
 #import "BBThumbnailVimeoOperation.h"
+#import "BBThumbnailHTMLOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #endif
@@ -49,6 +50,8 @@ static NSTimeInterval const kDefaultTime = 1.0;
 @property (strong,nonatomic) dispatch_queue_t fileCacheQueue;
 @property (strong,nonatomic) NSCache *memoryCache;
 @property (strong,nonatomic) NSOperationQueue *operationQueue;
+
+@property (strong,nonatomic) NSOperationQueue *webViewOperationQueue;
 
 + (NSOperationQueue *)_defaultCompletionQueue;
 @end
@@ -90,7 +93,12 @@ static NSTimeInterval const kDefaultTime = 1.0;
     
     [self setOperationQueue:[[NSOperationQueue alloc] init]];
     [self.operationQueue setName:[NSString stringWithFormat:@"%@.operationqueue.%p",kCacheDirectoryName,self]];
-    [self.operationQueue setQualityOfService:NSQualityOfServiceUtility];
+    [self.operationQueue setQualityOfService:NSQualityOfServiceBackground];
+    
+    [self setWebViewOperationQueue:[[NSOperationQueue alloc] init]];
+    [self.operationQueue setName:[NSString stringWithFormat:@"%@.operationqueue.webview.%p",kCacheDirectoryName,self]];
+    [self.webViewOperationQueue setQualityOfService:NSQualityOfServiceUtility];
+    [self.webViewOperationQueue setMaxConcurrentOperationCount:[NSProcessInfo processInfo].activeProcessorCount];
  
 #if (TARGET_OS_IPHONE)
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
@@ -256,7 +264,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
                 [retval setOperation:[[BBThumbnailVimeoOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
-                cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
+                [retval setOperation:[[BBThumbnailHTMLOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
         }
         

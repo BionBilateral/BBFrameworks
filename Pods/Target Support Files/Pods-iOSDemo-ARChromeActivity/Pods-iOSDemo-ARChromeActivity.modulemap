@@ -1,6 +1,0 @@
-framework module ARChromeActivity {
-  umbrella header "Pods-iOSDemo-ARChromeActivity-umbrella.h"
-
-  export *
-  module * { export * }
-}

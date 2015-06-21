@@ -1,1 +1,0 @@
-../../../../BBFrameworks/BBCoreData/BBManagedObjectPropertyMapping.h

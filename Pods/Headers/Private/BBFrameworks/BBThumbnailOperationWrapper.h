@@ -1,1 +1,0 @@
-../../../../BBFrameworks/BBThumbnail/BBThumbnailOperationWrapper.h

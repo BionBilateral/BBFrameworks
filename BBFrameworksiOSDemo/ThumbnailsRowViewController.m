@@ -92,10 +92,12 @@
     
     [temp insertObject:[NSURL URLWithString:@"https://www.youtube.com/watch?v=dQw4w9WgXcQ"] atIndex:0];
     [temp insertObject:[NSURL URLWithString:@"https://vimeo.com/38195013"] atIndex:0];
+    [temp insertObject:[NSURL URLWithString:@"https://www.google.com"] atIndex:0];
     
     [self setThumbnailURLs:temp];
     
     [self setThumbnailGenerator:[[BBThumbnailGenerator alloc] init]];
+    [self.thumbnailGenerator setCacheOptions:BBThumbnailGeneratorCacheOptionsNone];
     
     NSDictionary *APIKeys = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"]];
     
