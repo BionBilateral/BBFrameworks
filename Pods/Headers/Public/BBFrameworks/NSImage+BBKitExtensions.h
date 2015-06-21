@@ -1,1 +1,1 @@
-../../../../BBFrameworks/BBKit/NSImage+BBKitExtensions.h
+../../../../BBFrameworks/BBKit/OSX/NSImage+BBKitExtensions.h

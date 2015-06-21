@@ -49,12 +49,12 @@
     }]];
     
     [self.didBecomeActiveSignal
-     subscribeNext:^(BBAssetsPickerViewModel *value) {
+     subscribeNext:^(BBMediaPickerViewModel *value) {
          [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:value];
      }];
     
     [self.didBecomeInactiveSignal
-     subscribeNext:^(BBAssetsPickerViewModel *value) {
+     subscribeNext:^(BBMediaPickerViewModel *value) {
          [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:value];
      }];
     

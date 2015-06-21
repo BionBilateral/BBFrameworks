@@ -18,7 +18,7 @@
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPickerCollectionTableViewController.h"
-#import "BBAssetsPickerViewController+BBReactiveKitExtensionsPrivate.h"
+#import "BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 

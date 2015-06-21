@@ -52,12 +52,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'BBFrameworks.framework'
   install_framework 'BlocksKit.framework'
   install_framework 'ReactiveCocoa.framework'
-  install_framework 'ReactiveViewModel.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Archimedes.framework'
   install_framework 'BBFrameworks.framework'
   install_framework 'BlocksKit.framework'
   install_framework 'ReactiveCocoa.framework'
-  install_framework 'ReactiveViewModel.framework'
 fi

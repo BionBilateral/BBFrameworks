@@ -1,1 +1,1 @@
-../../../../BBFrameworks/BBReactiveKit/BBProgressNavigationBar.h
+../../../../BBFrameworks/BBReactiveKit/iOS/BBProgressNavigationBar.h

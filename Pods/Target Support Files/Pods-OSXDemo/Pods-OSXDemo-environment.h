@@ -84,9 +84,3 @@
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 5
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 0
 
-// ReactiveViewModel
-#define COCOAPODS_POD_AVAILABLE_ReactiveViewModel
-#define COCOAPODS_VERSION_MAJOR_ReactiveViewModel 0
-#define COCOAPODS_VERSION_MINOR_ReactiveViewModel 3
-#define COCOAPODS_VERSION_PATCH_ReactiveViewModel 0
-

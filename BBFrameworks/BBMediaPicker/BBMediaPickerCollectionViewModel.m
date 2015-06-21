@@ -53,12 +53,12 @@
     }]];
     
     [self.didBecomeActiveSignal
-     subscribeNext:^(BBAssetsPickerAssetsGroupViewModel *value) {
+     subscribeNext:^(BBMediaPickerCollectionViewModel *value) {
          [value reloadAssetViewModels];
      }];
     
     [self.didBecomeInactiveSignal
-     subscribeNext:^(BBAssetsPickerAssetsGroupViewModel *value) {
+     subscribeNext:^(BBMediaPickerCollectionViewModel *value) {
          [value setSelectedAssetViewModels:nil];
      }];
     

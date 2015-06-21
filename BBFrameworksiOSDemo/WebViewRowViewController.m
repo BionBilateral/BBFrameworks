@@ -15,7 +15,7 @@
 
 #import "WebViewRowViewController.h"
 
-#import <BBFrameworks/BBReactiveKit.h>
+#import <BBFrameworks/BBWebKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface WebViewRowViewController () <UITextFieldDelegate>

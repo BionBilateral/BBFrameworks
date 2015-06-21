@@ -64,10 +64,7 @@
       },
       "source_files": "BBFrameworks/BBKit",
       "ios": {
-        "exclude_files": [
-          "BBFrameworks/BBKit/NSColor+BBKitExtensions.{h,m}",
-          "BBFrameworks/BBKit/NSImage+BBKitExtensions.{h,m}"
-        ],
+        "source_files": "BBFrameworks/BBKit/iOS",
         "frameworks": [
           "UIKit",
           "Accelerate",
@@ -75,14 +72,7 @@
         ]
       },
       "osx": {
-        "exclude_files": [
-          "BBFrameworks/BBKit/UIColor+BBKitExtensions.{h,m}",
-          "BBFrameworks/BBKit/UIImage+BBKitExtensions.{h,m}",
-          "BBFrameworks/BBKit/UIView+BBKitExtensions.{h,m}",
-          "BBFrameworks/BBKit/UIViewController+BBKitExtensions.{h,m}",
-          "BBFrameworks/BBKit/UIFont+BBKitExtensions.{h,m}",
-          "BBFrameworks/BBKit/UIBarButtonItem+BBKitExtensions.{h,m}"
-        ],
+        "source_files": "BBFrameworks/BBKit/OSX",
         "frameworks": [
           "AppKit",
           "Accelerate",
@@ -93,45 +83,20 @@
     {
       "name": "BBReactiveKit",
       "dependencies": {
-        "Archimedes": [
-          "~> 1.1.0"
-        ],
         "ReactiveCocoa": [
           "~> 2.5.0"
-        ],
-        "ReactiveViewModel": [
-          "~> 0.3.0"
         ],
         "BBFrameworks/BBKit": [
 
         ]
       },
-      "ios": {
-        "dependencies": {
-          "TUSafariActivity": [
-            "~> 1.0.0"
-          ],
-          "ARChromeActivity": [
-            "~> 1.0.0"
-          ]
-        }
-      },
       "source_files": "BBFrameworks/BBReactiveKit",
-      "osx": {
-        "exclude_files": [
-          "BBFrameworks/BBReactiveKit/BBProgressNavigationBar.{h,m}",
-          "BBFrameworks/BBReactiveKit/BBWebKitViewController.{h,m}",
-          "BBFrameworks/BBReactiveKit/BBWebKitViewControllerDelegate.h",
-          "BBFrameworks/BBReactiveKit/BBWebKitTitleView.{h,m}",
-          "BBFrameworks/BBReactiveKit/BBTooltip*",
-          "BBFrameworks/BBReactiveKit/BBWebKit*",
-          "BBFrameworks/BBReactiveKit/BBAssetsPicker*"
-        ]
+      "ios": {
+        "source_files": "BBFrameworks/BBReactiveKit/iOS"
       },
-      "frameworks": [
-        "WebKit",
-        "Photos"
-      ],
+      "osx": {
+        "source_files": "BBFrameworks/BBReactiveKit/OSX"
+      },
       "resources": "BBFrameworks/BBReactiveKit/*.xib"
     },
     {
@@ -160,6 +125,68 @@
         ]
       },
       "source_files": "BBFrameworks/BBReactiveThumbnail"
+    },
+    {
+      "name": "BBMediaPicker",
+      "platforms": {
+        "ios": "8.3"
+      },
+      "dependencies": {
+        "ReactiveCocoa": [
+          "~> 2.5.0"
+        ],
+        "ReactiveViewModel": [
+          "~> 0.3.0"
+        ],
+        "BBFrameworks/BBKit": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBMediaPicker",
+      "frameworks": "Photos"
+    },
+    {
+      "name": "BBWebKit",
+      "platforms": {
+        "ios": "8.3"
+      },
+      "dependencies": {
+        "Archimedes": [
+          "~> 1.1.0"
+        ],
+        "ReactiveCocoa": [
+          "~> 2.5.0"
+        ],
+        "TUSafariActivity": [
+          "~> 1.0.0"
+        ],
+        "ARChromeActivity": [
+          "~> 1.0.0"
+        ],
+        "BBFrameworks/BBReactiveKit": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBWebKit",
+      "frameworks": "WebKit"
+    },
+    {
+      "name": "BBTooltip",
+      "platforms": {
+        "ios": "8.3"
+      },
+      "dependencies": {
+        "Archimedes": [
+          "~> 1.1.0"
+        ],
+        "ReactiveCocoa": [
+          "~> 2.5.0"
+        ],
+        "BBFrameworks/BBKit": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBTooltip"
     }
   ]
 }

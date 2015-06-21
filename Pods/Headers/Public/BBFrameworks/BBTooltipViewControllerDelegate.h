@@ -1,1 +1,1 @@
-../../../../BBFrameworks/BBReactiveKit/BBTooltipViewControllerDelegate.h
+../../../../BBFrameworks/BBTooltip/BBTooltipViewControllerDelegate.h
