@@ -99,7 +99,6 @@
     [self setThumbnailURLs:temp];
     
     [self setThumbnailGenerator:[[BBThumbnailGenerator alloc] init]];
-    [self.thumbnailGenerator setCacheOptions:BBThumbnailGeneratorCacheOptionsNone];
     
     NSDictionary *APIKeys = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"]];
     
