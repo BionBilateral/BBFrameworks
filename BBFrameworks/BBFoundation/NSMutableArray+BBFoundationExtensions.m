@@ -15,7 +15,7 @@
 
 #import "NSMutableArray+BBFoundationExtensions.h"
 
-@implementation NSMutableArray (BBExtensions)
+@implementation NSMutableArray (BBFoundationExtensions)
 
 - (void)BB_removeFirstObject; {
     if (self.count > 0) {

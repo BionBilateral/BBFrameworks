@@ -18,7 +18,7 @@
 /**
  Category on NSMutableArray adding various convenience methods.
  */
-@interface NSMutableArray (BBExtensions)
+@interface NSMutableArray (BBFoundationExtensions)
 
 /**
  If self.count > 0, removes the first object in the receiver; otherwise does nothing.
