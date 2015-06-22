@@ -1,5 +1,5 @@
 //
-//  BBThumbnailHTMLOperation.m
+//  BBThumbnailDocumentOperation.m
 //  BBFrameworks
 //
 //  Created by William Towe on 6/21/15.
@@ -13,8 +13,7 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBThumbnailHTMLOperation.h"
-#import "BBFoundationDebugging.h"
+#import "BBThumbnailDocumentOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #else
@@ -23,17 +22,21 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import <WebKit/WebKit.h>
-
-@interface BBThumbnailHTMLOperation ()
+#if (TARGET_OS_IPHONE)
+@interface BBThumbnailDocumentOperation () <UIWebViewDelegate>
+#else
+@interface BBThumbnailDocumentOperation ()
+#endif
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
 
-@property (strong,nonatomic) WKWebView *webView;
+#if (TARGET_OS_IPHONE)
+@property (strong,nonatomic) UIWebView *webView;
+#endif
 @end
 
-@implementation BBThumbnailHTMLOperation
-
+@implementation BBThumbnailDocumentOperation
+#pragma mark *** Subclass Overrides ***
 - (void)start {
     if (self.isCancelled) {
         [self finishOperationWithImage:nil error:nil];
@@ -47,50 +50,46 @@
     [self setExecuting:YES];
     
 #if (TARGET_OS_IPHONE)
-    [self setWebView:[[WKWebView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds]];
+    [self setWebView:[[UIWebView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds]];
     [self.webView setUserInteractionEnabled:NO];
+    [self.webView setDelegate:self];
     
     [[UIApplication sharedApplication].keyWindow insertSubview:self.webView atIndex:0];
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
-    
-    @weakify(self);
-    [[[[[[RACObserve(self.webView, loading)
-          distinctUntilChanged]
-     combinePreviousWithStart:@NO reduce:^id(id previous, id current) {
-         return RACTuplePack(previous,current);
-     }]
-        filter:^BOOL(RACTuple *value) {
-            RACTupleUnpack(NSNumber *previous, NSNumber *current) = value;
-            
-            return previous.boolValue && !current.boolValue;
-        }]
-     take:1]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
-         
-         [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
-         
-         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-         
-         UIGraphicsEndImageContext();
-         
-         [self.webView removeFromSuperview];
-         
-         @weakify(self);
-         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-             @strongify(self);
-             UIImage *retval = [image BB_imageByResizingToSize:self.size];
-             
-             [self finishOperationWithImage:retval error:nil];
-         });
-     }];
 #else
     [self finishOperationWithImage:nil error:nil];
 #endif
 }
+
+#if (TARGET_OS_IPHONE)
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.webView setDelegate:nil];
+    
+    UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
+    
+    [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    [self.webView removeFromSuperview];
+    
+    @weakify(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        @strongify(self);
+        UIImage *retval = [image BB_imageByResizingToSize:self.size];
+        
+        [self finishOperationWithImage:retval error:nil];
+    });
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self.webView setDelegate:nil];
+    
+    [self finishOperationWithImage:nil error:error];
+}
+#endif
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {
     if (!(self = [super init]))

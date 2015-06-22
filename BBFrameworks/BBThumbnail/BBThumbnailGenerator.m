@@ -27,6 +27,7 @@
 #import "BBThumbnailYouTubeOperation.h"
 #import "BBThumbnailVimeoOperation.h"
 #import "BBThumbnailHTMLOperation.h"
+#import "BBThumbnailDocumentOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #endif
@@ -249,6 +250,9 @@ static NSTimeInterval const kDefaultTime = 1.0;
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
                 [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+            }
+            else if ([@[@"doc",@"docx"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
+                [retval setOperation:[[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
                 cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);

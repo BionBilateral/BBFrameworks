@@ -1,5 +1,5 @@
 //
-//  BBThumbnailHTMLOperation.h
+//  BBThumbnailDocumentOperation.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/21/15.
@@ -15,7 +15,7 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
-@interface BBThumbnailHTMLOperation : BBThumbnailAsyncOperation
+@interface BBThumbnailDocumentOperation : BBThumbnailAsyncOperation
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;
 
