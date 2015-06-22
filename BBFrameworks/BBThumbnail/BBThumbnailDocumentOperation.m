@@ -97,6 +97,13 @@
     
     [self finishOperationWithImage:nil error:error];
 }
+
+- (void)cancel {
+    [super cancel];
+    
+    [self.webView setDelegate:self];
+    [self.webView removeFromSuperview];
+}
 #endif
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {

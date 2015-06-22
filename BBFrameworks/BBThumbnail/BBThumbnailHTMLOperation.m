@@ -92,6 +92,13 @@
 #endif
 }
 
+- (void)cancel {
+    [super cancel];
+    
+    [self.webView stopLoading];
+    [self.webView removeFromSuperview];
+}
+
 - (BOOL)wantsWebViewOperationQueue {
     return YES;
 }

@@ -251,7 +251,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
                 [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
-            else if ([@[@"doc",@"docx"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
+            else if ([@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx",@"csv"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
                 [retval setOperation:[[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {

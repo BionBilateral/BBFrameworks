@@ -47,10 +47,10 @@
     [self.imageView setFrame:self.contentView.bounds];
 }
 
-- (void)prepareForReuse {
-    [super prepareForReuse];
+- (void)setDisposable:(RACDisposable *)disposable {
+    [_disposable dispose];
     
-    [self.disposable dispose];
+    _disposable = disposable;
 }
 
 @end
@@ -121,10 +121,7 @@
     @weakify(cell);
     [cell setDisposable:[[[self.thumbnailGenerator BB_generateThumbnailForURL:self.thumbnailURLs[indexPath.row]] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(RACTuple *value) {
         @strongify(cell);
-        BBLogObject(value);
-        if (cell.superview) {
-            [cell.imageView setImage:value.first];
-        }
+        [cell.imageView setImage:value.first];
     } error:^(NSError *error) {
         [cell.imageView setImage:nil];
     }]];
