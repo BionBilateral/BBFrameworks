@@ -17,8 +17,6 @@
 #import "BBFoundationDebugging.h"
 #import "BBKitCGImageFunctions.h"
 
-#import <Accelerate/Accelerate.h>
-
 #if !__has_feature(objc_arc)
 #error This file requires ARC
 #endif
