@@ -44,7 +44,7 @@
 }
 
 - (void)main {
-    [self setExecuting:YES];
+    [super main];
     
 #if (TARGET_OS_IPHONE)
     [self setWebView:[[WKWebView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds]];
@@ -90,6 +90,10 @@
 #else
     [self finishOperationWithImage:nil error:nil];
 #endif
+}
+
+- (BOOL)wantsWebViewOperationQueue {
+    return YES;
 }
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {

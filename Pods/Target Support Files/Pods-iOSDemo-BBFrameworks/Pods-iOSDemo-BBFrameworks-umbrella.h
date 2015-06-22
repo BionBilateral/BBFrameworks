@@ -52,6 +52,7 @@
 #import "BBThumbnail.h"
 #import "BBThumbnailAsyncOperation.h"
 #import "BBThumbnailDefines.h"
+#import "BBThumbnailDocumentOperation.h"
 #import "BBThumbnailGenerator.h"
 #import "BBThumbnailHTMLOperation.h"
 #import "BBThumbnailImageOperation.h"

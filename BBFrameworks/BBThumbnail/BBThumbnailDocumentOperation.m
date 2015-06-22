@@ -47,11 +47,12 @@
 }
 
 - (void)main {
-    [self setExecuting:YES];
+    [super main];
     
 #if (TARGET_OS_IPHONE)
     [self setWebView:[[UIWebView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds]];
     [self.webView setUserInteractionEnabled:NO];
+    [self.webView setScalesPageToFit:YES];
     [self.webView setDelegate:self];
     
     [[UIApplication sharedApplication].keyWindow insertSubview:self.webView atIndex:0];
@@ -62,9 +63,14 @@
 #endif
 }
 
+- (BOOL)wantsWebViewOperationQueue {
+    return YES;
+}
+
 #if (TARGET_OS_IPHONE)
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.webView setDelegate:nil];
+    [self.webView stopLoading];
     
     UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
     
@@ -86,6 +92,8 @@
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self.webView setDelegate:nil];
+    [self.webView stopLoading];
+    [self.webView removeFromSuperview];
     
     [self finishOperationWithImage:nil error:error];
 }

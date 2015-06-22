@@ -18,6 +18,6 @@
 
 @interface BBThumbnailOperationWrapper : NSObject <BBThumbnailOperation>
 
-@property (strong) NSOperation *operation;
+@property (strong) NSOperation<BBThumbnailOperation> *operation;
 
 @end

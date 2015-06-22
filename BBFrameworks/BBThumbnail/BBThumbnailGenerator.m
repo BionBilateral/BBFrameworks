@@ -273,7 +273,12 @@ static NSTimeInterval const kDefaultTime = 1.0;
         }
         
         if (retval.operation) {
-            [self.operationQueue addOperation:retval.operation];
+            if ([retval.operation respondsToSelector:@selector(wantsWebViewOperationQueue)]) {
+                [self.operationQueue addOperation:retval.operation];
+            }
+            else {
+                [self.operationQueue addOperation:retval.operation];
+            }
         }
     }];
     

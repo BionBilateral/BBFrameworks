@@ -21,4 +21,6 @@ typedef void(^BBThumbnailOperationCompletionBlock)(BBThumbnailGeneratorImageClas
 @protocol BBThumbnailOperation <NSObject>
 @required
 - (void)cancel;
+@optional
+- (BOOL)wantsWebViewOperationQueue;
 @end
