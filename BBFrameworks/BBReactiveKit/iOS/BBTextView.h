@@ -23,21 +23,21 @@
 /**
  Set and get text field's placeholder text.
  */
-@property (strong,nonatomic) NSString *placeholder;
+@property (copy,nonatomic) NSString *placeholder;
 
 /**
  Set and get text field's attributed placeholder text.
  */
-@property (strong,nonatomic) NSAttributedString *attributedPlaceholder;
+@property (copy,nonatomic) NSAttributedString *attributedPlaceholder;
 
 /**
  Set and get text field's placeholder font.
  */
-@property (strong,nonatomic) UIFont *placeholderFont;
+@property (strong,nonatomic) UIFont *placeholderFont UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get text field's placeholder text color.
  */
-@property (strong,nonatomic) UIColor *placeholderTextColor;
+@property (strong,nonatomic) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
 
 @end

@@ -148,6 +148,26 @@
       "frameworks": "Photos"
     },
     {
+      "name": "BBMediaPlayer",
+      "platforms": {
+        "ios": "8.3"
+      },
+      "dependencies": {
+        "ReactiveCocoa": [
+          "~> 2.5.0"
+        ],
+        "ReactiveViewModel": [
+          "~> 0.3.0"
+        ],
+        "BBFrameworks/BBKit": [
+
+        ]
+      },
+      "source_files": "BBFrameworks/BBMediaPlayer",
+      "resources": "BBFrameworks/BBMediaPlayer/*.xib",
+      "frameworks": "AVFoundation"
+    },
+    {
       "name": "BBWebKit",
       "platforms": {
         "ios": "8.3"

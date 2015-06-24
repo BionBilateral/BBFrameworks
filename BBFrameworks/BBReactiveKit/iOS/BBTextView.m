@@ -39,15 +39,6 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
-    if (!(self = [super initWithFrame:frame textContainer:textContainer]))
-        return nil;
-    
-    [self _BBTextViewInit];
-    
-    return self;
-}
-
 #pragma mark NSCoding
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (!(self = [super initWithCoder:aDecoder]))
@@ -58,37 +49,91 @@
     return self;
 }
 
-- (void)setFont:(UIFont *)font {
-    [super setFont:font];
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
-    [self setPlaceholderFont:self.font];
+    CGFloat maxWidth = CGRectGetWidth(self.bounds) - self.contentInset.left - self.textContainerInset.left - self.contentInset.right - self.textContainerInset.right;
+    
+    [self.placeholderLabel setFrame:CGRectMake(self.contentInset.left + self.textContainerInset.left, self.contentInset.top + self.textContainerInset.top, maxWidth, ceil([self.placeholderLabel sizeThatFits:CGSizeMake(maxWidth, CGFLOAT_MAX)].height))];
 }
-- (void)setTextColor:(UIColor *)textColor {
-    [super setTextColor:textColor];
-    
-    [self setPlaceholderTextColor:self.textColor];
+
+@dynamic placeholder;
+- (NSString *)placeholder {
+    return self.attributedPlaceholder.string;
+}
+- (void)setPlaceholder:(NSString *)placeholder {
+    [self setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:placeholder ?: @"" attributes:@{NSFontAttributeName: self.placeholderFont, NSForegroundColorAttributeName: self.placeholderTextColor}]];
+}
+@dynamic attributedPlaceholder;
+- (NSAttributedString *)attributedPlaceholder {
+    return self.placeholderLabel.attributedText;
+}
+- (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
+    [self willChangeValueForKey:@keypath(self,attributedPlaceholder)];
+    [self.placeholderLabel setAttributedText:attributedPlaceholder];
+    [self didChangeValueForKey:@keypath(self,attributedPlaceholder)];
 }
 
 #pragma mark *** Public Methods ***
 #pragma mark Properties
 - (void)setPlaceholderFont:(UIFont *)placeholderFont {
-    _placeholderFont = (placeholderFont) ?: [self.class _defaultPlaceholderFont];
+    _placeholderFont = placeholderFont ?: [self.class _defaultPlaceholderFont];
 }
 - (void)setPlaceholderTextColor:(UIColor *)placeholderTextColor {
-    _placeholderTextColor = (placeholderTextColor) ?: [self.class _defaultPlaceholderTextColor];
+    _placeholderTextColor = placeholderTextColor ?: [self.class _defaultPlaceholderTextColor];
 }
 
 #pragma mark *** Private Methods ***
 - (void)_BBTextViewInit {
+    _placeholderFont = [self.class _defaultPlaceholderFont];
+    _placeholderTextColor = [self.class _defaultPlaceholderTextColor];
     
+    [self setContentInset:UIEdgeInsetsZero];
+    [self setTextContainerInset:UIEdgeInsetsZero];
+    [self.textContainer setLineFragmentPadding:0];
+    
+    [self setPlaceholderLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.placeholderLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.placeholderLabel setNumberOfLines:0];
+    [self.placeholderLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self addSubview:self.placeholderLabel];
+    
+    @weakify(self);
+    
+    RAC(self.placeholderLabel,hidden) = [[[[[[NSNotificationCenter defaultCenter]
+                                             rac_addObserverForName:UITextViewTextDidChangeNotification object:self]
+                                            takeUntil:[self rac_willDeallocSignal]]
+                                           mapReplace:self]
+                                          map:^id(UITextView *value) {
+                                              return @(value.text.length > 0);
+                                          }]
+                                         deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self, placeholderFont),
+                                RACObserve(self, placeholderTextColor)]]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(RACTuple *value) {
+         @strongify(self);
+         RACTupleUnpack(UIFont *font, UIColor *textColor) = value;
+         
+         if (self.placeholder.length > 0) {
+             [self setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}]];
+         }
+     }];
+    
+    [[RACObserve(self, attributedPlaceholder)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self setNeedsLayout];
+     }];
 }
 
 + (UIFont *)_defaultPlaceholderFont {
     return [UIFont systemFontOfSize:17];
 }
-
 + (UIColor *)_defaultPlaceholderTextColor {
-    return [UIColor blackColor];
+    return [UIColor darkGrayColor];
 }
 
 @end

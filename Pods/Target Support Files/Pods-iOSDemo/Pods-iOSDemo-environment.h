@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_BBFrameworks_BBMediaPicker 0
 #define COCOAPODS_VERSION_PATCH_BBFrameworks_BBMediaPicker 1
 
+// BBFrameworks/BBMediaPlayer
+#define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBMediaPlayer
+#define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBMediaPlayer 0
+#define COCOAPODS_VERSION_MINOR_BBFrameworks_BBMediaPlayer 0
+#define COCOAPODS_VERSION_PATCH_BBFrameworks_BBMediaPlayer 1
+
 // BBFrameworks/BBReactiveKit
 #define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBReactiveKit
 #define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBReactiveKit 0

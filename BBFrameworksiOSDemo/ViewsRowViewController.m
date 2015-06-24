@@ -17,12 +17,21 @@
 #import "TableViewController.h"
 
 #import <BBFrameworks/BBKit.h>
+#import <BBFrameworks/BBReactiveKit.h>
 
 @interface ViewsRowViewController ()
 @property (strong,nonatomic) BBBadgeView *badgeView;
+@property (strong,nonatomic) BBTextView *textView;
 @end
 
 @implementation ViewsRowViewController
+
++ (void)initialize {
+    if (self == [ViewsRowViewController class]) {
+        [[BBTextView appearance] setPlaceholderFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
+        [[BBTextView appearance] setPlaceholderTextColor:[UIColor lightGrayColor]];
+    }
+}
 
 - (NSString *)title {
     return [self.class rowClassTitle];
@@ -37,11 +46,21 @@
     [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.badgeView setBadge:@"1234"];
     [self.view addSubview:self.badgeView];
+    
+    [self setTextView:[[BBTextView alloc] initWithFrame:CGRectZero]];
+    [self.textView setBackgroundColor:[UIColor blackColor]];
+    [self.textView setTextContainerInset:UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)];
+    [self.textView setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]];
+    [self.textView setTextColor:[UIColor whiteColor]];
+    [self.textView setTintColor:[UIColor whiteColor]];
+    [self.textView setPlaceholder:@"Type some text…"];
+    [self.view addSubview:self.textView];
 }
 - (void)viewDidLayoutSubviews {
     CGSize badgeViewSize = [self.badgeView sizeThatFits:CGSizeZero];
     
     [self.badgeView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
+    [self.textView setFrame:CGRectMake(CGRectGetMaxX(self.badgeView.frame), [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.badgeView.frame), CGRectGetHeight(self.view.bounds) - [self.topLayoutGuide length] - [self.bottomLayoutGuide length])];
 }
 
 + (NSString *)rowClassTitle {
