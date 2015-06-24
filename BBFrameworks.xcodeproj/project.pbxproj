@@ -10,6 +10,8 @@
 		07BFFE8A1B39C3A700DBC7EC /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFE891B39C3A700DBC7EC /* APIKeys.plist */; };
 		38C40C84F4391D9C27ED7ED2 /* Pods_iOSFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3B7E33E56A437A3B6549C2C2 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		74E230821B3B55C900DE56B3 /* BBTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E230801B3B55C900DE56B3 /* BBTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E230831B3B55C900DE56B3 /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E230811B3B55C900DE56B3 /* BBTextView.m */; };
 		78FEBBB80841940908967232 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		79052B031B1AF3270097B7AF /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */; };
 		79052B131B1AF3960097B7AF /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */; };
@@ -276,6 +278,8 @@
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E230801B3B55C900DE56B3 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
+		74E230811B3B55C900DE56B3 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		79052AFD1B1AF3270097B7AF /* BBFrameworksiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79052B0D1B1AF3960097B7AF /* BBFrameworksOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
@@ -981,6 +985,8 @@
 			children = (
 				79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */,
 				79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */,
+				74E230801B3B55C900DE56B3 /* BBTextView.h */,
+				74E230811B3B55C900DE56B3 /* BBTextView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1055,6 +1061,7 @@
 				7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
 				79B4FFC91B3647F8007B8629 /* BBTooltipView.h in Headers */,
 				7927CFC21B1AD2B90034288D /* BBFoundationDebugging.h in Headers */,
+				74E230821B3B55C900DE56B3 /* BBTextView.h in Headers */,
 				79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */,
 				7927CFC61B1AD2B90034288D /* BBFoundationMacros.h in Headers */,
 				79B4FFCB1B3647F8007B8629 /* BBTooltipViewController.h in Headers */,
@@ -1686,6 +1693,7 @@
 				7927D0321B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,
 				7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
 				79B4FF921B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m in Sources */,
+				74E230831B3B55C900DE56B3 /* BBTextView.m in Sources */,
 				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
 				79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
 				79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
