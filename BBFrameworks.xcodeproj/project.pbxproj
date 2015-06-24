@@ -231,6 +231,9 @@
 		79B4FFF41B37856D007B8629 /* BBThumbnailDocumentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */; };
 		79B4FFF51B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
 		79B4FFF61B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
+		79B4FFF91B3908FC007B8629 /* BBMediaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFFC1B39094E007B8629 /* BBMediaPlayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFFA1B39094E007B8629 /* BBMediaPlayerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4FFFD1B39094E007B8629 /* BBMediaPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFFB1B39094E007B8629 /* BBMediaPlayerController.m */; };
 		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
@@ -434,6 +437,9 @@
 		79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailHTMLOperation.m; sourceTree = "<group>"; };
 		79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailDocumentOperation.h; sourceTree = "<group>"; };
 		79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailDocumentOperation.m; sourceTree = "<group>"; };
+		79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayer.h; sourceTree = "<group>"; };
+		79B4FFFA1B39094E007B8629 /* BBMediaPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayerController.h; sourceTree = "<group>"; };
+		79B4FFFB1B39094E007B8629 /* BBMediaPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPlayerController.m; sourceTree = "<group>"; };
 		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -564,6 +570,7 @@
 				7927CF981B1AD2B90034288D /* BBThumbnail */,
 				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 				79B4FF661B363B04007B8629 /* BBMediaPicker */,
+				79B4FFF71B3908C3007B8629 /* BBMediaPlayer */,
 				79B4FF9B1B363F1F007B8629 /* BBWebKit */,
 				79B4FFC21B3647DD007B8629 /* BBTooltip */,
 			);
@@ -740,6 +747,16 @@
 				79B4FFC41B3647F8007B8629 /* BBTooltipView.m */,
 			);
 			path = BBTooltip;
+			sourceTree = "<group>";
+		};
+		79B4FFF71B3908C3007B8629 /* BBMediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */,
+				79B4FFFA1B39094E007B8629 /* BBMediaPlayerController.h */,
+				79B4FFFB1B39094E007B8629 /* BBMediaPlayerController.m */,
+			);
+			path = BBMediaPlayer;
 			sourceTree = "<group>";
 		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
@@ -1049,8 +1066,10 @@
 				7927CFC01B1AD2B90034288D /* BBFoundation.h in Headers */,
 				7927CFDC1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 				7927D0161B1AD2B90034288D /* BBThumbnail.h in Headers */,
+				79B4FFF91B3908FC007B8629 /* BBMediaPlayer.h in Headers */,
 				79B4FF931B363D4E007B8629 /* BBMediaPickerViewController.h in Headers */,
 				7927D0261B1AD2B90034288D /* BBThumbnailOperation.h in Headers */,
+				79B4FFFC1B39094E007B8629 /* BBMediaPlayerController.h in Headers */,
 				79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				79B4FF881B363D4E007B8629 /* BBMediaPickerAssetViewModel.h in Headers */,
 				7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
@@ -1662,6 +1681,7 @@
 				79B4FFB71B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m in Sources */,
 				79B4FFB91B364384007B8629 /* UIColor+BBKitExtensions.m in Sources */,
 				79B4FFBF1B364384007B8629 /* UIView+BBKitExtensions.m in Sources */,
+				79B4FFFD1B39094E007B8629 /* BBMediaPlayerController.m in Sources */,
 				7927CFDA1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				79B4FF821B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				7927CFBE1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
