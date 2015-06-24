@@ -129,23 +129,25 @@
     },
     {
       "name": "BBMediaPicker",
-      "platforms": {
-        "ios": "8.3"
-      },
-      "dependencies": {
-        "ReactiveCocoa": [
-          "~> 2.5.0"
-        ],
-        "ReactiveViewModel": [
-          "~> 0.3.0"
-        ],
-        "BBFrameworks/BBKit": [
+      "ios": {
+        "dependencies": {
+          "ReactiveCocoa": [
+            "~> 2.5.0"
+          ],
+          "ReactiveViewModel": [
+            "~> 0.3.0"
+          ],
+          "BBFrameworks/BBKit": [
 
-        ]
+          ]
+        },
+        "source_files": "BBFrameworks/BBMediaPicker",
+        "resources": "BBFrameworks/BBMediaPicker/*.xib",
+        "frameworks": "Photos"
       },
-      "source_files": "BBFrameworks/BBMediaPicker",
-      "resources": "BBFrameworks/BBMediaPicker/*.xib",
-      "frameworks": "Photos"
+      "osx": {
+        "source_files": "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
+      }
     },
     {
       "name": "BBMediaPlayer",

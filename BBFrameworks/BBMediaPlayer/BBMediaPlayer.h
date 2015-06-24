@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_MEDIA_PLAYER__
 #define __BB_FRAMEWORKS_MEDIA_PLAYER__
 
+#if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBMediaPlayerController.h>
+#endif
 
 #endif

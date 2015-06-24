@@ -36,6 +36,12 @@
 #define COCOAPODS_VERSION_MINOR_BBFrameworks_BBKit 0
 #define COCOAPODS_VERSION_PATCH_BBFrameworks_BBKit 1
 
+// BBFrameworks/BBMediaPicker
+#define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBMediaPicker
+#define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBMediaPicker 0
+#define COCOAPODS_VERSION_MINOR_BBFrameworks_BBMediaPicker 0
+#define COCOAPODS_VERSION_PATCH_BBFrameworks_BBMediaPicker 1
+
 // BBFrameworks/BBReactiveKit
 #define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBReactiveKit
 #define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBReactiveKit 0

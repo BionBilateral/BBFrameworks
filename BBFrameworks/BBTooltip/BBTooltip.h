@@ -16,7 +16,9 @@
 #ifndef __BB_FRAMEWORKS_TOOLTIP__
 #define __BB_FRAMEWORKS_TOOLTIP__
 
+#if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBTooltipViewController.h>
 #import <BBFrameworks/BBTooltipView.h>
+#endif
 
 #endif

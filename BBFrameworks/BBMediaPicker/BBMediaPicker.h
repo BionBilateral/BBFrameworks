@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_MEDIA_PICKER__
 #define __BB_FRAMEWORKS_MEDIA_PICKER__
 
+#if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBMediaPickerViewController.h>
+#endif
 
 #endif

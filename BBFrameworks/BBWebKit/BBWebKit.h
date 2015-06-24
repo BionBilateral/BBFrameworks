@@ -16,7 +16,9 @@
 #ifndef __BB_FRAMEWORKS_WEB_KIT__
 #define __BB_FRAMEWORKS_WEB_KIT__
 
+#if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBWebKitViewController.h>
 #import <BBFrameworks/BBWebKitTitleView.h>
+#endif
 
 #endif

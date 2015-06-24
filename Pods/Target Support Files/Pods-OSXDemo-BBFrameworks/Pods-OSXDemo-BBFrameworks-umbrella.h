@@ -27,6 +27,7 @@
 #import "NSURL+BBKitExtensions.h"
 #import "NSColor+BBKitExtensions.h"
 #import "NSImage+BBKitExtensions.h"
+#import "BBMediaPicker.h"
 #import "BBReactiveKit.h"
 #import "BBReactiveThumbnail.h"
 #import "BBThumbnailGenerator+BBReactiveThumbnailExtensions.h"
