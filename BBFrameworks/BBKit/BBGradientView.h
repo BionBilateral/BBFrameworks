@@ -40,7 +40,7 @@
 /**
  Set and get the locations of the underlying CAGradientLayer.
  
- The array should contain NSValue instances wrapping CGPoint structures.
+ The gradient stops are specified as values between 0 and 1. The values must be monotonically increasing. If nil, the stops are spread uniformly across the range. Defaults to nil.
  */
 @property (copy,nonatomic) NSArray *locations;
 

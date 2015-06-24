@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07BFFE8A1B39C3A700DBC7EC /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFE891B39C3A700DBC7EC /* APIKeys.plist */; };
 		38C40C84F4391D9C27ED7ED2 /* Pods_iOSFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3B7E33E56A437A3B6549C2C2 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		78FEBBB80841940908967232 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -212,8 +213,6 @@
 		79B4FFD41B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
 		79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
 		79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
-		79B4FFD81B368E90007B8629 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FFD71B368E90007B8629 /* APIKeys.plist */; };
-		79B4FFD91B368E90007B8629 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FFD71B368E90007B8629 /* APIKeys.plist */; };
 		79B4FFDC1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
 		79B4FFDD1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
 		79B4FFDE1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
@@ -272,6 +271,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07BFFE891B39C3A700DBC7EC /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		0DAA64E0C71A3C52447FAB4D /* Pods-iOSFrameworks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.release.xcconfig"; sourceTree = "<group>"; };
 		16A8AD559E899774854604DC /* Pods-OSXFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
 		1E795CAF990D7A8830294F49 /* Pods-iOSFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -428,7 +428,6 @@
 		79B4FFCF1B364842007B8629 /* BBTooltip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltip.h; sourceTree = "<group>"; };
 		79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailYouTubeOperation.h; sourceTree = "<group>"; };
 		79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailYouTubeOperation.m; sourceTree = "<group>"; };
-		79B4FFD71B368E90007B8629 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailVimeoOperation.h; sourceTree = "<group>"; };
 		79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailVimeoOperation.m; sourceTree = "<group>"; };
 		79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailAsyncOperation.h; sourceTree = "<group>"; };
@@ -830,8 +829,8 @@
 			children = (
 				7953FA2E1B31C4820005E3FD /* docs */,
 				79C0010E1B1AD081004C9A6E /* Info.plist */,
-				79B4FFD71B368E90007B8629 /* APIKeys.plist */,
 				79C0010F1B1AD081004C9A6E /* main.m */,
+				07BFFE891B39C3A700DBC7EC /* APIKeys.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1351,7 +1350,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79B4FFD91B368E90007B8629 /* APIKeys.plist in Resources */,
 				7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */,
 				7989C9DB1B1ADE66009B1CE9 /* Main.storyboard in Resources */,
 			);
@@ -1379,7 +1377,7 @@
 			files = (
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
 				7953FA2F1B31C4820005E3FD /* docs in Resources */,
-				79B4FFD81B368E90007B8629 /* APIKeys.plist in Resources */,
+				07BFFE8A1B39C3A700DBC7EC /* APIKeys.plist in Resources */,
 				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
 				7989DD531B345A3E0001F7C3 /* AssetsPickerViewController.xib in Resources */,
 				791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */,
