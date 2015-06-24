@@ -87,6 +87,21 @@ Pod::Spec.new do |spec|
     subspec.frameworks = "Photos"
   end
   
+  spec.subspec "BBMediaPlayer" do |subspec|
+    subspec.platform = :ios, "8.3"
+    
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.dependency "ReactiveViewModel", "~> 0.3.0"
+    
+    subspec.dependency "BBFrameworks/BBKit"
+    
+    subspec.source_files = "BBFrameworks/BBMediaPlayer"
+    
+    subspec.resources = "BBFrameworks/BBMediaPlayer/*.xib"
+    
+    subspec.frameworks = "AVFoundation"
+  end
+  
   spec.subspec "BBWebKit" do |subspec|
     subspec.platform = :ios, "8.3"
     
