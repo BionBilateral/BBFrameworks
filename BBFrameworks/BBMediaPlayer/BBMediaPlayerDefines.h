@@ -16,6 +16,7 @@
 #ifndef __BB_FRAMEWORKS_MEDIA_PLAYER_DEFINES__
 #define __BB_FRAMEWORKS_MEDIA_PLAYER_DEFINES__
 
-#define BBMediaPlayerLocalizedTableName @"MediaPlayer"
+static CGFloat const BBMediaPlayerSubviewMargin = 8.0;
+static CGFloat const BBMediaPlayerSubviewPadding = 20.0;
 
 #endif

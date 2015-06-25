@@ -38,7 +38,7 @@ CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
     [self setBackgroundColor:[UIColor clearColor]];
     [self setMoviePlayerController:moviePlayerController];
     
-    [self setBlurVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]]];
+    [self setBlurVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]]];
     [self.blurVisualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.blurVisualEffectView];
     
@@ -59,7 +59,7 @@ CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
     [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.vibrancyVisualEffectView}]];
     [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.vibrancyVisualEffectView}]];
     
-    [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
+    [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding)-[view]" options:0 metrics:@{@"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"view": self.playPauseButton}]];
     [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
     
     @weakify(self);
