@@ -18,10 +18,14 @@
 #import "BBMoviePlayerContentView.h"
 #import "BBMoviePlayerEmbeddedBottomView.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 @interface BBMoviePlayerView ()
 @property (readwrite,strong,nonatomic) UIView *backgroundView;
 @property (readwrite,strong,nonatomic) BBMoviePlayerContentView *contentView;
 @property (strong,nonatomic) BBMoviePlayerEmbeddedBottomView *embeddedBottomView;
+
+@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
 @property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
@@ -55,6 +59,20 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.embeddedBottomView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(==height)]|" options:0 metrics:@{@"height": @(BBMoviePlayerEmbeddedBottomViewHeight)} views:@{@"view": self.embeddedBottomView}]];
+    
+    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] init]];
+    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
+    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self addGestureRecognizer:self.tapGestureRecognizer];
+    
+    @weakify(self);
+    [[[self.tapGestureRecognizer
+     rac_gestureSignal]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+      subscribeNext:^(id _) {
+          @strongify(self);
+          [self.embeddedBottomView setHidden:!self.embeddedBottomView.isHidden];
+      }];
     
     return self;
 }

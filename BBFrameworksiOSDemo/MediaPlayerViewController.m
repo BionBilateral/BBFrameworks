@@ -44,6 +44,7 @@
     
     [self setMoviePlayerController:[[BBMoviePlayerController alloc] init]];
     [self.moviePlayerController setContentURL:URL];
+    [self.moviePlayerController setScalingMode:BBMoviePlayerControllerScalingModeAspectFill];
     [self.view addSubview:self.moviePlayerController.view];
 }
 - (void)viewDidLayoutSubviews {
