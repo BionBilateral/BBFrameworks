@@ -40,14 +40,30 @@ static int32_t const kPreferredTimeScale = 1;
     [self setMoviePlayerView:[[BBMoviePlayerView alloc] initWithMoviePlayerController:self]];
     
     @weakify(self);
-    [[[RACObserve(self, contentURL)
+    
+    RACSignal *contentURLSignal = RACObserve(self, contentURL);
+    
+    [[[contentURLSignal
      distinctUntilChanged]
       deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSURL *value) {
          @strongify(self);
          AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:value];
          
+         [self.player setActionAtItemEnd:AVPlayerActionAtItemEndPause];
          [self.player replaceCurrentItemWithPlayerItem:playerItem];
+         
+         [[[[RACSignal merge:@[[[NSNotificationCenter defaultCenter]
+                             rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:playerItem],
+                             [[NSNotificationCenter defaultCenter]
+                              rac_addObserverForName:AVPlayerItemFailedToPlayToEndTimeNotification object:playerItem]]]
+          takeUntil:[[contentURLSignal skip:1] take:1]]
+          deliverOn:[RACScheduler mainThreadScheduler]]
+          subscribeNext:^(NSNotification *value) {
+              @strongify(self);
+              [self willChangeValueForKey:@keypath(self,currentPlaybackRate)];
+              [self didChangeValueForKey:@keypath(self,currentPlaybackRate)];
+          }];
          
          if (self.shouldAutoplay) {
              [self play];
@@ -58,6 +74,11 @@ static int32_t const kPreferredTimeScale = 1;
 }
 #pragma mark *** Public Methods ***
 - (void)play {
+    // match the behavior of MPMoviePlayerController in that if the movie has finished playing, play first skips to the beginning of the movie before starting playback
+    if (CMTIME_IS_VALID(self.player.currentItem.duration) &&
+        CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
+        [self setCurrentPlaybackTime:0.0];
+    }
     [self setCurrentPlaybackRate:1.0];
 }
 - (void)pause {

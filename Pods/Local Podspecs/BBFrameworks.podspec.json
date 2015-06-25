@@ -164,7 +164,10 @@
           ]
         },
         "source_files": "BBFrameworks/BBMediaPlayer",
-        "resources": "BBFrameworks/BBMediaPlayer/*.xib",
+        "resources": [
+          "BBFrameworks/BBMediaPlayer/*.xib",
+          "BBFrameworks/*.lproj/MediaPlayer.strings"
+        ],
         "frameworks": "AVFoundation"
       },
       "osx": {

@@ -17,6 +17,8 @@
 #import "BBMoviePlayerController.h"
 #import "BBMediaPlayerDefines.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
 
 @interface BBMoviePlayerEmbeddedBottomView ()
@@ -36,7 +38,7 @@ CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
     [self setBackgroundColor:[UIColor clearColor]];
     [self setMoviePlayerController:moviePlayerController];
     
-    [self setBlurVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]]];
+    [self setBlurVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]]];
     [self.blurVisualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.blurVisualEffectView];
     
@@ -59,6 +61,32 @@ CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
     
     [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
     [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
+    
+    @weakify(self);
+    
+    RAC(self.playPauseButton,selected) = [[RACObserve(self.moviePlayerController, currentPlaybackRate)
+                                          map:^id(NSNumber *value) {
+                                              return @(value.floatValue != 0.0);
+                                          }]
+                                          deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    [self.playPauseButton setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        return [RACSignal return:self];
+    }]];
+    
+    [[[self.playPauseButton.rac_command.executionSignals
+     concat]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         if (self.moviePlayerController.currentPlaybackRate == 0.0) {
+             [self.moviePlayerController play];
+         }
+         else {
+             [self.moviePlayerController pause];
+         }
+     }];
     
     return self;
 }

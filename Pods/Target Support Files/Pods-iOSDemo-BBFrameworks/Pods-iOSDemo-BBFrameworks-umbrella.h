@@ -46,6 +46,7 @@
 #import "BBMediaPickerViewControllerDelegate.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPlayer.h"
+#import "BBMediaPlayerDefines.h"
 #import "BBMoviePlayerContentView.h"
 #import "BBMoviePlayerController+BBMediaPlayerPrivate.h"
 #import "BBMoviePlayerController.h"
