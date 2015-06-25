@@ -34,6 +34,7 @@
     
     [self setBackgroundView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.backgroundView setBackgroundColor:[UIColor blackColor]];
     [self addSubview:self.backgroundView];
     
     [self setContentView:[[BBMoviePlayerContentView alloc] initWithMoviePlayerController:self.moviePlayerController]];
