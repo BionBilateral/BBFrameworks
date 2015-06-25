@@ -30,9 +30,11 @@ CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
     if (!(self = [super init]))
         return nil;
     
+    [self setBackgroundColor:[UIColor clearColor]];
     [self setMoviePlayerController:moviePlayerController];
     
     [self setVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]]];
+    [self.visualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.visualEffectView];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.visualEffectView}]];

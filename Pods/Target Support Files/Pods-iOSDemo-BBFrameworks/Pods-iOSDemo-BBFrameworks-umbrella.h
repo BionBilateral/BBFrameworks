@@ -50,6 +50,7 @@
 #import "BBMoviePlayerController+BBMediaPlayerPrivate.h"
 #import "BBMoviePlayerController.h"
 #import "BBMoviePlayerControllerDefines.h"
+#import "BBMoviePlayerEmbeddedBottomView.h"
 #import "BBMoviePlayerView.h"
 #import "BBReactiveKit.h"
 #import "BBProgressNavigationBar.h"
