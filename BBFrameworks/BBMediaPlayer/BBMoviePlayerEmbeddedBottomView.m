@@ -16,13 +16,14 @@
 #import "BBMoviePlayerEmbeddedBottomView.h"
 #import "BBMoviePlayerController.h"
 #import "BBMediaPlayerDefines.h"
+#import "BBMoviePlayerSliderView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMoviePlayerEmbeddedBottomView ()
 @property (strong,nonatomic) UIVisualEffectView *blurVisualEffectView;
-@property (strong,nonatomic) UIVisualEffectView *vibrancyVisualEffectView;
 @property (strong,nonatomic) UIButton *playPauseButton;
+@property (strong,nonatomic) BBMoviePlayerSliderView *sliderView;
 
 @property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
@@ -44,25 +45,25 @@
     [self.blurVisualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.blurVisualEffectView];
     
-    [self setVibrancyVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurVisualEffectView.effect]]];
-    [self.vibrancyVisualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.blurVisualEffectView.contentView addSubview:self.vibrancyVisualEffectView];
-    
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.playPauseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PLAY_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Play", @"media player play button title") forState:UIControlStateNormal];
     [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PAUSE_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Pause", @"media player pause button title") forState:UIControlStateSelected];
-    [self.vibrancyVisualEffectView.contentView addSubview:self.playPauseButton];
+    [self.blurVisualEffectView.contentView addSubview:self.playPauseButton];
+    
+    [self setSliderView:[[BBMoviePlayerSliderView alloc] initWithMoviePlayerController:self.moviePlayerController]];
+    [self.sliderView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.blurVisualEffectView.contentView addSubview:self.sliderView];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
     
-    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.vibrancyVisualEffectView}]];
-    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.vibrancyVisualEffectView}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding)-[view]" options:0 metrics:@{@"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"view": self.playPauseButton}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
     
-    [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding)-[view]" options:0 metrics:@{@"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"view": self.playPauseButton}]];
-    [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-(margin)-[view]-(padding)-|" options:0 metrics:@{@"margin": @(BBMediaPlayerSubviewMargin), @"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"button": self.playPauseButton, @"view": self.sliderView}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.sliderView}]];
     
     @weakify(self);
     

@@ -120,6 +120,10 @@ static int32_t const kPreferredTimeScale = 1;
     [self didChangeValueForKey:@keypath(self,currentPlaybackRate)];
 }
 
+- (NSTimeInterval)duration {
+    return CMTimeGetSeconds(self.player.currentItem.duration);
+}
+
 @dynamic scalingMode;
 - (BBMoviePlayerControllerScalingMode)scalingMode {
     return self.moviePlayerView.contentView.scalingMode;

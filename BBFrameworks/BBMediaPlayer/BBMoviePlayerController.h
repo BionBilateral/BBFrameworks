@@ -56,6 +56,11 @@
 @property (assign,nonatomic) CGFloat currentPlaybackRate;
 
 /**
+ Get the duration of the current movie. Returns 0.0 if the duration is not known.
+ */
+@property (readonly,nonatomic) NSTimeInterval duration;
+
+/**
  Set and get the movie scaling mode used when displaying movie content.
  
  The default is BBMoviePlayerScalingModeAspectFit.

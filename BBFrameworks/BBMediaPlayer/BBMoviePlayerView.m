@@ -58,7 +58,7 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.contentView}]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.embeddedBottomView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view]|" options:0 metrics:nil views:@{@"view": self.embeddedBottomView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(==height)]|" options:0 metrics:@{@"height": @(self.embeddedBottomView.intrinsicContentSize.height)} views:@{@"view": self.embeddedBottomView}]];
     
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] init]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
