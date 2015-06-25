@@ -15,30 +15,50 @@
 
 #import "BBMoviePlayerEmbeddedBottomView.h"
 #import "BBMoviePlayerController.h"
+#import "BBMediaPlayerDefines.h"
 
 CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
 
 @interface BBMoviePlayerEmbeddedBottomView ()
-@property (strong,nonatomic) UIVisualEffectView *visualEffectView;
+@property (strong,nonatomic) UIVisualEffectView *blurVisualEffectView;
+@property (strong,nonatomic) UIVisualEffectView *vibrancyVisualEffectView;
+@property (strong,nonatomic) UIButton *playPauseButton;
 
 @property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
 
 @implementation BBMoviePlayerEmbeddedBottomView
-
+#define kTableName @"MediaPlayer"
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController; {
     if (!(self = [super init]))
         return nil;
-    
+
     [self setBackgroundColor:[UIColor clearColor]];
     [self setMoviePlayerController:moviePlayerController];
     
-    [self setVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]]];
-    [self.visualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self addSubview:self.visualEffectView];
+    [self setBlurVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]]];
+    [self.blurVisualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.blurVisualEffectView];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.visualEffectView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.visualEffectView}]];
+    [self setVibrancyVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurVisualEffectView.effect]]];
+    [self.vibrancyVisualEffectView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.blurVisualEffectView.contentView addSubview:self.vibrancyVisualEffectView];
+    
+    [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.playPauseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PLAY_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Play", @"media player play button title") forState:UIControlStateNormal];
+    [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PAUSE_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Pause", @"media player pause button title") forState:UIControlStateSelected];
+    [self.vibrancyVisualEffectView.contentView addSubview:self.playPauseButton];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
+    
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.vibrancyVisualEffectView}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.vibrancyVisualEffectView}]];
+    
+    [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
+    [self.vibrancyVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
     
     return self;
 }

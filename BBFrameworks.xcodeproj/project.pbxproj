@@ -13,6 +13,8 @@
 		07BFFEB01B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFEB31B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEB11B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h */; };
 		07BFFEB41B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */; };
+		07BFFEBF1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */; };
+		07BFFEC21B3C804400DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */; };
 		38C40C84F4391D9C27ED7ED2 /* Pods_iOSFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3B7E33E56A437A3B6549C2C2 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		74E230821B3B55C900DE56B3 /* BBTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E230801B3B55C900DE56B3 /* BBTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -300,6 +302,8 @@
 		07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerControllerDefines.h; sourceTree = "<group>"; };
 		07BFFEB11B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerEmbeddedBottomView.h; sourceTree = "<group>"; };
 		07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerEmbeddedBottomView.m; sourceTree = "<group>"; };
+		07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayerDefines.h; sourceTree = "<group>"; };
+		07BFFEC11B3C804400DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		0DAA64E0C71A3C52447FAB4D /* Pods-iOSFrameworks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.release.xcconfig"; sourceTree = "<group>"; };
 		16A8AD559E899774854604DC /* Pods-OSXFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
 		1E795CAF990D7A8830294F49 /* Pods-iOSFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -818,6 +822,7 @@
 			isa = PBXGroup;
 			children = (
 				79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */,
+				07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */,
 				07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */,
 				79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */,
 				79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */,
@@ -858,6 +863,7 @@
 		79C000A11B1ACC7C004C9A6E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */,
 				79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */,
 				79C000D61B1ACDC2004C9A6E /* BBFrameworksOSX-Info.plist */,
 			);
@@ -1153,6 +1159,7 @@
 				79B4FFFC1B39094E007B8629 /* BBMoviePlayerController.h in Headers */,
 				79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
 				79B4FF881B363D4E007B8629 /* BBMediaPickerAssetViewModel.h in Headers */,
+				07BFFEBF1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h in Headers */,
 				7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
 				79B4FFC91B3647F8007B8629 /* BBTooltipView.h in Headers */,
 				7927CFC21B1AD2B90034288D /* BBFoundationDebugging.h in Headers */,
@@ -1307,6 +1314,7 @@
 			buildConfigurationList = 79C000B61B1ACC7C004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */;
 			buildPhases = (
 				8C53EE217FF31DACD7EBA8E8 /* Check Pods Manifest.lock */,
+				07BFFEBA1B3C7BF600DBC7EC /* genstrings */,
 				79C000991B1ACC7C004C9A6E /* Sources */,
 				79C0009A1B1ACC7C004C9A6E /* Frameworks */,
 				79C0009B1B1ACC7C004C9A6E /* Headers */,
@@ -1452,6 +1460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B4FF8E1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
+				07BFFEC21B3C804400DBC7EC /* MediaPlayer.strings in Resources */,
 				79B4FF831B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1481,6 +1490,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07BFFEBA1B3C7BF600DBC7EC /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "genstrings -s NSLocalizedString -q -o $SRCROOT/BBFrameworks/en.lproj $SRCROOT/BBFrameworks/BBMediaPlayer/*.h $SRCROOT/BBFrameworks/BBMediaPlayer/*.m";
+		};
 		15BE9AD0C7017F1AD6745714 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1892,6 +1915,17 @@
 			targetProxy = 79052B141B1AF3960097B7AF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BFFEC11B3C804400DBC7EC /* en */,
+			);
+			name = MediaPlayer.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		79052B071B1AF3270097B7AF /* Debug */ = {
