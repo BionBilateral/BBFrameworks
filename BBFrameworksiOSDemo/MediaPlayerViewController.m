@@ -50,7 +50,7 @@
     CGFloat height = floor((CGRectGetHeight(self.view.bounds) - [self.topLayoutGuide length] - [self.bottomLayoutGuide length]) * 0.5);
     
     [self.systemMoviePlayerController.view setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), height)];
-    [self.moviePlayerController.view setFrame:CGRectMake(0, CGRectGetMaxY(self.systemMoviePlayerController.view.frame), CGRectGetWidth(self.view.bounds), height)];
+    [self.moviePlayerController.view setFrame:CGRectMake(0, CGRectGetMaxY(self.systemMoviePlayerController.view.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.systemMoviePlayerController.view.frame) - [self.bottomLayoutGuide length])];
 }
 
 + (NSString *)rowClassTitle {
