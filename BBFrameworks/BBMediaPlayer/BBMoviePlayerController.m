@@ -20,6 +20,8 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+static int32_t const kPreferredTimeScale = 1;
+
 @interface BBMoviePlayerController ()
 @property (strong,nonatomic) BBMoviePlayerView *moviePlayerView;
 
@@ -27,7 +29,7 @@
 @end
 
 @implementation BBMoviePlayerController
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -45,13 +47,55 @@
          AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:value];
          
          [self.player replaceCurrentItemWithPlayerItem:playerItem];
+         
+         if (self.shouldAutoplay) {
+             [self play];
+         }
      }];
     
     return self;
 }
-
+#pragma mark *** Public Methods ***
+- (void)play {
+    [self setCurrentPlaybackRate:1.0];
+}
+- (void)pause {
+    [self setCurrentPlaybackRate:0.0];
+}
+- (void)stop {
+    [self pause];
+    [self setCurrentPlaybackTime:0.0];
+}
+#pragma mark Properties
 - (UIView *)view {
     return self.moviePlayerView;
+}
+- (UIView *)backgroundView {
+    return self.moviePlayerView.backgroundView;
+}
+
+@dynamic currentPlaybackTime;
+- (NSTimeInterval)currentPlaybackTime {
+    return CMTimeGetSeconds(self.player.currentTime);
+}
+- (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
+    [self willChangeValueForKey:@keypath(self,currentPlaybackTime)];
+    
+    [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, kPreferredTimeScale)];
+    
+    [self didChangeValueForKey:@keypath(self,currentPlaybackTime)];
+}
+
+@dynamic currentPlaybackRate;
+- (CGFloat)currentPlaybackRate {
+    return self.player.rate;
+}
+- (void)setCurrentPlaybackRate:(CGFloat)currentPlaybackRate {
+    [self willChangeValueForKey:@keypath(self,currentPlaybackRate)];
+    
+    [self.player setRate:currentPlaybackRate];
+    
+    [self didChangeValueForKey:@keypath(self,currentPlaybackRate)];
 }
 
 @end

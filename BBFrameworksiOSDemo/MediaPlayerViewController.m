@@ -17,7 +17,10 @@
 
 #import <BBFrameworks/BBMediaPlayer.h>
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface MediaPlayerViewController ()
+@property (strong,nonatomic) MPMoviePlayerController *systemMoviePlayerController;
 @property (strong,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
 
@@ -32,12 +35,22 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"mp4"];
+    
+    [self setSystemMoviePlayerController:[[MPMoviePlayerController alloc] initWithContentURL:URL]];
+    [self.systemMoviePlayerController setShouldAutoplay:NO];
+    [self.systemMoviePlayerController prepareToPlay];
+    [self.view addSubview:self.systemMoviePlayerController.view];
+    
     [self setMoviePlayerController:[[BBMoviePlayerController alloc] init]];
-    [self.moviePlayerController setContentURL:[[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"mp4"]];
+    [self.moviePlayerController setContentURL:URL];
     [self.view addSubview:self.moviePlayerController.view];
 }
 - (void)viewDidLayoutSubviews {
-    [self.moviePlayerController.view setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - [self.topLayoutGuide length] - [self.bottomLayoutGuide length])];
+    CGFloat height = floor((CGRectGetHeight(self.view.bounds) - [self.topLayoutGuide length] - [self.bottomLayoutGuide length]) * 0.5);
+    
+    [self.systemMoviePlayerController.view setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), height)];
+    [self.moviePlayerController.view setFrame:CGRectMake(0, CGRectGetMaxY(self.systemMoviePlayerController.view.frame), CGRectGetWidth(self.view.bounds), height)];
 }
 
 + (NSString *)rowClassTitle {

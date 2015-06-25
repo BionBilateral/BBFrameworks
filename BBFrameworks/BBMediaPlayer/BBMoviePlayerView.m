@@ -14,21 +14,17 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMoviePlayerView.h"
-#import "BBMoviePlayerController+BBMediaPlayerPrivate.h"
-
-#import <AVFoundation/AVFoundation.h>
+#import "BBMoviePlayerController.h"
+#import "BBMoviePlayerContentView.h"
 
 @interface BBMoviePlayerView ()
-@property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
+@property (readwrite,strong,nonatomic) UIView *backgroundView;
+@property (readwrite,strong,nonatomic) BBMoviePlayerContentView *contentView;
 
-@property (readonly,nonatomic) AVPlayerLayer *playerLayer;
+@property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
 
 @implementation BBMoviePlayerView
-
-+ (Class)layerClass {
-    return [AVPlayerLayer class];
-}
 
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController; {
     if (!(self = [super initWithFrame:CGRectZero]))
@@ -36,13 +32,21 @@
     
     [self setMoviePlayerController:moviePlayerController];
     
-    [self.playerLayer setPlayer:self.moviePlayerController.player];
+    [self setBackgroundView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.backgroundView];
+    
+    [self setContentView:[[BBMoviePlayerContentView alloc] initWithMoviePlayerController:self.moviePlayerController]];
+    [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.contentView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.backgroundView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.backgroundView}]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.contentView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.contentView}]];
     
     return self;
-}
-
-- (AVPlayerLayer *)playerLayer {
-    return (AVPlayerLayer *)self.layer;
 }
 
 @end

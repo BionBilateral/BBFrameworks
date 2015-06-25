@@ -15,9 +15,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBMoviePlayerController;
+@class BBMoviePlayerController,BBMoviePlayerContentView;
 
 @interface BBMoviePlayerView : UIView
+
+@property (readonly,strong,nonatomic) UIView *backgroundView;
+@property (readonly,strong,nonatomic) BBMoviePlayerContentView *contentView;
 
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController;
 

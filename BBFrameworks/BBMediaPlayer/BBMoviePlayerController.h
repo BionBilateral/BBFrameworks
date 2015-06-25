@@ -15,10 +15,56 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ BBMoviePlayerController is a NSObject subclass similar to MPMoviePlayerController.
+ */
 @interface BBMoviePlayerController : NSObject
 
+/**
+ Set and get the content URL of the receiver. This can be a local or remote URL.
+ */
 @property (copy,nonatomic) NSURL *contentURL;
 
+/**
+ Get the view used to display the movie content. This should be added to your view hiearchy.
+ */
 @property (readonly,nonatomic) UIView *view;
+
+/**
+ Get the background view that is displayed behind movie content. You can add custom views to the background view if you want to display custom content.
+ */
+@property (readonly,nonatomic) UIView *backgroundView;
+
+/**
+ Set and get whether the receiver should automatically play content when its contentURL changes.
+ 
+ The default is NO.
+ */
+@property (assign,nonatomic) BOOL shouldAutoplay;
+
+/**
+ Set and get the current playback time of the current movie in seconds.
+ */
+@property (assign,nonatomic) NSTimeInterval currentPlaybackTime;
+
+/**
+ Set and get the current playback rate of the current movie between 0.0 and 1.0. A non-zero rate implies playing.
+ 
+ The default is 1.0.
+ */
+@property (assign,nonatomic) CGFloat currentPlaybackRate;
+
+/**
+ Sets the currentPlaybackRate to 1.0.
+ */
+- (void)play;
+/**
+ Sets the currentPlaybackRate to 0.0.
+ */
+- (void)pause;
+/**
+ Sets the currentPlaybackRate to 0.0 and the currentPlaybackTime to 0.0.
+ */
+- (void)stop;
 
 @end

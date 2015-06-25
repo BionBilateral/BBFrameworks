@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07BFFE8A1B39C3A700DBC7EC /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFE891B39C3A700DBC7EC /* APIKeys.plist */; };
+		07BFFEAD1B3C652000DBC7EC /* BBMoviePlayerContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */; };
+		07BFFEAE1B3C652000DBC7EC /* BBMoviePlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */; };
 		38C40C84F4391D9C27ED7ED2 /* Pods_iOSFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3B7E33E56A437A3B6549C2C2 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		74E230821B3B55C900DE56B3 /* BBTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E230801B3B55C900DE56B3 /* BBTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -290,6 +292,8 @@
 
 /* Begin PBXFileReference section */
 		07BFFE891B39C3A700DBC7EC /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
+		07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerContentView.h; sourceTree = "<group>"; };
+		07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerContentView.m; sourceTree = "<group>"; };
 		0DAA64E0C71A3C52447FAB4D /* Pods-iOSFrameworks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.release.xcconfig"; sourceTree = "<group>"; };
 		16A8AD559E899774854604DC /* Pods-OSXFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
 		1E795CAF990D7A8830294F49 /* Pods-iOSFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -813,6 +817,8 @@
 				79C27EBC1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h */,
 				79C27EB81B3BB0CB00C4AC28 /* BBMoviePlayerView.h */,
 				79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */,
+				07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */,
+				07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */,
 			);
 			path = BBMediaPlayer;
 			sourceTree = "<group>";
@@ -1155,6 +1161,7 @@
 				7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */,
 				7927CFB01B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				7927D02C1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */,
+				07BFFEAD1B3C652000DBC7EC /* BBMoviePlayerContentView.h in Headers */,
 				79B4FFE31B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */,
 				7927CFEE1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */,
 				79B4FF801B363D4E007B8629 /* BBMediaPickerAsset.h in Headers */,
@@ -1754,6 +1761,7 @@
 				7927CFCE1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */,
 				79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */,
 				7927CFB21B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
+				07BFFEAE1B3C652000DBC7EC /* BBMoviePlayerContentView.m in Sources */,
 				7927CFE61B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */,
 				79B4FFB71B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m in Sources */,
 				79B4FFB91B364384007B8629 /* UIColor+BBKitExtensions.m in Sources */,
