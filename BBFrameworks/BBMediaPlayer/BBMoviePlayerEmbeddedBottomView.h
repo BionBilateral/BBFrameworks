@@ -15,8 +15,6 @@
 
 #import <UIKit/UIKit.h>
 
-extern CGFloat const BBMoviePlayerEmbeddedBottomViewHeight;
-
 @class BBMoviePlayerController;
 
 @interface BBMoviePlayerEmbeddedBottomView : UIView

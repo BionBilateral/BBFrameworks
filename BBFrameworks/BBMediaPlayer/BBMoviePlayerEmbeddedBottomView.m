@@ -19,8 +19,6 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
-
 @interface BBMoviePlayerEmbeddedBottomView ()
 @property (strong,nonatomic) UIVisualEffectView *blurVisualEffectView;
 @property (strong,nonatomic) UIVisualEffectView *vibrancyVisualEffectView;
@@ -30,7 +28,11 @@ CGFloat const BBMoviePlayerEmbeddedBottomViewHeight = 44.0;
 @end
 
 @implementation BBMoviePlayerEmbeddedBottomView
-#define kTableName @"MediaPlayer"
+
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(UIViewNoIntrinsicMetric, 44.0);
+}
+
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController; {
     if (!(self = [super init]))
         return nil;
