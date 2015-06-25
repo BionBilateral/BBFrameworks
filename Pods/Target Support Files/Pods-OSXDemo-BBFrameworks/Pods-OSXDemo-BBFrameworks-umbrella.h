@@ -28,6 +28,7 @@
 #import "NSColor+BBKitExtensions.h"
 #import "NSImage+BBKitExtensions.h"
 #import "BBMediaPicker.h"
+#import "BBMediaPlayer.h"
 #import "BBReactiveKit.h"
 #import "BBReactiveThumbnail.h"
 #import "BBThumbnailGenerator+BBReactiveThumbnailExtensions.h"
@@ -46,6 +47,8 @@
 #import "BBThumbnailTextOperation.h"
 #import "BBThumbnailVimeoOperation.h"
 #import "BBThumbnailYouTubeOperation.h"
+#import "BBTooltip.h"
+#import "BBWebKit.h"
 
 FOUNDATION_EXPORT double BBFrameworksVersionNumber;
 FOUNDATION_EXPORT const unsigned char BBFrameworksVersionString[];

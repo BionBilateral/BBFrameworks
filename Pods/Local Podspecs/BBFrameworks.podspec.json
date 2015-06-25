@@ -151,66 +151,72 @@
     },
     {
       "name": "BBMediaPlayer",
-      "platforms": {
-        "ios": "8.3"
-      },
-      "dependencies": {
-        "ReactiveCocoa": [
-          "~> 2.5.0"
-        ],
-        "ReactiveViewModel": [
-          "~> 0.3.0"
-        ],
-        "BBFrameworks/BBKit": [
+      "ios": {
+        "dependencies": {
+          "ReactiveCocoa": [
+            "~> 2.5.0"
+          ],
+          "ReactiveViewModel": [
+            "~> 0.3.0"
+          ],
+          "BBFrameworks/BBKit": [
 
-        ]
+          ]
+        },
+        "source_files": "BBFrameworks/BBMediaPlayer",
+        "resources": "BBFrameworks/BBMediaPlayer/*.xib",
+        "frameworks": "AVFoundation"
       },
-      "source_files": "BBFrameworks/BBMediaPlayer",
-      "resources": "BBFrameworks/BBMediaPlayer/*.xib",
-      "frameworks": "AVFoundation"
+      "osx": {
+        "source_files": "BBFrameworks/BBMediaPlayer/BBMediaPlayer.h"
+      }
     },
     {
       "name": "BBWebKit",
-      "platforms": {
-        "ios": "8.3"
-      },
-      "dependencies": {
-        "Archimedes": [
-          "~> 1.1.0"
-        ],
-        "ReactiveCocoa": [
-          "~> 2.5.0"
-        ],
-        "TUSafariActivity": [
-          "~> 1.0.0"
-        ],
-        "ARChromeActivity": [
-          "~> 1.0.0"
-        ],
-        "BBFrameworks/BBReactiveKit": [
+      "ios": {
+        "dependencies": {
+          "Archimedes": [
+            "~> 1.1.0"
+          ],
+          "ReactiveCocoa": [
+            "~> 2.5.0"
+          ],
+          "TUSafariActivity": [
+            "~> 1.0.0"
+          ],
+          "ARChromeActivity": [
+            "~> 1.0.0"
+          ],
+          "BBFrameworks/BBReactiveKit": [
 
-        ]
+          ]
+        },
+        "source_files": "BBFrameworks/BBWebKit",
+        "frameworks": "WebKit"
       },
-      "source_files": "BBFrameworks/BBWebKit",
-      "frameworks": "WebKit"
+      "osx": {
+        "source_files": "BBFrameworks/BBWebKit/BBWebKit.h"
+      }
     },
     {
       "name": "BBTooltip",
-      "platforms": {
-        "ios": "8.3"
-      },
-      "dependencies": {
-        "Archimedes": [
-          "~> 1.1.0"
-        ],
-        "ReactiveCocoa": [
-          "~> 2.5.0"
-        ],
-        "BBFrameworks/BBKit": [
+      "ios": {
+        "dependencies": {
+          "Archimedes": [
+            "~> 1.1.0"
+          ],
+          "ReactiveCocoa": [
+            "~> 2.5.0"
+          ],
+          "BBFrameworks/BBKit": [
 
-        ]
+          ]
+        },
+        "source_files": "BBFrameworks/BBTooltip"
       },
-      "source_files": "BBFrameworks/BBTooltip"
+      "osx": {
+        "source_files": "BBFrameworks/BBTooltip/BBTooltip.h"
+      }
     }
   ]
 }

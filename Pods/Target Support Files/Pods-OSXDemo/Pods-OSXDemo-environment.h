@@ -42,6 +42,12 @@
 #define COCOAPODS_VERSION_MINOR_BBFrameworks_BBMediaPicker 0
 #define COCOAPODS_VERSION_PATCH_BBFrameworks_BBMediaPicker 1
 
+// BBFrameworks/BBMediaPlayer
+#define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBMediaPlayer
+#define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBMediaPlayer 0
+#define COCOAPODS_VERSION_MINOR_BBFrameworks_BBMediaPlayer 0
+#define COCOAPODS_VERSION_PATCH_BBFrameworks_BBMediaPlayer 1
+
 // BBFrameworks/BBReactiveKit
 #define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBReactiveKit
 #define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBReactiveKit 0
@@ -59,6 +65,18 @@
 #define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBThumbnail 0
 #define COCOAPODS_VERSION_MINOR_BBFrameworks_BBThumbnail 0
 #define COCOAPODS_VERSION_PATCH_BBFrameworks_BBThumbnail 1
+
+// BBFrameworks/BBTooltip
+#define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBTooltip
+#define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBTooltip 0
+#define COCOAPODS_VERSION_MINOR_BBFrameworks_BBTooltip 0
+#define COCOAPODS_VERSION_PATCH_BBFrameworks_BBTooltip 1
+
+// BBFrameworks/BBWebKit
+#define COCOAPODS_POD_AVAILABLE_BBFrameworks_BBWebKit
+#define COCOAPODS_VERSION_MAJOR_BBFrameworks_BBWebKit 0
+#define COCOAPODS_VERSION_MINOR_BBFrameworks_BBWebKit 0
+#define COCOAPODS_VERSION_PATCH_BBFrameworks_BBWebKit 1
 
 // BlocksKit/Core
 #define COCOAPODS_POD_AVAILABLE_BlocksKit_Core

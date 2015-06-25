@@ -258,7 +258,7 @@
     return [UIFont boldSystemFontOfSize:17.0];
 }
 + (UIEdgeInsets)_defaultBadgeEdgeInsets; {
-    return UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0);
+    return UIEdgeInsetsMake(4.0, 8.0, 4.0, 8.0);
 }
 #else
 + (NSColor *)_defaultBadgeForegroundColor; {
@@ -277,7 +277,7 @@
     return [NSFont boldSystemFontOfSize:17.0];
 }
 + (NSEdgeInsets)_defaultBadgeEdgeInsets; {
-    return NSEdgeInsetsMake(4.0, 4.0, 4.0, 4.0);
+    return NSEdgeInsetsMake(4.0, 8.0, 4.0, 8.0);
 }
 #endif
 + (CGFloat)_defaultBadgeCornerRadius; {
