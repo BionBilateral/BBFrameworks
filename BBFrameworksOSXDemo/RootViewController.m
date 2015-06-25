@@ -15,6 +15,7 @@
 
 #import "RootViewController.h"
 #import "ViewsViewController.h"
+#import "ThumbnailsViewController.h"
 
 @interface RootViewController ()
 @property (weak,nonatomic) IBOutlet NSTabView *tabView;
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     
     [self.tabView addTabViewItem:[NSTabViewItem tabViewItemWithViewController:[[ViewsViewController alloc] init]]];
+    [self.tabView addTabViewItem:[NSTabViewItem tabViewItemWithViewController:[[ThumbnailsViewController alloc] init]]];
 }
 
 @end
