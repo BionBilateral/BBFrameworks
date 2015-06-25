@@ -25,22 +25,40 @@
 @end
 
 @implementation BBMoviePlayerContentView
-
+#pragma mark *** Subclass Overrides ***
 + (Class)layerClass {
     return [AVPlayerLayer class];
 }
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController; {
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;
     
     [self setMoviePlayerController:moviePlayerController];
+    [self setScalingMode:self.moviePlayerController.scalingMode];
     
     [self.playerLayer setPlayer:self.moviePlayerController.player];
     
     return self;
 }
-
+#pragma mark Properties
+- (void)setScalingMode:(BBMoviePlayerControllerScalingMode)scalingMode {
+    _scalingMode = scalingMode;
+    
+    switch (_scalingMode) {
+        case BBMoviePlayerControllerScalingModeAspectFill:
+            [self.playerLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+            break;
+        case BBMoviePlayerControllerScalingModeAspectFit:
+            [self.playerLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+            break;
+        case BBMoviePlayerControllerScalingModeFill:
+            [self.playerLayer setVideoGravity:AVLayerVideoGravityResize];
+            break;
+    }
+}
+#pragma mark *** Private Methods ***
+#pragma mark Properties
 - (AVPlayerLayer *)playerLayer {
     return (AVPlayerLayer *)self.layer;
 }

@@ -15,6 +15,7 @@
 
 #import "BBMoviePlayerController.h"
 #import "BBMoviePlayerView.h"
+#import "BBMoviePlayerContentView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -96,6 +97,18 @@ static int32_t const kPreferredTimeScale = 1;
     [self.player setRate:currentPlaybackRate];
     
     [self didChangeValueForKey:@keypath(self,currentPlaybackRate)];
+}
+
+@dynamic scalingMode;
+- (BBMoviePlayerControllerScalingMode)scalingMode {
+    return self.moviePlayerView.contentView.scalingMode;
+}
+- (void)setScalingMode:(BBMoviePlayerControllerScalingMode)scalingMode {
+    [self willChangeValueForKey:@keypath(self,scalingMode)];
+    
+    [self.moviePlayerView.contentView setScalingMode:scalingMode];
+    
+    [self didChangeValueForKey:@keypath(self,scalingMode)];
 }
 
 @end
