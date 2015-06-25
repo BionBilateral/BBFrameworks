@@ -19,6 +19,7 @@
 #import "WebViewRowViewController.h"
 #import "TooltipsRowViewController.h"
 #import "AssetsPickerViewController.h"
+#import "MediaPlayerViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -38,7 +39,8 @@
                           [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class],
-                          [AssetsPickerViewController class]]];
+                          [AssetsPickerViewController class],
+                          [MediaPlayerViewController class]]];
     
     return self;
 }
