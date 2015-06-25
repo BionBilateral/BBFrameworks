@@ -88,6 +88,22 @@ static int32_t const kPreferredTimeScale = 1;
     [self pause];
     [self setCurrentPlaybackTime:0.0];
 }
+
+- (RACSignal *)periodicTimeSignalWithInterval:(NSTimeInterval)interval; {
+    @weakify(self);
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        id retval = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, kPreferredTimeScale) queue:NULL usingBlock:^(CMTime time) {
+            @strongify(self);
+            [subscriber sendNext:RACTuplePack(self,@(CMTimeGetSeconds(time)))];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            @strongify(self);
+            [self.player removeTimeObserver:retval];
+        }];
+    }] startWith:RACTuplePack(self,@0.0)];
+}
 #pragma mark Properties
 - (UIView *)view {
     return self.moviePlayerView;

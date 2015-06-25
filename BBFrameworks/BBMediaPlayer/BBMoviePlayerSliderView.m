@@ -24,6 +24,8 @@
 @property (strong,nonatomic) UILabel *remainingTimeLabel;
 @property (strong,nonatomic) UISlider *slider;
 
+@property (strong,nonatomic) NSDateFormatter *dateFormatter;
+
 @property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
 
@@ -66,6 +68,10 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[label1]-[view]-[label2]" options:0 metrics:@{@"margin": @(BBMediaPlayerSubviewMargin)} views:@{@"label1": self.elapsedTimeLabel, @"view": self.slider, @"label2": self.remainingTimeLabel}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.slider}]];
     
+    [self setDateFormatter:[[NSDateFormatter alloc] init]];
+    [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [self.dateFormatter setDateFormat:@"HH:mm:ss"];
+    
     @weakify(self);
     [[[[[NSNotificationCenter defaultCenter]
      rac_addObserverForName:UIContentSizeCategoryDidChangeNotification object:nil]
@@ -75,6 +81,14 @@
          @strongify(self);
          [self.elapsedTimeLabel setFont:[UIFont preferredFontForTextStyle:fontTextStyle]];
          [self.remainingTimeLabel setFont:[UIFont preferredFontForTextStyle:fontTextStyle]];
+     }];
+    
+    [[[self.moviePlayerController
+     periodicTimeSignalWithInterval:1.0]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.remainingTimeLabel setText:[self.dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.moviePlayerController.duration]]];
      }];
     
     return self;

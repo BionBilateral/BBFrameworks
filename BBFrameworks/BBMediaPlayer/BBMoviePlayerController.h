@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBMoviePlayerControllerDefines.h"
 
+@class RACSignal;
+
 /**
  BBMoviePlayerController is a NSObject subclass similar to MPMoviePlayerController.
  */
@@ -79,5 +81,13 @@
  Sets the currentPlaybackRate to 0.0 and the currentPlaybackTime to 0.0.
  */
 - (void)stop;
+
+/**
+ Returns a signal that sends next with a tuple containing the receiver and the time in seconds that the message was sent.
+ 
+ @param interval The interval at which to send next
+ @return The signal
+ */
+- (RACSignal *)periodicTimeSignalWithInterval:(NSTimeInterval)interval;
 
 @end
