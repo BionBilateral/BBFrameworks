@@ -134,7 +134,7 @@
         PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:(PHAssetCollection *)self.assetsGroup options:nil];
         NSUInteger count = result.count;
         
-        retval = [NSString stringWithFormat:count == 1 ? NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_SINGLE", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"%@ asset", @"assets picker assets group view model estimated asset count single") : NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_MULTIPLE", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"%@ assets", @"assets picker assets group view model estimated asset count multiple"),@(count)];
+        retval = [NSString stringWithFormat:count == 1 ? NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_SINGLE", @"MediaPicker", [NSBundle bundleForClass:self.class], @"%@ asset", @"media picker assets group view model estimated asset count single") : NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_MULTIPLE", @"MediaPicker", [NSBundle bundleForClass:self.class], @"%@ assets", @"media picker assets group view model estimated asset count multiple"),@(count)];
     }
     
     return retval;

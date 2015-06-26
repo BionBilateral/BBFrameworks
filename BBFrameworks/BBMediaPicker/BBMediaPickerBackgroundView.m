@@ -40,11 +40,11 @@
             case PHAuthorizationStatusAuthorized:
                 return @"";
             case PHAuthorizationStatusNotDetermined:
-                return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_NOT_DETERMINED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Requesting access to Photos…", @"assets picker background view authorization status not determined text");
+                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_NOT_DETERMINED_TEXT", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Requesting access to Photos…", @"media picker background view authorization status not determined text");
             case PHAuthorizationStatusDenied:
-                return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos was denied. Adjust access to photos in Settings -> Privacy -> Photos.", @"assets picker background view authorization status denied text");
+                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Access to photos was denied. Adjust access to photos in Settings -> Privacy -> Photos.", @"media picker background view authorization status denied text");
             case PHAuthorizationStatusRestricted:
-                return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_RESTRICTED_TEXT", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Access to photos has been restricted. Ask your administrator to provide access to photos on this device.", @"assets picker background view authorization status restricted text");
+                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_RESTRICTED_TEXT", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Access to photos has been restricted. Ask your administrator to provide access to photos on this device.", @"media picker background view authorization status restricted text");
         }
     }] deliverOn:[RACScheduler mainThreadScheduler]];
     

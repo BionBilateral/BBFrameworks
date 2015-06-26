@@ -142,7 +142,10 @@
           ]
         },
         "source_files": "BBFrameworks/BBMediaPicker",
-        "resources": "BBFrameworks/BBMediaPicker/*.xib",
+        "resources": [
+          "BBFrameworks/BBMediaPicker/*.xib",
+          "BBFrameworks/*.lproj/MediaPicker.strings"
+        ],
         "frameworks": "Photos"
       },
       "osx": {

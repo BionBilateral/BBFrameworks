@@ -36,7 +36,7 @@
 @implementation BBMediaPickerViewController
 #pragma mark *** Subclass Overrides ***
 - (NSString *)title {
-    return NSLocalizedStringWithDefaultValue(@"ASSETS_PICKER_VIEW_CONTROLLER_TITLE", NSStringFromClass(self.class), [NSBundle bundleForClass:self.class], @"Photos", @"assets picker view controller title");
+    return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_VIEW_CONTROLLER_TITLE", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Photos", @"media picker view controller title");
 }
 
 - (instancetype)init {
