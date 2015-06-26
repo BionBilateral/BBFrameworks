@@ -18,6 +18,7 @@
 #import "BBMoviePlayerContentView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <BBFrameworks/BBFoundation.h>
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -119,7 +120,7 @@ static int32_t const kPreferredTimeScale = 1;
 - (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
     [self willChangeValueForKey:@keypath(self,currentPlaybackTime)];
     
-    [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, kPreferredTimeScale)];
+    [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, kPreferredTimeScale) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
     
     [self didChangeValueForKey:@keypath(self,currentPlaybackTime)];
 }

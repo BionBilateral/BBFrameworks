@@ -90,65 +90,67 @@ static NSTimeInterval const kObserverInterval = 1.0;
          [self.remainingTimeLabel setFont:[UIFont preferredFontForTextStyle:fontTextStyle]];
      }];
     
+    void(^nextTimeBlock)(NSNumber *) = ^(NSNumber *time){
+        @strongify(self);
+
+        NSCalendarUnit units = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;
+        NSDate *currentPlaybackTimeDate = [NSDate dateWithTimeIntervalSinceNow:time.doubleValue];
+        NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date] toDate:currentPlaybackTimeDate options:0];
+        NSDate *elapsedTimeDate = [[NSCalendar currentCalendar] dateFromComponents:elapsedTimeDateComps];
+        
+        [self.elapsedTimeLabel setText:[self.elapsedTimeDateFormatter stringFromDate:elapsedTimeDate]];
+        
+        NSDateComponents *remainingTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:currentPlaybackTimeDate toDate:[NSDate dateWithTimeIntervalSinceNow:self.moviePlayerController.duration] options:0];
+        NSDate *remainingTimeDate = [[NSCalendar currentCalendar] dateFromComponents:remainingTimeDateComps];
+        
+        [self.remainingTimeLabel setText:[self.remainingTimeDateFormatter stringFromDate:remainingTimeDate]];
+        
+        if (!self.slider.isTracking) {
+            [self.slider setValue:time.doubleValue / self.moviePlayerController.duration];
+        }
+    };
+    
     [[[self.moviePlayerController
      periodicTimeObserverWithInterval:kObserverInterval]
       deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(RACTuple *value) {
-         @strongify(self);
-         
-         RACTupleUnpack(BBMoviePlayerController *moviePlayerController, NSNumber *time) = value;
-
-         NSCalendarUnit units = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;
-         NSDate *currentPlaybackTimeDate = [NSDate dateWithTimeIntervalSinceNow:time.doubleValue];
-         NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date] toDate:currentPlaybackTimeDate options:0];
-         NSDate *elapsedTimeDate = [[NSCalendar currentCalendar] dateFromComponents:elapsedTimeDateComps];
-         
-         [self.elapsedTimeLabel setText:[self.elapsedTimeDateFormatter stringFromDate:elapsedTimeDate]];
-         
-         NSDateComponents *remainingTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:currentPlaybackTimeDate toDate:[NSDate dateWithTimeIntervalSinceNow:moviePlayerController.duration] options:0];
-         NSDate *remainingTimeDate = [[NSCalendar currentCalendar] dateFromComponents:remainingTimeDateComps];
-         
-         [self.remainingTimeLabel setText:[self.remainingTimeDateFormatter stringFromDate:remainingTimeDate]];
-         
-         if (!self.slider.isTracking) {
-             [self.slider setValue:time.doubleValue / moviePlayerController.duration];
-         }
+         nextTimeBlock(value.last);
      }];
     
-    __block NSNumber *savedPlaying = nil;
+    __block NSNumber *savedRate = nil;
     
-    [[[[[[self.slider
+    [[[[[self.slider
      rac_signalForControlEvents:UIControlEventTouchDown]
      map:^id(id _) {
          @strongify(self);
-         return @(self.moviePlayerController.currentPlaybackRate > 0.0);
+         return @(self.moviePlayerController.currentPlaybackRate);
      }]
      flattenMap:^RACStream *(id value) {
          @strongify(self);
-         return [[self.slider rac_signalForControlEvents:UIControlEventValueChanged]
+         return [[[self.slider rac_signalForControlEvents:UIControlEventValueChanged]
                  map:^id(id slider) {
                      return RACTuplePack(value,slider);
-                 }];
+                 }]
+                 takeUntil:[[self.slider
+                             rac_signalForControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel]
+                            take:1]];
      }]
-       takeUntil:[[self.slider rac_signalForControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel] take:1]]
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(RACTuple *value) {
          @strongify(self);
          
-         RACTupleUnpack(NSNumber *playing, UISlider *slider) = value;
+         RACTupleUnpack(NSNumber *rate, UISlider *slider) = value;
          
-         savedPlaying = playing;
+         savedRate = rate;
          
-         if (playing.boolValue) {
+         if (rate.floatValue > 0.0) {
              [self.moviePlayerController pause];
          }
-
-         [self.moviePlayerController setCurrentPlaybackTime:slider.value * moviePlayerController.duration];
+         
+         [self.moviePlayerController setCurrentPlaybackTime:slider.value * self.moviePlayerController.duration];
      } completed:^{
          @strongify(self);
-         if (savedPlaying.boolValue) {
-             [self.moviePlayerController play];
-         }
+         [self.moviePlayerController setCurrentPlaybackRate:savedRate.floatValue];
      }];
     
     return self;
