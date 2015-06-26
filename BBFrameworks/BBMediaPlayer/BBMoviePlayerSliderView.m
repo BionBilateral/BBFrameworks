@@ -17,6 +17,8 @@
 #import "BBMoviePlayerController.h"
 #import "BBMediaPlayerDefines.h"
 
+#import <BBFrameworks/BBFoundation.h>
+
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 static NSTimeInterval const kObserverInterval = 1.0;
@@ -95,7 +97,7 @@ static NSTimeInterval const kObserverInterval = 1.0;
          @strongify(self);
          
          RACTupleUnpack(BBMoviePlayerController *moviePlayerController, NSNumber *time) = value;
-         
+
          NSCalendarUnit units = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;
          NSDate *currentPlaybackTimeDate = [NSDate dateWithTimeIntervalSinceNow:time.doubleValue];
          NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date] toDate:currentPlaybackTimeDate options:0];
@@ -110,6 +112,42 @@ static NSTimeInterval const kObserverInterval = 1.0;
          
          if (!self.slider.isTracking) {
              [self.slider setValue:time.doubleValue / moviePlayerController.duration];
+         }
+     }];
+    
+    __block NSNumber *savedPlaying = nil;
+    
+    [[[[[[self.slider
+     rac_signalForControlEvents:UIControlEventTouchDown]
+     map:^id(id _) {
+         @strongify(self);
+         return @(self.moviePlayerController.currentPlaybackRate > 0.0);
+     }]
+     flattenMap:^RACStream *(id value) {
+         @strongify(self);
+         return [[self.slider rac_signalForControlEvents:UIControlEventValueChanged]
+                 map:^id(id slider) {
+                     return RACTuplePack(value,slider);
+                 }];
+     }]
+       takeUntil:[[self.slider rac_signalForControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel] take:1]]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(RACTuple *value) {
+         @strongify(self);
+         
+         RACTupleUnpack(NSNumber *playing, UISlider *slider) = value;
+         
+         savedPlaying = playing;
+         
+         if (playing.boolValue) {
+             [self.moviePlayerController pause];
+         }
+
+         [self.moviePlayerController setCurrentPlaybackTime:slider.value * moviePlayerController.duration];
+     } completed:^{
+         @strongify(self);
+         if (savedPlaying.boolValue) {
+             [self.moviePlayerController play];
          }
      }];
     
