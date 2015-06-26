@@ -48,8 +48,10 @@
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.playPauseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PLAY_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Play", @"media player play button title") forState:UIControlStateNormal];
-    [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PAUSE_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Pause", @"media player pause button title") forState:UIControlStateSelected];
+//    [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PLAY_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Play", @"media player play button title") forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+//    [self.playPauseButton setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_MOVIE_PLAYER_PAUSE_BUTTON_TITLE", @"MediaPlayer", [NSBundle bundleForClass:self.class], @"Pause", @"media player pause button title") forState:UIControlStateSelected];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateSelected];
     [self.blurVisualEffectView.contentView addSubview:self.playPauseButton];
     
     [self setSliderView:[[BBMoviePlayerSliderView alloc] initWithMoviePlayerController:self.moviePlayerController]];

@@ -95,7 +95,7 @@ Pod::Spec.new do |spec|
     subspec.ios.source_files = "BBFrameworks/BBMediaPlayer"
     subspec.osx.source_files = "BBFrameworks/BBMediaPlayer/BBMediaPlayer.h"
     
-    subspec.ios.resources = "BBFrameworks/BBMediaPlayer/*.xib", "BBFrameworks/*.lproj/MediaPlayer.strings"
+    subspec.ios.resources = "BBFrameworks/BBMediaPlayer/*.xib", "BBFrameworks/*.lproj/MediaPlayer.strings", "BBFrameworks/MediaPlayer.xcassets"
     
     subspec.ios.frameworks = "AVFoundation"
   end

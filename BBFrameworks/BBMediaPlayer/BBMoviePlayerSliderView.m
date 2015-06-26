@@ -24,7 +24,8 @@
 @property (strong,nonatomic) UILabel *remainingTimeLabel;
 @property (strong,nonatomic) UISlider *slider;
 
-@property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (strong,nonatomic) NSDateFormatter *elapsedTimeDateFormatter;
+@property (strong,nonatomic) NSDateFormatter *remainingTimeDateFormatter;
 
 @property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
@@ -68,9 +69,11 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[label1]-[view]-[label2]" options:0 metrics:@{@"margin": @(BBMediaPlayerSubviewMargin)} views:@{@"label1": self.elapsedTimeLabel, @"view": self.slider, @"label2": self.remainingTimeLabel}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.slider}]];
     
-    [self setDateFormatter:[[NSDateFormatter alloc] init]];
-    [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    [self.dateFormatter setDateFormat:@"HH:mm:ss"];
+    [self setElapsedTimeDateFormatter:[[NSDateFormatter alloc] init]];
+    [self.elapsedTimeDateFormatter setDateFormat:@"H:mm:ss"];
+    
+    [self setRemainingTimeDateFormatter:[[NSDateFormatter alloc] init]];
+    [self.remainingTimeDateFormatter setDateFormat:@"-H:mm:ss"];
     
     @weakify(self);
     [[[[[NSNotificationCenter defaultCenter]
@@ -86,9 +89,24 @@
     [[[self.moviePlayerController
      periodicTimeSignalWithInterval:1.0]
       deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
+     subscribeNext:^(RACTuple *value) {
          @strongify(self);
-         [self.remainingTimeLabel setText:[self.dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.moviePlayerController.duration]]];
+         RACTupleUnpack(BBMoviePlayerController *moviePlayerController, NSNumber *time) = value;
+         NSCalendarUnit units = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;
+         NSDate *currentPlaybackTimeDate = [NSDate dateWithTimeIntervalSinceNow:time.doubleValue];
+         NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date] toDate:currentPlaybackTimeDate options:0];
+         NSDate *elapsedTimeDate = [[NSCalendar currentCalendar] dateFromComponents:elapsedTimeDateComps];
+         
+         [self.elapsedTimeLabel setText:[self.elapsedTimeDateFormatter stringFromDate:elapsedTimeDate]];
+         
+         NSDateComponents *remainingTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:currentPlaybackTimeDate toDate:[NSDate dateWithTimeIntervalSinceNow:moviePlayerController.duration] options:0];
+         NSDate *remainingTimeDate = [[NSCalendar currentCalendar] dateFromComponents:remainingTimeDateComps];
+         
+         [self.remainingTimeLabel setText:[self.remainingTimeDateFormatter stringFromDate:remainingTimeDate]];
+         
+         if (!self.slider.isTracking) {
+             [self.slider setValue:time.doubleValue / moviePlayerController.duration];
+         }
      }];
     
     return self;

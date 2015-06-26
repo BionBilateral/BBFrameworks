@@ -267,6 +267,7 @@
 		79C27EC01B3BB84E00C4AC28 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
 		79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EC41B3BBA6000C4AC28 /* sample.mp4 */; };
+		79C27EC91B3CD78600C4AC28 /* MediaPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EC81B3CD78600C4AC28 /* MediaPlayer.xcassets */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
 		79DD3E7F1B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -513,6 +514,7 @@
 		79C27EC11B3BB8A100C4AC28 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
 		79C27EC41B3BBA6000C4AC28 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
+		79C27EC81B3CD78600C4AC28 /* MediaPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MediaPlayer.xcassets; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
 		79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGradientView.h; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 				07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */,
 				79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */,
 				79C000D61B1ACDC2004C9A6E /* BBFrameworksOSX-Info.plist */,
+				79C27EC81B3CD78600C4AC28 /* MediaPlayer.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1467,6 +1470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B4FF8E1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
+				79C27EC91B3CD78600C4AC28 /* MediaPlayer.xcassets in Resources */,
 				07BFFEC21B3C804400DBC7EC /* MediaPlayer.strings in Resources */,
 				79B4FF831B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
 			);
