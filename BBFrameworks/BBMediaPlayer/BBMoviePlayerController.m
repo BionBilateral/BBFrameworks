@@ -13,12 +13,14 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMoviePlayerController.h"
+#import "BBMoviePlayerController+BBMediaPlayerPrivate.h"
 #import "BBMoviePlayerView.h"
 #import "BBMoviePlayerContentView.h"
+#import "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <BBFrameworks/BBFoundation.h>
+#import <BBFrameworks/BBKit.h>
 #import <BlocksKit/BlocksKit.h>
 
 #import <AVFoundation/AVFoundation.h>
@@ -164,6 +166,37 @@ static int32_t const kPreferredTimeScale = 1;
 }
 - (UIView *)backgroundView {
     return self.moviePlayerView.backgroundView;
+}
+
+- (void)setFullscreen:(BOOL)fullscreen {
+    [self setFullscreen:fullscreen animated:NO completion:nil];
+}
+- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated; {
+    [self setFullscreen:fullscreen animated:animated completion:nil];
+}
+- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated completion:(void(^)(void))completion; {
+    if (_fullscreen == fullscreen) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@keypath(self,fullscreen)];
+    _fullscreen = fullscreen;
+    [self didChangeValueForKey:@keypath(self,fullscreen)];
+    
+    if (_fullscreen) {
+        [[UIViewController BB_viewControllerForPresenting] presentViewController:[[BBMoviePlayerViewController alloc] initWithMoviePlayerController:self] animated:animated completion:^{
+            if (completion) {
+                completion();
+            }
+        }];
+    }
+    else {
+        [[UIViewController BB_viewControllerForPresenting] dismissViewControllerAnimated:animated completion:^{
+            if (completion) {
+                completion();
+            }
+        }];
+    }
 }
 
 @dynamic currentPlaybackTime;

@@ -26,6 +26,7 @@
 @property (strong,nonatomic) UIVisualEffectView *blurVisualEffectView;
 @property (strong,nonatomic) UIButton *playPauseButton;
 @property (strong,nonatomic) BBMoviePlayerSliderView *sliderView;
+@property (strong,nonatomic) UIButton *fullscreenButton;
 
 @property (weak,nonatomic) BBMoviePlayerController *moviePlayerController;
 @end
@@ -40,7 +41,6 @@
     if (!(self = [super init]))
         return nil;
 
-    [self setBackgroundColor:[UIColor clearColor]];
     [self setMoviePlayerController:moviePlayerController];
     
     [self setBlurVisualEffectView:[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]]];
@@ -60,13 +60,22 @@
     [self.sliderView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.blurVisualEffectView.contentView addSubview:self.sliderView];
     
+    [self setFullscreenButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.fullscreenButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.fullscreenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.fullscreenButton setTitle:@"Fullscreen" forState:UIControlStateNormal];
+    [self.blurVisualEffectView.contentView addSubview:self.fullscreenButton];
+    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
     
     [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding)-[view]" options:0 metrics:@{@"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"view": self.playPauseButton}]];
     [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.playPauseButton}]];
     
-    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-(margin)-[view]-(padding)-|" options:0 metrics:@{@"margin": @(BBMediaPlayerSubviewMargin), @"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"button": self.playPauseButton, @"view": self.sliderView}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-(padding)-|" options:0 metrics:@{@"padding": @(BBMediaPlayerSubviewPadding)} views:@{@"view": self.fullscreenButton}]];
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.fullscreenButton}]];
+    
+    [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button1]-(margin)-[view]-(margin)-[button2]" options:0 metrics:@{@"margin": @(BBMediaPlayerSubviewMargin)} views:@{@"button1": self.playPauseButton, @"view": self.sliderView, @"button2": self.fullscreenButton}]];
     [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.sliderView}]];
     
     @weakify(self);
@@ -93,6 +102,19 @@
          else {
              [self.moviePlayerController pause];
          }
+     }];
+    
+    [self.fullscreenButton setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        return [RACSignal return:self];
+    }]];
+    
+    [[[self.fullscreenButton.rac_command.executionSignals
+     concat]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.moviePlayerController setFullscreen:YES animated:YES];
      }];
     
     return self;

@@ -18,6 +18,8 @@
 
 #if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBMoviePlayerController.h>
+
+#import <BBFrameworks/BBMoviePlayerViewController.h>
 #endif
 
 #endif

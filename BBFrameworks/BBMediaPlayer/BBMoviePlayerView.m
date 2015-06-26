@@ -17,6 +17,7 @@
 #import "BBMoviePlayerController.h"
 #import "BBMoviePlayerContentView.h"
 #import "BBMoviePlayerEmbeddedBottomView.h"
+#import "BBMoviePlayerFullscreenTopView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -24,6 +25,7 @@
 @property (readwrite,strong,nonatomic) UIView *backgroundView;
 @property (readwrite,strong,nonatomic) BBMoviePlayerContentView *contentView;
 @property (strong,nonatomic) BBMoviePlayerEmbeddedBottomView *embeddedBottomView;
+@property (strong,nonatomic) BBMoviePlayerFullscreenTopView *fullscreenTopView;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
@@ -47,18 +49,28 @@
     [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.contentView];
     
-    [self setEmbeddedBottomView:[[BBMoviePlayerEmbeddedBottomView alloc] initWithMoviePlayerController:self.moviePlayerController]];
-    [self.embeddedBottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self addSubview:self.embeddedBottomView];
-    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.backgroundView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.backgroundView}]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.contentView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.contentView}]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.embeddedBottomView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(==height)]|" options:0 metrics:@{@"height": @(self.embeddedBottomView.intrinsicContentSize.height)} views:@{@"view": self.embeddedBottomView}]];
+    if (self.moviePlayerController.isFullscreen) {
+        [self setFullscreenTopView:[[BBMoviePlayerFullscreenTopView alloc] initWithMoviePlayerController:self.moviePlayerController]];
+        [self.fullscreenTopView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self addSubview:self.fullscreenTopView];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.fullscreenTopView}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(==height)]" options:0 metrics:@{@"height": @(self.fullscreenTopView.intrinsicContentSize.height)} views:@{@"view": self.fullscreenTopView}]];
+    }
+    else {
+        [self setEmbeddedBottomView:[[BBMoviePlayerEmbeddedBottomView alloc] initWithMoviePlayerController:self.moviePlayerController]];
+        [self.embeddedBottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self addSubview:self.embeddedBottomView];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.embeddedBottomView}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(==height)]|" options:0 metrics:@{@"height": @(self.embeddedBottomView.intrinsicContentSize.height)} views:@{@"view": self.embeddedBottomView}]];
+    }
     
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] init]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
@@ -72,6 +84,7 @@
       subscribeNext:^(id _) {
           @strongify(self);
           [self.embeddedBottomView setHidden:!self.embeddedBottomView.isHidden];
+          [self.fullscreenTopView setHidden:!self.fullscreenTopView.isHidden];
       }];
     
     return self;

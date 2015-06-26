@@ -45,6 +45,10 @@
  */
 @property (assign,nonatomic) BOOL shouldAutoplay;
 
+@property (assign,nonatomic,getter=isFullscreen) BOOL fullscreen;
+- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
+- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated completion:(void(^)(void))completion;
+
 /**
  Set and get the current playback time of the current movie in seconds.
  */
