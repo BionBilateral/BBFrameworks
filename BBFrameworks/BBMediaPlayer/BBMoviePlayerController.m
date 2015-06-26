@@ -89,7 +89,7 @@ static int32_t const kPreferredTimeScale = 1;
     [self setCurrentPlaybackTime:0.0];
 }
 
-- (RACSignal *)periodicTimeSignalWithInterval:(NSTimeInterval)interval; {
+- (RACSignal *)periodicTimeObserverWithInterval:(NSTimeInterval)interval; {
     @weakify(self);
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);

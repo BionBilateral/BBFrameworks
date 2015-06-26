@@ -88,6 +88,6 @@
  @param interval The interval at which to send next
  @return The signal
  */
-- (RACSignal *)periodicTimeSignalWithInterval:(NSTimeInterval)interval;
+- (RACSignal *)periodicTimeObserverWithInterval:(NSTimeInterval)interval;
 
 @end

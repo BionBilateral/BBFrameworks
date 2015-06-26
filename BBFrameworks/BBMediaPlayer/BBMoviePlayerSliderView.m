@@ -19,6 +19,8 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+static NSTimeInterval const kObserverInterval = 1.0;
+
 @interface BBMoviePlayerSliderView ()
 @property (strong,nonatomic) UILabel *elapsedTimeLabel;
 @property (strong,nonatomic) UILabel *remainingTimeLabel;
@@ -87,11 +89,13 @@
      }];
     
     [[[self.moviePlayerController
-     periodicTimeSignalWithInterval:1.0]
+     periodicTimeObserverWithInterval:kObserverInterval]
       deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(RACTuple *value) {
          @strongify(self);
+         
          RACTupleUnpack(BBMoviePlayerController *moviePlayerController, NSNumber *time) = value;
+         
          NSCalendarUnit units = NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;
          NSDate *currentPlaybackTimeDate = [NSDate dateWithTimeIntervalSinceNow:time.doubleValue];
          NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date] toDate:currentPlaybackTimeDate options:0];
