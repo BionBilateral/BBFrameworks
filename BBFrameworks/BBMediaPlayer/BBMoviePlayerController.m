@@ -19,6 +19,7 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <BBFrameworks/BBFoundation.h>
+#import <BlocksKit/BlocksKit.h>
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -90,6 +91,40 @@ static int32_t const kPreferredTimeScale = 1;
     [self setCurrentPlaybackTime:0.0];
 }
 
+- (RACSignal *)requestThumbnailImageAtInterval:(NSTimeInterval)interval; {
+    return [self requestThumbnailImagesAtIntervals:@[@(interval)]];
+}
+- (RACSignal *)requestThumbnailImagesAtIntervals:(NSArray *)intervals; {
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.player.currentItem.asset];
+        
+        [imageGenerator setAppliesPreferredTrackTransform:YES];
+        
+        __block NSInteger total = intervals.count;
+        
+        [imageGenerator generateCGImagesAsynchronouslyForTimes:[intervals bk_map:^id(NSNumber *obj) {
+            return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
+        }] completionHandler:^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error) {
+            if (result == AVAssetImageGeneratorFailed) {
+                [subscriber sendError:error];
+            }
+            else {
+                [subscriber sendNext:image ? [UIImage imageWithCGImage:image] : nil];
+                
+                if ((--total) == 0) {
+                    [subscriber sendCompleted];
+                }
+            }
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [imageGenerator cancelAllCGImageGeneration];
+        }];
+    }];
+}
+
 - (RACSignal *)periodicTimeObserverWithInterval:(NSTimeInterval)interval; {
     @weakify(self);
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -104,6 +139,24 @@ static int32_t const kPreferredTimeScale = 1;
             [self.player removeTimeObserver:retval];
         }];
     }] startWith:RACTuplePack(self,@0.0)];
+}
+
+- (RACSignal *)boundaryTimeObserverForIntervals:(NSArray *)intervals; {
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        id retval = [self.player addBoundaryTimeObserverForTimes:[intervals bk_map:^id(NSNumber *obj) {
+            return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
+        }] queue:NULL usingBlock:^{
+            @strongify(self);
+            [subscriber sendNext:self];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            @strongify(self);
+            [self.player removeTimeObserver:retval];
+        }];
+    }];
 }
 #pragma mark Properties
 - (UIView *)view {

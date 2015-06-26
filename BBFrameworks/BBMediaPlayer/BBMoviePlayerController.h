@@ -83,11 +83,33 @@
 - (void)stop;
 
 /**
+ Calls `-[self requestThumbnailImagesAtIntervals:]`, passing `@[@(interval)]`.
+ 
+ @param The interval for which to generate a thumbnail
+ @return The signal
+ */
+- (RACSignal *)requestThumbnailImageAtInterval:(NSTimeInterval)interval;
+/**
+ Returns a signal that sends next once for each interval in _intervals_ and then completes. Sends error if thumbnail generation fails for any of the intervals in _intervals_.
+ 
+ @param intervals An array of NSValue instances wrapping NSTimeInterval values
+ @return The signal
+ */
+- (RACSignal *)requestThumbnailImagesAtIntervals:(NSArray *)intervals;
+
+/**
  Returns a signal that sends next with a tuple containing the receiver and the time in seconds that the message was sent.
  
  @param interval The interval at which to send next
  @return The signal
  */
 - (RACSignal *)periodicTimeObserverWithInterval:(NSTimeInterval)interval;
+/**
+ Returns a signal that sends next with the receiver when playback reaches one of the times included in the provided array.
+ 
+ @param intervals An array of NSNumber objects wrapping NSTimeInterval values representing when to send next
+ @return The signal
+ */
+- (RACSignal *)boundaryTimeObserverForIntervals:(NSArray *)intervals;
 
 @end
