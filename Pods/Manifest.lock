@@ -79,7 +79,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Archimedes: a181c40a4de8d6bb8ee21bb0f89e9cd758fbb3ce
   ARChromeActivity: 9064d94803338d3377f3e1013a8e8f4821d7daf1
-  BBFrameworks: df2fc9f3ca485fc04a7e3a33de863f6b87fb0547
+  BBFrameworks: ef76cd0b14374b5ad4d0f6a3aba0cead720ae36e
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999

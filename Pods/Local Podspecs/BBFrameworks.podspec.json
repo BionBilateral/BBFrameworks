@@ -166,7 +166,8 @@
         "source_files": "BBFrameworks/BBMediaPlayer",
         "resources": [
           "BBFrameworks/BBMediaPlayer/*.xib",
-          "BBFrameworks/*.lproj/MediaPlayer.strings"
+          "BBFrameworks/*.lproj/MediaPlayer.strings",
+          "BBFrameworks/MediaPlayer.xcassets"
         ],
         "frameworks": "AVFoundation"
       },
