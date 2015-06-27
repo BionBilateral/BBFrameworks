@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79EA80751B3F06ED00D50B6B"
-               BuildableName = "BBFrameworksResources.bundle"
-               BlueprintName = "BBFrameworksResources"
+               BlueprintIdentifier = "79EA81351B3F1EB100D50B6B"
+               BuildableName = "BBFrameworksResourcesOSX.bundle"
+               BlueprintName = "BBFrameworksResourcesOSX"
                ReferencedContainer = "container:BBFrameworks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79EA80751B3F06ED00D50B6B"
-            BuildableName = "BBFrameworksResources.bundle"
-            BlueprintName = "BBFrameworksResources"
+            BlueprintIdentifier = "79EA81351B3F1EB100D50B6B"
+            BuildableName = "BBFrameworksResourcesOSX.bundle"
+            BlueprintName = "BBFrameworksResourcesOSX"
             ReferencedContainer = "container:BBFrameworks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79EA80751B3F06ED00D50B6B"
-            BuildableName = "BBFrameworksResources.bundle"
-            BlueprintName = "BBFrameworksResources"
+            BlueprintIdentifier = "79EA81351B3F1EB100D50B6B"
+            BuildableName = "BBFrameworksResourcesOSX.bundle"
+            BlueprintName = "BBFrameworksResourcesOSX"
             ReferencedContainer = "container:BBFrameworks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

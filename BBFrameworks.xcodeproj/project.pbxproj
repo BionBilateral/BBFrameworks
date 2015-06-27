@@ -7,83 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		241273B555EE7126FDC0C1D7 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
-		79052B131B1AF3960097B7AF /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */; };
-		79052B1F1B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */; };
-		79052B211B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
-		79052B231B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */; };
-		79052B251B1AF4010097B7AF /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
 		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
 		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
-		7927CFAB1B1AD2B90034288D /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFAD1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */; };
-		7927CFAF1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */; };
-		7927CFB11B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF611B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h */; };
-		7927CFB31B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */; };
-		7927CFB51B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFB71B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFB91B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFBB1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */; };
-		7927CFBD1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFBF1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */; };
-		7927CFC11B1AD2B90034288D /* BBFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC31B1AD2B90034288D /* BBFoundationDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC51B1AD2B90034288D /* BBFoundationFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC71B1AD2B90034288D /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC91B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFCB1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
-		7927CFCD1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFCF1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */; };
-		7927CFD11B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFD31B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */; };
-		7927CFD51B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFD71B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */; };
-		7927CFD91B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFDB1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */; };
-		7927CFDD1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFDF1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */; };
-		7927CFE11B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFE31B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */; };
-		7927CFE51B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFE71B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */; };
-		7927CFE91B1AD2B90034288D /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7F1B1AD2B90034288D /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFEB1B1AD2B90034288D /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF801B1AD2B90034288D /* BBBadgeView.m */; };
-		7927CFED1B1AD2B90034288D /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF811B1AD2B90034288D /* BBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFEF1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFF11B1AD2B90034288D /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF831B1AD2B90034288D /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFF31B1AD2B90034288D /* NSColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFF51B1AD2B90034288D /* NSColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */; };
-		7927CFF71B1AD2B90034288D /* NSImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFF91B1AD2B90034288D /* NSImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */; };
-		7927CFFB1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFFD1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
-		7927D00F1B1AD2B90034288D /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0111B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0131B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0151B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
-		7927D0171B1AD2B90034288D /* BBThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF991B1AD2B90034288D /* BBThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0191B1AD2B90034288D /* BBThumbnailDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D01B1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D01D1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */; };
-		7927D01F1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */; };
-		7927D0211B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */; };
-		7927D0231B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */; };
-		7927D0251B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */; };
-		7927D0271B1AD2B90034288D /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0291B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */; };
-		7927D02B1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */; };
-		7927D02D1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA41B1AD2B90034288D /* BBThumbnailPDFOperation.h */; };
-		7927D02F1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */; };
-		7927D0311B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA61B1AD2B90034288D /* BBThumbnailRTFOperation.h */; };
-		7927D0331B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */; };
-		7927D0351B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */; };
-		7927D0371B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
@@ -91,23 +22,11 @@
 		7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9D71B1ADE65009B1CE9 /* Images.xcassets */; };
 		7989DD511B345A2D0001F7C3 /* AssetsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD501B345A2D0001F7C3 /* AssetsPickerViewController.m */; };
 		7989DD531B345A3E0001F7C3 /* AssetsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7989DD521B345A3E0001F7C3 /* AssetsPickerViewController.xib */; };
-		79B4FFD41B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
-		79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
-		79B4FFDD1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
-		79B4FFDF1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
-		79B4FFE41B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */; };
-		79B4FFE61B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
-		79B4FFEA1B36ADF6007B8629 /* BBThumbnailHTMLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */; };
-		79B4FFEC1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
-		79B4FFF41B37856D007B8629 /* BBThumbnailDocumentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */; };
-		79B4FFF61B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
-		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
 		79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001181B1AD081004C9A6E /* ThumbnailsRowViewController.m */; };
 		79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C0011D1B1AD081004C9A6E /* Images.xcassets */; };
-		79C27E981B3B892500C4AC28 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 79C27E971B3B892500C4AC28 /* docs */; };
 		79C27E9C1B3B8F7E00C4AC28 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27E9A1B3B8F7E00C4AC28 /* RootViewController.m */; };
 		79C27E9D1B3B8F7E00C4AC28 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C27E9B1B3B8F7E00C4AC28 /* RootViewController.xib */; };
 		79C27EA11B3B8FE300C4AC28 /* RootWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27E9F1B3B8FE300C4AC28 /* RootWindowController.m */; };
@@ -123,8 +42,6 @@
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
 		79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EC41B3BBA6000C4AC28 /* sample.mp4 */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
-		79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79DD3E821B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
 		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
 		79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; };
@@ -256,17 +173,98 @@
 		79EA810B1B3F15A400D50B6B /* BBFrameworksConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */; };
 		79EA810C1B3F15A600D50B6B /* BBFrameworksFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */; };
 		79EA810D1B3F165500D50B6B /* BBFrameworksResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */; };
+		79EA81261B3F1E9500D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */; };
+		79EA81441B3F212700D50B6B /* MediaPicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79EA81421B3F212700D50B6B /* MediaPicker.strings */; };
+		79EA81451B3F215700D50B6B /* BBFrameworksResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */; };
+		79EA81461B3F21F100D50B6B /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81481B3F21FE00D50B6B /* BBFrameworksFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81491B3F221600D50B6B /* BBFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA814A1B3F221600D50B6B /* BBFoundationDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA814B1B3F221600D50B6B /* BBFoundationFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA814C1B3F221600D50B6B /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA814D1B3F221600D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA814E1B3F221600D50B6B /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA814F1B3F221600D50B6B /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81501B3F221600D50B6B /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81511B3F221600D50B6B /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81521B3F221600D50B6B /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81531B3F221600D50B6B /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81541B3F221600D50B6B /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81561B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81581B3F222F00D50B6B /* BBManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA815A1B3F223600D50B6B /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */; };
+		79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF611B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h */; };
+		79EA815C1B3F224E00D50B6B /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */; };
+		79EA815D1B3F225400D50B6B /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF811B1AD2B90034288D /* BBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA815E1B3F225400D50B6B /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF831B1AD2B90034288D /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA815F1B3F225400D50B6B /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7F1B1AD2B90034288D /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81601B3F225400D50B6B /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81611B3F226100D50B6B /* NSColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81631B3F226100D50B6B /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81641B3F227600D50B6B /* BBThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF991B1AD2B90034288D /* BBThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81651B3F227600D50B6B /* BBThumbnailDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81671B3F227600D50B6B /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81681B3F228400D50B6B /* BBThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */; };
+		79EA81691B3F228400D50B6B /* BBThumbnailImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */; };
+		79EA816A1B3F228400D50B6B /* BBThumbnailMovieOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */; };
+		79EA816B1B3F228400D50B6B /* BBThumbnailPDFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA41B1AD2B90034288D /* BBThumbnailPDFOperation.h */; };
+		79EA816C1B3F228400D50B6B /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA61B1AD2B90034288D /* BBThumbnailRTFOperation.h */; };
+		79EA816D1B3F228400D50B6B /* BBThumbnailTextOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */; };
+		79EA816E1B3F228400D50B6B /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */; };
+		79EA816F1B3F228400D50B6B /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
+		79EA81701B3F228400D50B6B /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
+		79EA81711B3F228400D50B6B /* BBThumbnailHTMLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */; };
+		79EA81721B3F228400D50B6B /* BBThumbnailDocumentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */; };
+		79EA81731B3F228C00D50B6B /* BBReactiveThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81741B3F228C00D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81751B3F229800D50B6B /* BBMediaPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA81B36400D007B8629 /* BBMediaPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81761B3F229F00D50B6B /* BBMediaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81771B3F22A800D50B6B /* BBWebKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA61B363FC1007B8629 /* BBWebKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81781B3F22B000D50B6B /* BBTooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFCF1B364842007B8629 /* BBTooltip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA81791B3F22C300D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
+		79EA817A1B3F22C300D50B6B /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */; };
+		79EA817B1B3F22C300D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */; };
+		79EA817C1B3F22C300D50B6B /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */; };
+		79EA817D1B3F22C300D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */; };
+		79EA817E1B3F22C300D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */; };
+		79EA817F1B3F22C300D50B6B /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */; };
+		79EA81801B3F22C300D50B6B /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */; };
+		79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */; };
+		79EA81821B3F22D200D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */; };
+		79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */; };
+		79EA81841B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */; };
+		79EA81851B3F22E400D50B6B /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF801B1AD2B90034288D /* BBBadgeView.m */; };
+		79EA81861B3F22E400D50B6B /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
+		79EA81871B3F22E400D50B6B /* NSColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */; };
+		79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */; };
+		79EA81891B3F22E400D50B6B /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
+		79EA818A1B3F22FC00D50B6B /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */; };
+		79EA818B1B3F22FC00D50B6B /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */; };
+		79EA818C1B3F22FC00D50B6B /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */; };
+		79EA818D1B3F22FC00D50B6B /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */; };
+		79EA818E1B3F22FC00D50B6B /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */; };
+		79EA818F1B3F22FC00D50B6B /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */; };
+		79EA81901B3F22FC00D50B6B /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
+		79EA81911B3F22FC00D50B6B /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
+		79EA81921B3F22FC00D50B6B /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
+		79EA81931B3F22FC00D50B6B /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
+		79EA81941B3F22FC00D50B6B /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
+		79EA81951B3F22FC00D50B6B /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
+		79EA81961B3F230300D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
+		79EA81971B3F251D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */; };
+		79EA81981B3F251D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
+		79EA81991B3F251D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */; };
+		79EA819A1B3F29BC00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */; };
 		802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		79052B141B1AF3960097B7AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 79C000BC1B1ACD69004C9A6E;
-			remoteInfo = BBFrameworksOSX;
-		};
 		79EA80651B3F04FE00D50B6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
@@ -287,6 +285,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 79EA80751B3F06ED00D50B6B;
 			remoteInfo = BBFrameworksResources;
+		};
+		79EA81271B3F1E9500D50B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79EA811A1B3F1E9500D50B6B;
+			remoteInfo = BBFrameworksOSX;
+		};
+		79EA813E1B3F20B700D50B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79EA81351B3F1EB100D50B6B;
+			remoteInfo = BBFrameworksResourcesOSX;
+		};
+		79EA81401B3F20DD00D50B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79EA811A1B3F1E9500D50B6B;
+			remoteInfo = BBFrameworksOSX;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -382,10 +401,8 @@
 		3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
-		6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E230801B3B55C900DE56B3 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		74E230811B3B55C900DE56B3 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
-		79052B0D1B1AF3960097B7AF /* BBFrameworksTestsOSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsOSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
 		79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
@@ -539,8 +556,6 @@
 		79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayer.h; sourceTree = "<group>"; };
 		79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerController.h; sourceTree = "<group>"; };
 		79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerController.m; sourceTree = "<group>"; };
-		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		79C000D61B1ACDC2004C9A6E /* BBFrameworksOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksOSX-Info.plist"; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -552,7 +567,6 @@
 		79C001171B1AD081004C9A6E /* ThumbnailsRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThumbnailsRowViewController.h; sourceTree = "<group>"; };
 		79C001181B1AD081004C9A6E /* ThumbnailsRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThumbnailsRowViewController.m; sourceTree = "<group>"; };
 		79C0011D1B1AD081004C9A6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		79C27E971B3B892500C4AC28 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		79C27E991B3B8F7E00C4AC28 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		79C27E9A1B3B8F7E00C4AC28 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		79C27E9B1B3B8F7E00C4AC28 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
@@ -598,34 +612,23 @@
 		79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_player_play@3x.png"; sourceTree = "<group>"; };
 		79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksFunctions.h; sourceTree = "<group>"; };
 		79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksConstants.h; sourceTree = "<group>"; };
+		79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA81251B3F1E9500D50B6B /* BBFrameworksOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksResourcesOSX-Info.plist"; sourceTree = "<group>"; };
+		79EA81431B3F212700D50B6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPicker.strings; sourceTree = "<group>"; };
 		A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D3F12801A982197CDD9A9F38 /* Pods-OSXFrameworks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks.release.xcconfig"; sourceTree = "<group>"; };
-		D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		79052B0A1B1AF3960097B7AF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79052B131B1AF3960097B7AF /* BBFrameworks.framework in Frameworks */,
-				241273B555EE7126FDC0C1D7 /* libPods-OSXDemo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7989C9C81B1ADE65009B1CE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79EA819A1B3F29BC00D50B6B /* libBBFrameworks.a in Frameworks */,
 				802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		79C000B91B1ACD69004C9A6E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +658,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		79EA80731B3F06ED00D50B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81181B3F1E9500D50B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81221B3F1E9500D50B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA81261B3F1E9500D50B6B /* libBBFrameworks.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81331B3F1EB100D50B6B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -822,7 +847,6 @@
 			isa = PBXGroup;
 			children = (
 				7989C9D71B1ADE65009B1CE9 /* Images.xcassets */,
-				79C27E971B3B892500C4AC28 /* docs */,
 				7989C9CE1B1ADE65009B1CE9 /* Info.plist */,
 				7989C9D21B1ADE65009B1CE9 /* main.m */,
 			);
@@ -934,13 +958,14 @@
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */,
 				79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */,
 				7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */,
-				79052B0D1B1AF3960097B7AF /* BBFrameworksTestsOSX.xctest */,
 				79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */,
 				79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */,
 				79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */,
+				79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */,
+				79EA81251B3F1E9500D50B6B /* BBFrameworksOSXTests.xctest */,
+				79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -951,17 +976,8 @@
 				79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */,
 				79EA81081B3F143300D50B6B /* Headers */,
 				7927CF5C1B1AD29A0034288D /* Modules */,
-				79C000A11B1ACC7C004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworks;
-			sourceTree = "<group>";
-		};
-		79C000A11B1ACC7C004C9A6E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				79C000D61B1ACDC2004C9A6E /* BBFrameworksOSX-Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		79C0010C1B1AD081004C9A6E /* BBFrameworksiOSDemo */ = {
@@ -1197,7 +1213,9 @@
 		79EA80781B3F06ED00D50B6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				79EA81421B3F212700D50B6B /* MediaPicker.strings */,
 				79EA80791B3F06ED00D50B6B /* BBFrameworksResourcesiOS-Info.plist */,
+				79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1214,8 +1232,6 @@
 		B57C4002BFB6D5C1DBE48B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */,
-				6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */,
 				3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */,
 				A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */,
 			);
@@ -1225,82 +1241,67 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		79C000BA1B1ACD69004C9A6E /* Headers */ = {
+		79EA81191B3F1E9500D50B6B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7927D0111B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */,
-				7927CFD11B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */,
-				7927CFE91B1AD2B90034288D /* BBBadgeView.h in Headers */,
-				7927D01F1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */,
-				79B4FFDD1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */,
-				7927CFBD1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
-				7927D0191B1AD2B90034288D /* BBThumbnailDefines.h in Headers */,
-				7927CFD91B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */,
-				7927D00F1B1AD2B90034288D /* BBReactiveKit.h in Headers */,
-				7927CFE11B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */,
-				7927CFC91B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
-				7927D0351B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */,
-				7927CFB71B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */,
-				7927D01B1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
-				7927D0131B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
-				7927CFE51B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */,
-				79B4FFE41B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */,
-				7927D0311B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
-				7927CFF11B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
-				7927CFAD1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
-				79B4FFF41B37856D007B8629 /* BBThumbnailDocumentOperation.h in Headers */,
-				79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */,
-				7927CFC11B1AD2B90034288D /* BBFoundation.h in Headers */,
-				7927CFDD1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */,
-				79B4FFD41B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */,
-				7927D0171B1AD2B90034288D /* BBThumbnail.h in Headers */,
-				7927D0271B1AD2B90034288D /* BBThumbnailOperation.h in Headers */,
-				7927CFD51B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
-				7927CFC31B1AD2B90034288D /* BBFoundationDebugging.h in Headers */,
-				79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */,
-				7927CFC71B1AD2B90034288D /* BBFoundationMacros.h in Headers */,
-				7927CFED1B1AD2B90034288D /* BBKit.h in Headers */,
-				7927D0231B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */,
-				7927D0291B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */,
-				7927CFF31B1AD2B90034288D /* NSColor+BBKitExtensions.h in Headers */,
-				7927CFFB1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */,
-				79B4FFEA1B36ADF6007B8629 /* BBThumbnailHTMLOperation.h in Headers */,
-				7927CFCD1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */,
-				7927CFAB1B1AD2B90034288D /* BBCoreData.h in Headers */,
-				7927CFB11B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
-				7927D02D1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */,
-				7927CFEF1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */,
-				7927CFF71B1AD2B90034288D /* NSImage+BBKitExtensions.h in Headers */,
-				7927CFB91B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
-				7927CFB51B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */,
-				7927CFC51B1AD2B90034288D /* BBFoundationFunctions.h in Headers */,
+				79EA81641B3F227600D50B6B /* BBThumbnail.h in Headers */,
+				79EA81561B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
+				79EA816E1B3F228400D50B6B /* BBThumbnailAsyncOperation.h in Headers */,
+				79EA814F1B3F221600D50B6B /* NSBundle+BBFoundationExtensions.h in Headers */,
+				79EA81701B3F228400D50B6B /* BBThumbnailVimeoOperation.h in Headers */,
+				79EA81781B3F22B000D50B6B /* BBTooltip.h in Headers */,
+				79EA81481B3F21FE00D50B6B /* BBFrameworksFunctions.h in Headers */,
+				79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
+				79EA814B1B3F221600D50B6B /* BBFoundationFunctions.h in Headers */,
+				79EA815E1B3F225400D50B6B /* BBKitColorMacros.h in Headers */,
+				79EA81721B3F228400D50B6B /* BBThumbnailDocumentOperation.h in Headers */,
+				79EA81601B3F225400D50B6B /* BBGradientView.h in Headers */,
+				79EA814E1B3F221600D50B6B /* NSArray+BBFoundationExtensions.h in Headers */,
+				79EA81691B3F228400D50B6B /* BBThumbnailImageOperation.h in Headers */,
+				79EA815F1B3F225400D50B6B /* BBBadgeView.h in Headers */,
+				79EA81581B3F222F00D50B6B /* BBManagedObjectPropertyMapping.h in Headers */,
+				79EA815A1B3F223600D50B6B /* BBDefaultManagedObjectEntityMapping.h in Headers */,
+				79EA816C1B3F228400D50B6B /* BBThumbnailRTFOperation.h in Headers */,
+				79EA81501B3F221600D50B6B /* NSData+BBFoundationExtensions.h in Headers */,
+				79EA81741B3F228C00D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
+				79EA815D1B3F225400D50B6B /* BBKit.h in Headers */,
+				79EA81531B3F221600D50B6B /* NSString+BBFoundationExtensions.h in Headers */,
+				79EA81671B3F227600D50B6B /* BBThumbnailOperation.h in Headers */,
+				79EA814C1B3F221600D50B6B /* BBFoundationMacros.h in Headers */,
+				79EA81751B3F229800D50B6B /* BBMediaPicker.h in Headers */,
+				79EA81651B3F227600D50B6B /* BBThumbnailDefines.h in Headers */,
+				79EA816F1B3F228400D50B6B /* BBThumbnailYouTubeOperation.h in Headers */,
+				79EA81771B3F22A800D50B6B /* BBWebKit.h in Headers */,
+				79EA81461B3F21F100D50B6B /* BBFrameworks.h in Headers */,
+				79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */,
+				79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */,
+				79EA816A1B3F228400D50B6B /* BBThumbnailMovieOperation.h in Headers */,
+				79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */,
+				79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */,
+				79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
+				79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */,
+				79EA81491B3F221600D50B6B /* BBFoundation.h in Headers */,
+				79EA814D1B3F221600D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
+				79EA816D1B3F228400D50B6B /* BBThumbnailTextOperation.h in Headers */,
+				79EA81711B3F228400D50B6B /* BBThumbnailHTMLOperation.h in Headers */,
+				79EA81731B3F228C00D50B6B /* BBReactiveThumbnail.h in Headers */,
+				79EA81611B3F226100D50B6B /* NSColor+BBKitExtensions.h in Headers */,
+				79EA81631B3F226100D50B6B /* NSURL+BBKitExtensions.h in Headers */,
+				79EA81761B3F229F00D50B6B /* BBMediaPlayer.h in Headers */,
+				79EA81541B3F221600D50B6B /* NSURL+BBFoundationExtensions.h in Headers */,
+				79EA816B1B3F228400D50B6B /* BBThumbnailPDFOperation.h in Headers */,
+				79EA81681B3F228400D50B6B /* BBThumbnailOperationWrapper.h in Headers */,
+				79EA815C1B3F224E00D50B6B /* BBKitCGImageFunctions.h in Headers */,
+				79EA81511B3F221600D50B6B /* NSFileManager+BBFoundationExtensions.h in Headers */,
+				79EA814A1B3F221600D50B6B /* BBFoundationDebugging.h in Headers */,
+				79EA81521B3F221600D50B6B /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		79052B0C1B1AF3960097B7AF /* BBFrameworksTestsOSX */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 79052B161B1AF3960097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */;
-			buildPhases = (
-				3B547252E9A60A49208FE864 /* Check Pods Manifest.lock */,
-				79052B091B1AF3960097B7AF /* Sources */,
-				79052B0A1B1AF3960097B7AF /* Frameworks */,
-				79052B0B1B1AF3960097B7AF /* Resources */,
-				15BE9AD0C7017F1AD6745714 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				79052B151B1AF3960097B7AF /* PBXTargetDependency */,
-			);
-			name = BBFrameworksTestsOSX;
-			productName = BBFrameworksOSXTests;
-			productReference = 79052B0D1B1AF3960097B7AF /* BBFrameworksTestsOSX.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		7989C9CA1B1ADE65009B1CE9 /* BBFrameworksOSXDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7989C9E81B1ADE66009B1CE9 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXDemo" */;
@@ -1314,29 +1315,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				79EA81411B3F20DD00D50B6B /* PBXTargetDependency */,
 			);
 			name = BBFrameworksOSXDemo;
 			productName = BBFrameworksOSXDemo;
 			productReference = 7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		79C000BC1B1ACD69004C9A6E /* BBFrameworksOSX */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 79C000D01B1ACD6A004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */;
-			buildPhases = (
-				79C000B81B1ACD69004C9A6E /* Sources */,
-				79C000B91B1ACD69004C9A6E /* Frameworks */,
-				79C000BA1B1ACD69004C9A6E /* Headers */,
-				79C000BB1B1ACD69004C9A6E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BBFrameworksOSX;
-			productName = BBFrameworksOSX;
-			productReference = 79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		79C0010A1B1AD080004C9A6E /* BBFrameworksiOSDemo */ = {
 			isa = PBXNativeTarget;
@@ -1397,9 +1381,9 @@
 			productReference = 79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		79EA80751B3F06ED00D50B6B /* BBFrameworksResources */ = {
+		79EA80751B3F06ED00D50B6B /* BBFrameworksResourcesiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 79EA807A1B3F06ED00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResources" */;
+			buildConfigurationList = 79EA807A1B3F06ED00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResourcesiOS" */;
 			buildPhases = (
 				79EA80721B3F06ED00D50B6B /* Sources */,
 				79EA80731B3F06ED00D50B6B /* Frameworks */,
@@ -1409,9 +1393,62 @@
 			);
 			dependencies = (
 			);
-			name = BBFrameworksResources;
+			name = BBFrameworksResourcesiOS;
 			productName = BBFrameworksResources;
 			productReference = 79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		79EA811A1B3F1E9500D50B6B /* BBFrameworksOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79EA812C1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */;
+			buildPhases = (
+				79EA81171B3F1E9500D50B6B /* Sources */,
+				79EA81181B3F1E9500D50B6B /* Frameworks */,
+				79EA81191B3F1E9500D50B6B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79EA813F1B3F20B700D50B6B /* PBXTargetDependency */,
+			);
+			name = BBFrameworksOSX;
+			productName = BBFrameworksOSX;
+			productReference = 79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		79EA81241B3F1E9500D50B6B /* BBFrameworksTestsOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79EA812F1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */;
+			buildPhases = (
+				79EA81211B3F1E9500D50B6B /* Sources */,
+				79EA81221B3F1E9500D50B6B /* Frameworks */,
+				79EA81231B3F1E9500D50B6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79EA81281B3F1E9500D50B6B /* PBXTargetDependency */,
+			);
+			name = BBFrameworksTestsOSX;
+			productName = BBFrameworksOSXTests;
+			productReference = 79EA81251B3F1E9500D50B6B /* BBFrameworksOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		79EA81351B3F1EB100D50B6B /* BBFrameworksResourcesOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79EA813A1B3F1EB200D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResourcesOSX" */;
+			buildPhases = (
+				79EA81321B3F1EB100D50B6B /* Sources */,
+				79EA81331B3F1EB100D50B6B /* Frameworks */,
+				79EA81341B3F1EB100D50B6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BBFrameworksResourcesOSX;
+			productName = BBFrameworksResourcesOSX;
+			productReference = 79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -1424,15 +1461,9 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Bion Bilateral, LLC.";
 				TargetAttributes = {
-					79052B0C1B1AF3960097B7AF = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
 					7989C9CA1B1ADE65009B1CE9 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = C6AZ27TEW2;
-					};
-					79C000BC1B1ACD69004C9A6E = {
-						CreatedOnToolsVersion = 6.3.2;
 					};
 					79C0010A1B1AD080004C9A6E = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -1444,6 +1475,15 @@
 						CreatedOnToolsVersion = 6.3.2;
 					};
 					79EA80751B3F06ED00D50B6B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					79EA811A1B3F1E9500D50B6B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					79EA81241B3F1E9500D50B6B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					79EA81351B3F1EB100D50B6B = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
@@ -1463,9 +1503,10 @@
 			targets = (
 				79EA80581B3F04FE00D50B6B /* BBFrameworksiOS */,
 				79EA80621B3F04FE00D50B6B /* BBFrameworksTestsiOS */,
-				79C000BC1B1ACD69004C9A6E /* BBFrameworksOSX */,
-				79052B0C1B1AF3960097B7AF /* BBFrameworksTestsOSX */,
-				79EA80751B3F06ED00D50B6B /* BBFrameworksResources */,
+				79EA80751B3F06ED00D50B6B /* BBFrameworksResourcesiOS */,
+				79EA811A1B3F1E9500D50B6B /* BBFrameworksOSX */,
+				79EA81241B3F1E9500D50B6B /* BBFrameworksTestsOSX */,
+				79EA81351B3F1EB100D50B6B /* BBFrameworksResourcesOSX */,
 				79C0010A1B1AD080004C9A6E /* BBFrameworksiOSDemo */,
 				7989C9CA1B1ADE65009B1CE9 /* BBFrameworksOSXDemo */,
 			);
@@ -1473,32 +1514,18 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		79052B0B1B1AF3960097B7AF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7989C9C91B1ADE65009B1CE9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79EA81451B3F215700D50B6B /* BBFrameworksResources.bundle in Resources */,
 				79C27EC01B3BB84E00C4AC28 /* docs in Resources */,
-				79C27E981B3B892500C4AC28 /* docs in Resources */,
 				79C27EA61B3B943400C4AC28 /* MainMenu.xib in Resources */,
 				79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */,
 				79C27EA21B3B8FE300C4AC28 /* RootWindowController.xib in Resources */,
 				7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */,
 				79C27E9D1B3B8F7E00C4AC28 /* RootViewController.xib in Resources */,
 				79C27EAB1B3B956B00C4AC28 /* ViewsViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		79C000BB1B1ACD69004C9A6E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,8 +1561,23 @@
 				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
 				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
+				79EA81441B3F212700D50B6B /* MediaPicker.strings in Resources */,
 				79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */,
 				79EA80C41B3F0C5600D50B6B /* media_player_play@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81231B3F1E9500D50B6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81341B3F1EB100D50B6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1572,21 +1614,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		15BE9AD0C7017F1AD6745714 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1F8305A462E2DCE7680BB77E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1600,21 +1627,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B547252E9A60A49208FE864 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		716CF966F12B32611C3DE6F2 /* Check Pods Manifest.lock */ = {
@@ -1679,17 +1691,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		79052B091B1AF3960097B7AF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79052B211B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
-				79052B251B1AF4010097B7AF /* Test.xcdatamodeld in Sources */,
-				79052B1F1B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m in Sources */,
-				79052B231B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7989C9C71B1ADE65009B1CE9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1702,43 +1703,6 @@
 				79C27EB21B3B9A8300C4AC28 /* ThumbnailsViewController.m in Sources */,
 				7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */,
 				79C27E9C1B3B8F7E00C4AC28 /* RootViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		79C000B81B1ACD69004C9A6E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7927D02B1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */,
-				7927CFDF1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */,
-				7927CFF91B1AD2B90034288D /* NSImage+BBKitExtensions.m in Sources */,
-				7927CFCF1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */,
-				7927CFB31B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
-				7927CFE71B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */,
-				7927CFDB1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
-				7927CFBF1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
-				79B4FFEC1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */,
-				79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
-				79B4FFE61B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */,
-				7927CFD71B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */,
-				7927D0211B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */,
-				7927D02F1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */,
-				7927CFAF1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */,
-				7927D0371B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */,
-				7927D01D1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */,
-				7927D0251B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */,
-				7927D0151B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
-				79B4FFF61B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */,
-				7927CFD31B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */,
-				79B4FFDF1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */,
-				7927CFF51B1AD2B90034288D /* NSColor+BBKitExtensions.m in Sources */,
-				7927CFEB1B1AD2B90034288D /* BBBadgeView.m in Sources */,
-				7927D0331B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,
-				7927CFE31B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
-				7927CFFD1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
-				7927CFBB1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
-				7927CFCB1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
-				79DD3E821B337B6F00EF4E44 /* BBGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1842,14 +1806,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79EA81171B3F1E9500D50B6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA818A1B3F22FC00D50B6B /* BBThumbnailGenerator.m in Sources */,
+				79EA81821B3F22D200D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
+				79EA818F1B3F22FC00D50B6B /* BBThumbnailRTFOperation.m in Sources */,
+				79EA818C1B3F22FC00D50B6B /* BBThumbnailImageOperation.m in Sources */,
+				79EA817D1B3F22C300D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
+				79EA818B1B3F22FC00D50B6B /* BBThumbnailOperationWrapper.m in Sources */,
+				79EA81871B3F22E400D50B6B /* NSColor+BBKitExtensions.m in Sources */,
+				79EA817B1B3F22C300D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
+				79EA81921B3F22FC00D50B6B /* BBThumbnailYouTubeOperation.m in Sources */,
+				79EA817A1B3F22C300D50B6B /* NSArray+BBFoundationExtensions.m in Sources */,
+				79EA81861B3F22E400D50B6B /* BBGradientView.m in Sources */,
+				79EA81891B3F22E400D50B6B /* NSURL+BBKitExtensions.m in Sources */,
+				79EA81911B3F22FC00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
+				79EA81801B3F22C300D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
+				79EA818E1B3F22FC00D50B6B /* BBThumbnailPDFOperation.m in Sources */,
+				79EA81841B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
+				79EA81791B3F22C300D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				79EA817E1B3F22C300D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
+				79EA81931B3F22FC00D50B6B /* BBThumbnailVimeoOperation.m in Sources */,
+				79EA817C1B3F22C300D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
+				79EA818D1B3F22FC00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
+				79EA81851B3F22E400D50B6B /* BBBadgeView.m in Sources */,
+				79EA81961B3F230300D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
+				79EA81901B3F22FC00D50B6B /* BBThumbnailTextOperation.m in Sources */,
+				79EA81941B3F22FC00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,
+				79EA817F1B3F22C300D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
+				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
+				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
+				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
+				79EA81951B3F22FC00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81211B3F1E9500D50B6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA81981B3F251D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
+				79EA81971B3F251D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
+				79EA81991B3F251D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA81321B3F1EB100D50B6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		79052B151B1AF3960097B7AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 79C000BC1B1ACD69004C9A6E /* BBFrameworksOSX */;
-			targetProxy = 79052B141B1AF3960097B7AF /* PBXContainerItemProxy */;
-		};
 		79EA80661B3F04FE00D50B6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 79EA80581B3F04FE00D50B6B /* BBFrameworksiOS */;
@@ -1862,107 +1875,38 @@
 		};
 		79EA81061B3F12B200D50B6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 79EA80751B3F06ED00D50B6B /* BBFrameworksResources */;
+			target = 79EA80751B3F06ED00D50B6B /* BBFrameworksResourcesiOS */;
 			targetProxy = 79EA81051B3F12B200D50B6B /* PBXContainerItemProxy */;
+		};
+		79EA81281B3F1E9500D50B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79EA811A1B3F1E9500D50B6B /* BBFrameworksOSX */;
+			targetProxy = 79EA81271B3F1E9500D50B6B /* PBXContainerItemProxy */;
+		};
+		79EA813F1B3F20B700D50B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79EA81351B3F1EB100D50B6B /* BBFrameworksResourcesOSX */;
+			targetProxy = 79EA813E1B3F20B700D50B6B /* PBXContainerItemProxy */;
+		};
+		79EA81411B3F20DD00D50B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79EA811A1B3F1E9500D50B6B /* BBFrameworksOSX */;
+			targetProxy = 79EA81401B3F20DD00D50B6B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		79EA81421B3F212700D50B6B /* MediaPicker.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79EA81431B3F212700D50B6B /* en */,
+			);
+			name = MediaPicker.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		79052B171B1AF3960097B7AF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsOSX-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		79052B181B1AF3960097B7AF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsOSX-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 		796B00EB1B1ACBEC0087D3FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2061,111 +2005,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		79C000D11B1ACD6A004C9A6E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = BBFrameworks;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		79C000D21B1ACD6A004C9A6E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksOSX-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = BBFrameworks;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -2468,7 +2307,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2516,7 +2355,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2540,18 +2379,282 @@
 			};
 			name = Release;
 		};
+		79EA812D1B3F1E9500D50B6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = BBFrameworks;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		79EA812E1B3F1E9500D50B6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BBFrameworks;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		79EA81301B3F1E9500D50B6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsOSX-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		79EA81311B3F1E9500D50B6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsOSX-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		79EA813B1B3F1EB200D50B6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksResources/BBFrameworksResourcesOSX-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = BBFrameworksResources;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		79EA813C1B3F1EB200D50B6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksResources/BBFrameworksResourcesOSX-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BBFrameworksResources;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		79052B161B1AF3960097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				79052B171B1AF3960097B7AF /* Debug */,
-				79052B181B1AF3960097B7AF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		796B00EA1B1ACBEC0087D3FD /* Build configuration list for PBXProject "BBFrameworks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2566,15 +2669,6 @@
 			buildConfigurations = (
 				7989C9E91B1ADE66009B1CE9 /* Debug */,
 				7989C9EA1B1ADE66009B1CE9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		79C000D01B1ACD6A004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				79C000D11B1ACD6A004C9A6E /* Debug */,
-				79C000D21B1ACD6A004C9A6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2606,7 +2700,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		79EA807A1B3F06ED00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResources" */ = {
+		79EA807A1B3F06ED00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResourcesiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79EA807B1B3F06ED00D50B6B /* Debug */,
@@ -2614,6 +2708,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		79EA812C1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79EA812D1B3F1E9500D50B6B /* Debug */,
+				79EA812E1B3F1E9500D50B6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		79EA812F1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79EA81301B3F1E9500D50B6B /* Debug */,
+				79EA81311B3F1E9500D50B6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		79EA813A1B3F1EB200D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResourcesOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79EA813B1B3F1EB200D50B6B /* Debug */,
+				79EA813C1B3F1EB200D50B6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
