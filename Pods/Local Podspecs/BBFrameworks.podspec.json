@@ -191,6 +191,9 @@
           "TUSafariActivity": [
             "~> 1.0.0"
           ],
+          "ARChromeActivity": [
+            "~> 1.0.0"
+          ],
           "BBFrameworks/BBReactiveKit": [
 
           ]

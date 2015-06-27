@@ -54,6 +54,7 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-iOSDemo/BlocksKit.framework'
   install_framework 'Pods-iOSDemo/ReactiveCocoa.framework'
+  install_framework 'Pods-iOSDemo/ARChromeActivity.framework'
   install_framework 'Pods-iOSDemo/Archimedes.framework'
   install_framework 'Pods-iOSDemo/BBFrameworks.framework'
   install_framework 'Pods-iOSDemo/ReactiveViewModel.framework'
@@ -62,6 +63,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-iOSDemo/BlocksKit.framework'
   install_framework 'Pods-iOSDemo/ReactiveCocoa.framework'
+  install_framework 'Pods-iOSDemo/ARChromeActivity.framework'
   install_framework 'Pods-iOSDemo/Archimedes.framework'
   install_framework 'Pods-iOSDemo/BBFrameworks.framework'
   install_framework 'Pods-iOSDemo/ReactiveViewModel.framework'

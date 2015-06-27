@@ -1,5 +1,6 @@
 PODS:
   - Archimedes (1.1)
+  - ARChromeActivity (1.0.4)
   - BBFrameworks (0.0.1):
     - BBFrameworks/BBCoreData (= 0.0.1)
     - BBFrameworks/BBFoundation (= 0.0.1)
@@ -49,6 +50,7 @@ PODS:
     - ReactiveCocoa (~> 2.5.0)
   - BBFrameworks/BBWebKit (0.0.1):
     - Archimedes (~> 1.1.0)
+    - ARChromeActivity (~> 1.0.0)
     - BBFrameworks/BBReactiveKit
     - BlocksKit/Core (~> 2.2.0)
     - ReactiveCocoa (~> 2.5.0)
@@ -76,7 +78,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Archimedes: a181c40a4de8d6bb8ee21bb0f89e9cd758fbb3ce
-  BBFrameworks: 7256b23a4f50f01ed4c8353bafd61b1fcdb58dae
+  ARChromeActivity: 9064d94803338d3377f3e1013a8e8f4821d7daf1
+  BBFrameworks: d4d9631bddc25e0e428230938374cba892fbc53e
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
