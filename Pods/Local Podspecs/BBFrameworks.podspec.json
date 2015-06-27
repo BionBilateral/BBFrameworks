@@ -191,11 +191,6 @@
           "TUSafariActivity": [
             "~> 1.0.0"
           ],
-          "ARChromeActivity": [
-            {
-              "git": "https://github.com/BionBilateral/ARChromeActivity.git"
-            }
-          ],
           "BBFrameworks/BBReactiveKit": [
 
           ]

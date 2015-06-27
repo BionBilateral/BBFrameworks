@@ -104,7 +104,6 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "Archimedes", "~> 1.1.0"
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
-    subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
     
     subspec.ios.dependency "BBFrameworks/BBReactiveKit"
     

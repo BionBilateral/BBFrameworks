@@ -1,0 +1,6 @@
+framework module BBFrameworks {
+  umbrella header "Pods-iOSDemo-BBFrameworks-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -21,7 +21,6 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <TUSafariActivity/TUSafariActivity.h>
-#import <ARChromeActivity/ARChromeActivity.h>
 
 #import <WebKit/WebKit.h>
 #import <objc/runtime.h>
@@ -211,7 +210,7 @@
              [controller presentOptionsMenuFromBarButtonItem:shareItem animated:YES];
          }
          else {
-             UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[self.webView.URL] applicationActivities:@[[[TUSafariActivity alloc] init],[[ARChromeActivity alloc] init]]];
+             UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[self.webView.URL] applicationActivities:@[[[TUSafariActivity alloc] init]]];
              
              [self presentViewController:controller animated:YES completion:nil];
          }

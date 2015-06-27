@@ -1,0 +1,1 @@
+PODS_IOSDEMO_ARCHIMEDES_OTHER_LDFLAGS = -framework "CoreGraphics" -framework "Foundation"
