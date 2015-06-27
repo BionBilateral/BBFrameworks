@@ -14,6 +14,8 @@ Pod::Spec.new do |spec|
   
   spec.dependency "BlocksKit/Core", "~> 2.2.0"
   
+  spec.source_files = "BBFrameworks"
+  
   spec.ios.resource_bundles = {
     "BBFrameworksResources" => ["BBFrameworks/BBMediaPicker/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
   }
