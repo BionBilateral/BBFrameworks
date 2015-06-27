@@ -192,7 +192,9 @@
             "~> 1.0.0"
           ],
           "ARChromeActivity": [
-            "~> 1.0.0"
+            {
+              "git": "https://github.com/BionBilateral/ARChromeActivity.git"
+            }
           ],
           "BBFrameworks/BBReactiveKit": [
 

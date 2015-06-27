@@ -1,6 +1,0 @@
-framework module BlocksKit {
-  umbrella header "Pods-OSXFrameworks-BlocksKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

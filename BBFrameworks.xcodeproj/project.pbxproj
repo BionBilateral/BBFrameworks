@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07BFFE8A1B39C3A700DBC7EC /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFE891B39C3A700DBC7EC /* APIKeys.plist */; };
 		07BFFEAD1B3C652000DBC7EC /* BBMoviePlayerContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */; };
 		07BFFEAE1B3C652000DBC7EC /* BBMoviePlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */; };
 		07BFFEB01B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -265,7 +264,6 @@
 		79C27EB21B3B9A8300C4AC28 /* ThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB01B3B9A8300C4AC28 /* ThumbnailsViewController.m */; };
 		79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EB11B3B9A8300C4AC28 /* ThumbnailsViewController.xib */; };
 		79C27EB61B3B9C4400C4AC28 /* ThumbnailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */; };
-		79C27EB71B3BA9E700C4AC28 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFE891B39C3A700DBC7EC /* APIKeys.plist */; };
 		79C27EBA1B3BB0CB00C4AC28 /* BBMoviePlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C27EB81B3BB0CB00C4AC28 /* BBMoviePlayerView.h */; };
 		79C27EBB1B3BB0CB00C4AC28 /* BBMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */; };
 		79C27EBE1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C27EBC1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h */; };
@@ -304,7 +302,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07BFFE891B39C3A700DBC7EC /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerContentView.h; sourceTree = "<group>"; };
 		07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerContentView.m; sourceTree = "<group>"; };
 		07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerControllerDefines.h; sourceTree = "<group>"; };
@@ -937,7 +934,6 @@
 				7953FA2E1B31C4820005E3FD /* docs */,
 				79C0010E1B1AD081004C9A6E /* Info.plist */,
 				79C0010F1B1AD081004C9A6E /* main.m */,
-				07BFFE891B39C3A700DBC7EC /* APIKeys.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1477,7 +1473,6 @@
 				79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */,
 				79C27EA21B3B8FE300C4AC28 /* RootWindowController.xib in Resources */,
 				7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */,
-				79C27EB71B3BA9E700C4AC28 /* APIKeys.plist in Resources */,
 				79C27E9D1B3B8F7E00C4AC28 /* RootViewController.xib in Resources */,
 				79C27EAB1B3B956B00C4AC28 /* ViewsViewController.xib in Resources */,
 			);
@@ -1507,7 +1502,6 @@
 			files = (
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
 				7953FA2F1B31C4820005E3FD /* docs in Resources */,
-				07BFFE8A1B39C3A700DBC7EC /* APIKeys.plist in Resources */,
 				79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */,
 				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
 				7989DD531B345A3E0001F7C3 /* AssetsPickerViewController.xib in Resources */,

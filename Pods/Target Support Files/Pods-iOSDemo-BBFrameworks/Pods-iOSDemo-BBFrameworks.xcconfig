@@ -1,1 +1,0 @@
-PODS_IOSDEMO_BBFRAMEWORKS_OTHER_LDFLAGS = -framework "AVFoundation" -framework "Accelerate" -framework "CoreData" -framework "Foundation" -framework "MobileCoreServices" -framework "Photos" -framework "UIKit" -framework "WebKit"
