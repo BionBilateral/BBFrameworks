@@ -1,60 +1,6 @@
 PODS:
   - Archimedes (1.1)
   - ARChromeActivity (1.0.4)
-  - BBFrameworks (0.0.1):
-    - BBFrameworks/BBCoreData (= 0.0.1)
-    - BBFrameworks/BBFoundation (= 0.0.1)
-    - BBFrameworks/BBKit (= 0.0.1)
-    - BBFrameworks/BBMediaPicker (= 0.0.1)
-    - BBFrameworks/BBMediaPlayer (= 0.0.1)
-    - BBFrameworks/BBReactiveKit (= 0.0.1)
-    - BBFrameworks/BBReactiveThumbnail (= 0.0.1)
-    - BBFrameworks/BBThumbnail (= 0.0.1)
-    - BBFrameworks/BBTooltip (= 0.0.1)
-    - BBFrameworks/BBWebKit (= 0.0.1)
-    - BlocksKit/Core (~> 2.2.0)
-  - BBFrameworks/BBCoreData (0.0.1):
-    - BBFrameworks/BBFoundation
-    - BlocksKit/Core (~> 2.2.0)
-  - BBFrameworks/BBFoundation (0.0.1):
-    - BlocksKit/Core (~> 2.2.0)
-  - BBFrameworks/BBKit (0.0.1):
-    - Archimedes (~> 1.1.0)
-    - BBFrameworks/BBFoundation
-    - BlocksKit/Core (~> 2.2.0)
-  - BBFrameworks/BBMediaPicker (0.0.1):
-    - BBFrameworks/BBKit
-    - BlocksKit/Core (~> 2.2.0)
-    - ReactiveCocoa (~> 2.5.0)
-    - ReactiveViewModel (~> 0.3.0)
-  - BBFrameworks/BBMediaPlayer (0.0.1):
-    - BBFrameworks/BBKit
-    - BlocksKit/Core (~> 2.2.0)
-    - ReactiveCocoa (~> 2.5.0)
-    - ReactiveViewModel (~> 0.3.0)
-  - BBFrameworks/BBReactiveKit (0.0.1):
-    - BBFrameworks/BBKit
-    - BlocksKit/Core (~> 2.2.0)
-    - ReactiveCocoa (~> 2.5.0)
-  - BBFrameworks/BBReactiveThumbnail (0.0.1):
-    - BBFrameworks/BBThumbnail
-    - BlocksKit/Core (~> 2.2.0)
-  - BBFrameworks/BBThumbnail (0.0.1):
-    - BBFrameworks/BBKit
-    - BlocksKit/Core (~> 2.2.0)
-    - ReactiveCocoa (~> 2.5.0)
-  - BBFrameworks/BBTooltip (0.0.1):
-    - Archimedes (~> 1.1.0)
-    - BBFrameworks/BBKit
-    - BlocksKit/Core (~> 2.2.0)
-    - ReactiveCocoa (~> 2.5.0)
-  - BBFrameworks/BBWebKit (0.0.1):
-    - Archimedes (~> 1.1.0)
-    - ARChromeActivity (~> 1.0.0)
-    - BBFrameworks/BBReactiveKit
-    - BlocksKit/Core (~> 2.2.0)
-    - ReactiveCocoa (~> 2.5.0)
-    - TUSafariActivity (~> 1.0.0)
   - BlocksKit/Core (2.2.5)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -68,18 +14,16 @@ PODS:
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
-  - BBFrameworks (from `BBFrameworks.podspec`)
+  - Archimedes (~> 1.1.0)
+  - ARChromeActivity (~> 1.0.0)
   - BlocksKit/Core (~> 2.2.0)
   - ReactiveCocoa (~> 2.5.0)
-
-EXTERNAL SOURCES:
-  BBFrameworks:
-    :path: BBFrameworks.podspec
+  - ReactiveViewModel (~> 0.3.0)
+  - TUSafariActivity (~> 1.0.0)
 
 SPEC CHECKSUMS:
   Archimedes: a181c40a4de8d6bb8ee21bb0f89e9cd758fbb3ce
   ARChromeActivity: 9064d94803338d3377f3e1013a8e8f4821d7daf1
-  BBFrameworks: d4d9631bddc25e0e428230938374cba892fbc53e
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999

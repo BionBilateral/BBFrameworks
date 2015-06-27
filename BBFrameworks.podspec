@@ -14,6 +14,10 @@ Pod::Spec.new do |spec|
   
   spec.dependency "BlocksKit/Core", "~> 2.2.0"
   
+  spec.ios.resource_bundles = {
+    "BBFrameworksResources" => ["BBFrameworks/BBMediaPicker/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
+  }
+  
   spec.subspec "BBFoundation" do |subspec|
     subspec.source_files = "BBFrameworks/BBFoundation"
     
@@ -50,8 +54,6 @@ Pod::Spec.new do |spec|
     subspec.source_files = "BBFrameworks/BBReactiveKit"
     subspec.ios.source_files = "BBFrameworks/BBReactiveKit/iOS"
     subspec.osx.source_files = "BBFrameworks/BBReactiveKit/OSX"
-    
-    subspec.resources = "BBFrameworks/BBReactiveKit/*.xib"
   end
   
   spec.subspec "BBThumbnail" do |subspec|
@@ -81,8 +83,6 @@ Pod::Spec.new do |spec|
     subspec.ios.source_files = "BBFrameworks/BBMediaPicker"
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
     
-    subspec.ios.resources = "BBFrameworks/BBMediaPicker/*.xib", "BBFrameworks/*.lproj/MediaPicker.strings"
-    
     subspec.ios.frameworks = "Photos"
   end
   
@@ -94,8 +94,6 @@ Pod::Spec.new do |spec|
     
     subspec.ios.source_files = "BBFrameworks/BBMediaPlayer"
     subspec.osx.source_files = "BBFrameworks/BBMediaPlayer/BBMediaPlayer.h"
-    
-    subspec.ios.resources = "BBFrameworks/BBMediaPlayer/*.xib", "BBFrameworks/*.lproj/MediaPlayer.strings", "BBFrameworks/MediaPlayer.xcassets"
     
     subspec.ios.frameworks = "AVFoundation"
   end

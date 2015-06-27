@@ -15,11 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
+#if (!TARGET_OS_IPHONE)
 //! Project version number for BBFrameworks.
 FOUNDATION_EXPORT double BBFrameworksVersionNumber;
 
 //! Project version string for BBFrameworks.
 FOUNDATION_EXPORT const unsigned char BBFrameworksVersionString[];
+#endif
 
 #import <BBFrameworks/BBFoundation.h>
 #import <BBFrameworks/BBCoreData.h>

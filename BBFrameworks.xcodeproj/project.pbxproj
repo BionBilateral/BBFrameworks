@@ -7,34 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07BFFEAD1B3C652000DBC7EC /* BBMoviePlayerContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */; };
-		07BFFEAE1B3C652000DBC7EC /* BBMoviePlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */; };
-		07BFFEB01B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07BFFEB31B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEB11B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h */; };
-		07BFFEB41B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */; };
-		07BFFEBF1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */; };
-		07BFFEC21B3C804400DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */; };
-		07BFFEC51B3C93EF00DBC7EC /* BBMoviePlayerSliderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEC31B3C93EF00DBC7EC /* BBMoviePlayerSliderView.h */; };
-		07BFFEC61B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEC41B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m */; };
-		07BFFEC91B3DDAF200DBC7EC /* BBMoviePlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFEC71B3DDAF200DBC7EC /* BBMoviePlayerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07BFFECA1B3DDAF200DBC7EC /* BBMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEC81B3DDAF200DBC7EC /* BBMoviePlayerViewController.m */; };
-		07BFFECD1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFECB1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.h */; };
-		07BFFECE1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */; };
-		07BFFED11B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */; };
-		38C40C84F4391D9C27ED7ED2 /* Pods_iOSFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		3B7E33E56A437A3B6549C2C2 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		74E230821B3B55C900DE56B3 /* BBTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E230801B3B55C900DE56B3 /* BBTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74E230831B3B55C900DE56B3 /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E230811B3B55C900DE56B3 /* BBTextView.m */; };
-		78FEBBB80841940908967232 /* Pods_iOSDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		79052B031B1AF3270097B7AF /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */; };
+		241273B555EE7126FDC0C1D7 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
+		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
+		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		79052B131B1AF3960097B7AF /* BBFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */; };
-		79052B1E1B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */; };
 		79052B1F1B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */; };
-		79052B201B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
 		79052B211B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
-		79052B221B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */; };
 		79052B231B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */; };
-		79052B241B1AF4010097B7AF /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */; };
 		79052B251B1AF4010097B7AF /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
@@ -42,127 +21,68 @@
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
 		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
 		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
-		7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFAB1B1AD2B90034288D /* BBCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */; };
 		7927CFAD1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */; };
-		7927CFAE1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */; };
 		7927CFAF1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */; };
-		7927CFB01B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF611B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h */; };
 		7927CFB11B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF611B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h */; };
-		7927CFB21B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */; };
 		7927CFB31B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */; };
-		7927CFB41B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFB51B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFB61B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFB71B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFB81B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFB91B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */; };
 		7927CFBB1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */; };
-		7927CFBC1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFBD1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFBE1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */; };
 		7927CFBF1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */; };
-		7927CFC01B1AD2B90034288D /* BBFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFC11B1AD2B90034288D /* BBFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC21B1AD2B90034288D /* BBFoundationDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFC31B1AD2B90034288D /* BBFoundationDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC41B1AD2B90034288D /* BBFoundationFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFC51B1AD2B90034288D /* BBFoundationFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC61B1AD2B90034288D /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFC71B1AD2B90034288D /* BBFoundationMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFC81B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFC91B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
 		7927CFCB1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
-		7927CFCC1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFCD1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFCE1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */; };
 		7927CFCF1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */; };
-		7927CFD01B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFD11B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFD21B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */; };
 		7927CFD31B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */; };
-		7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFD51B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFD61B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */; };
 		7927CFD71B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */; };
-		7927CFD81B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFD91B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFDA1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */; };
 		7927CFDB1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */; };
-		7927CFDC1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFDD1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFDE1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */; };
 		7927CFDF1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */; };
-		7927CFE01B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFE11B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */; };
 		7927CFE31B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */; };
-		7927CFE41B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFE51B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFE61B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */; };
 		7927CFE71B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */; };
-		7927CFE81B1AD2B90034288D /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7F1B1AD2B90034288D /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFE91B1AD2B90034288D /* BBBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF7F1B1AD2B90034288D /* BBBadgeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFEA1B1AD2B90034288D /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF801B1AD2B90034288D /* BBBadgeView.m */; };
 		7927CFEB1B1AD2B90034288D /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF801B1AD2B90034288D /* BBBadgeView.m */; };
-		7927CFEC1B1AD2B90034288D /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF811B1AD2B90034288D /* BBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFED1B1AD2B90034288D /* BBKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF811B1AD2B90034288D /* BBKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFEE1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFEF1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF831B1AD2B90034288D /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFF11B1AD2B90034288D /* BBKitColorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF831B1AD2B90034288D /* BBKitColorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFF31B1AD2B90034288D /* NSColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF841B1AD2B90034288D /* NSColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFF51B1AD2B90034288D /* NSColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF851B1AD2B90034288D /* NSColor+BBKitExtensions.m */; };
 		7927CFF71B1AD2B90034288D /* NSImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF861B1AD2B90034288D /* NSImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFF91B1AD2B90034288D /* NSImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */; };
-		7927CFFA1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927CFFB1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
 		7927CFFD1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
-		7927D00E1B1AD2B90034288D /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D00F1B1AD2B90034288D /* BBReactiveKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0101B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D0111B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0121B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D0131B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0141B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
 		7927D0151B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
-		7927D0161B1AD2B90034288D /* BBThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF991B1AD2B90034288D /* BBThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D0171B1AD2B90034288D /* BBThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF991B1AD2B90034288D /* BBThumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0181B1AD2B90034288D /* BBThumbnailDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D0191B1AD2B90034288D /* BBThumbnailDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D01A1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D01B1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D01C1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */; };
 		7927D01D1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */; };
-		7927D01E1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */; };
 		7927D01F1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */; };
-		7927D0201B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */; };
 		7927D0211B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */; };
-		7927D0221B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */; };
 		7927D0231B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */; };
-		7927D0241B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */; };
 		7927D0251B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */; };
-		7927D0261B1AD2B90034288D /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927D0271B1AD2B90034288D /* BBThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7927D0281B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */; };
 		7927D0291B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */; };
-		7927D02A1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */; };
 		7927D02B1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */; };
-		7927D02C1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA41B1AD2B90034288D /* BBThumbnailPDFOperation.h */; };
 		7927D02D1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA41B1AD2B90034288D /* BBThumbnailPDFOperation.h */; };
-		7927D02E1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */; };
 		7927D02F1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */; };
-		7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA61B1AD2B90034288D /* BBThumbnailRTFOperation.h */; };
 		7927D0311B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA61B1AD2B90034288D /* BBThumbnailRTFOperation.h */; };
-		7927D0321B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */; };
 		7927D0331B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */; };
-		7927D0341B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */; };
 		7927D0351B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */; };
-		7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7927D0371B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
@@ -171,81 +91,16 @@
 		7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9D71B1ADE65009B1CE9 /* Images.xcassets */; };
 		7989DD511B345A2D0001F7C3 /* AssetsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD501B345A2D0001F7C3 /* AssetsPickerViewController.m */; };
 		7989DD531B345A3E0001F7C3 /* AssetsPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7989DD521B345A3E0001F7C3 /* AssetsPickerViewController.xib */; };
-		79B4FF801B363D4E007B8629 /* BBMediaPickerAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FF811B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */; };
-		79B4FF821B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */; };
-		79B4FF831B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FF6A1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib */; };
-		79B4FF841B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF6B1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.h */; };
-		79B4FF851B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF6C1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.m */; };
-		79B4FF861B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF6D1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.h */; };
-		79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF6E1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m */; };
-		79B4FF881B363D4E007B8629 /* BBMediaPickerAssetViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF6F1B363D4E007B8629 /* BBMediaPickerAssetViewModel.h */; };
-		79B4FF891B363D4E007B8629 /* BBMediaPickerAssetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF701B363D4E007B8629 /* BBMediaPickerAssetViewModel.m */; };
-		79B4FF8A1B363D4E007B8629 /* BBMediaPickerBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF711B363D4E007B8629 /* BBMediaPickerBackgroundView.h */; };
-		79B4FF8B1B363D4E007B8629 /* BBMediaPickerBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF721B363D4E007B8629 /* BBMediaPickerBackgroundView.m */; };
-		79B4FF8C1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF731B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.h */; };
-		79B4FF8D1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF741B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.m */; };
-		79B4FF8E1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FF751B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib */; };
-		79B4FF8F1B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF761B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.h */; };
-		79B4FF901B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF771B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m */; };
-		79B4FF911B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF781B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h */; };
-		79B4FF921B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF791B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m */; };
-		79B4FF931B363D4E007B8629 /* BBMediaPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7A1B363D4E007B8629 /* BBMediaPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FF941B363D4E007B8629 /* BBMediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF7B1B363D4E007B8629 /* BBMediaPickerViewController.m */; };
-		79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7C1B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h */; };
-		79B4FF961B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7D1B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FF971B363D4E007B8629 /* BBMediaPickerViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF7E1B363D4E007B8629 /* BBMediaPickerViewModel.h */; };
-		79B4FF981B363D4E007B8629 /* BBMediaPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF7F1B363D4E007B8629 /* BBMediaPickerViewModel.m */; };
-		79B4FFA11B363F55007B8629 /* BBWebKitTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFA21B363F55007B8629 /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */; };
-		79B4FFA31B363F55007B8629 /* BBWebKitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */; };
-		79B4FFA51B363F55007B8629 /* BBWebKitViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFA71B363FC1007B8629 /* BBWebKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA61B363FC1007B8629 /* BBWebKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFA91B364017007B8629 /* BBMediaPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFA81B36400D007B8629 /* BBMediaPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFB61B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFAA1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFB71B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAB1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m */; };
-		79B4FFB81B364384007B8629 /* UIColor+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFAC1B364384007B8629 /* UIColor+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFB91B364384007B8629 /* UIColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAD1B364384007B8629 /* UIColor+BBKitExtensions.m */; };
-		79B4FFBA1B364384007B8629 /* UIFont+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFAE1B364384007B8629 /* UIFont+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFBB1B364384007B8629 /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAF1B364384007B8629 /* UIFont+BBKitExtensions.m */; };
-		79B4FFBC1B364384007B8629 /* UIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB01B364384007B8629 /* UIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFBD1B364384007B8629 /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB11B364384007B8629 /* UIImage+BBKitExtensions.m */; };
-		79B4FFBE1B364384007B8629 /* UIView+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB21B364384007B8629 /* UIView+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFBF1B364384007B8629 /* UIView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */; };
-		79B4FFC01B364384007B8629 /* UIViewController+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFC11B364384007B8629 /* UIViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */; };
-		79B4FFC91B3647F8007B8629 /* BBTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC31B3647F8007B8629 /* BBTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFCA1B3647F8007B8629 /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC41B3647F8007B8629 /* BBTooltipView.m */; };
-		79B4FFCB1B3647F8007B8629 /* BBTooltipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC51B3647F8007B8629 /* BBTooltipViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFCC1B3647F8007B8629 /* BBTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC61B3647F8007B8629 /* BBTooltipViewController.m */; };
-		79B4FFCD1B3647F8007B8629 /* BBTooltipViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFCE1B3647F8007B8629 /* BBTooltipViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFD01B364842007B8629 /* BBTooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFCF1B364842007B8629 /* BBTooltip.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFD31B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
 		79B4FFD41B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFD11B3656C1007B8629 /* BBThumbnailYouTubeOperation.h */; };
-		79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
 		79B4FFD61B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
-		79B4FFDC1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
 		79B4FFDD1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFDA1B3694E3007B8629 /* BBThumbnailVimeoOperation.h */; };
-		79B4FFDE1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
 		79B4FFDF1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
-		79B4FFE31B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */; };
 		79B4FFE41B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE11B369EE2007B8629 /* BBThumbnailAsyncOperation.h */; };
-		79B4FFE51B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
 		79B4FFE61B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
-		79B4FFE91B36ADF6007B8629 /* BBThumbnailHTMLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */; };
 		79B4FFEA1B36ADF6007B8629 /* BBThumbnailHTMLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */; };
-		79B4FFEB1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
 		79B4FFEC1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
-		79B4FFF31B37856D007B8629 /* BBThumbnailDocumentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */; };
 		79B4FFF41B37856D007B8629 /* BBThumbnailDocumentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */; };
-		79B4FFF51B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
 		79B4FFF61B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
-		79B4FFF91B3908FC007B8629 /* BBMediaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFFC1B39094E007B8629 /* BBMoviePlayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79B4FFFD1B39094E007B8629 /* BBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */; };
-		79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C000D91B1ACE0E004C9A6E /* BBFrameworks.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
@@ -264,34 +119,147 @@
 		79C27EB21B3B9A8300C4AC28 /* ThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB01B3B9A8300C4AC28 /* ThumbnailsViewController.m */; };
 		79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EB11B3B9A8300C4AC28 /* ThumbnailsViewController.xib */; };
 		79C27EB61B3B9C4400C4AC28 /* ThumbnailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */; };
-		79C27EBA1B3BB0CB00C4AC28 /* BBMoviePlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C27EB81B3BB0CB00C4AC28 /* BBMoviePlayerView.h */; };
-		79C27EBB1B3BB0CB00C4AC28 /* BBMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */; };
-		79C27EBE1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C27EBC1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h */; };
 		79C27EC01B3BB84E00C4AC28 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
 		79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EC41B3BBA6000C4AC28 /* sample.mp4 */; };
-		79C27EC91B3CD78600C4AC28 /* MediaPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EC81B3CD78600C4AC28 /* MediaPlayer.xcassets */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
-		79DD3E7F1B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79DD3E801B337B6F00EF4E44 /* BBGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
 		79DD3E821B337B6F00EF4E44 /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
-		79E0BC021B27B5C700892D81 /* BBProgressNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */; };
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
-		9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		BC227553E469BEC94FDCC32E /* Pods_OSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
+		79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; };
+		79EA807E1B3F088B00D50B6B /* BBFoundation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; };
+		79EA807F1B3F089100D50B6B /* BBFoundationDebugging.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */; };
+		79EA80801B3F089200D50B6B /* BBFoundationFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */; };
+		79EA80811B3F089400D50B6B /* BBFoundationMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */; };
+		79EA80821B3F089B00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */; };
+		79EA80831B3F089E00D50B6B /* NSArray+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF701B1AD2B90034288D /* NSArray+BBFoundationExtensions.h */; };
+		79EA80841B3F08A000D50B6B /* NSBundle+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF721B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h */; };
+		79EA80851B3F08A400D50B6B /* NSData+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */; };
+		79EA80861B3F08A800D50B6B /* NSFileManager+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */; };
+		79EA80871B3F08AA00D50B6B /* NSMutableArray+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */; };
+		79EA80881B3F08AC00D50B6B /* NSString+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF7A1B1AD2B90034288D /* NSString+BBFoundationExtensions.h */; };
+		79EA80891B3F08AE00D50B6B /* NSURL+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */; };
+		79EA808A1B3F08B600D50B6B /* BBCoreData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF5E1B1AD2B90034288D /* BBCoreData.h */; };
+		79EA808B1B3F08B900D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */; };
+		79EA808C1B3F08C300D50B6B /* BBManagedObjectEntityMapping.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF631B1AD2B90034288D /* BBManagedObjectEntityMapping.h */; };
+		79EA808D1B3F08C400D50B6B /* BBManagedObjectPropertyMapping.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF641B1AD2B90034288D /* BBManagedObjectPropertyMapping.h */; };
+		79EA808E1B3F08C600D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF671B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h */; };
+		79EA808F1B3F08CC00D50B6B /* BBKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF811B1AD2B90034288D /* BBKit.h */; };
+		79EA80901B3F08D000D50B6B /* BBKitCGImageFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF821B1AD2B90034288D /* BBKitCGImageFunctions.h */; };
+		79EA80911B3F08D100D50B6B /* BBKitColorMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF831B1AD2B90034288D /* BBKitColorMacros.h */; };
+		79EA80921B3F08D600D50B6B /* BBBadgeView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF7F1B1AD2B90034288D /* BBBadgeView.h */; };
+		79EA80931B3F08D800D50B6B /* BBGradientView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */; };
+		79EA80941B3F08DF00D50B6B /* NSURL+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */; };
+		79EA80951B3F08E100D50B6B /* UIBarButtonItem+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFAA1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h */; };
+		79EA80961B3F08E300D50B6B /* UIColor+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFAC1B364384007B8629 /* UIColor+BBKitExtensions.h */; };
+		79EA80971B3F08E600D50B6B /* UIFont+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFAE1B364384007B8629 /* UIFont+BBKitExtensions.h */; };
+		79EA80981B3F08E700D50B6B /* UIImage+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFB01B364384007B8629 /* UIImage+BBKitExtensions.h */; };
+		79EA80991B3F08E900D50B6B /* UIView+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFB21B364384007B8629 /* UIView+BBKitExtensions.h */; };
+		79EA809A1B3F08EB00D50B6B /* UIViewController+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */; };
+		79EA809B1B3F08FD00D50B6B /* BBReactiveKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; };
+		79EA809C1B3F08FF00D50B6B /* BBProgressNavigationBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */; };
+		79EA809D1B3F090100D50B6B /* BBTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74E230801B3B55C900DE56B3 /* BBTextView.h */; };
+		79EA809E1B3F090500D50B6B /* BBThumbnail.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF991B1AD2B90034288D /* BBThumbnail.h */; };
+		79EA809F1B3F090800D50B6B /* BBThumbnailDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */; };
+		79EA80A01B3F091300D50B6B /* BBThumbnailGenerator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */; };
+		79EA80A11B3F091700D50B6B /* BBThumbnailOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */; };
+		79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF951B1AD2B90034288D /* BBReactiveThumbnail.h */; };
+		79EA80A31B3F092C00D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF961B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h */; };
+		79EA80A41B3F093C00D50B6B /* BBMediaPicker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFA81B36400D007B8629 /* BBMediaPicker.h */; };
+		79EA80A51B3F094000D50B6B /* BBMediaPickerAsset.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */; };
+		79EA80A61B3F094700D50B6B /* BBMediaPickerViewControllerDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FF7D1B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h */; };
+		79EA80A71B3F094A00D50B6B /* BBMediaPickerViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FF7A1B363D4E007B8629 /* BBMediaPickerViewController.h */; };
+		79EA80A81B3F095C00D50B6B /* BBMediaPickerCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FF751B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib */; };
+		79EA80A91B3F096A00D50B6B /* BBMediaPickerAssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B4FF6A1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib */; };
+		79EA80AA1B3F097400D50B6B /* BBMediaPlayer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */; };
+		79EA80AB1B3F097800D50B6B /* BBMediaPlayerDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */; };
+		79EA80AC1B3F097A00D50B6B /* BBMoviePlayerViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07BFFEC71B3DDAF200DBC7EC /* BBMoviePlayerViewController.h */; };
+		79EA80AD1B3F097D00D50B6B /* BBMoviePlayerControllerDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */; };
+		79EA80AE1B3F097F00D50B6B /* BBMoviePlayerController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */; };
+		79EA80AF1B3F098700D50B6B /* BBWebKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFA61B363FC1007B8629 /* BBWebKit.h */; };
+		79EA80B01B3F098900D50B6B /* BBWebKitViewControllerDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */; };
+		79EA80B11B3F098B00D50B6B /* BBWebKitViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */; };
+		79EA80B21B3F098C00D50B6B /* BBWebKitTitleView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */; };
+		79EA80B31B3F099100D50B6B /* BBTooltip.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFCF1B364842007B8629 /* BBTooltip.h */; };
+		79EA80B41B3F099300D50B6B /* BBTooltipViewControllerDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFC71B3647F8007B8629 /* BBTooltipViewControllerDataSource.h */; };
+		79EA80B51B3F099500D50B6B /* BBTooltipViewControllerDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFC81B3647F8007B8629 /* BBTooltipViewControllerDelegate.h */; };
+		79EA80B61B3F099600D50B6B /* BBTooltipViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFC51B3647F8007B8629 /* BBTooltipViewController.h */; };
+		79EA80B71B3F09A000D50B6B /* BBTooltipView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFC31B3647F8007B8629 /* BBTooltipView.h */; };
+		79EA80BF1B3F0C5600D50B6B /* media_player_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80B91B3F0C5600D50B6B /* media_player_pause.png */; };
+		79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80BA1B3F0C5600D50B6B /* media_player_pause@2x.png */; };
+		79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80BB1B3F0C5600D50B6B /* media_player_pause@3x.png */; };
+		79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80BC1B3F0C5600D50B6B /* media_player_play.png */; };
+		79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */; };
+		79EA80C41B3F0C5600D50B6B /* media_player_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */; };
+		79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */; };
+		79EA80C61B3F0CCD00D50B6B /* NSArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF711B1AD2B90034288D /* NSArray+BBFoundationExtensions.m */; };
+		79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */; };
+		79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */; };
+		79EA80C91B3F0CCD00D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */; };
+		79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF791B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m */; };
+		79EA80CB1B3F0CCD00D50B6B /* NSString+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */; };
+		79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */; };
+		79EA80CD1B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */; };
+		79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */; };
+		79EA80CF1B3F0CDB00D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF621B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m */; };
+		79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF681B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m */; };
+		79EA80D11B3F0CE400D50B6B /* BBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF801B1AD2B90034288D /* BBBadgeView.m */; };
+		79EA80D21B3F0CE400D50B6B /* BBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */; };
+		79EA80D31B3F0CF300D50B6B /* NSURL+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */; };
+		79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAB1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m */; };
+		79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAD1B364384007B8629 /* UIColor+BBKitExtensions.m */; };
+		79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFAF1B364384007B8629 /* UIFont+BBKitExtensions.m */; };
+		79EA80D71B3F0CF300D50B6B /* UIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB11B364384007B8629 /* UIImage+BBKitExtensions.m */; };
+		79EA80D81B3F0CF300D50B6B /* UIView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */; };
+		79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */; };
+		79EA80DA1B3F0D0000D50B6B /* BBProgressNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */; };
+		79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E230811B3B55C900DE56B3 /* BBTextView.m */; };
+		79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */; };
+		79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */; };
+		79EA80DE1B3F0D1B00D50B6B /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */; };
+		79EA80DF1B3F0D1B00D50B6B /* BBThumbnailMovieOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA01B1AD2B90034288D /* BBThumbnailMovieOperation.m */; };
+		79EA80E01B3F0D1B00D50B6B /* BBThumbnailPDFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA51B1AD2B90034288D /* BBThumbnailPDFOperation.m */; };
+		79EA80E11B3F0D1B00D50B6B /* BBThumbnailRTFOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */; };
+		79EA80E21B3F0D1B00D50B6B /* BBThumbnailTextOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */; };
+		79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */; };
+		79EA80E41B3F0D1B00D50B6B /* BBThumbnailYouTubeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFD21B3656C1007B8629 /* BBThumbnailYouTubeOperation.m */; };
+		79EA80E51B3F0D1B00D50B6B /* BBThumbnailVimeoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFDB1B3694E3007B8629 /* BBThumbnailVimeoOperation.m */; };
+		79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */; };
+		79EA80E71B3F0D1B00D50B6B /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */; };
+		79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
+		79EA80E91B3F0D2F00D50B6B /* BBMediaPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF7F1B363D4E007B8629 /* BBMediaPickerViewModel.m */; };
+		79EA80EA1B3F0D2F00D50B6B /* BBMediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF7B1B363D4E007B8629 /* BBMediaPickerViewController.m */; };
+		79EA80EB1B3F0D2F00D50B6B /* BBMediaPickerBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF721B363D4E007B8629 /* BBMediaPickerBackgroundView.m */; };
+		79EA80EC1B3F0D3600D50B6B /* BBMediaPickerCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF791B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m */; };
+		79EA80ED1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF771B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m */; };
+		79EA80EE1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF741B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.m */; };
+		79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF701B363D4E007B8629 /* BBMediaPickerAssetViewModel.m */; };
+		79EA80F01B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF6C1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.m */; };
+		79EA80F11B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF6E1B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m */; };
+		79EA80F21B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */; };
+		79EA80F31B3F0D4B00D50B6B /* BBMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEC81B3DDAF200DBC7EC /* BBMoviePlayerViewController.m */; };
+		79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */; };
+		79EA80F51B3F0D4B00D50B6B /* BBMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */; };
+		79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */; };
+		79EA80F71B3F0D4B00D50B6B /* BBMoviePlayerEmbeddedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */; };
+		79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */; };
+		79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEC41B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m */; };
+		79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */; };
+		79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */; };
+		79EA80FC1B3F0D5B00D50B6B /* BBTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC61B3647F8007B8629 /* BBTooltipViewController.m */; };
+		79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC41B3647F8007B8629 /* BBTooltipView.m */; };
+		79EA80FE1B3F0D6D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */; };
+		79EA80FF1B3F0D6D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
+		79EA81001B3F0D6D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */; };
+		79EA81071B3F12BF00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
+		79EA810B1B3F15A400D50B6B /* BBFrameworksConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */; };
+		79EA810C1B3F15A600D50B6B /* BBFrameworksFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */; };
+		79EA810D1B3F165500D50B6B /* BBFrameworksResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */; };
+		802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		79052B041B1AF3270097B7AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 79C0009D1B1ACC7C004C9A6E;
-			remoteInfo = BBFrameworksiOS;
-		};
 		79052B141B1AF3960097B7AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
@@ -299,7 +267,99 @@
 			remoteGlobalIDString = 79C000BC1B1ACD69004C9A6E;
 			remoteInfo = BBFrameworksOSX;
 		};
+		79EA80651B3F04FE00D50B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79EA80581B3F04FE00D50B6B;
+			remoteInfo = BBFrameworksiOS;
+		};
+		79EA81011B3F12A700D50B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79EA80581B3F04FE00D50B6B;
+			remoteInfo = BBFrameworksiOS;
+		};
+		79EA81051B3F12B200D50B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 796B00E71B1ACBEC0087D3FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79EA80751B3F06ED00D50B6B;
+			remoteInfo = BBFrameworksResources;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		79EA80571B3F04FE00D50B6B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
+				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
+				79EA810B1B3F15A400D50B6B /* BBFrameworksConstants.h in CopyFiles */,
+				79EA80801B3F089200D50B6B /* BBFoundationFunctions.h in CopyFiles */,
+				79EA80AB1B3F097800D50B6B /* BBMediaPlayerDefines.h in CopyFiles */,
+				79EA810C1B3F15A600D50B6B /* BBFrameworksFunctions.h in CopyFiles */,
+				79EA80B51B3F099500D50B6B /* BBTooltipViewControllerDelegate.h in CopyFiles */,
+				79EA80B71B3F09A000D50B6B /* BBTooltipView.h in CopyFiles */,
+				79EA80B61B3F099600D50B6B /* BBTooltipViewController.h in CopyFiles */,
+				79EA80B41B3F099300D50B6B /* BBTooltipViewControllerDataSource.h in CopyFiles */,
+				79EA80B31B3F099100D50B6B /* BBTooltip.h in CopyFiles */,
+				79EA80AA1B3F097400D50B6B /* BBMediaPlayer.h in CopyFiles */,
+				79EA80B21B3F098C00D50B6B /* BBWebKitTitleView.h in CopyFiles */,
+				79EA80B11B3F098B00D50B6B /* BBWebKitViewController.h in CopyFiles */,
+				79EA80AD1B3F097D00D50B6B /* BBMoviePlayerControllerDefines.h in CopyFiles */,
+				79EA80AF1B3F098700D50B6B /* BBWebKit.h in CopyFiles */,
+				79EA80B01B3F098900D50B6B /* BBWebKitViewControllerDelegate.h in CopyFiles */,
+				79EA80AE1B3F097F00D50B6B /* BBMoviePlayerController.h in CopyFiles */,
+				79EA80AC1B3F097A00D50B6B /* BBMoviePlayerViewController.h in CopyFiles */,
+				79EA80A31B3F092C00D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in CopyFiles */,
+				79EA80A51B3F094000D50B6B /* BBMediaPickerAsset.h in CopyFiles */,
+				79EA80A61B3F094700D50B6B /* BBMediaPickerViewControllerDelegate.h in CopyFiles */,
+				79EA809B1B3F08FD00D50B6B /* BBReactiveKit.h in CopyFiles */,
+				79EA80A71B3F094A00D50B6B /* BBMediaPickerViewController.h in CopyFiles */,
+				79EA80A41B3F093C00D50B6B /* BBMediaPicker.h in CopyFiles */,
+				79EA80A11B3F091700D50B6B /* BBThumbnailOperation.h in CopyFiles */,
+				79EA809E1B3F090500D50B6B /* BBThumbnail.h in CopyFiles */,
+				79EA80A01B3F091300D50B6B /* BBThumbnailGenerator.h in CopyFiles */,
+				79EA809F1B3F090800D50B6B /* BBThumbnailDefines.h in CopyFiles */,
+				79EA809C1B3F08FF00D50B6B /* BBProgressNavigationBar.h in CopyFiles */,
+				79EA809D1B3F090100D50B6B /* BBTextView.h in CopyFiles */,
+				79EA808B1B3F08B900D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in CopyFiles */,
+				79EA80931B3F08D800D50B6B /* BBGradientView.h in CopyFiles */,
+				79EA80951B3F08E100D50B6B /* UIBarButtonItem+BBKitExtensions.h in CopyFiles */,
+				79EA80981B3F08E700D50B6B /* UIImage+BBKitExtensions.h in CopyFiles */,
+				79EA80991B3F08E900D50B6B /* UIView+BBKitExtensions.h in CopyFiles */,
+				79EA80971B3F08E600D50B6B /* UIFont+BBKitExtensions.h in CopyFiles */,
+				79EA809A1B3F08EB00D50B6B /* UIViewController+BBKitExtensions.h in CopyFiles */,
+				79EA80961B3F08E300D50B6B /* UIColor+BBKitExtensions.h in CopyFiles */,
+				79EA80941B3F08DF00D50B6B /* NSURL+BBKitExtensions.h in CopyFiles */,
+				79EA80911B3F08D100D50B6B /* BBKitColorMacros.h in CopyFiles */,
+				79EA80921B3F08D600D50B6B /* BBBadgeView.h in CopyFiles */,
+				79EA80901B3F08D000D50B6B /* BBKitCGImageFunctions.h in CopyFiles */,
+				79EA808F1B3F08CC00D50B6B /* BBKit.h in CopyFiles */,
+				79EA808E1B3F08C600D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in CopyFiles */,
+				79EA808D1B3F08C400D50B6B /* BBManagedObjectPropertyMapping.h in CopyFiles */,
+				79EA808C1B3F08C300D50B6B /* BBManagedObjectEntityMapping.h in CopyFiles */,
+				79EA80851B3F08A400D50B6B /* NSData+BBFoundationExtensions.h in CopyFiles */,
+				79EA808A1B3F08B600D50B6B /* BBCoreData.h in CopyFiles */,
+				79EA80841B3F08A000D50B6B /* NSBundle+BBFoundationExtensions.h in CopyFiles */,
+				79EA80881B3F08AC00D50B6B /* NSString+BBFoundationExtensions.h in CopyFiles */,
+				79EA80891B3F08AE00D50B6B /* NSURL+BBFoundationExtensions.h in CopyFiles */,
+				79EA80861B3F08A800D50B6B /* NSFileManager+BBFoundationExtensions.h in CopyFiles */,
+				79EA80871B3F08AA00D50B6B /* NSMutableArray+BBFoundationExtensions.h in CopyFiles */,
+				79EA80831B3F089E00D50B6B /* NSArray+BBFoundationExtensions.h in CopyFiles */,
+				79EA80821B3F089B00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in CopyFiles */,
+				79EA80811B3F089400D50B6B /* BBFoundationMacros.h in CopyFiles */,
+				79EA807E1B3F088B00D50B6B /* BBFoundation.h in CopyFiles */,
+				79EA807F1B3F089100D50B6B /* BBFoundationDebugging.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerContentView.h; sourceTree = "<group>"; };
@@ -308,7 +368,6 @@
 		07BFFEB11B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerEmbeddedBottomView.h; sourceTree = "<group>"; };
 		07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerEmbeddedBottomView.m; sourceTree = "<group>"; };
 		07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayerDefines.h; sourceTree = "<group>"; };
-		07BFFEC11B3C804400DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		07BFFEC31B3C93EF00DBC7EC /* BBMoviePlayerSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerSliderView.h; sourceTree = "<group>"; };
 		07BFFEC41B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerSliderView.m; sourceTree = "<group>"; };
 		07BFFEC71B3DDAF200DBC7EC /* BBMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerViewController.h; sourceTree = "<group>"; };
@@ -320,19 +379,17 @@
 		16A8AD559E899774854604DC /* Pods-OSXFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
 		1E795CAF990D7A8830294F49 /* Pods-iOSFrameworks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSFrameworks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks.debug.xcconfig"; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E230801B3B55C900DE56B3 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		74E230811B3B55C900DE56B3 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
-		79052AFD1B1AF3270097B7AF /* BBFrameworksiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		79052B0D1B1AF3960097B7AF /* BBFrameworksOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79052B0D1B1AF3960097B7AF /* BBFrameworksTestsOSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsOSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
 		79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		79052B1D1B1AF4010097B7AF /* Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Test.xcdatamodel; sourceTree = "<group>"; };
-		79052B261B1AF4120097B7AF /* BBFrameworksiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOSTests-Info.plist"; sourceTree = "<group>"; };
-		79052B271B1AF4120097B7AF /* BBFrameworksOSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksOSXTests-Info.plist"; sourceTree = "<group>"; };
 		791551591B33353B009FA353 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7915515A1B33353B009FA353 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7915515C1B3335E7009FA353 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -482,8 +539,6 @@
 		79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayer.h; sourceTree = "<group>"; };
 		79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerController.h; sourceTree = "<group>"; };
 		79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerController.m; sourceTree = "<group>"; };
-		79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksiOS-Info.plist"; sourceTree = "<group>"; };
 		79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BBFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C000D61B1ACDC2004C9A6E /* BBFrameworksOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksOSX-Info.plist"; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
@@ -521,7 +576,6 @@
 		79C27EC11B3BB8A100C4AC28 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
 		79C27EC41B3BBA6000C4AC28 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
-		79C27EC81B3CD78600C4AC28 /* MediaPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MediaPlayer.xcassets; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
 		79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGradientView.h; sourceTree = "<group>"; };
@@ -530,29 +584,33 @@
 		79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressNavigationBar.m; path = iOS/BBProgressNavigationBar.m; sourceTree = "<group>"; };
 		79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewRowViewController.h; sourceTree = "<group>"; };
 		79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewRowViewController.m; sourceTree = "<group>"; };
+		79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = BBFrameworksiOSTests.xctest; path = BBFrameworksTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA80701B3F063500D50B6B /* BBFrameworksTestsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsiOS-Info.plist"; sourceTree = "<group>"; };
+		79EA80711B3F063500D50B6B /* BBFrameworksTestsOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsOSX-Info.plist"; sourceTree = "<group>"; };
+		79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA80791B3F06ED00D50B6B /* BBFrameworksResourcesiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksResourcesiOS-Info.plist"; sourceTree = "<group>"; };
+		79EA80B91B3F0C5600D50B6B /* media_player_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_player_pause.png; sourceTree = "<group>"; };
+		79EA80BA1B3F0C5600D50B6B /* media_player_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_player_pause@2x.png"; sourceTree = "<group>"; };
+		79EA80BB1B3F0C5600D50B6B /* media_player_pause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_player_pause@3x.png"; sourceTree = "<group>"; };
+		79EA80BC1B3F0C5600D50B6B /* media_player_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_player_play.png; sourceTree = "<group>"; };
+		79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_player_play@2x.png"; sourceTree = "<group>"; };
+		79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_player_play@3x.png"; sourceTree = "<group>"; };
+		79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksFunctions.h; sourceTree = "<group>"; };
+		79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksConstants.h; sourceTree = "<group>"; };
+		A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F12801A982197CDD9A9F38 /* Pods-OSXFrameworks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXFrameworks.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks.release.xcconfig"; sourceTree = "<group>"; };
 		D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSXFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		79052AFA1B1AF3270097B7AF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79052B031B1AF3270097B7AF /* BBFrameworks.framework in Frameworks */,
-				3B7E33E56A437A3B6549C2C2 /* Pods_iOSDemo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		79052B0A1B1AF3960097B7AF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				79052B131B1AF3960097B7AF /* BBFrameworks.framework in Frameworks */,
-				B7AE195A78FF05CFFDAC7585 /* Pods_OSXDemo.framework in Frameworks */,
+				241273B555EE7126FDC0C1D7 /* libPods-OSXDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,15 +618,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC227553E469BEC94FDCC32E /* Pods_OSXDemo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		79C0009A1B1ACC7C004C9A6E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38C40C84F4391D9C27ED7ED2 /* Pods_iOSFrameworks.framework in Frameworks */,
+				802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +626,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B2497F8D050DCFE95F4137B /* Pods_OSXFrameworks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +633,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78FEBBB80841940908967232 /* Pods_iOSDemo.framework in Frameworks */,
+				79EA81071B3F12BF00D50B6B /* libBBFrameworks.a in Frameworks */,
+				333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA80561B3F04FE00D50B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA80601B3F04FE00D50B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */,
+				6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA80731B3F06ED00D50B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,8 +693,8 @@
 		79052AFF1B1AF3270097B7AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				79052B261B1AF4120097B7AF /* BBFrameworksiOSTests-Info.plist */,
-				79052B271B1AF4120097B7AF /* BBFrameworksOSXTests-Info.plist */,
+				79EA80701B3F063500D50B6B /* BBFrameworksTestsiOS-Info.plist */,
+				79EA80711B3F063500D50B6B /* BBFrameworksTestsOSX-Info.plist */,
 				79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */,
 			);
 			name = "Supporting Files";
@@ -709,6 +782,7 @@
 			children = (
 				79C000A01B1ACC7C004C9A6E /* BBFrameworks */,
 				79052AFE1B1AF3270097B7AF /* BBFrameworksTests */,
+				79EA80771B3F06ED00D50B6B /* BBFrameworksResources */,
 				79C0010C1B1AD081004C9A6E /* BBFrameworksiOSDemo */,
 				7989C9CC1B1ADE65009B1CE9 /* BBFrameworksOSXDemo */,
 				79C0009F1B1ACC7C004C9A6E /* Products */,
@@ -860,12 +934,13 @@
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */,
 				79C000BD1B1ACD69004C9A6E /* BBFrameworks.framework */,
 				79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */,
 				7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */,
-				79052AFD1B1AF3270097B7AF /* BBFrameworksiOSTests.xctest */,
-				79052B0D1B1AF3960097B7AF /* BBFrameworksOSXTests.xctest */,
+				79052B0D1B1AF3960097B7AF /* BBFrameworksTestsOSX.xctest */,
+				79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */,
+				79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */,
+				79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -874,6 +949,7 @@
 			isa = PBXGroup;
 			children = (
 				79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */,
+				79EA81081B3F143300D50B6B /* Headers */,
 				7927CF5C1B1AD29A0034288D /* Modules */,
 				79C000A11B1ACC7C004C9A6E /* Supporting Files */,
 			);
@@ -883,10 +959,7 @@
 		79C000A11B1ACC7C004C9A6E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */,
-				79C000A21B1ACC7C004C9A6E /* BBFrameworksiOS-Info.plist */,
 				79C000D61B1ACDC2004C9A6E /* BBFrameworksOSX-Info.plist */,
-				79C27EC81B3CD78600C4AC28 /* MediaPlayer.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1107,13 +1180,44 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		79EA80771B3F06ED00D50B6B /* BBFrameworksResources */ = {
+			isa = PBXGroup;
+			children = (
+				79EA80B91B3F0C5600D50B6B /* media_player_pause.png */,
+				79EA80BA1B3F0C5600D50B6B /* media_player_pause@2x.png */,
+				79EA80BB1B3F0C5600D50B6B /* media_player_pause@3x.png */,
+				79EA80BC1B3F0C5600D50B6B /* media_player_play.png */,
+				79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */,
+				79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */,
+				79EA80781B3F06ED00D50B6B /* Supporting Files */,
+			);
+			path = BBFrameworksResources;
+			sourceTree = "<group>";
+		};
+		79EA80781B3F06ED00D50B6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79EA80791B3F06ED00D50B6B /* BBFrameworksResourcesiOS-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79EA81081B3F143300D50B6B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */,
+				79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
 		B57C4002BFB6D5C1DBE48B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C6DD9BCE29C9D356824FB645 /* Pods_OSXDemo.framework */,
-				C1A8FBD94A2DE5E39902AC3C /* Pods_iOSDemo.framework */,
 				D5E7F30BBAFCE711DE93D9C0 /* Pods_OSXFrameworks.framework */,
 				6B6B6B96036EDE28618673F9 /* Pods_iOSFrameworks.framework */,
+				3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */,
+				A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1121,100 +1225,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		79C0009B1B1ACC7C004C9A6E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7927D0101B1AD2B90034288D /* BBReactiveThumbnail.h in Headers */,
-				7927CFD01B1AD2B90034288D /* NSBundle+BBFoundationExtensions.h in Headers */,
-				79B4FFA31B363F55007B8629 /* BBWebKitViewController.h in Headers */,
-				7927CFE81B1AD2B90034288D /* BBBadgeView.h in Headers */,
-				7927D01E1B1AD2B90034288D /* BBThumbnailImageOperation.h in Headers */,
-				79B4FFBE1B364384007B8629 /* UIView+BBKitExtensions.h in Headers */,
-				79B4FFB61B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h in Headers */,
-				7927CFBC1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
-				7927D0181B1AD2B90034288D /* BBThumbnailDefines.h in Headers */,
-				7927CFD81B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h in Headers */,
-				07BFFECD1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.h in Headers */,
-				79B4FFBA1B364384007B8629 /* UIFont+BBKitExtensions.h in Headers */,
-				79DD3E7F1B337B6F00EF4E44 /* BBGradientView.h in Headers */,
-				79B4FFC01B364384007B8629 /* UIViewController+BBKitExtensions.h in Headers */,
-				7927D00E1B1AD2B90034288D /* BBReactiveKit.h in Headers */,
-				7927CFE01B1AD2B90034288D /* NSString+BBFoundationExtensions.h in Headers */,
-				79B4FF8F1B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.h in Headers */,
-				7927CFC81B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
-				7927D0341B1AD2B90034288D /* BBThumbnailTextOperation.h in Headers */,
-				79B4FF961B363D4E007B8629 /* BBMediaPickerViewControllerDelegate.h in Headers */,
-				7927CFB61B1AD2B90034288D /* BBManagedObjectPropertyMapping.h in Headers */,
-				79B4FFA11B363F55007B8629 /* BBWebKitTitleView.h in Headers */,
-				79B4FFD31B3656C1007B8629 /* BBThumbnailYouTubeOperation.h in Headers */,
-				79B4FF8C1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.h in Headers */,
-				79C27EBA1B3BB0CB00C4AC28 /* BBMoviePlayerView.h in Headers */,
-				79B4FF811B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h in Headers */,
-				79B4FFCD1B3647F8007B8629 /* BBTooltipViewControllerDataSource.h in Headers */,
-				79B4FF8A1B363D4E007B8629 /* BBMediaPickerBackgroundView.h in Headers */,
-				79B4FFA51B363F55007B8629 /* BBWebKitViewControllerDelegate.h in Headers */,
-				7927D01A1B1AD2B90034288D /* BBThumbnailGenerator.h in Headers */,
-				07BFFEB01B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h in Headers */,
-				07BFFEB31B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h in Headers */,
-				7927D0121B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
-				7927CFE41B1AD2B90034288D /* NSURL+BBFoundationExtensions.h in Headers */,
-				7927D0301B1AD2B90034288D /* BBThumbnailRTFOperation.h in Headers */,
-				7927CFF01B1AD2B90034288D /* BBKitColorMacros.h in Headers */,
-				79B4FFB81B364384007B8629 /* UIColor+BBKitExtensions.h in Headers */,
-				79B4FFCE1B3647F8007B8629 /* BBTooltipViewControllerDelegate.h in Headers */,
-				7927CFAC1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h in Headers */,
-				07BFFED11B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h in Headers */,
-				79B4FFA71B363FC1007B8629 /* BBWebKit.h in Headers */,
-				79B4FFBC1B364384007B8629 /* UIImage+BBKitExtensions.h in Headers */,
-				79B4FF911B363D4E007B8629 /* BBMediaPickerCollectionViewModel.h in Headers */,
-				79E0BC021B27B5C700892D81 /* BBProgressNavigationBar.h in Headers */,
-				07BFFEC91B3DDAF200DBC7EC /* BBMoviePlayerViewController.h in Headers */,
-				79B4FFD01B364842007B8629 /* BBTooltip.h in Headers */,
-				79B4FFE91B36ADF6007B8629 /* BBThumbnailHTMLOperation.h in Headers */,
-				79B4FF971B363D4E007B8629 /* BBMediaPickerViewModel.h in Headers */,
-				7927CFC01B1AD2B90034288D /* BBFoundation.h in Headers */,
-				7927CFDC1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h in Headers */,
-				7927D0161B1AD2B90034288D /* BBThumbnail.h in Headers */,
-				79B4FFF91B3908FC007B8629 /* BBMediaPlayer.h in Headers */,
-				79B4FF931B363D4E007B8629 /* BBMediaPickerViewController.h in Headers */,
-				7927D0261B1AD2B90034288D /* BBThumbnailOperation.h in Headers */,
-				79B4FFFC1B39094E007B8629 /* BBMoviePlayerController.h in Headers */,
-				79B4FF951B363D4E007B8629 /* BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h in Headers */,
-				79B4FF881B363D4E007B8629 /* BBMediaPickerAssetViewModel.h in Headers */,
-				07BFFEBF1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h in Headers */,
-				7927CFD41B1AD2B90034288D /* NSData+BBFoundationExtensions.h in Headers */,
-				79B4FFC91B3647F8007B8629 /* BBTooltipView.h in Headers */,
-				7927CFC21B1AD2B90034288D /* BBFoundationDebugging.h in Headers */,
-				74E230821B3B55C900DE56B3 /* BBTextView.h in Headers */,
-				79C27EBE1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h in Headers */,
-				79C000D81B1ACE0E004C9A6E /* BBFrameworks.h in Headers */,
-				7927CFC61B1AD2B90034288D /* BBFoundationMacros.h in Headers */,
-				79B4FFCB1B3647F8007B8629 /* BBTooltipViewController.h in Headers */,
-				7927CFEC1B1AD2B90034288D /* BBKit.h in Headers */,
-				79B4FFF31B37856D007B8629 /* BBThumbnailDocumentOperation.h in Headers */,
-				79B4FF861B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.h in Headers */,
-				07BFFEC51B3C93EF00DBC7EC /* BBMoviePlayerSliderView.h in Headers */,
-				7927D0221B1AD2B90034288D /* BBThumbnailMovieOperation.h in Headers */,
-				7927D0281B1AD2B90034288D /* BBThumbnailOperationWrapper.h in Headers */,
-				7927CFFA1B1AD2B90034288D /* NSURL+BBKitExtensions.h in Headers */,
-				79B4FFA91B364017007B8629 /* BBMediaPicker.h in Headers */,
-				7927CFCC1B1AD2B90034288D /* NSArray+BBFoundationExtensions.h in Headers */,
-				7927CFAA1B1AD2B90034288D /* BBCoreData.h in Headers */,
-				7927CFB01B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
-				7927D02C1B1AD2B90034288D /* BBThumbnailPDFOperation.h in Headers */,
-				07BFFEAD1B3C652000DBC7EC /* BBMoviePlayerContentView.h in Headers */,
-				79B4FFE31B369EE2007B8629 /* BBThumbnailAsyncOperation.h in Headers */,
-				7927CFEE1B1AD2B90034288D /* BBKitCGImageFunctions.h in Headers */,
-				79B4FF801B363D4E007B8629 /* BBMediaPickerAsset.h in Headers */,
-				7927CFB81B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
-				79B4FFDC1B3694E3007B8629 /* BBThumbnailVimeoOperation.h in Headers */,
-				7927CFB41B1AD2B90034288D /* BBManagedObjectEntityMapping.h in Headers */,
-				7927CFC41B1AD2B90034288D /* BBFoundationFunctions.h in Headers */,
-				79B4FF841B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		79C000BA1B1ACD69004C9A6E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1271,36 +1281,14 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		79052AFC1B1AF3270097B7AF /* BBFrameworksiOSTests */ = {
+		79052B0C1B1AF3960097B7AF /* BBFrameworksTestsOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 79052B061B1AF3270097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksiOSTests" */;
-			buildPhases = (
-				640A7A1BCB8C1026730ACFA1 /* Check Pods Manifest.lock */,
-				79052AF91B1AF3270097B7AF /* Sources */,
-				79052AFA1B1AF3270097B7AF /* Frameworks */,
-				79052AFB1B1AF3270097B7AF /* Resources */,
-				AC72D48A64F72F2F3E9F526A /* Embed Pods Frameworks */,
-				32FFD5F17B2D8CE258D26455 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				79052B051B1AF3270097B7AF /* PBXTargetDependency */,
-			);
-			name = BBFrameworksiOSTests;
-			productName = BBFrameworksiOSTests;
-			productReference = 79052AFD1B1AF3270097B7AF /* BBFrameworksiOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		79052B0C1B1AF3960097B7AF /* BBFrameworksOSXTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 79052B161B1AF3960097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksOSXTests" */;
+			buildConfigurationList = 79052B161B1AF3960097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */;
 			buildPhases = (
 				3B547252E9A60A49208FE864 /* Check Pods Manifest.lock */,
 				79052B091B1AF3960097B7AF /* Sources */,
 				79052B0A1B1AF3960097B7AF /* Frameworks */,
 				79052B0B1B1AF3960097B7AF /* Resources */,
-				9726BD14A69A4EE4D599A67A /* Embed Pods Frameworks */,
 				15BE9AD0C7017F1AD6745714 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1308,21 +1296,20 @@
 			dependencies = (
 				79052B151B1AF3960097B7AF /* PBXTargetDependency */,
 			);
-			name = BBFrameworksOSXTests;
+			name = BBFrameworksTestsOSX;
 			productName = BBFrameworksOSXTests;
-			productReference = 79052B0D1B1AF3960097B7AF /* BBFrameworksOSXTests.xctest */;
+			productReference = 79052B0D1B1AF3960097B7AF /* BBFrameworksTestsOSX.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		7989C9CA1B1ADE65009B1CE9 /* BBFrameworksOSXDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7989C9E81B1ADE66009B1CE9 /* Build configuration list for PBXNativeTarget "BBFrameworksOSXDemo" */;
 			buildPhases = (
-				CDFA1395790C9F43F1A32E9C /* Check Pods Manifest.lock */,
+				716CF966F12B32611C3DE6F2 /* Check Pods Manifest.lock */,
 				7989C9C71B1ADE65009B1CE9 /* Sources */,
 				7989C9C81B1ADE65009B1CE9 /* Frameworks */,
 				7989C9C91B1ADE65009B1CE9 /* Resources */,
-				39484C286AE9A77AF077123E /* Embed Pods Frameworks */,
-				399E3165424C85F052B85850 /* Copy Pods Resources */,
+				0CB87A5B8D03521BE87F4A66 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1333,37 +1320,14 @@
 			productReference = 7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		79C0009D1B1ACC7C004C9A6E /* BBFrameworksiOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 79C000B61B1ACC7C004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */;
-			buildPhases = (
-				8C53EE217FF31DACD7EBA8E8 /* Check Pods Manifest.lock */,
-				07BFFEBA1B3C7BF600DBC7EC /* genstrings */,
-				79C000991B1ACC7C004C9A6E /* Sources */,
-				79C0009A1B1ACC7C004C9A6E /* Frameworks */,
-				79C0009B1B1ACC7C004C9A6E /* Headers */,
-				79C0009C1B1ACC7C004C9A6E /* Resources */,
-				D2FEC1F59E2EF12B815E32D0 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BBFrameworksiOS;
-			productName = BBFrameworksNew;
-			productReference = 79C0009E1B1ACC7C004C9A6E /* BBFrameworks.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		79C000BC1B1ACD69004C9A6E /* BBFrameworksOSX */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79C000D01B1ACD6A004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */;
 			buildPhases = (
-				584C4D9FF60BB929F31A97FF /* Check Pods Manifest.lock */,
 				79C000B81B1ACD69004C9A6E /* Sources */,
 				79C000B91B1ACD69004C9A6E /* Frameworks */,
 				79C000BA1B1ACD69004C9A6E /* Headers */,
 				79C000BB1B1ACD69004C9A6E /* Resources */,
-				190CAA2313CE55E917886DAB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1378,21 +1342,77 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79C0012E1B1AD081004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksiOSDemo" */;
 			buildPhases = (
-				8DD489C33A5B54A57BEDE603 /* Check Pods Manifest.lock */,
+				CD7DC007DBC86BFF9DB845F9 /* Check Pods Manifest.lock */,
 				79C001071B1AD080004C9A6E /* Sources */,
 				79C001081B1AD080004C9A6E /* Frameworks */,
 				79C001091B1AD080004C9A6E /* Resources */,
-				C25E2778B3B8A1B8BB4016B2 /* Embed Pods Frameworks */,
-				B823CCA98AB7D7601159F35B /* Copy Pods Resources */,
+				1F8305A462E2DCE7680BB77E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				79EA81021B3F12A700D50B6B /* PBXTargetDependency */,
 			);
 			name = BBFrameworksiOSDemo;
 			productName = BBFrameworksiOSDemo;
 			productReference = 79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		79EA80581B3F04FE00D50B6B /* BBFrameworksiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79EA806A1B3F04FE00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */;
+			buildPhases = (
+				79EA810F1B3F184700D50B6B /* genstrings */,
+				79EA80551B3F04FE00D50B6B /* Sources */,
+				79EA80561B3F04FE00D50B6B /* Frameworks */,
+				79EA80571B3F04FE00D50B6B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79EA81061B3F12B200D50B6B /* PBXTargetDependency */,
+			);
+			name = BBFrameworksiOS;
+			productName = BBFrameworksiOS;
+			productReference = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		79EA80621B3F04FE00D50B6B /* BBFrameworksTestsiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79EA806D1B3F04FE00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksTestsiOS" */;
+			buildPhases = (
+				0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */,
+				79EA805F1B3F04FE00D50B6B /* Sources */,
+				79EA80601B3F04FE00D50B6B /* Frameworks */,
+				79EA80611B3F04FE00D50B6B /* Resources */,
+				C5680BD583642012346BF863 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79EA80661B3F04FE00D50B6B /* PBXTargetDependency */,
+			);
+			name = BBFrameworksTestsiOS;
+			productName = BBFrameworksiOSTests;
+			productReference = 79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		79EA80751B3F06ED00D50B6B /* BBFrameworksResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79EA807A1B3F06ED00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResources" */;
+			buildPhases = (
+				79EA80721B3F06ED00D50B6B /* Sources */,
+				79EA80731B3F06ED00D50B6B /* Frameworks */,
+				79EA80741B3F06ED00D50B6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BBFrameworksResources;
+			productName = BBFrameworksResources;
+			productReference = 79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -1404,9 +1424,6 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Bion Bilateral, LLC.";
 				TargetAttributes = {
-					79052AFC1B1AF3270097B7AF = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
 					79052B0C1B1AF3960097B7AF = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -1414,13 +1431,19 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = C6AZ27TEW2;
 					};
-					79C0009D1B1ACC7C004C9A6E = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
 					79C000BC1B1ACD69004C9A6E = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 					79C0010A1B1AD080004C9A6E = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					79EA80581B3F04FE00D50B6B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					79EA80621B3F04FE00D50B6B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					79EA80751B3F06ED00D50B6B = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
@@ -1438,10 +1461,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				79C0009D1B1ACC7C004C9A6E /* BBFrameworksiOS */,
-				79052AFC1B1AF3270097B7AF /* BBFrameworksiOSTests */,
+				79EA80581B3F04FE00D50B6B /* BBFrameworksiOS */,
+				79EA80621B3F04FE00D50B6B /* BBFrameworksTestsiOS */,
 				79C000BC1B1ACD69004C9A6E /* BBFrameworksOSX */,
-				79052B0C1B1AF3960097B7AF /* BBFrameworksOSXTests */,
+				79052B0C1B1AF3960097B7AF /* BBFrameworksTestsOSX */,
+				79EA80751B3F06ED00D50B6B /* BBFrameworksResources */,
 				79C0010A1B1AD080004C9A6E /* BBFrameworksiOSDemo */,
 				7989C9CA1B1ADE65009B1CE9 /* BBFrameworksOSXDemo */,
 			);
@@ -1449,13 +1473,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		79052AFB1B1AF3270097B7AF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		79052B0B1B1AF3960097B7AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1478,17 +1495,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		79C0009C1B1ACC7C004C9A6E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79B4FF8E1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
-				79C27EC91B3CD78600C4AC28 /* MediaPlayer.xcassets in Resources */,
-				07BFFEC21B3C804400DBC7EC /* MediaPlayer.strings in Resources */,
-				79B4FF831B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		79C000BB1B1ACD69004C9A6E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1500,6 +1506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79EA810D1B3F165500D50B6B /* BBFrameworksResources.bundle in Resources */,
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
 				7953FA2F1B31C4820005E3FD /* docs in Resources */,
 				79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */,
@@ -1510,22 +1517,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79EA80611B3F04FE00D50B6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA80741B3F06ED00D50B6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA80BF1B3F0C5600D50B6B /* media_player_pause.png in Resources */,
+				79EA80A91B3F096A00D50B6B /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
+				79EA80A81B3F095C00D50B6B /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
+				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
+				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
+				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
+				79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */,
+				79EA80C41B3F0C5600D50B6B /* media_player_play@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07BFFEBA1B3C7BF600DBC7EC /* genstrings */ = {
+		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = genstrings;
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -s NSLocalizedString -q -o $SRCROOT/BBFrameworks/en.lproj $SRCROOT/BBFrameworks/BBMediaPlayer/*.h $SRCROOT/BBFrameworks/BBMediaPlayer/*.m $SRCROOT/BBFrameworks/BBMediaPicker/*.h $SRCROOT/BBFrameworks/BBMediaPicker/*.m";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0CB87A5B8D03521BE87F4A66 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		15BE9AD0C7017F1AD6745714 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1542,22 +1587,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		190CAA2313CE55E917886DAB /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXFrameworks/Pods-OSXFrameworks-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		32FFD5F17B2D8CE258D26455 /* Copy Pods Resources */ = {
+		1F8305A462E2DCE7680BB77E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1570,36 +1600,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39484C286AE9A77AF077123E /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		399E3165424C85F052B85850 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3B547252E9A60A49208FE864 /* Check Pods Manifest.lock */ = {
@@ -1617,7 +1617,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		584C4D9FF60BB929F31A97FF /* Check Pods Manifest.lock */ = {
+		716CF966F12B32611C3DE6F2 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1632,82 +1632,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		640A7A1BCB8C1026730ACFA1 /* Check Pods Manifest.lock */ = {
+		79EA810F1B3F184700D50B6B /* genstrings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = genstrings;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
+			shellScript = "genstrings -s NSLocalizedString -q -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m";
 		};
-		8C53EE217FF31DACD7EBA8E8 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8DD489C33A5B54A57BEDE603 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9726BD14A69A4EE4D599A67A /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC72D48A64F72F2F3E9F526A /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B823CCA98AB7D7601159F35B /* Copy Pods Resources */ = {
+		C5680BD583642012346BF863 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1722,22 +1661,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C25E2778B3B8A1B8BB4016B2 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CDFA1395790C9F43F1A32E9C /* Check Pods Manifest.lock */ = {
+		CD7DC007DBC86BFF9DB845F9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1752,35 +1676,9 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D2FEC1F59E2EF12B815E32D0 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSFrameworks/Pods-iOSFrameworks-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		79052AF91B1AF3270097B7AF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79052B201B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
-				79052B241B1AF4010097B7AF /* Test.xcdatamodeld in Sources */,
-				79052B1E1B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m in Sources */,
-				79052B221B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		79052B091B1AF3960097B7AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1804,70 +1702,6 @@
 				79C27EB21B3B9A8300C4AC28 /* ThumbnailsViewController.m in Sources */,
 				7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */,
 				79C27E9C1B3B8F7E00C4AC28 /* RootViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		79C000991B1ACC7C004C9A6E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7927D02A1B1AD2B90034288D /* BBThumbnailOperationWrapper.m in Sources */,
-				7927CFDE1B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.m in Sources */,
-				79B4FF8D1B363D4E007B8629 /* BBMediaPickerCollectionTableViewCell.m in Sources */,
-				79B4FFEB1B36ADF6007B8629 /* BBThumbnailHTMLOperation.m in Sources */,
-				7927CFCE1B1AD2B90034288D /* NSArray+BBFoundationExtensions.m in Sources */,
-				79E0BC031B27B5C700892D81 /* BBProgressNavigationBar.m in Sources */,
-				7927CFB21B1AD2B90034288D /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
-				07BFFEAE1B3C652000DBC7EC /* BBMoviePlayerContentView.m in Sources */,
-				7927CFE61B1AD2B90034288D /* NSURL+BBFoundationExtensions.m in Sources */,
-				79B4FFB71B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m in Sources */,
-				79B4FFB91B364384007B8629 /* UIColor+BBKitExtensions.m in Sources */,
-				79B4FFBF1B364384007B8629 /* UIView+BBKitExtensions.m in Sources */,
-				79B4FFFD1B39094E007B8629 /* BBMoviePlayerController.m in Sources */,
-				7927CFDA1B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m in Sources */,
-				79B4FF821B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
-				7927CFBE1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
-				7927CFD61B1AD2B90034288D /* NSData+BBFoundationExtensions.m in Sources */,
-				7927D0201B1AD2B90034288D /* BBThumbnailImageOperation.m in Sources */,
-				79B4FFC11B364384007B8629 /* UIViewController+BBKitExtensions.m in Sources */,
-				79C27EBB1B3BB0CB00C4AC28 /* BBMoviePlayerView.m in Sources */,
-				79B4FF851B363D4E007B8629 /* BBMediaPickerAssetCollectionViewController.m in Sources */,
-				79B4FF941B363D4E007B8629 /* BBMediaPickerViewController.m in Sources */,
-				7927D02E1B1AD2B90034288D /* BBThumbnailPDFOperation.m in Sources */,
-				7927CFAE1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m in Sources */,
-				07BFFEC61B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m in Sources */,
-				79B4FFA21B363F55007B8629 /* BBWebKitTitleView.m in Sources */,
-				79B4FFBB1B364384007B8629 /* UIFont+BBKitExtensions.m in Sources */,
-				7927D0361B1AD2B90034288D /* BBThumbnailTextOperation.m in Sources */,
-				07BFFECE1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m in Sources */,
-				7927D01C1B1AD2B90034288D /* BBThumbnailGenerator.m in Sources */,
-				79B4FF901B363D4E007B8629 /* BBMediaPickerCollectionTableViewController.m in Sources */,
-				79B4FF891B363D4E007B8629 /* BBMediaPickerAssetViewModel.m in Sources */,
-				7927D0241B1AD2B90034288D /* BBThumbnailMovieOperation.m in Sources */,
-				07BFFECA1B3DDAF200DBC7EC /* BBMoviePlayerViewController.m in Sources */,
-				7927D0141B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
-				7927CFD21B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m in Sources */,
-				79B4FF8B1B363D4E007B8629 /* BBMediaPickerBackgroundView.m in Sources */,
-				79B4FF981B363D4E007B8629 /* BBMediaPickerViewModel.m in Sources */,
-				7927CFEA1B1AD2B90034288D /* BBBadgeView.m in Sources */,
-				79B4FFF51B37856D007B8629 /* BBThumbnailDocumentOperation.m in Sources */,
-				7927D0321B1AD2B90034288D /* BBThumbnailRTFOperation.m in Sources */,
-				7927CFE21B1AD2B90034288D /* NSString+BBFoundationExtensions.m in Sources */,
-				79B4FF921B363D4E007B8629 /* BBMediaPickerCollectionViewModel.m in Sources */,
-				74E230831B3B55C900DE56B3 /* BBTextView.m in Sources */,
-				7927CFFC1B1AD2B90034288D /* NSURL+BBKitExtensions.m in Sources */,
-				79B4FFD51B3656C1007B8629 /* BBThumbnailYouTubeOperation.m in Sources */,
-				07BFFEB41B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
-				79B4FF871B363D4E007B8629 /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
-				79B4FFA41B363F55007B8629 /* BBWebKitViewController.m in Sources */,
-				79B4FFE51B369EE2007B8629 /* BBThumbnailAsyncOperation.m in Sources */,
-				79B4FFCC1B3647F8007B8629 /* BBTooltipViewController.m in Sources */,
-				79B4FFBD1B364384007B8629 /* UIImage+BBKitExtensions.m in Sources */,
-				79B4FFCA1B3647F8007B8629 /* BBTooltipView.m in Sources */,
-				7927CFBA1B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
-				79B4FFDE1B3694E3007B8629 /* BBThumbnailVimeoOperation.m in Sources */,
-				79DD3E811B337B6F00EF4E44 /* BBGradientView.m in Sources */,
-				7927CFCA1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,127 +1761,113 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79EA80551B3F04FE00D50B6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA80F21B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
+				79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */,
+				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
+				79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
+				79EA80F71B3F0D4B00D50B6B /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
+				79EA80EC1B3F0D3600D50B6B /* BBMediaPickerCollectionViewModel.m in Sources */,
+				79EA80F01B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewController.m in Sources */,
+				79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */,
+				79EA80C91B3F0CCD00D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
+				79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
+				79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
+				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
+				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
+				79EA80D71B3F0CF300D50B6B /* UIImage+BBKitExtensions.m in Sources */,
+				79EA80C61B3F0CCD00D50B6B /* NSArray+BBFoundationExtensions.m in Sources */,
+				79EA80F51B3F0D4B00D50B6B /* BBMoviePlayerView.m in Sources */,
+				79EA80DE1B3F0D1B00D50B6B /* BBThumbnailImageOperation.m in Sources */,
+				79EA80D21B3F0CE400D50B6B /* BBGradientView.m in Sources */,
+				79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */,
+				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
+				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
+				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
+				79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,
+				79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */,
+				79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */,
+				79EA80F31B3F0D4B00D50B6B /* BBMoviePlayerViewController.m in Sources */,
+				79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */,
+				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
+				79EA80DA1B3F0D0000D50B6B /* BBProgressNavigationBar.m in Sources */,
+				79EA80EE1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewCell.m in Sources */,
+				79EA80EA1B3F0D2F00D50B6B /* BBMediaPickerViewController.m in Sources */,
+				79EA80E11B3F0D1B00D50B6B /* BBThumbnailRTFOperation.m in Sources */,
+				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
+				79EA80E71B3F0D1B00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
+				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
+				79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
+				79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */,
+				79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */,
+				79EA80ED1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewController.m in Sources */,
+				79EA80DF1B3F0D1B00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
+				79EA80E91B3F0D2F00D50B6B /* BBMediaPickerViewModel.m in Sources */,
+				79EA80D31B3F0CF300D50B6B /* NSURL+BBKitExtensions.m in Sources */,
+				79EA80FC1B3F0D5B00D50B6B /* BBTooltipViewController.m in Sources */,
+				79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
+				79EA80F11B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
+				79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */,
+				79EA80EB1B3F0D2F00D50B6B /* BBMediaPickerBackgroundView.m in Sources */,
+				79EA80E51B3F0D1B00D50B6B /* BBThumbnailVimeoOperation.m in Sources */,
+				79EA80D11B3F0CE400D50B6B /* BBBadgeView.m in Sources */,
+				79EA80E01B3F0D1B00D50B6B /* BBThumbnailPDFOperation.m in Sources */,
+				79EA80E21B3F0D1B00D50B6B /* BBThumbnailTextOperation.m in Sources */,
+				79EA80CB1B3F0CCD00D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
+				79EA80CD1B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
+				79EA80CF1B3F0CDB00D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
+				79EA80E41B3F0D1B00D50B6B /* BBThumbnailYouTubeOperation.m in Sources */,
+				79EA80D81B3F0CF300D50B6B /* UIView+BBKitExtensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA805F1B3F04FE00D50B6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79EA80FF1B3F0D6D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
+				79EA80FE1B3F0D6D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
+				79EA81001B3F0D6D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79EA80721B3F06ED00D50B6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		79052B051B1AF3270097B7AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 79C0009D1B1ACC7C004C9A6E /* BBFrameworksiOS */;
-			targetProxy = 79052B041B1AF3270097B7AF /* PBXContainerItemProxy */;
-		};
 		79052B151B1AF3960097B7AF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 79C000BC1B1ACD69004C9A6E /* BBFrameworksOSX */;
 			targetProxy = 79052B141B1AF3960097B7AF /* PBXContainerItemProxy */;
 		};
+		79EA80661B3F04FE00D50B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79EA80581B3F04FE00D50B6B /* BBFrameworksiOS */;
+			targetProxy = 79EA80651B3F04FE00D50B6B /* PBXContainerItemProxy */;
+		};
+		79EA81021B3F12A700D50B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79EA80581B3F04FE00D50B6B /* BBFrameworksiOS */;
+			targetProxy = 79EA81011B3F12A700D50B6B /* PBXContainerItemProxy */;
+		};
+		79EA81061B3F12B200D50B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79EA80751B3F06ED00D50B6B /* BBFrameworksResources */;
+			targetProxy = 79EA81051B3F12B200D50B6B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		07BFFEC01B3C804400DBC7EC /* MediaPlayer.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				07BFFEC11B3C804400DBC7EC /* en */,
-			);
-			name = MediaPlayer.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		79052B071B1AF3270097B7AF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksiOSTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		79052B081B1AF3270097B7AF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksiOSTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		79052B171B1AF3960097B7AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */;
@@ -2089,7 +1909,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksOSXTests-Info.plist";
+				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsOSX-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2134,7 +1954,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksOSXTests-Info.plist";
+				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsOSX-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2244,117 +2064,8 @@
 			};
 			name = Release;
 		};
-		79C000B21B1ACC7C004C9A6E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E795CAF990D7A8830294F49 /* Pods-iOSFrameworks.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = BBFrameworks;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		79C000B31B1ACC7C004C9A6E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DAA64E0C71A3C52447FAB4D /* Pods-iOSFrameworks.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/BBFrameworks/BBFrameworksiOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = BBFrameworks;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		79C000D11B1ACD6A004C9A6E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16A8AD559E899774854604DC /* Pods-OSXFrameworks.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2411,7 +2122,6 @@
 		};
 		79C000D21B1ACD6A004C9A6E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3F12801A982197CDD9A9F38 /* Pods-OSXFrameworks.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2551,19 +2261,289 @@
 			};
 			name = Release;
 		};
+		79EA806B1B3F04FE00D50B6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = BBFrameworks;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		79EA806C1B3F04FE00D50B6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${SRCROOT}/Pods/Headers/Public\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = BBFrameworks;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79EA806E1B3F04FE00D50B6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsiOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		79EA806F1B3F04FE00D50B6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksTests/BBFrameworksTestsiOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79EA807B1B3F06ED00D50B6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksResources/BBFrameworksResourcesiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = BBFrameworksResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		79EA807C1B3F06ED00D50B6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "BBFrameworksResources/BBFrameworksResourcesiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BBFrameworksResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		79052B061B1AF3270097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksiOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				79052B071B1AF3270097B7AF /* Debug */,
-				79052B081B1AF3270097B7AF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		79052B161B1AF3960097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksOSXTests" */ = {
+		79052B161B1AF3960097B7AF /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				79052B171B1AF3960097B7AF /* Debug */,
@@ -2590,15 +2570,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		79C000B61B1ACC7C004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				79C000B21B1ACC7C004C9A6E /* Debug */,
-				79C000B31B1ACC7C004C9A6E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		79C000D01B1ACD6A004C9A6E /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2613,6 +2584,33 @@
 			buildConfigurations = (
 				79C0012F1B1AD081004C9A6E /* Debug */,
 				79C001301B1AD081004C9A6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79EA806A1B3F04FE00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79EA806B1B3F04FE00D50B6B /* Debug */,
+				79EA806C1B3F04FE00D50B6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79EA806D1B3F04FE00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksTestsiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79EA806E1B3F04FE00D50B6B /* Debug */,
+				79EA806F1B3F04FE00D50B6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79EA807A1B3F06ED00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79EA807B1B3F06ED00D50B6B /* Debug */,
+				79EA807C1B3F06ED00D50B6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

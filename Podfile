@@ -1,42 +1,28 @@
 source "https://github.com/CocoaPods/Specs.git"
 
-use_frameworks!
-
 def common_pods
+  pod "Archimedes", "~> 1.1.0"
   pod "BlocksKit/Core", "~> 2.2.0"
   pod "ReactiveCocoa", "~> 2.5.0"
-end
-
-target :iOSFrameworks do
-  platform :ios, "8.3"
-  
-  common_pods
-  
-  link_with ["BBFrameworksiOS"]
-end
-
-target :OSXFrameworks do
-  platform :osx, "10.10"
-  
-  common_pods
-  
-  link_with ["BBFrameworksOSX"]
+  pod "ReactiveViewModel", "~> 0.3.0"
 end
 
 target :iOSDemo do
   platform :ios, "8.3"
   
-  pod "BBFrameworks", :path => "BBFrameworks.podspec"
+  common_pods
+  pod "TUSafariActivity", "~> 1.0.0"
+  pod "ARChromeActivity", "~> 1.0.0"
   
-  link_with ["BBFrameworksiOSDemo", "BBFrameworksiOSTests"]
+  link_with ["BBFrameworksiOSDemo", "BBFrameworksTestsiOS"]
 end
 
 target :OSXDemo do
   platform :osx, "10.10"
   
-  pod "BBFrameworks", :path => "BBFrameworks.podspec"
+  common_pods
   
-  link_with ["BBFrameworksOSXDemo", "BBFrameworksOSXTests"]
+  link_with ["BBFrameworksOSXDemo", "BBFrameworksTestsOSX"]
 end
 
 workspace "BBFrameworks"

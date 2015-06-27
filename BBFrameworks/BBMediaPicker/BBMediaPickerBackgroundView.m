@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerBackgroundView.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -40,11 +41,11 @@
             case PHAuthorizationStatusAuthorized:
                 return @"";
             case PHAuthorizationStatusNotDetermined:
-                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_NOT_DETERMINED_TEXT", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Requesting access to Photos…", @"media picker background view authorization status not determined text");
+                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_NOT_DETERMINED_TEXT", @"MediaPicker", BBFrameworksResourcesBundle(), @"Requesting access to Photos…", @"media picker background view authorization status not determined text");
             case PHAuthorizationStatusDenied:
-                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Access to photos was denied. Adjust access to photos in Settings -> Privacy -> Photos.", @"media picker background view authorization status denied text");
+                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_DENIED_TEXT", @"MediaPicker", BBFrameworksResourcesBundle(), @"Access to photos was denied. Adjust access to photos in Settings -> Privacy -> Photos.", @"media picker background view authorization status denied text");
             case PHAuthorizationStatusRestricted:
-                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_RESTRICTED_TEXT", @"MediaPicker", [NSBundle bundleForClass:self.class], @"Access to photos has been restricted. Ask your administrator to provide access to photos on this device.", @"media picker background view authorization status restricted text");
+                return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_BACKGROUND_VIEW_AUTHORIZATION_STATUS_RESTRICTED_TEXT", @"MediaPicker", BBFrameworksResourcesBundle(), @"Access to photos has been restricted. Ask your administrator to provide access to photos on this device.", @"media picker background view authorization status restricted text");
         }
     }] deliverOn:[RACScheduler mainThreadScheduler]];
     

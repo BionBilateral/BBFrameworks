@@ -19,6 +19,7 @@
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h"
 #import "BBMediaPickerAssetCollectionViewLayout.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -36,7 +37,7 @@
     [super viewDidLoad];
     
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
-    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:[NSBundle bundleForClass:[BBMediaPickerAssetCollectionViewCell class]]] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
     [[[RACObserve(self.viewModel, deleted)

@@ -18,6 +18,7 @@
 #import "BBMediaPickerCollectionViewModel.h"
 #import "BBMediaPickerCollectionTableViewCell.h"
 #import "BBMediaPickerAssetCollectionViewController.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -31,7 +32,7 @@
     [super viewDidLoad];
     
     [self.tableView setRowHeight:[BBMediaPickerCollectionTableViewCell rowHeight]];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerCollectionTableViewCell class]) bundle:[NSBundle bundleForClass:[BBMediaPickerCollectionTableViewCell class]]] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerCollectionTableViewCell class])];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerCollectionTableViewCell class])];
     
     @weakify(self);
     [[RACObserve(self.viewModel, assetGroupViewModels)

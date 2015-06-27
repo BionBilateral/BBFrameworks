@@ -17,6 +17,7 @@
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBFoundationDebugging.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -134,7 +135,7 @@
         PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:(PHAssetCollection *)self.assetsGroup options:nil];
         NSUInteger count = result.count;
         
-        retval = [NSString stringWithFormat:count == 1 ? NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_SINGLE", @"MediaPicker", [NSBundle bundleForClass:self.class], @"%@ asset", @"media picker assets group view model estimated asset count single") : NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_MULTIPLE", @"MediaPicker", [NSBundle bundleForClass:self.class], @"%@ assets", @"media picker assets group view model estimated asset count multiple"),@(count)];
+        retval = [NSString stringWithFormat:count == 1 ? NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_SINGLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ asset", @"media picker assets group view model estimated asset count single") : NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ASSETS_GROUP_VIEW_MODEL_ESTIMATED_ASSET_COUNT_FORMAT_MULTIPLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ assets", @"media picker assets group view model estimated asset count multiple"),@(count)];
     }
     
     return retval;
