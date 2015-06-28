@@ -15,11 +15,16 @@
 
 #import "NSFileManager+BBFoundationExtensions.h"
 #import "BBFoundationDebugging.h"
+#import "NSBundle+BBFoundationExtensions.h"
 
 @implementation NSFileManager (BBFoundationExtensions)
 
 - (NSURL *)BB_applicationSupportDirectoryURL; {
     NSURL *retval = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
+    
+#if (!TARGET_OS_IPHONE)
+    retval = [retval URLByAppendingPathComponent:[NSBundle mainBundle].BB_bundleExecutable isDirectory:YES];
+#endif
     
     if (![retval checkResourceIsReachableAndReturnError:NULL]) {
         NSError *outError;
