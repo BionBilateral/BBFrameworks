@@ -20,6 +20,7 @@
 @interface ViewsViewController ()
 @property (weak,nonatomic) IBOutlet NSImageView *blurImageView;
 @property (weak,nonatomic) IBOutlet NSImageView *tintImageView;
+@property (weak,nonatomic) IBOutlet BBView *backgroundView;
 @property (strong,nonatomic) BBBadgeView *badgeView;
 @end
 
@@ -36,13 +37,17 @@
     
     [self.tintImageView setImage:[self.tintImageView.image BB_imageByTintingWithColor:BBColorWA(0.0,0.75)]];
     
+    [self.backgroundView setBorderOptions:BBViewBorderOptionsAll];
+    [self.backgroundView setBorderWidth:5.0];
+    [self.backgroundView setBackgroundColor:BBColorRandomRGB()];
+    
     [self setBadgeView:[[BBBadgeView alloc] initWithFrame:NSZeroRect]];
     [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.badgeView setBadge:@"Badge View"];
-    [self.view addSubview:self.badgeView];
+    [self.backgroundView addSubview:self.badgeView];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView]-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView, @"imageView": self.tintImageView}]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView}]];
+    [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView]-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView, @"imageView": self.tintImageView}]];
+    [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView}]];
 }
 
 @end

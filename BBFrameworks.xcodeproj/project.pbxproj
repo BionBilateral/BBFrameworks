@@ -261,6 +261,10 @@
 		79EA81981B3F251D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */; };
 		79EA81991B3F251D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */; };
 		79EA819A1B3F29BC00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */; };
+		79EA82C51B3F945700D50B6B /* BBView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA82C31B3F945700D50B6B /* BBView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79EA82C61B3F945700D50B6B /* BBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA82C41B3F945700D50B6B /* BBView.m */; };
+		79EA82C71B3F945700D50B6B /* BBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA82C41B3F945700D50B6B /* BBView.m */; };
+		79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA82C31B3F945700D50B6B /* BBView.h */; };
 		802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +322,7 @@
 			files = (
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
+				79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */,
 				79EA810B1B3F15A400D50B6B /* BBFrameworksConstants.h in CopyFiles */,
 				79EA80801B3F089200D50B6B /* BBFoundationFunctions.h in CopyFiles */,
 				79EA80AB1B3F097800D50B6B /* BBMediaPlayerDefines.h in CopyFiles */,
@@ -596,7 +601,7 @@
 		79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewRowViewController.h; sourceTree = "<group>"; };
 		79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewRowViewController.m; sourceTree = "<group>"; };
 		79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = BBFrameworksiOSTests.xctest; path = BBFrameworksTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA80631B3F04FE00D50B6B /* BBFrameworksTestsiOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80701B3F063500D50B6B /* BBFrameworksTestsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsiOS-Info.plist"; sourceTree = "<group>"; };
 		79EA80711B3F063500D50B6B /* BBFrameworksTestsOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsOSX-Info.plist"; sourceTree = "<group>"; };
 		79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -610,10 +615,12 @@
 		79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksFunctions.h; sourceTree = "<group>"; };
 		79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksConstants.h; sourceTree = "<group>"; };
 		79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		79EA81251B3F1E9500D50B6B /* BBFrameworksOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79EA81251B3F1E9500D50B6B /* BBFrameworksTestsOSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsOSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksResourcesOSX-Info.plist"; sourceTree = "<group>"; };
 		79EA81431B3F212700D50B6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPicker.strings; sourceTree = "<group>"; };
+		79EA82C31B3F945700D50B6B /* BBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBView.h; sourceTree = "<group>"; };
+		79EA82C41B3F945700D50B6B /* BBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBView.m; sourceTree = "<group>"; };
 		A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -953,10 +960,10 @@
 				79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */,
 				7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */,
 				79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */,
-				79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */,
+				79EA80631B3F04FE00D50B6B /* BBFrameworksTestsiOS.xctest */,
 				79EA80761B3F06ED00D50B6B /* BBFrameworksResources.bundle */,
 				79EA811B1B3F1E9500D50B6B /* libBBFrameworks.a */,
-				79EA81251B3F1E9500D50B6B /* BBFrameworksOSXTests.xctest */,
+				79EA81251B3F1E9500D50B6B /* BBFrameworksTestsOSX.xctest */,
 				79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */,
 			);
 			name = Products;
@@ -1090,6 +1097,8 @@
 				7927CF801B1AD2B90034288D /* BBBadgeView.m */,
 				79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */,
 				79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */,
+				79EA82C31B3F945700D50B6B /* BBView.h */,
+				79EA82C41B3F945700D50B6B /* BBView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1270,6 +1279,7 @@
 				79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */,
 				79EA816A1B3F228400D50B6B /* BBThumbnailMovieOperation.h in Headers */,
 				79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */,
+				79EA82C51B3F945700D50B6B /* BBView.h in Headers */,
 				79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */,
 				79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */,
@@ -1370,7 +1380,7 @@
 			);
 			name = BBFrameworksTestsiOS;
 			productName = BBFrameworksiOSTests;
-			productReference = 79EA80631B3F04FE00D50B6B /* BBFrameworksiOSTests.xctest */;
+			productReference = 79EA80631B3F04FE00D50B6B /* BBFrameworksTestsiOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		79EA80751B3F06ED00D50B6B /* BBFrameworksResourcesiOS */ = {
@@ -1423,7 +1433,7 @@
 			);
 			name = BBFrameworksTestsOSX;
 			productName = BBFrameworksOSXTests;
-			productReference = 79EA81251B3F1E9500D50B6B /* BBFrameworksOSXTests.xctest */;
+			productReference = 79EA81251B3F1E9500D50B6B /* BBFrameworksTestsOSX.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		79EA81351B3F1EB100D50B6B /* BBFrameworksResourcesOSX */ = {
@@ -1759,6 +1769,7 @@
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
 				79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */,
+				79EA82C61B3F945700D50B6B /* BBView.m in Sources */,
 				79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */,
 				79EA80ED1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewController.m in Sources */,
 				79EA80DF1B3F0D1B00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
@@ -1830,6 +1841,7 @@
 				79EA817F1B3F22C300D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
 				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
+				79EA82C71B3F945700D50B6B /* BBView.m in Sources */,
 				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
 				79EA81951B3F22FC00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
 			);
@@ -2708,6 +2720,7 @@
 				79EA812E1B3F1E9500D50B6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		79EA812F1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */ = {
 			isa = XCConfigurationList;
@@ -2716,6 +2729,7 @@
 				79EA81311B3F1E9500D50B6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		79EA813A1B3F1EB200D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksResourcesOSX" */ = {
 			isa = XCConfigurationList;
@@ -2724,6 +2738,7 @@
 				79EA813C1B3F1EB200D50B6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "79EA81351B3F1EB100D50B6B"
-               BuildableName = "BBFrameworksResourcesOSX.bundle"
+               BuildableName = "BBFrameworksResources.bundle"
                BlueprintName = "BBFrameworksResourcesOSX"
                ReferencedContainer = "container:BBFrameworks.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "79EA81351B3F1EB100D50B6B"
-            BuildableName = "BBFrameworksResourcesOSX.bundle"
+            BuildableName = "BBFrameworksResources.bundle"
             BlueprintName = "BBFrameworksResourcesOSX"
             ReferencedContainer = "container:BBFrameworks.xcodeproj">
          </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "79EA81351B3F1EB100D50B6B"
-            BuildableName = "BBFrameworksResourcesOSX.bundle"
+            BuildableName = "BBFrameworksResources.bundle"
             BlueprintName = "BBFrameworksResourcesOSX"
             ReferencedContainer = "container:BBFrameworks.xcodeproj">
          </BuildableReference>

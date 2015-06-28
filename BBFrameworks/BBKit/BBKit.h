@@ -31,4 +31,5 @@
 
 #import <BBFrameworks/BBBadgeView.h>
 #import <BBFrameworks/BBGradientView.h>
+#import <BBFrameworks/BBView.h>
 #endif

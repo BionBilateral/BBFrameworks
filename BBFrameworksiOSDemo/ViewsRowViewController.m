@@ -22,6 +22,7 @@
 @interface ViewsRowViewController ()
 @property (strong,nonatomic) BBBadgeView *badgeView;
 @property (strong,nonatomic) BBTextView *textView;
+@property (readonly,nonatomic) BBView *backgroundView;
 @end
 
 @implementation ViewsRowViewController
@@ -37,10 +38,15 @@
     return [self.class rowClassTitle];
 }
 
+- (void)loadView {
+    [self setView:[[BBView alloc] initWithFrame:CGRectZero]];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.backgroundView setBorderOptions:BBViewBorderOptionsAll];
     
     [self setBadgeView:[[BBBadgeView alloc] initWithFrame:CGRectZero]];
     [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -60,11 +66,18 @@
     CGSize badgeViewSize = [self.badgeView sizeThatFits:CGSizeZero];
     
     [self.badgeView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
-    [self.textView setFrame:CGRectMake(CGRectGetMaxX(self.badgeView.frame), [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.badgeView.frame), CGRectGetHeight(self.view.bounds) - [self.topLayoutGuide length] - [self.bottomLayoutGuide length])];
+    [self.textView setFrame:CGRectMake(CGRectGetMaxX(self.badgeView.frame) + 8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.badgeView.frame) - 16.0, 150.0)];
+}
+- (void)viewWillLayoutSubviews {
+    [self.backgroundView setBorderEdgeInsets:UIEdgeInsetsMake([self.topLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth, [self.bottomLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth)];
 }
 
 + (NSString *)rowClassTitle {
     return @"Views";
+}
+
+- (BBView *)backgroundView {
+    return (BBView *)self.view;
 }
 
 @end

@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ViewsViewController">
             <connections>
+                <outlet property="backgroundView" destination="oWG-zh-dXA" id="ewF-4p-Bxp"/>
                 <outlet property="blurImageView" destination="GDn-bU-b3Y" id="JF5-L5-iKL"/>
                 <outlet property="tintImageView" destination="Vok-O4-7nY" id="O4s-W4-AeW"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -17,28 +18,39 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDn-bU-b3Y">
-                    <rect key="frame" x="20" y="152" width="100" height="100"/>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oWG-zh-dXA" customClass="BBView">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDn-bU-b3Y">
+                            <rect key="frame" x="20" y="152" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="KJg-VQ-Gzi"/>
+                                <constraint firstAttribute="height" constant="100" id="OCs-Ih-YXF"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="optimus_prime" id="7oG-bh-ZRr"/>
+                        </imageView>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vok-O4-7nY">
+                            <rect key="frame" x="128" y="152" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="dpv-Gt-lOr"/>
+                                <constraint firstAttribute="width" constant="100" id="uYN-QA-mXh"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="optimus_prime" id="JS5-0K-XZm"/>
+                        </imageView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="1ud-oJ-gtc"/>
-                        <constraint firstAttribute="height" constant="100" id="AUS-cU-V9C"/>
+                        <constraint firstItem="Vok-O4-7nY" firstAttribute="top" secondItem="oWG-zh-dXA" secondAttribute="top" constant="20" id="FMp-oJ-VVg"/>
+                        <constraint firstItem="Vok-O4-7nY" firstAttribute="leading" secondItem="GDn-bU-b3Y" secondAttribute="trailing" constant="8" id="LUg-3G-698"/>
+                        <constraint firstItem="GDn-bU-b3Y" firstAttribute="leading" secondItem="oWG-zh-dXA" secondAttribute="leading" constant="20" id="ihn-1J-tlW"/>
+                        <constraint firstItem="GDn-bU-b3Y" firstAttribute="top" secondItem="oWG-zh-dXA" secondAttribute="top" constant="20" id="wsP-Zi-zEx"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="optimus_prime" id="7oG-bh-ZRr"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vok-O4-7nY">
-                    <rect key="frame" x="128" y="152" width="100" height="100"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="7iM-DK-H3Q"/>
-                        <constraint firstAttribute="width" constant="100" id="y9A-Wg-zvV"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="optimus_prime" id="JS5-0K-XZm"/>
-                </imageView>
+                </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="GDn-bU-b3Y" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="0G6-9A-Igh"/>
-                <constraint firstItem="Vok-O4-7nY" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="50n-4b-jOm"/>
-                <constraint firstItem="Vok-O4-7nY" firstAttribute="leading" secondItem="GDn-bU-b3Y" secondAttribute="trailing" constant="8" id="AMm-vg-zyW"/>
-                <constraint firstItem="GDn-bU-b3Y" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="R1D-Bx-8cG"/>
+                <constraint firstAttribute="bottom" secondItem="oWG-zh-dXA" secondAttribute="bottom" id="C1U-cs-b2b"/>
+                <constraint firstItem="oWG-zh-dXA" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="VAG-d5-6Re"/>
+                <constraint firstItem="oWG-zh-dXA" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="cEb-JU-2cj"/>
+                <constraint firstAttribute="trailing" secondItem="oWG-zh-dXA" secondAttribute="trailing" id="sMs-0X-Scv"/>
             </constraints>
         </customView>
     </objects>
