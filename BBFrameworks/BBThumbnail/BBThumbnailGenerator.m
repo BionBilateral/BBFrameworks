@@ -177,9 +177,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
 #if (TARGET_OS_IPHONE)
                                 NSData *data = [image BB_hasAlpha] ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1.0);
 #else
-                                CGImageRef imageRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
-                                CGDataProviderRef dataProviderRef = CGImageGetDataProvider(imageRef);
-                                NSData *data = (__bridge_transfer NSData *)CGDataProviderCopyData(dataProviderRef);
+                                NSData *data = [image TIFFRepresentationUsingCompression:NSTIFFCompressionNone factor:0.0];
 #endif
                                 
                                 NSError *outError;
