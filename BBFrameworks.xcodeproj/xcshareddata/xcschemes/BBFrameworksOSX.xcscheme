@@ -20,6 +20,20 @@
                ReferencedContainer = "container:BBFrameworks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79052B0C1B1AF3960097B7AF"
+               BuildableName = "BBFrameworksOSXTests.xctest"
+               BlueprintName = "BBFrameworksOSXTests"
+               ReferencedContainer = "container:BBFrameworks.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79052B0C1B1AF3960097B7AF"
+               BuildableName = "BBFrameworksOSXTests.xctest"
+               BlueprintName = "BBFrameworksOSXTests"
+               ReferencedContainer = "container:BBFrameworks.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "79EA811A1B3F1E9500D50B6B"
+            BuildableName = "libBBFrameworks.a"
+            BlueprintName = "BBFrameworksOSX"
+            ReferencedContainer = "container:BBFrameworks.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"

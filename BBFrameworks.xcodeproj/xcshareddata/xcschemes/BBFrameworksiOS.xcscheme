@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79EA80621B3F04FE00D50B6B"
-               BuildableName = "BBFrameworksTestsiOS.xctest"
-               BlueprintName = "BBFrameworksTestsiOS"
+               BlueprintIdentifier = "79052AFC1B1AF3270097B7AF"
+               BuildableName = "BBFrameworksiOSTests.xctest"
+               BlueprintName = "BBFrameworksiOSTests"
                ReferencedContainer = "container:BBFrameworks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79EA80621B3F04FE00D50B6B"
-               BuildableName = "BBFrameworksTestsiOS.xctest"
-               BlueprintName = "BBFrameworksTestsiOS"
+               BlueprintIdentifier = "79052AFC1B1AF3270097B7AF"
+               BuildableName = "BBFrameworksiOSTests.xctest"
+               BlueprintName = "BBFrameworksiOSTests"
                ReferencedContainer = "container:BBFrameworks.xcodeproj">
             </BuildableReference>
          </TestableReference>

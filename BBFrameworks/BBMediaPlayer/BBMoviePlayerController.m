@@ -224,7 +224,13 @@ static int32_t const kPreferredTimeScale = 1;
 }
 
 - (NSTimeInterval)duration {
-    return CMTimeGetSeconds(self.player.currentItem.duration);
+    NSTimeInterval retval = CMTimeGetSeconds(self.player.currentItem.duration);
+    
+    if (isnan(retval)) {
+        retval = 0.0;
+    }
+    
+    return retval;
 }
 
 @dynamic scalingMode;
