@@ -119,18 +119,23 @@ static NSTimeInterval const kObserverInterval = 1.0;
     
     __block NSNumber *savedRate = nil;
     
+    // start the signal whenever the user touches down on the slider
     [[[[[self.slider
      rac_signalForControlEvents:UIControlEventTouchDown]
      map:^id(id _) {
          @strongify(self);
+         // save the current playback rate of the player
          return @(self.moviePlayerController.currentPlaybackRate);
      }]
      flattenMap:^RACStream *(id value) {
          @strongify(self);
+         // flatten map into a signal that listens for value changed events
          return [[[self.slider rac_signalForControlEvents:UIControlEventValueChanged]
                  map:^id(id slider) {
+                     // send along our saved playback rate and the slider
                      return RACTuplePack(value,slider);
                  }]
+                 // end the value change signal when the user lifts their finger or event tracking ends
                  takeUntil:[[self.slider
                              rac_signalForControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel]
                             take:1]];
@@ -138,18 +143,19 @@ static NSTimeInterval const kObserverInterval = 1.0;
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(RACTuple *value) {
          @strongify(self);
-         
+         // unpack the save playback rate and slider
          RACTupleUnpack(NSNumber *rate, UISlider *slider) = value;
-         
+         // stash the current playback rate in the savedRate variable
          savedRate = rate;
-         
+         // if the player was playing, pause it
          if (rate.floatValue > 0.0) {
              [self.moviePlayerController pause];
          }
-         
+         // set the current playback time to value (0.0 - 1.0) * duration
          [self.moviePlayerController setCurrentPlaybackTime:slider.value * self.moviePlayerController.duration];
      } completed:^{
          @strongify(self);
+         // restore the saved playback rate
          [self.moviePlayerController setCurrentPlaybackRate:savedRate.floatValue];
      }];
     
