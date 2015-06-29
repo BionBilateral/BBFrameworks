@@ -20,6 +20,8 @@
 #import <BBFrameworks/BBReactiveKit.h>
 
 @interface ViewsRowViewController ()
+@property (strong,nonatomic) UIImageView *blurImageView;
+@property (strong,nonatomic) UIImageView *tintImageView;
 @property (strong,nonatomic) BBBadgeView *badgeView;
 @property (strong,nonatomic) BBTextView *textView;
 @property (readonly,nonatomic) BBView *backgroundView;
@@ -49,6 +51,14 @@
     
     [self.backgroundView setBorderOptions:BBViewBorderOptionsAll];
     
+    [self setBlurImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.blurImageView setImage:[[UIImage imageNamed:@"optimus_prime"] BB_imageByBlurringWithRadius:0.5]];
+    [self.view addSubview:self.blurImageView];
+    
+    [self setTintImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.tintImageView setImage:[[UIImage imageNamed:@"optimus_prime"] BB_imageByTintingWithColor:BBColorRandomRGBA()]];
+    [self.view addSubview:self.tintImageView];
+    
     [self setBadgeView:[[BBBadgeView alloc] initWithFrame:CGRectZero]];
     [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.badgeView setBadge:@"1234"];
@@ -70,9 +80,11 @@
 - (void)viewDidLayoutSubviews {
     CGSize badgeViewSize = [self.badgeView sizeThatFits:CGSizeZero];
     
-    [self.badgeView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
-    [self.textView setFrame:CGRectMake(CGRectGetMaxX(self.badgeView.frame) + 8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.badgeView.frame) - 16.0, 150.0)];
-    [self.gradientView setFrame:CGRectMake(CGRectGetMinX(self.badgeView.frame), CGRectGetMaxY(self.textView.frame) + 8.0, 100, CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.textView.frame) - 16.0)];
+    [self.blurImageView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, 100, 100)];
+    [self.tintImageView setFrame:CGRectMake(CGRectGetMaxX(self.blurImageView.frame) + 8.0, CGRectGetMinY(self.blurImageView.frame), 100, 100)];
+    [self.badgeView setFrame:CGRectMake(CGRectGetMaxX(self.tintImageView.frame) + 8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
+    [self.textView setFrame:CGRectMake(8.0, CGRectGetMaxY(self.blurImageView.frame) + 8.0, 150, 150.0)];
+    [self.gradientView setFrame:CGRectMake(CGRectGetMaxX(self.textView.frame) + 8.0, CGRectGetMinY(self.textView.frame), 100, CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.textView.frame) - 16.0)];
 }
 - (void)viewWillLayoutSubviews {
     [self.backgroundView setBorderEdgeInsets:UIEdgeInsetsMake([self.topLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth, [self.bottomLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth)];
