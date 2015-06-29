@@ -29,3 +29,12 @@ Classes, and categories extending the CoreData framework.
     - NSManagedObjectContext+BBCoreDataExtensions, methods to save recursively and fetch
 - Import
     - NSManagedObjectContext+BBCoreDataImportExtensions, methods to import into a context from json
+
+###BBKit
+
+Classes, categories, and functions extending the UIKit and AppKit frameworks.
+
+- Headers
+	- BBKitCGImageFunctions.h, functions to test an image for alpha component and resize images using the Accelerate framework
+	- BBKitColorMacros.h, macros wrapping the functionality available in UIColor+BBKitExtensions and NSColor+BBKitExtensions
+- 

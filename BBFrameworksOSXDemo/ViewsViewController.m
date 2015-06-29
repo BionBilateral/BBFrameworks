@@ -22,6 +22,7 @@
 @property (weak,nonatomic) IBOutlet NSImageView *tintImageView;
 @property (weak,nonatomic) IBOutlet BBView *backgroundView;
 @property (strong,nonatomic) BBBadgeView *badgeView;
+@property (strong,nonatomic) BBGradientView *gradientView;
 @end
 
 @implementation ViewsViewController
@@ -38,16 +39,24 @@
     [self.tintImageView setImage:[self.tintImageView.image BB_imageByTintingWithColor:BBColorWA(0.0,0.75)]];
     
     [self.backgroundView setBorderOptions:BBViewBorderOptionsAll];
-    [self.backgroundView setBorderWidth:5.0];
-    [self.backgroundView setBackgroundColor:BBColorRandomRGB()];
+    [self.backgroundView setBorderWidth:3.0];
+    [self.backgroundView setBackgroundColor:BBColorW(0.95)];
     
     [self setBadgeView:[[BBBadgeView alloc] initWithFrame:NSZeroRect]];
     [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.badgeView setBadge:@"Badge View"];
     [self.backgroundView addSubview:self.badgeView];
     
+    [self setGradientView:[[BBGradientView alloc] initWithFrame:NSZeroRect]];
+    [self.gradientView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.gradientView setColors:@[BBColorRandomRGB(),BBColorRandomRGB()]];
+    [self.backgroundView addSubview:self.gradientView];
+    
     [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView]-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView, @"imageView": self.tintImageView}]];
     [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView}]];
+    
+    [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view(==width)]" options:0 metrics:@{@"width": @100} views:@{@"view": self.gradientView}]];
+    [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[imageView]-[view]-|" options:0 metrics:nil views:@{@"view": self.gradientView, @"imageView": self.blurImageView}]];
 }
 
 @end
