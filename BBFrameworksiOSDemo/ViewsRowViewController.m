@@ -23,6 +23,7 @@
 @property (strong,nonatomic) BBBadgeView *badgeView;
 @property (strong,nonatomic) BBTextView *textView;
 @property (readonly,nonatomic) BBView *backgroundView;
+@property (strong,nonatomic) BBGradientView *gradientView;
 @end
 
 @implementation ViewsRowViewController
@@ -61,12 +62,17 @@
     [self.textView setTintColor:[UIColor whiteColor]];
     [self.textView setPlaceholder:@"Type some text…"];
     [self.view addSubview:self.textView];
+    
+    [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
+    [self.gradientView setColors:@[BBColorRandomRGB(),BBColorRandomRGB()]];
+    [self.view addSubview:self.gradientView];
 }
 - (void)viewDidLayoutSubviews {
     CGSize badgeViewSize = [self.badgeView sizeThatFits:CGSizeZero];
     
     [self.badgeView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
     [self.textView setFrame:CGRectMake(CGRectGetMaxX(self.badgeView.frame) + 8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.badgeView.frame) - 16.0, 150.0)];
+    [self.gradientView setFrame:CGRectMake(CGRectGetMinX(self.badgeView.frame), CGRectGetMaxY(self.textView.frame) + 8.0, 100, CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.textView.frame) - 16.0)];
 }
 - (void)viewWillLayoutSubviews {
     [self.backgroundView setBorderEdgeInsets:UIEdgeInsetsMake([self.topLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth, [self.bottomLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth)];

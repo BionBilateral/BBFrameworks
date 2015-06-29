@@ -37,4 +37,6 @@ Classes, categories, and functions extending the UIKit and AppKit frameworks.
 - Headers
 	- BBKitCGImageFunctions.h, functions to test an image for alpha component and resize images using the Accelerate framework
 	- BBKitColorMacros.h, macros wrapping the functionality available in UIColor+BBKitExtensions and NSColor+BBKitExtensions
-- 
+- Classes
+	- BBBadgeView, ios/osx class providing badging functionality similar to Mail app unread count
+	- BBGradientView, ios/osx class wrapping CAGradientLayer functionality
