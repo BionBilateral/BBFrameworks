@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07BFFED51B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFED41B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m */; };
+		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
@@ -402,6 +403,7 @@
 		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
 		07BFFED31B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBKitExtensionsPrivate.h"; sourceTree = "<group>"; };
 		07BFFED41B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBKitExtensionsPrivate.m"; sourceTree = "<group>"; };
+		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -1219,6 +1221,7 @@
 		79EA80781B3F06ED00D50B6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */,
 				79EA81421B3F212700D50B6B /* MediaPicker.strings */,
 				79EA80791B3F06ED00D50B6B /* BBFrameworksResourcesiOS-Info.plist */,
 				79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */,
@@ -1353,7 +1356,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79EA806A1B3F04FE00D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksiOS" */;
 			buildPhases = (
-				79EA810F1B3F184700D50B6B /* genstrings */,
+				07BFFED81B419EAF00DBC7EC /* genstrings */,
 				79EA80551B3F04FE00D50B6B /* Sources */,
 				79EA80561B3F04FE00D50B6B /* Frameworks */,
 				79EA80571B3F04FE00D50B6B /* CopyFiles */,
@@ -1570,6 +1573,7 @@
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
 				79EA81441B3F212700D50B6B /* MediaPicker.strings in Resources */,
 				79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */,
+				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
 				79EA80C41B3F0C5600D50B6B /* media_player_play@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1591,6 +1595,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07BFFED81B419EAF00DBC7EC /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m";
+		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1650,20 +1668,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		79EA810F1B3F184700D50B6B /* genstrings */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = genstrings;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "genstrings -s NSLocalizedString -q -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m";
 		};
 		C5680BD583642012346BF863 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1906,6 +1910,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BFFEDA1B419F1800DBC7EC /* en */,
+			);
+			name = MediaPlayer.strings;
+			sourceTree = "<group>";
+		};
 		79EA81421B3F212700D50B6B /* MediaPicker.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
