@@ -57,6 +57,18 @@
     return self;
 }
 
+@dynamic code;
+- (NSInteger)code
+{
+    return self.code;
+}
+
+@dynamic domain;
+- (NSString *)domain
+{
+    return self.domain;
+}
+
 #pragma mark *** Private Methods ***
 + (NSString *)_defaultAlertTitle
 {
