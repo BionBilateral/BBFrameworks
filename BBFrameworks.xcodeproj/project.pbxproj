@@ -11,6 +11,10 @@
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
+		74E75B8B1B423B2000135A60 /* BBError.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E75B891B423B2000135A60 /* BBError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E75B8C1B423B2000135A60 /* BBError.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E75B8A1B423B2000135A60 /* BBError.m */; };
+		74E75B8D1B423B2000135A60 /* BBError.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E75B8A1B423B2000135A60 /* BBError.m */; };
+		74E75B8E1B424E4800135A60 /* BBError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74E75B891B423B2000135A60 /* BBError.h */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -322,6 +326,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				74E75B8E1B424E4800135A60 /* BBError.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
 				79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */,
@@ -410,6 +415,8 @@
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		74E230801B3B55C900DE56B3 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		74E230811B3B55C900DE56B3 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
+		74E75B891B423B2000135A60 /* BBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBError.h; sourceTree = "<group>"; };
+		74E75B8A1B423B2000135A60 /* BBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBError.m; sourceTree = "<group>"; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
 		79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
@@ -1070,6 +1077,8 @@
 			children = (
 				7927CF6E1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.h */,
 				7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */,
+				74E75B891B423B2000135A60 /* BBError.h */,
+				74E75B8A1B423B2000135A60 /* BBError.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1289,6 +1298,7 @@
 				79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */,
 				79EA82C51B3F945700D50B6B /* BBView.h in Headers */,
 				79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */,
+				74E75B8B1B423B2000135A60 /* BBError.h in Headers */,
 				79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */,
 				79EA81491B3F221600D50B6B /* BBFoundation.h in Headers */,
@@ -1742,6 +1752,7 @@
 			files = (
 				79EA80F21B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */,
+				74E75B8C1B423B2000135A60 /* BBError.m in Sources */,
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
 				79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				79EA80F71B3F0D4B00D50B6B /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
@@ -1841,6 +1852,7 @@
 				79EA81841B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79EA81791B3F22C300D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA817E1B3F22C300D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
+				74E75B8D1B423B2000135A60 /* BBError.m in Sources */,
 				79EA81931B3F22FC00D50B6B /* BBThumbnailVimeoOperation.m in Sources */,
 				79EA817C1B3F22C300D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
 				79EA818D1B3F22FC00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
