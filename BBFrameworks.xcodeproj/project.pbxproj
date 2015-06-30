@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072800001B433E3400D68D05 /* BBAddressBook.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; };
+		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
+		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
+		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFED51B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFED41B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m */; };
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
@@ -330,7 +334,9 @@
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
 				79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */,
+				072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */,
 				79EA810B1B3F15A400D50B6B /* BBFrameworksConstants.h in CopyFiles */,
+				072800001B433E3400D68D05 /* BBAddressBook.h in CopyFiles */,
 				79EA80801B3F089200D50B6B /* BBFoundationFunctions.h in CopyFiles */,
 				79EA80AB1B3F097800D50B6B /* BBMediaPlayerDefines.h in CopyFiles */,
 				79EA810C1B3F15A600D50B6B /* BBFrameworksFunctions.h in CopyFiles */,
@@ -393,6 +399,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
+		0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookManager.h; sourceTree = "<group>"; };
+		0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookManager.m; sourceTree = "<group>"; };
 		07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerContentView.h; sourceTree = "<group>"; };
 		07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerContentView.m; sourceTree = "<group>"; };
 		07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerControllerDefines.h; sourceTree = "<group>"; };
@@ -704,6 +713,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0728FFF31B4337D600D68D05 /* BBAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */,
+				0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */,
+				0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */,
+			);
+			path = BBAddressBook;
+			sourceTree = "<group>";
+		};
 		76E18D0A91AEB5D129F5F3EC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +762,7 @@
 				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
 				7927CF921B1AD2B90034288D /* BBReactiveKit */,
+				0728FFF31B4337D600D68D05 /* BBAddressBook */,
 				7927CF981B1AD2B90034288D /* BBThumbnail */,
 				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 				79B4FF661B363B04007B8629 /* BBMediaPicker */,
@@ -1315,6 +1335,7 @@
 				79EA815C1B3F224E00D50B6B /* BBKitCGImageFunctions.h in Headers */,
 				79EA81511B3F221600D50B6B /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				79EA814A1B3F221600D50B6B /* BBFoundationDebugging.h in Headers */,
+				0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */,
 				79EA81521B3F221600D50B6B /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1761,6 +1782,7 @@
 				79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */,
 				79EA80C91B3F0CCD00D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				07BFFED51B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m in Sources */,
+				0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */,
 				79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
 				79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
