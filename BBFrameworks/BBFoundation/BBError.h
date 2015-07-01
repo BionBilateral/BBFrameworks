@@ -34,14 +34,14 @@ extern NSString *const BBErrorAlertMessageKey;
 
 @end
 
-#if (TARGET_OS_PHONE)
-@interface UIAlertController (BBExtensions)
+#if (TARGET_OS_IPHONE)
+@interface UIAlertController (BBFoundationExtensions)
 
 + (UIAlertController *)BB_alertWithError:(NSError *)error;
 
 @end
 #else
-@interface NSAlert (BBExtensions)
+@interface NSAlert (BBFoundationExtensions)
 
 + (NSAlert *)BB_alertWithError:(NSError *)error;
 

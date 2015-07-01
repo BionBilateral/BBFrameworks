@@ -58,8 +58,8 @@ NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
 
 @end
 
-#if (TARGET_OS_PHONE)
-@implementation UIAlertController (BBExtensions)
+#if (TARGET_OS_IPHONE)
+@implementation UIAlertController (BBFoundationExtensions)
 
 + (UIAlertController *)BB_alertWithError:(NSError *)error
 {
@@ -72,7 +72,7 @@ NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
 
 @end
 #else
-@implementation NSAlert (BBExtensions)
+@implementation NSAlert (BBFoundationExtensions)
 
 + (NSAlert *)BB_alertWithError:(NSError *)error
 {
