@@ -94,9 +94,34 @@
     
     return [components componentsJoinedByString:@" "];
 }
-
 - (NSString *)nickname {
     return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonNicknameProperty);
+}
+- (NSString *)organization {
+    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonOrganizationProperty);
+}
+- (NSString *)jobTitle {
+    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonJobTitleProperty);
+}
+- (NSString *)department {
+    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonDepartmentProperty);
+}
+- (NSArray *)emails {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonEmailProperty);
+    
+    return (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+}
+- (NSDate *)birthday {
+    return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonBirthdayProperty);
+}
+- (NSString *)note {
+    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonNoteProperty);
+}
+- (NSDate *)creationDate {
+    return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonCreationDateProperty);
+}
+- (NSDate *)modificationDate {
+    return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonModificationDateProperty);
 }
 
 @end

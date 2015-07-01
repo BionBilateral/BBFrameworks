@@ -29,10 +29,16 @@
 @property (readonly,nonatomic) NSString *middleName;
 @property (readonly,nonatomic) NSString *lastName;
 @property (readonly,nonatomic) NSString *suffix;
-
 @property (readonly,nonatomic) NSString *fullName;
-
 @property (readonly,nonatomic) NSString *nickname;
+@property (readonly,nonatomic) NSString *organization;
+@property (readonly,nonatomic) NSString *jobTitle;
+@property (readonly,nonatomic) NSString *department;
+@property (readonly,nonatomic) NSArray *emails;
+@property (readonly,nonatomic) NSDate *birthday;
+@property (readonly,nonatomic) NSString *note;
+@property (readonly,nonatomic) NSDate *creationDate;
+@property (readonly,nonatomic) NSDate *modificationDate;
 
 - (instancetype)initWithPerson:(ABRecordRef)person NS_DESIGNATED_INITIALIZER;
 
