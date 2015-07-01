@@ -285,6 +285,8 @@
 		79F9415F1B43615F00B385F0 /* BBAddressBookPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F9415E1B43615F00B385F0 /* BBAddressBookPersonTableViewCell.xib */; };
 		79F941621B43649300B385F0 /* BBAddressBookTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941611B43649300B385F0 /* BBAddressBookTableViewModel.m */; };
 		79F941651B436B3B00B385F0 /* AddressBook.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79F941631B436B3B00B385F0 /* AddressBook.strings */; };
+		79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941671B437AE300B385F0 /* BBAddressBookGroup.m */; };
+		79F941691B437AEB00B385F0 /* BBAddressBookGroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79F941661B437AE300B385F0 /* BBAddressBookGroup.h */; };
 		802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -344,6 +346,7 @@
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
 				79F941581B435E8900B385F0 /* BBAddressBookTableViewController.h in CopyFiles */,
+				79F941691B437AEB00B385F0 /* BBAddressBookGroup.h in CopyFiles */,
 				79EA80961B3F08E300D50B6B /* UIColor+BBKitExtensions.h in CopyFiles */,
 				79F941591B435E8C00B385F0 /* BBAddressBookPerson.h in CopyFiles */,
 				79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */,
@@ -667,6 +670,8 @@
 		79F941601B43649300B385F0 /* BBAddressBookTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookTableViewModel.h; sourceTree = "<group>"; };
 		79F941611B43649300B385F0 /* BBAddressBookTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookTableViewModel.m; sourceTree = "<group>"; };
 		79F941641B436B3B00B385F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AddressBook.strings; sourceTree = "<group>"; };
+		79F941661B437AE300B385F0 /* BBAddressBookGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookGroup.h; sourceTree = "<group>"; };
+		79F941671B437AE300B385F0 /* BBAddressBookGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookGroup.m; sourceTree = "<group>"; };
 		A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -746,6 +751,8 @@
 				0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */,
 				79F9414D1B4353C300B385F0 /* BBAddressBookPerson.h */,
 				79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */,
+				79F941661B437AE300B385F0 /* BBAddressBookGroup.h */,
+				79F941671B437AE300B385F0 /* BBAddressBookGroup.m */,
 				79F941601B43649300B385F0 /* BBAddressBookTableViewModel.h */,
 				79F941611B43649300B385F0 /* BBAddressBookTableViewModel.m */,
 				79F941531B435C0400B385F0 /* BBAddressBookTableViewController.h */,
@@ -1844,6 +1851,7 @@
 				79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */,
 				79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */,
 				79EA80F31B3F0D4B00D50B6B /* BBMoviePlayerViewController.m in Sources */,
+				79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */,
 				79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */,
 				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79EA80DA1B3F0D0000D50B6B /* BBProgressNavigationBar.m in Sources */,
