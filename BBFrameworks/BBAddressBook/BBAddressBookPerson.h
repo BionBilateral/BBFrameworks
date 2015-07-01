@@ -1,5 +1,5 @@
 //
-//  BBAddressBookManager.h
+//  BBAddressBookPerson.h
 //  BBFrameworks
 //
 //  Created by William Towe on 6/30/15.
@@ -14,13 +14,26 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIImage.h>
+#import <AddressBook/ABPerson.h>
 
-extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
+@interface BBAddressBookPerson : NSObject
 
-@interface BBAddressBookManager : NSObject
+@property (readonly,assign,nonatomic) ABRecordRef person;
 
-- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
+@property (readonly,nonatomic) UIImage *image;
+@property (readonly,nonatomic) UIImage *thumbnailImage;
 
-- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion;
+@property (readonly,nonatomic) NSString *prefix;
+@property (readonly,nonatomic) NSString *firstName;
+@property (readonly,nonatomic) NSString *middleName;
+@property (readonly,nonatomic) NSString *lastName;
+@property (readonly,nonatomic) NSString *suffix;
+
+@property (readonly,nonatomic) NSString *fullName;
+
+@property (readonly,nonatomic) NSString *nickname;
+
+- (instancetype)initWithPerson:(ABRecordRef)person NS_DESIGNATED_INITIALIZER;
 
 @end

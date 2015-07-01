@@ -1,5 +1,5 @@
 //
-//  BBAddressBookManager.h
+//  BBAddressBookTableViewModel.m
 //  BBFrameworks
 //
 //  Created by William Towe on 6/30/15.
@@ -13,14 +13,48 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+#import "BBAddressBookTableViewModel.h"
+#import "BBAddressBookManager.h"
+#import "BBAddressBookPerson.h"
 
-extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBAddressBookManager : NSObject
+@interface BBAddressBookTableViewModel ()
+@property (readwrite,copy,nonatomic) NSArray *people;
 
-- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
+@property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
 
-- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion;
+@property (strong,nonatomic) BBAddressBookManager *addressBookManager;
+@end
+
+@implementation BBAddressBookTableViewModel
+
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setAddressBookManager:[[BBAddressBookManager alloc] init]];
+    
+    @weakify(self);
+    [self setCancelCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        return [RACSignal return:self];
+    }]];
+    
+    [self.didBecomeActiveSignal
+     subscribeNext:^(BBAddressBookTableViewModel *value) {
+         if (value.people.count == 0) {
+             [value.addressBookManager requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+                 if (success) {
+                     [value.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people) {
+                         [value setPeople:people];
+                     }];
+                 }
+             }];
+         }
+     }];
+    
+    return self;
+}
 
 @end

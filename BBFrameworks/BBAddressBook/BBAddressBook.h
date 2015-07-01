@@ -18,6 +18,8 @@
 
 #if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBAddressBookManager.h>
+#import <BBFrameworks/BBAddressBookPerson.h>
+#import <BBFrameworks/BBAddressBookTableViewController.h>
 #endif
 
 #endif

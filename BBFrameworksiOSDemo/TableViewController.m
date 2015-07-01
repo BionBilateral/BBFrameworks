@@ -20,6 +20,7 @@
 #import "TooltipsRowViewController.h"
 #import "AssetsPickerViewController.h"
 #import "MediaPlayerViewController.h"
+#import "AddressBookViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -40,7 +41,8 @@
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class],
                           [AssetsPickerViewController class],
-                          [MediaPlayerViewController class]]];
+                          [MediaPlayerViewController class],
+                          [AddressBookViewController class]]];
     
     return self;
 }

@@ -1,5 +1,5 @@
 //
-//  BBAddressBookManager.h
+//  BBAddressBookPersonTableViewCell.m
 //  BBFrameworks
 //
 //  Created by William Towe on 6/30/15.
@@ -13,14 +13,26 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+#import "BBAddressBookPersonTableViewCell.h"
+#import "BBAddressBookPerson.h"
 
-extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBAddressBookManager : NSObject
+@interface BBAddressBookPersonTableViewCell ()
+@property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak,nonatomic) IBOutlet UILabel *nameLabel;
+@end
 
-- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
+@implementation BBAddressBookPersonTableViewCell
 
-- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    [self.thumbnailImageView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.thumbnailImageView.layer setBorderWidth:1.0];
+    
+    RAC(self.thumbnailImageView,image) = [RACObserve(self, person.thumbnailImage) deliverOn:[RACScheduler mainThreadScheduler]];
+    RAC(self.nameLabel,text) = [RACObserve(self, person.fullName) deliverOn:[RACScheduler mainThreadScheduler]];
+}
 
 @end

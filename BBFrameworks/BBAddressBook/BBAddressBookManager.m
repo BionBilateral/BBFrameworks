@@ -14,7 +14,11 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBAddressBookManager.h"
+#import "BBAddressBookPerson.h"
 #import "BBFoundation.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <BlocksKit/BlocksKit.h>
 
 #import <AddressBook/AddressBook.h>
 
@@ -56,6 +60,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 - (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion; {
     NSParameterAssert(completion);
     
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        completion(YES,nil);
+        return;
+    }
+    
     ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
         BBDispatchMainSyncSafe(^{
             if (granted) {
@@ -64,6 +73,23 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             else {
                 completion(NO,(__bridge NSError *)error);
             }
+        });
+    });
+}
+
+- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion; {
+    @weakify(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        @strongify(self);
+        NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+        NSArray *people = [[peopleRefs bk_map:^id(id obj) {
+            return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
+        }] bk_select:^BOOL(BBAddressBookPerson *obj) {
+            return obj.fullName.length > 0;
+        }];
+        
+        BBDispatchMainSyncSafe(^{
+            completion(people);
         });
     });
 }
