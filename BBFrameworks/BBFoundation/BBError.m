@@ -57,3 +57,34 @@ NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
 }
 
 @end
+
+#if (TARGET_OS_PHONE)
+@implementation UIAlertController (BBExtensions)
+
++ (UIAlertController *)BB_alertWithError:(NSError *)error
+{
+    NSString *title = [error isKindOfClass:[BBError class]] ? ((BBError *)error).alertTitle : @"";
+    NSString *message = [error isKindOfClass:[BBError class]] ? ((BBError *)error).alertMessage : @"";
+    
+    UIAlertController *retval = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    return retval;
+}
+
+@end
+#else
+@implementation NSAlert (BBExtensions)
+
++ (NSAlert *)BB_alertWithError:(NSError *)error
+{
+    NSString *title = [error isKindOfClass:[BBError class]] ? ((BBError *)error).alertTitle : @"";
+    NSString *message = [error isKindOfClass:[BBError class]] ? ((BBError *)error).alertMessage : @"";
+    
+    NSAlert *retval = [[NSAlert alloc] init];
+    [retval setMessageText:title];
+    [retval setInformativeText:message];
+    
+    return retval;
+}
+
+@end
+#endif

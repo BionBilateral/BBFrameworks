@@ -15,6 +15,12 @@
 
 #import <Foundation/Foundation.h>
 
+#if (TARGET_OS_IPHONE)
+#import <UIKit/UIAlertController.h>
+#else
+#import <AppKit/NSAlert.h>
+#endif
+
 extern NSString *const BBErrorAlertTitleKey;
 extern NSString *const BBErrorAlertMessageKey;
 
@@ -27,3 +33,17 @@ extern NSString *const BBErrorAlertMessageKey;
 @property (readonly, copy) NSString *alertMessage;
 
 @end
+
+#if (TARGET_OS_PHONE)
+@interface UIAlertController (BBExtensions)
+
++ (UIAlertController *)BB_alertWithError:(NSError *)error;
+
+@end
+#else
+@interface NSAlert (BBExtensions)
+
++ (NSAlert *)BB_alertWithError:(NSError *)error;
+
+@end
+#endif
