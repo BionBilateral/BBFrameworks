@@ -15,6 +15,9 @@
 
 #import "BBError.h"
 
+NSString *const BBErrorAlertTitleKey = @"BBErrorAlertTitleKey";
+NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
+
 @interface BBError ()
 
 @property (readwrite) NSString *alertTitle;
@@ -29,55 +32,28 @@
 
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict
 {
-    return [[self alloc] initWithDomain:domain code:code userInfo:dict];
-}
-
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code alertTitle:(NSString *)title alertMessage:(NSString *)message
-{
-    return [[self alloc] initWithDomain:domain code:code alertTitle:title alertMessage:message];
+    return [[self alloc] initWithDomain:domain code:code userInfo:(NSDictionary *)dict];
 }
 
 - (instancetype)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict
 {
     if (!(self = [super initWithDomain:domain code:code userInfo:dict])) return nil;
     
-    [self setAlertTitle:[[self class] _defaultAlertTitle]];
-    [self setAlertMessage:[[self class] _defaultAlertMessage]];
+    [self setAlertTitle:self.userInfo[BBErrorAlertTitleKey] ?: [[self class] _defaultAlertTitle]];
+    [self setAlertMessage:self.userInfo[BBErrorAlertMessageKey] ?: self.userInfo[NSLocalizedDescriptionKey] ?: [[self class] _defaultAlertMessage]];
     
     return self;
-}
-
-- (instancetype)initWithDomain:(NSString *)domain code:(NSInteger)code alertTitle:(NSString *)title alertMessage:(NSString *)message
-{
-    if (!(self = [super initWithDomain:domain code:code userInfo:nil])) return nil;
-    
-    [self setAlertTitle:title];
-    [self setAlertMessage:message];
-    
-    return self;
-}
-
-@dynamic code;
-- (NSInteger)code
-{
-    return self.code;
-}
-
-@dynamic domain;
-- (NSString *)domain
-{
-    return self.domain;
 }
 
 #pragma mark *** Private Methods ***
 + (NSString *)_defaultAlertTitle
 {
-    return @"";
+    return @"Error Occurred";
 }
 
 + (NSString *)_defaultAlertMessage
 {
-    return @"";
+    return @"Override this alert message and title by setting the userInfo dictionary and BBErrorAlertTitleKey and BBErrorAlertMessageKey.";
 }
 
 @end
