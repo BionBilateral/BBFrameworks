@@ -8,7 +8,7 @@ def common_pods
 end
 
 target :iOSDemo do
-  platform :ios, "8.3"
+  platform :ios, "8.0"
   
   common_pods
   pod "TUSafariActivity", "~> 1.0.0"

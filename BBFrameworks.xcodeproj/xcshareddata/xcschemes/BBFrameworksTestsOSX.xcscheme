@@ -20,6 +20,34 @@
                ReferencedContainer = "container:BBFrameworks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79EA811A1B3F1E9500D50B6B"
+               BuildableName = "libBBFrameworks.a"
+               BlueprintName = "BBFrameworksOSX"
+               ReferencedContainer = "container:BBFrameworks.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "84952362C60EA7DA4119A398"
+               BuildableName = "libPods-OSXDemo.a"
+               BlueprintName = "Pods-OSXDemo"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
