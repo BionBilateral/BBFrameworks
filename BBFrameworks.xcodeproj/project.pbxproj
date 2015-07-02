@@ -854,7 +854,7 @@
 			isa = PBXGroup;
 			children = (
 				7927CF931B1AD2B90034288D /* BBReactiveKit.h */,
-				79E0BBFF1B27B49000892D81 /* Views */,
+				79E0BBFF1B27B49000892D81 /* Classes */,
 			);
 			path = BBReactiveKit;
 			sourceTree = "<group>";
@@ -1270,7 +1270,7 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		79E0BBFF1B27B49000892D81 /* Views */ = {
+		79E0BBFF1B27B49000892D81 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */,
@@ -1278,7 +1278,7 @@
 				74E230801B3B55C900DE56B3 /* BBTextView.h */,
 				74E230811B3B55C900DE56B3 /* BBTextView.m */,
 			);
-			name = Views;
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		79EA80771B3F06ED00D50B6B /* BBFrameworksResources */ = {

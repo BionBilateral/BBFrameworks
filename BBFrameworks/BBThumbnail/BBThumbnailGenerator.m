@@ -90,7 +90,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
     [self.memoryCache setName:[NSString stringWithFormat:@"%@.%p",kCacheDirectoryName,self]];
     [self.memoryCache setDelegate:self];
     
-    [self setFileCacheQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.filecache.%p",kCacheDirectoryName,self].UTF8String, DISPATCH_QUEUE_CONCURRENT)];
+    [self setFileCacheQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.filecache.%p",kCacheDirectoryName,self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
     [self setOperationQueue:[[NSOperationQueue alloc] init]];
     [self.operationQueue setName:[NSString stringWithFormat:@"%@.operationqueue.%p",kCacheDirectoryName,self]];
@@ -249,7 +249,9 @@ static NSTimeInterval const kDefaultTime = 1.0;
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
                 [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
-            else if ([@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx",@"csv"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeCommaSeparatedText) ||
+                     UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
+                     [@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
                 [retval setOperation:[[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {

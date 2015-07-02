@@ -53,3 +53,57 @@ Classes, categories, and functions extending the UIKit and AppKit frameworks.
 	- UIImage+BBKitExtensions, identical methods to NSImage+BBKitExtensions
 	- UIView+BBKitExtensions, method to fetch all subviews recursively
 	- UIViewController+BBKitExtensions, method to fetch the correct view controller for presentation
+	
+###BBReactiveKit
+
+Classes extending the UIKit framework, built on top of [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa).
+
+- Classes
+	- BBProgressNavigationBar, UINavigationBar subclass that manages a UIProgressView instance and provides methods to show/hide and change its associated progress
+	- BBTextView, UITextView subclass that provides placeholder functionality similar to UITextField
+	
+###BBAddressBook
+
+A library that wraps the AddressBook framework. The principal classes are BBAddressBookManager, BBAddressBookPerson, and BBAddressBookGroup.
+
+###BBThumbnail
+
+A thumbnail generation library for local and remote URLs. The principal class is BBThumbnailGenerator.
+
+Supported local UTIs and file extensions:
+
+- kUTTypeImage
+- kUTTypeMovie
+- kUTTypePDF
+- kUTTypeRTF
+- kUTTypeRTFD
+- kUTTypePlainText
+- kUTTypeCommaSeparatedText
+- kUTTypeHTML
+- doc, docx, xls, xlsx, ppt, pptx
+
+Supported remote URL schemes and domains:
+
+- http and https
+- youtube (requires API key)
+- vimeo
+
+###BBReactiveThumbnail
+
+Categories that add signal generating methods to BBThumbnail.
+
+###BBMediaPicker
+
+A library to acts as a replacement for the UIImagePickerController media selection functionality. The principal class is BBMediaPickerViewController.
+
+###BBMediaPlayer
+
+A library that acts as a replacement for the MPMoviePlayerController and its associated classes. The principal classes are BBMoviePlayerController and BBMoviePlayerViewController.
+
+###BBWebKit
+
+A library that wraps a WKWebView for convenient in app display. The principal classes are BBWebKitViewController and BBWebKitTitleView.
+
+###BBTooltip
+
+A library the facilitates the display of tooltips within an app. Similar to the Facebook app. The principal classes are BBTooltipViewController and BBTooltipView.

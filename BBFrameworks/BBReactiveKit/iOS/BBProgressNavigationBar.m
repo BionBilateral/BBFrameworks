@@ -43,6 +43,9 @@
     return self;
 }
 
+- (void)didAddSubview:(UIView *)subview {
+    [self bringSubviewToFront:self.progressView];
+}
 - (void)layoutSubviews {
     [super layoutSubviews];
     
