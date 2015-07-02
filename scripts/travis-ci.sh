@@ -1,2 +1,2 @@
-xctool -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsiOS test
-xctool -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsOSX test
+xcodebuild -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsiOS test
+xcodebuild -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsOSX test
