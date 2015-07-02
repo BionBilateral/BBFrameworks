@@ -26,7 +26,7 @@
 
 - (void)setUp {
     [super setUp];
-    NSLog(@"%@",[NSBundle bundleForClass:self.class]);
+
     [self setPersistentStoreCoordinator:[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"Test" withExtension:@"momd"]]]];
     [self.persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:NULL];
     
