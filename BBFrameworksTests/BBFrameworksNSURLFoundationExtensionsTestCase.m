@@ -1,5 +1,5 @@
 //
-//  BBSnakeCaseToLlamaCaseValueTransformerTestCase.m
+//  BBFrameworksNSURLFoundationExtensionsTestCase.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/2/15.
@@ -15,35 +15,31 @@
 
 #import <XCTest/XCTest.h>
 
-#import <BBFrameworks/BBSnakeCaseToLlamaCaseValueTransformer.h>
+#import <BBFrameworks/NSURL+BBFoundationExtensions.h>
 
-@interface BBSnakeCaseToLlamaCaseValueTransformerTestCase : XCTestCase
+@interface BBFrameworksNSURLFoundationExtensionsTestCase : XCTestCase
 
 @end
 
-@implementation BBSnakeCaseToLlamaCaseValueTransformerTestCase
+@implementation BBFrameworksNSURLFoundationExtensionsTestCase
 
-- (void)testTransformedValue {
-    NSString *start = @"first_middle_last";
-    NSString *end = @"firstMiddleLast";
+- (void)testQueryDictionary {
+    NSURL *start = [NSURL URLWithString:@"https://www.a.com/b?first=firstkey&second=secondkey&third=thirdkey"];
+    NSDictionary *end = @{@"first": @"firstkey",
+                          @"second": @"secondkey",
+                          @"third": @"thirdkey"};
     
-    XCTAssertEqualObjects([[NSValueTransformer valueTransformerForName:BBSnakeCaseToLlamaCaseValueTransformerName] transformedValue:start], end);
-    
-    start = @"first";
-    end = @"first";
-    
-    XCTAssertEqualObjects([[NSValueTransformer valueTransformerForName:BBSnakeCaseToLlamaCaseValueTransformerName] transformedValue:start], end);
+    XCTAssertEqualObjects([start BB_queryDictionary], end);
 }
-- (void)testReverseTransformedValue {
-    NSString *start = @"firstMiddleLast";
-    NSString *end = @"first_middle_last";
+
+- (void)testURLWithBaseString {
+    NSString *base = @"https://www.a.com/b";
+    NSDictionary *params = @{@"first": @"firstkey",
+                             @"second": @"secondkey",
+                             @"third": @"thirdkey"};
+    NSURL *end = [NSURL URLWithString:@"https://www.a.com/b?first=firstkey&second=secondkey&third=thirdkey"];
     
-    XCTAssertEqualObjects([[NSValueTransformer valueTransformerForName:BBSnakeCaseToLlamaCaseValueTransformerName] reverseTransformedValue:start], end);
-    
-    start = @"first";
-    end = @"first";
-    
-    XCTAssertEqualObjects([[NSValueTransformer valueTransformerForName:BBSnakeCaseToLlamaCaseValueTransformerName] reverseTransformedValue:start], end);
+    XCTAssertEqualObjects([NSURL BB_URLWithBaseString:base parameters:params], end);
 }
 
 @end
