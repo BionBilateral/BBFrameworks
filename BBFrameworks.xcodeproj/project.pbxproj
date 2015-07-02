@@ -287,6 +287,8 @@
 		79F941651B436B3B00B385F0 /* AddressBook.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79F941631B436B3B00B385F0 /* AddressBook.strings */; };
 		79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941671B437AE300B385F0 /* BBAddressBookGroup.m */; };
 		79F941691B437AEB00B385F0 /* BBAddressBookGroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79F941661B437AE300B385F0 /* BBAddressBookGroup.h */; };
+		79F941841B44E36600B385F0 /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */; };
+		79F941851B44E36900B385F0 /* Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79052B1C1B1AF4010097B7AF /* Test.xcdatamodeld */; };
 		802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -1894,6 +1896,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79EA80FF1B3F0D6D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
+				79F941841B44E36600B385F0 /* Test.xcdatamodeld in Sources */,
 				79EA80FE1B3F0D6D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
 				79EA81001B3F0D6D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
 			);
@@ -1950,6 +1953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79EA81981B3F251D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
+				79F941851B44E36900B385F0 /* Test.xcdatamodeld in Sources */,
 				79EA81971B3F251D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
 				79EA81991B3F251D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
 			);
