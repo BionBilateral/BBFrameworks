@@ -1,2 +1,3 @@
 language: objective-c
 xcode_workspace: BBFrameworks.xcworkspace
+xcode_scheme: BBFrameworksTests
