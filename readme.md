@@ -1,6 +1,6 @@
-![travis-ci build status](https://travis-ci.org/BionBilateral/BBFrameworks.svg?branch=master)
-
 ##BBFrameworks
+
+![travis-ci build status](https://travis-ci.org/BionBilateral/BBFrameworks.svg?branch=master)
 
 Repository for common iOS/OSX categories, classes, and functions.
 

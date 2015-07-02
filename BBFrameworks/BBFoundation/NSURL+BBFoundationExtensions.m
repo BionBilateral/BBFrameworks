@@ -38,16 +38,16 @@
         NSMutableString *retval = [[NSMutableString alloc] initWithString:baseString];
         
         if (parameters.count > 0) {
-            __block NSUInteger i = 0;
+            NSUInteger i = 0;
             
-            [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+            for (NSString *key in [parameters keysSortedByValueUsingSelector:@selector(localizedStandardCompare:)]) {
                 if ((i++) == 0) {
-                    [retval appendFormat:@"?%@=%@",key,obj];
+                    [retval appendFormat:@"?%@=%@",key,parameters[key]];
                 }
                 else {
-                    [retval appendFormat:@"&%@=%@",key,obj];
+                    [retval appendFormat:@"&%@=%@",key,parameters[key]];
                 }
-            }];
+            }
         }
         
         return [NSURL URLWithString:retval];
