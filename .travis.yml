@@ -1,3 +1,2 @@
 language: objective-c
-xcode_workspace: BBFrameworks.xcworkspace
-xcode_scheme: BBFrameworksTests
+script: ./scripts/travis-ci.sh
