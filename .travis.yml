@@ -1,2 +1,6 @@
 language: objective-c
 script: ./scripts/travis-ci.sh
+notifications:
+    email:
+        on_success: never
+        on_failure: always
