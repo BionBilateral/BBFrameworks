@@ -16,6 +16,9 @@
 #import <Foundation/Foundation.h>
 #import "BBThumbnailOperation.h"
 
+/**
+ BBThumbnailRTFOperation is a NSObject subclass that generates thumbnails for URLs conforming to the kUTTypeRTF and kUTTypeRTFD UTIs.
+ */
 @interface BBThumbnailRTFOperation : NSOperation <BBThumbnailOperation>
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;

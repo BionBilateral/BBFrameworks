@@ -15,6 +15,9 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
+/**
+ BBThumbnailHTMLOperation is a NSOperation that uses WKWebView to generate thumbnails for URLs using the http or https scheme.
+ */
 @interface BBThumbnailHTMLOperation : BBThumbnailAsyncOperation
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;

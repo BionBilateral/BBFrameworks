@@ -16,6 +16,9 @@
 #import <Foundation/Foundation.h>
 #import "BBThumbnailOperation.h"
 
+/**
+ BBThumbnailAsyncOperation is a NSOperation subclass that serves as the base class for operations that need to manage their own threading.
+ */
 @interface BBThumbnailAsyncOperation : NSOperation <BBThumbnailOperation>
 
 @property (assign,getter=isExecuting) BOOL executing;

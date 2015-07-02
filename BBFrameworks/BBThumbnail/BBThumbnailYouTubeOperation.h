@@ -17,6 +17,9 @@
 
 extern NSString *const BBThumbnailYouTubeOperationErrorDomain;
 
+/**
+ BBThumbnailYouTubeOperation is a NSOperation subclass that generates thumbnails for URLs containing the youtube domain.
+ */
 @interface BBThumbnailYouTubeOperation : BBThumbnailAsyncOperation
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size APIKey:(NSString *)APIKey completion:(BBThumbnailOperationCompletionBlock)completion;

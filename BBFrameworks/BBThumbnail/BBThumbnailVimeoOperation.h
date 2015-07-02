@@ -15,6 +15,9 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
+/**
+ BBThumbnailVimeoOperation is a NSOperation subclass that generates thumbnails for URLs containing the vimeo domain.
+ */
 @interface BBThumbnailVimeoOperation : BBThumbnailAsyncOperation
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;

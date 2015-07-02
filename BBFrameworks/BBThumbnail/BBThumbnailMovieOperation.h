@@ -16,6 +16,9 @@
 #import <Foundation/Foundation.h>
 #import "BBThumbnailOperation.h"
 
+/**
+ BBThumbnailMovieOperation is a NSOperation subclass that generates thumbnails for URLs conforming to the kUTTypeMovie UTI.
+ */
 @interface BBThumbnailMovieOperation : NSOperation <BBThumbnailOperation>
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailOperationCompletionBlock)completion;

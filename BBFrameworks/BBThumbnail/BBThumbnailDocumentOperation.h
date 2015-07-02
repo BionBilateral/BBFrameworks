@@ -15,6 +15,9 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
+/**
+ BBThumbnailDocumentOperation is a NSOperation subclass that generates thumbnails for local URLs conforming to the kUTTypeCommaSeparatedText and kUTTypeHTML UTIs, as well as local doc, docx, xls, xlsx, ppt, and pptx documents.
+ */
 @interface BBThumbnailDocumentOperation : BBThumbnailAsyncOperation
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;
