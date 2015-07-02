@@ -1,2 +1,2 @@
-xcodebuild -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsiOS test
-xcodebuild -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsOSX test
+xcodebuild -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsiOS -sdk iphonesimulator test
+xcodebuild -workspace BBFrameworks.xcworkspace -scheme BBFrameworksTestsOSX -sdk iphonesimulator test
