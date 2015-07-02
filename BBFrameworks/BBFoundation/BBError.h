@@ -15,19 +15,35 @@
 
 #import <Foundation/Foundation.h>
 
+#if (TARGET_OS_IPHONE)
+#import <UIKit/UIAlertController.h>
+#else
+#import <AppKit/NSAlert.h>
+#endif
+
+extern NSString *const BBErrorAlertTitleKey;
+extern NSString *const BBErrorAlertMessageKey;
+
 /**
  BBError is an NSError subclass with convenience methods for creating NSAlert/UIAlertController from the error message
  */
 @interface BBError : NSError
 
-@property (readonly) NSInteger code;
-@property (readonly, copy) NSString *domain;
 @property (readonly, copy) NSString *alertTitle;
 @property (readonly, copy) NSString *alertMessage;
 
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code alertTitle:(NSString *)title alertMessage:(NSString *)message;
-- (instancetype)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
-- (instancetype)initWithDomain:(NSString *)domain code:(NSInteger)code alertTitle:(NSString *)title alertMessage:(NSString *)message;
+@end
+
+#if (TARGET_OS_IPHONE)
+@interface UIAlertController (BBFoundationExtensions)
+
++ (UIAlertController *)BB_alertWithError:(NSError *)error;
 
 @end
+#else
+@interface NSAlert (BBFoundationExtensions)
+
++ (NSAlert *)BB_alertWithError:(NSError *)error;
+
+@end
+#endif

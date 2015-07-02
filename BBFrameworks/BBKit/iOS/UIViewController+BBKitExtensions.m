@@ -20,8 +20,8 @@
 + (UIViewController *)BB_viewControllerForPresenting; {
     UIViewController *retval = [UIApplication sharedApplication].keyWindow.rootViewController;
     
-    while (retval.presentingViewController) {
-        retval = retval.presentingViewController;
+    while (retval.presentedViewController) {
+        retval = retval.presentedViewController;
     }
     
     return retval;
