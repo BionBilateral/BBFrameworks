@@ -36,6 +36,8 @@
 #if (TARGET_OS_IPHONE)
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
+#else
+#import <CoreServices/CoreServices.h>
 #endif
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
