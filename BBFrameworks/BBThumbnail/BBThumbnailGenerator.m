@@ -36,8 +36,6 @@
 #if (TARGET_OS_IPHONE)
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
-#else
-#import <CoreServices/CoreServices.h>
 #endif
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
@@ -251,9 +249,8 @@ static NSTimeInterval const kDefaultTime = 1.0;
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
                 [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
-            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeCommaSeparatedText) ||
-                     UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
-                     [@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
+                     [@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx",@"csv"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
                 [retval setOperation:[[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
