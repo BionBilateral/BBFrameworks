@@ -51,7 +51,7 @@ NSString *const BBSnakeCaseToLlamaCaseValueTransformerName = @"BBSnakeCaseToLlam
 }
 - (id)reverseTransformedValue:(id)value {
     if ([value isKindOfClass:[NSString class]]) {
-        NSString *retval = [[value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByReplacingOccurrencesOfString:@"([a-z])([A-Z])" withString:@"$1_$2" options:NSRegularExpressionSearch range:NSMakeRange(0, [value length])];
+        NSString *retval = [[value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByReplacingOccurrencesOfString:@"([a-z])([A-Z])" withString:@"$1_$2" options:NSRegularExpressionSearch range:NSMakeRange(0, [value length])].lowercaseString;
         
         return retval;
     }
