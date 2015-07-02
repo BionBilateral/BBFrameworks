@@ -13,6 +13,7 @@
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFED51B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFED41B41924B00DBC7EC /* UIImage+BBKitExtensionsPrivate.m */; };
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
+		302CAC170B819222FB454F0D /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		74E75B8B1B423B2000135A60 /* BBError.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E75B891B423B2000135A60 /* BBError.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -732,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79EA81261B3F1E9500D50B6B /* libBBFrameworks.a in Frameworks */,
+				302CAC170B819222FB454F0D /* libPods-OSXDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,9 +1510,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79EA812F1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksTestsOSX" */;
 			buildPhases = (
+				71216A464C6B3FCFDBD0C18E /* Check Pods Manifest.lock */,
 				79EA81211B3F1E9500D50B6B /* Sources */,
 				79EA81221B3F1E9500D50B6B /* Frameworks */,
 				79EA81231B3F1E9500D50B6B /* Resources */,
+				CABFC788CCD8975DAFC20825 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1735,6 +1739,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		71216A464C6B3FCFDBD0C18E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		716CF966F12B32611C3DE6F2 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1763,6 +1782,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CABFC788CCD8975DAFC20825 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD7DC007DBC86BFF9DB845F9 /* Check Pods Manifest.lock */ = {
@@ -2594,6 +2628,7 @@
 		};
 		79EA81301B3F1E9500D50B6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2644,6 +2679,7 @@
 		};
 		79EA81311B3F1E9500D50B6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
