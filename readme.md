@@ -68,7 +68,7 @@ A library that wraps the AddressBook framework. The principal classes are BBAddr
 
 ###BBThumbnail
 
-A thumbnail generation library for local and remote URLs. The principal class is BBThumbnailGenerator.
+A thumbnail generation library for local and remote URLs. The principal class is BBThumbnailGenerator. This library is available on iOS and OSX.
 
 Supported local UTIs and file extensions:
 
