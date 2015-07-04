@@ -25,8 +25,10 @@
 #import <BBFrameworks/UIViewController+BBKitExtensions.h>
 #import <BBFrameworks/UIFont+BBKitExtensions.h>
 #import <BBFrameworks/UIBarButtonItem+BBKitExtensions.h>
+#import <BBFrameworks/UIAlertController+BBKitExtensions.h>
 #else
 #import <BBFrameworks/NSImage+BBKitExtensions.h>
+#import <BBFrameworks/NSAlert+BBKitExtensions.h>
 #endif
 
 #import <BBFrameworks/BBBadgeView.h>

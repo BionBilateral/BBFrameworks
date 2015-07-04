@@ -25,8 +25,9 @@
 		74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
 		74A018E91B479153007F87EE /* UIAlertController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E81B479153007F87EE /* UIAlertController+BBKitExtensions.m */; };
 		74A018EA1B4792A6007F87EE /* NSError+BBFoundationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; };
-		74A018ED1B4794D3007F87EE /* NSAlert+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018EB1B4794D3007F87EE /* NSAlert+BBKitExtensions.h */; };
+		74A018ED1B4794D3007F87EE /* NSAlert+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018EB1B4794D3007F87EE /* NSAlert+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A018EE1B4794D3007F87EE /* NSAlert+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018EC1B4794D3007F87EE /* NSAlert+BBKitExtensions.m */; };
+		74A018EF1B479658007F87EE /* UIAlertController+BBKitExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E71B479153007F87EE /* UIAlertController+BBKitExtensions.h */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -1389,6 +1390,7 @@
 				74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */,
 				79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */,
 				79EA81491B3F221600D50B6B /* BBFoundation.h in Headers */,
+				74A018ED1B4794D3007F87EE /* NSAlert+BBKitExtensions.h in Headers */,
 				79EA814D1B3F221600D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				79EA816D1B3F228400D50B6B /* BBThumbnailTextOperation.h in Headers */,
 				79EA81711B3F228400D50B6B /* BBThumbnailHTMLOperation.h in Headers */,
@@ -1402,7 +1404,6 @@
 				79EA815C1B3F224E00D50B6B /* BBKitCGImageFunctions.h in Headers */,
 				79EA81511B3F221600D50B6B /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				79EA814A1B3F221600D50B6B /* BBFoundationDebugging.h in Headers */,
-				74A018ED1B4794D3007F87EE /* NSAlert+BBKitExtensions.h in Headers */,
 				0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */,
 				79EA81521B3F221600D50B6B /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 			);
@@ -1875,6 +1876,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A018EF1B479658007F87EE /* UIAlertController+BBKitExtensions.h in Sources */,
 				74A018EA1B4792A6007F87EE /* NSError+BBFoundationExtensions.h in Sources */,
 				79EA80F21B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */,
