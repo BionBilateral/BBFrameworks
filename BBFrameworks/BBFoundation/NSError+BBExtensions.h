@@ -1,8 +1,8 @@
 //
-//  BBError.h
+//  NSError+BBExtensions.h
 //  BBFrameworks
 //
-//  Created by Jason Anderson on 6/29/15.
+//  Created by Jason Anderson on 7/3/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,35 +15,12 @@
 
 #import <Foundation/Foundation.h>
 
-#if (TARGET_OS_IPHONE)
-#import <UIKit/UIAlertController.h>
-#else
-#import <AppKit/NSAlert.h>
-#endif
-
 extern NSString *const BBErrorAlertTitleKey;
 extern NSString *const BBErrorAlertMessageKey;
 
-/**
- BBError is an NSError subclass with convenience methods for creating NSAlert/UIAlertController from the error message
- */
-@interface BBError : NSError
+@interface NSError (BBExtensions)
 
-@property (readonly, copy) NSString *alertTitle;
-@property (readonly, copy) NSString *alertMessage;
+- (NSString *)BB_alertTitleForError:(NSError *)error;
+- (NSString *)BB_alertMessageForError:(NSError *)error;
 
 @end
-
-#if (TARGET_OS_IPHONE)
-@interface UIAlertController (BBFoundationExtensions)
-
-+ (UIAlertController *)BB_alertWithError:(NSError *)error;
-
-@end
-#else
-@interface NSAlert (BBFoundationExtensions)
-
-+ (NSAlert *)BB_alertWithError:(NSError *)error;
-
-@end
-#endif
