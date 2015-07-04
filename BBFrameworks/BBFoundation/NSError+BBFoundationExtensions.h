@@ -18,9 +18,9 @@
 extern NSString *const BBErrorAlertTitleKey;
 extern NSString *const BBErrorAlertMessageKey;
 
-@interface NSError (BBExtensions)
+@interface NSError (BBFoundationExtensions)
 
-- (NSString *)BB_alertTitleForError:(NSError *)error;
-- (NSString *)BB_alertMessageForError:(NSError *)error;
+- (NSString *)BB_alertTitle;
+- (NSString *)BB_alertMessage;
 
 @end

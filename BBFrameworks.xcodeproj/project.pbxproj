@@ -20,9 +20,13 @@
 		302CAC170B819222FB454F0D /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
-		74A018E41B478D03007F87EE /* NSError+BBExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBExtensions.h */; };
-		74A018E51B478D03007F87EE /* NSError+BBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBExtensions.m */; };
-		74A018E61B478D03007F87EE /* NSError+BBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBExtensions.m */; };
+		74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
+		74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
+		74A018E91B479153007F87EE /* UIAlertController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E81B479153007F87EE /* UIAlertController+BBKitExtensions.m */; };
+		74A018EA1B4792A6007F87EE /* NSError+BBFoundationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; };
+		74A018ED1B4794D3007F87EE /* NSAlert+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018EB1B4794D3007F87EE /* NSAlert+BBKitExtensions.h */; };
+		74A018EE1B4794D3007F87EE /* NSAlert+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018EC1B4794D3007F87EE /* NSAlert+BBKitExtensions.m */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -444,8 +448,12 @@
 		3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
-		74A018E21B478D03007F87EE /* NSError+BBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BBExtensions.h"; sourceTree = "<group>"; };
-		74A018E31B478D03007F87EE /* NSError+BBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BBExtensions.m"; sourceTree = "<group>"; };
+		74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BBFoundationExtensions.h"; sourceTree = "<group>"; };
+		74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BBFoundationExtensions.m"; sourceTree = "<group>"; };
+		74A018E71B479153007F87EE /* UIAlertController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+BBKitExtensions.h"; sourceTree = "<group>"; };
+		74A018E81B479153007F87EE /* UIAlertController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+BBKitExtensions.m"; sourceTree = "<group>"; };
+		74A018EB1B4794D3007F87EE /* NSAlert+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+BBKitExtensions.h"; sourceTree = "<group>"; };
+		74A018EC1B4794D3007F87EE /* NSAlert+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+BBKitExtensions.m"; sourceTree = "<group>"; };
 		74E230801B3B55C900DE56B3 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		74E230811B3B55C900DE56B3 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
@@ -1172,8 +1180,8 @@
 				7927CF7B1B1AD2B90034288D /* NSString+BBFoundationExtensions.m */,
 				7927CF7C1B1AD2B90034288D /* NSURL+BBFoundationExtensions.h */,
 				7927CF7D1B1AD2B90034288D /* NSURL+BBFoundationExtensions.m */,
-				74A018E21B478D03007F87EE /* NSError+BBExtensions.h */,
-				74A018E31B478D03007F87EE /* NSError+BBExtensions.m */,
+				74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */,
+				74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1223,6 +1231,10 @@
 				79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */,
 				79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */,
 				79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */,
+				74A018E71B479153007F87EE /* UIAlertController+BBKitExtensions.h */,
+				74A018E81B479153007F87EE /* UIAlertController+BBKitExtensions.m */,
+				74A018EB1B4794D3007F87EE /* NSAlert+BBKitExtensions.h */,
+				74A018EC1B4794D3007F87EE /* NSAlert+BBKitExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1343,7 +1355,6 @@
 				79EA816E1B3F228400D50B6B /* BBThumbnailAsyncOperation.h in Headers */,
 				79EA814F1B3F221600D50B6B /* NSBundle+BBFoundationExtensions.h in Headers */,
 				79EA81701B3F228400D50B6B /* BBThumbnailVimeoOperation.h in Headers */,
-				74A018E41B478D03007F87EE /* NSError+BBExtensions.h in Headers */,
 				79EA81781B3F22B000D50B6B /* BBTooltip.h in Headers */,
 				79EA81481B3F21FE00D50B6B /* BBFrameworksFunctions.h in Headers */,
 				79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
@@ -1375,6 +1386,7 @@
 				79EA82C51B3F945700D50B6B /* BBView.h in Headers */,
 				79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */,
 				79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
+				74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */,
 				79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */,
 				79EA81491B3F221600D50B6B /* BBFoundation.h in Headers */,
 				79EA814D1B3F221600D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
@@ -1390,6 +1402,7 @@
 				79EA815C1B3F224E00D50B6B /* BBKitCGImageFunctions.h in Headers */,
 				79EA81511B3F221600D50B6B /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				79EA814A1B3F221600D50B6B /* BBFoundationDebugging.h in Headers */,
+				74A018ED1B4794D3007F87EE /* NSAlert+BBKitExtensions.h in Headers */,
 				0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */,
 				79EA81521B3F221600D50B6B /* NSMutableArray+BBFoundationExtensions.h in Headers */,
 			);
@@ -1862,6 +1875,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A018EA1B4792A6007F87EE /* NSError+BBFoundationExtensions.h in Sources */,
 				79EA80F21B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */,
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
@@ -1876,6 +1890,7 @@
 				79F941551B435C0400B385F0 /* BBAddressBookTableViewController.m in Sources */,
 				0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */,
 				79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
+				74A018E91B479153007F87EE /* UIAlertController+BBKitExtensions.m in Sources */,
 				79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
@@ -1887,7 +1902,7 @@
 				79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */,
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
-				74A018E51B478D03007F87EE /* NSError+BBExtensions.m in Sources */,
+				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,
 				79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */,
@@ -1974,6 +1989,7 @@
 				79EA81791B3F22C300D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA817E1B3F22C300D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79EA81931B3F22FC00D50B6B /* BBThumbnailVimeoOperation.m in Sources */,
+				74A018EE1B4794D3007F87EE /* NSAlert+BBKitExtensions.m in Sources */,
 				79EA817C1B3F22C300D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
 				79EA818D1B3F22FC00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
 				79EA81851B3F22E400D50B6B /* BBBadgeView.m in Sources */,
@@ -1984,7 +2000,7 @@
 				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				79EA82C71B3F945700D50B6B /* BBView.m in Sources */,
-				74A018E61B478D03007F87EE /* NSError+BBExtensions.m in Sources */,
+				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
 				79EA81951B3F22FC00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
 			);

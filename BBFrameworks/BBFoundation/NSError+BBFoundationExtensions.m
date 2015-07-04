@@ -1,8 +1,8 @@
 //
-//  BBFoundation.h
+//  NSError+BBExtensions.m
 //  BBFrameworks
 //
-//  Created by William Towe on 5/13/15.
+//  Created by Jason Anderson on 7/3/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,22 +13,24 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __BB_FRAMEWORKS_FOUNDATION__
-#define __BB_FRAMEWORKS_FOUNDATION__
+#import "NSError+BBFoundationExtensions.h"
 
-#import <BBFrameworks/BBFoundationDebugging.h>
-#import <BBFrameworks/BBFoundationMacros.h>
-#import <BBFrameworks/BBFoundationFunctions.h>
+NSString *const BBErrorAlertTitleKey = @"BBErrorAlertTitleKey";
+NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
 
-#import <BBFrameworks/NSFileManager+BBFoundationExtensions.h>
-#import <BBFrameworks/NSArray+BBFoundationExtensions.h>
-#import <BBFrameworks/NSMutableArray+BBFoundationExtensions.h>
-#import <BBFrameworks/NSData+BBFoundationExtensions.h>
-#import <BBFrameworks/NSString+BBFoundationExtensions.h>
-#import <BBFrameworks/NSBundle+BBFoundationExtensions.h>
-#import <BBFrameworks/NSURL+BBFoundationExtensions.h>
-#import <BBFrameworks/NSError+BBFoundationExtensions.h>
+static NSString *const BBErrorAlertDefaultTitle = @"Error Occurred";
+static NSString *const BBErrorAlertDefaultMessage = @"Override this alert message and title by setting the userInfo dictionary and BBErrorAlertTitleKey and BBErrorAlertMessageKey.";
 
-#import <BBFrameworks/BBSnakeCaseToLlamaCaseValueTransformer.h>
+@implementation NSError (BBFoundationExtensions)
 
-#endif
+- (NSString *)BB_alertTitle
+{
+    return self.userInfo[BBErrorAlertTitleKey] ?: BBErrorAlertDefaultTitle;
+}
+
+- (NSString *)BB_alertMessage
+{
+    return self.userInfo[BBErrorAlertMessageKey] ?: self.userInfo[NSLocalizedDescriptionKey] ?: BBErrorAlertDefaultMessage;
+}
+
+@end
