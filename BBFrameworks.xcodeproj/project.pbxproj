@@ -22,7 +22,6 @@
 		74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
 		74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
-		74A018EA1B4792A6007F87EE /* NSError+BBFoundationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -60,6 +59,15 @@
 		79D5407F1B4B5F01009ECE38 /* NSAlert+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D5407C1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D540801B4B5F0B009ECE38 /* NSAlert+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D5407D1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.m */; };
 		79D540811B4B5F1E009ECE38 /* UIAlertController+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540761B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.h */; };
+		79D5408B1B4B69BD009ECE38 /* NSError+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; };
+		79D5408C1B4B69C2009ECE38 /* BBToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540871B4B662B009ECE38 /* BBToken.h */; };
+		79D5408D1B4B69C4009ECE38 /* BBTokenModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540891B4B670D009ECE38 /* BBTokenModel.h */; };
+		79D540911B4B69F9009ECE38 /* BBTokenTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */; };
+		79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */; };
+		79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540941B4B6E8D009ECE38 /* BBTokenTextView.m */; };
+		79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */; };
+		79D5409B1B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D5409A1B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.m */; };
+		79D5409C1B4B74DA009ECE38 /* NSDictionary+BBTokenModelExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540991B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.h */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
 		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
@@ -353,13 +361,19 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				79D5408C1B4B69C2009ECE38 /* BBToken.h in CopyFiles */,
+				79D5409C1B4B74DA009ECE38 /* NSDictionary+BBTokenModelExtensions.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
+				79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */,
+				79D5408D1B4B69C4009ECE38 /* BBTokenModel.h in CopyFiles */,
+				79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */,
 				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
 				79F941581B435E8900B385F0 /* BBAddressBookTableViewController.h in CopyFiles */,
 				79F941691B437AEB00B385F0 /* BBAddressBookGroup.h in CopyFiles */,
 				79EA80961B3F08E300D50B6B /* UIColor+BBKitExtensions.h in CopyFiles */,
 				79F941591B435E8C00B385F0 /* BBAddressBookPerson.h in CopyFiles */,
 				79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */,
+				79D5408B1B4B69BD009ECE38 /* NSError+BBFoundationExtensions.h in CopyFiles */,
 				072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */,
 				79EA810B1B3F15A400D50B6B /* BBFrameworksConstants.h in CopyFiles */,
 				072800001B433E3400D68D05 /* BBAddressBook.h in CopyFiles */,
@@ -645,6 +659,14 @@
 		79D540791B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BBKitExtensionsPrivate.m"; path = "iOS/UIImage+BBKitExtensionsPrivate.m"; sourceTree = "<group>"; };
 		79D5407C1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAlert+BBKitExtensions.h"; path = "OSX/NSAlert+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D5407D1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAlert+BBKitExtensions.m"; path = "OSX/NSAlert+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79D540871B4B662B009ECE38 /* BBToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBToken.h; sourceTree = "<group>"; };
+		79D540891B4B670D009ECE38 /* BBTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenModel.h; sourceTree = "<group>"; };
+		79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenTextAttachment.h; sourceTree = "<group>"; };
+		79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenTextAttachment.m; sourceTree = "<group>"; };
+		79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenTextView.h; sourceTree = "<group>"; };
+		79D540941B4B6E8D009ECE38 /* BBTokenTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenTextView.m; sourceTree = "<group>"; };
+		79D540991B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBTokenModelExtensions.h"; sourceTree = "<group>"; };
+		79D5409A1B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBTokenModelExtensions.m"; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
 		79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRowViewController.m; sourceTree = "<group>"; };
 		79DD3E7D1B337B6F00EF4E44 /* BBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGradientView.h; sourceTree = "<group>"; };
@@ -819,6 +841,7 @@
 		7927CF5C1B1AD29A0034288D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				79D540821B4B62CC009ECE38 /* BBTokenField */,
 				7927CF691B1AD2B90034288D /* BBFoundation */,
 				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
@@ -1288,6 +1311,22 @@
 				79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		79D540821B4B62CC009ECE38 /* BBTokenField */ = {
+			isa = PBXGroup;
+			children = (
+				79D540871B4B662B009ECE38 /* BBToken.h */,
+				79D540891B4B670D009ECE38 /* BBTokenModel.h */,
+				79D540991B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.h */,
+				79D5409A1B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.m */,
+				79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */,
+				79D540941B4B6E8D009ECE38 /* BBTokenTextView.m */,
+				79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */,
+				79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */,
+			);
+			name = BBTokenField;
+			path = BBToken;
 			sourceTree = "<group>";
 		};
 		79E0BBFF1B27B49000892D81 /* Classes */ = {
@@ -1877,7 +1916,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74A018EA1B4792A6007F87EE /* NSError+BBFoundationExtensions.h in Sources */,
 				79EA80F21B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				79D5407A1B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m in Sources */,
 				79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */,
@@ -1919,6 +1957,8 @@
 				79EA80E11B3F0D1B00D50B6B /* BBThumbnailRTFOperation.m in Sources */,
 				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
+				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
+				79D5409B1B4B7461009ECE38 /* NSDictionary+BBTokenModelExtensions.m in Sources */,
 				79EA80E71B3F0D1B00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
@@ -1926,6 +1966,7 @@
 				79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */,
 				79EA82C61B3F945700D50B6B /* BBView.m in Sources */,
 				79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */,
+				79D540911B4B69F9009ECE38 /* BBTokenTextAttachment.m in Sources */,
 				79EA80ED1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewController.m in Sources */,
 				79EA80DF1B3F0D1B00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
 				79EA80E91B3F0D2F00D50B6B /* BBMediaPickerViewModel.m in Sources */,
