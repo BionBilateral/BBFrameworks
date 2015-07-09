@@ -297,7 +297,14 @@ static CGFloat const kSpringDamping = 0.5;
 @implementation UIViewController (BBTooltipViewControllerExtensions)
 
 - (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView; {
-    BBTooltipViewController *viewController = [[BBTooltipViewController alloc] init];
+    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView tooltipViewControllerClass:Nil];
+}
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView; {
+    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView tooltipViewControllerClass:Nil];
+}
+
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
+    BBTooltipViewController *viewController = [[tooltipViewControllerClass ?: [BBTooltipViewController class] alloc] init];
     _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
     
     [dataSource setText:text];
@@ -309,8 +316,8 @@ static CGFloat const kSpringDamping = 0.5;
     
     [self presentViewController:viewController animated:YES completion:nil];
 }
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView; {
-    BBTooltipViewController *viewController = [[BBTooltipViewController alloc] init];
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
+    BBTooltipViewController *viewController = [[tooltipViewControllerClass ?: [BBTooltipViewController class] alloc] init];
     _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
     
     [dataSource setAttributedText:attributedText];

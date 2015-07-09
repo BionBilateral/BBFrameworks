@@ -12,6 +12,11 @@
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
+		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
+		07CE802D1B4EE78800F5729E /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* TextFieldViewController.m */; };
+		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
+		07CE80321B4EFC8900F5729E /* BBTextFieldErrorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE802F1B4EFA9800F5729E /* BBTextFieldErrorView.h */; };
+		07CE80331B4EFCA700F5729E /* BBTextFieldErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80301B4EFA9800F5729E /* BBTextFieldErrorView.m */; };
 		07E3E5091B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
@@ -364,6 +369,8 @@
 				79D5408C1B4B69C2009ECE38 /* BBToken.h in CopyFiles */,
 				79D5409C1B4B74DA009ECE38 /* NSDictionary+BBTokenModelExtensions.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
+				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
+				07CE80321B4EFC8900F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */,
 				79D5408D1B4B69C4009ECE38 /* BBTokenModel.h in CopyFiles */,
 				79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */,
@@ -456,6 +463,12 @@
 		07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerFullscreenTopView.m; sourceTree = "<group>"; };
 		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
 		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
+		07CE80281B4EDBC100F5729E /* BBTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextField.h; path = iOS/BBTextField.h; sourceTree = "<group>"; };
+		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
+		07CE802B1B4EE78800F5729E /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
+		07CE802C1B4EE78800F5729E /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
+		07CE802F1B4EFA9800F5729E /* BBTextFieldErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextFieldErrorView.h; path = iOS/BBTextFieldErrorView.h; sourceTree = "<group>"; };
+		07CE80301B4EFA9800F5729E /* BBTextFieldErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextFieldErrorView.m; path = iOS/BBTextFieldErrorView.m; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1128,6 +1141,8 @@
 				79F941501B435AA300B385F0 /* AddressBookViewController.h */,
 				79F941511B435AA300B385F0 /* AddressBookViewController.m */,
 				79F941561B435D3400B385F0 /* AddressBookViewController.xib */,
+				07CE802B1B4EE78800F5729E /* TextFieldViewController.h */,
+				07CE802C1B4EE78800F5729E /* TextFieldViewController.m */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworksiOSDemo;
@@ -1220,6 +1235,10 @@
 				79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */,
 				79EA82C31B3F945700D50B6B /* BBView.h */,
 				79EA82C41B3F945700D50B6B /* BBView.m */,
+				07CE80281B4EDBC100F5729E /* BBTextField.h */,
+				07CE80291B4EDBC100F5729E /* BBTextField.m */,
+				07CE802F1B4EFA9800F5729E /* BBTextFieldErrorView.h */,
+				07CE80301B4EFA9800F5729E /* BBTextFieldErrorView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1896,6 +1915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07CE802D1B4EE78800F5729E /* TextFieldViewController.m in Sources */,
 				79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */,
 				7989DD511B345A2D0001F7C3 /* AssetsPickerViewController.m in Sources */,
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
@@ -1934,6 +1954,7 @@
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
 				79EA80D71B3F0CF300D50B6B /* UIImage+BBKitExtensions.m in Sources */,
+				07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */,
 				79EA80C61B3F0CCD00D50B6B /* NSArray+BBFoundationExtensions.m in Sources */,
 				79EA80F51B3F0D4B00D50B6B /* BBMoviePlayerView.m in Sources */,
 				79EA80DE1B3F0D1B00D50B6B /* BBThumbnailImageOperation.m in Sources */,
@@ -1942,6 +1963,7 @@
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
+				07CE80331B4EFCA700F5729E /* BBTextFieldErrorView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,

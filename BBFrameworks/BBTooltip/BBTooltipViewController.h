@@ -79,4 +79,21 @@
  */
 - (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView;
 
+/**
+ Presents a BBTooltipViewController with a single tooltip containing text.
+ 
+ @param text The text of the tooltip
+ @param attachmentView The attachment view for the tooltip
+ @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
+ */
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass;
+/**
+ Presents a BBTooltipViewController with a single tooltip containing attributed text.
+ 
+ @param attributedText The attributed text of the tooltip
+ @param attachmentView The attachment view for the tooltip
+ @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
+ */
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass;
+
 @end
