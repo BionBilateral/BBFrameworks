@@ -15,11 +15,29 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ BBTextField is a UITextField subclass that adds edge insets related methods to control the placement of text. This eliminates the need to use padding views as the left and right views of the receiver.
+ */
 @interface BBTextField : UITextField
 
+/**
+ Set and get the text edge insets of the receiver. This value affects the return values of textRectForBounds: and editingRectForBounds:.
+ 
+ The default is UIEdgeInsetsZero.
+ */
 @property (assign,nonatomic) UIEdgeInsets textEdgeInsets UI_APPEARANCE_SELECTOR;
 
+/**
+ Set and get the left view edge insets of the receiver. This value affects the return value of leftViewRectForBounds:.
+ 
+ The default is UIEdgeInsetsZero.
+ */
 @property (assign,nonatomic) UIEdgeInsets leftViewEdgeInsets UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the right view edge insets of the receiver. This value affects the return value of rightViewRectForBounds:.
+ 
+ The default is UIEdgeInsetsZero.
+ */
 @property (assign,nonatomic) UIEdgeInsets rightViewEdgeInsets UI_APPEARANCE_SELECTOR;
 
 @end
