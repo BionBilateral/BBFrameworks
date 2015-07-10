@@ -21,7 +21,7 @@
 #import "AssetsPickerViewController.h"
 #import "MediaPlayerViewController.h"
 #import "AddressBookViewController.h"
-#import "TextFieldViewController.h"
+#import "FormViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -38,7 +38,7 @@
         return nil;
     
     [self setRowClasses:@[[ViewsRowViewController class],
-                          [TextFieldViewController class],
+                          [FormViewController class],
                           [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class],

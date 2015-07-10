@@ -16,6 +16,6 @@
 #import <UIKit/UIKit.h>
 #import "TableViewControllerRowClass.h"
 
-@interface TextFieldViewController : UIViewController <TableViewControllerRowClass>
+@interface FormViewController : UIViewController <TableViewControllerRowClass>
 
 @end

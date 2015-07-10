@@ -13,7 +13,7 @@
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
-		07CE802D1B4EE78800F5729E /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* TextFieldViewController.m */; };
+		07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* FormViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
 		07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */; };
 		07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */; };
@@ -467,8 +467,8 @@
 		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		07CE80281B4EDBC100F5729E /* BBTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextField.h; path = iOS/BBTextField.h; sourceTree = "<group>"; };
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
-		07CE802B1B4EE78800F5729E /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
-		07CE802C1B4EE78800F5729E /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
+		07CE802B1B4EE78800F5729E /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
+		07CE802C1B4EE78800F5729E /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
 		07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextFieldErrorView.h; sourceTree = "<group>"; };
 		07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextFieldErrorView.m; sourceTree = "<group>"; };
 		07CE80441B5060DC00F5729E /* BBForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBForm.h; sourceTree = "<group>"; };
@@ -1155,8 +1155,8 @@
 				79F941501B435AA300B385F0 /* AddressBookViewController.h */,
 				79F941511B435AA300B385F0 /* AddressBookViewController.m */,
 				79F941561B435D3400B385F0 /* AddressBookViewController.xib */,
-				07CE802B1B4EE78800F5729E /* TextFieldViewController.h */,
-				07CE802C1B4EE78800F5729E /* TextFieldViewController.m */,
+				07CE802B1B4EE78800F5729E /* FormViewController.h */,
+				07CE802C1B4EE78800F5729E /* FormViewController.m */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworksiOSDemo;
@@ -1926,7 +1926,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07CE802D1B4EE78800F5729E /* TextFieldViewController.m in Sources */,
+				07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */,
 				79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */,
 				7989DD511B345A2D0001F7C3 /* AssetsPickerViewController.m in Sources */,
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
