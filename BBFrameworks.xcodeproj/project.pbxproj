@@ -20,7 +20,7 @@
 		07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80441B5060DC00F5729E /* BBForm.h */; };
 		07CE80481B50654100F5729E /* BBPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80471B50654100F5729E /* BBPickerButton.m */; };
 		07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80461B50654100F5729E /* BBPickerButton.h */; };
-		07CE804B1B5065BA00F5729E /* BBPickerButtonDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE804A1B5065B600F5729E /* BBPickerButtonDataSource.h */; };
+		07CE804D1B50677D00F5729E /* BBPickerButtonDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */; };
 		07E3E5091B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
@@ -373,7 +373,6 @@
 				79D5408C1B4B69C2009ECE38 /* BBToken.h in CopyFiles */,
 				79D5409C1B4B74DA009ECE38 /* NSDictionary+BBTokenModelExtensions.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
-				07CE804B1B5065BA00F5729E /* BBPickerButtonDataSource.h in CopyFiles */,
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
 				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
 				79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */,
@@ -425,6 +424,7 @@
 				79EA80951B3F08E100D50B6B /* UIBarButtonItem+BBKitExtensions.h in CopyFiles */,
 				79EA80981B3F08E700D50B6B /* UIImage+BBKitExtensions.h in CopyFiles */,
 				79EA80991B3F08E900D50B6B /* UIView+BBKitExtensions.h in CopyFiles */,
+				07CE804D1B50677D00F5729E /* BBPickerButtonDataSource.h in CopyFiles */,
 				79EA80971B3F08E600D50B6B /* UIFont+BBKitExtensions.h in CopyFiles */,
 				79EA809A1B3F08EB00D50B6B /* UIViewController+BBKitExtensions.h in CopyFiles */,
 				79EA80941B3F08DF00D50B6B /* NSURL+BBKitExtensions.h in CopyFiles */,
@@ -479,7 +479,7 @@
 		07CE80441B5060DC00F5729E /* BBForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBForm.h; sourceTree = "<group>"; };
 		07CE80461B50654100F5729E /* BBPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButton.h; path = iOS/BBPickerButton.h; sourceTree = "<group>"; };
 		07CE80471B50654100F5729E /* BBPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBPickerButton.m; path = iOS/BBPickerButton.m; sourceTree = "<group>"; };
-		07CE804A1B5065B600F5729E /* BBPickerButtonDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBPickerButtonDataSource.h; sourceTree = "<group>"; };
+		07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButtonDataSource.h; path = iOS/BBPickerButtonDataSource.h; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1259,7 +1259,7 @@
 				79EA82C41B3F945700D50B6B /* BBView.m */,
 				07CE80281B4EDBC100F5729E /* BBTextField.h */,
 				07CE80291B4EDBC100F5729E /* BBTextField.m */,
-				07CE804A1B5065B600F5729E /* BBPickerButtonDataSource.h */,
+				07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */,
 				07CE80461B50654100F5729E /* BBPickerButton.h */,
 				07CE80471B50654100F5729E /* BBPickerButton.m */,
 			);
