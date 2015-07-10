@@ -106,4 +106,8 @@ A library that wraps a WKWebView for convenient in app display. The principal cl
 
 ###BBTooltip
 
-A library the facilitates the display of tooltips within an app. Similar to the Facebook app. The principal classes are BBTooltipViewController and BBTooltipView.
+A library that facilitates the display of tooltips within an app. Similar to the Facebook app. The principal classes are BBTooltipViewController and BBTooltipView.
+
+###BBForm
+
+A library that facilitates the creation and display of settings style views.

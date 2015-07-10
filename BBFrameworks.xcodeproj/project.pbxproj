@@ -15,8 +15,9 @@
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
 		07CE802D1B4EE78800F5729E /* TextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* TextFieldViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
-		07CE80321B4EFC8900F5729E /* BBTextFieldErrorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE802F1B4EFA9800F5729E /* BBTextFieldErrorView.h */; };
-		07CE80331B4EFCA700F5729E /* BBTextFieldErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80301B4EFA9800F5729E /* BBTextFieldErrorView.m */; };
+		07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */; };
+		07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */; };
+		07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80441B5060DC00F5729E /* BBForm.h */; };
 		07E3E5091B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
@@ -370,10 +371,11 @@
 				79D5409C1B4B74DA009ECE38 /* NSDictionary+BBTokenModelExtensions.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
-				07CE80321B4EFC8900F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */,
+				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				79D5408D1B4B69C4009ECE38 /* BBTokenModel.h in CopyFiles */,
 				79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */,
+				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				79EA80A21B3F092900D50B6B /* BBReactiveThumbnail.h in CopyFiles */,
 				79F941581B435E8900B385F0 /* BBAddressBookTableViewController.h in CopyFiles */,
 				79F941691B437AEB00B385F0 /* BBAddressBookGroup.h in CopyFiles */,
@@ -467,8 +469,9 @@
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
 		07CE802B1B4EE78800F5729E /* TextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldViewController.h; sourceTree = "<group>"; };
 		07CE802C1B4EE78800F5729E /* TextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldViewController.m; sourceTree = "<group>"; };
-		07CE802F1B4EFA9800F5729E /* BBTextFieldErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextFieldErrorView.h; path = iOS/BBTextFieldErrorView.h; sourceTree = "<group>"; };
-		07CE80301B4EFA9800F5729E /* BBTextFieldErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextFieldErrorView.m; path = iOS/BBTextFieldErrorView.m; sourceTree = "<group>"; };
+		07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextFieldErrorView.h; sourceTree = "<group>"; };
+		07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextFieldErrorView.m; sourceTree = "<group>"; };
+		07CE80441B5060DC00F5729E /* BBForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBForm.h; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -817,6 +820,16 @@
 			path = BBAddressBook;
 			sourceTree = "<group>";
 		};
+		07CE803F1B50608900F5729E /* BBForm */ = {
+			isa = PBXGroup;
+			children = (
+				07CE80441B5060DC00F5729E /* BBForm.h */,
+				07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */,
+				07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */,
+			);
+			path = BBForm;
+			sourceTree = "<group>";
+		};
 		76E18D0A91AEB5D129F5F3EC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +879,7 @@
 				79B4FF9B1B363F1F007B8629 /* BBWebKit */,
 				79B4FFC21B3647DD007B8629 /* BBTooltip */,
 				79D540821B4B62CC009ECE38 /* BBToken */,
+				07CE803F1B50608900F5729E /* BBForm */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -1237,8 +1251,6 @@
 				79EA82C41B3F945700D50B6B /* BBView.m */,
 				07CE80281B4EDBC100F5729E /* BBTextField.h */,
 				07CE80291B4EDBC100F5729E /* BBTextField.m */,
-				07CE802F1B4EFA9800F5729E /* BBTextFieldErrorView.h */,
-				07CE80301B4EFA9800F5729E /* BBTextFieldErrorView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1962,7 +1974,7 @@
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
-				07CE80331B4EFCA700F5729E /* BBTextFieldErrorView.m in Sources */,
+				07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,

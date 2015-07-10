@@ -16,6 +16,7 @@
 #import "TextFieldViewController.h"
 
 #import <BBFrameworks/BBKit.h>
+#import <BBFrameworks/BBForm.h>
 
 @interface TextFieldViewController ()
 @property (strong,nonatomic) BBTextField *textField;
@@ -83,7 +84,7 @@
 }
 
 + (NSString *)rowClassTitle {
-    return @"Text Fields";
+    return @"Forms";
 }
 
 @end
