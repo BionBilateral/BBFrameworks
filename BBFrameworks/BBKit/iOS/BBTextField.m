@@ -62,6 +62,22 @@
     return CGRectMake(CGRectGetWidth(bounds) - self.rightViewEdgeInsets.right - CGRectGetWidth(retval), CGRectGetMinY(retval), CGRectGetWidth(retval), CGRectGetHeight(retval));
 }
 
+- (void)setTextEdgeInsets:(UIEdgeInsets)textEdgeInsets {
+    _textEdgeInsets = textEdgeInsets;
+    
+    [self setNeedsLayout];
+}
+- (void)setLeftViewEdgeInsets:(UIEdgeInsets)leftViewEdgeInsets {
+    _leftViewEdgeInsets = leftViewEdgeInsets;
+    
+    [self setNeedsLayout];
+}
+- (void)setRightViewEdgeInsets:(UIEdgeInsets)rightViewEdgeInsets {
+    _rightViewEdgeInsets = rightViewEdgeInsets;
+    
+    [self setNeedsLayout];
+}
+
 - (void)_BBTextFieldInit; {
     
 }
