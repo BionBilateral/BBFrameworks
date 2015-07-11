@@ -18,9 +18,11 @@
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
 
-@interface FormViewController ()
+@interface FormViewController () <BBPickerButtonDataSource>
 @property (strong,nonatomic) BBTextField *textField;
+@property (strong,nonatomic) BBPickerButton *pickerButton;
 
+@property (readonly,nonatomic) NSArray *pickerButtonRowTitles;
 @end
 
 @implementation FormViewController
@@ -73,9 +75,15 @@
     })];
     [self.textField setRightViewEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 8.0)];
     [self.view addSubview:self.textField];
+    
+    [self setPickerButton:[[BBPickerButton alloc] initWithFrame:CGRectZero]];
+    [self.pickerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.pickerButton setDataSource:self];
+    [self.view addSubview:self.pickerButton];
 }
 - (void)viewDidLayoutSubviews {
     [self.textField setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - 16.0, 44.0)];
+    [self.pickerButton setFrame:CGRectMake(CGRectGetMinX(self.textField.frame), CGRectGetMaxY(self.textField.frame) + 8.0, CGRectGetWidth(self.textField.frame), 44.0)];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -83,8 +91,23 @@
     [self.textField becomeFirstResponder];
 }
 
+- (NSInteger)pickerButton:(BBPickerButton *)pickerButton numberOfRowsInComponent:(NSInteger)component {
+    return self.pickerButtonRowTitles.count;
+}
+- (NSString *)pickerButton:(BBPickerButton *)pickerButton titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.pickerButtonRowTitles[row];
+}
+
 + (NSString *)rowClassTitle {
     return @"Forms";
+}
+
+- (NSArray *)pickerButtonRowTitles {
+    return @[@"one",
+             @"two",
+             @"three",
+             @"four",
+             @"five"];
 }
 
 @end
