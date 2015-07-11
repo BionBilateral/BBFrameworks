@@ -1,5 +1,5 @@
 //
-//  BBPickerButtonDataSource.h
+//  BBPickerButtonDelegate.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/10/15.
@@ -18,49 +18,16 @@
 @class BBPickerButton;
 
 /**
- Protocol for BBPickerButton data source.
+ Protocol for BBPickerButton delegate.
  */
-@protocol BBPickerButtonDataSource <NSObject>
-@required
-/**
- Return the number of rows in the provided component.
- 
- @param pickerButton The picker button that sent the message
- @param component The component
- @return The number of rows
- */
-- (NSInteger)pickerButton:(BBPickerButton *)pickerButton numberOfRowsInComponent:(NSInteger)component;
+@protocol BBPickerButtonDelegate <NSObject>
 @optional
 /**
- Return the number of components in the picker button.
- 
- The default is 1.
+ Called when the managed picker view selection changes.
  
  @param pickerButton The picker button that sent the message
- @return The number of components
+ @param row The selected row
+ @param component The selected component
  */
-- (NSInteger)numberOfComponentsInPickerButton:(BBPickerButton *)pickerButton;
-
-/**
- Return the title for the provided row and component.
- 
- The default is @"".
- 
- @param pickerButton The picker button that sent the message
- @param row The row
- @param component The component
- @return The title for row and component
- */
-- (NSString *)pickerButton:(BBPickerButton *)pickerButton titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-/**
- Return the attributed title for the provided row and component.
- 
- If this method is implemented, it is preferred over `pickerButton:titleForRow:forComponent`.
- 
- @param pickerButton The picker button that sent the message
- @param row The row
- @param component The component
- @return The attributed title for row and component
- */
-- (NSAttributedString *)pickerButton:(BBPickerButton *)pickerButton attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (void)pickerButton:(BBPickerButton *)pickerButton didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 @end
