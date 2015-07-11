@@ -21,6 +21,7 @@
 @interface FormViewController () <BBPickerButtonDataSource>
 @property (strong,nonatomic) BBTextField *textField;
 @property (strong,nonatomic) BBPickerButton *pickerButton;
+@property (strong,nonatomic) BBDatePickerButton *datePickerButton;
 
 @property (readonly,nonatomic) NSArray *pickerButtonRowTitles;
 @end
@@ -80,10 +81,15 @@
     [self.pickerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.pickerButton setDataSource:self];
     [self.view addSubview:self.pickerButton];
+    
+    [self setDatePickerButton:[[BBDatePickerButton alloc] initWithFrame:CGRectZero]];
+    [self.datePickerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.view addSubview:self.datePickerButton];
 }
 - (void)viewDidLayoutSubviews {
     [self.textField setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - 16.0, 44.0)];
     [self.pickerButton setFrame:CGRectMake(CGRectGetMinX(self.textField.frame), CGRectGetMaxY(self.textField.frame) + 8.0, CGRectGetWidth(self.textField.frame), 44.0)];
+    [self.datePickerButton setFrame:CGRectMake(CGRectGetMinX(self.textField.frame), CGRectGetMaxY(self.pickerButton.frame) + 8.0, CGRectGetWidth(self.textField.frame), 44.0)];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

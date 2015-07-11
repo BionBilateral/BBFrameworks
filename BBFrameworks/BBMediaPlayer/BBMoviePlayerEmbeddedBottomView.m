@@ -17,8 +17,8 @@
 #import "BBMoviePlayerController.h"
 #import "BBMediaPlayerDefines.h"
 #import "BBMoviePlayerSliderView.h"
-#import "BBKit.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
+#import "UIImage+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 

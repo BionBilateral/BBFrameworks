@@ -27,6 +27,5 @@
 #import <BBFrameworks/BBMediaPlayer.h>
 #import <BBFrameworks/BBWebKit.h>
 #import <BBFrameworks/BBTooltip.h>
-#import <BBFrameworks/BBToken.h>
 
 #endif

@@ -1,8 +1,8 @@
 //
-//  BBKit.h
+//  BBDatePickerButton.h
 //  BBFrameworks
 //
-//  Created by William Towe on 5/13/15.
+//  Created by William Towe on 7/11/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,29 +13,45 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __BB_FRAMEWORKS_KIT__
-#define __BB_FRAMEWORKS_KIT__
+#import <UIKit/UIKit.h>
 
-#import <BBFrameworks/BBKitColorMacros.h>
+/**
+ BBDatePickerButton is a UIButton subclass that can become first responder and uses a UIDatePickerView as its input view. Tapping on a BBDatePickerButton will toggle its first responder status.
+ */
+@interface BBDatePickerButton : UIButton
 
-#import <BBFrameworks/NSURL+BBKitExtensions.h>
-#if (TARGET_OS_IPHONE)
-#import <BBFrameworks/UIImage+BBKitExtensions.h>
-#import <BBFrameworks/UIView+BBKitExtensions.h>
-#import <BBFrameworks/UIViewController+BBKitExtensions.h>
-#import <BBFrameworks/UIFont+BBKitExtensions.h>
-#import <BBFrameworks/UIBarButtonItem+BBKitExtensions.h>
-#import <BBFrameworks/UIAlertController+BBKitExtensions.h>
+/**
+ Set and get the date of the receiver.
+ 
+ The default is [NSDate date].
+ */
+@property (copy,nonatomic) NSDate *date;
 
-#import <BBFrameworks/BBTextField.h>
-#import <BBFrameworks/BBPickerButton.h>
-#import <BBFrameworks/BBDatePickerButton.h>
-#else
-#import <BBFrameworks/NSImage+BBKitExtensions.h>
-#import <BBFrameworks/NSAlert+BBKitExtensions.h>
-#endif
+/**
+ Set and get the mode used by the managed date picker view.
+ 
+ The default is UIDatePickerModeDateAndTime.
+ */
+@property (assign,nonatomic) UIDatePickerMode mode;
 
-#import <BBFrameworks/BBBadgeView.h>
-#import <BBFrameworks/BBGradientView.h>
-#import <BBFrameworks/BBView.h>
-#endif
+/**
+ Set and get the minimum date of the managed date picker view.
+ 
+ The default is nil.
+ */
+@property (copy,nonatomic) NSDate *minimumDate;
+/**
+ Set and get the maximum date of the managed date picker view.
+ 
+ The default is nil.
+ */
+@property (copy,nonatomic) NSDate *maximumDate;
+
+/**
+ Set and get the date formatter used to format the date of the receiver for display.
+ 
+ The default is a NSDateFormatter with date style and time style set to NSDateFormatterMediumStyle.
+ */
+@property (strong,nonatomic) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
+
+@end
