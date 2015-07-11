@@ -1,6 +1,9 @@
 ##BBFrameworks
 
-![travis-ci build status](https://travis-ci.org/BionBilateral/BBFrameworks.svg?branch=master)
+[![Build Status](https://travis-ci.org/BionBilateral/BBFrameworks.svg)](https://travis-ci.org/BionBilateral/BBFrameworks)
+ [![Version](http://img.shields.io/cocoapods/v/BBFrameworks.svg)](http://cocoapods.org/?q=BBFrameworks)
+ [![Platform](http://img.shields.io/cocoapods/p/BBFrameworks.svg)]()
+ [![License](http://img.shields.io/cocoapods/l/BBFrameworks.svg)](https://github.com/BionBilateral/BBFrameworks/blob/master/license.txt)
 
 Repository for common iOS/OSX categories, classes, and functions.
 

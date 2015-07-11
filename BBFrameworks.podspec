@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.0.1"
+  spec.version = "0.1.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -134,17 +134,5 @@ Pod::Spec.new do |spec|
     
     subspec.ios.source_files = "BBFrameworks/BBTooltip"
     subspec.osx.source_files = "BBFrameworks/BBTooltip/BBTooltip.h"
-  end
-  
-  spec.subspec "BBForm" do |subspec|
-    subspec.ios.dependency "Archimedes", "~> 1.1.0"
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
-    
-    subspec.ios.dependency "BBFrameworks/BBKit"
-    subspec.ios.dependency "BBFrameworks/BBTooltip"
-    
-    subspec.ios.source_files = "BBFrameworks/BBForm"
-    subspec.osx.source_files = "BBFrameworks/BBForm/BBForm.h"
   end
 end
