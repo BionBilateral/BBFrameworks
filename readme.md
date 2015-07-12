@@ -114,3 +114,7 @@ A library that facilitates the display of tooltips within an app. Similar to the
 ###BBForm
 
 A library that facilitates the creation and display of settings style views.
+
+###BBToken
+
+A collection of classes that mirror the functionality provided by NSTextField on OSX. The principal class is BBTokenTextView.
