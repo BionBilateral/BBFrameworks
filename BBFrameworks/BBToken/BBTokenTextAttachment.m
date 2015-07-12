@@ -15,7 +15,6 @@
 
 #import "BBTokenTextAttachment.h"
 #import "BBTokenTextView.h"
-#import "BBFoundationDebugging.h"
 
 @interface BBTokenTextAttachment ()
 @property (readwrite,weak,nonatomic) BBTokenTextView *tokenTextView;
