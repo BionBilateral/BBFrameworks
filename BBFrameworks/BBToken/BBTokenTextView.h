@@ -16,17 +16,50 @@
 #import <UIKit/UIKit.h>
 #import "BBTokenTextViewDelegate.h"
 
+/**
+ BBTokenTextView is a UITextView subclass that acts like NSTokenField on OSX.
+ */
 @interface BBTokenTextView : UITextView
 
+/**
+ Set and get the delegate of the receiver.
+ 
+ @see BBTokenTextViewDelegate
+ */
 @property (weak,nonatomic) id<BBTokenTextViewDelegate> delegate;
 
+/**
+ Set and get the represented objects of the receiver.
+ 
+ These can either be NSString objects or custom model objects. If custom model objects are provided, the delegate should implement `tokenTextView:representedObjectForEditingText:` and `tokenTextView:displayTextForRepresentedObject:`.
+ */
 @property (copy,nonatomic) NSArray *representedObjects;
 
+/**
+ Set and get the character set used to delimit tokens.
+ 
+ The default is [NSCharacterSet characterSetWithCharactersInString:@","].
+ */
 @property (copy,nonatomic) NSCharacterSet *tokenizingCharacterSet;
 
+/**
+ Set and get the NSTextAttachment class used to draw tokens.
+ 
+ The default is BBTokenTextAttachment.
+ */
 @property (strong,nonatomic) Class tokenTextAttachmentClass UI_APPEARANCE_SELECTOR;
 
+/**
+ Set and get the typing font of the receiver. Set this instead of the font of the receiver.
+ 
+ The default is [UIFont systemFontOfSize:14.0].
+ */
 @property (strong,nonatomic) UIFont *typingFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the typing text color of the receiver. Set this instead of the text color of the receiver.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic) UIColor *typingTextColor UI_APPEARANCE_SELECTOR;
 
 @end

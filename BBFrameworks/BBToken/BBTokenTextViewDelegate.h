@@ -17,9 +17,34 @@
 
 @class BBTokenTextView;
 
+/**
+ Protocol for BBTokenTextView delegate.
+ */
 @protocol BBTokenTextViewDelegate <UITextViewDelegate>
 @optional
+/**
+ Return the filtered array of represented objects from the array of provided represented objects that should be added to the token text view.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param representedObjects The representedObjects that will be added to the token text view
+ @param index The index in the receiver's represented objects array that the new represented objects will be inserted
+ @return The filtered array of represented objects, return an empty array to prevent adding represented objects
+ */
 - (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView shouldAddRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index;
+/**
+ Return the represented object for the current editing text. If this method is not implemented or returns nil, the editing text is used as the represented object.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param editingText The current editing text
+ @return The represented object for editing text
+ */
 - (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForEditingText:(NSString *)editingText;
+/**
+ Return the display text for the provided represented object. If this method is not implemented or returns nil, the return value of the represented object's description method is used.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param representedObject The represented object
+ @return The display text for the represented object
+ */
 - (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
 @end
