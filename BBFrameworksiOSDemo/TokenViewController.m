@@ -61,7 +61,7 @@
 - (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForEditingText:(NSString *)editingText {
     TokenModel *retval = [[TokenModel alloc] init];
     
-    [retval setString:[NSString stringWithFormat:@"%p %@",retval,editingText]];
+    [retval setString:editingText];
     
     return retval;
 }
