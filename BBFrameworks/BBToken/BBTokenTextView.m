@@ -16,6 +16,8 @@
 #import "BBTokenTextView.h"
 #import "BBTokenTextAttachment.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+
 @interface _BBTokenTextViewInternalDelegate : NSObject <BBTokenTextViewDelegate>
 @property (weak,nonatomic) id<BBTokenTextViewDelegate> delegate;
 @end
@@ -85,8 +87,8 @@ static void *kObservingContext = &kObservingContext;
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (action == @selector(selectAll:) ||
-        action == @selector(select:)) {
+    if (action == @selector(cut:) ||
+        action == @selector(copy:)) {
         return NO;
     }
     return [super canPerformAction:action withSender:sender];
@@ -97,6 +99,10 @@ static void *kObservingContext = &kObservingContext;
     [self.internalDelegate setDelegate:delegate];
     
     [super setDelegate:self.internalDelegate];
+}
+
+- (void)paste:(id)sender {
+    [self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:[[NSAttributedString alloc] initWithString:[[UIPasteboard generalPasteboard] valueForPasteboardType:(__bridge NSString *)kUTTypePlainText] attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}]];
 }
 #pragma mark UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -140,7 +146,7 @@ static void *kObservingContext = &kObservingContext;
                 NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
                 
                 for (id obj in representedObjects) {
-                    NSString *displayText = obj;
+                    NSString *displayText = [obj description];
                     
                     if ([self.delegate respondsToSelector:@selector(tokenTextView:displayTextForRepresentedObject:)]) {
                         displayText = [self.delegate tokenTextView:self displayTextForRepresentedObject:obj];

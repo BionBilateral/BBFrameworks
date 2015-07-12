@@ -18,6 +18,14 @@
 #import <BBFrameworks/BBToken.h>
 #import <BBFrameworks/BBFoundation.h>
 
+@interface TokenModel : NSObject
+@property (copy,nonatomic) NSString *string;
+@end
+
+@implementation TokenModel
+
+@end
+
 @interface TokenViewController () <BBTokenTextViewDelegate>
 @property (strong,nonatomic) BBTokenTextView *tokenTextView;
 @end
@@ -48,6 +56,28 @@
     [super viewDidAppear:animated];
     
     [self.tokenTextView becomeFirstResponder];
+}
+
+- (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForEditingText:(NSString *)editingText {
+    TokenModel *retval = [[TokenModel alloc] init];
+    
+    [retval setString:[NSString stringWithFormat:@"%p %@",retval,editingText]];
+    
+    return retval;
+}
+- (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView shouldAddRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index {
+    NSMutableArray *retval = [representedObjects mutableCopy];
+    
+    for (TokenModel *model in representedObjects) {
+        if ([model.string rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"@"]].length == 0) {
+            [retval removeObject:model];
+        }
+    }
+    
+    return retval;
+}
+- (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject {
+    return [(TokenModel *)representedObject string];
 }
 
 + (NSString *)rowClassTitle {

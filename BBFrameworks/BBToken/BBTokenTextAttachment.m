@@ -55,7 +55,7 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect)), NO, 0);
     
     [self.tokenBackgroundColor setFill];
-    [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 0) cornerRadius:self.tokenCornerRadius] fill];
+    [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 1.0) cornerRadius:self.tokenCornerRadius] fill];
     
     [text drawAtPoint:CGPointMake(3.0, 0) withAttributes:@{NSFontAttributeName: self.tokenFont, NSForegroundColorAttributeName: self.tokenTextColor}];
     
