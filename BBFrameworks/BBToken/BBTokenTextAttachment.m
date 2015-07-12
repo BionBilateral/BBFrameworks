@@ -15,10 +15,11 @@
 
 #import "BBTokenTextAttachment.h"
 #import "BBTokenTextView.h"
+#import "BBFoundationDebugging.h"
 
 @interface BBTokenTextAttachment ()
-@property (readwrite,strong,nonatomic) id<BBTokenModel> tokenModel;
 @property (readwrite,weak,nonatomic) BBTokenTextView *tokenTextView;
+@property (readwrite,strong,nonatomic) id representedObject;
 @end
 
 @implementation BBTokenTextAttachment
@@ -26,40 +27,37 @@
 - (CGRect)attachmentBoundsForTextContainer:(NSTextContainer *)textContainer proposedLineFragment:(CGRect)lineFrag glyphPosition:(CGPoint)position characterIndex:(NSUInteger)charIndex {
     CGRect retval = [super attachmentBoundsForTextContainer:textContainer proposedLineFragment:lineFrag glyphPosition:position characterIndex:charIndex];
     
-    retval.origin.y = ceil(self.tokenTextView.typingFont.descender);
+    retval.origin.y = ceil(self.tokenFont.descender);
     
     return retval;
 }
 
-- (instancetype)initWithTokenModel:(id<BBTokenModel>)tokenModel tokenTextView:(BBTokenTextView *)tokenTextView; {
+- (instancetype)initWithRepresentedObject:(id)representedObject text:(NSString *)text tokenTextView:(BBTokenTextView *)tokenTextView; {
     if (!(self = [super initWithData:nil ofType:nil]))
         return nil;
     
-    NSParameterAssert(tokenModel);
+    NSParameterAssert(representedObject);
     NSParameterAssert(tokenTextView);
     
-    [self setTokenModel:tokenModel];
+    [self setRepresentedObject:representedObject];
     [self setTokenTextView:tokenTextView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    _tokenFont = self.tokenTextView.typingFont;
+    _tokenTextColor = [UIColor whiteColor];
+    _tokenBackgroundColor = self.tokenTextView.tintColor;
+    _tokenCornerRadius = 3.0;
     
-    [label setBackgroundColor:self.tokenTextView.tokenBackgroundColor];
-    [label setFont:self.tokenTextView.typingFont];
-    [label setTextColor:self.tokenTextView.tokenTextColor];
-    [label setText:[self.tokenModel tokenModelString]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label.layer setCornerRadius:3.0];
-    [label.layer setMasksToBounds:YES];
-    [label sizeToFit];
-    
-    CGSize size = CGSizeMake(CGRectGetWidth(label.frame), CGRectGetHeight(label.frame));
+    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName: self.tokenFont}];
     CGRect rect = CGRectIntegral(CGRectMake(0, 0, size.width, size.height));
     
-    rect.size.width += 2.0;
+    rect.size.width += 6.0;
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect)), NO, 0);
     
-    [label drawViewHierarchyInRect:CGRectInset(rect, 1.0, 0) afterScreenUpdates:YES];
+    [self.tokenBackgroundColor setFill];
+    [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 0) cornerRadius:self.tokenCornerRadius] fill];
+    
+    [text drawAtPoint:CGPointMake(3.0, 0) withAttributes:@{NSFontAttributeName: self.tokenFont, NSForegroundColorAttributeName: self.tokenTextColor}];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     

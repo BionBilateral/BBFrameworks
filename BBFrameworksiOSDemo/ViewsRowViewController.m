@@ -18,7 +18,6 @@
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBReactiveKit.h>
-#import <BBFrameworks/BBToken.h>
 
 @interface ViewsRowViewController ()
 @property (strong,nonatomic) UIImageView *blurImageView;
@@ -27,7 +26,6 @@
 @property (strong,nonatomic) BBTextView *textView;
 @property (readonly,nonatomic) BBView *backgroundView;
 @property (strong,nonatomic) BBGradientView *gradientView;
-@property (strong,nonatomic) BBTokenTextView *tokenTextView;
 @end
 
 @implementation ViewsRowViewController
@@ -78,10 +76,6 @@
     [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
     [self.gradientView setColors:@[BBColorRandomRGB(),BBColorRandomRGB()]];
     [self.view addSubview:self.gradientView];
-    
-    [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
-    [self.tokenTextView setBackgroundColor:BBColorW(0.95)];
-    [self.view addSubview:self.tokenTextView];
 }
 - (void)viewDidLayoutSubviews {
     CGSize badgeViewSize = [self.badgeView sizeThatFits:CGSizeZero];
@@ -91,10 +85,6 @@
     [self.badgeView setFrame:CGRectMake(CGRectGetMaxX(self.tintImageView.frame) + 8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
     [self.textView setFrame:CGRectMake(8.0, CGRectGetMaxY(self.blurImageView.frame) + 8.0, 150, 150.0)];
     [self.gradientView setFrame:CGRectMake(CGRectGetMaxX(self.textView.frame) + 8.0, CGRectGetMinY(self.textView.frame), 100, CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.textView.frame) - 16.0)];
-    
-    CGFloat tokenFieldWidth = CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.gradientView.frame) - 16.0;
-    
-    [self.tokenTextView setFrame:CGRectMake(CGRectGetMaxX(self.gradientView.frame) + 8.0, CGRectGetMinY(self.gradientView.frame), tokenFieldWidth, CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.gradientView.frame) - 16.0)];
 }
 - (void)viewWillLayoutSubviews {
     [self.backgroundView setBorderEdgeInsets:UIEdgeInsetsMake([self.topLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth, [self.bottomLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth)];

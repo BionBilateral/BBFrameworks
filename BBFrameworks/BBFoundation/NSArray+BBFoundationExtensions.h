@@ -40,4 +40,11 @@
  */
 - (NSArray *)BB_shuffledArray;
 
+/**
+ Returns the object at a random index in the receiver.
+ 
+ @return The random object
+ */
+- (id)BB_objectAtRandomIndex;
+
 @end

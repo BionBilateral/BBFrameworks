@@ -15,22 +15,58 @@
 
 #import "BBTokenTextView.h"
 #import "BBTokenTextAttachment.h"
-#import "NSDictionary+BBTokenModelExtensions.h"
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+@interface _BBTokenTextViewInternalDelegate : NSObject <BBTokenTextViewDelegate>
+@property (weak,nonatomic) id<BBTokenTextViewDelegate> delegate;
+@end
+
+@implementation _BBTokenTextViewInternalDelegate
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    return [self.delegate respondsToSelector:aSelector] || [super respondsToSelector:aSelector];
+}
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    [anInvocation invokeWithTarget:self.delegate];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    BOOL retval = [(id<UITextViewDelegate>)textView textView:textView shouldChangeTextInRange:range replacementText:text];
+    
+    if (retval &&
+        [self.delegate respondsToSelector:_cmd]) {
+        
+        retval = [self.delegate textView:textView shouldChangeTextInRange:range replacementText:text];
+    }
+    
+    return retval;
+}
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    [(id<UITextViewDelegate>)textView textViewDidChangeSelection:textView];
+    
+    if ([self.delegate respondsToSelector:_cmd]) {
+        [self.delegate textViewDidChangeSelection:textView];
+    }
+}
+
+@end
+
+static NSString *const kRepresentedObjectsKey = @"representedObjects";
+
+static void *kObservingContext = &kObservingContext;
 
 @interface BBTokenTextView () <UITextViewDelegate>
+@property (strong,nonatomic) _BBTokenTextViewInternalDelegate *internalDelegate;
+
 - (void)_BBTokenFieldInit;
 
++ (NSCharacterSet *)_defaultTokenizingCharacterSet;
 + (Class)_defaultTokenTextAttachmentClass;
 + (UIFont *)_defaultTypingFont;
 + (UIColor *)_defaultTypingTextColor;
-+ (UIColor *)_defaultTokenTextColor;
-+ (UIColor *)_defaultTokenBackgroundColor;
 @end
 
 @implementation BBTokenTextView
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -56,8 +92,19 @@
     return [super canPerformAction:action withSender:sender];
 }
 
+@dynamic delegate;
+- (void)setDelegate:(id<BBTokenTextViewDelegate>)delegate {
+    [self.internalDelegate setDelegate:delegate];
+    
+    [super setDelegate:self.internalDelegate];
+}
+#pragma mark UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if ([text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]].length > 0) {
+    // tokenize character set
+    // return
+    if ([text rangeOfCharacterFromSet:self.tokenizingCharacterSet].length > 0 ||
+        [text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]].length > 0) {
+        
         NSRange searchRange = NSMakeRange(0, range.location);
         NSRange foundRange = [self.text rangeOfCharacterFromSet:[NSCharacterSet alphanumericCharacterSet] options:NSBackwardsSearch range:searchRange];
         NSRange tokenRange = foundRange;
@@ -70,20 +117,44 @@
         }
         
         if (tokenRange.length > 0) {
-            NSMutableArray *temp = [NSMutableArray arrayWithArray:self.tokenModels];
+            NSString *tokenText = [[self.text substringWithRange:tokenRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            id representedObject = tokenText;
             
-            [temp addObject:@{BBTokenModelStringDictionaryKey: [self.text substringWithRange:tokenRange]}];
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectForEditingText:)]) {
+                representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:tokenText];
+            }
             
-            [self setTokenModels:temp];
+            NSArray *representedObjects = @[representedObject];
+            BBTokenTextAttachment *textAttachment = [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+            NSInteger index = [self.representedObjects indexOfObject:textAttachment.representedObject];
+            
+            if (index == NSNotFound) {
+                index = self.representedObjects.count;
+            }
+            
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
+                representedObjects = [self.delegate tokenTextView:self shouldAddRepresentedObjects:representedObjects atIndex:index];
+            }
+            
+            if (representedObjects) {
+                NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
+                
+                for (id obj in representedObjects) {
+                    NSString *displayText = obj;
+                    
+                    if ([self.delegate respondsToSelector:@selector(tokenTextView:displayTextForRepresentedObject:)]) {
+                        displayText = [self.delegate tokenTextView:self displayTextForRepresentedObject:obj];
+                    }
+                    
+                    [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:obj text:displayText tokenTextView:self]]];
+                }
+
+                [self.textStorage replaceCharactersInRange:tokenRange withAttributedString:temp];
+                
+                [self setSelectedRange:NSMakeRange(tokenRange.location + 1, 0)];
+            }
         }
         
-        return NO;
-    }
-    // delete
-    else if (text.length == 0) {
-        [self.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, range.location) options:NSAttributedStringEnumerationReverse|NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
-            
-        }];
         return NO;
     }
     return YES;
@@ -91,40 +162,69 @@
 - (void)textViewDidChangeSelection:(UITextView *)textView {
     [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
 }
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+@dynamic representedObjects;
+- (NSArray *)representedObjects {
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textStorage.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenTextAttachment *value, NSRange range, BOOL *stop) {
+        if (value) {
+            [retval addObject:value.representedObject];
+        }
+    }];
+    
+    return retval;
+}
+- (void)setRepresentedObjects:(NSArray *)representedObjects {
+    NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{}];
+    
+    for (id representedObject in self.representedObjects) {
+        NSString *text = [representedObject description];
+        
+        if ([self.delegate respondsToSelector:@selector(tokenTextView:displayTextForRepresentedObject:)]) {
+            text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
+        }
+        
+        [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[[self tokenTextAttachmentClass] alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self]]];
+    }
+    
+    [self.textStorage setAttributedString:temp];
+}
+
+- (void)setTokenizingCharacterSet:(NSCharacterSet *)tokenizingCharacterSet {
+    _tokenizingCharacterSet = tokenizingCharacterSet ?: [self.class _defaultTokenizingCharacterSet];
+}
 
 - (void)setTokenTextAttachmentClass:(Class)tokenTextAttachmentClass {
     _tokenTextAttachmentClass = tokenTextAttachmentClass ?: [self.class _defaultTokenTextAttachmentClass];
 }
 
+- (void)setTypingFont:(UIFont *)typingFont {
+    _typingFont = typingFont ?: [self.class _defaultTypingFont];
+}
+- (void)setTypingTextColor:(UIColor *)typingTextColor {
+    _typingTextColor = typingTextColor ?: [self.class _defaultTypingTextColor];
+}
+#pragma mark *** Private Methods ***
 - (void)_BBTokenFieldInit; {
+    _tokenizingCharacterSet = [self.class _defaultTokenizingCharacterSet];
     _tokenTextAttachmentClass = [self.class _defaultTokenTextAttachmentClass];
     _typingFont = [self.class _defaultTypingFont];
     _typingTextColor = [self.class _defaultTypingTextColor];
-    _tokenTextColor = [self.class _defaultTokenTextColor];
-    _tokenBackgroundColor = [self.class _defaultTokenBackgroundColor];
     
-    [self setDelegate:self];
-    [self setScrollEnabled:NO];
     [self setContentInset:UIEdgeInsetsZero];
     [self setTextContainerInset:UIEdgeInsetsZero];
     [self.textContainer setLineFragmentPadding:0];
     [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
     
-    @weakify(self);
-    [[RACObserve(self, tokenModels)
-     deliverOn:[RACScheduler mainThreadScheduler]]
-    subscribeNext:^(NSArray *value) {
-        @strongify(self);
-        NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{}];
-        
-        for (id<BBTokenModel> token in self.tokenModels) {
-            [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[[self tokenTextAttachmentClass] alloc] initWithTokenModel:token tokenTextView:self]]];
-        }
-        
-        [self setAttributedText:temp];
-    }];
+    [self setInternalDelegate:[[_BBTokenTextViewInternalDelegate alloc] init]];
+    [self setDelegate:nil];
 }
 
++ (NSCharacterSet *)_defaultTokenizingCharacterSet; {
+    return [NSCharacterSet characterSetWithCharactersInString:@","];
+}
 + (Class)_defaultTokenTextAttachmentClass {
     return [BBTokenTextAttachment class];
 }
@@ -133,12 +233,6 @@
 }
 + (UIColor *)_defaultTypingTextColor; {
     return [UIColor blackColor];
-}
-+ (UIColor *)_defaultTokenTextColor; {
-    return [UIColor whiteColor];
-}
-+ (UIColor *)_defaultTokenBackgroundColor; {
-    return [UIColor darkGrayColor];
 }
 
 @end

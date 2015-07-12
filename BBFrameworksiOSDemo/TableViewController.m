@@ -22,6 +22,7 @@
 #import "MediaPlayerViewController.h"
 #import "AddressBookViewController.h"
 #import "FormViewController.h"
+#import "TokenViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -39,6 +40,7 @@
     
     [self setRowClasses:@[[ViewsRowViewController class],
                           [FormViewController class],
+                          [TokenViewController class],
                           [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class],

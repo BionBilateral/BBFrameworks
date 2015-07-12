@@ -16,13 +16,37 @@
 #import "ViewsViewController.h"
 
 #import <BBFrameworks/BBKit.h>
+#import <BBFrameworks/BBFoundation.h>
 
-@interface ViewsViewController ()
+@interface TokenModel : NSObject
+@property (copy,nonatomic) NSString *string;
+- (instancetype)initWithString:(NSString *)string;
+@end
+
+@implementation TokenModel
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p> %@",NSStringFromClass(self.class),self,self.string];
+}
+
+- (instancetype)initWithString:(NSString *)string {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setString:string];
+    
+    return self;
+}
+
+@end
+
+@interface ViewsViewController () <NSTokenFieldDelegate>
 @property (weak,nonatomic) IBOutlet NSImageView *blurImageView;
 @property (weak,nonatomic) IBOutlet NSImageView *tintImageView;
 @property (weak,nonatomic) IBOutlet BBView *backgroundView;
 @property (strong,nonatomic) BBBadgeView *badgeView;
 @property (strong,nonatomic) BBGradientView *gradientView;
+@property (strong,nonatomic) NSTokenField *tokenField;
 @end
 
 @implementation ViewsViewController
@@ -52,11 +76,42 @@
     [self.gradientView setColors:@[BBColorRandomRGB(),BBColorRandomRGB()]];
     [self.backgroundView addSubview:self.gradientView];
     
+    [self setTokenField:[[NSTokenField alloc] initWithFrame:NSZeroRect]];
+    [self.tokenField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.tokenField setDelegate:self];
+    [self.backgroundView addSubview:self.tokenField];
+    
     [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView]-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView, @"imageView": self.tintImageView}]];
     [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[badgeView]" options:0 metrics:nil views:@{@"badgeView": self.badgeView}]];
     
     [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view(==width)]" options:0 metrics:@{@"width": @100} views:@{@"view": self.gradientView}]];
     [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[imageView]-[view]-|" options:0 metrics:nil views:@{@"view": self.gradientView, @"imageView": self.blurImageView}]];
+    
+    [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView]-[view(==width)]" options:0 metrics:@{@"width": @200} views:@{@"view": self.tokenField, @"imageView": self.tintImageView}]];
+    [self.backgroundView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[badgeView]-[view]" options:0 metrics:nil views:@{@"view": self.tokenField, @"badgeView": self.badgeView}]];
+}
+
+- (id)tokenField:(NSTokenField *)tokenField representedObjectForEditingString:(NSString *)editingString {
+    BBLogObject(editingString);
+    return [[TokenModel alloc] initWithString:editingString];
+}
+- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index {
+    BBLog(@"%@ %@",tokens,@(index));
+    return tokens;
+}
+- (NSString *)tokenField:(NSTokenField *)tokenField displayStringForRepresentedObject:(id)representedObject {
+    BBLogObject(representedObject);
+    return [(TokenModel *)representedObject string];
+}
+- (BOOL)tokenField:(NSTokenField *)tokenField hasMenuForRepresentedObject:(id)representedObject {
+    return YES;
+}
+- (NSMenu *)tokenField:(NSTokenField *)tokenField menuForRepresentedObject:(id)representedObject {
+    NSMenu *retval = [[NSMenu alloc] init];
+    
+    [retval addItem:[[NSMenuItem alloc] initWithTitle:[(TokenModel *)representedObject string] action:NULL keyEquivalent:@""]];
+    
+    return retval;
 }
 
 @end
