@@ -386,7 +386,7 @@ static void *kObservingContext = &kObservingContext;
     NSRange searchRange = NSMakeRange(0, range.location);
     // take the inverted set of our tokenizing set
     NSMutableCharacterSet *characterSet = [self.tokenizingCharacterSet.invertedSet mutableCopy];
-    // remove the NSAttachmentCharacter from it, we don't want to match against tokens
+    // remove the NSAttachmentCharacter from our inverted character set, we don't want to match against tokens
     [characterSet removeCharactersInString:[NSString stringWithFormat:@"%C",(unichar)NSAttachmentCharacter]];
     
     NSRange foundRange = [self.text rangeOfCharacterFromSet:characterSet options:NSBackwardsSearch range:searchRange];
