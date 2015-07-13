@@ -384,14 +384,15 @@ static void *kObservingContext = &kObservingContext;
 
 - (NSRange)_completionRangeForRange:(NSRange)range; {
     NSRange searchRange = NSMakeRange(0, range.location);
+    // take the inverted set of our tokenizing set
     NSMutableCharacterSet *characterSet = [self.tokenizingCharacterSet.invertedSet mutableCopy];
-    
+    // remove the NSAttachmentCharacter from it, we don't want to match against tokens
     [characterSet removeCharactersInString:[NSString stringWithFormat:@"%C",(unichar)NSAttachmentCharacter]];
     
     NSRange foundRange = [self.text rangeOfCharacterFromSet:characterSet options:NSBackwardsSearch range:searchRange];
     NSRange retval = foundRange;
     
-    // first search backwards
+    // first search backwards until we hit either a token or end of text
     while (foundRange.length > 0) {
         retval = NSUnionRange(retval, foundRange);
         
@@ -399,7 +400,7 @@ static void *kObservingContext = &kObservingContext;
         foundRange = [self.text rangeOfCharacterFromSet:characterSet options:NSBackwardsSearch range:searchRange];
     }
     
-    // search forwards
+    // then search forwards until we hit either a token or end of text
     searchRange = NSMakeRange(range.location, self.text.length - range.location);
     foundRange = [self.text rangeOfCharacterFromSet:characterSet options:0 range:searchRange];
     
@@ -410,9 +411,12 @@ static void *kObservingContext = &kObservingContext;
         foundRange = [self.text rangeOfCharacterFromSet:characterSet options:0 range:searchRange];
     }
     
+    // this ensures that strings like Joh| Smith will match John Smith
+    
     return retval;
 }
 - (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index; {
+    // if we don't have any text, the attachment is nil, otherwise search for an attachment clamped to the passed in range.location and the end of our text - 1
     BBTokenDefaultTextAttachment *retval = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
     
     if (index) {
@@ -463,19 +467,26 @@ static void *kObservingContext = &kObservingContext;
 - (IBAction)_tapGestureRecognizerAction:(id)sender {
     CGPoint location = [self.tapGestureRecognizer locationInView:self];
     
+    // adjust the location by the text container insets
     location.x -= self.textContainerInset.left;
     location.y -= self.textContainerInset.top;
     
+    // ask the layout manager for character index corresponding to the tapped location
     NSInteger index = [self.layoutManager characterIndexForPoint:location inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
     
+    // if the index is within our text
     if (index < self.text.length) {
+        // get the effective range for the token at index
         NSRange range;
         id value = [self.textStorage attribute:NSAttachmentAttributeName atIndex:index effectiveRange:&range];
         
+        // if there is a token
         if (value) {
+            // if our selection is zero length, select the entire range of the token
             if (self.selectedRange.length == 0) {
                 [self setSelectedRange:range];
             }
+            // otherwise set the selected range as zero length after the token
             else {
                 [self setSelectedRange:NSMakeRange(NSMaxRange(range), 0)];
             }
