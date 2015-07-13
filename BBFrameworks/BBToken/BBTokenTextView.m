@@ -199,7 +199,7 @@ static void *kObservingContext = &kObservingContext;
             
             [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment *value, NSRange range, BOOL *stop) {
                 if (value) {
-                    [representedObjects addObject:value];
+                    [representedObjects addObject:value.representedObject];
                 }
             }];
             
