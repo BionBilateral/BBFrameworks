@@ -13,6 +13,8 @@
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
 		07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07C23A8C1B540DE500D3C072 /* WebKit.strings */; };
+		07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */; };
+		07C23AA31B542D5000D3C072 /* BBTokenCompletionTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */; };
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
 		07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* FormViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
@@ -36,9 +38,8 @@
 		790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 790DE0841B51B01B0029C004 /* BBDatePickerButton.h */; };
 		790DE0881B51B1D30029C004 /* BBToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540871B4B662B009ECE38 /* BBToken.h */; };
 		790DE08B1B51F5B60029C004 /* TokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 790DE08A1B51F5B60029C004 /* TokenViewController.m */; };
-		790DE0931B53005A0029C004 /* BBTokenCompletionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790DE0921B53005A0029C004 /* BBTokenCompletionTableViewCell.m */; };
+		790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790DE0921B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m */; };
 		790DE0951B5314310029C004 /* BBTokenCompletion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 790DE0901B52FD790029C004 /* BBTokenCompletion.h */; };
-		790DE0961B5345BF0029C004 /* BBTokenCompletionTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 790DE0911B53005A0029C004 /* BBTokenCompletionTableViewCell.h */; };
 		7915515B1B33353B009FA353 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515A1B33353B009FA353 /* RootViewController.m */; };
 		7915515E1B3335E7009FA353 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7915515D1B3335E7009FA353 /* TableViewController.m */; };
 		791551611B3336D5009FA353 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791551601B3336D5009FA353 /* LaunchViewController.m */; };
@@ -379,8 +380,8 @@
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
 				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
 				790DE0951B5314310029C004 /* BBTokenCompletion.h in CopyFiles */,
+				07C23AA31B542D5000D3C072 /* BBTokenCompletionTableViewCell.h in CopyFiles */,
 				79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */,
-				790DE0961B5345BF0029C004 /* BBTokenCompletionTableViewCell.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				790DE0881B51B1D30029C004 /* BBToken.h in CopyFiles */,
 				79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */,
@@ -476,6 +477,9 @@
 		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
 		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		07C23A8D1B540DE500D3C072 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WebKit.strings; sourceTree = "<group>"; };
+		07C23A9F1B542BB200D3C072 /* TokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCompletionTableViewCell.h; sourceTree = "<group>"; };
+		07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCompletionTableViewCell.m; sourceTree = "<group>"; };
+		07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenCompletionTableViewCell.h; sourceTree = "<group>"; };
 		07CE80281B4EDBC100F5729E /* BBTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextField.h; path = iOS/BBTextField.h; sourceTree = "<group>"; };
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
 		07CE802B1B4EE78800F5729E /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
@@ -506,8 +510,8 @@
 		790DE08A1B51F5B60029C004 /* TokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenViewController.m; sourceTree = "<group>"; };
 		790DE08C1B5207720029C004 /* BBTokenTextViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenTextViewDelegate.h; sourceTree = "<group>"; };
 		790DE0901B52FD790029C004 /* BBTokenCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenCompletion.h; sourceTree = "<group>"; };
-		790DE0911B53005A0029C004 /* BBTokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenCompletionTableViewCell.h; sourceTree = "<group>"; };
-		790DE0921B53005A0029C004 /* BBTokenCompletionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenCompletionTableViewCell.m; sourceTree = "<group>"; };
+		790DE0911B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenCompletionDefaultTableViewCell.h; sourceTree = "<group>"; };
+		790DE0921B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenCompletionDefaultTableViewCell.m; sourceTree = "<group>"; };
 		791551591B33353B009FA353 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7915515A1B33353B009FA353 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7915515C1B3335E7009FA353 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -1179,6 +1183,8 @@
 				07CE802C1B4EE78800F5729E /* FormViewController.m */,
 				790DE0891B51F5B60029C004 /* TokenViewController.h */,
 				790DE08A1B51F5B60029C004 /* TokenViewController.m */,
+				07C23A9F1B542BB200D3C072 /* TokenCompletionTableViewCell.h */,
+				07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworksiOSDemo;
@@ -1382,8 +1388,9 @@
 				79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */,
 				79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */,
 				790DE0901B52FD790029C004 /* BBTokenCompletion.h */,
-				790DE0911B53005A0029C004 /* BBTokenCompletionTableViewCell.h */,
-				790DE0921B53005A0029C004 /* BBTokenCompletionTableViewCell.m */,
+				07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */,
+				790DE0911B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.h */,
+				790DE0921B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m */,
 			);
 			path = BBToken;
 			sourceTree = "<group>";
@@ -1964,6 +1971,7 @@
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
 				791551611B3336D5009FA353 /* LaunchViewController.m in Sources */,
 				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
+				07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
 				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,
 				79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */,
@@ -2027,7 +2035,7 @@
 				79EA80E71B3F0D1B00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
-				790DE0931B53005A0029C004 /* BBTokenCompletionTableViewCell.m in Sources */,
+				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
 				79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */,
 				79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */,
 				790DE0861B51B01B0029C004 /* BBDatePickerButton.m in Sources */,

@@ -49,9 +49,9 @@
  */
 @property (assign,nonatomic) NSTimeInterval completionDelay;
 /**
- Set and get the completion table view cell class of the receiver.
+ Set and get the completion table view cell class of the receiver. This must be the class of an object conforming to BBTokenCompletionTableViewCell.
  
- The default is BBTokenCompletionTableViewCell.
+ The default is BBTokenCompletionDefaultTableViewCell.
  */
 @property (strong,nonatomic) Class completionTableViewCellClass UI_APPEARANCE_SELECTOR;
 

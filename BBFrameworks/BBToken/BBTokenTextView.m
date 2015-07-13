@@ -15,7 +15,7 @@
 
 #import "BBTokenTextView.h"
 #import "BBTokenTextAttachment.h"
-#import "BBTokenCompletionTableViewCell.h"
+#import "BBTokenCompletionDefaultTableViewCell.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -203,7 +203,7 @@
     return self.completions.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BBTokenCompletionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
+    UITableViewCell<BBTokenCompletionTableViewCell> *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
     
     if (!cell) {
         cell = [[self.completionTableViewCellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
@@ -295,7 +295,7 @@
     if (!self.tableView) {
         if ([self.delegate respondsToSelector:@selector(tokenTextView:showCompletionsTableView:)]) {
             [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
-            [self.tableView setRowHeight:[BBTokenCompletionTableViewCell rowHeight]];
+            [self.tableView setRowHeight:[self.completionTableViewCellClass respondsToSelector:@selector(rowHeight)] ? [self.completionTableViewCellClass rowHeight] : [BBTokenCompletionDefaultTableViewCell rowHeight]];
             [self.tableView setDataSource:self];
             [self.tableView setDelegate:self];
             
@@ -387,7 +387,7 @@
     return 0.0;
 }
 + (Class)_defaultCompletionTableViewCellClass {
-    return [BBTokenCompletionTableViewCell class];
+    return [BBTokenCompletionDefaultTableViewCell class];
 }
 + (Class)_defaultTokenTextAttachmentClass {
     return [BBTokenTextAttachment class];
