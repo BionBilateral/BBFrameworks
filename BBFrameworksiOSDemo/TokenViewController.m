@@ -15,6 +15,7 @@
 
 #import "TokenViewController.h"
 #import "TokenCompletionTableViewCell.h"
+#import "TokenTextAttachment.h"
 
 #import <BBFrameworks/BBToken.h>
 #import <BBFrameworks/BBFoundation.h>
@@ -72,9 +73,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor blackColor]];
     
     [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
+    [self.tokenTextView setBackgroundColor:[UIColor blackColor]];
+    [self.tokenTextView setTintColor:[UIColor whiteColor]];
+    [self.tokenTextView setTypingTextColor:self.view.tintColor];
+    [self.tokenTextView setTokenTextAttachmentClass:[TokenTextAttachment class]];
     [self.tokenTextView setCompletionTableViewCellClass:[TokenCompletionTableViewCell class]];
     [self.tokenTextView setDelegate:self];
     [self.view addSubview:self.tokenTextView];

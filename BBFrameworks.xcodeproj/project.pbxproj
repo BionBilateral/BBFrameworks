@@ -15,6 +15,9 @@
 		07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07C23A8C1B540DE500D3C072 /* WebKit.strings */; };
 		07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */; };
 		07C23AA31B542D5000D3C072 /* BBTokenCompletionTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */; };
+		07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07C23AA41B5430F700D3C072 /* BBTokenTextAttachment.h */; };
+		07C23AA81B54320500D3C072 /* TokenTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C23AA71B54320500D3C072 /* TokenTextAttachment.m */; };
+		07C23AA91B54325600D3C072 /* BBTokenDefaultTextAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D5408F1B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.h */; };
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
 		07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* FormViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
@@ -78,8 +81,7 @@
 		79D540801B4B5F0B009ECE38 /* NSAlert+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D5407D1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.m */; };
 		79D540811B4B5F1E009ECE38 /* UIAlertController+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540761B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.h */; };
 		79D5408B1B4B69BD009ECE38 /* NSError+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; };
-		79D540911B4B69F9009ECE38 /* BBTokenTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */; };
-		79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */; };
+		79D540911B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540901B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m */; };
 		79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540941B4B6E8D009ECE38 /* BBTokenTextView.m */; };
 		79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
@@ -378,10 +380,11 @@
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
+				07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */,
 				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
+				07C23AA91B54325600D3C072 /* BBTokenDefaultTextAttachment.h in CopyFiles */,
 				790DE0951B5314310029C004 /* BBTokenCompletion.h in CopyFiles */,
 				07C23AA31B542D5000D3C072 /* BBTokenCompletionTableViewCell.h in CopyFiles */,
-				79D540921B4B6BFC009ECE38 /* BBTokenTextAttachment.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				790DE0881B51B1D30029C004 /* BBToken.h in CopyFiles */,
 				79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */,
@@ -480,6 +483,9 @@
 		07C23A9F1B542BB200D3C072 /* TokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCompletionTableViewCell.h; sourceTree = "<group>"; };
 		07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCompletionTableViewCell.m; sourceTree = "<group>"; };
 		07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenCompletionTableViewCell.h; sourceTree = "<group>"; };
+		07C23AA41B5430F700D3C072 /* BBTokenTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenTextAttachment.h; sourceTree = "<group>"; };
+		07C23AA61B54320500D3C072 /* TokenTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenTextAttachment.h; sourceTree = "<group>"; };
+		07C23AA71B54320500D3C072 /* TokenTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenTextAttachment.m; sourceTree = "<group>"; };
 		07CE80281B4EDBC100F5729E /* BBTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextField.h; path = iOS/BBTextField.h; sourceTree = "<group>"; };
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
 		07CE802B1B4EE78800F5729E /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
@@ -702,8 +708,8 @@
 		79D5407C1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAlert+BBKitExtensions.h"; path = "OSX/NSAlert+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D5407D1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAlert+BBKitExtensions.m"; path = "OSX/NSAlert+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79D540871B4B662B009ECE38 /* BBToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBToken.h; sourceTree = "<group>"; };
-		79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenTextAttachment.h; sourceTree = "<group>"; };
-		79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenTextAttachment.m; sourceTree = "<group>"; };
+		79D5408F1B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenDefaultTextAttachment.h; sourceTree = "<group>"; };
+		79D540901B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenDefaultTextAttachment.m; sourceTree = "<group>"; };
 		79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenTextView.h; sourceTree = "<group>"; };
 		79D540941B4B6E8D009ECE38 /* BBTokenTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTokenTextView.m; sourceTree = "<group>"; };
 		79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRowViewController.h; sourceTree = "<group>"; };
@@ -1185,6 +1191,8 @@
 				790DE08A1B51F5B60029C004 /* TokenViewController.m */,
 				07C23A9F1B542BB200D3C072 /* TokenCompletionTableViewCell.h */,
 				07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */,
+				07C23AA61B54320500D3C072 /* TokenTextAttachment.h */,
+				07C23AA71B54320500D3C072 /* TokenTextAttachment.m */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworksiOSDemo;
@@ -1385,8 +1393,9 @@
 				790DE08C1B5207720029C004 /* BBTokenTextViewDelegate.h */,
 				79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */,
 				79D540941B4B6E8D009ECE38 /* BBTokenTextView.m */,
-				79D5408F1B4B69F9009ECE38 /* BBTokenTextAttachment.h */,
-				79D540901B4B69F9009ECE38 /* BBTokenTextAttachment.m */,
+				07C23AA41B5430F700D3C072 /* BBTokenTextAttachment.h */,
+				79D5408F1B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.h */,
+				79D540901B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m */,
 				790DE0901B52FD790029C004 /* BBTokenCompletion.h */,
 				07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */,
 				790DE0911B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.h */,
@@ -1970,6 +1979,7 @@
 				7989DD511B345A2D0001F7C3 /* AssetsPickerViewController.m in Sources */,
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
 				791551611B3336D5009FA353 /* LaunchViewController.m in Sources */,
+				07C23AA81B54320500D3C072 /* TokenTextAttachment.m in Sources */,
 				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
 				07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
@@ -2041,7 +2051,7 @@
 				790DE0861B51B01B0029C004 /* BBDatePickerButton.m in Sources */,
 				79EA82C61B3F945700D50B6B /* BBView.m in Sources */,
 				79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */,
-				79D540911B4B69F9009ECE38 /* BBTokenTextAttachment.m in Sources */,
+				79D540911B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m in Sources */,
 				79EA80ED1B3F0D3600D50B6B /* BBMediaPickerCollectionTableViewController.m in Sources */,
 				79EA80DF1B3F0D1B00D50B6B /* BBThumbnailMovieOperation.m in Sources */,
 				79EA80E91B3F0D2F00D50B6B /* BBMediaPickerViewModel.m in Sources */,

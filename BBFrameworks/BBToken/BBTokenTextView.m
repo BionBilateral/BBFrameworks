@@ -14,7 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBTokenTextView.h"
-#import "BBTokenTextAttachment.h"
+#import "BBTokenDefaultTextAttachment.h"
 #import "BBTokenCompletionDefaultTableViewCell.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -60,19 +60,26 @@
 
 @end
 
+static NSString *const kTypingFontKey = @"typingFont";
+static NSString *const kTypingTextColorKey = @"typingTextColor";
+
+static void *kObservingContext = &kObservingContext;
+
 @interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic) _BBTokenTextViewInternalDelegate *internalDelegate;
 
 @property (strong,nonatomic) UITableView *tableView;
 @property (copy,nonatomic) NSArray *completions;
 
-- (void)_BBTokenFieldInit;
+@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
+
+- (void)_BBTokenTextViewInit;
 
 - (void)_showCompletionsTableView;
 - (void)_hideCompletionsTableViewAndSelectCompletion:(id<BBTokenCompletion>)completion;
 
 - (NSRange)_completionRangeForRange:(NSRange)range;
-- (BBTokenTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index;
+- (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index;
 
 + (NSCharacterSet *)_defaultTokenizingCharacterSet;
 + (NSTimeInterval)_defaultCompletionDelay;
@@ -84,11 +91,16 @@
 
 @implementation BBTokenTextView
 #pragma mark *** Subclass Overrides ***
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:kTypingFontKey context:kObservingContext];
+    [self removeObserver:self forKeyPath:kTypingTextColorKey context:kObservingContext];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self _BBTokenFieldInit];
+    [self _BBTokenTextViewInit];
     
     return self;
 }
@@ -96,7 +108,7 @@
     if (!(self = [super initWithCoder:aDecoder]))
         return nil;
     
-    [self _BBTokenFieldInit];
+    [self _BBTokenTextViewInit];
     
     return self;
 }
@@ -118,6 +130,19 @@
 
 - (void)paste:(id)sender {
     [self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:[[NSAttributedString alloc] initWithString:[[UIPasteboard generalPasteboard] valueForPasteboardType:(__bridge NSString *)kUTTypePlainText] attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}]];
+}
+#pragma mark NSKeyValueObserving
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context == kObservingContext) {
+        if ([keyPath isEqualToString:kTypingFontKey] ||
+            [keyPath isEqualToString:kTypingTextColorKey]) {
+            
+            [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 #pragma mark UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -172,7 +197,7 @@
         if (self.text.length > 0) {
             NSMutableArray *representedObjects = [[NSMutableArray alloc] init];
             
-            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenTextAttachment *value, NSRange range, BOOL *stop) {
+            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment *value, NSRange range, BOOL *stop) {
                 if (value) {
                     [representedObjects addObject:value];
                 }
@@ -223,7 +248,7 @@
 - (NSArray *)representedObjects {
     NSMutableArray *retval = [[NSMutableArray alloc] init];
     
-    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textStorage.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenTextAttachment *value, NSRange range, BOOL *stop) {
+    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textStorage.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment *value, NSRange range, BOOL *stop) {
         if (value) {
             [retval addObject:value.representedObject];
         }
@@ -269,7 +294,7 @@
     _typingTextColor = typingTextColor ?: [self.class _defaultTypingTextColor];
 }
 #pragma mark *** Private Methods ***
-- (void)_BBTokenFieldInit; {
+- (void)_BBTokenTextViewInit; {
     _tokenizingCharacterSet = [self.class _defaultTokenizingCharacterSet];
     _completionDelay = [self.class _defaultCompletionDelay];
     _completionTableViewCellClass = [self.class _defaultCompletionTableViewCellClass];
@@ -280,10 +305,17 @@
     [self setContentInset:UIEdgeInsetsZero];
     [self setTextContainerInset:UIEdgeInsetsZero];
     [self.textContainer setLineFragmentPadding:0];
-    [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
     
     [self setInternalDelegate:[[_BBTokenTextViewInternalDelegate alloc] init]];
     [self setDelegate:nil];
+    
+    [self addObserver:self forKeyPath:kTypingFontKey options:NSKeyValueObservingOptionInitial context:kObservingContext];
+    [self addObserver:self forKeyPath:kTypingTextColorKey options:NSKeyValueObservingOptionInitial context:kObservingContext];
+    
+    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
+    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
+    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)_showCompletionsTableView; {
@@ -339,7 +371,10 @@
 
 - (NSRange)_completionRangeForRange:(NSRange)range; {
     NSRange searchRange = NSMakeRange(0, range.location);
-    NSCharacterSet *characterSet = self.tokenizingCharacterSet.invertedSet;
+    NSMutableCharacterSet *characterSet = [self.tokenizingCharacterSet.invertedSet mutableCopy];
+    
+    [characterSet removeCharactersInString:[NSString stringWithFormat:@"%C",(unichar)NSAttachmentCharacter]];
+    
     NSRange foundRange = [self.text rangeOfCharacterFromSet:characterSet options:NSBackwardsSearch range:searchRange];
     NSRange retval = foundRange;
     
@@ -364,8 +399,8 @@
     
     return retval;
 }
-- (BBTokenTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index; {
-    BBTokenTextAttachment *retval = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+- (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index; {
+    BBTokenDefaultTextAttachment *retval = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
     
     if (index) {
         NSInteger outIndex = [self.representedObjects indexOfObject:retval.representedObject];
@@ -390,7 +425,7 @@
     return [BBTokenCompletionDefaultTableViewCell class];
 }
 + (Class)_defaultTokenTextAttachmentClass {
-    return [BBTokenTextAttachment class];
+    return [BBTokenDefaultTextAttachment class];
 }
 + (UIFont *)_defaultTypingFont; {
     return [UIFont systemFontOfSize:14.0];
@@ -410,6 +445,19 @@
     _completions = completions;
     
     [self.tableView reloadData];
+}
+#pragma mark Actions
+- (IBAction)_tapGestureRecognizerAction:(id)sender {
+    NSInteger index = [self.layoutManager characterIndexForPoint:[self.tapGestureRecognizer locationInView:self] inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
+    
+    if (index < self.text.length) {
+        NSRange range;
+        id value = [self.textStorage attribute:NSAttachmentAttributeName atIndex:index effectiveRange:&range];
+        
+        if (value) {
+            [self setSelectedRange:range];
+        }
+    }
 }
 
 @end

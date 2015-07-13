@@ -19,7 +19,7 @@
 #if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBTokenCompletion.h>
 #import <BBFrameworks/BBTokenTextView.h>
-#import <BBFrameworks/BBTokenTextAttachment.h>
+#import <BBFrameworks/BBTokenDefaultTextAttachment.h>
 #endif
 
 #endif
