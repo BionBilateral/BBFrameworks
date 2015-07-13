@@ -81,8 +81,7 @@
     
     [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
     [self.tokenTextView setBackgroundColor:[UIColor blackColor]];
-    [self.tokenTextView setTintColor:[UIColor blueColor]];
-    [self.tokenTextView setTypingTextColor:[UIColor blueColor]];
+    [self.tokenTextView setTypingTextColor:self.tokenTextView.tintColor];
     [self.tokenTextView setTokenTextAttachmentClass:[TokenTextAttachment class]];
     [self.tokenTextView setCompletionTableViewCellClass:[TokenCompletionTableViewCell class]];
     [self.tokenTextView setDelegate:self];

@@ -17,17 +17,11 @@
 
 @implementation TokenTextAttachment
 
-- (UIColor *)tokenBackgroundColor {
-    return [UIColor darkGrayColor];
-}
 - (UIColor *)tokenTextColor {
     return [UIColor whiteColor];
 }
-- (UIColor *)tokenHighlightedTextColor {
-    return [UIColor whiteColor];
-}
-- (UIColor *)tokenHighlightedBackgroundColor {
-    return [UIColor blueColor];
+- (UIColor *)tokenBackgroundColor {
+    return [UIColor darkGrayColor];
 }
 
 @end
