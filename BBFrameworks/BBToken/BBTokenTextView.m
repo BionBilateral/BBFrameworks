@@ -217,6 +217,19 @@ static void *kObservingContext = &kObservingContext;
 }
 - (void)textViewDidChangeSelection:(UITextView *)textView {
     [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
+    
+    __block BOOL shouldInvalidate = NO;
+    
+    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textStorage.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
+        if (value) {
+            shouldInvalidate = YES;
+            *stop = YES;
+        }
+    }];
+    
+    if (shouldInvalidate) {
+        [self.layoutManager invalidateDisplayForCharacterRange:NSMakeRange(0, self.textStorage.length)];
+    }
 }
 - (void)textViewDidChange:(UITextView *)textView {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_showCompletionsTableView) object:nil];
@@ -460,7 +473,12 @@ static void *kObservingContext = &kObservingContext;
         id value = [self.textStorage attribute:NSAttachmentAttributeName atIndex:index effectiveRange:&range];
         
         if (value) {
-            [self setSelectedRange:range];
+            if (self.selectedRange.length == 0) {
+                [self setSelectedRange:range];
+            }
+            else {
+                [self setSelectedRange:NSMakeRange(NSMaxRange(range), 0)];
+            }
         }
     }
 }

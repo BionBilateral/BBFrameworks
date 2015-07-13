@@ -41,6 +41,8 @@
  The default is self.tokenTextView.tintColor.
  */
 @property (strong,nonatomic) UIColor *tokenBackgroundColor;
+@property (strong,nonatomic) UIColor *tokenHighlightedTextColor;
+@property (strong,nonatomic) UIColor *tokenHighlightedBackgroundColor;
 /**
  Set and get the corner radius used to draw tokens.
  

@@ -19,10 +19,17 @@
 @interface BBTokenDefaultTextAttachment ()
 @property (readwrite,weak,nonatomic) BBTokenTextView *tokenTextView;
 @property (readwrite,strong,nonatomic) id representedObject;
+@property (copy,nonatomic) NSString *text;
+@property (strong,nonatomic) UIImage *highlightedImage;
+
+- (void)_updateImage:(BOOL)highlighted;
 @end
 
 @implementation BBTokenDefaultTextAttachment
 
+- (UIImage *)imageForBounds:(CGRect)imageBounds textContainer:(NSTextContainer *)textContainer characterIndex:(NSUInteger)charIndex {
+    return NSLocationInRange(charIndex, self.tokenTextView.selectedRange) ? self.highlightedImage : self.image;
+}
 - (CGRect)attachmentBoundsForTextContainer:(NSTextContainer *)textContainer proposedLineFragment:(CGRect)lineFrag glyphPosition:(CGPoint)position characterIndex:(NSUInteger)charIndex {
     CGRect retval = [super attachmentBoundsForTextContainer:textContainer proposedLineFragment:lineFrag glyphPosition:position characterIndex:charIndex];
     
@@ -40,31 +47,44 @@
     
     [self setRepresentedObject:representedObject];
     [self setTokenTextView:tokenTextView];
+    [self setText:text];
     
     _tokenFont = self.tokenTextView.typingFont;
     _tokenTextColor = [UIColor whiteColor];
     _tokenBackgroundColor = self.tokenTextView.tintColor;
+    _tokenHighlightedTextColor = [UIColor whiteColor];
+    _tokenHighlightedBackgroundColor = self.tokenTextView.tintColor;
     _tokenCornerRadius = 3.0;
     
-    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName: self.tokenFont}];
+    [self _updateImage:NO];
+    [self _updateImage:YES];
+    
+    return self;
+}
+
+- (void)_updateImage:(BOOL)highlighted; {
+    CGSize size = [self.text sizeWithAttributes:@{NSFontAttributeName: self.tokenFont}];
     CGRect rect = CGRectIntegral(CGRectMake(0, 0, size.width, size.height));
     
     rect.size.width += 6.0;
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect)), NO, 0);
     
-    [self.tokenBackgroundColor setFill];
+    [highlighted ? self.tokenHighlightedBackgroundColor : self.tokenBackgroundColor setFill];
     [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 1.0) cornerRadius:self.tokenCornerRadius] fill];
     
-    [text drawAtPoint:CGPointMake(3.0, 0) withAttributes:@{NSFontAttributeName: self.tokenFont, NSForegroundColorAttributeName: self.tokenTextColor}];
+    [self.text drawAtPoint:CGPointMake(3.0, 0) withAttributes:@{NSFontAttributeName: self.tokenFont, NSForegroundColorAttributeName: highlighted ? self.tokenHighlightedTextColor : self.tokenTextColor}];
     
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
     
-    [self setImage:image];
-    
-    return self;
+    if (highlighted) {
+        [self setHighlightedImage:retval];
+    }
+    else {
+        [self setImage:retval];
+    }
 }
 
 @end

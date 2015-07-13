@@ -23,5 +23,11 @@
 - (UIColor *)tokenTextColor {
     return [UIColor whiteColor];
 }
+- (UIColor *)tokenHighlightedTextColor {
+    return [UIColor whiteColor];
+}
+- (UIColor *)tokenHighlightedBackgroundColor {
+    return [UIColor blueColor];
+}
 
 @end
