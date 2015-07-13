@@ -32,11 +32,15 @@
 
 /**
  Set and get text field's placeholder font.
+ 
+ The default is [UIFont systemFontOfSize:17].
  */
 @property (strong,nonatomic) UIFont *placeholderFont UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get text field's placeholder text color.
+ 
+ The default is [UIColor darkGrayColor].
  */
 @property (strong,nonatomic) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
 
