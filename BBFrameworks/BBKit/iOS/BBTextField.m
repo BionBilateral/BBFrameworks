@@ -20,7 +20,7 @@
 @end
 
 @implementation BBTextField
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -61,7 +61,8 @@
     
     return CGRectMake(CGRectGetWidth(bounds) - self.rightViewEdgeInsets.right - CGRectGetWidth(retval), CGRectGetMinY(retval), CGRectGetWidth(retval), CGRectGetHeight(retval));
 }
-
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 - (void)setTextEdgeInsets:(UIEdgeInsets)textEdgeInsets {
     _textEdgeInsets = textEdgeInsets;
     
@@ -77,7 +78,7 @@
     
     [self setNeedsLayout];
 }
-
+#pragma mark *** Private Methods ***
 - (void)_BBTextFieldInit; {
     
 }
