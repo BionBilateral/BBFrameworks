@@ -21,11 +21,4 @@
  */
 @interface BBTokenCompletionDefaultTableViewCell : UITableViewCell <BBTokenCompletionTableViewCell>
 
-/**
- The row height of the receiver.
- 
- The default is 44.0.
- */
-+ (CGFloat)rowHeight;
-
 @end
