@@ -448,7 +448,12 @@ static void *kObservingContext = &kObservingContext;
 }
 #pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {
-    NSInteger index = [self.layoutManager characterIndexForPoint:[self.tapGestureRecognizer locationInView:self] inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
+    CGPoint location = [self.tapGestureRecognizer locationInView:self];
+    
+    location.x -= self.textContainerInset.left;
+    location.y -= self.textContainerInset.top;
+    
+    NSInteger index = [self.layoutManager characterIndexForPoint:location inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
     
     if (index < self.text.length) {
         NSRange range;
