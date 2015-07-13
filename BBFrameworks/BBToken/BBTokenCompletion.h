@@ -15,9 +15,18 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Protocol for BBTokenTextView completions.
+ */
 @protocol BBTokenCompletion <NSObject>
 @required
+/**
+ Return the title of the completion.
+ */
 - (NSString *)tokenCompletionTitle;
 @optional
+/**
+ Return the matching range of the completion.
+ */
 - (NSRange)tokenCompletionRange;
 @end

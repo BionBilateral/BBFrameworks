@@ -76,6 +76,7 @@ static void *kObservingContext = &kObservingContext;
 
 + (NSCharacterSet *)_defaultTokenizingCharacterSet;
 + (NSTimeInterval)_defaultCompletionDelay;
++ (Class)_defaultCompletionTableViewCellClass;
 + (Class)_defaultTokenTextAttachmentClass;
 + (UIFont *)_defaultTypingFont;
 + (UIColor *)_defaultTypingTextColor;
@@ -192,7 +193,11 @@ static void *kObservingContext = &kObservingContext;
     return self.completions.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BBTokenCompletionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBTokenCompletionTableViewCell class]) forIndexPath:indexPath];
+    BBTokenCompletionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
+    
+    if (!cell) {
+        cell = [[self.completionTableViewCellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
+    }
     
     [cell setCompletion:self.completions[indexPath.row]];
     
@@ -248,6 +253,13 @@ static void *kObservingContext = &kObservingContext;
     _tokenizingCharacterSet = tokenizingCharacterSet ?: [self.class _defaultTokenizingCharacterSet];
 }
 
+- (void)setCompletionDelay:(NSTimeInterval)completionDelay {
+    _completionDelay = completionDelay < 0.0 ? [self.class _defaultCompletionDelay] : completionDelay;
+}
+- (void)setCompletionTableViewCellClass:(Class)completionTableViewCellClass {
+    _completionTableViewCellClass = completionTableViewCellClass ?: [self.class _defaultCompletionTableViewCellClass];
+}
+
 - (void)setTokenTextAttachmentClass:(Class)tokenTextAttachmentClass {
     _tokenTextAttachmentClass = tokenTextAttachmentClass ?: [self.class _defaultTokenTextAttachmentClass];
 }
@@ -261,6 +273,8 @@ static void *kObservingContext = &kObservingContext;
 #pragma mark *** Private Methods ***
 - (void)_BBTokenFieldInit; {
     _tokenizingCharacterSet = [self.class _defaultTokenizingCharacterSet];
+    _completionDelay = [self.class _defaultCompletionDelay];
+    _completionTableViewCellClass = [self.class _defaultCompletionTableViewCellClass];
     _tokenTextAttachmentClass = [self.class _defaultTokenTextAttachmentClass];
     _typingFont = [self.class _defaultTypingFont];
     _typingTextColor = [self.class _defaultTypingTextColor];
@@ -279,7 +293,6 @@ static void *kObservingContext = &kObservingContext;
         if ([self.delegate respondsToSelector:@selector(tokenTextView:showCompletionsTableView:)]) {
             [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
             [self.tableView setRowHeight:[BBTokenCompletionTableViewCell rowHeight]];
-            [self.tableView registerClass:[BBTokenCompletionTableViewCell class] forCellReuseIdentifier:NSStringFromClass([BBTokenCompletionTableViewCell class])];
             [self.tableView setDataSource:self];
             [self.tableView setDelegate:self];
             
@@ -318,6 +331,9 @@ static void *kObservingContext = &kObservingContext;
 }
 + (NSTimeInterval)_defaultCompletionDelay; {
     return 0.0;
+}
++ (Class)_defaultCompletionTableViewCellClass {
+    return [BBTokenCompletionTableViewCell class];
 }
 + (Class)_defaultTokenTextAttachmentClass {
     return [BBTokenTextAttachment class];

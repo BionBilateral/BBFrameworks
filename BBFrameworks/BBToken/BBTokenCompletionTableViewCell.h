@@ -16,10 +16,21 @@
 #import <UIKit/UIKit.h>
 #import "BBTokenCompletion.h"
 
+/**
+ BBTokenCompletionTableViewCell is a UITableViewCell that displays possible completions attached to a BBTokenTextView.
+ */
 @interface BBTokenCompletionTableViewCell : UITableViewCell
 
+/**
+ Set and get the completion represented by the receiver.
+ */
 @property (strong,nonatomic) id<BBTokenCompletion> completion;
 
+/**
+ The row height of the receiver.
+ 
+ The default is 44.0.
+ */
 + (CGFloat)rowHeight;
 
 @end

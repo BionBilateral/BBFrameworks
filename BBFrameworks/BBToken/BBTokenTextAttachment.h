@@ -17,16 +17,53 @@
 
 @class BBTokenTextView;
 
+/**
+ BBTokenTextAttachment is a NSTextAttachment subclass that represents a token within a BBTokenTextView.
+ */
 @interface BBTokenTextAttachment : NSTextAttachment
 
+/**
+ Get the BBTokenTextView that owns the receiver.
+ */
 @property (readonly,weak,nonatomic) BBTokenTextView *tokenTextView;
+/**
+ Get the represented object represented by the receiver.
+ */
 @property (readonly,strong,nonatomic) id representedObject;
 
+/**
+ Set and get the font used to draw tokens.
+ 
+ The default is self.tokenTextView.typingFont.
+ */
 @property (strong,nonatomic) UIFont *tokenFont;
+/**
+ Set and get the text color used to draw tokens.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic) UIColor *tokenTextColor;
+/**
+ Set and get the background color used to draw tokens.
+ 
+ The default is self.tokenTextView.tintColor.
+ */
 @property (strong,nonatomic) UIColor *tokenBackgroundColor;
+/**
+ Set and get the corner radius used to draw tokens.
+ 
+ The default is 3.0.
+ */
 @property (assign,nonatomic) CGFloat tokenCornerRadius;
 
+/**
+ Designated initializer.
+ 
+ @param The represented object represented by the receiver
+ @param text The text drawn by the receiver
+ @param tokenTextView The token text view that owns the receiver
+ @return An initialized instance of the receiver
+ */
 - (instancetype)initWithRepresentedObject:(id)representedObject text:(NSString *)text tokenTextView:(BBTokenTextView *)tokenTextView;
 
 @end

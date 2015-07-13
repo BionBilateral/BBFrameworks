@@ -48,6 +48,12 @@
  The default is 0.0.
  */
 @property (assign,nonatomic) NSTimeInterval completionDelay;
+/**
+ Set and get the completion table view cell class of the receiver.
+ 
+ The default is BBTokenCompletionTableViewCell.
+ */
+@property (strong,nonatomic) Class completionTableViewCellClass UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the NSTextAttachment class used to draw tokens.

@@ -15,6 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Completion block used for asynchronous completion support.
+ 
+ @param completions An array of objects conforming to BBTokenCompletion
+ */
 typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
 
 @class BBTokenTextView;
@@ -50,8 +55,40 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  */
 - (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
 
+/**
+ Called when the receiver's delegate should display the completions table view.
+ 
+ The provided table view should be inserted into the view hierarchy and its frame set accordingly.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param tableView The completions table view
+ */
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView showCompletionsTableView:(UITableView *)tableView;
+/**
+ Called when the receiver's delegate should hide the completions table view.
+ 
+ The provided table view should be removed from the view hierarchy.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param tableView The completions table view
+ */
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView hideCompletionsTableView:(UITableView *)tableView;
+/**
+ Return the possible completions, which should be an array of objects conforming to BBTokenCompletion, for the provided substring and index.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param substring The substring to provide completions for
+ @param index The index of the represented object where the completion would be inserted
+ @return An array of objects conforming to BBTokenCompletion
+ */
 - (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index;
+/**
+ Call the provided completion block with an array of objects conforming to BBTokenCompletion, for the provided substring and index.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param substring The substring to provide completions for
+ @param index The index of the represented object where the completion would be inserted
+ @param completion The completion block to invoke when matching is complete
+ */
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion;
 @end
