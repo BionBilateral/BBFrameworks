@@ -56,6 +56,15 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
 - (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
 
 /**
+ Called when an array of represented objects are removed from the receiver at the provided index.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param representedObjects The array of represented objects that were removed
+ @param index The first index of the represented objects that were removed
+ */
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView didRemoveRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index;
+
+/**
  Called when the receiver's delegate should display the completions table view.
  
  The provided table view should be inserted into the view hierarchy and its frame set accordingly.
@@ -83,7 +92,7 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  */
 - (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index;
 /**
- Call the provided completion block with an array of objects conforming to BBTokenCompletion, for the provided substring and index.
+ Call the provided completion block with an array of objects conforming to BBTokenCompletion, for the provided substring and index. If this method is implemented, it is preferred over `tokenTextView:completionsForSubstring:indexOfRepresentedObject:`.
  
  @param tokenTextView The token text view that sent the message
  @param substring The substring to provide completions for

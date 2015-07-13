@@ -60,10 +60,6 @@
 
 @end
 
-static NSString *const kRepresentedObjectsKey = @"representedObjects";
-
-static void *kObservingContext = &kObservingContext;
-
 @interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic) _BBTokenTextViewInternalDelegate *internalDelegate;
 
@@ -177,6 +173,31 @@ static void *kObservingContext = &kObservingContext;
         }
         
         return NO;
+    }
+    // delete
+    else if (text.length == 0) {
+        if (self.text.length > 0) {
+            NSMutableArray *representedObjects = [[NSMutableArray alloc] init];
+            
+            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenTextAttachment *value, NSRange range, BOOL *stop) {
+                if (value) {
+                    [representedObjects addObject:value];
+                }
+            }];
+            
+            if (representedObjects.count > 0) {
+                if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
+                    BBTokenTextAttachment *textAttachment = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+                    NSInteger index = [self.representedObjects indexOfObject:textAttachment.representedObject];
+                    
+                    if (index == NSNotFound) {
+                        index = 0;
+                    }
+                    
+                    [self.delegate tokenTextView:self didRemoveRepresentedObjects:representedObjects atIndex:index];
+                }
+            }
+        }
     }
     return YES;
 }
