@@ -17,6 +17,30 @@
 
 #import <BBFrameworks/BBToken.h>
 #import <BBFrameworks/BBFoundation.h>
+#import <BBFrameworks/BBAddressBook.h>
+
+#import <BlocksKit/BlocksKit.h>
+
+@interface TokenCompletion : NSObject <BBTokenCompletion>
+@property (copy,nonatomic) NSString *tokenCompletionTitle;
+@property (assign,nonatomic) NSRange tokenCompletionRange;
+
+- (instancetype)initWithTitle:(NSString *)title range:(NSRange)range;
+@end
+
+@implementation TokenCompletion
+
+- (instancetype)initWithTitle:(NSString *)title range:(NSRange)range; {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setTokenCompletionTitle:title];
+    [self setTokenCompletionRange:range];
+    
+    return self;
+}
+
+@end
 
 @interface TokenModel : NSObject
 @property (copy,nonatomic) NSString *string;
@@ -28,6 +52,10 @@
 
 @interface TokenViewController () <BBTokenTextViewDelegate>
 @property (strong,nonatomic) BBTokenTextView *tokenTextView;
+@property (weak,nonatomic) UITableView *tableView;
+
+@property (strong,nonatomic) BBAddressBookManager *addressBookManager;
+@property (copy,nonatomic) NSArray *people;
 @end
 
 @implementation TokenViewController
@@ -48,9 +76,19 @@
     [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
     [self.tokenTextView setDelegate:self];
     [self.view addSubview:self.tokenTextView];
+    
+    [self setAddressBookManager:[[BBAddressBookManager alloc] init]];
+    [self.addressBookManager requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            [self.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people) {
+                [self setPeople:people];
+            }];
+        }
+    }];
 }
 - (void)viewDidLayoutSubviews {
-    [self.tokenTextView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - 16.0, CGRectGetHeight(self.view.bounds) - [self.bottomLayoutGuide length] - [self.topLayoutGuide length] - 16.0)];
+    [self.tokenTextView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - 16.0, 44.0)];
+    [self.tableView setFrame:CGRectMake(0, CGRectGetMaxY(self.tokenTextView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.tokenTextView.frame))];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -78,6 +116,29 @@
 }
 - (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject {
     return [(TokenModel *)representedObject string];
+}
+
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView showCompletionsTableView:(UITableView *)tableView {
+    [self setTableView:tableView];
+    
+    [self.view addSubview:self.tableView];
+}
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView hideCompletionsTableView:(UITableView *)tableView {
+    [self.tableView removeFromSuperview];
+    [self setTableView:nil];
+}
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *retval = [[self.people bk_select:^BOOL(BBAddressBookPerson *obj) {
+            return [obj.fullName.lowercaseString rangeOfString:substring.lowercaseString options:NSCaseInsensitiveSearch].length > 0;
+        }] bk_map:^id(BBAddressBookPerson *obj) {
+            return [[TokenCompletion alloc] initWithTitle:obj.fullName range:[obj.fullName rangeOfString:substring options:NSCaseInsensitiveSearch]];
+        }];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(retval);
+        });
+    });
 }
 
 + (NSString *)rowClassTitle {

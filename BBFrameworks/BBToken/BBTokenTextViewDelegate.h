@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
+
 @class BBTokenTextView;
 
 /**
@@ -47,4 +49,9 @@
  @return The display text for the represented object
  */
 - (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
+
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView showCompletionsTableView:(UITableView *)tableView;
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView hideCompletionsTableView:(UITableView *)tableView;
+- (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index;
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion;
 @end

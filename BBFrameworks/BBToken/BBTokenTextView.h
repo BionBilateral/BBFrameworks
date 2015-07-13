@@ -43,6 +43,13 @@
 @property (copy,nonatomic) NSCharacterSet *tokenizingCharacterSet;
 
 /**
+ Set and get the completion delay of the receiver.
+ 
+ The default is 0.0.
+ */
+@property (assign,nonatomic) NSTimeInterval completionDelay;
+
+/**
  Set and get the NSTextAttachment class used to draw tokens.
  
  The default is BBTokenTextAttachment.

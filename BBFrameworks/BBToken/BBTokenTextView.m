@@ -15,6 +15,7 @@
 
 #import "BBTokenTextView.h"
 #import "BBTokenTextAttachment.h"
+#import "BBTokenCompletionTableViewCell.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -49,6 +50,13 @@
         [self.delegate textViewDidChangeSelection:textView];
     }
 }
+- (void)textViewDidChange:(UITextView *)textView {
+    [(id<UITextViewDelegate>)textView textViewDidChange:textView];
+    
+    if ([self.delegate respondsToSelector:_cmd]) {
+        [self.delegate textViewDidChange:textView];
+    }
+}
 
 @end
 
@@ -56,12 +64,18 @@ static NSString *const kRepresentedObjectsKey = @"representedObjects";
 
 static void *kObservingContext = &kObservingContext;
 
-@interface BBTokenTextView () <UITextViewDelegate>
+@interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (strong,nonatomic) _BBTokenTextViewInternalDelegate *internalDelegate;
+
+@property (strong,nonatomic) UITableView *tableView;
+@property (copy,nonatomic) NSArray *completions;
 
 - (void)_BBTokenFieldInit;
 
+- (void)_showCompletionsTableView;
+
 + (NSCharacterSet *)_defaultTokenizingCharacterSet;
++ (NSTimeInterval)_defaultCompletionDelay;
 + (Class)_defaultTokenTextAttachmentClass;
 + (UIFont *)_defaultTypingFont;
 + (UIColor *)_defaultTypingTextColor;
@@ -168,6 +182,38 @@ static void *kObservingContext = &kObservingContext;
 - (void)textViewDidChangeSelection:(UITextView *)textView {
     [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
 }
+- (void)textViewDidChange:(UITextView *)textView {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_showCompletionsTableView) object:nil];
+    
+    [self performSelector:@selector(_showCompletionsTableView) withObject:nil afterDelay:self.completionDelay];
+}
+#pragma mark UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.completions.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BBTokenCompletionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBTokenCompletionTableViewCell class]) forIndexPath:indexPath];
+    
+    [cell setCompletion:self.completions[indexPath.row]];
+    
+    return cell;
+}
+#pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(tokenTextView:hideCompletionsTableView:)]) {
+        id<BBTokenCompletion> completion = self.completions[indexPath.row];
+        id representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]];
+        NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
+        NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
+        NSTextCheckingResult *result = [[NSRegularExpression regularExpressionWithPattern:@"[A-Aa-z0-9_-]+" options:0 error:NULL] firstMatchInString:self.text options:0 range:NSMakeRange(0, self.text.length)];
+        
+        [self.textStorage replaceCharactersInRange:result.range withAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+        
+        [self.delegate tokenTextView:self hideCompletionsTableView:self.tableView];
+        
+        [self setTableView:nil];
+    }
+}
 #pragma mark *** Public Methods ***
 #pragma mark Properties
 @dynamic representedObjects;
@@ -228,8 +274,50 @@ static void *kObservingContext = &kObservingContext;
     [self setDelegate:nil];
 }
 
+- (void)_showCompletionsTableView; {
+    if (!self.tableView) {
+        if ([self.delegate respondsToSelector:@selector(tokenTextView:showCompletionsTableView:)]) {
+            [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
+            [self.tableView setRowHeight:[BBTokenCompletionTableViewCell rowHeight]];
+            [self.tableView registerClass:[BBTokenCompletionTableViewCell class] forCellReuseIdentifier:NSStringFromClass([BBTokenCompletionTableViewCell class])];
+            [self.tableView setDataSource:self];
+            [self.tableView setDelegate:self];
+            
+            [self.delegate tokenTextView:self showCompletionsTableView:self.tableView];
+        }
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:completion:)]) {
+        NSTextCheckingResult *result = [[NSRegularExpression regularExpressionWithPattern:@"[A-Aa-z0-9_-]+" options:0 error:NULL] firstMatchInString:self.text options:0 range:NSMakeRange(0, self.text.length)];
+        BBTokenTextAttachment *textAttachment = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(self.selectedRange.location, self.attributedText.length - 1) effectiveRange:NULL];
+        NSInteger index = [self.representedObjects indexOfObject:textAttachment.representedObject];
+        
+        if (index == NSNotFound) {
+            index = self.representedObjects.count;
+        }
+        
+        [self.delegate tokenTextView:self completionsForSubstring:[self.text substringWithRange:result.range] indexOfRepresentedObject:index completion:^(NSArray *completions) {
+            [self setCompletions:completions];
+        }];
+    }
+    else if ([self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:)]) {
+        NSTextCheckingResult *result = [[NSRegularExpression regularExpressionWithPattern:@"[A-Aa-z0-9_-]+" options:0 error:NULL] firstMatchInString:self.text options:0 range:NSMakeRange(0, self.text.length)];
+        BBTokenTextAttachment *textAttachment = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(self.selectedRange.location, self.attributedText.length - 1) effectiveRange:NULL];
+        NSInteger index = [self.representedObjects indexOfObject:textAttachment.representedObject];
+        
+        if (index == NSNotFound) {
+            index = self.representedObjects.count;
+        }
+        
+        [self setCompletions:[self.delegate tokenTextView:self completionsForSubstring:[self.text substringWithRange:result.range] indexOfRepresentedObject:index]];
+    }
+}
+
 + (NSCharacterSet *)_defaultTokenizingCharacterSet; {
     return [NSCharacterSet characterSetWithCharactersInString:@","];
+}
++ (NSTimeInterval)_defaultCompletionDelay; {
+    return 0.0;
 }
 + (Class)_defaultTokenTextAttachmentClass {
     return [BBTokenTextAttachment class];
@@ -239,6 +327,19 @@ static void *kObservingContext = &kObservingContext;
 }
 + (UIColor *)_defaultTypingTextColor; {
     return [UIColor blackColor];
+}
+#pragma mark Properties
+- (void)setTableView:(UITableView *)tableView {
+    _tableView = tableView;
+    
+    if (!_tableView) {
+        [self setCompletions:nil];
+    }
+}
+- (void)setCompletions:(NSArray *)completions {
+    _completions = completions;
+    
+    [self.tableView reloadData];
 }
 
 @end
