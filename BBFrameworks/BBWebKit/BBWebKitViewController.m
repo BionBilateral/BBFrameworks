@@ -74,6 +74,8 @@
     
     [titleView sizeToFit];
     
+    RAC(titleView,customTitle) = RACObserve(self, customTitle);
+    
     [self.navigationItem setTitleView:titleView];
     
     RACSignal *webViewLoadingSignal = RACObserve(self.webView, loading);

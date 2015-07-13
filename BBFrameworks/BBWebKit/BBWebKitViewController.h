@@ -28,6 +28,13 @@
  */
 @property (weak,nonatomic) id<BBWebKitViewControllerDelegate> delegate;
 
+/**
+ Set and get the custom title of the receiver. If this is non-nil, the receiver's title will be set to this value. Otherwise the receiver's title tracks the title of the managed WKWebView.
+ 
+ The default is nil.
+ */
+@property (copy,nonatomic) NSString *customTitle;
+
 /*
  Get and set whether the navigation toolbar should be shown.
  

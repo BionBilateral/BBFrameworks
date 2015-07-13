@@ -19,6 +19,8 @@
 
 @interface BBWebKitTitleView : UIView
 
+@property (copy,nonatomic) NSString *customTitle;
+
 @property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 @property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 

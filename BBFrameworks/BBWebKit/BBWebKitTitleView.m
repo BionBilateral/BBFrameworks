@@ -15,6 +15,7 @@
 
 #import "BBWebKitTitleView.h"
 #import "BBFoundation.h"
+#import "BBFrameworksFunctions.h"
 
 #import <Archimedes/Archimedes.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -104,7 +105,9 @@
     
     @weakify(self);
     
-    RAC(self.titleLabel,text) = [RACObserve(self.webView, title) deliverOn:[RACScheduler mainThreadScheduler]];
+    RAC(self.titleLabel,text) = [[RACSignal combineLatest:@[RACObserve(self, customTitle),RACObserve(self.webView, title)] reduce:^id(NSString *customTitle, NSString *title){
+        return customTitle.length > 0 ? customTitle : (title.length > 0 ? title : NSLocalizedStringWithDefaultValue(@"WEB_KIT_TITLE_VIEW_TITLE_PLACEHOLDER", @"WebKit", BBFrameworksResourcesBundle(), @"Loading…", @"web kit title view title placeholder loading with ellipsis"));
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
     RAC(self.urlLabel,text) = [[[RACObserve(self.webView, URL) map:^id(NSURL *value) {
         return value.absoluteString;
     }] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {

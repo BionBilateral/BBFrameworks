@@ -12,6 +12,7 @@
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */; };
+		07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07C23A8C1B540DE500D3C072 /* WebKit.strings */; };
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
 		07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* FormViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
@@ -474,6 +475,7 @@
 		07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerFullscreenTopView.m; sourceTree = "<group>"; };
 		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
 		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
+		07C23A8D1B540DE500D3C072 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WebKit.strings; sourceTree = "<group>"; };
 		07CE80281B4EDBC100F5729E /* BBTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextField.h; path = iOS/BBTextField.h; sourceTree = "<group>"; };
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
 		07CE802B1B4EE78800F5729E /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
@@ -1417,6 +1419,7 @@
 				07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */,
 				79EA81421B3F212700D50B6B /* MediaPicker.strings */,
 				79F941631B436B3B00B385F0 /* AddressBook.strings */,
+				07C23A8C1B540DE500D3C072 /* WebKit.strings */,
 				79EA80791B3F06ED00D50B6B /* BBFrameworksResourcesiOS-Info.plist */,
 				79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */,
 			);
@@ -1770,6 +1773,7 @@
 				79EA80BF1B3F0C5600D50B6B /* media_player_pause.png in Resources */,
 				79EA80A91B3F096A00D50B6B /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
 				79EA80A81B3F095C00D50B6B /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
+				07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */,
 				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
 				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
@@ -1809,7 +1813,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m BBFrameworks/BBAddressBook/*.m";
+			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m BBFrameworks/BBAddressBook/*.m BBFrameworks/BBWebKit/*.m";
 		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2174,6 +2178,14 @@
 				07BFFEDA1B419F1800DBC7EC /* en */,
 			);
 			name = MediaPlayer.strings;
+			sourceTree = "<group>";
+		};
+		07C23A8C1B540DE500D3C072 /* WebKit.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07C23A8D1B540DE500D3C072 /* en */,
+			);
+			name = WebKit.strings;
 			sourceTree = "<group>";
 		};
 		79EA81421B3F212700D50B6B /* MediaPicker.strings */ = {
