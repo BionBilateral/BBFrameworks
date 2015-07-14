@@ -50,8 +50,8 @@
     [self setText:text];
     
     _tokenFont = self.tokenTextView.typingFont;
-    _tokenTextColor = [UIColor whiteColor];
-    _tokenBackgroundColor = self.tokenTextView.tintColor;
+    _tokenTextColor = self.tokenTextView.tintColor;
+    _tokenBackgroundColor = [UIColor clearColor];
     _tokenHighlightedTextColor = [UIColor whiteColor];
     _tokenHighlightedBackgroundColor = self.tokenTextView.tintColor;
     _tokenCornerRadius = 3.0;

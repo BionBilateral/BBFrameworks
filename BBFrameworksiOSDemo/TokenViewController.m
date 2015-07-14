@@ -81,7 +81,7 @@
     
     [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
     [self.tokenTextView setBackgroundColor:[UIColor blackColor]];
-    [self.tokenTextView setTypingTextColor:self.tokenTextView.tintColor];
+    [self.tokenTextView setTypingTextColor:[UIColor whiteColor]];
     [self.tokenTextView setTokenTextAttachmentClass:[TokenTextAttachment class]];
     [self.tokenTextView setCompletionTableViewCellClass:[TokenCompletionTableViewCell class]];
     [self.tokenTextView setDelegate:self];
@@ -97,13 +97,19 @@
     }];
 }
 - (void)viewDidLayoutSubviews {
-    [self.tokenTextView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - 16.0, 44.0)];
+    CGFloat width = CGRectGetWidth(self.view.bounds) - 16.0;
+    
+    [self.tokenTextView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, width, ceil([self.tokenTextView sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height))];
     [self.tableView setFrame:CGRectMake(0, CGRectGetMaxY(self.tokenTextView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.tokenTextView.frame))];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self.tokenTextView becomeFirstResponder];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    [self.view setNeedsLayout];
 }
 
 - (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForEditingText:(NSString *)editingText {
