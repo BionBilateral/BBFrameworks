@@ -32,16 +32,26 @@
 /**
  Set and get the text color used to draw tokens.
  
- The default is [UIColor whiteColor].
+ The default is self.tokenTextView.tintColor.
  */
 @property (strong,nonatomic) UIColor *tokenTextColor;
 /**
  Set and get the background color used to draw tokens.
  
- The default is self.tokenTextView.tintColor.
+ The default is [UIColor clearColor].
  */
 @property (strong,nonatomic) UIColor *tokenBackgroundColor;
+/**
+ Set and get the text color used to draw highlighted tokens.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic) UIColor *tokenHighlightedTextColor;
+/**
+ Set and get the background color used to draw highlighted tokens.
+ 
+ The default is self.tokenTextView.tintColor.
+ */
 @property (strong,nonatomic) UIColor *tokenHighlightedBackgroundColor;
 /**
  Set and get the corner radius used to draw tokens.
