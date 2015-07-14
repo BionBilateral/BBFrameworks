@@ -115,7 +115,9 @@ static void *kObservingContext = &kObservingContext;
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
     if (action == @selector(cut:) ||
-        action == @selector(copy:)) {
+        action == @selector(copy:) ||
+        action == @selector(paste:)) {
+        
         return NO;
     }
     return [super canPerformAction:action withSender:sender];
@@ -126,10 +128,6 @@ static void *kObservingContext = &kObservingContext;
     [self.internalDelegate setDelegate:delegate];
     
     [super setDelegate:self.internalDelegate];
-}
-
-- (void)paste:(id)sender {
-    [self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:[[NSAttributedString alloc] initWithString:[[UIPasteboard generalPasteboard] valueForPasteboardType:(__bridge NSString *)kUTTypePlainText] attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}]];
 }
 #pragma mark NSKeyValueObserving
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
