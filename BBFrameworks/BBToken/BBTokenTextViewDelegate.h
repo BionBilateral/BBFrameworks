@@ -56,6 +56,15 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
 - (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
 
 /**
+ Called when an array of represented objects are added to the receiver at the provided index.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param representedObjects The array of represented objects that were added
+ @param index The first index of the represented objects that were added
+ */
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView didAddRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index;
+
+/**
  Called when an array of represented objects are removed from the receiver at the provided index.
  
  @param tokenTextView The token text view that sent the message

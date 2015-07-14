@@ -207,6 +207,10 @@ static void *kObservingContext = &kObservingContext;
                 
                 // hide the completion table view if it was visible
                 [self _hideCompletionsTableViewAndSelectCompletion:nil];
+                
+                if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
+                    [self.delegate tokenTextView:self didAddRepresentedObjects:representedObject atIndex:index];
+                }
             }
         }
         
@@ -403,8 +407,14 @@ static void *kObservingContext = &kObservingContext;
             id representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]];
             NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
             NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
+            NSInteger index;
+            [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
             
             [self.textStorage replaceCharactersInRange:[self _completionRangeForRange:self.selectedRange] withAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+            
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
+                [self.delegate tokenTextView:self didAddRepresentedObjects:@[representedObject] atIndex:index];
+            }
         }
         
         [self.delegate tokenTextView:self hideCompletionsTableView:self.tableView];
