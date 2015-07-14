@@ -209,7 +209,7 @@ static void *kObservingContext = &kObservingContext;
                 [self _hideCompletionsTableViewAndSelectCompletion:nil];
                 
                 if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
-                    [self.delegate tokenTextView:self didAddRepresentedObjects:representedObject atIndex:index];
+                    [self.delegate tokenTextView:self didAddRepresentedObjects:representedObjects atIndex:index];
                 }
             }
         }
@@ -228,6 +228,8 @@ static void *kObservingContext = &kObservingContext;
                 }
             }];
             
+            [self.textStorage deleteCharactersInRange:range];
+            
             // if there are text attachments, call tokenTextView:didRemoveRepresentedObjects:atIndex: if its implemented
             if (representedObjects.count > 0) {
                 if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
@@ -237,6 +239,8 @@ static void *kObservingContext = &kObservingContext;
                     [self.delegate tokenTextView:self didRemoveRepresentedObjects:representedObjects atIndex:index];
                 }
             }
+            
+            return NO;
         }
     }
     return YES;
@@ -299,7 +303,7 @@ static void *kObservingContext = &kObservingContext;
     return retval;
 }
 - (void)setRepresentedObjects:(NSArray *)representedObjects {
-    NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{}];
+    NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
     
     for (id representedObject in representedObjects) {
         NSString *text = [representedObject description];
@@ -311,7 +315,7 @@ static void *kObservingContext = &kObservingContext;
         [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[[self tokenTextAttachmentClass] alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self]]];
     }
     
-    [self.textStorage setAttributedString:temp];
+    [self.textStorage replaceCharactersInRange:NSMakeRange(0, self.textStorage.length) withAttributedString:temp];
 }
 
 - (void)setTokenizingCharacterSet:(NSCharacterSet *)tokenizingCharacterSet {
@@ -544,6 +548,8 @@ static void *kObservingContext = &kObservingContext;
             else {
                 [self setSelectedRange:NSMakeRange(NSMaxRange(range), 0)];
             }
+            
+            [self becomeFirstResponder];
         }
     }
 }
