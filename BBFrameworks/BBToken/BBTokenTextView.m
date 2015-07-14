@@ -34,12 +34,12 @@
 - (BOOL)respondsToSelector:(SEL)aSelector {
     return [self.delegate respondsToSelector:aSelector] || [super respondsToSelector:aSelector];
 }
-// forwardInvocation is only called if the receiver does not respond to a selector but respondsToSelector: returned YES. This will only happen if the external delegate responds to a delegate method that we do not implement.
+// forwardInvocation is only called if the receiver does not respond to a selector but respondsToSelector: returned YES. This will only happen if the external delegate responds to a delegate method that we do not implement
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     [anInvocation invokeWithTarget:self.delegate];
 }
 
-// Pass through delegate messages we are interested to the owning text view, as well as our external delegate.
+// Pass through delegate messages we are interested to the owning text view, as well as our external delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     BOOL retval = [(id<UITextViewDelegate>)textView textView:textView shouldChangeTextInRange:range replacementText:text];
     
@@ -68,12 +68,7 @@
 
 @end
 
-static NSString *const kTypingFontKey = @"typingFont";
-static NSString *const kTypingTextColorKey = @"typingTextColor";
-
-static void *kObservingContext = &kObservingContext;
-
-@interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate,NSTextStorageDelegate>
 @property (strong,nonatomic) _BBTokenTextViewInternalDelegate *internalDelegate;
 
 @property (strong,nonatomic) UITableView *tableView;
@@ -101,11 +96,6 @@ static void *kObservingContext = &kObservingContext;
 
 @implementation BBTokenTextView
 #pragma mark *** Subclass Overrides ***
-- (void)dealloc {
-    [self removeObserver:self forKeyPath:kTypingFontKey context:kObservingContext];
-    [self removeObserver:self forKeyPath:kTypingTextColorKey context:kObservingContext];
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -124,13 +114,12 @@ static void *kObservingContext = &kObservingContext;
 }
 // disable cut:, copy:, and paste: for now, need to investigate how to duplicate Mail.app interactions using text attachments
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (action == @selector(cut:) ||
-        action == @selector(copy:) ||
-        action == @selector(paste:)) {
+    if (action == @selector(select:) ||
+        action == @selector(selectAll:)) {
         
-        return NO;
+        return YES;
     }
-    return [super canPerformAction:action withSender:sender];
+    return NO;
 }
 
 @dynamic delegate;
@@ -140,19 +129,9 @@ static void *kObservingContext = &kObservingContext;
     
     [super setDelegate:self.internalDelegate];
 }
-#pragma mark NSKeyValueObserving
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (context == kObservingContext) {
-        // if typing font or text color change, update our typing attributes appropriately
-        if ([keyPath isEqualToString:kTypingFontKey] ||
-            [keyPath isEqualToString:kTypingTextColorKey]) {
-            
-            [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
-        }
-    }
-    else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
+#pragma mark NSTextStorageDelegate
+- (void)textStorage:(NSTextStorage *)textStorage didProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta {
+    [textStorage addAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor} range:NSMakeRange(0, textStorage.length)];
 }
 #pragma mark UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -230,6 +209,12 @@ static void *kObservingContext = &kObservingContext;
             
             [self.textStorage deleteCharactersInRange:range];
             
+            [self textViewDidChange:self];
+            
+            if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+                [self.delegate textViewDidChange:self];
+            }
+            
             // if there are text attachments, call tokenTextView:didRemoveRepresentedObjects:atIndex: if its implemented
             if (representedObjects.count > 0) {
                 if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
@@ -246,8 +231,6 @@ static void *kObservingContext = &kObservingContext;
     return YES;
 }
 - (void)textViewDidChangeSelection:(UITextView *)textView {
-    [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
-    
     if (self.selectedRange.length == 0) {
         [self setSelectedTextAttachmentRanges:nil];
     }
@@ -351,12 +334,10 @@ static void *kObservingContext = &kObservingContext;
     [self setContentInset:UIEdgeInsetsZero];
     [self setTextContainerInset:UIEdgeInsetsZero];
     [self.textContainer setLineFragmentPadding:0];
+    [self.textStorage setDelegate:self];
     
     [self setInternalDelegate:[[_BBTokenTextViewInternalDelegate alloc] init]];
     [self setDelegate:nil];
-    
-    [self addObserver:self forKeyPath:kTypingFontKey options:NSKeyValueObservingOptionInitial context:kObservingContext];
-    [self addObserver:self forKeyPath:kTypingTextColorKey options:NSKeyValueObservingOptionInitial context:kObservingContext];
     
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
@@ -408,7 +389,7 @@ static void *kObservingContext = &kObservingContext;
     if ([self.delegate respondsToSelector:@selector(tokenTextView:hideCompletionsTableView:)]) {
         // if we were given a completion to insert, do it
         if (completion) {
-            id representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]];
+            id representedObject = [self.delegate tokenTextView:self representedObjectForCompletion:completion];
             NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
             NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
             NSInteger index;
@@ -540,8 +521,10 @@ static void *kObservingContext = &kObservingContext;
         
         // if there is a token
         if (value) {
-            // if our selection is zero length, select the entire range of the token
-            if (self.selectedRange.length == 0) {
+            // if our selection is zero length or a different token is selected, select the entire range of the token
+            if (self.selectedRange.length == 0 ||
+                [self.selectedTextAttachmentRanges containsIndexesInRange:self.selectedRange]) {
+                
                 [self setSelectedRange:range];
             }
             // otherwise set the selected range as zero length after the token
@@ -549,6 +532,15 @@ static void *kObservingContext = &kObservingContext;
                 [self setSelectedRange:NSMakeRange(NSMaxRange(range), 0)];
             }
             
+            if (!self.isFirstResponder) {
+                [self becomeFirstResponder];
+            }
+        }
+    }
+    else {
+        [self setSelectedRange:NSMakeRange(self.text.length, 0)];
+        
+        if (!self.isFirstResponder) {
             [self becomeFirstResponder];
         }
     }

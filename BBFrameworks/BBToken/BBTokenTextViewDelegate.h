@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BBTokenCompletion;
+
 /**
  Completion block used for asynchronous completion support.
  
@@ -109,4 +111,12 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  @param completion The completion block to invoke when matching is complete
  */
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion;
+/**
+ Called when the user selects a row in the completions table view. This method should return the corresponding  represented object for the selected completion object.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param completion The completion that was selected
+ @return The represented object for the selected completion
+ */
+- (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForCompletion:(id<BBTokenCompletion>)completion;
 @end

@@ -46,7 +46,7 @@
     NSMutableAttributedString *retval = [[NSMutableAttributedString alloc] initWithString:[completion tokenCompletionTitle] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
     if ([completion respondsToSelector:@selector(tokenCompletionRange)]) {
-        [retval addAttributes:@{NSBackgroundColorAttributeName: [[UIColor yellowColor] colorWithAlphaComponent:0.5]} range:[completion tokenCompletionRange]];
+        [retval addAttributes:@{NSBackgroundColorAttributeName: self.tintColor} range:[completion tokenCompletionRange]];
     }
     
     [self.titleLabel setAttributedText:retval];
