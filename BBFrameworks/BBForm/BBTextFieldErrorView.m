@@ -15,7 +15,8 @@
 
 #import "BBTextFieldErrorView.h"
 #import "UIViewController+BBKitExtensions.h"
-#import "BBTooltip.h"
+#import "BBTooltipViewController.h"
+#import "BBTooltipView.h"
 
 @interface BBTextFieldErrorViewTooltipViewController : BBTooltipViewController
 
