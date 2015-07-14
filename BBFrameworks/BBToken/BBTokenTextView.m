@@ -389,7 +389,15 @@
     if ([self.delegate respondsToSelector:@selector(tokenTextView:hideCompletionsTableView:)]) {
         // if we were given a completion to insert, do it
         if (completion) {
-            id representedObject = [self.delegate tokenTextView:self representedObjectForCompletion:completion];
+            id representedObject;
+            
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectForCompletion:)]) {
+                representedObject = [self.delegate tokenTextView:self representedObjectForCompletion:completion];
+            }
+            else {
+                representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]];
+            }
+            
             NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
             NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
             NSInteger index;
