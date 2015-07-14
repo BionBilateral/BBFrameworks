@@ -19,9 +19,9 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/UIColor+BBKitExtensions.h>
+#import "UIColor+BBKitExtensions.h"
 #else
-#import <BBFrameworks/NSColor+BBKitExtensions.h>
+#import "NSColor+BBKitExtensions.h"
 #endif
 
 /**
