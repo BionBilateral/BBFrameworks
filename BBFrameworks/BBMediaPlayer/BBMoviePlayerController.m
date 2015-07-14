@@ -17,10 +17,9 @@
 #import "BBMoviePlayerView.h"
 #import "BBMoviePlayerContentView.h"
 #import "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"
+#import "UIViewController+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <BBFrameworks/BBFoundation.h>
-#import <BBFrameworks/BBKit.h>
 #import <BlocksKit/BlocksKit.h>
 
 #import <AVFoundation/AVFoundation.h>
