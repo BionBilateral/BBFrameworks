@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_KIT_COLOR_MACROS__
 #define __BB_FRAMEWORKS_KIT_COLOR_MACROS__
 
+#import <TargetConditionals.h>
+
 #if (TARGET_OS_IPHONE)
 #import <BBFrameworks/UIColor+BBKitExtensions.h>
 #else
