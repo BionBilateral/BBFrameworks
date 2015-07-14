@@ -73,6 +73,8 @@ static void *kObservingContext = &kObservingContext;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (copy,nonatomic) NSIndexSet *selectedTextAttachmentRanges;
+
 - (void)_BBTokenTextViewInit;
 
 - (void)_showCompletionsTableView;
@@ -216,17 +218,19 @@ static void *kObservingContext = &kObservingContext;
 - (void)textViewDidChangeSelection:(UITextView *)textView {
     [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
     
-    __block BOOL shouldInvalidate = NO;
-    
-    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.textStorage.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
-        if (value) {
-            shouldInvalidate = YES;
-            *stop = YES;
-        }
-    }];
-    
-    if (shouldInvalidate) {
-        [self.layoutManager invalidateDisplayForCharacterRange:NSMakeRange(0, self.textStorage.length)];
+    if (self.selectedRange.length == 0) {
+        [self setSelectedTextAttachmentRanges:nil];
+    }
+    else {
+        NSMutableIndexSet *temp = [[NSMutableIndexSet alloc] init];
+        
+        [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:self.selectedRange options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+            if (value) {
+                [temp addIndexesInRange:range];
+            }
+        }];
+        
+        [self setSelectedTextAttachmentRanges:temp];
     }
 }
 - (void)textViewDidChange:(UITextView *)textView {
@@ -460,6 +464,17 @@ static void *kObservingContext = &kObservingContext;
     _completions = completions;
     
     [self.tableView reloadData];
+}
+- (void)setSelectedTextAttachmentRanges:(NSIndexSet *)selectedTextAttachmentRanges {
+    [_selectedTextAttachmentRanges enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+        [self.layoutManager invalidateDisplayForCharacterRange:range];
+    }];
+    
+    _selectedTextAttachmentRanges = [selectedTextAttachmentRanges copy];
+    
+    [_selectedTextAttachmentRanges enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+        [self.layoutManager invalidateDisplayForCharacterRange:range];
+    }];
 }
 #pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {
