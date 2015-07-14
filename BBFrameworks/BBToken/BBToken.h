@@ -17,9 +17,9 @@
 #define __BB_FRAMEWORKS_TOKEN__
 
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBTokenCompletion.h>
-#import <BBFrameworks/BBTokenTextView.h>
-#import <BBFrameworks/BBTokenDefaultTextAttachment.h>
+#import "BBTokenCompletion.h"
+#import "BBTokenTextView.h"
+#import "BBTokenDefaultTextAttachment.h"
 #endif
 
 #endif
