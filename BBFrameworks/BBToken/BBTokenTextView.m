@@ -353,7 +353,7 @@ static void *kObservingContext = &kObservingContext;
         [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
         
         NSRange range = [self _completionRangeForRange:self.selectedRange];
-        
+        NSLog(@"%@",NSStringFromRange(range));
         if ([self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:completion:)]) {
             [self.delegate tokenTextView:self completionsForSubstring:[self.text substringWithRange:range] indexOfRepresentedObject:index completion:^(NSArray *completions) {
                 [self setCompletions:completions];
@@ -398,18 +398,18 @@ static void *kObservingContext = &kObservingContext;
         foundRange = [self.text rangeOfCharacterFromSet:characterSet options:NSBackwardsSearch range:searchRange];
     }
     
-    // then search forwards until we hit either a token or end of text
-    searchRange = NSMakeRange(range.location, self.text.length - range.location);
-    foundRange = [self.text rangeOfCharacterFromSet:characterSet options:0 range:searchRange];
-    
-    while (foundRange.length > 0) {
-        retval = NSUnionRange(retval, foundRange);
+    // if we found something searching backwards, use a scanner to scan all characters from our character set starting at retval.location and moving forwards
+    if (retval.location != NSNotFound) {
+        NSScanner *scanner = [[NSScanner alloc] initWithString:self.text];
         
-        searchRange = NSMakeRange(NSMaxRange(foundRange), self.text.length - NSMaxRange(foundRange));
-        foundRange = [self.text rangeOfCharacterFromSet:characterSet options:0 range:searchRange];
+        [scanner setCharactersToBeSkipped:nil];
+        [scanner setScanLocation:retval.location];
+        
+        NSString *string;
+        if ([scanner scanCharactersFromSet:characterSet intoString:&string]) {
+            retval = NSMakeRange(retval.location, string.length);
+        }
     }
-    
-    // this ensures that strings like Joh| Smith will match John Smith
     
     return retval;
 }
