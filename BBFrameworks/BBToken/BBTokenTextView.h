@@ -41,6 +41,12 @@
  The default is [NSCharacterSet characterSetWithCharactersInString:@","].
  */
 @property (copy,nonatomic) NSCharacterSet *tokenizingCharacterSet;
+/**
+ Set and get the NSTextAttachment class used to draw tokens.
+ 
+ The default is BBTokenTextAttachment.
+ */
+@property (strong,nonatomic) Class tokenTextAttachmentClass UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the completion delay of the receiver.
@@ -54,13 +60,6 @@
  The default is BBTokenCompletionDefaultTableViewCell.
  */
 @property (strong,nonatomic) Class completionTableViewCellClass UI_APPEARANCE_SELECTOR;
-
-/**
- Set and get the NSTextAttachment class used to draw tokens.
- 
- The default is BBTokenTextAttachment.
- */
-@property (strong,nonatomic) Class tokenTextAttachmentClass UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the typing font of the receiver. Set this instead of the font of the receiver.
