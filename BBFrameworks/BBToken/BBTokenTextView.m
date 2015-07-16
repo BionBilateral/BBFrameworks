@@ -398,15 +398,24 @@
                 representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]];
             }
             
-            NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
-            NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
+            NSArray *representedObjects = @[representedObject];
             NSInteger index;
             [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
             
-            [self.textStorage replaceCharactersInRange:[self _completionRangeForRange:self.selectedRange] withAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+            // if the delegate responds to tokenTextView:shouldAddRepresentedObjects:atIndex use its return value for the represented objects to insert
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
+                representedObjects = [self.delegate tokenTextView:self shouldAddRepresentedObjects:representedObjects atIndex:index];
+            }
             
-            if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
-                [self.delegate tokenTextView:self didAddRepresentedObjects:@[representedObject] atIndex:index];
+            if (representedObjects.count > 0) {
+                NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
+                NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
+                
+                [self.textStorage replaceCharactersInRange:[self _completionRangeForRange:self.selectedRange] withAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+                
+                if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
+                    [self.delegate tokenTextView:self didAddRepresentedObjects:representedObjects atIndex:index];
+                }
             }
         }
         
