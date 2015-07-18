@@ -18,6 +18,11 @@
 
 #if (TARGET_OS_IPHONE)
 #import <BBFrameworks/BBTextFieldErrorView.h>
+
+#import <BBFrameworks/BBFormField.h>
+#import <BBFrameworks/BBFormTableViewController.h>
+#import <BBFrameworks/BBFormTableViewCell.h>
+#import <BBFrameworks/BBFormTextTableViewCell.h>
 #endif
 
 #endif

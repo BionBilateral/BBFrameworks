@@ -18,19 +18,20 @@
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
 
-@interface FormViewController () <BBPickerButtonDataSource>
-@property (strong,nonatomic) BBTextField *textField;
-@property (strong,nonatomic) BBPickerButton *pickerButton;
-@property (strong,nonatomic) BBDatePickerButton *datePickerButton;
+@interface FormViewController () <BBFormTableViewControllerDataSource>
+@property (strong,nonatomic) BBFormTableViewController *tableViewController;
+@property (copy,nonatomic) NSArray *formFieldDictionaries;
 
-@property (readonly,nonatomic) NSArray *pickerButtonRowTitles;
+@property (copy,nonatomic) NSString *firstName;
+@property (copy,nonatomic) NSString *middleName;
+@property (copy,nonatomic) NSString *lastName;
 @end
 
 @implementation FormViewController
 
 + (void)initialize {
     if (self == [FormViewController class]) {
-        [[BBTextField appearance] setTextEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 8)];
+        
     }
 }
 
@@ -38,82 +39,42 @@
     return [self.class rowClassTitle];
 }
 
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitle: @"First Name",
+                                       BBFormFieldKeyKey: @"firstName",
+                                       BBFormFieldKeyPlaceholder: @"Type your first name…",
+                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeTwitter)},
+                                     @{BBFormFieldKeyTitle: @"Middle Name",
+                                       BBFormFieldKeyKey: @"middleName",
+                                       BBFormFieldKeyPlaceholder: @"Type your middle name…",
+                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeEmailAddress)},
+                                     @{BBFormFieldKeyTitle: @"Last Name",
+                                       BBFormFieldKeyKey: @"lastName",
+                                       BBFormFieldKeyPlaceholder: @"Type your last name…",
+                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeURL)}]];
+    
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self setTextField:[[BBTextField alloc] initWithFrame:CGRectZero]];
-    [self.textField setBorderStyle:UITextBorderStyleNone];
-    [self.textField.layer setBorderWidth:1.0];
-    [self.textField.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [self.textField setLeftViewMode:UITextFieldViewModeAlways];
-    [self.textField setLeftView:({
-        UIImageView *retval = [[UIImageView alloc] initWithFrame:CGRectZero];
-        
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
-        
-        [[UIColor purpleColor] setFill];
-        [[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 22, 22)] fill];
-        
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        
-        [retval setImage:image];
-        [retval sizeToFit];
-        
-        retval;
-    })];
-    [self.textField setLeftViewEdgeInsets:UIEdgeInsetsMake(0, 8.0, 0, 0)];
-    [self.textField setRightViewMode:UITextFieldViewModeAlways];
-    [self.textField setRightView:({
-        UIView *retval = [[BBTextFieldErrorView alloc] initWithFrame:CGRectZero];
-        
-        [retval sizeToFit];
-        
-        retval;
-    })];
-    [self.textField setRightViewEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 8.0)];
-    [self.view addSubview:self.textField];
-    
-    [self setPickerButton:[[BBPickerButton alloc] initWithFrame:CGRectZero]];
-    [self.pickerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.pickerButton setDataSource:self];
-    [self.view addSubview:self.pickerButton];
-    
-    [self setDatePickerButton:[[BBDatePickerButton alloc] initWithFrame:CGRectZero]];
-    [self.datePickerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.view addSubview:self.datePickerButton];
+    [self setTableViewController:[[BBFormTableViewController alloc] init]];
+    [self addChildViewController:self.tableViewController];
+    [self.view addSubview:self.tableViewController.view];
+    [self.tableViewController didMoveToParentViewController:self];
+    [self.tableViewController setDataSource:self];
 }
 - (void)viewDidLayoutSubviews {
-    [self.textField setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 8.0, CGRectGetWidth(self.view.bounds) - 16.0, 44.0)];
-    [self.pickerButton setFrame:CGRectMake(CGRectGetMinX(self.textField.frame), CGRectGetMaxY(self.textField.frame) + 8.0, CGRectGetWidth(self.textField.frame), 44.0)];
-    [self.datePickerButton setFrame:CGRectMake(CGRectGetMinX(self.textField.frame), CGRectGetMaxY(self.pickerButton.frame) + 8.0, CGRectGetWidth(self.textField.frame), 44.0)];
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self.textField becomeFirstResponder];
-}
-
-- (NSInteger)pickerButton:(BBPickerButton *)pickerButton numberOfRowsInComponent:(NSInteger)component {
-    return self.pickerButtonRowTitles.count;
-}
-- (NSString *)pickerButton:(BBPickerButton *)pickerButton titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.pickerButtonRowTitles[row];
+    [self.tableViewController.view setFrame:self.view.bounds];
 }
 
 + (NSString *)rowClassTitle {
     return @"Forms";
-}
-
-- (NSArray *)pickerButtonRowTitles {
-    return @[@"one",
-             @"two",
-             @"three",
-             @"four",
-             @"five"];
 }
 
 @end

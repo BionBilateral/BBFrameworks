@@ -1,8 +1,8 @@
 //
-//  AppDelegate.m
-//  BBFrameworksiOSDemo
+//  BBFormField.h
+//  BBFrameworks
 //
-//  Created by William Towe on 5/13/15.
+//  Created by William Towe on 7/16/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,25 +13,35 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "AppDelegate.h"
-#import "RootViewController.h"
+#import <UIKit/UIKit.h>
+#import "BBFormTableViewControllerDataSource.h"
 
-#import <BBFrameworks/BBForm.h>
+typedef NS_ENUM(NSInteger, BBFormFieldType) {
+    BBFormFieldTypeText
+};
+extern NSString *const BBFormFieldKeyType;
+extern NSString *const BBFormFieldKeyKey;
+extern NSString *const BBFormFieldKeyTitle;
+extern NSString *const BBFormFieldKeyPlaceholder;
+extern NSString *const BBFormFieldKeyKeyboardType;
 
-@interface AppDelegate ()
+@interface BBFormField : NSObject
+
+@property (readonly,nonatomic) BBFormFieldType type;
+
+@property (readonly,nonatomic) NSString *key;
+@property (strong,nonatomic) id value;
+
+@property (readonly,nonatomic) NSString *title;
+@property (readonly,nonatomic) NSString *placeholder;
+@property (readonly,nonatomic) UIKeyboardType keyboardType;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
 @end
 
-@implementation AppDelegate
+@interface BBFormField (ObjectKeyedSubscripting)
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self setWindow:[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds]];
-    [self.window setRootViewController:[[RootViewController alloc] init]];
-    [self.window makeKeyAndVisible];
-    
-    [[BBFormTextTableViewCell appearance] setTextColor:[UIApplication sharedApplication].keyWindow.rootViewController.view.tintColor];
-    
-    return YES;
-}
+- (id)objectForKeyedSubscript:(NSString *)key;
 
 @end
