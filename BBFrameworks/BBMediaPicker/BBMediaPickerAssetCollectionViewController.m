@@ -102,7 +102,7 @@
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 
-    [(BBMediaPickerAssetCollectionViewLayout *)self.collectionView.collectionViewLayout setNumberOfColumns:self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? 5 : 3];
+    [(BBMediaPickerAssetCollectionViewLayout *)self.collectionView.collectionViewLayout setNumberOfColumns:self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular ? 5 : 4];
 }
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
