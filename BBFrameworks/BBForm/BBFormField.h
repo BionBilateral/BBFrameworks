@@ -49,6 +49,8 @@ extern NSString *const BBFormFieldKeyTitleFooter;
 
 @interface BBFormField : NSObject
 
+@property (readonly,weak,nonatomic) id<BBFormTableViewControllerDataSource> dataSource;
+
 @property (readonly,nonatomic) BBFormFieldType type;
 
 @property (readonly,nonatomic) NSString *key;

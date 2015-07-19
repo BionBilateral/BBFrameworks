@@ -35,7 +35,7 @@ NSString *const BBFormFieldKeyTitleFooter = @"BBFormFieldKeyTitleFooter";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
-@property (weak,nonatomic) id<BBFormTableViewControllerDataSource> dataSource;
+@property (readwrite,weak,nonatomic) id<BBFormTableViewControllerDataSource> dataSource;
 @end
 
 @implementation BBFormField
