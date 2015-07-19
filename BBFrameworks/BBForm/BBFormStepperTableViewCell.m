@@ -65,6 +65,10 @@
     
     [self.stepperControl setValue:formField.doubleValue];
     [self.valueLabel setText:[self.numberFormatter stringFromNumber:formField.value]];
+    
+    if (formField.numberFormatter) {
+        [self setNumberFormatter:formField.numberFormatter];
+    }
 }
 
 - (void)setNumberFormatter:(NSNumberFormatter *)numberFormatter {

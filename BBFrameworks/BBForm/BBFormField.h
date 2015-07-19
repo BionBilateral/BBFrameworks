@@ -46,6 +46,7 @@ typedef void(^BBFormFieldDidUpdateBlock)(BBFormField *formField);
 extern NSString *const BBFormFieldKeyDidUpdateBlock;
 extern NSString *const BBFormFieldKeyTitleHeader;
 extern NSString *const BBFormFieldKeyTitleFooter;
+extern NSString *const BBFormFieldKeyNumberFormatter;
 
 @interface BBFormField : NSObject
 
@@ -74,6 +75,7 @@ extern NSString *const BBFormFieldKeyTitleFooter;
 @property (readonly,nonatomic) BBFormFieldDidUpdateBlock didUpdateBlock;
 @property (readonly,nonatomic) NSString *titleHeader;
 @property (readonly,nonatomic) NSString *titleFooter;
+@property (readonly,nonatomic) NSNumberFormatter *numberFormatter;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
