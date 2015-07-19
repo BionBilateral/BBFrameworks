@@ -42,6 +42,10 @@ static void *kObservingContext = &kObservingContext;
     
     
 }
+#pragma mark UIScrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.view endEditing:NO];
+}
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.formFields.count;
