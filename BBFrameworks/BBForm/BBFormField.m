@@ -29,6 +29,7 @@ NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControll
 NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
 NSString *const BBFormFieldKeyDidUpdateBlock = @"BBFormFieldKeyDidUpdateBlock";
 NSString *const BBFormFieldKeyTitleHeader = @"BBFormFieldKeyTitleHeader";
+NSString *const BBFormFieldKeyTitleFooter = @"BBFormFieldKeyTitleFooter";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -88,6 +89,9 @@ NSString *const BBFormFieldKeyTitleHeader = @"BBFormFieldKeyTitleHeader";
 }
 - (NSString *)titleHeader {
     return self[BBFormFieldKeyTitleHeader];
+}
+- (NSString *)titleFooter {
+    return self[BBFormFieldKeyTitleFooter];
 }
 
 @dynamic value;

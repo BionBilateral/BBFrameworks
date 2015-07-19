@@ -20,6 +20,7 @@
 #import "BBFormPickerTableViewCell.h"
 #import "BBFormDatePickerTableViewCell.h"
 #import "BBFormTableViewHeaderView.h"
+#import "BBFormTableViewFooterView.h"
 
 static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
 
@@ -85,7 +86,25 @@ static void *kObservingContext = &kObservingContext;
         
         return [view sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
     }
+    return 0.0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    BBFormField *formField = self.formFields[section][0];
+    Class viewClass = [self tableViewFooterClassForFormField:formField];
     
+    if (viewClass) {
+        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        
+        if (!view) {
+            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
+        }
+        
+        if ([view respondsToSelector:@selector(setTitle:)]) {
+            [(id)view setTitle:formField.titleFooter];
+        }
+        
+        return [view sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
+    }
     return 0.0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -101,6 +120,25 @@ static void *kObservingContext = &kObservingContext;
         
         if ([view respondsToSelector:@selector(setTitle:)]) {
             [(id)view setTitle:formField.titleHeader];
+        }
+        
+        return view;
+    }
+    return nil;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    BBFormField *formField = self.formFields[section][0];
+    Class viewClass = [self tableViewFooterClassForFormField:formField];
+    
+    if (viewClass) {
+        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        
+        if (!view) {
+            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
+        }
+        
+        if ([view respondsToSelector:@selector(setTitle:)]) {
+            [(id)view setTitle:formField.titleFooter];
         }
         
         return view;
@@ -136,6 +174,12 @@ static void *kObservingContext = &kObservingContext;
 - (Class)tableViewHeaderClassForFormField:(BBFormField *)formField; {
     if (formField.titleHeader) {
         return [BBFormTableViewHeaderView class];
+    }
+    return Nil;
+}
+- (Class)tableViewFooterClassForFormField:(BBFormField *)formField {
+    if (formField.titleFooter) {
+        return [BBFormTableViewFooterView class];
     }
     return Nil;
 }

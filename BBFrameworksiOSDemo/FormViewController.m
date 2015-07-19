@@ -54,6 +54,7 @@
     [self setDatePickerSelection:[NSDate date]];
     
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
+                                       BBFormFieldKeyTitleFooter : @"This is multiline footer title text that should wrap to multiple lines if things work properly.",
                                        BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
                                        BBFormFieldKeyPlaceholder: @"Type your first name…",

@@ -72,6 +72,7 @@
 		799C0C421B5B6DDA00A3888A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C411B5B6DDA00A3888A /* DetailViewController.m */; };
 		799C0C441B5B6E1B00A3888A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799C0C431B5B6E1B00A3888A /* DetailViewController.xib */; };
 		799C0C471B5B76A000A3888A /* BBFormTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */; };
+		799C0C4A1B5B82B400A3888A /* BBFormTableViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -645,6 +646,8 @@
 		799C0C431B5B6E1B00A3888A /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewHeaderView.h; sourceTree = "<group>"; };
 		799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewHeaderView.m; sourceTree = "<group>"; };
+		799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewFooterView.h; sourceTree = "<group>"; };
+		799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewFooterView.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -915,6 +918,8 @@
 				799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */,
 				799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */,
 				799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */,
+				799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */,
+				799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
@@ -2043,6 +2048,7 @@
 				7915515B1B33353B009FA353 /* RootViewController.m in Sources */,
 				791551611B3336D5009FA353 /* LaunchViewController.m in Sources */,
 				07C23AA81B54320500D3C072 /* TokenTextAttachment.m in Sources */,
+				799C0C4A1B5B82B400A3888A /* BBFormTableViewFooterView.m in Sources */,
 				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
 				07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
