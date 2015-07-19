@@ -127,7 +127,10 @@
     }},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeStepper),
                                        BBFormFieldKeyTitle: @"Stepper",
-                                       BBFormFieldKeyKey: @"stepperValue"}]];
+                                       BBFormFieldKeyKey: @"stepperValue",
+                                       BBFormFieldKeyStepValue: @0.1,
+                                       BBFormFieldKeyMinimumValue: @0.0,
+                                       BBFormFieldKeyMaximumValue: @10.0}]];
     
     return self;
 }

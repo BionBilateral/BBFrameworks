@@ -17,6 +17,9 @@
 
 @interface BBFormStepperTableViewCell : BBFormTableViewCell
 
+@property (strong,nonatomic) UIFont *valueFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIColor *valueTextColor UI_APPEARANCE_SELECTOR;
+
 @property (strong,nonatomic) NSNumberFormatter *numberFormatter UI_APPEARANCE_SELECTOR;
 
 @end

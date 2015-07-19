@@ -22,6 +22,8 @@
 @property (strong,nonatomic) UIStepper *stepperControl;
 @property (strong,nonatomic) UILabel *valueLabel;
 
++ (UIFont *)_defaultValueFont;
++ (UIColor *)_defaultValueTextColor;
 + (NSNumberFormatter *)_defaultNumberFormatter;
 @end
 
@@ -31,6 +33,9 @@
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
     
+    _valueFont = [self.class _defaultValueFont];
+    _valueTextColor = [self.class _defaultValueTextColor];
+    
     _numberFormatter = [self.class _defaultNumberFormatter];
     
     [self setStepperControl:[[UIStepper alloc] initWithFrame:CGRectZero]];
@@ -39,6 +44,8 @@
     
     [self setValueLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.valueLabel setTextAlignment:NSTextAlignmentRight];
+    [self.valueLabel setFont:_valueFont];
+    [self.valueLabel setTextColor:_valueTextColor];
     [self.contentView addSubview:self.valueLabel];
     
     return self;
@@ -63,6 +70,16 @@
 - (void)setFormField:(BBFormField *)formField {
     [super setFormField:formField];
     
+    if (formField.minimumValue) {
+        [self.stepperControl setMinimumValue:formField.minimumDoubleValue];
+    }
+    if (formField.maximumValue) {
+        [self.stepperControl setMaximumValue:formField.maximumDoubleValue];
+    }
+    if (formField.stepValue) {
+        [self.stepperControl setStepValue:formField.stepDoubleValue];
+    }
+    
     [self.stepperControl setValue:formField.doubleValue];
     [self.valueLabel setText:[self.numberFormatter stringFromNumber:formField.value]];
     
@@ -71,12 +88,30 @@
     }
 }
 
+- (void)setValueFont:(UIFont *)valueFont {
+    _valueFont = valueFont ?: [self.class _defaultValueFont];
+    
+    [self.valueLabel setFont:_valueFont];
+}
+- (void)setValueTextColor:(UIColor *)valueTextColor {
+    _valueTextColor = valueTextColor ?: [self.class _defaultValueTextColor];
+    
+    [self.valueLabel setTextColor:_valueTextColor];
+}
+
 - (void)setNumberFormatter:(NSNumberFormatter *)numberFormatter {
     _numberFormatter = numberFormatter ?: [self.class _defaultNumberFormatter];
     
     [self.valueLabel setText:[_numberFormatter stringFromNumber:self.formField.value]];
 }
 #pragma mark *** Private Methods ***
++ (UIFont *)_defaultValueFont; {
+    return [UIFont systemFontOfSize:17.0];
+}
++ (UIColor *)_defaultValueTextColor; {
+    return [UIColor darkGrayColor];
+}
+
 + (NSNumberFormatter *)_defaultNumberFormatter; {
     static NSNumberFormatter *kRetval;
     static dispatch_once_t onceToken;

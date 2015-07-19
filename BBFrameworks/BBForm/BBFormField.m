@@ -33,6 +33,9 @@ NSString *const BBFormFieldKeyDidUpdateBlock = @"BBFormFieldKeyDidUpdateBlock";
 NSString *const BBFormFieldKeyTitleHeader = @"BBFormFieldKeyTitleHeader";
 NSString *const BBFormFieldKeyTitleFooter = @"BBFormFieldKeyTitleFooter";
 NSString *const BBFormFieldKeyNumberFormatter = @"BBFormFieldKeyNumberFormatter";
+NSString *const BBFormFieldKeyMinimumValue = @"BBFormFieldKeyMinimumValue";
+NSString *const BBFormFieldKeyMaximumValue = @"BBFormFieldKeyMaximumValue";
+NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -104,6 +107,24 @@ NSString *const BBFormFieldKeyNumberFormatter = @"BBFormFieldKeyNumberFormatter"
 }
 - (NSNumberFormatter *)numberFormatter {
     return self[BBFormFieldKeyNumberFormatter];
+}
+- (NSNumber *)minimumValue {
+    return self[BBFormFieldKeyMinimumValue];
+}
+- (double)minimumDoubleValue {
+    return [self.minimumValue doubleValue];
+}
+- (NSNumber *)maximumValue {
+    return self[BBFormFieldKeyMaximumValue];
+}
+- (double)maximumDoubleValue {
+    return [self.maximumValue doubleValue];
+}
+- (NSNumber *)stepValue {
+    return self[BBFormFieldKeyStepValue];
+}
+- (double)stepDoubleValue {
+    return [self.stepValue doubleValue];
 }
 
 @dynamic value;
