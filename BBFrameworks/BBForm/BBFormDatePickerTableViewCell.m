@@ -24,7 +24,7 @@
 @end
 
 @implementation BBFormDatePickerTableViewCell
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
@@ -45,7 +45,8 @@
     
     [self.datePickerButton setFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame) + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.titleLabel.frame) - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
 }
-
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 - (void)setFormField:(BBFormField *)formField {
     [super setFormField:formField];
     
@@ -61,11 +62,11 @@
     
     [self.datePickerButton setTitleColor:_datePickerTextColor forState:UIControlStateNormal];
 }
-
+#pragma mark *** Private Methods ***
 + (UIColor *)_defaultDatePickerTextColor {
     return [UIColor blueColor];
 }
-
+#pragma mark Actions
 - (IBAction)_datePickerButtonAction:(id)sender {
     [self.formField setValue:self.datePickerButton.date];
 }

@@ -23,7 +23,7 @@
 @end
 
 @implementation BBFormBooleanTableViewCell
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
@@ -45,13 +45,14 @@
     
     [self.switchControl setFrame:rect];
 }
-
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 - (void)setFormField:(BBFormField *)formField {
     [super setFormField:formField];
     
     [self.switchControl setOn:formField.boolValue];
 }
-
+#pragma mark Actions
 - (IBAction)_switchControlAction:(id)sender {
     [self.formField setBoolValue:self.switchControl.isOn];
 }
