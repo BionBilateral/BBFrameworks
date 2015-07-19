@@ -50,6 +50,12 @@
     if (formField.maximumValue) {
         [self.sliderControl setMaximumValue:formField.maximumFloatValue];
     }
+    if (formField.minimumValueImage) {
+        [self.sliderControl setMinimumValueImage:formField.minimumValueImage];
+    }
+    if (formField.maximumValueImage) {
+        [self.sliderControl setMaximumValueImage:formField.maximumValueImage];
+    }
     
     [self.sliderControl setValue:formField.floatValue];
 }

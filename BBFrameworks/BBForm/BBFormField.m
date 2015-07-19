@@ -36,6 +36,8 @@ NSString *const BBFormFieldKeyNumberFormatter = @"BBFormFieldKeyNumberFormatter"
 NSString *const BBFormFieldKeyMinimumValue = @"BBFormFieldKeyMinimumValue";
 NSString *const BBFormFieldKeyMaximumValue = @"BBFormFieldKeyMaximumValue";
 NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
+NSString *const BBFormFieldKeyMinimumValueImage = @"BBFormFieldKeyMinimumValueImage";
+NSString *const BBFormFieldKeyMaximumValueImage = @"BBFormFieldKeyMaximumValueImage";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -131,6 +133,12 @@ NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
 }
 - (double)stepDoubleValue {
     return [self.stepValue doubleValue];
+}
+- (UIImage *)minimumValueImage {
+    return self[BBFormFieldKeyMinimumValueImage];
+}
+- (UIImage *)maximumValueImage {
+    return self[BBFormFieldKeyMaximumValueImage];
 }
 
 @dynamic value;

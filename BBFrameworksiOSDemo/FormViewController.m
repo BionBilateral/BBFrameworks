@@ -135,9 +135,30 @@
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeSlider),
                                        BBFormFieldKeyTitle: @"Slider",
                                        BBFormFieldKeyKey: @"sliderValue",
-                                       BBFormFieldKeyDidUpdateBlock: ^(BBFormField *formField){
-        BBLogObject(formField.value);
-    }}]];
+                                       BBFormFieldKeyMinimumValueImage: ({
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+        
+        [[UIColor lightGrayColor] setFill];
+        [[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 22, 22)] fill];
+        
+        UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        retval;
+    }),
+                                       BBFormFieldKeyMaximumValueImage: ({
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+        
+        [[UIColor darkGrayColor] setFill];
+        [[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 22, 22)] fill];
+        
+        UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        retval;
+    })}]];
     
     return self;
 }

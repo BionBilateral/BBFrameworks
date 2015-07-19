@@ -51,6 +51,8 @@ extern NSString *const BBFormFieldKeyNumberFormatter;
 extern NSString *const BBFormFieldKeyMinimumValue;
 extern NSString *const BBFormFieldKeyMaximumValue;
 extern NSString *const BBFormFieldKeyStepValue;
+extern NSString *const BBFormFieldKeyMinimumValueImage;
+extern NSString *const BBFormFieldKeyMaximumValueImage;
 
 @interface BBFormField : NSObject
 
@@ -89,6 +91,8 @@ extern NSString *const BBFormFieldKeyStepValue;
 @property (readonly,nonatomic) double maximumDoubleValue;
 @property (readonly,nonatomic) NSNumber *stepValue;
 @property (readonly,nonatomic) double stepDoubleValue;
+@property (readonly,nonatomic) UIImage *minimumValueImage;
+@property (readonly,nonatomic) UIImage *maximumValueImage;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
