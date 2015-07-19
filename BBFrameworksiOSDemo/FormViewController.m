@@ -64,6 +64,19 @@
                                        BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable)},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Label",
+                                       BBFormFieldKeySubtitle: @"Label subtitle",
+                                       BBFormFieldKeyImage: ({
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+        
+        [[UIColor lightGrayColor] setFill];
+        [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 22, 22) cornerRadius:3.0] fill];
+        
+        UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        retval;
+    }),
                                        BBFormFieldKeyKey: @"lastName"},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeBoolean),
                                        BBFormFieldKeyTitle: @"Boolean",

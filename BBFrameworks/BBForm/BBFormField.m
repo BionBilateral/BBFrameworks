@@ -18,6 +18,8 @@
 NSString *const BBFormFieldKeyType = @"BBFormFieldKeyType";
 NSString *const BBFormFieldKeyKey = @"BBFormFieldKeyKey";
 NSString *const BBFormFieldKeyTitle = @"BBFormFieldKeyTitle";
+NSString *const BBFormFieldKeySubtitle = @"BBFormFieldKeySubtitle";
+NSString *const BBFormFieldKeyImage = @"BBFormFieldKeyImage";
 NSString *const BBFormFieldKeyPlaceholder = @"BBFormFieldKeyPlaceholder";
 NSString *const BBFormFieldKeyKeyboardType = @"BBFormFieldKeyKeyboardType";
 NSString *const BBFormFieldKeyPickerRows = @"BBFormFieldKeyPickerRows";
@@ -56,6 +58,12 @@ NSString *const BBFormFieldKeyTitleFooter = @"BBFormFieldKeyTitleFooter";
 }
 - (NSString *)title {
     return self[BBFormFieldKeyTitle];
+}
+- (NSString *)subtitle {
+    return self[BBFormFieldKeySubtitle];
+}
+- (UIImage *)image {
+    return self[BBFormFieldKeyImage];
 }
 - (NSString *)placeholder {
     return self[BBFormFieldKeyPlaceholder];

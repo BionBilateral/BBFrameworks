@@ -16,12 +16,40 @@
 #import "BBFormTableViewCell.h"
 #import "BBFormField.h"
 
+#import <Archimedes/Archimedes.h>
+
 CGFloat const BBFormTableViewCellMargin = 8.0;
 
 @interface BBFormTableViewCell ()
-@property (readwrite,strong,nonatomic) UILabel *titleLabel;
+@property (strong,nonatomic) UIImageView *iconImageView;
+@property (strong,nonatomic) UILabel *titleLabel;
+@property (strong,nonatomic) UILabel *subtitleLabel;
 
-+ (UIColor *)_defaultTextColor;
++ (UIColor *)_defaultTitleTextColor;
++ (UIColor *)_defaultSubtitleTextColor;
+@end
+
+@interface _BBFormTableViewCellLayoutGuide : NSObject <UILayoutSupport>
+@property (weak,nonatomic) BBFormTableViewCell *tableViewCell;
+
+- (instancetype)initWithTableViewCell:(BBFormTableViewCell *)tableViewCell;
+@end
+
+@implementation _BBFormTableViewCellLayoutGuide
+
+- (CGFloat)length {
+    return MAX(CGRectGetMaxX(self.tableViewCell.titleLabel.frame), CGRectGetMaxX(self.tableViewCell.subtitleLabel.frame));
+}
+
+- (instancetype)initWithTableViewCell:(BBFormTableViewCell *)tableViewCell; {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setTableViewCell:tableViewCell];
+    
+    return self;
+}
+
 @end
 
 @implementation BBFormTableViewCell
@@ -30,11 +58,20 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
     
-    _textColor = [self.class _defaultTextColor];
+    _titleTextColor = [self.class _defaultTitleTextColor];
+    _subtitleTextColor = [self.class _defaultSubtitleTextColor];
+    
+    [self setIconImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.iconImageView];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.titleLabel setTextColor:_textColor];
+    [self.titleLabel setTextColor:_titleTextColor];
     [self.contentView addSubview:self.titleLabel];
+    
+    [self setSubtitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.subtitleLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [self.subtitleLabel setTextColor:_subtitleTextColor];
+    [self.contentView addSubview:self.subtitleLabel];
     
     return self;
 }
@@ -44,25 +81,73 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     
     CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
     
-    [self.titleLabel setFrame:CGRectMake(self.layoutMargins.left, 0, titleLabelSize.width, CGRectGetHeight(self.contentView.bounds))];
+    if (self.subtitleLabel.text.length > 0) {
+        CGSize subtitleLabelSize = [self.subtitleLabel sizeThatFits:CGSizeZero];
+        CGRect rect = MEDRectCenterInRect(CGRectMake(0, 0, MAX(titleLabelSize.width, subtitleLabelSize.width), titleLabelSize.height + subtitleLabelSize.height), self.contentView.bounds);
+        
+        if (self.iconImageView.image) {
+            CGRect iconRect = MEDRectCenterInRect(CGRectMake(0, 0, self.iconImageView.image.size.width, self.iconImageView.image.size.height), self.contentView.bounds);
+            
+            iconRect.origin.x = self.layoutMargins.left;
+            
+            [self.iconImageView setFrame:iconRect];
+            
+            rect.origin.x = CGRectGetMaxX(self.iconImageView.frame) + BBFormTableViewCellMargin;
+        }
+        else {
+            rect.origin.x = self.layoutMargins.left;
+        }
+        
+        [self.titleLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), titleLabelSize.height)];
+        [self.subtitleLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(rect), subtitleLabelSize.height)];
+    }
+    else {
+        CGRect rect = CGRectMake(self.layoutMargins.left, 0, titleLabelSize.width, CGRectGetHeight(self.contentView.bounds));
+        
+        if (self.iconImageView.image) {
+            CGRect iconRect = MEDRectCenterInRect(CGRectMake(0, 0, self.iconImageView.image.size.width, self.iconImageView.image.size.height), self.contentView.bounds);
+            
+            iconRect.origin.x = self.layoutMargins.left;
+            
+            [self.iconImageView setFrame:iconRect];
+            
+            rect.origin.x = CGRectGetMaxX(self.iconImageView.frame) + BBFormTableViewCellMargin;
+        }
+        
+        [self.titleLabel setFrame:rect];
+    }
 }
 
 - (void)setFormField:(BBFormField *)formField {
     _formField = formField;
     
+    [self.iconImageView setImage:formField.image];
     [self.titleLabel setText:formField.title];
+    [self.subtitleLabel setText:formField.subtitle];
     
     [self setNeedsLayout];
 }
 
-- (void)setTextColor:(UIColor *)textColor {
-    _textColor = textColor ?: [self.class _defaultTextColor];
-    
-    [self.titleLabel setTextColor:_textColor];
+- (id<UILayoutSupport>)rightLayoutGuide {
+    return [[_BBFormTableViewCellLayoutGuide alloc] initWithTableViewCell:self];
 }
 
-+ (UIColor *)_defaultTextColor; {
+- (void)setTitleTextColor:(UIColor *)titleTextColor {
+    _titleTextColor = titleTextColor ?: [self.class _defaultTitleTextColor];
+    
+    [self.titleLabel setTextColor:_titleTextColor];
+}
+- (void)setSubtitleTextColor:(UIColor *)subtitleTextColor {
+    _subtitleTextColor = subtitleTextColor ?: [self.class _defaultSubtitleTextColor];
+    
+    [self.subtitleLabel setTextColor:_subtitleTextColor];
+}
+
++ (UIColor *)_defaultTitleTextColor; {
     return [UIColor blackColor];
+}
++ (UIColor *)_defaultSubtitleTextColor; {
+    return [UIColor darkGrayColor];
 }
 
 @end

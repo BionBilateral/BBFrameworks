@@ -43,7 +43,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self.datePickerButton setFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame) + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.titleLabel.frame) - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
+    id<UILayoutSupport> guide = self.rightLayoutGuide;
+    
+    [self.datePickerButton setFrame:CGRectMake([guide length] + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - [guide length] - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
 }
 #pragma mark *** Public Methods ***
 #pragma mark Properties

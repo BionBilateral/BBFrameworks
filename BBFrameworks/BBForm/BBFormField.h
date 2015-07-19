@@ -28,6 +28,8 @@ typedef NS_ENUM(NSInteger, BBFormFieldType) {
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;
 extern NSString *const BBFormFieldKeyTitle;
+extern NSString *const BBFormFieldKeySubtitle;
+extern NSString *const BBFormFieldKeyImage;
 extern NSString *const BBFormFieldKeyPlaceholder;
 extern NSString *const BBFormFieldKeyKeyboardType;
 extern NSString *const BBFormFieldKeyPickerRows;
@@ -52,6 +54,8 @@ extern NSString *const BBFormFieldKeyTitleFooter;
 @property (assign,nonatomic) BOOL boolValue;
 
 @property (readonly,nonatomic) NSString *title;
+@property (readonly,nonatomic) NSString *subtitle;
+@property (readonly,nonatomic) UIImage *image;
 @property (readonly,nonatomic) NSString *placeholder;
 @property (readonly,nonatomic) UIKeyboardType keyboardType;
 @property (readonly,nonatomic) NSArray *pickerRows;

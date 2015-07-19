@@ -44,7 +44,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self.pickerButton setFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame) + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.titleLabel.frame) - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
+    id<UILayoutSupport> guide = self.rightLayoutGuide;
+    
+    [self.pickerButton setFrame:CGRectMake([guide length] + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - [guide length] - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
 }
 #pragma mark BBPickerButtonDataSource
 - (NSInteger)numberOfComponentsInPickerButton:(BBPickerButton *)pickerButton {
