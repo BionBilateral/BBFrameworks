@@ -67,6 +67,7 @@
 		799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */; };
 		799C0C381B5B3E8800A3888A /* BBFormBooleanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */; };
 		799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */; };
+		799C0C3C1B5B478900A3888A /* BBFormPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -631,6 +632,8 @@
 		799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTextTableViewCell.m; sourceTree = "<group>"; };
 		799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormBooleanTableViewCell.h; sourceTree = "<group>"; };
 		799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanTableViewCell.m; sourceTree = "<group>"; };
+		799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormPickerTableViewCell.h; sourceTree = "<group>"; };
+		799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormPickerTableViewCell.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -895,6 +898,8 @@
 				799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */,
 				799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */,
 				799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */,
+				799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */,
+				799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
@@ -2083,6 +2088,7 @@
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
 				79EA80E71B3F0D1B00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
+				799C0C3C1B5B478900A3888A /* BBFormPickerTableViewCell.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,

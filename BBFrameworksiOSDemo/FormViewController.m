@@ -46,6 +46,7 @@
     
     [self setLastName:@"Smith"];
     [self setDoIt:YES];
+    [self setPickerSelection:@"Second"];
     
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
@@ -56,7 +57,13 @@
                                        BBFormFieldKeyKey: @"lastName"},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeBoolean),
                                        BBFormFieldKeyTitle: @"Do it",
-                                       BBFormFieldKeyKey: @"doIt"}]];
+                                       BBFormFieldKeyKey: @"doIt"},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypePicker),
+                                       BBFormFieldKeyTitle: @"Picker",
+                                       BBFormFieldKeyKey: @"pickerSelection",
+                                       BBFormFieldKeyPickerRows: @[@"First",
+                                                                   @"Second",
+                                                                   @"Third"]}]];
     
     return self;
 }

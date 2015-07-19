@@ -141,7 +141,7 @@
         return [self.dataSource pickerButton:self attributedTitleForRow:row forComponent:component].string;
     }
     else if ([self.dataSource respondsToSelector:@selector(pickerButton:titleForRow:forComponent:)]) {
-        return [self.dataSource pickerButton:self titleForRow:row forComponent:component];
+        return [self.dataSource pickerButton:self titleForRow:row forComponent:component] ?: @"";
     }
     else {
         return @"";

@@ -17,6 +17,7 @@
 #import "BBFormTextTableViewCell.h"
 #import "BBFormField.h"
 #import "BBFormBooleanTableViewCell.h"
+#import "BBFormPickerTableViewCell.h"
 
 static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
 
@@ -68,6 +69,8 @@ static void *kObservingContext = &kObservingContext;
             return [BBFormTextTableViewCell class];
         case BBFormFieldTypeBoolean:
             return [BBFormBooleanTableViewCell class];
+        case BBFormFieldTypePicker:
+            return [BBFormPickerTableViewCell class];
         default:
             return Nil;
     }

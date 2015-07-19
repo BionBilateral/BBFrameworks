@@ -21,6 +21,7 @@ NSString *const BBFormFieldKeyTitle = @"BBFormFieldKeyTitle";
 NSString *const BBFormFieldKeyPlaceholder = @"BBFormFieldKeyPlaceholder";
 NSString *const BBFormFieldKeyKeyboardType = @"BBFormFieldKeyKeyboardType";
 NSString *const BBFormFieldKeyPickerRows = @"BBFormFieldKeyPickerRows";
+NSString *const BBFormFieldKeyPickerColumnsAndRows = @"BBFormFieldKeyPickerColumnsAndRows";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -56,6 +57,9 @@ NSString *const BBFormFieldKeyPickerRows = @"BBFormFieldKeyPickerRows";
 }
 - (NSArray *)pickerRows {
     return self[BBFormFieldKeyPickerRows];
+}
+- (NSArray *)pickerColumnsAndRows {
+    return self[BBFormFieldKeyPickerColumnsAndRows];
 }
 
 @dynamic value;

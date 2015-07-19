@@ -28,6 +28,7 @@ extern NSString *const BBFormFieldKeyTitle;
 extern NSString *const BBFormFieldKeyPlaceholder;
 extern NSString *const BBFormFieldKeyKeyboardType;
 extern NSString *const BBFormFieldKeyPickerRows;
+extern NSString *const BBFormFieldKeyPickerColumnsAndRows;
 
 @interface BBFormField : NSObject
 
@@ -41,6 +42,7 @@ extern NSString *const BBFormFieldKeyPickerRows;
 @property (readonly,nonatomic) NSString *placeholder;
 @property (readonly,nonatomic) UIKeyboardType keyboardType;
 @property (readonly,nonatomic) NSArray *pickerRows;
+@property (readonly,nonatomic) NSArray *pickerColumnsAndRows;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
