@@ -81,6 +81,8 @@
 		799C0C521B5B9BD900A3888A /* BBFormBooleanCheckmarkTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */; };
 		799C0C551B5C3A9E00A3888A /* BBFormStepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */; };
 		799C0C561B5C424500A3888A /* BBFormStepperTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */; };
+		799C0C591B5C48ED00A3888A /* BBFormSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C581B5C48ED00A3888A /* BBFormSliderTableViewCell.m */; };
+		799C0C5A1B5C48FC00A3888A /* BBFormSliderTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C571B5C48ED00A3888A /* BBFormSliderTableViewCell.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -408,6 +410,7 @@
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
 				799C0C521B5B9BD900A3888A /* BBFormBooleanCheckmarkTableViewCell.h in CopyFiles */,
 				07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */,
+				799C0C5A1B5C48FC00A3888A /* BBFormSliderTableViewCell.h in CopyFiles */,
 				799C0C561B5C424500A3888A /* BBFormStepperTableViewCell.h in CopyFiles */,
 				799C0C391B5B3E9E00A3888A /* BBFormBooleanSwitchTableViewCell.h in CopyFiles */,
 				799C0C4B1B5B8F5C00A3888A /* BBFormPickerTableViewCell.h in CopyFiles */,
@@ -666,6 +669,8 @@
 		799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanCheckmarkTableViewCell.m; sourceTree = "<group>"; };
 		799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormStepperTableViewCell.h; sourceTree = "<group>"; };
 		799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormStepperTableViewCell.m; sourceTree = "<group>"; };
+		799C0C571B5C48ED00A3888A /* BBFormSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormSliderTableViewCell.h; sourceTree = "<group>"; };
+		799C0C581B5C48ED00A3888A /* BBFormSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormSliderTableViewCell.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -942,6 +947,8 @@
 				799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */,
 				799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */,
 				799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */,
+				799C0C571B5C48ED00A3888A /* BBFormSliderTableViewCell.h */,
+				799C0C581B5C48ED00A3888A /* BBFormSliderTableViewCell.m */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
@@ -2118,6 +2125,7 @@
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
+				799C0C591B5C48ED00A3888A /* BBFormSliderTableViewCell.m in Sources */,
 				07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,

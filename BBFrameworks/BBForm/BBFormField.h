@@ -25,7 +25,8 @@ typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypeBooleanCheckmark,
     BBFormFieldTypePicker,
     BBFormFieldTypeDatePicker,
-    BBFormFieldTypeStepper
+    BBFormFieldTypeStepper,
+    BBFormFieldTypeSlider
 };
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;
@@ -61,6 +62,7 @@ extern NSString *const BBFormFieldKeyStepValue;
 
 @property (strong,nonatomic) id value;
 @property (assign,nonatomic) BOOL boolValue;
+@property (assign,nonatomic) float floatValue;
 @property (assign,nonatomic) double doubleValue;
 
 @property (readonly,nonatomic) NSString *title;
@@ -80,8 +82,10 @@ extern NSString *const BBFormFieldKeyStepValue;
 @property (readonly,nonatomic) NSString *titleFooter;
 @property (readonly,nonatomic) NSNumberFormatter *numberFormatter;
 @property (readonly,nonatomic) NSNumber *minimumValue;
+@property (readonly,nonatomic) float minimumFloatValue;
 @property (readonly,nonatomic) double minimumDoubleValue;
 @property (readonly,nonatomic) NSNumber *maximumValue;
+@property (readonly,nonatomic) float maximumFloatValue;
 @property (readonly,nonatomic) double maximumDoubleValue;
 @property (readonly,nonatomic) NSNumber *stepValue;
 @property (readonly,nonatomic) double stepDoubleValue;

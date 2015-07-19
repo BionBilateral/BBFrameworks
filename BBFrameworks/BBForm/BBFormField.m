@@ -111,11 +111,17 @@ NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
 - (NSNumber *)minimumValue {
     return self[BBFormFieldKeyMinimumValue];
 }
+- (float)minimumFloatValue {
+    return [self.minimumValue floatValue];
+}
 - (double)minimumDoubleValue {
     return [self.minimumValue doubleValue];
 }
 - (NSNumber *)maximumValue {
     return self[BBFormFieldKeyMaximumValue];
+}
+- (float)maximumFloatValue {
+    return [self.maximumValue floatValue];
 }
 - (double)maximumDoubleValue {
     return [self.maximumValue doubleValue];
@@ -132,10 +138,12 @@ NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
     return self.key ? [(id)self.dataSource valueForKey:self.key] : nil;
 }
 - (void)setValue:(id)value {
-    [(id)self.dataSource setValue:value forKey:self.key];
-    
-    if (self.didUpdateBlock) {
-        self.didUpdateBlock(self);
+    if (self.key) {
+        [(id)self.dataSource setValue:value forKey:self.key];
+        
+        if (self.didUpdateBlock) {
+            self.didUpdateBlock(self);
+        }
     }
 }
 @dynamic boolValue;
@@ -144,6 +152,13 @@ NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
 }
 - (void)setBoolValue:(BOOL)boolValue {
     [self setValue:@(boolValue)];
+}
+@dynamic floatValue;
+- (float)floatValue {
+    return [self.value floatValue];
+}
+- (void)setFloatValue:(float)floatValue {
+    [self setValue:@(floatValue)];
 }
 @dynamic doubleValue;
 - (double)doubleValue {

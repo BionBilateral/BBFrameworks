@@ -34,6 +34,7 @@
 @property (copy,nonatomic) NSDate *datePickerSelection;
 @property (copy,nonatomic) NSString *didUpdateText;
 @property (assign,nonatomic) double stepperValue;
+@property (assign,nonatomic) float sliderValue;
 @end
 
 @implementation FormViewController
@@ -130,7 +131,13 @@
                                        BBFormFieldKeyKey: @"stepperValue",
                                        BBFormFieldKeyStepValue: @0.1,
                                        BBFormFieldKeyMinimumValue: @0.0,
-                                       BBFormFieldKeyMaximumValue: @10.0}]];
+                                       BBFormFieldKeyMaximumValue: @10.0},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeSlider),
+                                       BBFormFieldKeyTitle: @"Slider",
+                                       BBFormFieldKeyKey: @"sliderValue",
+                                       BBFormFieldKeyDidUpdateBlock: ^(BBFormField *formField){
+        BBLogObject(formField.value);
+    }}]];
     
     return self;
 }
