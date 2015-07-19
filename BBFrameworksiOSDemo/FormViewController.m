@@ -33,6 +33,7 @@
 @property (copy,nonatomic) NSString *pickerSelection;
 @property (copy,nonatomic) NSDate *datePickerSelection;
 @property (copy,nonatomic) NSString *didUpdateText;
+@property (assign,nonatomic) double stepperValue;
 @end
 
 @implementation FormViewController
@@ -123,7 +124,10 @@
                                        BBFormFieldKeyKey: @"didUpdateText",
                                        BBFormFieldKeyDidUpdateBlock: ^(BBFormField *formField){
         BBLogObject(formField.value);
-    }}]];
+    }},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeStepper),
+                                       BBFormFieldKeyTitle: @"Stepper",
+                                       BBFormFieldKeyKey: @"stepperValue"}]];
     
     return self;
 }

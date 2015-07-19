@@ -22,6 +22,7 @@
 #import "BBFormBooleanCheckmarkTableViewCell.h"
 #import "BBFormTableViewHeaderView.h"
 #import "BBFormTableViewFooterView.h"
+#import "BBFormStepperTableViewCell.h"
 
 static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
 
@@ -175,6 +176,8 @@ static void *kObservingContext = &kObservingContext;
             return [BBFormPickerTableViewCell class];
         case BBFormFieldTypeDatePicker:
             return [BBFormDatePickerTableViewCell class];
+        case BBFormFieldTypeStepper:
+            return [BBFormStepperTableViewCell class];
         default:
             return Nil;
     }

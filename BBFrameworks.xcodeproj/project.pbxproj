@@ -79,6 +79,8 @@
 		799C0C4E1B5B8F5C00A3888A /* BBFormTableViewFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */; };
 		799C0C511B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */; };
 		799C0C521B5B9BD900A3888A /* BBFormBooleanCheckmarkTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */; };
+		799C0C551B5C3A9E00A3888A /* BBFormStepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */; };
+		799C0C561B5C424500A3888A /* BBFormStepperTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -406,6 +408,7 @@
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
 				799C0C521B5B9BD900A3888A /* BBFormBooleanCheckmarkTableViewCell.h in CopyFiles */,
 				07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */,
+				799C0C561B5C424500A3888A /* BBFormStepperTableViewCell.h in CopyFiles */,
 				799C0C391B5B3E9E00A3888A /* BBFormBooleanSwitchTableViewCell.h in CopyFiles */,
 				799C0C4B1B5B8F5C00A3888A /* BBFormPickerTableViewCell.h in CopyFiles */,
 				799C0C4C1B5B8F5C00A3888A /* BBFormDatePickerTableViewCell.h in CopyFiles */,
@@ -661,6 +664,8 @@
 		799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewFooterView.m; sourceTree = "<group>"; };
 		799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormBooleanCheckmarkTableViewCell.h; sourceTree = "<group>"; };
 		799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanCheckmarkTableViewCell.m; sourceTree = "<group>"; };
+		799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormStepperTableViewCell.h; sourceTree = "<group>"; };
+		799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormStepperTableViewCell.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -935,6 +940,8 @@
 				799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */,
 				799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */,
 				799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */,
+				799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */,
+				799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
@@ -2126,6 +2133,7 @@
 				79EA80EA1B3F0D2F00D50B6B /* BBMediaPickerViewController.m in Sources */,
 				799C0C2A1B587C0C00A3888A /* BBFormField.m in Sources */,
 				79EA80E11B3F0D1B00D50B6B /* BBThumbnailRTFOperation.m in Sources */,
+				799C0C551B5C3A9E00A3888A /* BBFormStepperTableViewCell.m in Sources */,
 				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,

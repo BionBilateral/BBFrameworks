@@ -120,6 +120,13 @@ NSString *const BBFormFieldKeyTitleFooter = @"BBFormFieldKeyTitleFooter";
 - (void)setBoolValue:(BOOL)boolValue {
     [self setValue:@(boolValue)];
 }
+@dynamic doubleValue;
+- (double)doubleValue {
+    return [self.value doubleValue];
+}
+- (void)setDoubleValue:(double)doubleValue {
+    [self setValue:@(doubleValue)];
+}
 
 @end
 

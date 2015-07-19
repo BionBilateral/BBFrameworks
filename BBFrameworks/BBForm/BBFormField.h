@@ -24,7 +24,8 @@ typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypeBooleanSwitch,
     BBFormFieldTypeBooleanCheckmark,
     BBFormFieldTypePicker,
-    BBFormFieldTypeDatePicker
+    BBFormFieldTypeDatePicker,
+    BBFormFieldTypeStepper
 };
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;
@@ -51,8 +52,10 @@ extern NSString *const BBFormFieldKeyTitleFooter;
 @property (readonly,nonatomic) BBFormFieldType type;
 
 @property (readonly,nonatomic) NSString *key;
+
 @property (strong,nonatomic) id value;
 @property (assign,nonatomic) BOOL boolValue;
+@property (assign,nonatomic) double doubleValue;
 
 @property (readonly,nonatomic) NSString *title;
 @property (readonly,nonatomic) NSString *subtitle;
