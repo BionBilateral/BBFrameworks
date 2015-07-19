@@ -38,6 +38,7 @@ NSString *const BBFormFieldKeyMaximumValue = @"BBFormFieldKeyMaximumValue";
 NSString *const BBFormFieldKeyStepValue = @"BBFormFieldKeyStepValue";
 NSString *const BBFormFieldKeyMinimumValueImage = @"BBFormFieldKeyMinimumValueImage";
 NSString *const BBFormFieldKeyMaximumValueImage = @"BBFormFieldKeyMaximumValueImage";
+NSString *const BBFormFieldKeySegmentedItems = @"BBFormFieldKeySegmentedItems";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -139,6 +140,9 @@ NSString *const BBFormFieldKeyMaximumValueImage = @"BBFormFieldKeyMaximumValueIm
 }
 - (UIImage *)maximumValueImage {
     return self[BBFormFieldKeyMaximumValueImage];
+}
+- (NSArray *)segmentedItems {
+    return self[BBFormFieldKeySegmentedItems];
 }
 
 @dynamic value;

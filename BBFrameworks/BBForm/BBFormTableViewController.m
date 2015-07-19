@@ -24,6 +24,7 @@
 #import "BBFormTableViewFooterView.h"
 #import "BBFormStepperTableViewCell.h"
 #import "BBFormSliderTableViewCell.h"
+#import "BBFormSegmentedTableViewCell.h"
 
 static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
 
@@ -181,6 +182,8 @@ static void *kObservingContext = &kObservingContext;
             return [BBFormStepperTableViewCell class];
         case BBFormFieldTypeSlider:
             return [BBFormSliderTableViewCell class];
+        case BBFormFieldTypeSegmented:
+            return [BBFormSegmentedTableViewCell class];
         default:
             return Nil;
     }

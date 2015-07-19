@@ -35,6 +35,7 @@
 @property (copy,nonatomic) NSString *didUpdateText;
 @property (assign,nonatomic) double stepperValue;
 @property (assign,nonatomic) float sliderValue;
+@property (copy,nonatomic) NSString *segmentedSelection;
 @end
 
 @implementation FormViewController
@@ -56,6 +57,7 @@
     [self setLastName:@"Smith"];
     [self setPickerSelection:@"Second"];
     [self setDatePickerSelection:[NSDate date]];
+    [self setSegmentedSelection:@"Two"];
     
     @weakify(self);
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
@@ -158,7 +160,11 @@
         UIGraphicsEndImageContext();
         
         retval;
-    })}]];
+    })},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeSegmented),
+                                       BBFormFieldKeyTitle: @"Segmented",
+                                       BBFormFieldKeySegmentedItems: @[@"One",@"Two",@"Three"],
+                                       BBFormFieldKeyKey: @"segmentedSelection"}]];
     
     return self;
 }

@@ -26,7 +26,8 @@ typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypePicker,
     BBFormFieldTypeDatePicker,
     BBFormFieldTypeStepper,
-    BBFormFieldTypeSlider
+    BBFormFieldTypeSlider,
+    BBFormFieldTypeSegmented
 };
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;
@@ -53,6 +54,7 @@ extern NSString *const BBFormFieldKeyMaximumValue;
 extern NSString *const BBFormFieldKeyStepValue;
 extern NSString *const BBFormFieldKeyMinimumValueImage;
 extern NSString *const BBFormFieldKeyMaximumValueImage;
+extern NSString *const BBFormFieldKeySegmentedItems;
 
 @interface BBFormField : NSObject
 
@@ -93,6 +95,7 @@ extern NSString *const BBFormFieldKeyMaximumValueImage;
 @property (readonly,nonatomic) double stepDoubleValue;
 @property (readonly,nonatomic) UIImage *minimumValueImage;
 @property (readonly,nonatomic) UIImage *maximumValueImage;
+@property (readonly,nonatomic) NSArray *segmentedItems;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
