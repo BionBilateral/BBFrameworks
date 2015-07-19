@@ -32,6 +32,8 @@ extern NSString *const BBFormFieldKeyPickerRows;
 extern NSString *const BBFormFieldKeyPickerColumnsAndRows;
 extern NSString *const BBFormFieldKeyDatePickerMode;
 extern NSString *const BBFormFieldKeyDateFormatter;
+extern NSString *const BBFormFieldKeyTableViewCellAccessoryType;
+extern NSString *const BBFormFieldKeyViewControllerClass;
 
 @interface BBFormField : NSObject
 
@@ -48,6 +50,8 @@ extern NSString *const BBFormFieldKeyDateFormatter;
 @property (readonly,nonatomic) NSArray *pickerColumnsAndRows;
 @property (readonly,nonatomic) UIDatePickerMode datePickerMode;
 @property (readonly,nonatomic) NSDateFormatter *dateFormatter;
+@property (readonly,nonatomic) UITableViewCellAccessoryType tableViewCellAccessoryType;
+@property (readonly,nonatomic) Class viewControllerClass;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

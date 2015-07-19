@@ -54,6 +54,8 @@
 - (void)setFormField:(BBFormField *)formField {
     [super setFormField:formField];
     
+    [self setAccessoryType:UITableViewCellAccessoryNone];
+    
     [self.textField setEnabled:YES];
     [self.textField setTextColor:self.enabledTextColor];
     [self.textField setText:formField.value];
@@ -64,6 +66,8 @@
             [self.textField setKeyboardType:formField.keyboardType];
             break;
         case BBFormFieldTypeLabel:
+            [self setAccessoryType:formField.tableViewCellAccessoryType];
+            
             [self.textField setEnabled:NO];
             [self.textField setTextColor:self.disabledTextColor];
             break;

@@ -24,6 +24,8 @@ NSString *const BBFormFieldKeyPickerRows = @"BBFormFieldKeyPickerRows";
 NSString *const BBFormFieldKeyPickerColumnsAndRows = @"BBFormFieldKeyPickerColumnsAndRows";
 NSString *const BBFormFieldKeyDatePickerMode = @"BBFormFieldKeyDatePickerMode";
 NSString *const BBFormFieldKeyDateFormatter = @"BBFormFieldKeyDateFormatter";
+NSString *const BBFormFieldKeyTableViewCellAccessoryType = @"BBFormFieldKeyTableViewCellAccessoryType";
+NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControllerClass";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -69,10 +71,16 @@ NSString *const BBFormFieldKeyDateFormatter = @"BBFormFieldKeyDateFormatter";
 - (NSDateFormatter *)dateFormatter {
     return self[BBFormFieldKeyDateFormatter];
 }
+- (UITableViewCellAccessoryType)tableViewCellAccessoryType {
+    return [self[BBFormFieldKeyTableViewCellAccessoryType] integerValue];
+}
+- (Class)viewControllerClass {
+    return self[BBFormFieldKeyViewControllerClass];
+}
 
 @dynamic value;
 - (id)value {
-    return [(id)self.dataSource valueForKey:self.key];
+    return self.key ? [(id)self.dataSource valueForKey:self.key] : nil;
 }
 - (void)setValue:(id)value {
     [(id)self.dataSource setValue:value forKey:self.key];

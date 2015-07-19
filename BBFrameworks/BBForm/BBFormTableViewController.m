@@ -66,6 +66,14 @@ static void *kObservingContext = &kObservingContext;
     
     return cell;
 }
+#pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    BBFormField *formField = self.formFields[indexPath.section][indexPath.row];
+    
+    if (formField.viewControllerClass) {
+        [self.navigationController pushViewController:[[formField.viewControllerClass alloc] init] animated:YES];
+    }
+}
 #pragma mark *** Public Methods ***
 - (Class)tableViewCellClassForFormFieldType:(BBFormFieldType)formFieldType {
     switch (formFieldType) {
