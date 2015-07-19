@@ -17,10 +17,8 @@
 #import "BBFormField.h"
 
 @interface BBFormTextTableViewCell ()
-@property (strong,nonatomic) UILabel *titleLabel;
 @property (strong,nonatomic) UITextField *textField;
 
-+ (UIColor *)_defaultTextColor;
 + (UIColor *)_defaultEnabledTextColor;
 + (UIColor *)_defaultDisabledTextColor;
 + (UIColor *)_defaultCaretColor;
@@ -32,14 +30,10 @@
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
     
-    _textColor = [self.class _defaultTextColor];
     _enabledTextColor = [self.class _defaultEnabledTextColor];
     _disabledTextColor = [self.class _defaultDisabledTextColor];
     
     _caretColor = [self.class _defaultCaretColor];
-    
-    [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.contentView addSubview:self.titleLabel];
     
     [self setTextField:[[UITextField alloc] initWithFrame:CGRectZero]];
     [self.textField setTintColor:_caretColor];
@@ -54,16 +48,11 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
-    
-    [self.titleLabel setFrame:CGRectMake(self.layoutMargins.left, 0, titleLabelSize.width, CGRectGetHeight(self.contentView.bounds))];
     [self.textField setFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame) + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.titleLabel.frame) - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
 }
 
 - (void)setFormField:(BBFormField *)formField {
     [super setFormField:formField];
-    
-    [self.titleLabel setText:formField.title];
     
     [self.textField setEnabled:YES];
     [self.textField setTextColor:self.enabledTextColor];
@@ -81,15 +70,8 @@
         default:
             break;
     }
-    
-    [self setNeedsLayout];
 }
 
-- (void)setTextColor:(UIColor *)textColor {
-    _textColor = textColor ?: [self.class _defaultTextColor];
-    
-    [self.titleLabel setTextColor:_textColor];
-}
 - (void)setEnabledTextColor:(UIColor *)enabledTextColor {
     _enabledTextColor = enabledTextColor ?: [self.class _defaultEnabledTextColor];
     
@@ -124,9 +106,6 @@
     [self.formField setValue:self.textField.text];
 }
 
-+ (UIColor *)_defaultTextColor; {
-    return [UIColor blackColor];
-}
 + (UIColor *)_defaultEnabledTextColor; {
     return [UIColor blueColor];
 }

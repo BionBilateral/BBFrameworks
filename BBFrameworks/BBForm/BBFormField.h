@@ -18,13 +18,16 @@
 
 typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypeText,
-    BBFormFieldTypeLabel
+    BBFormFieldTypeLabel,
+    BBFormFieldTypeBoolean,
+    BBFormFieldTypePicker
 };
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;
 extern NSString *const BBFormFieldKeyTitle;
 extern NSString *const BBFormFieldKeyPlaceholder;
 extern NSString *const BBFormFieldKeyKeyboardType;
+extern NSString *const BBFormFieldKeyPickerRows;
 
 @interface BBFormField : NSObject
 
@@ -32,10 +35,12 @@ extern NSString *const BBFormFieldKeyKeyboardType;
 
 @property (readonly,nonatomic) NSString *key;
 @property (strong,nonatomic) id value;
+@property (assign,nonatomic) BOOL boolValue;
 
 @property (readonly,nonatomic) NSString *title;
 @property (readonly,nonatomic) NSString *placeholder;
 @property (readonly,nonatomic) UIKeyboardType keyboardType;
+@property (readonly,nonatomic) NSArray *pickerRows;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

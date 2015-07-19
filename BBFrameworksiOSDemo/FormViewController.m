@@ -24,6 +24,8 @@
 
 @property (copy,nonatomic) NSString *firstName;
 @property (copy,nonatomic) NSString *lastName;
+@property (assign,nonatomic) BOOL doIt;
+@property (copy,nonatomic) NSString *pickerSelection;
 @end
 
 @implementation FormViewController
@@ -43,6 +45,7 @@
         return nil;
     
     [self setLastName:@"Smith"];
+    [self setDoIt:YES];
     
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
@@ -50,7 +53,10 @@
                                        BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable)},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Last Name",
-                                       BBFormFieldKeyKey: @"lastName"}]];
+                                       BBFormFieldKeyKey: @"lastName"},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeBoolean),
+                                       BBFormFieldKeyTitle: @"Do it",
+                                       BBFormFieldKeyKey: @"doIt"}]];
     
     return self;
 }

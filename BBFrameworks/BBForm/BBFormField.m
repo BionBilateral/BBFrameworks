@@ -20,6 +20,7 @@ NSString *const BBFormFieldKeyKey = @"BBFormFieldKeyKey";
 NSString *const BBFormFieldKeyTitle = @"BBFormFieldKeyTitle";
 NSString *const BBFormFieldKeyPlaceholder = @"BBFormFieldKeyPlaceholder";
 NSString *const BBFormFieldKeyKeyboardType = @"BBFormFieldKeyKeyboardType";
+NSString *const BBFormFieldKeyPickerRows = @"BBFormFieldKeyPickerRows";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -53,6 +54,9 @@ NSString *const BBFormFieldKeyKeyboardType = @"BBFormFieldKeyKeyboardType";
 - (UIKeyboardType)keyboardType {
     return [self[BBFormFieldKeyKeyboardType] integerValue];
 }
+- (NSArray *)pickerRows {
+    return self[BBFormFieldKeyPickerRows];
+}
 
 @dynamic value;
 - (id)value {
@@ -60,6 +64,13 @@ NSString *const BBFormFieldKeyKeyboardType = @"BBFormFieldKeyKeyboardType";
 }
 - (void)setValue:(id)value {
     [(id)self.dataSource setValue:value forKey:self.key];
+}
+@dynamic boolValue;
+- (BOOL)boolValue {
+    return [self.value boolValue];
+}
+- (void)setBoolValue:(BOOL)boolValue {
+    [self setValue:@(boolValue)];
 }
 
 @end

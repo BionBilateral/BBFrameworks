@@ -16,12 +16,17 @@
 #import <UIKit/UIKit.h>
 
 extern CGFloat const BBFormTableViewCellMargin;
-extern CGFloat const BBFormTableViewCellPadding;
 
 @class BBFormField;
 
 @interface BBFormTableViewCell : UITableViewCell
 
 @property (strong,nonatomic) BBFormField *formField;
+
+@property (readonly,strong,nonatomic) UILabel *titleLabel;
+
+@property (strong,nonatomic) UIColor *textColor UI_APPEARANCE_SELECTOR;
+
+- (void)layoutSubviews NS_REQUIRES_SUPER;
 
 @end
