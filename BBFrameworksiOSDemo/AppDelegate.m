@@ -29,7 +29,7 @@
     [self.window setRootViewController:[[RootViewController alloc] init]];
     [self.window makeKeyAndVisible];
     
-    [[BBFormTextTableViewCell appearance] setTextColor:[UIApplication sharedApplication].keyWindow.rootViewController.view.tintColor];
+    [[BBFormTextTableViewCell appearance] setEnabledTextColor:[UIApplication sharedApplication].keyWindow.rootViewController.view.tintColor];
     
     return YES;
 }

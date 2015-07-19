@@ -1,8 +1,8 @@
 //
-//  BBFormTextTableViewCell.h
+//  BBFormBooleanTableViewCell.m
 //  BBFrameworks
 //
-//  Created by William Towe on 7/16/15.
+//  Created by William Towe on 7/18/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,14 +13,15 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBFormTableViewCell.h"
+#import "BBFormBooleanTableViewCell.h"
 
-@interface BBFormTextTableViewCell : BBFormTableViewCell
+@interface BBFormBooleanTableViewCell ()
+@property (strong,nonatomic) UILabel *titleLabel;
+@property (strong,nonatomic) UISwitch *switchControl;
+@end
 
-@property (strong,nonatomic) UIColor *textColor UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *enabledTextColor UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *disabledTextColor UI_APPEARANCE_SELECTOR;
+@implementation BBFormBooleanTableViewCell
 
-@property (strong,nonatomic) UIColor *caretColor UI_APPEARANCE_SELECTOR;
+
 
 @end

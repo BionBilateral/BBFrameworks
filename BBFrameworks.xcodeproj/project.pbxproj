@@ -65,6 +65,8 @@
 		799C0C331B58A0A300A3888A /* BBFormTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C241B5876E300A3888A /* BBFormTableViewController.h */; };
 		799C0C341B58A0A300A3888A /* BBFormTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C2B1B58888800A3888A /* BBFormTableViewCell.h */; };
 		799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */; };
+		799C0C381B5B3E8800A3888A /* BBFormBooleanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */; };
+		799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -393,6 +395,7 @@
 				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
 				07C23AA91B54325600D3C072 /* BBTokenDefaultTextAttachment.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
+				799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */,
 				790DE0951B5314310029C004 /* BBTokenCompletion.h in CopyFiles */,
 				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				799C0C311B58A0A300A3888A /* BBFormField.h in CopyFiles */,
@@ -626,6 +629,8 @@
 		799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewCell.m; sourceTree = "<group>"; };
 		799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTextTableViewCell.h; sourceTree = "<group>"; };
 		799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTextTableViewCell.m; sourceTree = "<group>"; };
+		799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormBooleanTableViewCell.h; sourceTree = "<group>"; };
+		799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanTableViewCell.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -888,6 +893,8 @@
 				799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */,
 				799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */,
 				799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */,
+				799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */,
+				799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
@@ -2094,6 +2101,7 @@
 				79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
 				79EA80F11B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				799C0C301B58892900A3888A /* BBFormTextTableViewCell.m in Sources */,
+				799C0C381B5B3E8800A3888A /* BBFormBooleanTableViewCell.m in Sources */,
 				79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */,
 				79EA80EB1B3F0D2F00D50B6B /* BBMediaPickerBackgroundView.m in Sources */,
 				79EA80E51B3F0D1B00D50B6B /* BBThumbnailVimeoOperation.m in Sources */,

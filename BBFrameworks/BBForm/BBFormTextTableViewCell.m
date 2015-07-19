@@ -21,6 +21,7 @@
 @property (strong,nonatomic) UITextField *textField;
 
 + (UIColor *)_defaultTextColor;
++ (UIColor *)_defaultEnabledTextColor;
 + (UIColor *)_defaultDisabledTextColor;
 + (UIColor *)_defaultCaretColor;
 @end
@@ -32,6 +33,7 @@
         return nil;
     
     _textColor = [self.class _defaultTextColor];
+    _enabledTextColor = [self.class _defaultEnabledTextColor];
     _disabledTextColor = [self.class _defaultDisabledTextColor];
     
     _caretColor = [self.class _defaultCaretColor];
@@ -41,7 +43,7 @@
     
     [self setTextField:[[UITextField alloc] initWithFrame:CGRectZero]];
     [self.textField setTintColor:_caretColor];
-    [self.textField setTextColor:_textColor];
+    [self.textField setTextColor:_enabledTextColor];
     [self.textField setTextAlignment:NSTextAlignmentRight];
     [self.textField addTarget:self action:@selector(_textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:self.textField];
@@ -64,7 +66,7 @@
     [self.titleLabel setText:formField.title];
     
     [self.textField setEnabled:YES];
-    [self.textField setTextColor:self.textColor];
+    [self.textField setTextColor:self.enabledTextColor];
     [self.textField setText:formField.value];
     
     switch (formField.type) {
@@ -86,8 +88,13 @@
 - (void)setTextColor:(UIColor *)textColor {
     _textColor = textColor ?: [self.class _defaultTextColor];
     
+    [self.titleLabel setTextColor:_textColor];
+}
+- (void)setEnabledTextColor:(UIColor *)enabledTextColor {
+    _enabledTextColor = enabledTextColor ?: [self.class _defaultEnabledTextColor];
+    
     if (self.formField.type != BBFormFieldTypeLabel) {
-        [self.textField setTextColor:_textColor];
+        [self.textField setTextColor:_enabledTextColor];
     }
 }
 - (void)setDisabledTextColor:(UIColor *)disabledTextColor {
@@ -118,6 +125,9 @@
 }
 
 + (UIColor *)_defaultTextColor; {
+    return [UIColor blackColor];
+}
++ (UIColor *)_defaultEnabledTextColor; {
     return [UIColor blueColor];
 }
 + (UIColor *)_defaultDisabledTextColor; {
