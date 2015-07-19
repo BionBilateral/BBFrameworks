@@ -25,7 +25,9 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
 @property (strong,nonatomic) UILabel *titleLabel;
 @property (strong,nonatomic) UILabel *subtitleLabel;
 
++ (UIFont *)_defaultTitleFont;
 + (UIColor *)_defaultTitleTextColor;
++ (UIFont *)_defaultSubtitleFont;
 + (UIColor *)_defaultSubtitleTextColor;
 @end
 
@@ -58,18 +60,21 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
     
+    _titleFont = [self.class _defaultTitleFont];
     _titleTextColor = [self.class _defaultTitleTextColor];
+    _subtitleFont = [self.class _defaultSubtitleFont];
     _subtitleTextColor = [self.class _defaultSubtitleTextColor];
     
     [self setIconImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.iconImageView];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.titleLabel setFont:_titleFont];
     [self.titleLabel setTextColor:_titleTextColor];
     [self.contentView addSubview:self.titleLabel];
     
     [self setSubtitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.subtitleLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [self.subtitleLabel setFont:_subtitleFont];
     [self.subtitleLabel setTextColor:_subtitleTextColor];
     [self.contentView addSubview:self.subtitleLabel];
     
@@ -132,10 +137,20 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     return [[_BBFormTableViewCellLayoutGuide alloc] initWithTableViewCell:self];
 }
 
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont ?: [self.class _defaultTitleFont];
+    
+    [self.titleLabel setFont:_titleFont];
+}
 - (void)setTitleTextColor:(UIColor *)titleTextColor {
     _titleTextColor = titleTextColor ?: [self.class _defaultTitleTextColor];
     
     [self.titleLabel setTextColor:_titleTextColor];
+}
+- (void)setSubtitleFont:(UIFont *)subtitleFont {
+    _subtitleFont = subtitleFont ?: [self.class _defaultSubtitleFont];
+    
+    [self.subtitleLabel setFont:_subtitleFont];
 }
 - (void)setSubtitleTextColor:(UIColor *)subtitleTextColor {
     _subtitleTextColor = subtitleTextColor ?: [self.class _defaultSubtitleTextColor];
@@ -143,8 +158,14 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     [self.subtitleLabel setTextColor:_subtitleTextColor];
 }
 
++ (UIFont *)_defaultTitleFont; {
+    return [UIFont systemFontOfSize:17.0];
+}
 + (UIColor *)_defaultTitleTextColor; {
     return [UIColor blackColor];
+}
++ (UIFont *)_defaultSubtitleFont {
+    return [UIFont systemFontOfSize:12.0];
 }
 + (UIColor *)_defaultSubtitleTextColor; {
     return [UIColor darkGrayColor];

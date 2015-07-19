@@ -25,7 +25,9 @@ extern CGFloat const BBFormTableViewCellMargin;
 
 @property (readonly,nonatomic) id<UILayoutSupport> rightLayoutGuide;
 
+@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 @property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIFont *subtitleFont UI_APPEARANCE_SELECTOR;
 @property (strong,nonatomic) UIColor *subtitleTextColor UI_APPEARANCE_SELECTOR;
 
 - (void)layoutSubviews NS_REQUIRES_SUPER;

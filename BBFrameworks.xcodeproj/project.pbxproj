@@ -919,6 +919,10 @@
 				799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */,
 				799C0C241B5876E300A3888A /* BBFormTableViewController.h */,
 				799C0C251B5876E300A3888A /* BBFormTableViewController.m */,
+				799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */,
+				799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */,
+				799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */,
+				799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */,
 				799C0C2B1B58888800A3888A /* BBFormTableViewCell.h */,
 				799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */,
 				799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */,
@@ -931,10 +935,6 @@
 				799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */,
 				799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */,
 				799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */,
-				799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */,
-				799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */,
-				799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */,
-				799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
