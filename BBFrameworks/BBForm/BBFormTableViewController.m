@@ -16,9 +16,10 @@
 #import "BBFormTableViewController.h"
 #import "BBFormTextTableViewCell.h"
 #import "BBFormField.h"
-#import "BBFormBooleanTableViewCell.h"
+#import "BBFormBooleanSwitchTableViewCell.h"
 #import "BBFormPickerTableViewCell.h"
 #import "BBFormDatePickerTableViewCell.h"
+#import "BBFormBooleanCheckmarkTableViewCell.h"
 #import "BBFormTableViewHeaderView.h"
 #import "BBFormTableViewFooterView.h"
 
@@ -154,6 +155,11 @@ static void *kObservingContext = &kObservingContext;
     else if (formField.didSelectBlock) {
         formField.didSelectBlock(formField,indexPath);
     }
+    else if (formField.type == BBFormFieldTypeBooleanCheckmark) {
+        [formField setBoolValue:!formField.boolValue];
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 #pragma mark *** Public Methods ***
 - (Class)tableViewCellClassForFormField:(BBFormField *)formField; {
@@ -161,8 +167,10 @@ static void *kObservingContext = &kObservingContext;
         case BBFormFieldTypeText:
         case BBFormFieldTypeLabel:
             return [BBFormTextTableViewCell class];
-        case BBFormFieldTypeBoolean:
-            return [BBFormBooleanTableViewCell class];
+        case BBFormFieldTypeBooleanSwitch:
+            return [BBFormBooleanSwitchTableViewCell class];
+        case BBFormFieldTypeBooleanCheckmark:
+            return [BBFormBooleanCheckmarkTableViewCell class];
         case BBFormFieldTypePicker:
             return [BBFormPickerTableViewCell class];
         case BBFormFieldTypeDatePicker:

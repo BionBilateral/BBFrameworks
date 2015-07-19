@@ -21,7 +21,8 @@
 typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypeText,
     BBFormFieldTypeLabel,
-    BBFormFieldTypeBoolean,
+    BBFormFieldTypeBooleanSwitch,
+    BBFormFieldTypeBooleanCheckmark,
     BBFormFieldTypePicker,
     BBFormFieldTypeDatePicker
 };

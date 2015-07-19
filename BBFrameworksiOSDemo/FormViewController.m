@@ -29,6 +29,7 @@
 @property (copy,nonatomic) NSString *firstName;
 @property (copy,nonatomic) NSString *lastName;
 @property (assign,nonatomic) BOOL doIt;
+@property (assign,nonatomic) BOOL checkmark;
 @property (copy,nonatomic) NSString *pickerSelection;
 @property (copy,nonatomic) NSDate *datePickerSelection;
 @property (copy,nonatomic) NSString *didUpdateText;
@@ -51,7 +52,6 @@
         return nil;
     
     [self setLastName:@"Smith"];
-    [self setDoIt:YES];
     [self setPickerSelection:@"Second"];
     [self setDatePickerSelection:[NSDate date]];
     
@@ -78,9 +78,12 @@
         retval;
     }),
                                        BBFormFieldKeyKey: @"lastName"},
-                                     @{BBFormFieldKeyType: @(BBFormFieldTypeBoolean),
-                                       BBFormFieldKeyTitle: @"Boolean",
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeBooleanSwitch),
+                                       BBFormFieldKeyTitle: @"Boolean Switch",
                                        BBFormFieldKeyKey: @"doIt"},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeBooleanCheckmark),
+                                       BBFormFieldKeyTitle: @"Boolean Checkmark",
+                                       BBFormFieldKeyKey: @"checkmark"},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypePicker),
                                        BBFormFieldKeyTitle: @"Picker",
                                        BBFormFieldKeyKey: @"pickerSelection",

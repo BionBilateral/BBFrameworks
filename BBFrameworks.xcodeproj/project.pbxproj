@@ -65,8 +65,8 @@
 		799C0C331B58A0A300A3888A /* BBFormTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C241B5876E300A3888A /* BBFormTableViewController.h */; };
 		799C0C341B58A0A300A3888A /* BBFormTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C2B1B58888800A3888A /* BBFormTableViewCell.h */; };
 		799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */; };
-		799C0C381B5B3E8800A3888A /* BBFormBooleanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */; };
-		799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */; };
+		799C0C381B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C371B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m */; };
+		799C0C391B5B3E9E00A3888A /* BBFormBooleanSwitchTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C361B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.h */; };
 		799C0C3C1B5B478900A3888A /* BBFormPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */; };
 		799C0C3F1B5B570600A3888A /* BBFormDatePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */; };
 		799C0C421B5B6DDA00A3888A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C411B5B6DDA00A3888A /* DetailViewController.m */; };
@@ -77,6 +77,7 @@
 		799C0C4C1B5B8F5C00A3888A /* BBFormDatePickerTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */; };
 		799C0C4D1B5B8F5C00A3888A /* BBFormTableViewHeaderView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */; };
 		799C0C4E1B5B8F5C00A3888A /* BBFormTableViewFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */; };
+		799C0C511B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -403,7 +404,7 @@
 				799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */,
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
 				07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */,
-				799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */,
+				799C0C391B5B3E9E00A3888A /* BBFormBooleanSwitchTableViewCell.h in CopyFiles */,
 				799C0C4B1B5B8F5C00A3888A /* BBFormPickerTableViewCell.h in CopyFiles */,
 				799C0C4C1B5B8F5C00A3888A /* BBFormDatePickerTableViewCell.h in CopyFiles */,
 				799C0C4D1B5B8F5C00A3888A /* BBFormTableViewHeaderView.h in CopyFiles */,
@@ -643,8 +644,8 @@
 		799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewCell.m; sourceTree = "<group>"; };
 		799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTextTableViewCell.h; sourceTree = "<group>"; };
 		799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTextTableViewCell.m; sourceTree = "<group>"; };
-		799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormBooleanTableViewCell.h; sourceTree = "<group>"; };
-		799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanTableViewCell.m; sourceTree = "<group>"; };
+		799C0C361B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormBooleanSwitchTableViewCell.h; sourceTree = "<group>"; };
+		799C0C371B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanSwitchTableViewCell.m; sourceTree = "<group>"; };
 		799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormPickerTableViewCell.h; sourceTree = "<group>"; };
 		799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormPickerTableViewCell.m; sourceTree = "<group>"; };
 		799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormDatePickerTableViewCell.h; sourceTree = "<group>"; };
@@ -656,6 +657,8 @@
 		799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewHeaderView.m; sourceTree = "<group>"; };
 		799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewFooterView.h; sourceTree = "<group>"; };
 		799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewFooterView.m; sourceTree = "<group>"; };
+		799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormBooleanCheckmarkTableViewCell.h; sourceTree = "<group>"; };
+		799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormBooleanCheckmarkTableViewCell.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -918,8 +921,10 @@
 				799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */,
 				799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */,
 				799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */,
-				799C0C361B5B3E8800A3888A /* BBFormBooleanTableViewCell.h */,
-				799C0C371B5B3E8800A3888A /* BBFormBooleanTableViewCell.m */,
+				799C0C361B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.h */,
+				799C0C371B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m */,
+				799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */,
+				799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */,
 				799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */,
 				799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */,
 				799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */,
@@ -2143,7 +2148,7 @@
 				79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
 				79EA80F11B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				799C0C301B58892900A3888A /* BBFormTextTableViewCell.m in Sources */,
-				799C0C381B5B3E8800A3888A /* BBFormBooleanTableViewCell.m in Sources */,
+				799C0C381B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m in Sources */,
 				79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */,
 				79EA80EB1B3F0D2F00D50B6B /* BBMediaPickerBackgroundView.m in Sources */,
 				79EA80E51B3F0D1B00D50B6B /* BBThumbnailVimeoOperation.m in Sources */,
@@ -2156,6 +2161,7 @@
 				79F9415D1B43614600B385F0 /* BBAddressBookPersonTableViewCell.m in Sources */,
 				79EA80CF1B3F0CDB00D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				79EA80E41B3F0D1B00D50B6B /* BBThumbnailYouTubeOperation.m in Sources */,
+				799C0C511B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m in Sources */,
 				79EA80D81B3F0CF300D50B6B /* UIView+BBKitExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
