@@ -26,6 +26,7 @@ NSString *const BBFormFieldKeyDatePickerMode = @"BBFormFieldKeyDatePickerMode";
 NSString *const BBFormFieldKeyDateFormatter = @"BBFormFieldKeyDateFormatter";
 NSString *const BBFormFieldKeyTableViewCellAccessoryType = @"BBFormFieldKeyTableViewCellAccessoryType";
 NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControllerClass";
+NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -76,6 +77,9 @@ NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControll
 }
 - (Class)viewControllerClass {
     return self[BBFormFieldKeyViewControllerClass];
+}
+- (BBFormFieldDidSelectBlock)didSelectBlock {
+    return self[BBFormFieldKeyDidSelectBlock];
 }
 
 @dynamic value;

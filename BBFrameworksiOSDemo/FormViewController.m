@@ -15,6 +15,7 @@
 
 #import "FormViewController.h"
 #import "DetailViewController.h"
+#import "BBFoundation.h"
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
@@ -82,7 +83,12 @@
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"View Controller",
                                        BBFormFieldKeyTableViewCellAccessoryType: @(UITableViewCellAccessoryDisclosureIndicator),
-                                       BBFormFieldKeyViewControllerClass: [DetailViewController class]}]];
+                                       BBFormFieldKeyViewControllerClass: [DetailViewController class]},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
+                                       BBFormFieldKeyTitle: @"Did Select",
+                                       BBFormFieldKeyDidSelectBlock: ^(BBFormField *formField, NSIndexPath *indexPath){
+        BBLog(@"%@ %@",formField,indexPath);
+    }}]];
     
     return self;
 }

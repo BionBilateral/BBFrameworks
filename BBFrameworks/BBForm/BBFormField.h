@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBFormTableViewControllerDataSource.h"
 
+@class BBFormField;
+
 typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypeText,
     BBFormFieldTypeLabel,
@@ -34,6 +36,8 @@ extern NSString *const BBFormFieldKeyDatePickerMode;
 extern NSString *const BBFormFieldKeyDateFormatter;
 extern NSString *const BBFormFieldKeyTableViewCellAccessoryType;
 extern NSString *const BBFormFieldKeyViewControllerClass;
+typedef void(^BBFormFieldDidSelectBlock)(BBFormField *formField, NSIndexPath *indexPath);
+extern NSString *const BBFormFieldKeyDidSelectBlock;
 
 @interface BBFormField : NSObject
 
@@ -52,6 +56,7 @@ extern NSString *const BBFormFieldKeyViewControllerClass;
 @property (readonly,nonatomic) NSDateFormatter *dateFormatter;
 @property (readonly,nonatomic) UITableViewCellAccessoryType tableViewCellAccessoryType;
 @property (readonly,nonatomic) Class viewControllerClass;
+@property (readonly,nonatomic) BBFormFieldDidSelectBlock didSelectBlock;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

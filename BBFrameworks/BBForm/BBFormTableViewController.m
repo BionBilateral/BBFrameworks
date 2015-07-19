@@ -73,6 +73,9 @@ static void *kObservingContext = &kObservingContext;
     if (formField.viewControllerClass) {
         [self.navigationController pushViewController:[[formField.viewControllerClass alloc] init] animated:YES];
     }
+    else if (formField.didSelectBlock) {
+        formField.didSelectBlock(formField,indexPath);
+    }
 }
 #pragma mark *** Public Methods ***
 - (Class)tableViewCellClassForFormFieldType:(BBFormFieldType)formFieldType {
