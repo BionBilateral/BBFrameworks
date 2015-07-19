@@ -55,6 +55,7 @@
     [self setPickerSelection:@"Second"];
     [self setDatePickerSelection:[NSDate date]];
     
+    @weakify(self);
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
                                        BBFormFieldKeyTitleFooter : @"This is multiline footer title text that should wrap to multiple lines if things work properly.",
                                        BBFormFieldKeyTitle: @"First Name",
@@ -92,7 +93,14 @@
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Did Select",
                                        BBFormFieldKeyDidSelectBlock: ^(BBFormField *formField, NSIndexPath *indexPath){
+        @strongify(self);
+        
         BBLog(@"%@ %@",formField,indexPath);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert Title" message:@"Alert message that is informative" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }},
                                      @{BBFormFieldKeyTitle: @"Did Update",
                                        BBFormFieldKeyPlaceholder: @"Type something…",
