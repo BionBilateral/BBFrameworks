@@ -38,6 +38,8 @@ extern NSString *const BBFormFieldKeyTableViewCellAccessoryType;
 extern NSString *const BBFormFieldKeyViewControllerClass;
 typedef void(^BBFormFieldDidSelectBlock)(BBFormField *formField, NSIndexPath *indexPath);
 extern NSString *const BBFormFieldKeyDidSelectBlock;
+typedef void(^BBFormFieldDidUpdateBlock)(BBFormField *formField);
+extern NSString *const BBFormFieldKeyDidUpdateBlock;
 
 @interface BBFormField : NSObject
 
@@ -57,6 +59,7 @@ extern NSString *const BBFormFieldKeyDidSelectBlock;
 @property (readonly,nonatomic) UITableViewCellAccessoryType tableViewCellAccessoryType;
 @property (readonly,nonatomic) Class viewControllerClass;
 @property (readonly,nonatomic) BBFormFieldDidSelectBlock didSelectBlock;
+@property (readonly,nonatomic) BBFormFieldDidUpdateBlock didUpdateBlock;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

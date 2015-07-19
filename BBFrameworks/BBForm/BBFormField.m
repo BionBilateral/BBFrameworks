@@ -27,6 +27,7 @@ NSString *const BBFormFieldKeyDateFormatter = @"BBFormFieldKeyDateFormatter";
 NSString *const BBFormFieldKeyTableViewCellAccessoryType = @"BBFormFieldKeyTableViewCellAccessoryType";
 NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControllerClass";
 NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
+NSString *const BBFormFieldKeyDidUpdateBlock = @"BBFormFieldKeyDidUpdateBlock";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -81,6 +82,9 @@ NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
 - (BBFormFieldDidSelectBlock)didSelectBlock {
     return self[BBFormFieldKeyDidSelectBlock];
 }
+- (BBFormFieldDidUpdateBlock)didUpdateBlock {
+    return self[BBFormFieldKeyDidUpdateBlock];
+}
 
 @dynamic value;
 - (id)value {
@@ -88,6 +92,10 @@ NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
 }
 - (void)setValue:(id)value {
     [(id)self.dataSource setValue:value forKey:self.key];
+    
+    if (self.didUpdateBlock) {
+        self.didUpdateBlock(self);
+    }
 }
 @dynamic boolValue;
 - (BOOL)boolValue {

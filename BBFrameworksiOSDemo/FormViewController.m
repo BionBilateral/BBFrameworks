@@ -29,6 +29,7 @@
 @property (assign,nonatomic) BOOL doIt;
 @property (copy,nonatomic) NSString *pickerSelection;
 @property (copy,nonatomic) NSDate *datePickerSelection;
+@property (copy,nonatomic) NSString *didUpdateText;
 @end
 
 @implementation FormViewController
@@ -88,6 +89,12 @@
                                        BBFormFieldKeyTitle: @"Did Select",
                                        BBFormFieldKeyDidSelectBlock: ^(BBFormField *formField, NSIndexPath *indexPath){
         BBLog(@"%@ %@",formField,indexPath);
+    }},
+                                     @{BBFormFieldKeyTitle: @"Did Update",
+                                       BBFormFieldKeyPlaceholder: @"Type something…",
+                                       BBFormFieldKeyKey: @"didUpdateText",
+                                       BBFormFieldKeyDidUpdateBlock: ^(BBFormField *formField){
+        BBLogObject(formField.value);
     }}]];
     
     return self;
