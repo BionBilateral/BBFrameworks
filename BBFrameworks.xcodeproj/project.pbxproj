@@ -78,6 +78,7 @@
 		799C0C4D1B5B8F5C00A3888A /* BBFormTableViewHeaderView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */; };
 		799C0C4E1B5B8F5C00A3888A /* BBFormTableViewFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */; };
 		799C0C511B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */; };
+		799C0C521B5B9BD900A3888A /* BBFormBooleanCheckmarkTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -403,6 +404,7 @@
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
 				799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */,
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
+				799C0C521B5B9BD900A3888A /* BBFormBooleanCheckmarkTableViewCell.h in CopyFiles */,
 				07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */,
 				799C0C391B5B3E9E00A3888A /* BBFormBooleanSwitchTableViewCell.h in CopyFiles */,
 				799C0C4B1B5B8F5C00A3888A /* BBFormPickerTableViewCell.h in CopyFiles */,
