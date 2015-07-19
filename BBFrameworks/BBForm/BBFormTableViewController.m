@@ -19,6 +19,7 @@
 #import "BBFormBooleanTableViewCell.h"
 #import "BBFormPickerTableViewCell.h"
 #import "BBFormDatePickerTableViewCell.h"
+#import "BBFormTableViewHeaderView.h"
 
 static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
 
@@ -55,7 +56,7 @@ static void *kObservingContext = &kObservingContext;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BBFormField *formField = self.formFields[indexPath.section][indexPath.row];
-    Class cellClass = [self tableViewCellClassForFormFieldType:formField.type];
+    Class cellClass = [self tableViewCellClassForFormField:formField];
     BBFormTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];
     
     if (!cell) {
@@ -67,6 +68,45 @@ static void *kObservingContext = &kObservingContext;
     return cell;
 }
 #pragma mark UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    BBFormField *formField = self.formFields[section][0];
+    Class viewClass = [self tableViewHeaderClassForFormField:formField];
+    
+    if (viewClass) {
+        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        
+        if (!view) {
+            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
+        }
+        
+        if ([view respondsToSelector:@selector(setTitle:)]) {
+            [(id)view setTitle:formField.titleHeader];
+        }
+        
+        return [view sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
+    }
+    
+    return 0.0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    BBFormField *formField = self.formFields[section][0];
+    Class viewClass = [self tableViewHeaderClassForFormField:formField];
+    
+    if (viewClass) {
+        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        
+        if (!view) {
+            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
+        }
+        
+        if ([view respondsToSelector:@selector(setTitle:)]) {
+            [(id)view setTitle:formField.titleHeader];
+        }
+        
+        return view;
+    }
+    return nil;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BBFormField *formField = self.formFields[indexPath.section][indexPath.row];
     
@@ -78,8 +118,8 @@ static void *kObservingContext = &kObservingContext;
     }
 }
 #pragma mark *** Public Methods ***
-- (Class)tableViewCellClassForFormFieldType:(BBFormFieldType)formFieldType {
-    switch (formFieldType) {
+- (Class)tableViewCellClassForFormField:(BBFormField *)formField; {
+    switch (formField.type) {
         case BBFormFieldTypeText:
         case BBFormFieldTypeLabel:
             return [BBFormTextTableViewCell class];
@@ -92,6 +132,12 @@ static void *kObservingContext = &kObservingContext;
         default:
             return Nil;
     }
+}
+- (Class)tableViewHeaderClassForFormField:(BBFormField *)formField; {
+    if (formField.titleHeader) {
+        return [BBFormTableViewHeaderView class];
+    }
+    return Nil;
 }
 
 - (void)reloadData; {

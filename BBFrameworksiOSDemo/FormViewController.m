@@ -53,15 +53,16 @@
     [self setPickerSelection:@"Second"];
     [self setDatePickerSelection:[NSDate date]];
     
-    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitle: @"First Name",
+    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
+                                       BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
                                        BBFormFieldKeyPlaceholder: @"Type your first name…",
                                        BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable)},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
-                                       BBFormFieldKeyTitle: @"Last Name",
+                                       BBFormFieldKeyTitle: @"Label",
                                        BBFormFieldKeyKey: @"lastName"},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeBoolean),
-                                       BBFormFieldKeyTitle: @"Do it",
+                                       BBFormFieldKeyTitle: @"Boolean",
                                        BBFormFieldKeyKey: @"doIt"},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypePicker),
                                        BBFormFieldKeyTitle: @"Picker",

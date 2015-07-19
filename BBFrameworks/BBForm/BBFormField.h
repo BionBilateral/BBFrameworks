@@ -40,6 +40,7 @@ typedef void(^BBFormFieldDidSelectBlock)(BBFormField *formField, NSIndexPath *in
 extern NSString *const BBFormFieldKeyDidSelectBlock;
 typedef void(^BBFormFieldDidUpdateBlock)(BBFormField *formField);
 extern NSString *const BBFormFieldKeyDidUpdateBlock;
+extern NSString *const BBFormFieldKeyTitleHeader;
 
 @interface BBFormField : NSObject
 
@@ -60,6 +61,7 @@ extern NSString *const BBFormFieldKeyDidUpdateBlock;
 @property (readonly,nonatomic) Class viewControllerClass;
 @property (readonly,nonatomic) BBFormFieldDidSelectBlock didSelectBlock;
 @property (readonly,nonatomic) BBFormFieldDidUpdateBlock didUpdateBlock;
+@property (readonly,nonatomic) NSString *titleHeader;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

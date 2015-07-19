@@ -28,6 +28,7 @@ NSString *const BBFormFieldKeyTableViewCellAccessoryType = @"BBFormFieldKeyTable
 NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControllerClass";
 NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
 NSString *const BBFormFieldKeyDidUpdateBlock = @"BBFormFieldKeyDidUpdateBlock";
+NSString *const BBFormFieldKeyTitleHeader = @"BBFormFieldKeyTitleHeader";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -84,6 +85,9 @@ NSString *const BBFormFieldKeyDidUpdateBlock = @"BBFormFieldKeyDidUpdateBlock";
 }
 - (BBFormFieldDidUpdateBlock)didUpdateBlock {
     return self[BBFormFieldKeyDidUpdateBlock];
+}
+- (NSString *)titleHeader {
+    return self[BBFormFieldKeyTitleHeader];
 }
 
 @dynamic value;
