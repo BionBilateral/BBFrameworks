@@ -20,6 +20,8 @@
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 @interface FormViewController () <BBFormTableViewControllerDataSource>
 @property (strong,nonatomic) BBFormTableViewController *tableViewController;
 @property (copy,nonatomic) NSArray *formFieldDictionaries;

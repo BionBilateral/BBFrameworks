@@ -73,6 +73,10 @@
 		799C0C441B5B6E1B00A3888A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799C0C431B5B6E1B00A3888A /* DetailViewController.xib */; };
 		799C0C471B5B76A000A3888A /* BBFormTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */; };
 		799C0C4A1B5B82B400A3888A /* BBFormTableViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */; };
+		799C0C4B1B5B8F5C00A3888A /* BBFormPickerTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */; };
+		799C0C4C1B5B8F5C00A3888A /* BBFormDatePickerTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */; };
+		799C0C4D1B5B8F5C00A3888A /* BBFormTableViewHeaderView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */; };
+		799C0C4E1B5B8F5C00A3888A /* BBFormTableViewFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -396,19 +400,23 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */,
+				799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */,
 				07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */,
 				07C23AA51B5431C000D3C072 /* BBTokenTextAttachment.h in CopyFiles */,
+				799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */,
+				799C0C4B1B5B8F5C00A3888A /* BBFormPickerTableViewCell.h in CopyFiles */,
+				799C0C4C1B5B8F5C00A3888A /* BBFormDatePickerTableViewCell.h in CopyFiles */,
+				799C0C4D1B5B8F5C00A3888A /* BBFormTableViewHeaderView.h in CopyFiles */,
+				799C0C4E1B5B8F5C00A3888A /* BBFormTableViewFooterView.h in CopyFiles */,
 				07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */,
 				07C23AA91B54325600D3C072 /* BBTokenDefaultTextAttachment.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
-				799C0C391B5B3E9E00A3888A /* BBFormBooleanTableViewCell.h in CopyFiles */,
 				790DE0951B5314310029C004 /* BBTokenCompletion.h in CopyFiles */,
 				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				799C0C311B58A0A300A3888A /* BBFormField.h in CopyFiles */,
 				799C0C321B58A0A300A3888A /* BBFormTableViewControllerDataSource.h in CopyFiles */,
 				799C0C331B58A0A300A3888A /* BBFormTableViewController.h in CopyFiles */,
 				799C0C341B58A0A300A3888A /* BBFormTableViewCell.h in CopyFiles */,
-				799C0C351B58A0A300A3888A /* BBFormTextTableViewCell.h in CopyFiles */,
 				07C23AA31B542D5000D3C072 /* BBTokenCompletionTableViewCell.h in CopyFiles */,
 				790DE0881B51B1D30029C004 /* BBToken.h in CopyFiles */,
 				79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */,
