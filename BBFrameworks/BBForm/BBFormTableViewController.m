@@ -18,6 +18,7 @@
 #import "BBFormField.h"
 #import "BBFormBooleanTableViewCell.h"
 #import "BBFormPickerTableViewCell.h"
+#import "BBFormDatePickerTableViewCell.h"
 
 static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
 
@@ -71,6 +72,8 @@ static void *kObservingContext = &kObservingContext;
             return [BBFormBooleanTableViewCell class];
         case BBFormFieldTypePicker:
             return [BBFormPickerTableViewCell class];
+        case BBFormFieldTypeDatePicker:
+            return [BBFormDatePickerTableViewCell class];
         default:
             return Nil;
     }

@@ -22,6 +22,8 @@ NSString *const BBFormFieldKeyPlaceholder = @"BBFormFieldKeyPlaceholder";
 NSString *const BBFormFieldKeyKeyboardType = @"BBFormFieldKeyKeyboardType";
 NSString *const BBFormFieldKeyPickerRows = @"BBFormFieldKeyPickerRows";
 NSString *const BBFormFieldKeyPickerColumnsAndRows = @"BBFormFieldKeyPickerColumnsAndRows";
+NSString *const BBFormFieldKeyDatePickerMode = @"BBFormFieldKeyDatePickerMode";
+NSString *const BBFormFieldKeyDateFormatter = @"BBFormFieldKeyDateFormatter";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -60,6 +62,12 @@ NSString *const BBFormFieldKeyPickerColumnsAndRows = @"BBFormFieldKeyPickerColum
 }
 - (NSArray *)pickerColumnsAndRows {
     return self[BBFormFieldKeyPickerColumnsAndRows];
+}
+- (UIDatePickerMode)datePickerMode {
+    return [self[BBFormFieldKeyDatePickerMode] integerValue];
+}
+- (NSDateFormatter *)dateFormatter {
+    return self[BBFormFieldKeyDateFormatter];
 }
 
 @dynamic value;

@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, BBFormFieldType) {
     BBFormFieldTypeText,
     BBFormFieldTypeLabel,
     BBFormFieldTypeBoolean,
-    BBFormFieldTypePicker
+    BBFormFieldTypePicker,
+    BBFormFieldTypeDatePicker
 };
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;
@@ -29,6 +30,8 @@ extern NSString *const BBFormFieldKeyPlaceholder;
 extern NSString *const BBFormFieldKeyKeyboardType;
 extern NSString *const BBFormFieldKeyPickerRows;
 extern NSString *const BBFormFieldKeyPickerColumnsAndRows;
+extern NSString *const BBFormFieldKeyDatePickerMode;
+extern NSString *const BBFormFieldKeyDateFormatter;
 
 @interface BBFormField : NSObject
 
@@ -43,6 +46,8 @@ extern NSString *const BBFormFieldKeyPickerColumnsAndRows;
 @property (readonly,nonatomic) UIKeyboardType keyboardType;
 @property (readonly,nonatomic) NSArray *pickerRows;
 @property (readonly,nonatomic) NSArray *pickerColumnsAndRows;
+@property (readonly,nonatomic) UIDatePickerMode datePickerMode;
+@property (readonly,nonatomic) NSDateFormatter *dateFormatter;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

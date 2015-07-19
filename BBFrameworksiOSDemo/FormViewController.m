@@ -26,6 +26,7 @@
 @property (copy,nonatomic) NSString *lastName;
 @property (assign,nonatomic) BOOL doIt;
 @property (copy,nonatomic) NSString *pickerSelection;
+@property (copy,nonatomic) NSDate *datePickerSelection;
 @end
 
 @implementation FormViewController
@@ -47,6 +48,7 @@
     [self setLastName:@"Smith"];
     [self setDoIt:YES];
     [self setPickerSelection:@"Second"];
+    [self setDatePickerSelection:[NSDate date]];
     
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
@@ -63,7 +65,19 @@
                                        BBFormFieldKeyKey: @"pickerSelection",
                                        BBFormFieldKeyPickerRows: @[@"First",
                                                                    @"Second",
-                                                                   @"Third"]}]];
+                                                                   @"Third"]},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeDatePicker),
+                                       BBFormFieldKeyTitle: @"Date Picker",
+                                       BBFormFieldKeyKey: @"datePickerSelection",
+                                       BBFormFieldKeyDatePickerMode: @(UIDatePickerModeDate),
+                                       BBFormFieldKeyDateFormatter: ({
+        NSDateFormatter *retval = [[NSDateFormatter alloc] init];
+        
+        [retval setDateStyle:NSDateFormatterLongStyle];
+        [retval setTimeStyle:NSDateFormatterNoStyle];
+        
+        retval;
+    })}]];
     
     return self;
 }
