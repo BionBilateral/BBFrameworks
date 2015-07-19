@@ -17,7 +17,8 @@
 #import "BBFormTableViewControllerDataSource.h"
 
 typedef NS_ENUM(NSInteger, BBFormFieldType) {
-    BBFormFieldTypeText
+    BBFormFieldTypeText,
+    BBFormFieldTypeLabel
 };
 extern NSString *const BBFormFieldKeyType;
 extern NSString *const BBFormFieldKeyKey;

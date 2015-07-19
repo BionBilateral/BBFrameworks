@@ -23,7 +23,6 @@
 @property (copy,nonatomic) NSArray *formFieldDictionaries;
 
 @property (copy,nonatomic) NSString *firstName;
-@property (copy,nonatomic) NSString *middleName;
 @property (copy,nonatomic) NSString *lastName;
 @end
 
@@ -43,18 +42,15 @@
     if (!(self = [super init]))
         return nil;
     
+    [self setLastName:@"Smith"];
+    
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
                                        BBFormFieldKeyPlaceholder: @"Type your first name…",
-                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeTwitter)},
-                                     @{BBFormFieldKeyTitle: @"Middle Name",
-                                       BBFormFieldKeyKey: @"middleName",
-                                       BBFormFieldKeyPlaceholder: @"Type your middle name…",
-                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeEmailAddress)},
-                                     @{BBFormFieldKeyTitle: @"Last Name",
-                                       BBFormFieldKeyKey: @"lastName",
-                                       BBFormFieldKeyPlaceholder: @"Type your last name…",
-                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeURL)}]];
+                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable)},
+                                     @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
+                                       BBFormFieldKeyTitle: @"Last Name",
+                                       BBFormFieldKeyKey: @"lastName"}]];
     
     return self;
 }

@@ -63,6 +63,7 @@ static void *kObservingContext = &kObservingContext;
 - (Class)tableViewCellClassForFormFieldType:(BBFormFieldType)formFieldType {
     switch (formFieldType) {
         case BBFormFieldTypeText:
+        case BBFormFieldTypeLabel:
             return [BBFormTextTableViewCell class];
         default:
             return Nil;

@@ -18,6 +18,8 @@
 @interface BBFormTextTableViewCell : BBFormTableViewCell
 
 @property (strong,nonatomic) UIColor *textColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIColor *disabledTextColor UI_APPEARANCE_SELECTOR;
+
 @property (strong,nonatomic) UIColor *caretColor UI_APPEARANCE_SELECTOR;
 
 @end

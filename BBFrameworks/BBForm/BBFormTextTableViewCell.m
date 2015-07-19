@@ -21,6 +21,7 @@
 @property (strong,nonatomic) UITextField *textField;
 
 + (UIColor *)_defaultTextColor;
++ (UIColor *)_defaultDisabledTextColor;
 + (UIColor *)_defaultCaretColor;
 @end
 
@@ -31,6 +32,8 @@
         return nil;
     
     _textColor = [self.class _defaultTextColor];
+    _disabledTextColor = [self.class _defaultDisabledTextColor];
+    
     _caretColor = [self.class _defaultCaretColor];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
@@ -51,8 +54,8 @@
     
     CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
     
-    [self.titleLabel setFrame:CGRectMake(BBFormTableViewCellPadding, 0, titleLabelSize.width, CGRectGetHeight(self.contentView.bounds))];
-    [self.textField setFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame) + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.titleLabel.frame) - BBFormTableViewCellMargin - BBFormTableViewCellPadding, CGRectGetHeight(self.contentView.bounds))];
+    [self.titleLabel setFrame:CGRectMake(self.layoutMargins.left, 0, titleLabelSize.width, CGRectGetHeight(self.contentView.bounds))];
+    [self.textField setFrame:CGRectMake(CGRectGetMaxX(self.titleLabel.frame) + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.titleLabel.frame) - BBFormTableViewCellMargin - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds))];
 }
 
 - (void)setFormField:(BBFormField *)formField {
@@ -60,9 +63,22 @@
     
     [self.titleLabel setText:formField.title];
     
+    [self.textField setEnabled:YES];
+    [self.textField setTextColor:self.textColor];
     [self.textField setText:formField.value];
-    [self.textField setPlaceholder:formField.placeholder];
-    [self.textField setKeyboardType:formField.keyboardType];
+    
+    switch (formField.type) {
+        case BBFormFieldTypeText:
+            [self.textField setPlaceholder:formField.placeholder];
+            [self.textField setKeyboardType:formField.keyboardType];
+            break;
+        case BBFormFieldTypeLabel:
+            [self.textField setEnabled:NO];
+            [self.textField setTextColor:self.disabledTextColor];
+            break;
+        default:
+            break;
+    }
     
     [self setNeedsLayout];
 }
@@ -70,7 +86,16 @@
 - (void)setTextColor:(UIColor *)textColor {
     _textColor = textColor ?: [self.class _defaultTextColor];
     
-    [self.textField setTextColor:_textColor];
+    if (self.formField.type != BBFormFieldTypeLabel) {
+        [self.textField setTextColor:_textColor];
+    }
+}
+- (void)setDisabledTextColor:(UIColor *)disabledTextColor {
+    _disabledTextColor = disabledTextColor ?: [self.class _defaultDisabledTextColor];
+    
+    if (self.formField.type == BBFormFieldTypeLabel) {
+        [self.textField setTextColor:_disabledTextColor];
+    }
 }
 - (void)setCaretColor:(UIColor *)caretColor {
     _caretColor = caretColor ?: [self.class _defaultCaretColor];
@@ -94,6 +119,9 @@
 
 + (UIColor *)_defaultTextColor; {
     return [UIColor blueColor];
+}
++ (UIColor *)_defaultDisabledTextColor; {
+    return [UIColor darkGrayColor];
 }
 + (UIColor *)_defaultCaretColor; {
     return [UIColor blackColor];
