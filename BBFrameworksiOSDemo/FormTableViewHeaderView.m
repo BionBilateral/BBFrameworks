@@ -30,7 +30,7 @@
     [self setImageView:[[UIImageView alloc] initWithImage:({
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
         
-        [[UIColor lightGrayColor] setFill];
+        [[UIColor darkGrayColor] setFill];
         [[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 22, 22)] fill];
         
         UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
@@ -42,7 +42,7 @@
     [self.contentView addSubview:self.imageView];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.titleLabel setTextColor:[UIColor purpleColor]];
+    [self.titleLabel setTextColor:[UIColor lightGrayColor]];
     [self.contentView addSubview:self.titleLabel];
     
     return self;

@@ -17,6 +17,7 @@
 #import "DetailViewController.h"
 #import "BBFoundation.h"
 #import "FormTableViewHeaderView.h"
+#import "FormTableViewFooterView.h"
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
@@ -61,13 +62,12 @@
     [self setSegmentedSelection:@"Two"];
     
     @weakify(self);
-    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Custom Header Title",
-                                       BBFormFieldKeyTitleFooter : @"This is multiline footer title text that should wrap to multiple lines if things work properly.",
+    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
+                                       BBFormFieldKeyTitleFooter: @"This is a footer title that should wrap multiple lines if everything is working correctly.",
                                        BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
                                        BBFormFieldKeyPlaceholder: @"Type your first name…",
-                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable),
-                                       BBFormFieldKeyTableViewHeaderViewClass: [FormTableViewHeaderView class]},
+                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable)},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Label",
                                        BBFormFieldKeySubtitle: @"Label subtitle",
@@ -111,7 +111,10 @@
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"View Controller",
                                        BBFormFieldKeyTableViewCellAccessoryType: @(UITableViewCellAccessoryDisclosureIndicator),
-                                       BBFormFieldKeyViewControllerClass: [DetailViewController class]},
+                                       BBFormFieldKeyViewControllerClass: [DetailViewController class],
+                                       BBFormFieldKeyTableViewHeaderViewClass: [FormTableViewHeaderView class],
+                                       BBFormFieldKeyTableViewFooterViewClass: [FormTableViewFooterView class],
+                                       BBFormFieldKeyTitleHeader: @"Custom Header Title"},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Did Select",
                                        BBFormFieldKeyDidSelectBlock: ^(BBFormField *formField, NSIndexPath *indexPath){

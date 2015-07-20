@@ -148,12 +148,34 @@ static void *kObservingContext = &kObservingContext;
 
 - (void)reloadData; {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
+    NSMutableArray *section = [[NSMutableArray alloc] init];
     
     for (NSDictionary *dict in self.dataSource.formFieldDictionaries) {
-        [temp addObject:[[BBFormField alloc] initWithDictionary:dict dataSource:self.dataSource]];
+        BBFormField *formField = [[BBFormField alloc] initWithDictionary:dict dataSource:self.dataSource];
+        
+        if (formField.titleHeader ||
+            formField.titleFooter ||
+            formField.tableViewHeaderViewClass ||
+            formField.tableViewFooterViewClass) {
+            
+            if (section.count > 0) {
+                [temp addObject:[section copy]];
+                
+                [section removeAllObjects];
+            }
+            
+            [section addObject:formField];
+        }
+        else {
+            [section addObject:formField];
+        }
     }
     
-    [self setFormFields:@[temp]];
+    if (section.count > 0) {
+        [temp addObject:[section copy]];
+    }
+    
+    [self setFormFields:temp];
 }
 #pragma mark Properties
 - (void)setDataSource:(id<BBFormTableViewControllerDataSource>)dataSource {
@@ -203,7 +225,7 @@ static void *kObservingContext = &kObservingContext;
 #pragma mark Properties
 - (void)setFormFields:(NSArray *)formFields {
     _formFields = formFields;
-    
+
     [self.tableView reloadData];
 }
 
