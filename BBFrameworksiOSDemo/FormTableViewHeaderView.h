@@ -1,5 +1,5 @@
 //
-//  BBFormTableViewFooterView.h
+//  FormTableViewHeaderView.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/19/15.
@@ -17,11 +17,8 @@
 
 @class BBFormField;
 
-@interface BBFormTableViewFooterView : UITableViewHeaderFooterView
+@interface FormTableViewHeaderView : UITableViewHeaderFooterView
 
 @property (strong,nonatomic) BBFormField *formField;
-
-@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
 @end

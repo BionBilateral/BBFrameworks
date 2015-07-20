@@ -21,9 +21,9 @@
 
 @property (weak,nonatomic) id<BBFormTableViewControllerDataSource> dataSource;
 
-- (Class)tableViewCellClassForFormField:(BBFormField *)formField;
 - (Class)tableViewHeaderClassForFormField:(BBFormField *)formField;
 - (Class)tableViewFooterClassForFormField:(BBFormField *)formField;
+- (Class)tableViewCellClassForFormField:(BBFormField *)formField;
 
 - (void)reloadData;
 

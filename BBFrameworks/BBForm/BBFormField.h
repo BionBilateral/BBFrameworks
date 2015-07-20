@@ -55,6 +55,8 @@ extern NSString *const BBFormFieldKeyStepValue;
 extern NSString *const BBFormFieldKeyMinimumValueImage;
 extern NSString *const BBFormFieldKeyMaximumValueImage;
 extern NSString *const BBFormFieldKeySegmentedItems;
+extern NSString *const BBFormFieldKeyTableViewHeaderViewClass;
+extern NSString *const BBFormFieldKeyTableViewFooterViewClass;
 
 @interface BBFormField : NSObject
 
@@ -96,6 +98,8 @@ extern NSString *const BBFormFieldKeySegmentedItems;
 @property (readonly,nonatomic) UIImage *minimumValueImage;
 @property (readonly,nonatomic) UIImage *maximumValueImage;
 @property (readonly,nonatomic) NSArray *segmentedItems;
+@property (readonly,nonatomic) Class tableViewHeaderViewClass;
+@property (readonly,nonatomic) Class tableViewFooterViewClass;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

@@ -1,5 +1,5 @@
 //
-//  BBFormTableViewHeaderView.m
+//  FormTableViewHeaderView.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/19/15.
@@ -13,28 +13,36 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBFormTableViewHeaderView.h"
+#import "FormTableViewHeaderView.h"
 #import "BBFormField.h"
 
-@interface BBFormTableViewHeaderView ()
+@interface FormTableViewHeaderView ()
+@property (strong,nonatomic) UIImageView *imageView;
 @property (strong,nonatomic) UILabel *titleLabel;
-
-+ (UIFont *)_defaultTitleFont;
-+ (UIColor *)_defaultTitleTextColor;
 @end
 
-@implementation BBFormTableViewHeaderView
+@implementation FormTableViewHeaderView
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (!(self = [super initWithReuseIdentifier:reuseIdentifier]))
         return nil;
     
-    _titleFont = [self.class _defaultTitleFont];
-    _titleTextColor = [self.class _defaultTitleTextColor];
+    [self setImageView:[[UIImageView alloc] initWithImage:({
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+        
+        [[UIColor lightGrayColor] setFill];
+        [[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 22, 22)] fill];
+        
+        UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        retval;
+    })]];
+    [self.contentView addSubview:self.imageView];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.titleLabel setFont:_titleFont];
-    [self.titleLabel setTextColor:_titleTextColor];
+    [self.titleLabel setTextColor:[UIColor purpleColor]];
     [self.contentView addSubview:self.titleLabel];
     
     return self;
@@ -43,14 +51,15 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self.titleLabel setFrame:CGRectMake(self.layoutMargins.left, self.layoutMargins.top, CGRectGetWidth(self.contentView.bounds) - self.layoutMargins.left - self.layoutMargins.right, CGRectGetHeight(self.contentView.bounds) - self.layoutMargins.top - self.layoutMargins.bottom)];
+    [self.imageView setFrame:CGRectMake(self.layoutMargins.left, self.layoutMargins.top, self.imageView.image.size.width, self.imageView.image.size.height)];
+    [self.titleLabel setFrame:CGRectMake(CGRectGetMaxX(self.imageView.frame) + 8.0, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.imageView.frame) - 16.0, CGRectGetHeight(self.contentView.bounds))];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize retval = CGSizeMake(size.width, 0);
-
+    
     retval.height += self.layoutMargins.top;
-    retval.height += ceil([self.titleLabel sizeThatFits:CGSizeZero].height);
+    retval.height += self.imageView.image.size.height;
     retval.height += self.layoutMargins.bottom;
     
     return retval;
@@ -60,24 +69,6 @@
     _formField = formField;
     
     [self.titleLabel setText:formField.titleHeader];
-}
-
-- (void)setTitleFont:(UIFont *)titleFont {
-    _titleFont = titleFont ?: [self.class _defaultTitleFont];
-    
-    [self.titleLabel setFont:_titleFont];
-}
-- (void)setTitleTextColor:(UIColor *)titleTextColor {
-    _titleTextColor = titleTextColor ?: [self.class _defaultTitleTextColor];
-    
-    [self.titleLabel setTextColor:_titleTextColor];
-}
-
-+ (UIFont *)_defaultTitleFont; {
-    return [UIFont systemFontOfSize:14.0];
-}
-+ (UIColor *)_defaultTitleTextColor; {
-    return [UIColor darkGrayColor];
 }
 
 @end

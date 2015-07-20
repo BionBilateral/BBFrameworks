@@ -85,6 +85,7 @@
 		799C0C5A1B5C48FC00A3888A /* BBFormSliderTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C571B5C48ED00A3888A /* BBFormSliderTableViewCell.h */; };
 		799C0C5D1B5C562F00A3888A /* BBFormSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C5C1B5C562F00A3888A /* BBFormSegmentedTableViewCell.m */; };
 		799C0C5E1B5C597400A3888A /* BBFormSegmentedTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C5B1B5C562F00A3888A /* BBFormSegmentedTableViewCell.h */; };
+		799C0C611B5C6CB800A3888A /* FormTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C601B5C6CB800A3888A /* FormTableViewHeaderView.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -676,6 +677,8 @@
 		799C0C581B5C48ED00A3888A /* BBFormSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormSliderTableViewCell.m; sourceTree = "<group>"; };
 		799C0C5B1B5C562F00A3888A /* BBFormSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormSegmentedTableViewCell.h; sourceTree = "<group>"; };
 		799C0C5C1B5C562F00A3888A /* BBFormSegmentedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormSegmentedTableViewCell.m; sourceTree = "<group>"; };
+		799C0C5F1B5C6CB800A3888A /* FormTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewHeaderView.h; sourceTree = "<group>"; };
+		799C0C601B5C6CB800A3888A /* FormTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewHeaderView.m; sourceTree = "<group>"; };
 		79B4FF671B363D4E007B8629 /* BBMediaPickerAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAsset.h; sourceTree = "<group>"; };
 		79B4FF681B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCell.h; sourceTree = "<group>"; };
 		79B4FF691B363D4E007B8629 /* BBMediaPickerAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCell.m; sourceTree = "<group>"; };
@@ -1269,6 +1272,8 @@
 				79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */,
 				07CE802B1B4EE78800F5729E /* FormViewController.h */,
 				07CE802C1B4EE78800F5729E /* FormViewController.m */,
+				799C0C5F1B5C6CB800A3888A /* FormTableViewHeaderView.h */,
+				799C0C601B5C6CB800A3888A /* FormTableViewHeaderView.m */,
 				799C0C401B5B6DDA00A3888A /* DetailViewController.h */,
 				799C0C411B5B6DDA00A3888A /* DetailViewController.m */,
 				799C0C431B5B6E1B00A3888A /* DetailViewController.xib */,
@@ -2088,6 +2093,7 @@
 				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
 				07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
+				799C0C611B5C6CB800A3888A /* FormTableViewHeaderView.m in Sources */,
 				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,
 				799C0C421B5B6DDA00A3888A /* DetailViewController.m in Sources */,
 				799C0C471B5B76A000A3888A /* BBFormTableViewHeaderView.m in Sources */,

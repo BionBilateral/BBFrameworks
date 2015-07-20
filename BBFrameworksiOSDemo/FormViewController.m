@@ -16,6 +16,7 @@
 #import "FormViewController.h"
 #import "DetailViewController.h"
 #import "BBFoundation.h"
+#import "FormTableViewHeaderView.h"
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
@@ -60,12 +61,13 @@
     [self setSegmentedSelection:@"Two"];
     
     @weakify(self);
-    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
+    [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Custom Header Title",
                                        BBFormFieldKeyTitleFooter : @"This is multiline footer title text that should wrap to multiple lines if things work properly.",
                                        BBFormFieldKeyTitle: @"First Name",
                                        BBFormFieldKeyKey: @"firstName",
                                        BBFormFieldKeyPlaceholder: @"Type your first name…",
-                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable)},
+                                       BBFormFieldKeyKeyboardType: @(UIKeyboardTypeASCIICapable),
+                                       BBFormFieldKeyTableViewHeaderViewClass: [FormTableViewHeaderView class]},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Label",
                                        BBFormFieldKeySubtitle: @"Label subtitle",

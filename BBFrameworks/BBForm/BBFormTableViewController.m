@@ -32,6 +32,9 @@ static void *kObservingContext = &kObservingContext;
 
 @interface BBFormTableViewController ()
 @property (copy,nonatomic) NSArray *formFields;
+
+- (UITableViewHeaderFooterView *)_tableViewHeaderViewForFormField:(BBFormField *)formField;
+- (UITableViewHeaderFooterView *)_tableViewFooterViewForFormField:(BBFormField *)formField;
 @end
 
 @implementation BBFormTableViewController
@@ -74,80 +77,16 @@ static void *kObservingContext = &kObservingContext;
 }
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    BBFormField *formField = self.formFields[section][0];
-    Class viewClass = [self tableViewHeaderClassForFormField:formField];
-    
-    if (viewClass) {
-        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
-        
-        if (!view) {
-            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
-        }
-        
-        if ([view respondsToSelector:@selector(setTitle:)]) {
-            [(id)view setTitle:formField.titleHeader];
-        }
-        
-        return [view sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
-    }
-    return 0.0;
+    return [[self _tableViewHeaderViewForFormField:self.formFields[section][0]] sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    BBFormField *formField = self.formFields[section][0];
-    Class viewClass = [self tableViewFooterClassForFormField:formField];
-    
-    if (viewClass) {
-        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
-        
-        if (!view) {
-            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
-        }
-        
-        if ([view respondsToSelector:@selector(setTitle:)]) {
-            [(id)view setTitle:formField.titleFooter];
-        }
-        
-        return [view sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
-    }
-    return 0.0;
+    return [[self _tableViewFooterViewForFormField:self.formFields[section][0]] sizeThatFits:CGSizeMake(CGRectGetWidth(tableView.frame), CGFLOAT_MAX)].height;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    BBFormField *formField = self.formFields[section][0];
-    Class viewClass = [self tableViewHeaderClassForFormField:formField];
-    
-    if (viewClass) {
-        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
-        
-        if (!view) {
-            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
-        }
-        
-        if ([view respondsToSelector:@selector(setTitle:)]) {
-            [(id)view setTitle:formField.titleHeader];
-        }
-        
-        return view;
-    }
-    return nil;
+    return [self _tableViewHeaderViewForFormField:self.formFields[section][0]];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    BBFormField *formField = self.formFields[section][0];
-    Class viewClass = [self tableViewFooterClassForFormField:formField];
-    
-    if (viewClass) {
-        UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
-        
-        if (!view) {
-            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
-        }
-        
-        if ([view respondsToSelector:@selector(setTitle:)]) {
-            [(id)view setTitle:formField.titleFooter];
-        }
-        
-        return view;
-    }
-    return nil;
+    return [self _tableViewFooterViewForFormField:self.formFields[section][0]];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BBFormField *formField = self.formFields[indexPath.section][indexPath.row];
@@ -165,6 +104,24 @@ static void *kObservingContext = &kObservingContext;
     }
 }
 #pragma mark *** Public Methods ***
+- (Class)tableViewHeaderClassForFormField:(BBFormField *)formField; {
+    if (formField.tableViewHeaderViewClass) {
+        return formField.tableViewHeaderViewClass;
+    }
+    else if (formField.titleHeader) {
+        return [BBFormTableViewHeaderView class];
+    }
+    return Nil;
+}
+- (Class)tableViewFooterClassForFormField:(BBFormField *)formField {
+    if (formField.tableViewFooterViewClass) {
+        return formField.tableViewFooterViewClass;
+    }
+    else if (formField.titleFooter) {
+        return [BBFormTableViewFooterView class];
+    }
+    return Nil;
+}
 - (Class)tableViewCellClassForFormField:(BBFormField *)formField; {
     switch (formField.type) {
         case BBFormFieldTypeText:
@@ -188,18 +145,6 @@ static void *kObservingContext = &kObservingContext;
             return Nil;
     }
 }
-- (Class)tableViewHeaderClassForFormField:(BBFormField *)formField; {
-    if (formField.titleHeader) {
-        return [BBFormTableViewHeaderView class];
-    }
-    return Nil;
-}
-- (Class)tableViewFooterClassForFormField:(BBFormField *)formField {
-    if (formField.titleFooter) {
-        return [BBFormTableViewFooterView class];
-    }
-    return Nil;
-}
 
 - (void)reloadData; {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
@@ -219,6 +164,42 @@ static void *kObservingContext = &kObservingContext;
     }
 }
 #pragma mark *** Private Methods ***
+- (UITableViewHeaderFooterView *)_tableViewHeaderViewForFormField:(BBFormField *)formField; {
+    Class viewClass = [self tableViewHeaderClassForFormField:formField];
+    
+    if (viewClass) {
+        UITableViewHeaderFooterView *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        
+        if (!view) {
+            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
+        }
+        
+        if ([view respondsToSelector:@selector(setFormField:)]) {
+            [(id)view setFormField:formField];
+        }
+        
+        return view;
+    }
+    return nil;
+}
+- (UITableViewHeaderFooterView *)_tableViewFooterViewForFormField:(BBFormField *)formField; {
+    Class viewClass = [self tableViewFooterClassForFormField:formField];
+    
+    if (viewClass) {
+        UITableViewHeaderFooterView *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        
+        if (!view) {
+            view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
+        }
+        
+        if ([view respondsToSelector:@selector(setFormField:)]) {
+            [(id)view setFormField:formField];
+        }
+        
+        return view;
+    }
+    return nil;
+}
 #pragma mark Properties
 - (void)setFormFields:(NSArray *)formFields {
     _formFields = formFields;

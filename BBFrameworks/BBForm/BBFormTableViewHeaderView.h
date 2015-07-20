@@ -15,9 +15,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class BBFormField;
+
 @interface BBFormTableViewHeaderView : UITableViewHeaderFooterView
 
-@property (copy,nonatomic) NSString *title;
+@property (strong,nonatomic) BBFormField *formField;
 
 @property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 @property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
