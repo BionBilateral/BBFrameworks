@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.2.0"
+  spec.version = "0.3.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
