@@ -16,6 +16,7 @@
 #import "BBTooltipViewController.h"
 #import "BBTooltipView.h"
 #import "BBKitColorMacros.h"
+#import "UIView+BBTooltipAttachmentViewExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Archimedes/Archimedes.h>
@@ -251,7 +252,15 @@ static CGFloat const kSpringDamping = 0.5;
         }
         
         UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex];
-        CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentView.bounds toView:nil] fromWindow:nil] fromView:nil];
+        CGRect attachmentViewBounds = attachmentView.bounds;
+        
+        if ([attachmentView respondsToSelector:@selector(BB_tooltipAttachmentViewBounds)] &&
+            !CGRectIsEmpty([attachmentView BB_tooltipAttachmentViewBounds])) {
+            
+            attachmentViewBounds = attachmentView.BB_tooltipAttachmentViewBounds;
+        }
+        
+        CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentViewBounds toView:nil] fromWindow:nil] fromView:nil];
         CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
         CGRect tooltipFrame = MEDRectCenterInRect(CGRectMake(0, 0, tooltipSize.width, tooltipSize.height), attachmentViewFrame);
         

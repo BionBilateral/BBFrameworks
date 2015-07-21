@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBTooltipView.h"
+#import "UIView+BBTooltipAttachmentViewExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -178,7 +179,15 @@
 }
 - (CGRect)arrowRectForBounds:(CGRect)bounds attachmentView:(UIView *)attachmentView; {
     CGRect retval = CGRectZero;
-    CGPoint attachmentPoint = [self convertPoint:[self.window convertPoint:[attachmentView convertPoint:CGPointMake(CGRectGetMidX(attachmentView.bounds), CGRectGetMidY(attachmentView.bounds)) toView:nil] fromWindow:attachmentView.window] fromView:nil];
+    CGRect attachmentBounds = attachmentView.bounds;
+    
+    if ([attachmentView respondsToSelector:@selector(BB_tooltipAttachmentViewBounds)] &&
+        !CGRectIsEmpty([attachmentView BB_tooltipAttachmentViewBounds])) {
+        
+        attachmentBounds = attachmentView.BB_tooltipAttachmentViewBounds;
+    }
+    
+    CGPoint attachmentPoint = [self convertPoint:[self.window convertPoint:[attachmentView convertPoint:CGPointMake(CGRectGetMidX(attachmentBounds), CGRectGetMidY(attachmentBounds)) toView:nil] fromWindow:attachmentView.window] fromView:nil];
     CGFloat arrowHalfHeight = floor(self.tooltipArrowHeight * 0.5);
     
     switch (self.arrowDirection) {

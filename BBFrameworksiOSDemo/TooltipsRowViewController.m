@@ -15,8 +15,7 @@
 
 #import "TooltipsRowViewController.h"
 
-#import <BBFrameworks/BBTooltipViewController.h>
-#import <BBFrameworks/BBTooltipView.h>
+#import <BBFrameworks/BBTooltip.h>
 
 @interface TooltipsRowViewController () <BBTooltipViewControllerDataSource>
 @property (weak,nonatomic) IBOutlet UIButton *button;
@@ -44,7 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTooltipDicts:@[@{@"string": @"This is a tooltip for the bottom label, it should use the bottom arrow style automatically.", @"view": self.label2},@{@"string": @"This is a tooltip for the right label, it should be pushed back to the left automatically.", @"view": self.label3},@{@"string": @"This is a tooltip for the left label, it should be pushed back to the right automatically.", @"view": self.label1},@{@"string": @"This is a tooltip for the button that is longer and should wrap to multiple lines. At least I think it should.", @"view": self.button}]];
+    [self setTooltipDicts:@[@{@"string": @"This is a tooltip for the bottom label, it should use the bottom arrow style automatically.", @"view": self.label2},@{@"string": @"This is a tooltip for the right label, it should be pushed back to the left automatically.", @"view": self.label3},@{@"string": @"This is a tooltip for the left label, it should be pushed back to the right automatically.", @"view": self.label1},@{@"string": @"This is a tooltip for the button that is longer and should wrap to multiple lines. At least I think it should. It also uses a custom attachment view bounds to push it off to the left.", @"view": self.button}]];
+    [self.button setBB_tooltipAttachmentViewBounds:CGRectMake(0, 0, 100, CGRectGetHeight(self.button.frame))];
 }
 
 + (NSString *)rowClassTitle {
@@ -55,10 +55,10 @@
     return self.tooltipDicts.count;
 }
 - (NSString *)tooltipViewController:(BBTooltipViewController *)viewController textForTooltipAtIndex:(NSInteger)index {
-    return [self.tooltipDicts[index] objectForKey:@"string"];
+    return self.tooltipDicts[index][@"string"];
 }
 - (UIView *)tooltipViewController:(BBTooltipViewController *)viewController attachmentViewForTooltipAtIndex:(NSInteger)index {
-    return [self.tooltipDicts[index] objectForKey:@"view"];
+    return self.tooltipDicts[index][@"view"];
 }
 
 - (IBAction)_buttonAction:(id)sender {
