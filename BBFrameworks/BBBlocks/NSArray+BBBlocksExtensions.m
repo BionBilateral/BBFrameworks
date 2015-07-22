@@ -44,7 +44,7 @@
     
     return retval;
 }
-- (id)BB_findWithIndex:(BOOL(^)(id object, NSInteger index))block; {
+- (NSArray *)BB_findWithIndex:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
     __block id retval = nil;
