@@ -62,7 +62,16 @@
 }
 #pragma mark BBPickerButtonDelegate
 - (void)pickerButton:(BBPickerButton *)pickerButton didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    [self.formField setValue:self.formField.pickerColumnsAndRows ? self.formField.pickerColumnsAndRows[component][row] : self.formField.pickerRows[row]];
+    if (self.formField.pickerColumnsAndRows) {
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:self.formField.value];
+        
+        [temp replaceObjectAtIndex:component withObject:self.formField.pickerColumnsAndRows[component][row]];
+        
+        [self.formField setValue:[temp copy]];
+    }
+    else {
+        [self.formField setValue:self.formField.pickerRows[row]];
+    }
 }
 #pragma mark *** Public Methods ***
 #pragma mark Properties
