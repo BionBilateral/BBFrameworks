@@ -128,7 +128,7 @@ static int32_t const kPreferredTimeScale = 1;
 
 - (RACSignal *)periodicTimeObserverWithInterval:(NSTimeInterval)interval; {
     @weakify(self);
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         id retval = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, kPreferredTimeScale) queue:NULL usingBlock:^(CMTime time) {
             @strongify(self);
@@ -139,12 +139,12 @@ static int32_t const kPreferredTimeScale = 1;
             @strongify(self);
             [self.player removeTimeObserver:retval];
         }];
-    }] startWith:RACTuplePack(self,@0.0)];
+    }] takeUntil:[self rac_willDeallocSignal]] startWith:RACTuplePack(self,@0.0)];
 }
 
 - (RACSignal *)boundaryTimeObserverForIntervals:(NSArray *)intervals; {
     @weakify(self);
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         id retval = [self.player addBoundaryTimeObserverForTimes:[intervals bk_map:^id(NSNumber *obj) {
             return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
@@ -157,7 +157,7 @@ static int32_t const kPreferredTimeScale = 1;
             @strongify(self);
             [self.player removeTimeObserver:retval];
         }];
-    }];
+    }] takeUntil:[self rac_willDeallocSignal]];
 }
 #pragma mark Properties
 - (UIView *)view {
