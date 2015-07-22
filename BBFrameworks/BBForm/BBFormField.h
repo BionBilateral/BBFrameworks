@@ -18,29 +18,98 @@
 
 @class BBFormField;
 
+/**
+ Enum describing the type of the form field.
+ */
 typedef NS_ENUM(NSInteger, BBFormFieldType) {
+    /**
+     Text input, using a UITextField.
+     */
     BBFormFieldTypeText,
+    /**
+     Label, using a UITextField with enabled set to NO.
+     */
     BBFormFieldTypeLabel,
+    /**
+     Boolean, using a UISwitch.
+     */
     BBFormFieldTypeBooleanSwitch,
+    /**
+     Boolean, using checkmark accessory view.
+     */
     BBFormFieldTypeBooleanCheckmark,
+    /**
+     Option selection, using a UIPickerView.
+     */
     BBFormFieldTypePicker,
+    /**
+     Date selection, using a UIDatePicker.
+     */
     BBFormFieldTypeDatePicker,
+    /**
+     Number selection, using a UIStepper.
+     */
     BBFormFieldTypeStepper,
+    /**
+     Number selection, using a UISlider.
+     */
     BBFormFieldTypeSlider,
+    /**
+     Option selection, using a UISegmentedControl.
+     */
     BBFormFieldTypeSegmented
 };
+/**
+ Key used to store the form field type.
+ */
 extern NSString *const BBFormFieldKeyType;
+/**
+ Key used to store the key used to retrieve the receiver's value.
+ */
 extern NSString *const BBFormFieldKeyKey;
+/**
+ Key used to store the receiver's title.
+ */
 extern NSString *const BBFormFieldKeyTitle;
+/**
+ Key used to store the receiver's subtitle, optional.
+ */
 extern NSString *const BBFormFieldKeySubtitle;
+/**
+ Key used to store the receiver's image, optional.
+ */
 extern NSString *const BBFormFieldKeyImage;
+/**
+ Key used to store the receiver's placeholder, optional. Used if the type is text.
+ */
 extern NSString *const BBFormFieldKeyPlaceholder;
+/**
+ Key used to store the receiver's keyboard type. Used if the type is text.
+ */
 extern NSString *const BBFormFieldKeyKeyboardType;
+/**
+ Key used to store the rows for the cell's picker view. Use this if the picker view should only have a single column.
+ */
 extern NSString *const BBFormFieldKeyPickerRows;
+/**
+ Key used to store the columns and rows for the cell's picker view. Use this if the picker view should have multiple columns.
+ */
 extern NSString *const BBFormFieldKeyPickerColumnsAndRows;
+/**
+ Key used to store the date picker mode. Used if the type is date picker.
+ */
 extern NSString *const BBFormFieldKeyDatePickerMode;
+/**
+ Key used to store the date formatter. Used if the type is date picker.
+ */
 extern NSString *const BBFormFieldKeyDateFormatter;
+/**
+ Key used to store the table view cell accessory type.
+ */
 extern NSString *const BBFormFieldKeyTableViewCellAccessoryType;
+/**
+ Key used to store the view controller class that should be pushed once the row is tapped.
+ */
 extern NSString *const BBFormFieldKeyViewControllerClass;
 typedef void(^BBFormFieldDidSelectBlock)(BBFormField *formField, NSIndexPath *indexPath);
 extern NSString *const BBFormFieldKeyDidSelectBlock;

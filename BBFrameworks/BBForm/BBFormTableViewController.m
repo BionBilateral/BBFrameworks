@@ -92,7 +92,13 @@ static void *kObservingContext = &kObservingContext;
     BBFormField *formField = self.formFields[indexPath.section][indexPath.row];
     
     if (formField.viewControllerClass) {
-        [self.navigationController pushViewController:[[formField.viewControllerClass alloc] init] animated:YES];
+        id viewController = [[formField.viewControllerClass alloc] init];
+        
+        if ([viewController respondsToSelector:@selector(setFormField:)]) {
+            [viewController setFormField:formField];
+        }
+        
+        [self.navigationController pushViewController:viewController animated:YES];
     }
     else if (formField.didSelectBlock) {
         formField.didSelectBlock(formField,indexPath);
