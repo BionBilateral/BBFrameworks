@@ -79,19 +79,28 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion; {
     @weakify(self);
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        @strongify(self);
-        NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
-        NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
-            return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
-        }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
-            return obj.fullName.length > 0;
-        }];
-        
-        BBDispatchMainSyncSafe(^{
-            completion(people);
-        });
-    });
+    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                @strongify(self);
+                NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+                NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
+                    return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
+                }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
+                    return obj.fullName.length > 0;
+                }];
+                
+                BBDispatchMainSyncSafe(^{
+                    completion(people);
+                });
+            });
+        }
+        else {
+            BBDispatchMainSyncSafe(^{
+                completion(nil);
+            });
+        }
+    }];
 }
 
 - (void)_addressBookChanged; {

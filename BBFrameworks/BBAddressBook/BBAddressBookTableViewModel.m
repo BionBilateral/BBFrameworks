@@ -44,12 +44,8 @@
     [self.didBecomeActiveSignal
      subscribeNext:^(BBAddressBookTableViewModel *value) {
          if (value.people.count == 0) {
-             [value.addressBookManager requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
-                 if (success) {
-                     [value.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people) {
-                         [value setPeople:people];
-                     }];
-                 }
+             [value.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people) {
+                 [value setPeople:people];
              }];
          }
      }];
