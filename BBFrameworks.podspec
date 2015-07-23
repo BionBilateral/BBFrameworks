@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.4.1"
+  spec.version = "0.4.2"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -44,8 +44,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBKit" do |subspec|
-    subspec.dependency "Archimedes", "~> 1.1.0"
-    
     subspec.dependency "BBFrameworks/BBFoundation"
     
     subspec.source_files = "BBFrameworks/BBKit"
@@ -123,7 +121,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBWebKit" do |subspec|
-    subspec.ios.dependency "Archimedes", "~> 1.1.0"
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
     subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
@@ -137,7 +134,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBTooltip" do |subspec|
-    subspec.ios.dependency "Archimedes", "~> 1.1.0"
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     
     subspec.ios.dependency "BBFrameworks/BBKit"
