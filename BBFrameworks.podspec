@@ -70,6 +70,7 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
     
+    subspec.dependency "BBFrameworks/BBBlocks"
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.ios.source_files = "BBFrameworks/BBAddressBook"
@@ -112,6 +113,7 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
     
+    subspec.ios.dependency "BBFrameworks/BBBlocks"
     subspec.ios.dependency "BBFrameworks/BBKit"
     
     subspec.ios.source_files = "BBFrameworks/BBMediaPlayer"
