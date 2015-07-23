@@ -26,6 +26,14 @@ Classes, categories, and functions extending the Foundation framework.
     - NSString+BBFoundationExtensions, methods to calculate the hash of string using various algorithms
     - NSURL+BBFoundationExtensions, methods to get the query parameters of a url and create a url with a set of parameters
     
+###BBBlocks
+
+Categories adding support for higher level functions to various collection classes.
+
+- Categories
+	- NSArray+BBBlocksExtensions, adds support for filter, find, map, reduce, any, and all to NSArray
+	- NSSet+BBBlocksExtensions, adds support for filter, find, map, reduce, any and all to NSSet
+	
 ###BBCoreData
 
 Classes, and categories extending the CoreData framework.
