@@ -11,6 +11,10 @@
 		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0776565F1B617C24000DD318 /* BBFoundationGeometryFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */; };
+		077656621B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */; };
+		077656631B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */; };
 		07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */; };
 		07B3D8E61B5EA7E500FA1853 /* BBTooltipAttachmentView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */; };
 		07B3D8E71B5EA7E600FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */; };
@@ -428,6 +432,7 @@
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				799C0C6E1B6082B400A3888A /* NSSet+BBBlocksExtensions.h in CopyFiles */,
+				077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */,
 				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				799C0C311B58A0A300A3888A /* BBFormField.h in CopyFiles */,
 				799C0C321B58A0A300A3888A /* BBFormTableViewControllerDataSource.h in CopyFiles */,
@@ -532,6 +537,8 @@
 		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
 		0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookManager.h; sourceTree = "<group>"; };
 		0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookManager.m; sourceTree = "<group>"; };
+		0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationGeometryFunctions.h; sourceTree = "<group>"; };
+		077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationGeometryFunctions.m; sourceTree = "<group>"; };
 		07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAttachmentView.h; sourceTree = "<group>"; };
 		07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTooltipAttachmentViewExtensions.h"; sourceTree = "<group>"; };
 		07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTooltipAttachmentViewExtensions.m"; sourceTree = "<group>"; };
@@ -1402,6 +1409,8 @@
 			children = (
 				7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */,
 				7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */,
+				0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */,
+				077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */,
 				7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */,
 			);
 			name = Headers;
@@ -1666,6 +1675,7 @@
 				79EA816A1B3F228400D50B6B /* BBThumbnailMovieOperation.h in Headers */,
 				79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */,
 				79EA82C51B3F945700D50B6B /* BBView.h in Headers */,
+				0776565F1B617C24000DD318 /* BBFoundationGeometryFunctions.h in Headers */,
 				79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */,
 				79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
 				74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */,
@@ -2206,6 +2216,7 @@
 				79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */,
 				07B3D90E1B60373B00FA1853 /* BBFormSliderTableViewCell.m in Sources */,
 				79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */,
+				077656621B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */,
 				79EA80F31B3F0D4B00D50B6B /* BBMoviePlayerViewController.m in Sources */,
 				79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */,
 				79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */,
@@ -2320,6 +2331,7 @@
 				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
 				07B3D8F21B6014D900FA1853 /* NSArray+BBBlocksExtensions.m in Sources */,
+				077656631B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */,
 				79EA81951B3F22FC00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

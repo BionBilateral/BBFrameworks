@@ -15,8 +15,7 @@
 
 #import "BBFormSegmentedTableViewCell.h"
 #import "BBFormField.h"
-
-#import <Archimedes/Archimedes.h>
+#import "BBFoundationGeometryFunctions.h"
 
 @interface BBFormSegmentedTableViewCell ()
 @property (strong,nonatomic) UISegmentedControl *segmentedControl;
@@ -39,7 +38,7 @@
     [super layoutSubviews];
     
     id<UILayoutSupport> guide = self.rightLayoutGuide;
-    CGRect rect = MEDRectCenterInRect(CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds) - [guide length] - BBFormTableViewCellMargin - BBFormTableViewCellMargin, [self.segmentedControl sizeThatFits:CGSizeZero].height), self.contentView.bounds);
+    CGRect rect = BBCGRectCenterInRectVertically(CGRectMake([guide length] + BBFormTableViewCellMargin, 0, CGRectGetWidth(self.contentView.bounds) - [guide length] - BBFormTableViewCellMargin - BBFormTableViewCellMargin, [self.segmentedControl sizeThatFits:CGSizeZero].height), self.contentView.bounds);
     
     rect.origin.x = [guide length] + BBFormTableViewCellMargin;
     

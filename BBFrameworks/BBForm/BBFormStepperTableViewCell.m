@@ -15,8 +15,7 @@
 
 #import "BBFormStepperTableViewCell.h"
 #import "BBFormField.h"
-
-#import <Archimedes/Archimedes.h>
+#import "BBFoundationGeometryFunctions.h"
 
 @interface BBFormStepperTableViewCell ()
 @property (strong,nonatomic) UIStepper *stepperControl;
@@ -55,9 +54,7 @@
     [super layoutSubviews];
     
     CGSize size = [self.stepperControl sizeThatFits:CGSizeZero];
-    CGRect rect = MEDRectCenterInRect(CGRectMake(0, 0, size.width, size.height), self.contentView.bounds);
-    
-    rect.origin.x = CGRectGetWidth(self.contentView.bounds) - CGRectGetWidth(rect) - self.layoutMargins.right;
+    CGRect rect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetWidth(self.contentView.bounds) - size.width - self.layoutMargins.right, 0, size.width, size.height), self.contentView.bounds);
     
     [self.stepperControl setFrame:rect];
     

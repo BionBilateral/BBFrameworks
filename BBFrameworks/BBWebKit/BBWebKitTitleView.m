@@ -16,8 +16,8 @@
 #import "BBWebKitTitleView.h"
 #import "BBFoundation.h"
 #import "BBFrameworksFunctions.h"
+#import "BBFoundationGeometryFunctions.h"
 
-#import <Archimedes/Archimedes.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <WebKit/WebKit.h>
@@ -38,19 +38,15 @@
 @implementation BBWebKitTitleView
 #pragma mark *** Subclass Overrides ***
 - (void)layoutSubviews {
-    CGRect kRect = MEDRectCenterInRect(CGRectMake(0, 0, CGRectGetWidth(self.bounds), ceil(self.titleLabel.font.lineHeight) + ceil(self.urlLabel.font.lineHeight)), self.bounds);
+    CGRect rect = BBCGRectCenterInRectVertically(CGRectMake(0, 0, CGRectGetWidth(self.bounds), ceil(self.titleLabel.font.lineHeight) + ceil(self.urlLabel.font.lineHeight)), self.bounds);
     
-    kRect.origin.x = 0.0;
-    
-    [self.titleLabel setFrame:CGRectMake(CGRectGetMinX(kRect), CGRectGetMinY(kRect), CGRectGetWidth(kRect), ceil(self.titleLabel.font.lineHeight))];
+    [self.titleLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), ceil(self.titleLabel.font.lineHeight))];
     
     if (self.secureImageView.isHidden) {
-        [self.urlLabel setFrame:CGRectMake(CGRectGetMinX(kRect), CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(kRect), ceil(self.urlLabel.font.lineHeight))];
+        [self.urlLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(rect), ceil(self.urlLabel.font.lineHeight))];
     }
     else {
-        CGRect rect = MEDRectCenterInRect(CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), [self.urlLabel sizeThatFits:CGSizeZero].width, ceil(self.urlLabel.font.lineHeight)), self.bounds);
-        
-        rect.origin.y = 0.0;
+        CGRect rect = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), [self.urlLabel sizeThatFits:CGSizeZero].width, ceil(self.urlLabel.font.lineHeight)), self.bounds);
         
         if (CGRectGetWidth(self.bounds) - CGRectGetWidth(rect) < self.hasOnlySecureContentImage.size.width) {
             [self.secureImageView setFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), self.hasOnlySecureContentImage.size.width, self.hasOnlySecureContentImage.size.height)];

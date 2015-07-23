@@ -15,8 +15,7 @@
 
 #import "BBFormTableViewCell.h"
 #import "BBFormField.h"
-
-#import <Archimedes/Archimedes.h>
+#import "BBFoundationGeometryFunctions.h"
 
 CGFloat const BBFormTableViewCellMargin = 8.0;
 
@@ -88,12 +87,10 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     
     if (self.subtitleLabel.text.length > 0) {
         CGSize subtitleLabelSize = [self.subtitleLabel sizeThatFits:CGSizeZero];
-        CGRect rect = MEDRectCenterInRect(CGRectMake(0, 0, MAX(titleLabelSize.width, subtitleLabelSize.width), titleLabelSize.height + subtitleLabelSize.height), self.contentView.bounds);
+        CGRect rect = BBCGRectCenterInRect(CGRectMake(0, 0, MAX(titleLabelSize.width, subtitleLabelSize.width), titleLabelSize.height + subtitleLabelSize.height), self.contentView.bounds);
         
         if (self.iconImageView.image) {
-            CGRect iconRect = MEDRectCenterInRect(CGRectMake(0, 0, self.iconImageView.image.size.width, self.iconImageView.image.size.height), self.contentView.bounds);
-            
-            iconRect.origin.x = self.layoutMargins.left;
+            CGRect iconRect = BBCGRectCenterInRectVertically(CGRectMake(self.layoutMargins.left, 0, self.iconImageView.image.size.width, self.iconImageView.image.size.height), self.contentView.bounds);
             
             [self.iconImageView setFrame:iconRect];
             
@@ -110,9 +107,7 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
         CGRect rect = CGRectMake(self.layoutMargins.left, 0, titleLabelSize.width, CGRectGetHeight(self.contentView.bounds));
         
         if (self.iconImageView.image) {
-            CGRect iconRect = MEDRectCenterInRect(CGRectMake(0, 0, self.iconImageView.image.size.width, self.iconImageView.image.size.height), self.contentView.bounds);
-            
-            iconRect.origin.x = self.layoutMargins.left;
+            CGRect iconRect = BBCGRectCenterInRectVertically(CGRectMake(self.layoutMargins.left, 0, self.iconImageView.image.size.width, self.iconImageView.image.size.height), self.contentView.bounds);
             
             [self.iconImageView setFrame:iconRect];
             

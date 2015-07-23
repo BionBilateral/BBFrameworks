@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_KIT__
 #define __BB_FRAMEWORKS_KIT__
 
+#import <TargetConditionals.h>
+
 #import <BBFrameworks/BBKitColorMacros.h>
 
 #import <BBFrameworks/NSURL+BBKitExtensions.h>

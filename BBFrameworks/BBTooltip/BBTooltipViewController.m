@@ -17,9 +17,9 @@
 #import "BBTooltipView.h"
 #import "BBKitColorMacros.h"
 #import "UIView+BBTooltipAttachmentViewExtensions.h"
+#import "BBFoundationGeometryFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <Archimedes/Archimedes.h>
 
 #import <objc/runtime.h>
 
@@ -262,9 +262,7 @@ static CGFloat const kSpringDamping = 0.5;
         
         CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentViewBounds toView:nil] fromWindow:nil] fromView:nil];
         CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-        CGRect tooltipFrame = MEDRectCenterInRect(CGRectMake(0, 0, tooltipSize.width, tooltipSize.height), attachmentViewFrame);
-        
-        tooltipFrame.origin.y = CGRectGetMaxY(attachmentViewFrame);
+        CGRect tooltipFrame = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(attachmentViewFrame), tooltipSize.width, tooltipSize.height), attachmentViewFrame);
         
         // check left edge
         if (CGRectGetMinX(tooltipFrame) < self.tooltipMinimumEdgeInsets.left) {
