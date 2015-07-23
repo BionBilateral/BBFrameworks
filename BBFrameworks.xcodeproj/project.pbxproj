@@ -102,8 +102,8 @@
 		799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C671B607D8A00A3888A /* NSSet+BBBlocksExtensions.m */; };
 		799C0C6A1B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C671B607D8A00A3888A /* NSSet+BBBlocksExtensions.m */; };
 		799C0C6C1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */; };
-		799C0C6D1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */; };
 		799C0C6E1B6082B400A3888A /* NSSet+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C661B607D8A00A3888A /* NSSet+BBBlocksExtensions.h */; };
+		799C0C6F1B60973D00A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -2296,7 +2296,6 @@
 				79EA817B1B3F22C300D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
 				79EA81921B3F22FC00D50B6B /* BBThumbnailYouTubeOperation.m in Sources */,
 				79EA817A1B3F22C300D50B6B /* NSArray+BBFoundationExtensions.m in Sources */,
-				799C0C6D1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */,
 				79EA81861B3F22E400D50B6B /* BBGradientView.m in Sources */,
 				79EA81891B3F22E400D50B6B /* NSURL+BBKitExtensions.m in Sources */,
 				79EA81911B3F22FC00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
@@ -2331,6 +2330,7 @@
 			files = (
 				07E3E50D1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */,
 				79EA81981B3F251D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
+				799C0C6F1B60973D00A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */,
 				79F941851B44E36900B385F0 /* Test.xcdatamodeld in Sources */,
 				07B3D8F51B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m in Sources */,
 				79EA81971B3F251D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
