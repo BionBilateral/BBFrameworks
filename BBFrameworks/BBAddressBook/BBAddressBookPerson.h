@@ -38,6 +38,9 @@
 @property (readonly,nonatomic) NSString *note;
 @property (readonly,nonatomic) NSDate *creationDate;
 @property (readonly,nonatomic) NSDate *modificationDate;
+@property (readonly,nonatomic) NSArray *addresses;
+@property (readonly,nonatomic) NSArray *dates;
+@property (readonly,nonatomic) NSNumber *kind;
 @property (readonly,nonatomic) NSArray *phoneNumbers;
 
 - (instancetype)initWithPerson:(ABRecordRef)person NS_DESIGNATED_INITIALIZER;

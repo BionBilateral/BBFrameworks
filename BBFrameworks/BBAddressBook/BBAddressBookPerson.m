@@ -93,8 +93,11 @@
 }
 - (NSArray *)emails {
     ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonEmailProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
     
-    return (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    CFRelease(valueRef);
+    
+    return retval;
 }
 - (NSDate *)birthday {
     return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonBirthdayProperty);
@@ -108,10 +111,32 @@
 - (NSDate *)modificationDate {
     return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonModificationDateProperty);
 }
+- (NSArray *)addresses {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonAddressProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
+- (NSArray *)dates {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonDateProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
+- (NSNumber *)kind {
+    return (__bridge_transfer NSNumber *)ABRecordCopyValue(self.person, kABPersonKindProperty);
+}
 - (NSArray *)telephoneNumbers {
     ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonPhoneProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
     
-    return (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    CFRelease(valueRef);
+    
+    return retval;
 }
 
 @end
