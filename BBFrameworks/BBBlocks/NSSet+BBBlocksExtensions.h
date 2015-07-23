@@ -16,29 +16,6 @@
 #import <Foundation/Foundation.h>
 
 /**
- Predicate block returning YES or NO and taking an object.
- 
- @param object The object in the set
- @return YES if the object passes predicate, otherwise NO
- */
-typedef BOOL(^BBBlockPredicateObjectBlock)(id object);
-/**
- Block returning a new object given an object.
- 
- @param object The object in the set
- @return The new object
- */
-typedef id(^BBBlockObjectBlock)(id object);
-/**
- Block returning the new sum given object.
- 
- @param sum The current sum
- @param object The object in the set
- @return The new sum
- */
-typedef id(^BBBlockSumObjectBlock)(id sum, id object);
-
-/**
  Category on NSSet adding block extensions.
  */
 @interface NSSet (BBBlocksExtensions)
@@ -50,7 +27,7 @@ typedef id(^BBBlockSumObjectBlock)(id sum, id object);
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_filter:(BBBlockPredicateObjectBlock)block;
+- (NSSet *)BB_filter:(BOOL(^)(id object))block;
 /**
  Return the first object in the receiver for which block returns YES, otherwise return nil.
  
@@ -58,7 +35,7 @@ typedef id(^BBBlockSumObjectBlock)(id sum, id object);
  @return The matching object or nil
  @exception NSException Thrown if block is nil
  */
-- (id)BB_find:(BBBlockPredicateObjectBlock)block;
+- (id)BB_find:(BOOL(^)(id object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including the return value of block in the new set.
  
@@ -66,7 +43,7 @@ typedef id(^BBBlockSumObjectBlock)(id sum, id object);
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_map:(BBBlockObjectBlock)block;
+- (NSSet *)BB_map:(id(^)(id object))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum and the object. The return value of block is passed in as sum to the next invocation of block.
  
@@ -75,7 +52,7 @@ typedef id(^BBBlockSumObjectBlock)(id sum, id object);
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (id)BB_reduceWithStart:(id)start block:(BBBlockSumObjectBlock)block;
+- (id)BB_reduceWithStart:(id)start block:(id(^)(id sum, id object))block;
 /**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
@@ -83,7 +60,7 @@ typedef id(^BBBlockSumObjectBlock)(id sum, id object);
  @return YES if block returns YES for any object, otherwise NO
  @exception NSException Thrown if block is nil
  */
-- (BOOL)BB_any:(BBBlockPredicateObjectBlock)block;
+- (BOOL)BB_any:(BOOL(^)(id object))block;
 /**
  Return YES if block returns YES for all objects in the receiver, otherwise NO.
  
@@ -91,6 +68,6 @@ typedef id(^BBBlockSumObjectBlock)(id sum, id object);
  @return YES if block returns YEs for all objects, otherwise NO
  @exception NSException Throw if block is nil
  */
-- (BOOL)BB_all:(BBBlockPredicateObjectBlock)block;
+- (BOOL)BB_all:(BOOL(^)(id object))block;
 
 @end

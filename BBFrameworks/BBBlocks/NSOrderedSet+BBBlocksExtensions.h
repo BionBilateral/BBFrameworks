@@ -1,8 +1,8 @@
 //
-//  NSArray+BBBlocksExtensions.h
+//  NSOrderedSet+BBBlocksExtensions.h
 //  BBFrameworks
 //
-//  Created by William Towe on 7/22/15.
+//  Created by William Towe on 7/23/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,18 +16,18 @@
 #import <Foundation/Foundation.h>
 
 /**
- Category on NSArray adding block extensions.
+ Category on NSOrderedSet adding block extensions.
  */
-@interface NSArray (BBBlocksExtensions)
+@interface NSOrderedSet (BBBlocksExtensions)
 
 /**
- Create and return a new array by enumerating the receiver, invoking block for each object, and including it in the new array if block returns YES.
+ Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including it in the new array if block returns YES.
  
  @param block The block to invoke for each object in the receiver
  @return The new array
  @exception NSException Thrown if block is nil
  */
-- (NSArray *)BB_filter:(BOOL(^)(id object, NSInteger index))block;
+- (NSOrderedSet *)BB_filter:(BOOL(^)(id object, NSInteger index))block;
 /**
  Return the first object in the receiver for which block returns YES, or nil if block returns NO for all objects in the receiver.
  
@@ -45,12 +45,12 @@
  */
 - (NSArray *)BB_findWithIndex:(BOOL(^)(id object, NSInteger index))block;
 /**
- Create and return a new array by enumerating the receiver, invoking block for each object, and including the return value of block in the new array.
+ Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including the return value of block in the new array.
  
  @param block The block to invoke for each object in the receiver
  @return The new array
  */
-- (NSArray *)BB_map:(id(^)(id object, NSInteger index))block;
+- (NSOrderedSet *)BB_map:(id(^)(id object, NSInteger index))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum, the object, and the index of object in the receiver. The return value of block is passed in as sum to the next invocation of block.
  
