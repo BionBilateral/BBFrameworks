@@ -1,5 +1,4 @@
 PODS:
-  - Archimedes (1.1)
   - ARChromeActivity (1.0.4)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -13,17 +12,15 @@ PODS:
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
-  - Archimedes (~> 1.1.0)
   - ARChromeActivity (~> 1.0.0)
   - ReactiveCocoa (~> 2.5.0)
   - ReactiveViewModel (~> 0.3.0)
   - TUSafariActivity (~> 1.0.0)
 
 SPEC CHECKSUMS:
-  Archimedes: a181c40a4de8d6bb8ee21bb0f89e9cd758fbb3ce
   ARChromeActivity: 9064d94803338d3377f3e1013a8e8f4821d7daf1
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-COCOAPODS: 0.38.0.beta.1
+COCOAPODS: 0.38.0
