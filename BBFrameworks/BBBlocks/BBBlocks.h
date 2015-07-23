@@ -18,5 +18,6 @@
 
 #import <BBFrameworks/NSArray+BBBlocksExtensions.h>
 #import <BBFrameworks/NSSet+BBBlocksExtensions.h>
+#import <BBFrameworks/NSOrderedSet+BBBlocksExtensions.h>
 
 #endif
