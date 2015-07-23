@@ -17,5 +17,6 @@
 #define __BB_FRAMEWORKS_BLOCKS__
 
 #import <BBFrameworks/NSArray+BBBlocksExtensions.h>
+#import <BBFrameworks/NSSet+BBBlocksExtensions.h>
 
 #endif
