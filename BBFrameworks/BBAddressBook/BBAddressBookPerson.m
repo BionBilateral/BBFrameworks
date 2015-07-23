@@ -23,21 +23,6 @@
 
 @implementation BBAddressBookPerson
 
-- (NSUInteger)hash {
-    return self.fullName.hash;
-}
-- (BOOL)isEqual:(BBAddressBookPerson *)object {
-    if (object == nil) {
-        return NO;
-    }
-    else if (![object isKindOfClass:[BBAddressBookPerson class]]) {
-        return NO;
-    }
-    else {
-        return [self.fullName isEqualToString:object.fullName];
-    }
-}
-
 - (instancetype)initWithPerson:(ABRecordRef)person {
     if (!(self = [super init]))
         return nil;
@@ -122,6 +107,11 @@
 }
 - (NSDate *)modificationDate {
     return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonModificationDateProperty);
+}
+- (NSArray *)telephoneNumbers {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonPhoneProperty);
+    
+    return (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
 }
 
 @end
