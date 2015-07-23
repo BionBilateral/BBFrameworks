@@ -20,8 +20,7 @@
 #import <BBFrameworks/BBToken.h>
 #import <BBFrameworks/BBFoundation.h>
 #import <BBFrameworks/BBAddressBook.h>
-
-#import <BlocksKit/BlocksKit.h>
+#import <BBFrameworks/BBBlocks.h>
 
 @interface TokenCompletion : NSObject <BBTokenCompletion>
 @property (copy,nonatomic) NSString *tokenCompletionTitle;
@@ -151,9 +150,9 @@
 }
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *retval = [[self.people bk_select:^BOOL(BBAddressBookPerson *obj) {
+        NSArray *retval = [[self.people BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
             return [obj.fullName.lowercaseString rangeOfString:substring.lowercaseString options:NSCaseInsensitiveSearch].length > 0;
-        }] bk_map:^id(BBAddressBookPerson *obj) {
+        }] BB_map:^id(BBAddressBookPerson *obj, NSInteger idx) {
             return [[TokenCompletion alloc] initWithTitle:obj.fullName range:[obj.fullName rangeOfString:substring options:NSCaseInsensitiveSearch]];
         }];
         

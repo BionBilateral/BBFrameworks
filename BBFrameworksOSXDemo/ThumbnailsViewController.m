@@ -15,8 +15,9 @@
 
 #import "ThumbnailsViewController.h"
 
+#import <BBFrameworks/BBBlocks.h>
+
 #import <BBFrameworks/BBThumbnail.h>
-#import <BlocksKit/BlocksKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface ThumbnailsViewController ()
@@ -51,7 +52,7 @@
     [temp insertObject:[NSURL URLWithString:@"https://vimeo.com/38195013"] atIndex:0];
     [temp insertObject:[NSURL URLWithString:@"https://www.arstechnica.com"] atIndex:0];
     
-    [self setThumbnailURLs:[temp bk_map:^id(id obj) {
+    [self setThumbnailURLs:[temp BB_map:^id(id obj, NSInteger idx) {
         return RACTuplePack(obj,self.thumbnailGenerator);
     }]];
 }

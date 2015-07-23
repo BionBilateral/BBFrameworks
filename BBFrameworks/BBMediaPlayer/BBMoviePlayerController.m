@@ -18,9 +18,9 @@
 #import "BBMoviePlayerContentView.h"
 #import "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"
 #import "UIViewController+BBKitExtensions.h"
+#import "BBBlocks.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <BlocksKit/BlocksKit.h>
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -105,7 +105,7 @@ static int32_t const kPreferredTimeScale = 1;
         
         __block NSInteger total = intervals.count;
         
-        [imageGenerator generateCGImagesAsynchronouslyForTimes:[intervals bk_map:^id(NSNumber *obj) {
+        [imageGenerator generateCGImagesAsynchronouslyForTimes:[intervals BB_map:^id(NSNumber *obj, NSInteger idx) {
             return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
         }] completionHandler:^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error) {
             if (result == AVAssetImageGeneratorFailed) {
@@ -146,7 +146,7 @@ static int32_t const kPreferredTimeScale = 1;
     @weakify(self);
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
-        id retval = [self.player addBoundaryTimeObserverForTimes:[intervals bk_map:^id(NSNumber *obj) {
+        id retval = [self.player addBoundaryTimeObserverForTimes:[intervals BB_map:^id(NSNumber *obj, NSInteger idx) {
             return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
         }] queue:NULL usingBlock:^{
             @strongify(self);

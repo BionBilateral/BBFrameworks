@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.3.0"
+  spec.version = "0.4.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -11,8 +11,6 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = "10.10"
   
   spec.requires_arc = true
-  
-  spec.dependency "BlocksKit/Core", "~> 2.2.0"
   
   spec.ios.resource_bundles = {
     "BBFrameworksResources" => ["BBFrameworks/BBMediaPicker/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
@@ -28,8 +26,12 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBCore"
     
     subspec.source_files = "BBFrameworks/BBFoundation"
+  end
+  
+  spec.subspec "BBBlocks" do |subspec|
+    subspec.dependency "BBFrameworks/BBCore"
     
-    subspec.frameworks = "Foundation"
+    subspec.source_files = "BBFrameworks/BBBlocks"
   end
   
   spec.subspec "BBCoreData" do |subspec|
