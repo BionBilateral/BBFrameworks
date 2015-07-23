@@ -35,3 +35,26 @@ CGRect BBCGRectCenterInRectVertically(CGRect rect_to_center, CGRect in_rect) {
     
     return new_rect;
 }
+
+#if (!TARGET_OS_IPHONE)
+NSRect BBNSRectCenterInRect(NSRect rect_to_center, NSRect in_rect) {
+    return NSIntegralRect(NSMakeRect(NSMinX(in_rect) + (NSWidth(in_rect) * 0.5) - (NSWidth(rect_to_center) * 0.5),
+                                     NSMinY(in_rect) + (NSHeight(in_rect) * 0.5) - (NSHeight(rect_to_center) * 0.5),
+                                     NSWidth(rect_to_center),
+                                     NSHeight(rect_to_center)));
+}
+NSRect BBNSRectCenterInRectHorizontally(NSRect rect_to_center, NSRect in_rect) {
+    NSRect new_rect = BBNSRectCenterInRect(rect_to_center, in_rect);
+    
+    new_rect.origin.y = rect_to_center.origin.y;
+    
+    return new_rect;
+}
+NSRect BBNSRectCenterInRectVertically(NSRect rect_to_center, NSRect in_rect) {
+    NSRect new_rect = BBNSRectCenterInRect(rect_to_center, in_rect);
+    
+    new_rect.origin.x = rect_to_center.origin.x;
+    
+    return new_rect;
+}
+#endif

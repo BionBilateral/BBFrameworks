@@ -24,7 +24,7 @@
 #endif
 
 /**
- Creates and returns a CGRect by centering _rect_to_center_ within _in_rect_
+ Creates and returns a CGRect by centering rect_to_center within in_rect.
  
  @param rect_to_center The rectangle to center
  @param in_rect The bounding rectangle
@@ -33,11 +33,46 @@
 extern CGRect BBCGRectCenterInRect(CGRect rect_to_center, CGRect in_rect);
 /**
  Calls BBCGRectCenterInRect() and restores the resulting rectangle origin.y to its original value. This centers the rectangle horizontally.
+ 
+ @param rect_to_center The rectangle to center
+ @param in_rect The bounding rectangle
+ @return The centered rectangle
  */
 extern CGRect BBCGRectCenterInRectHorizontally(CGRect rect_to_center, CGRect in_rect);
 /**
  Calls BBCGRectCenterInRect() and restores the resulting rectangle origin.x to its original value. This centers the rectangle vertically.
+ 
+ @param rect_to_center The rectangle to center
+ @param in_rect The bounding rectangle
+ @return The centered rectangle
  */
 extern CGRect BBCGRectCenterInRectVertically(CGRect rect_to_center, CGRect in_rect);
+
+#if (!TARGET_OS_IPHONE)
+/**
+ Creates and returns a NSRect by centering rect_to_center within in_rect.
+ 
+ @param rect_to_center The rectangle to center
+ @param in_rect The bounding rectangle
+ @return The centered rect
+ */
+extern NSRect BBNSRectCenterInRect(NSRect rect_to_center, NSRect in_rect);
+/**
+ Calls BBNSRectCenterInRect() and restores the resulting rectangle origin.y to its original value. This centers the rectangle horizontally.
+ 
+ @param rect_to_center The rectangle to center
+ @param in_rect The bounding rectangle
+ @return The centered rectangle
+ */
+extern NSRect BBNSRectCenterInRectHorizontally(NSRect rect_to_center, NSRect in_rect);
+/**
+ Calls BBNSRectCenterInRect() and restores the resulting rectangle origin.x to its original value. This centers the rectangle vertically.
+ 
+ @param rect_to_center The rectangle to center
+ @param in_rect The bounding rectangle
+ @return The centered rectangle
+ */
+extern NSRect BBNSRectCenterInRectVertically(NSRect rect_to_center, NSRect in_rect);
+#endif
 
 #endif
