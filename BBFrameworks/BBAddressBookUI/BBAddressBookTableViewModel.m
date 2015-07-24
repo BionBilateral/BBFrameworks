@@ -43,9 +43,11 @@
     
     [self.didBecomeActiveSignal
      subscribeNext:^(BBAddressBookTableViewModel *value) {
+         @strongify(self);
          if (value.people.count == 0) {
-             [value.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people, NSError *error) {
-                 [value setPeople:people];
+             [value.addressBookManager requestAllPeopleWithSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@keypath(BBAddressBookPerson.new,lastName) ascending:YES selector:@selector(localizedStandardCompare:)]] completion:^(NSArray *people, NSError *error) {
+                 @strongify(self);
+                 [self setPeople:people];
              }];
          }
      }];

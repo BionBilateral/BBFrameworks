@@ -25,6 +25,7 @@ NSString *const BBAddressBookManagerNotificationNameExternalChange = @"BBAddress
 
 @interface BBAddressBookManager ()
 @property (assign,nonatomic) ABAddressBookRef addressBook;
+@property (strong,nonatomic) dispatch_queue_t addressBookQueue;
 
 - (void)_addressBookChanged;
 @end
@@ -52,6 +53,8 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     if (self.addressBook) {
         ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
     }
+    
+    [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
     return self;
 }
@@ -81,10 +84,14 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion; {
+    [self requestAllPeopleWithSortDescriptors:nil completion:completion];
+}
+- (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion; {
     BBWeakify(self);
     [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+        BBStrongify(self);
         if (success) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            dispatch_async(self.addressBookQueue, ^{
                 BBStrongify(self);
                 NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
                 NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
@@ -92,6 +99,10 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                 }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
                     return obj.fullName.length > 0;
                 }];
+                
+                if (sortDescriptors.count > 0) {
+                    people = [people sortedArrayUsingDescriptors:sortDescriptors];
+                }
                 
                 BBDispatchMainSyncSafe(^{
                     completion(people,nil);
