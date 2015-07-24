@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, BBAddressBookManagerAuthorizationStatus) {
     BBAddressBookManagerAuthorizationStatusAuthorized = kABAuthorizationStatusAuthorized
 };
 
+@class BBAddressBookPerson,BBAddressBookGroup;
+
 extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 
 @interface BBAddressBookManager : NSObject
@@ -30,6 +32,10 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 + (BBAddressBookManagerAuthorizationStatus)authorizationStatus;
 
 - (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
+
+- (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion;
+
+- (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion;
 
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion;
 - (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion;

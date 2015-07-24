@@ -84,6 +84,68 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     });
 }
 
+- (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion; {
+    NSParameterAssert(completion);
+    
+    BBWeakify(self);
+    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+        BBStrongify(self);
+        if (success) {
+            dispatch_async(self.addressBookQueue, ^{
+                BBStrongify(self);
+                ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(self.addressBook, recordID);
+                
+                if (personRef) {
+                    BBDispatchMainSyncSafe(^{
+                        completion([[BBAddressBookPerson alloc] initWithPerson:personRef],nil);
+                    });
+                }
+                else {
+                    BBDispatchMainSyncSafe(^{
+                        completion(nil,nil);
+                    });
+                }
+            });
+        }
+        else {
+            BBDispatchMainSyncSafe(^{
+                completion(nil,error);
+            });
+        }
+    }];
+}
+
+- (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion; {
+    NSParameterAssert(completion);
+    
+    BBWeakify(self);
+    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+        BBStrongify(self);
+        if (success) {
+            dispatch_async(self.addressBookQueue, ^{
+                BBStrongify(self);
+                ABRecordRef groupRef = ABAddressBookGetGroupWithRecordID(self.addressBook, recordID);
+                
+                if (groupRef) {
+                    BBDispatchMainSyncSafe(^{
+                        completion([[BBAddressBookGroup alloc] initWithGroup:groupRef],nil);
+                    });
+                }
+                else {
+                    BBDispatchMainSyncSafe(^{
+                        completion(nil,nil);
+                    });
+                }
+            });
+        }
+        else {
+            BBDispatchMainSyncSafe(^{
+                completion(nil,error);
+            });
+        }
+    }];
+}
+
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion; {
     [self requestAllPeopleWithSortDescriptors:nil completion:completion];
 }
