@@ -34,8 +34,10 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 - (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
 
 - (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion;
+- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion;
 
 - (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion;
+- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *groups, NSError *error))completion;
 
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion;
 - (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion;

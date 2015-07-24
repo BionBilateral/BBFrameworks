@@ -85,6 +85,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 
 - (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion; {
+    [self requestPeopleWithRecordIDs:@[@(recordID)] completion:^(NSArray *people, NSError *error) {
+        completion(people.firstObject,error);
+    }];
+}
+- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -93,18 +98,19 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
                 BBStrongify(self);
-                ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(self.addressBook, recordID);
+                NSMutableArray *retval = [[NSMutableArray alloc] init];
                 
-                if (personRef) {
-                    BBDispatchMainSyncSafe(^{
-                        completion([[BBAddressBookPerson alloc] initWithPerson:personRef],nil);
-                    });
+                for (NSNumber *recordID in recordIDs) {
+                    ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(self.addressBook, recordID.intValue);
+                    
+                    if (personRef) {
+                        [retval addObject:[[BBAddressBookPerson alloc] initWithPerson:personRef]];
+                    }
                 }
-                else {
-                    BBDispatchMainSyncSafe(^{
-                        completion(nil,nil);
-                    });
-                }
+                
+                BBDispatchMainSyncSafe(^{
+                    completion([retval copy],nil);
+                });
             });
         }
         else {
@@ -116,6 +122,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 
 - (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion; {
+    [self requestGroupsWithRecordIDs:@[@(recordID)] completion:^(NSArray *groups, NSError *error) {
+        completion(groups.firstObject,error);
+    }];
+}
+- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *groups, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -124,18 +135,19 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
                 BBStrongify(self);
-                ABRecordRef groupRef = ABAddressBookGetGroupWithRecordID(self.addressBook, recordID);
+                NSMutableArray *retval = [[NSMutableArray alloc] init];
                 
-                if (groupRef) {
-                    BBDispatchMainSyncSafe(^{
-                        completion([[BBAddressBookGroup alloc] initWithGroup:groupRef],nil);
-                    });
+                for (NSNumber *recordID in recordIDs) {
+                    ABRecordRef groupRef = ABAddressBookGetGroupWithRecordID(self.addressBook, recordID.intValue);
+                    
+                    if (groupRef) {
+                        [retval addObject:[[BBAddressBookGroup alloc] initWithGroup:groupRef]];
+                    }
                 }
-                else {
-                    BBDispatchMainSyncSafe(^{
-                        completion(nil,nil);
-                    });
-                }
+                
+                BBDispatchMainSyncSafe(^{
+                    completion([retval copy],nil);
+                });
             });
         }
         else {
