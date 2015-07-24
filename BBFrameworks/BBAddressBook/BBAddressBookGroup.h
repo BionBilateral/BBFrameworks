@@ -23,7 +23,10 @@
 @property (readonly,nonatomic) ABRecordID recordID;
 
 @property (readonly,nonatomic) NSString *name;
+@property (readonly,nonatomic) NSArray *people;
 
 - (instancetype)initWithGroup:(ABRecordRef)group NS_DESIGNATED_INITIALIZER;
+
+- (NSArray *)sortedPeopleWithSortDescriptors:(NSArray *)sortDescriptors;
 
 @end
