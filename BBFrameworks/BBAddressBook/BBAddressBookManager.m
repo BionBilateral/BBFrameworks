@@ -17,8 +17,7 @@
 #import "BBAddressBookPerson.h"
 #import "BBFoundation.h"
 #import "BBBlocks.h"
-
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "BBFrameworksMacros.h"
 
 #import <AddressBook/AddressBook.h>
 
@@ -78,11 +77,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion; {
-    @weakify(self);
+    BBWeakify(self);
     [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
         if (success) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                @strongify(self);
+                BBStrongify(self);
                 NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
                 NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
                     return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];

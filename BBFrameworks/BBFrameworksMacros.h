@@ -1,8 +1,8 @@
 //
-//  BBAddressBook.h
+//  BBFrameworksMacros.h
 //  BBFrameworks
 //
-//  Created by William Towe on 6/30/15.
+//  Created by William Towe on 7/23/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,13 +13,15 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __BB_FRAMEWORKS_ADDRESS_BOOK__
-#define __BB_FRAMEWORKS_ADDRESS_BOOK__
+#ifndef __BB_FRAMEWORKS_MACROS__
+#define __BB_FRAMEWORKS_MACROS__
 
-#if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBAddressBookManager.h>
-#import <BBFrameworks/BBAddressBookPerson.h>
-#import <BBFrameworks/BBAddressBookGroup.h>
-#endif
+#define BBWeakify(var) __weak typeof(var) AHKWeak_##var = var;
+
+#define BBStrongify(var) \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wshadow\"") \
+__strong typeof(var) var = AHKWeak_##var; \
+_Pragma("clang diagnostic pop")
 
 #endif

@@ -65,9 +65,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBAddressBook" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
-    
     subspec.dependency "BBFrameworks/BBBlocks"
     subspec.dependency "BBFrameworks/BBKit"
     
@@ -75,6 +72,16 @@ Pod::Spec.new do |spec|
     subspec.osx.source_files = "BBFrameworks/BBAddressBook/BBAddressBook.h"
     
     subspec.ios.frameworks = "AddressBook"
+  end
+  
+  spec.subspec "BBAddressBookUI" do |subspec|
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
+    
+    subspec.dependency "BBFrameworks/BBAddressBook"
+    
+    subspec.ios.source_files = "BBFrameworks/BBAddressBookUI"
+    subspec.osx.source_files = "BBFrameworks/BBAddressBook/BBAddressBookUI.h"
   end
   
   spec.subspec "BBThumbnail" do |subspec|

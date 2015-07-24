@@ -15,8 +15,7 @@
 
 #import "AddressBookViewController.h"
 
-#import <BBFrameworks/BBAddressBook.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <BBFrameworks/BBAddressBookUI.h>
 
 #import <AddressBookUI/AddressBookUI.h>
 

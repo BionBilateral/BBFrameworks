@@ -17,7 +17,6 @@
 #import "BBFoundationDebugging.h"
 
 #import <BBFrameworks/BBMediaPickerViewController.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <MobileCoreServices/MobileCoreServices.h>
 

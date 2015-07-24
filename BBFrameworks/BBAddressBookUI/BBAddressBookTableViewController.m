@@ -53,7 +53,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBAddressBookPersonTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBAddressBookPersonTableViewCell class])];
     
     @weakify(self);
-    
     [[RACObserve(self.viewModel, people)
      deliverOn:[RACScheduler mainThreadScheduler]]
     subscribeNext:^(id _) {

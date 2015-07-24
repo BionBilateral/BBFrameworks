@@ -18,11 +18,10 @@
 #import "BBFoundation.h"
 #import "FormTableViewHeaderView.h"
 #import "FormTableViewFooterView.h"
+#import "BBFrameworksMacros.h"
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
-
-#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface FormViewController () <BBFormTableViewControllerDataSource>
 @property (strong,nonatomic) BBFormTableViewController *tableViewController;
@@ -61,7 +60,7 @@
     [self setDatePickerSelection:[NSDate date]];
     [self setSegmentedSelection:@"Two"];
     
-    @weakify(self);
+    BBWeakify(self);
     [self setFormFieldDictionaries:@[@{BBFormFieldKeyTitleHeader: @"Header Title",
                                        BBFormFieldKeyTitleFooter: @"This is a footer title that should wrap multiple lines if everything is working correctly.",
                                        BBFormFieldKeyTitle: @"First Name",
@@ -118,7 +117,7 @@
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Did Select",
                                        BBFormFieldKeyDidSelectBlock: ^(BBFormField *formField, NSIndexPath *indexPath){
-        @strongify(self);
+        BBStrongify(self);
         
         BBLog(@"%@ %@",formField,indexPath);
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert Title" message:@"Alert message that is informative" preferredStyle:UIAlertControllerStyleAlert];
