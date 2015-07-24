@@ -7,14 +7,6 @@
 
 Repository for common iOS/OSX categories, classes, and functions.
 
-###BBBlocks
-
-Categories adding support for higher level functions to various collection classes.
-
-- Categories
-	- NSArray+BBBlocksExtensions, adds support for filter, find, map, reduce, any, and all to NSArray
-	- NSSet+BBBlocksExtensions, adds support for filter, find, map, reduce, any and all to NSSet
-	
 ###BBCoreData
 
 Classes, and categories extending the CoreData framework.
