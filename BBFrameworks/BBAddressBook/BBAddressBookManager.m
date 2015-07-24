@@ -56,10 +56,14 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     return self;
 }
 
++ (BBAddressBookManagerAuthorizationStatus)authorizationStatus; {
+    return (BBAddressBookManagerAuthorizationStatus)ABAddressBookGetAuthorizationStatus();
+}
+
 - (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion; {
     NSParameterAssert(completion);
     
-    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+    if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
         completion(YES,nil);
         return;
     }
@@ -76,7 +80,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     });
 }
 
-- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people))completion; {
+- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion; {
     BBWeakify(self);
     [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
         if (success) {
@@ -90,13 +94,13 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                 }];
                 
                 BBDispatchMainSyncSafe(^{
-                    completion(people);
+                    completion(people,nil);
                 });
             });
         }
         else {
             BBDispatchMainSyncSafe(^{
-                completion(nil);
+                completion(nil,error);
             });
         }
     }];

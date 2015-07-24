@@ -87,12 +87,8 @@
     [self.view addSubview:self.tokenTextView];
     
     [self setAddressBookManager:[[BBAddressBookManager alloc] init]];
-    [self.addressBookManager requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
-        if (success) {
-            [self.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people) {
-                [self setPeople:people];
-            }];
-        }
+    [self.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people, NSError *error) {
+        [self setPeople:people];
     }];
 }
 - (void)viewDidLayoutSubviews {

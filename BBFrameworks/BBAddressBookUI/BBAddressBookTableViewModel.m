@@ -44,7 +44,7 @@
     [self.didBecomeActiveSignal
      subscribeNext:^(BBAddressBookTableViewModel *value) {
          if (value.people.count == 0) {
-             [value.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people) {
+             [value.addressBookManager requestAllPeopleWithCompletion:^(NSArray *people, NSError *error) {
                  [value setPeople:people];
              }];
          }
