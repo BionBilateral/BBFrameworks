@@ -16,17 +16,44 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/ABGroup.h>
 
+/**
+ BBAddressBookGroup is an NSObject subclass that wraps a ABRecordRef representing a group.
+ */
 @interface BBAddressBookGroup : NSObject
 
+/**
+ Get the represented group of the receiver.
+ */
 @property (readonly,assign,nonatomic) ABRecordRef group;
 
+/**
+ Get the record id of the managed record ref.
+ */
 @property (readonly,nonatomic) ABRecordID recordID;
 
+/**
+ Get the name. This corresponds to kABGroupNameProperty.
+ */
 @property (readonly,nonatomic) NSString *name;
+/**
+ Get all the people in the group. Calls `[self sortedPeopleWithSortDescriptors:nil]`.
+ */
 @property (readonly,nonatomic) NSArray *people;
 
+/**
+ Designated initializer.
+ 
+ @param group The group record to manage
+ @return An initialized instance of the receiver
+ */
 - (instancetype)initWithGroup:(ABRecordRef)group NS_DESIGNATED_INITIALIZER;
 
+/**
+ Returns an array of all people in the receiver as BBAddressBookPerson objects, sorted using sortDescriptors.
+ 
+ @param sortDescriptors The sort descriptors to sort by, see BBAddressBookPerson.h for supported keys
+ @return The sorted array of people in the group
+ */
 - (NSArray *)sortedPeopleWithSortDescriptors:(NSArray *)sortDescriptors;
 
 @end

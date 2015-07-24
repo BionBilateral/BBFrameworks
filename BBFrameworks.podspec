@@ -86,6 +86,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec "BBThumbnail" do |subspec|
     subspec.ios.deployment_target = "8.0"
+    subspec.osx.deployment_target = "10.10"
     
     subspec.dependency "ReactiveCocoa", "~> 2.5.0"
     
@@ -105,7 +106,8 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPicker" do |subspec|
-    subspec.ios.deployment_target = "8.0"
+    spec.ios.deployment_target = "8.0"
+    spec.osx.deployment_target = "10.10"
     
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
@@ -133,6 +135,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec "BBWebKit" do |subspec|
     subspec.ios.deployment_target = "8.0"
+    subspec.osx.deployment_target = "10.10"
     
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"

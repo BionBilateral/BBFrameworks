@@ -90,6 +90,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }];
 }
 - (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion; {
+    NSParameterAssert(recordIDs);
     NSParameterAssert(completion);
     
     BBWeakify(self);

@@ -16,33 +16,116 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/ABAddressBook.h>
 
+/**
+ Enum describing the authorization status of the AddressBook framework.
+ */
 typedef NS_ENUM(NSInteger, BBAddressBookManagerAuthorizationStatus) {
+    /**
+     The status has not been determined for the calling application. The appropriate alert will be shown to grant access upon request.
+     */
     BBAddressBookManagerAuthorizationStatusNotDetermined = kABAuthorizationStatusNotDetermined,
+    /**
+     The status has been restricted and the current user may not be able to modify it.
+     */
     BBAddressBookManagerAuthorizationStatusRestricted = kABAuthorizationStatusRestricted,
+    /**
+     The user has denied access to the calling application. Prompt the user to adjust access in the Settings application.
+     */
     BBAddressBookManagerAuthorizationStatusDenied = kABAuthorizationStatusDenied,
+    /**
+     The user has granted access to the calling application.
+     */
     BBAddressBookManagerAuthorizationStatusAuthorized = kABAuthorizationStatusAuthorized
 };
 
 @class BBAddressBookPerson,BBAddressBookGroup;
 
+/**
+ Notification is posted when the contents of the address book change. Discard all model objects and reques them again.
+ */
 extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 
 @interface BBAddressBookManager : NSObject
 
+/**
+ Returns the current authorization status.
+ 
+ @see BBAddressBookManagerAuthorizationStatus
+ */
 + (BBAddressBookManagerAuthorizationStatus)authorizationStatus;
 
+/**
+ Requests authorization to access the user's contacts and invokes the completion block with YES or NO, and an error if NO.
+ 
+ @param completion The completion block that is invoked once authorization status has been determined
+ @exception NSException Thrown if completion is nil
+ */
 - (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
 
+/**
+ Calls `[self requestPeopleWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
+ 
+ @param recordID The record id of the person
+ @param completion The completion block to invoke once the request is complete
+ @exception NSException Thrown if completion is nil
+ */
 - (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion;
+/**
+ Attempts to fetch BBAddressBookPerson objects for the provided record ids and invokes the completion block when the operation is complete.
+ 
+ @param recordIDs The array of record ids to fetch people for
+ @param completion The completion block to invoke once the request is complete
+ @exception NSException Thrown if recordIDs or completion are nil
+ */
 - (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion;
 
+/**
+ Calls `[self requestGroupsWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
+ 
+ @param recordID The record id of the group
+ @param completion The completion block to invoke once the request is complete
+ @exception NSException Thrown if completion is nil
+ */
 - (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion;
+/**
+ Attempts to fetch BBAddressBookGroup objects for the provided record ids and invokes the completion block when the operation is complete.
+ 
+ @param recordIDs The array of record ids to fetch groups for
+ @param completion The completion block to invoke once the request is complete
+ @exception NSException Thrown if recordIDs or completion are nil
+ */
 - (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *groups, NSError *error))completion;
 
+/**
+ Calls `[self requestAllPeopleWithSortDescriptors:completion:]`, passing nil and completion respectively.
+ 
+ @param completion The completion block that is invoked when the request is complete
+ @exception NSException Thrown if completion is nil
+ */
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion;
+/**
+ Requests all people in the address book sorted with the provided sort descriptors and invokes the completion block when the request is complete. The array of people in the completion block will contain BBAddressBookPerson instances. See BBAddressBookPerson.h for supported keys for sorting.
+ 
+ @param sortDescriptors The array of sort descriptors to sort the return BBAddressBookPerson objects by
+ @param completion The completion block to invoke when the operation is complete
+ @exception NSException Thrown if completion is nil
+ */
 - (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion;
 
+/**
+ Calls `[self requestAllGroupsWithSortDescriptors:completion:]`, passing nil and completion respectively.
+ 
+ @param completion The completion block that is invoked when the request is complete
+ @exception NSException Throw if completion is nil
+ */
 - (void)requestAllGroupsWithCompletion:(void(^)(NSArray *groups, NSError *error))completion;
+/**
+ Requests all groups in the address book sorted with the provided sort descriptors and invokes the completion block when the request is complete. The array of groups in the completion block will contain BBAddressBookGroup instances. See BBAddressBookGroup.h for supported keys for sorting.
+ 
+ @param sortDescriptors The array of sort descriptors to sort the return BBAddressBookGroup objects by
+ @param completion The completion block to invoke when the operation is complete
+ @exception NSException Thrown if completion is nil
+ */
 - (void)requestAllGroupsWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *groups, NSError *error))completion;
 
 @end

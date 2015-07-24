@@ -16,40 +16,133 @@
 #import <UIKit/UIImage.h>
 #import <AddressBook/ABPerson.h>
 
+/**
+ BBAddressBookPerson is an NSObject subclass that wraps a ABRecordRef representing a person.
+ */
 @interface BBAddressBookPerson : NSObject
 
+/**
+ Get the represented person of the receiver.
+ */
 @property (readonly,assign,nonatomic) ABRecordRef person;
 
+/**
+ Get the record id of the managed record ref.
+ */
 @property (readonly,nonatomic) ABRecordID recordID;
 
+/**
+ Get the full size contact image.
+ */
 @property (readonly,nonatomic) UIImage *image;
+/**
+ Get the thumbnail contact image.
+ */
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
+/**
+ Get the prefix. Corresponds to kABPersonPrefixProperty.
+ */
 @property (readonly,nonatomic) NSString *prefix;
+/**
+ Get the first name. Corresponds to kABPersonFirstNameProperty.
+ */
 @property (readonly,nonatomic) NSString *firstName;
+/**
+ Get the middle name. Corresponds to kABPersonMiddleNameProperty.
+ */
 @property (readonly,nonatomic) NSString *middleName;
+/**
+ Get the last name. Corresponds to kABPersonLastNameProperty.
+ */
 @property (readonly,nonatomic) NSString *lastName;
+/**
+ Get the suffix. Corresponds to kABPersonSuffixProperty.
+ */
 @property (readonly,nonatomic) NSString *suffix;
+/**
+ Get the full name. This is equivalent to concatenating prefix, firstName, middleName, lastName, and suffix if non-nil.
+ */
 @property (readonly,nonatomic) NSString *fullName;
+/**
+ Get the nickname. This corresponds to kABPersonNicknameProperty.
+ */
 @property (readonly,nonatomic) NSString *nickname;
+/**
+ Get the organization. This corresponds to kABPersonOrganizationProperty.
+ */
 @property (readonly,nonatomic) NSString *organization;
+/**
+ Get the job title. This corresponds to kABPersonJobTitleProperty.
+ */
 @property (readonly,nonatomic) NSString *jobTitle;
+/**
+ Get the department. This corresponds to kABPersonDepartmentProperty.
+ */
 @property (readonly,nonatomic) NSString *department;
+/**
+ Get the emails, which will be an array of NSString objects. This corresponds to kABPersonEmailProperty.
+ */
 @property (readonly,nonatomic) NSArray *emails;
+/**
+ Get the birthday. This corresponds to kABPersonBirthdayProperty.
+ */
 @property (readonly,nonatomic) NSDate *birthday;
+/**
+ Get the note. This corresponds to kABPersonNoteProperty.
+ */
 @property (readonly,nonatomic) NSString *note;
+/**
+ Get the creation date. This corresponds to kABPersonCreationDateProperty.
+ */
 @property (readonly,nonatomic) NSDate *creationDate;
+/**
+ Get the modification date. This corresponds to kABPersonModificationDateProperty.
+ */
 @property (readonly,nonatomic) NSDate *modificationDate;
+/**
+ Get the addresses, which will be an array of NSDictionary objects. This corresponds to kABPersonAddressProperty.
+ */
 @property (readonly,nonatomic) NSArray *addresses;
+/**
+ Get the dates, which will be an array of NSDate objects. This corresponds to kABPersonDateProperty.
+ */
 @property (readonly,nonatomic) NSArray *dates;
+/**
+ Get the kind. This corresponds to kABPersonKindProperty.
+ */
 @property (readonly,nonatomic) NSNumber *kind;
+/**
+ Get the phone numbers, which will be an array of NSString objects. This corresponds to kABPersonPhoneProperty.
+ */
 @property (readonly,nonatomic) NSArray *phoneNumbers;
+/**
+ Get the instant messages, which will be an array of NSDictionary objects. This corresponds to kABPersonInstantMessageProperty.
+ */
 @property (readonly,nonatomic) NSArray *instantMessages;
+/**
+ Get the URL strings, which will be an array of NSString objects. This corresponds to kABPersonURLProperty.
+ */
 @property (readonly,nonatomic) NSArray *URLStrings;
+/**
+ Get the related names, which will be an array of NSString objects. This corresponds to kABPersonRelatedNamesProperty.
+ */
 @property (readonly,nonatomic) NSArray *relatedNames;
+/**
+ Get the social profiles, which will be an array of NSDictionary objects. This corresponds to kABPersonSocialProfileProperty.
+ */
 @property (readonly,nonatomic) NSArray *socialProfiles;
+/**
+ Get the alternate birthdays, which will be an array of NSDictionary objects. This corresponds to kABPersonAlternateBirthdayProperty.
+ */
 @property (readonly,nonatomic) NSArray *alternateBirthdays;
 
+/**
+ Designated initializer.
+ 
+ @param The person record to manage
+ @return An initialized instance of the receiver
+ */
 - (instancetype)initWithPerson:(ABRecordRef)person NS_DESIGNATED_INITIALIZER;
 
 @end
