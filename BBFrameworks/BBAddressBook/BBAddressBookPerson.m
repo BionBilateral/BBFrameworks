@@ -138,5 +138,45 @@
     
     return retval;
 }
+- (NSArray *)instantMessages {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonInstantMessageProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
+- (NSArray *)URLStrings {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonURLProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
+- (NSArray *)relatedNames {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonRelatedNamesProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
+- (NSArray *)socialProfiles {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonSocialProfileProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
+- (NSArray *)alternateBirthdays {
+    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonAlternateBirthdayProperty);
+    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+    
+    CFRelease(valueRef);
+    
+    return retval;
+}
 
 @end

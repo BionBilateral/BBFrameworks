@@ -42,6 +42,11 @@
 @property (readonly,nonatomic) NSArray *dates;
 @property (readonly,nonatomic) NSNumber *kind;
 @property (readonly,nonatomic) NSArray *phoneNumbers;
+@property (readonly,nonatomic) NSArray *instantMessages;
+@property (readonly,nonatomic) NSArray *URLStrings;
+@property (readonly,nonatomic) NSArray *relatedNames;
+@property (readonly,nonatomic) NSArray *socialProfiles;
+@property (readonly,nonatomic) NSArray *alternateBirthdays;
 
 - (instancetype)initWithPerson:(ABRecordRef)person NS_DESIGNATED_INITIALIZER;
 
