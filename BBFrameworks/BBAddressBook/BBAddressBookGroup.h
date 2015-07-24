@@ -20,6 +20,10 @@
 
 @property (readonly,assign,nonatomic) ABRecordRef group;
 
+@property (readonly,nonatomic) ABRecordID recordID;
+
+@property (readonly,nonatomic) NSString *name;
+
 - (instancetype)initWithGroup:(ABRecordRef)group NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -15,6 +15,8 @@
 
 #import "BBAddressBookGroup.h"
 
+#import <AddressBook/AddressBook.h>
+
 @interface BBAddressBookGroup ()
 @property (readwrite,assign,nonatomic) ABRecordRef group;
 @end
@@ -28,6 +30,14 @@
     [self setGroup:group];
     
     return self;
+}
+
+- (ABRecordID)recordID {
+    return ABRecordGetRecordID(self.group);
+}
+
+- (NSString *)name {
+    return (__bridge_transfer NSString *)ABRecordCopyValue(self.group, kABGroupNameProperty);
 }
 
 @end

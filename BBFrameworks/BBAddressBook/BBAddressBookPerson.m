@@ -32,6 +32,10 @@
     return self;
 }
 
+- (ABRecordID)recordID {
+    return ABRecordGetRecordID(self.person);
+}
+
 - (UIImage *)image {
     NSData *data = (__bridge_transfer NSData *)ABPersonCopyImageDataWithFormat(self.person, kABPersonImageFormatOriginalSize);
     

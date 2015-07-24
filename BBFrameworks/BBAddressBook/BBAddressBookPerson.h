@@ -20,6 +20,8 @@
 
 @property (readonly,assign,nonatomic) ABRecordRef person;
 
+@property (readonly,nonatomic) ABRecordID recordID;
+
 @property (readonly,nonatomic) UIImage *image;
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
