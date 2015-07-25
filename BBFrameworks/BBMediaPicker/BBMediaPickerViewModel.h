@@ -17,19 +17,12 @@
 
 #import <Photos/Photos.h>
 
-typedef NS_ENUM(NSInteger, BBAssetsPickerViewModelAuthorizationStatus) {
-    BBAssetsPickerViewModelAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
-    BBAssetsPickerViewModelAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
-    BBAssetsPickerViewModelAuthorizationStatusDenied = PHAuthorizationStatusDenied,
-    BBAssetsPickerViewModelAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
-};
-
 @class BBMediaPickerAssetViewModel;
 @class RACCommand;
 
 @interface BBMediaPickerViewModel : RVMViewModel
 
-@property (readonly,assign,nonatomic) BBAssetsPickerViewModelAuthorizationStatus authorizationStatus;
+@property (copy,nonatomic) NSArray *assetCollectionSubtypes;
 
 @property (readonly,copy,nonatomic) NSArray *assetGroupViewModels;
 

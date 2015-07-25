@@ -16,14 +16,13 @@
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPickerCollectionViewModel.h"
 #import "BBFoundationDebugging.h"
+#import "BBMediaPickerViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BBMediaPickerViewModel () <PHPhotoLibraryChangeObserver>
-@property (readwrite,assign,nonatomic) BBAssetsPickerViewModelAuthorizationStatus authorizationStatus;
-
 @property (readwrite,copy,nonatomic) NSArray *assetGroupViewModels;
 
 @property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
@@ -39,7 +38,23 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setAuthorizationStatus:(BBAssetsPickerViewModelAuthorizationStatus)[PHPhotoLibrary authorizationStatus]];
+    _assetCollectionSubtypes = @[@(PHAssetCollectionSubtypeSmartAlbumUserLibrary),
+                                 @(PHAssetCollectionSubtypeAlbumMyPhotoStream),
+                                 @(PHAssetCollectionSubtypeSmartAlbumRecentlyAdded),
+                                 @(PHAssetCollectionSubtypeSmartAlbumFavorites),
+                                 @(PHAssetCollectionSubtypeSmartAlbumPanoramas),
+                                 @(PHAssetCollectionSubtypeSmartAlbumVideos),
+                                 @(PHAssetCollectionSubtypeSmartAlbumSlomoVideos),
+                                 @(PHAssetCollectionSubtypeSmartAlbumTimelapses),
+                                 @(PHAssetCollectionSubtypeSmartAlbumBursts),
+                                 @(PHAssetCollectionSubtypeSmartAlbumAllHidden),
+                                 @(PHAssetCollectionSubtypeSmartAlbumGeneric),
+                                 @(PHAssetCollectionSubtypeAlbumRegular),
+                                 @(PHAssetCollectionSubtypeAlbumSyncedAlbum),
+                                 @(PHAssetCollectionSubtypeAlbumSyncedEvent),
+                                 @(PHAssetCollectionSubtypeAlbumSyncedFaces),
+                                 @(PHAssetCollectionSubtypeAlbumImported),
+                                 @(PHAssetCollectionSubtypeAlbumCloudShared)];
     
     @weakify(self);
     [self setCancelCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -60,6 +75,15 @@
     [self setImageManager:[[PHCachingImageManager alloc] init]];
     [self.imageManager setAllowsCachingHighQualityImages:NO];
     
+    [[[self requestAssetsLibraryAuthorizationStatus]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *value) {
+         @strongify(self);
+         if (value.boolValue) {
+             [self _reloadAssetGroupViewModels];
+         }
+     }];
+    
     return self;
 }
 #pragma mark PHPhotoLibraryChangeObserver
@@ -68,14 +92,9 @@
 }
 #pragma mark *** Public Methods ***
 - (RACSignal *)requestAssetsLibraryAuthorizationStatus; {
-    @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        @strongify(self);
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-            @strongify(self);
-            [self setAuthorizationStatus:(BBAssetsPickerViewModelAuthorizationStatus)status];
-            
-            [subscriber sendNext:@(self.authorizationStatus == BBAssetsPickerViewModelAuthorizationStatusAuthorized)];
+            [subscriber sendNext:@([BBMediaPickerViewController authorizationStatus] == BBMediaPickerViewControllerAuthorizationStatusAuthorized)];
             [subscriber sendCompleted];
         }];
         return nil;
@@ -108,20 +127,18 @@
         }];
     }];
 }
-#pragma mark Properties
-- (NSArray *)assetGroupViewModels {
-    if (!_assetGroupViewModels) {
-        [self _reloadAssetGroupViewModels];
-    }
-    return _assetGroupViewModels;
-}
 #pragma mark *** Private Methods ***
 - (void)_reloadAssetGroupViewModels; {
     NSMutableArray *assetsGroupViewModels = [[NSMutableArray alloc] init];
-    PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+    NSArray *subtypes = self.assetCollectionSubtypes;
     
-    for (PHAssetCollection *collection in result) {
-        [assetsGroupViewModels addObject:[[BBMediaPickerCollectionViewModel alloc] initWithAssetsGroup:collection viewModel:self]];
+    for (NSNumber *subtype in subtypes) {
+        PHAssetCollectionType type = subtype.integerValue >= PHAssetCollectionSubtypeSmartAlbumGeneric ? PHAssetCollectionTypeSmartAlbum : PHAssetCollectionTypeAlbum;
+        PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:type subtype:subtype.integerValue options:nil];
+        
+        for (PHAssetCollection *collection in result) {
+            [assetsGroupViewModels addObject:[[BBMediaPickerCollectionViewModel alloc] initWithAssetsGroup:collection viewModel:self]];
+        }
     }
     
     [self setAssetGroupViewModels:assetsGroupViewModels];

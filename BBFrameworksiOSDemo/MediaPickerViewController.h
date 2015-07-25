@@ -16,6 +16,6 @@
 #import <UIKit/UIKit.h>
 #import "TableViewControllerRowClass.h"
 
-@interface AssetsPickerViewController : UIViewController <TableViewControllerRowClass>
+@interface MediaPickerViewController : UIViewController <TableViewControllerRowClass>
 
 @end

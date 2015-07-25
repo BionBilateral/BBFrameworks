@@ -14,7 +14,6 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerViewController+BBReactiveKitExtensionsPrivate.h"
-#import "BBMediaPickerBackgroundView.h"
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPickerCollectionTableViewController.h"
@@ -25,7 +24,6 @@
 @interface BBMediaPickerViewController ()
 @property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 
-@property (strong,nonatomic) BBMediaPickerBackgroundView *backgroundView;
 @property (strong,nonatomic) BBMediaPickerCollectionTableViewController *tableViewController;
 
 @property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
@@ -53,10 +51,10 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self setBackgroundView:[[BBMediaPickerBackgroundView alloc] initWithFrame:CGRectZero]];
-    [self.view addSubview:self.backgroundView];
-    
-    RAC(self.backgroundView,authorizationStatus) = [RACObserve(self.viewModel, authorizationStatus) deliverOn:[RACScheduler mainThreadScheduler]];
+    [self setTableViewController:[[BBMediaPickerCollectionTableViewController alloc] initWithViewModel:self.viewModel]];
+    [self addChildViewController:self.tableViewController];
+    [self.view addSubview:self.tableViewController.view];
+    [self.tableViewController didMoveToParentViewController:self];
     
     if (self.presentingViewController) {
         [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
@@ -84,25 +82,7 @@
     [self.tableViewController.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0)];
 }
 - (void)viewDidLayoutSubviews {
-    [self.backgroundView setFrame:self.view.bounds];
     [self.tableViewController.view setFrame:self.view.bounds];
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (!self.hasRequestedAuthorization) {
-        [self setHasRequestedAuthorization:YES];
-        
-        @weakify(self);
-        [[[self.viewModel requestAssetsLibraryAuthorizationStatus]
-         deliverOn:[RACScheduler mainThreadScheduler]]
-        subscribeNext:^(NSNumber *value) {
-            @strongify(self);
-            if (value.boolValue) {
-                [self setTableViewController:[[BBMediaPickerCollectionTableViewController alloc] initWithViewModel:self.viewModel]];
-            }
-        }];
-    }
 }
 - (void)willMoveToParentViewController:(UIViewController *)parent {
     if (parent) {
@@ -113,14 +93,16 @@
     }
 }
 
-- (void)setTableViewController:(BBMediaPickerCollectionTableViewController *)tableViewController {
-    _tableViewController = tableViewController;
-    
-    if (_tableViewController) {
-        [self addChildViewController:_tableViewController];
-        [self.view addSubview:_tableViewController.view];
-        [_tableViewController didMoveToParentViewController:self];
-    }
++ (BBMediaPickerViewControllerAuthorizationStatus)authorizationStatus; {
+    return (BBMediaPickerViewControllerAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+}
+
+@dynamic assetCollectionSubtypes;
+- (NSArray *)assetCollectionSubtypes {
+    return self.viewModel.assetCollectionSubtypes;
+}
+- (void)setAssetCollectionSubtypes:(NSArray *)assetCollectionSubtypes {
+    [self.viewModel setAssetCollectionSubtypes:assetCollectionSubtypes];
 }
 
 @end

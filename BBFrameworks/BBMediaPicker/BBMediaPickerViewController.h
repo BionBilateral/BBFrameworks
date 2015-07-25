@@ -16,10 +16,23 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerViewControllerDelegate.h"
 
+#import <Photos/PHPhotoLibrary.h>
+
+typedef NS_ENUM(NSInteger, BBMediaPickerViewControllerAuthorizationStatus) {
+    BBMediaPickerViewControllerAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
+    BBMediaPickerViewControllerAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
+    BBMediaPickerViewControllerAuthorizationStatusDenied = PHAuthorizationStatusDenied,
+    BBMediaPickerViewControllerAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
+};
+
 @interface BBMediaPickerViewController : UIViewController
+
++ (BBMediaPickerViewControllerAuthorizationStatus)authorizationStatus;
 
 @property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
+
+@property (copy,nonatomic) NSArray *assetCollectionSubtypes;
 
 @end

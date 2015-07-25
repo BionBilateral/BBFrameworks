@@ -18,7 +18,7 @@
 #import "ThumbnailsRowViewController.h"
 #import "WebViewRowViewController.h"
 #import "TooltipsRowViewController.h"
-#import "AssetsPickerViewController.h"
+#import "MediaPickerViewController.h"
 #import "MediaPlayerViewController.h"
 #import "AddressBookViewController.h"
 #import "FormViewController.h"
@@ -44,7 +44,7 @@
                           [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class],
-                          [AssetsPickerViewController class],
+                          [MediaPickerViewController class],
                           [MediaPlayerViewController class],
                           [AddressBookViewController class]]];
     
