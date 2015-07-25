@@ -45,6 +45,9 @@ typedef NS_ENUM(NSInteger, BBAddressBookManagerAuthorizationStatus) {
  */
 extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 
+/**
+ BBAddressBookManager is a NSObject subclass that manages a ABAddressBookRef object and provides the groups and people objects it contains. People and groups are represented by BBAddressBookPerson and BBAddressBookGroup.
+ */
 @interface BBAddressBookManager : NSObject
 
 /**
