@@ -53,8 +53,6 @@
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
 		07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* FormViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
-		07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */; };
-		07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */; };
 		07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80441B5060DC00F5729E /* BBForm.h */; };
 		07CE80481B50654100F5729E /* BBPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80471B50654100F5729E /* BBPickerButton.m */; };
 		07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80461B50654100F5729E /* BBPickerButton.h */; };
@@ -131,6 +129,13 @@
 		79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */; };
 		79BE2B721B64960100ADE997 /* TransitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B711B64960100ADE997 /* TransitionChildViewController.m */; };
 		79BE2B751B65442700ADE997 /* FormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B741B65442700ADE997 /* FormTableViewCell.m */; };
+		79BE2B841B655F0C00ADE997 /* BBValidation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B831B655F0500ADE997 /* BBValidation.h */; };
+		79BE2B871B655FA300ADE997 /* UITextField+BBValidationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B861B655FA300ADE997 /* UITextField+BBValidationExtensions.m */; };
+		79BE2B8B1B65646000ADE997 /* BBValidationTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B8A1B65646000ADE997 /* BBValidationTextFieldView.m */; };
+		79BE2B8C1B6566D900ADE997 /* UITextField+BBValidationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B851B655FA300ADE997 /* UITextField+BBValidationExtensions.h */; };
+		79BE2B8F1B65671500ADE997 /* ValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B8E1B65671500ADE997 /* ValidationViewController.m */; };
+		79BE2B911B65679100ADE997 /* ValidationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2B901B65679100ADE997 /* ValidationViewController.xib */; };
+		79BE2B941B65686200ADE997 /* BBTextPhoneNumberValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B931B65686200ADE997 /* BBTextPhoneNumberValidator.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -447,6 +452,8 @@
 			dstSubfolderSpec = 16;
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
+				79BE2B841B655F0C00ADE997 /* BBValidation.h in CopyFiles */,
+				79BE2B8C1B6566D900ADE997 /* UITextField+BBValidationExtensions.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
 				79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */,
@@ -457,7 +464,6 @@
 				79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */,
 				077656691B6185A3000DD318 /* NSOrderedSet+BBBlocksExtensions.h in CopyFiles */,
 				077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */,
-				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				799C0C721B61B54300A3888A /* BBFrameworksMacros.h in CopyFiles */,
 				799C0C311B58A0A300A3888A /* BBFormField.h in CopyFiles */,
 				799C0C321B58A0A300A3888A /* BBFormTableViewControllerDataSource.h in CopyFiles */,
@@ -598,8 +604,6 @@
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
 		07CE802B1B4EE78800F5729E /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
 		07CE802C1B4EE78800F5729E /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
-		07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextFieldErrorView.h; sourceTree = "<group>"; };
-		07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextFieldErrorView.m; sourceTree = "<group>"; };
 		07CE80441B5060DC00F5729E /* BBForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBForm.h; sourceTree = "<group>"; };
 		07CE80461B50654100F5729E /* BBPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButton.h; path = iOS/BBPickerButton.h; sourceTree = "<group>"; };
 		07CE80471B50654100F5729E /* BBPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBPickerButton.m; path = iOS/BBPickerButton.m; sourceTree = "<group>"; };
@@ -829,6 +833,17 @@
 		79BE2B711B64960100ADE997 /* TransitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionChildViewController.m; sourceTree = "<group>"; };
 		79BE2B731B65442700ADE997 /* FormTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewCell.h; sourceTree = "<group>"; };
 		79BE2B741B65442700ADE997 /* FormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewCell.m; sourceTree = "<group>"; };
+		79BE2B831B655F0500ADE997 /* BBValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBValidation.h; sourceTree = "<group>"; };
+		79BE2B851B655FA300ADE997 /* UITextField+BBValidationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BBValidationExtensions.h"; sourceTree = "<group>"; };
+		79BE2B861B655FA300ADE997 /* UITextField+BBValidationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BBValidationExtensions.m"; sourceTree = "<group>"; };
+		79BE2B881B655FCB00ADE997 /* BBTextValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextValidator.h; sourceTree = "<group>"; };
+		79BE2B891B65646000ADE997 /* BBValidationTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBValidationTextFieldView.h; sourceTree = "<group>"; };
+		79BE2B8A1B65646000ADE997 /* BBValidationTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBValidationTextFieldView.m; sourceTree = "<group>"; };
+		79BE2B8D1B65671500ADE997 /* ValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationViewController.h; sourceTree = "<group>"; };
+		79BE2B8E1B65671500ADE997 /* ValidationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationViewController.m; sourceTree = "<group>"; };
+		79BE2B901B65679100ADE997 /* ValidationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationViewController.xib; sourceTree = "<group>"; };
+		79BE2B921B65686200ADE997 /* BBTextPhoneNumberValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextPhoneNumberValidator.h; sourceTree = "<group>"; };
+		79BE2B931B65686200ADE997 /* BBTextPhoneNumberValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextPhoneNumberValidator.m; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1016,8 +1031,6 @@
 			isa = PBXGroup;
 			children = (
 				07CE80441B5060DC00F5729E /* BBForm.h */,
-				07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */,
-				07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */,
 				799C0C281B587C0C00A3888A /* BBFormField.h */,
 				799C0C291B587C0C00A3888A /* BBFormField.m */,
 				799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */,
@@ -1093,6 +1106,7 @@
 				07B3D8EB1B60145900FA1853 /* BBBlocks */,
 				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
+				79BE2B821B655DD500ADE997 /* BBValidation */,
 				79BE2B641B648FCB00ADE997 /* BBTransitions */,
 				7927CF921B1AD2B90034288D /* BBReactiveKit */,
 				0728FFF31B4337D600D68D05 /* BBAddressBook */,
@@ -1348,6 +1362,21 @@
 			path = BBTransitions;
 			sourceTree = "<group>";
 		};
+		79BE2B821B655DD500ADE997 /* BBValidation */ = {
+			isa = PBXGroup;
+			children = (
+				79BE2B831B655F0500ADE997 /* BBValidation.h */,
+				79BE2B881B655FCB00ADE997 /* BBTextValidator.h */,
+				79BE2B851B655FA300ADE997 /* UITextField+BBValidationExtensions.h */,
+				79BE2B861B655FA300ADE997 /* UITextField+BBValidationExtensions.m */,
+				79BE2B921B65686200ADE997 /* BBTextPhoneNumberValidator.h */,
+				79BE2B931B65686200ADE997 /* BBTextPhoneNumberValidator.m */,
+				79BE2B891B65646000ADE997 /* BBValidationTextFieldView.h */,
+				79BE2B8A1B65646000ADE997 /* BBValidationTextFieldView.m */,
+			);
+			path = BBValidation;
+			sourceTree = "<group>";
+		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1388,6 +1417,9 @@
 				7915515D1B3335E7009FA353 /* TableViewController.m */,
 				79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */,
 				79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */,
+				79BE2B8D1B65671500ADE997 /* ValidationViewController.h */,
+				79BE2B8E1B65671500ADE997 /* ValidationViewController.m */,
+				79BE2B901B65679100ADE997 /* ValidationViewController.xib */,
 				07CE802B1B4EE78800F5729E /* FormViewController.h */,
 				07CE802C1B4EE78800F5729E /* FormViewController.m */,
 				799C0C5F1B5C6CB800A3888A /* FormTableViewHeaderView.h */,
@@ -2012,6 +2044,7 @@
 				79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */,
 				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
 				7989DD531B345A3E0001F7C3 /* MediaPickerViewController.xib in Resources */,
+				79BE2B911B65679100ADE997 /* ValidationViewController.xib in Resources */,
 				791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */,
 				799C0C441B5B6E1B00A3888A /* DetailViewController.xib in Resources */,
 				79C0011E1B1AD081004C9A6E /* Images.xcassets in Resources */,
@@ -2234,6 +2267,7 @@
 				79BE2B751B65442700ADE997 /* FormTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
 				799C0C611B5C6CB800A3888A /* FormTableViewHeaderView.m in Sources */,
+				79BE2B8F1B65671500ADE997 /* ValidationViewController.m in Sources */,
 				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,
 				799C0C421B5B6DDA00A3888A /* DetailViewController.m in Sources */,
 				79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */,
@@ -2262,6 +2296,7 @@
 				79EA80C91B3F0CCD00D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */,
 				79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
+				79BE2B871B655FA300ADE997 /* UITextField+BBValidationExtensions.m in Sources */,
 				79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
@@ -2272,6 +2307,7 @@
 				79EA80F51B3F0D4B00D50B6B /* BBMoviePlayerView.m in Sources */,
 				79EA80DE1B3F0D1B00D50B6B /* BBThumbnailImageOperation.m in Sources */,
 				79EA80D21B3F0CE400D50B6B /* BBGradientView.m in Sources */,
+				79BE2B8B1B65646000ADE997 /* BBValidationTextFieldView.m in Sources */,
 				79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */,
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
@@ -2279,7 +2315,6 @@
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				07B3D9061B60373B00FA1853 /* BBFormTableViewFooterView.m in Sources */,
-				07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
@@ -2305,6 +2340,7 @@
 				07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
 				79EA80E71B3F0D1B00D50B6B /* BBThumbnailDocumentOperation.m in Sources */,
+				79BE2B941B65686200ADE997 /* BBTextPhoneNumberValidator.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79EA80E31B3F0D1B00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
