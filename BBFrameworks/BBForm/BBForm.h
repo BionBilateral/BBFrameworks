@@ -16,13 +16,15 @@
 #ifndef __BB_FRAMEWORKS_FORM__
 #define __BB_FRAMEWORKS_FORM__
 
-#if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBTextFieldErrorView.h>
+#import <TargetConditionals.h>
 
-#import <BBFrameworks/BBFormField.h>
-#import <BBFrameworks/BBFormTableViewController.h>
-#import <BBFrameworks/BBFormTableViewCell.h>
-#import <BBFrameworks/BBFormTextTableViewCell.h>
+#if (TARGET_OS_IPHONE)
+#import "BBTextFieldErrorView.h"
+
+#import "BBFormField.h"
+#import "BBFormTableViewController.h"
+#import "BBFormTableViewCell.h"
+#import "BBFormTextTableViewCell.h"
 #endif
 
 #endif

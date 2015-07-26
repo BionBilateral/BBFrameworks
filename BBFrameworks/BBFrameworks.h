@@ -16,18 +16,19 @@
 #ifndef __BB_FRAMEWORKS__
 #define __BB_FRAMEWORKS__
 
-#import <BBFrameworks/BBFoundation.h>
-#import <BBFrameworks/BBBlocks.h>
-#import <BBFrameworks/BBCoreData.h>
-#import <BBFrameworks/BBKit.h>
-#import <BBFrameworks/BBReactiveKit.h>
-#import <BBFrameworks/BBThumbnail.h>
-#import <BBFrameworks/BBReactiveThumbnail.h>
-#import <BBFrameworks/BBAddressBook.h>
-#import <BBFrameworks/BBMediaPicker.h>
-#import <BBFrameworks/BBMediaPlayer.h>
-#import <BBFrameworks/BBWebKit.h>
-#import <BBFrameworks/BBTooltip.h>
-#import <BBFrameworks/BBToken.h>
+#import "BBFoundation.h"
+#import "BBBlocks.h"
+#import "BBCoreData.h"
+#import "BBKit.h"
+#import "BBForm.h"
+#import "BBReactiveKit.h"
+#import "BBThumbnail.h"
+#import "BBReactiveThumbnail.h"
+#import "BBAddressBook.h"
+#import "BBMediaPicker.h"
+#import "BBMediaPlayer.h"
+#import "BBWebKit.h"
+#import "BBTooltip.h"
+#import "BBToken.h"
 
 #endif

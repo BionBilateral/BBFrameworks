@@ -16,9 +16,11 @@
 #ifndef __BB_FRAMEWORKS_REACTIVE_KIT__
 #define __BB_FRAMEWORKS_REACTIVE_KIT__
 
+#import <TargetConditionals.h>
+
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBProgressNavigationBar.h>
-#import <BBFrameworks/BBTextView.h>
+#import "BBProgressNavigationBar.h"
+#import "BBTextView.h"
 #endif
 
 #endif

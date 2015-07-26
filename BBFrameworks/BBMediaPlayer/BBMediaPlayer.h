@@ -16,10 +16,12 @@
 #ifndef __BB_FRAMEWORKS_MEDIA_PLAYER__
 #define __BB_FRAMEWORKS_MEDIA_PLAYER__
 
-#if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBMoviePlayerController.h>
+#import <TargetConditionals.h>
 
-#import <BBFrameworks/BBMoviePlayerViewController.h>
+#if (TARGET_OS_IPHONE)
+#import "BBMoviePlayerController.h"
+
+#import "BBMoviePlayerViewController.h"
 #endif
 
 #endif

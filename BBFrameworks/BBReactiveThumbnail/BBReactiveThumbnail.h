@@ -16,6 +16,6 @@
 #ifndef __BB_FRAMEWORKS_REACTIVE_THUMBNAIL__
 #define __BB_FRAMEWORKS_REACTIVE_THUMBNAIL__
 
-#import <BBFrameworks/BBThumbnailGenerator+BBReactiveThumbnailExtensions.h>
+#import "BBThumbnailGenerator+BBReactiveThumbnailExtensions.h"
 
 #endif

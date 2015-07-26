@@ -19,9 +19,9 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBTooltipViewController.h>
-#import <BBFrameworks/BBTooltipView.h>
-#import <BBFrameworks/UIView+BBTooltipAttachmentViewExtensions.h>
+#import "BBTooltipViewController.h"
+#import "BBTooltipView.h"
+#import "UIView+BBTooltipAttachmentViewExtensions.h"
 #endif
 
 #endif

@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_TOKEN__
 #define __BB_FRAMEWORKS_TOKEN__
 
+#import <TargetConditionals.h>
+
 #if (TARGET_OS_IPHONE)
 #import "BBTokenCompletion.h"
 #import "BBTokenTextView.h"

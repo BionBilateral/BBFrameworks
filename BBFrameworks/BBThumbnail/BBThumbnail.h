@@ -16,6 +16,6 @@
 #ifndef __BB_FRAMEWORKS_THUMBNAIL__
 #define __BB_FRAMEWORKS_THUMBNAIL__
 
-#import <BBFrameworks/BBThumbnailGenerator.h>
+#import "BBThumbnailGenerator.h"
 
 #endif

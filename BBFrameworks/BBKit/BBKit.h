@@ -18,26 +18,26 @@
 
 #import <TargetConditionals.h>
 
-#import <BBFrameworks/BBKitColorMacros.h>
+#import "BBKitColorMacros.h"
 
-#import <BBFrameworks/NSURL+BBKitExtensions.h>
+#import "NSURL+BBKitExtensions.h"
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/UIImage+BBKitExtensions.h>
-#import <BBFrameworks/UIView+BBKitExtensions.h>
-#import <BBFrameworks/UIViewController+BBKitExtensions.h>
-#import <BBFrameworks/UIFont+BBKitExtensions.h>
-#import <BBFrameworks/UIBarButtonItem+BBKitExtensions.h>
-#import <BBFrameworks/UIAlertController+BBKitExtensions.h>
+#import "UIImage+BBKitExtensions.h"
+#import "UIView+BBKitExtensions.h"
+#import "UIViewController+BBKitExtensions.h"
+#import "UIFont+BBKitExtensions.h"
+#import "UIBarButtonItem+BBKitExtensions.h"
+#import "UIAlertController+BBKitExtensions.h"
 
-#import <BBFrameworks/BBTextField.h>
-#import <BBFrameworks/BBPickerButton.h>
-#import <BBFrameworks/BBDatePickerButton.h>
+#import "BBTextField.h"
+#import "BBPickerButton.h"
+#import "BBDatePickerButton.h"
 #else
-#import <BBFrameworks/NSImage+BBKitExtensions.h>
-#import <BBFrameworks/NSAlert+BBKitExtensions.h>
+#import "NSImage+BBKitExtensions.h"
+#import "NSAlert+BBKitExtensions.h"
 #endif
 
-#import <BBFrameworks/BBBadgeView.h>
-#import <BBFrameworks/BBGradientView.h>
-#import <BBFrameworks/BBView.h>
+#import "BBBadgeView.h"
+#import "BBGradientView.h"
+#import "BBView.h"
 #endif

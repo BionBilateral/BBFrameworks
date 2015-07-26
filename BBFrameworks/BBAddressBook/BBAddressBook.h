@@ -16,10 +16,12 @@
 #ifndef __BB_FRAMEWORKS_ADDRESS_BOOK__
 #define __BB_FRAMEWORKS_ADDRESS_BOOK__
 
+#import <TargetConditionals.h>
+
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBAddressBookManager.h>
-#import <BBFrameworks/BBAddressBookPerson.h>
-#import <BBFrameworks/BBAddressBookGroup.h>
+#import "BBAddressBookManager.h"
+#import "BBAddressBookPerson.h"
+#import "BBAddressBookGroup.h"
 #endif
 
 #endif

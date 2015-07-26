@@ -16,11 +16,11 @@
 #ifndef __BB_FRAMEWORKS_CORE_DATA__
 #define __BB_FRAMEWORKS_CORE_DATA__
 
-#import <BBFrameworks/NSManagedObjectContext+BBCoreDataExtensions.h>
+#import "NSManagedObjectContext+BBCoreDataExtensions.h"
 
-#import <BBFrameworks/BBManagedObjectEntityMapping.h>
-#import <BBFrameworks/BBManagedObjectEntityMapping.h>
+#import "BBManagedObjectEntityMapping.h"
+#import "BBManagedObjectEntityMapping.h"
 
-#import <BBFrameworks/NSManagedObjectContext+BBCoreDataImportExtensions.h>
+#import "NSManagedObjectContext+BBCoreDataImportExtensions.h"
 
 #endif

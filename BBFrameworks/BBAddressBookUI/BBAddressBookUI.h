@@ -16,8 +16,10 @@
 #ifndef __BB_FRAMEWORKS_ADDRESS_BOOK_UI__
 #define __BB_FRAMEWORKS_ADDRESS_BOOK_UI__
 
+#import <TargetConditionals.h>
+
 #if (TARGET_OS_IPHONE)
-#import <BBFrameworks/BBAddressBookTableViewController.h>
+#import "BBAddressBookTableViewController.h"
 #endif
 
 #endif

@@ -16,20 +16,20 @@
 #ifndef __BB_FRAMEWORKS_FOUNDATION__
 #define __BB_FRAMEWORKS_FOUNDATION__
 
-#import <BBFrameworks/BBFoundationDebugging.h>
-#import <BBFrameworks/BBFoundationMacros.h>
-#import <BBFrameworks/BBFoundationFunctions.h>
-#import <BBFrameworks/BBFoundationGeometryFunctions.h>
+#import "BBFoundationDebugging.h"
+#import "BBFoundationMacros.h"
+#import "BBFoundationFunctions.h"
+#import "BBFoundationGeometryFunctions.h"
 
-#import <BBFrameworks/NSFileManager+BBFoundationExtensions.h>
-#import <BBFrameworks/NSArray+BBFoundationExtensions.h>
-#import <BBFrameworks/NSMutableArray+BBFoundationExtensions.h>
-#import <BBFrameworks/NSData+BBFoundationExtensions.h>
-#import <BBFrameworks/NSString+BBFoundationExtensions.h>
-#import <BBFrameworks/NSBundle+BBFoundationExtensions.h>
-#import <BBFrameworks/NSURL+BBFoundationExtensions.h>
-#import <BBFrameworks/NSError+BBFoundationExtensions.h>
+#import "NSFileManager+BBFoundationExtensions.h"
+#import "NSArray+BBFoundationExtensions.h"
+#import "NSMutableArray+BBFoundationExtensions.h"
+#import "NSData+BBFoundationExtensions.h"
+#import "NSString+BBFoundationExtensions.h"
+#import "NSBundle+BBFoundationExtensions.h"
+#import "NSURL+BBFoundationExtensions.h"
+#import "NSError+BBFoundationExtensions.h"
 
-#import <BBFrameworks/BBSnakeCaseToLlamaCaseValueTransformer.h>
+#import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 
 #endif

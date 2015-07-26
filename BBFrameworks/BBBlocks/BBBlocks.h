@@ -16,8 +16,8 @@
 #ifndef __BB_FRAMEWORKS_BLOCKS__
 #define __BB_FRAMEWORKS_BLOCKS__
 
-#import <BBFrameworks/NSArray+BBBlocksExtensions.h>
-#import <BBFrameworks/NSSet+BBBlocksExtensions.h>
-#import <BBFrameworks/NSOrderedSet+BBBlocksExtensions.h>
+#import "NSArray+BBBlocksExtensions.h"
+#import "NSSet+BBBlocksExtensions.h"
+#import "NSOrderedSet+BBBlocksExtensions.h"
 
 #endif
