@@ -32,6 +32,7 @@
 #import "BBTextField.h"
 #import "BBPickerButton.h"
 #import "BBDatePickerButton.h"
+#import "BBNextPreviousInputAccessoryView.h"
 #else
 #import "NSImage+BBKitExtensions.h"
 #import "NSAlert+BBKitExtensions.h"

@@ -131,6 +131,14 @@
 		79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */; };
 		79BE2B721B64960100ADE997 /* TransitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B711B64960100ADE997 /* TransitionChildViewController.m */; };
 		79BE2B751B65442700ADE997 /* FormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B741B65442700ADE997 /* FormTableViewCell.m */; };
+		79BE2BAF1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2BAE1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m */; };
+		79BE2BB01B65809C00ADE997 /* BBNextPreviousInputAccessoryView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BAD1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.h */; };
+		79BE2BB71B65831A00ADE997 /* kit_next.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB11B65831A00ADE997 /* kit_next.png */; };
+		79BE2BB81B65831A00ADE997 /* kit_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB21B65831A00ADE997 /* kit_next@2x.png */; };
+		79BE2BB91B65831A00ADE997 /* kit_next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB31B65831A00ADE997 /* kit_next@3x.png */; };
+		79BE2BBA1B65831A00ADE997 /* kit_previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB41B65831A00ADE997 /* kit_previous.png */; };
+		79BE2BBB1B65831A00ADE997 /* kit_previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */; };
+		79BE2BBC1B65831A00ADE997 /* kit_previous@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -451,6 +459,7 @@
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
 				79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */,
 				799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */,
+				79BE2BB01B65809C00ADE997 /* BBNextPreviousInputAccessoryView.h in CopyFiles */,
 				799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */,
 				799C0C831B61B9B200A3888A /* BBAddressBookTableViewModel.h in CopyFiles */,
 				799C0C6E1B6082B400A3888A /* NSSet+BBBlocksExtensions.h in CopyFiles */,
@@ -829,6 +838,14 @@
 		79BE2B711B64960100ADE997 /* TransitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionChildViewController.m; sourceTree = "<group>"; };
 		79BE2B731B65442700ADE997 /* FormTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewCell.h; sourceTree = "<group>"; };
 		79BE2B741B65442700ADE997 /* FormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewCell.m; sourceTree = "<group>"; };
+		79BE2BAD1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBNextPreviousInputAccessoryView.h; path = iOS/BBNextPreviousInputAccessoryView.h; sourceTree = "<group>"; };
+		79BE2BAE1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBNextPreviousInputAccessoryView.m; path = iOS/BBNextPreviousInputAccessoryView.m; sourceTree = "<group>"; };
+		79BE2BB11B65831A00ADE997 /* kit_next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kit_next.png; sourceTree = "<group>"; };
+		79BE2BB21B65831A00ADE997 /* kit_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kit_next@2x.png"; sourceTree = "<group>"; };
+		79BE2BB31B65831A00ADE997 /* kit_next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kit_next@3x.png"; sourceTree = "<group>"; };
+		79BE2BB41B65831A00ADE997 /* kit_previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kit_previous.png; sourceTree = "<group>"; };
+		79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kit_previous@2x.png"; sourceTree = "<group>"; };
+		79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kit_previous@3x.png"; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1530,6 +1547,8 @@
 				07CE80471B50654100F5729E /* BBPickerButton.m */,
 				790DE0841B51B01B0029C004 /* BBDatePickerButton.h */,
 				790DE0851B51B01B0029C004 /* BBDatePickerButton.m */,
+				79BE2BAD1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.h */,
+				79BE2BAE1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1661,6 +1680,12 @@
 				79EA80BC1B3F0C5600D50B6B /* media_player_play.png */,
 				79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */,
 				79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */,
+				79BE2BB11B65831A00ADE997 /* kit_next.png */,
+				79BE2BB21B65831A00ADE997 /* kit_next@2x.png */,
+				79BE2BB31B65831A00ADE997 /* kit_next@3x.png */,
+				79BE2BB41B65831A00ADE997 /* kit_previous.png */,
+				79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */,
+				79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */,
 				79EA80781B3F06ED00D50B6B /* Supporting Files */,
 			);
 			path = BBFrameworksResources;
@@ -2033,14 +2058,20 @@
 				79F941651B436B3B00B385F0 /* AddressBook.strings in Resources */,
 				79EA80BF1B3F0C5600D50B6B /* media_player_pause.png in Resources */,
 				79EA80A91B3F096A00D50B6B /* BBMediaPickerAssetCollectionViewCell.xib in Resources */,
+				79BE2BBC1B65831A00ADE997 /* kit_previous@3x.png in Resources */,
+				79BE2BB91B65831A00ADE997 /* kit_next@3x.png in Resources */,
 				79EA80A81B3F095C00D50B6B /* BBMediaPickerCollectionTableViewCell.xib in Resources */,
+				79BE2BBA1B65831A00ADE997 /* kit_previous.png in Resources */,
 				799C0C7F1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib in Resources */,
 				07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */,
+				79BE2BBB1B65831A00ADE997 /* kit_previous@2x.png in Resources */,
 				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
 				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
 				79EA81441B3F212700D50B6B /* MediaPicker.strings in Resources */,
 				79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */,
+				79BE2BB81B65831A00ADE997 /* kit_next@2x.png in Resources */,
+				79BE2BB71B65831A00ADE997 /* kit_next.png in Resources */,
 				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
 				79EA80C41B3F0C5600D50B6B /* media_player_play@3x.png in Resources */,
 			);
@@ -2273,6 +2304,7 @@
 				79EA80DE1B3F0D1B00D50B6B /* BBThumbnailImageOperation.m in Sources */,
 				79EA80D21B3F0CE400D50B6B /* BBGradientView.m in Sources */,
 				79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */,
+				79BE2BAF1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m in Sources */,
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80EF1B3F0D3E00D50B6B /* BBMediaPickerAssetViewModel.m in Sources */,
 				07B3D9081B60373B00FA1853 /* BBFormTextTableViewCell.m in Sources */,

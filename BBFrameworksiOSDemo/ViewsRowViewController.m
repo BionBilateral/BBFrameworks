@@ -71,6 +71,7 @@
     [self.textView setTextColor:[UIColor whiteColor]];
     [self.textView setTintColor:[UIColor whiteColor]];
     [self.textView setPlaceholder:@"Type some text…"];
+    [self.textView setInputAccessoryView:[BBNextPreviousInputAccessoryView nextPreviousInputAccessoryViewWithResponder:self.textView]];
     [self.view addSubview:self.textView];
     
     [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
