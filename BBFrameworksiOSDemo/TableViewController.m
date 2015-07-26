@@ -23,6 +23,7 @@
 #import "AddressBookViewController.h"
 #import "FormViewController.h"
 #import "TokenViewController.h"
+#import "TransitionViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -41,6 +42,7 @@
     [self setRowClasses:@[[ViewsRowViewController class],
                           [FormViewController class],
                           [TokenViewController class],
+                          [TransitionViewController class],
                           [ThumbnailsRowViewController class],
                           [WebViewRowViewController class],
                           [TooltipsRowViewController class],

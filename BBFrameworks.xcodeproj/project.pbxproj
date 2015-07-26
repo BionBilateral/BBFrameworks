@@ -124,6 +124,12 @@
 		799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C741B61B95B00A3888A /* BBAddressBookPersonTableViewCell.h */; };
 		799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C761B61B95B00A3888A /* BBAddressBookTableViewController.h */; };
 		799C0C831B61B9B200A3888A /* BBAddressBookTableViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C781B61B95B00A3888A /* BBAddressBookTableViewModel.h */; };
+		79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */; };
+		79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */; };
+		79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B691B64944A00ADE997 /* BBTransitions.h */; };
+		79BE2B6E1B64957600ADE997 /* TransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B6C1B64957600ADE997 /* TransitionViewController.m */; };
+		79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */; };
+		79BE2B721B64960100ADE997 /* TransitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B711B64960100ADE997 /* TransitionChildViewController.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -442,10 +448,12 @@
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
+				79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */,
 				799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */,
 				799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */,
 				799C0C831B61B9B200A3888A /* BBAddressBookTableViewModel.h in CopyFiles */,
 				799C0C6E1B6082B400A3888A /* NSSet+BBBlocksExtensions.h in CopyFiles */,
+				79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */,
 				077656691B6185A3000DD318 /* NSOrderedSet+BBBlocksExtensions.h in CopyFiles */,
 				077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */,
 				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
@@ -810,6 +818,14 @@
 		79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayer.h; sourceTree = "<group>"; };
 		79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerController.h; sourceTree = "<group>"; };
 		79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerController.m; sourceTree = "<group>"; };
+		79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVisualEffectTransitionController.h; sourceTree = "<group>"; };
+		79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBVisualEffectTransitionController.m; sourceTree = "<group>"; };
+		79BE2B691B64944A00ADE997 /* BBTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTransitions.h; sourceTree = "<group>"; };
+		79BE2B6B1B64957600ADE997 /* TransitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionViewController.h; sourceTree = "<group>"; };
+		79BE2B6C1B64957600ADE997 /* TransitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController.m; sourceTree = "<group>"; };
+		79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionViewController.xib; sourceTree = "<group>"; };
+		79BE2B701B64960100ADE997 /* TransitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionChildViewController.h; sourceTree = "<group>"; };
+		79BE2B711B64960100ADE997 /* TransitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionChildViewController.m; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1074,6 +1090,7 @@
 				07B3D8EB1B60145900FA1853 /* BBBlocks */,
 				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
+				79BE2B641B648FCB00ADE997 /* BBTransitions */,
 				7927CF921B1AD2B90034288D /* BBReactiveKit */,
 				0728FFF31B4337D600D68D05 /* BBAddressBook */,
 				799C0C731B61B8B500A3888A /* BBAddressBookUI */,
@@ -1318,6 +1335,16 @@
 			path = BBMediaPlayer;
 			sourceTree = "<group>";
 		};
+		79BE2B641B648FCB00ADE997 /* BBTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				79BE2B691B64944A00ADE997 /* BBTransitions.h */,
+				79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */,
+				79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */,
+			);
+			path = BBTransitions;
+			sourceTree = "<group>";
+		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1391,6 +1418,11 @@
 				07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */,
 				07C23AA61B54320500D3C072 /* TokenTextAttachment.h */,
 				07C23AA71B54320500D3C072 /* TokenTextAttachment.m */,
+				79BE2B6B1B64957600ADE997 /* TransitionViewController.h */,
+				79BE2B6C1B64957600ADE997 /* TransitionViewController.m */,
+				79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */,
+				79BE2B701B64960100ADE997 /* TransitionChildViewController.h */,
+				79BE2B711B64960100ADE997 /* TransitionChildViewController.m */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworksiOSDemo;
@@ -1971,6 +2003,7 @@
 				79EA810D1B3F165500D50B6B /* BBFrameworksResources.bundle in Resources */,
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
 				7953FA2F1B31C4820005E3FD /* docs in Resources */,
+				79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */,
 				79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */,
 				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
 				7989DD531B345A3E0001F7C3 /* MediaPickerViewController.xib in Resources */,
@@ -2182,6 +2215,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */,
+				79BE2B6E1B64957600ADE997 /* TransitionViewController.m in Sources */,
+				79BE2B721B64960100ADE997 /* TransitionChildViewController.m in Sources */,
 				799C0C641B5C7E1400A3888A /* FormTableViewFooterView.m in Sources */,
 				79C001191B1AD081004C9A6E /* ThumbnailsRowViewController.m in Sources */,
 				790DE08B1B51F5B60029C004 /* TokenViewController.m in Sources */,
@@ -2283,6 +2318,7 @@
 				79EA80D31B3F0CF300D50B6B /* NSURL+BBKitExtensions.m in Sources */,
 				79EA80FC1B3F0D5B00D50B6B /* BBTooltipViewController.m in Sources */,
 				79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
+				79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */,
 				79EA80F11B3F0D3E00D50B6B /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				07B3D8F11B6014D900FA1853 /* NSArray+BBBlocksExtensions.m in Sources */,
 				79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */,
