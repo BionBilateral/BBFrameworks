@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBTextValidator.h"
 
+extern NSInteger const BBTextPhoneNumberValidatorErrorCodeInvalidPhoneNumber;
+
 @interface BBTextPhoneNumberValidator : NSObject <BBTextValidator>
 
 @end

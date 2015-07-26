@@ -143,6 +143,8 @@
 		79BE2B9D1B656F3F00ADE997 /* BBTextCustomValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B9C1B656F3F00ADE997 /* BBTextCustomValidator.m */; };
 		79BE2B9E1B6570EE00ADE997 /* BBTextCustomValidator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B9B1B656F3F00ADE997 /* BBTextCustomValidator.h */; };
 		79BE2BA01B65774400ADE997 /* BBValidationMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B9F1B65763C00ADE997 /* BBValidationMacros.h */; };
+		79BE2BA21B657A4600ADE997 /* BBValidationConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BA11B65794300ADE997 /* BBValidationConstants.h */; };
+		79BE2BA51B657AC400ADE997 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BA31B657AC400ADE997 /* Validation.strings */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -460,6 +462,7 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79BE2B841B655F0C00ADE997 /* BBValidation.h in CopyFiles */,
+				79BE2BA21B657A4600ADE997 /* BBValidationConstants.h in CopyFiles */,
 				79BE2B8C1B6566D900ADE997 /* UITextField+BBValidationExtensions.h in CopyFiles */,
 				79BE2B9A1B656E2000ADE997 /* BBTextPhoneNumberValidator.h in CopyFiles */,
 				79BE2B9E1B6570EE00ADE997 /* BBTextCustomValidator.h in CopyFiles */,
@@ -861,6 +864,8 @@
 		79BE2B9B1B656F3F00ADE997 /* BBTextCustomValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextCustomValidator.h; sourceTree = "<group>"; };
 		79BE2B9C1B656F3F00ADE997 /* BBTextCustomValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextCustomValidator.m; sourceTree = "<group>"; };
 		79BE2B9F1B65763C00ADE997 /* BBValidationMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBValidationMacros.h; sourceTree = "<group>"; };
+		79BE2BA11B65794300ADE997 /* BBValidationConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBValidationConstants.h; sourceTree = "<group>"; };
+		79BE2BA41B657AC400ADE997 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1383,6 +1388,7 @@
 			isa = PBXGroup;
 			children = (
 				79BE2B831B655F0500ADE997 /* BBValidation.h */,
+				79BE2BA11B65794300ADE997 /* BBValidationConstants.h */,
 				79BE2B9F1B65763C00ADE997 /* BBValidationMacros.h */,
 				79BE2B881B655FCB00ADE997 /* BBTextValidator.h */,
 				79BE2B851B655FA300ADE997 /* UITextField+BBValidationExtensions.h */,
@@ -1727,6 +1733,7 @@
 				79EA81421B3F212700D50B6B /* MediaPicker.strings */,
 				79F941631B436B3B00B385F0 /* AddressBook.strings */,
 				07C23A8C1B540DE500D3C072 /* WebKit.strings */,
+				79BE2BA31B657AC400ADE997 /* Validation.strings */,
 				79EA80791B3F06ED00D50B6B /* BBFrameworksResourcesiOS-Info.plist */,
 				79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */,
 			);
@@ -2094,6 +2101,7 @@
 				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
 				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
+				79BE2BA51B657AC400ADE997 /* Validation.strings in Resources */,
 				79EA81441B3F212700D50B6B /* MediaPicker.strings in Resources */,
 				79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */,
 				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
@@ -2130,7 +2138,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m BBFrameworks/BBAddressBook/*.m BBFrameworks/BBWebKit/*.m";
+			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m BBFrameworks/BBAddressBook/*.m BBFrameworks/BBWebKit/*.m BBFrameworks/BBValidation/*.h BBFrameworks/BBValidation/*.m";
 		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2544,6 +2552,14 @@
 				07C23A8D1B540DE500D3C072 /* en */,
 			);
 			name = WebKit.strings;
+			sourceTree = "<group>";
+		};
+		79BE2BA31B657AC400ADE997 /* Validation.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BE2BA41B657AC400ADE997 /* en */,
+			);
+			name = Validation.strings;
 			sourceTree = "<group>";
 		};
 		79EA81421B3F212700D50B6B /* MediaPicker.strings */ = {
