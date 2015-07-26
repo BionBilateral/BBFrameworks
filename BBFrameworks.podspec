@@ -81,7 +81,7 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBAddressBook"
     
     subspec.ios.source_files = "BBFrameworks/BBAddressBookUI"
-    subspec.osx.source_files = "BBFrameworks/BBAddressBook/BBAddressBookUI.h"
+    subspec.osx.source_files = "BBFrameworks/BBAddressBookUI/BBAddressBookUI.h"
   end
   
   spec.subspec "BBThumbnail" do |subspec|
