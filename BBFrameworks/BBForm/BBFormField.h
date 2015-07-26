@@ -126,6 +126,7 @@ extern NSString *const BBFormFieldKeyMaximumValueImage;
 extern NSString *const BBFormFieldKeySegmentedItems;
 extern NSString *const BBFormFieldKeyTableViewHeaderViewClass;
 extern NSString *const BBFormFieldKeyTableViewFooterViewClass;
+extern NSString *const BBFormFieldKeyTableViewCellClass;
 
 @interface BBFormField : NSObject
 
@@ -169,6 +170,7 @@ extern NSString *const BBFormFieldKeyTableViewFooterViewClass;
 @property (readonly,nonatomic) NSArray *segmentedItems;
 @property (readonly,nonatomic) Class tableViewHeaderViewClass;
 @property (readonly,nonatomic) Class tableViewFooterViewClass;
+@property (readonly,nonatomic) Class tableViewCellClass;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 

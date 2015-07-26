@@ -41,6 +41,7 @@ NSString *const BBFormFieldKeyMaximumValueImage = @"BBFormFieldKeyMaximumValueIm
 NSString *const BBFormFieldKeySegmentedItems = @"BBFormFieldKeySegmentedItems";
 NSString *const BBFormFieldKeyTableViewHeaderViewClass = @"BBFormFieldKeyTableViewHeaderViewClass";
 NSString *const BBFormFieldKeyTableViewFooterViewClass = @"BBFormFieldKeyTableViewFooterViewClass";
+NSString *const BBFormFieldKeyTableViewCellClass = @"BBFormFieldKeyTableViewCellClass";
 
 @interface BBFormField ()
 @property (copy,nonatomic) NSDictionary *dictionary;
@@ -151,6 +152,9 @@ NSString *const BBFormFieldKeyTableViewFooterViewClass = @"BBFormFieldKeyTableVi
 }
 - (Class)tableViewFooterViewClass {
     return self[BBFormFieldKeyTableViewFooterViewClass];
+}
+- (Class)tableViewCellClass {
+    return self[BBFormFieldKeyTableViewCellClass];
 }
 
 @dynamic value;

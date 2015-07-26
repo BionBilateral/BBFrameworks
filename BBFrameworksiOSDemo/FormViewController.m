@@ -19,6 +19,7 @@
 #import "FormTableViewHeaderView.h"
 #import "FormTableViewFooterView.h"
 #import "BBFrameworksMacros.h"
+#import "FormTableViewCell.h"
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
@@ -113,7 +114,8 @@
                                        BBFormFieldKeyViewControllerClass: [DetailViewController class],
                                        BBFormFieldKeyTableViewHeaderViewClass: [FormTableViewHeaderView class],
                                        BBFormFieldKeyTableViewFooterViewClass: [FormTableViewFooterView class],
-                                       BBFormFieldKeyTitleHeader: @"Custom Header Title"},
+                                       BBFormFieldKeyTitleHeader: @"Custom Header Title",
+                                       BBFormFieldKeyTableViewCellClass: [FormTableViewCell class]},
                                      @{BBFormFieldKeyType: @(BBFormFieldTypeLabel),
                                        BBFormFieldKeyTitle: @"Did Select",
                                        BBFormFieldKeyDidSelectBlock: ^(BBFormField *formField, NSIndexPath *indexPath){

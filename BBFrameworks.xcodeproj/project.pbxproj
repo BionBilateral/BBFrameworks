@@ -130,6 +130,7 @@
 		79BE2B6E1B64957600ADE997 /* TransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B6C1B64957600ADE997 /* TransitionViewController.m */; };
 		79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */; };
 		79BE2B721B64960100ADE997 /* TransitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B711B64960100ADE997 /* TransitionChildViewController.m */; };
+		79BE2B751B65442700ADE997 /* FormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B741B65442700ADE997 /* FormTableViewCell.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -826,6 +827,8 @@
 		79BE2B6D1B64957600ADE997 /* TransitionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionViewController.xib; sourceTree = "<group>"; };
 		79BE2B701B64960100ADE997 /* TransitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionChildViewController.h; sourceTree = "<group>"; };
 		79BE2B711B64960100ADE997 /* TransitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionChildViewController.m; sourceTree = "<group>"; };
+		79BE2B731B65442700ADE997 /* FormTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewCell.h; sourceTree = "<group>"; };
+		79BE2B741B65442700ADE997 /* FormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewCell.m; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1391,6 +1394,8 @@
 				799C0C601B5C6CB800A3888A /* FormTableViewHeaderView.m */,
 				799C0C621B5C7E1400A3888A /* FormTableViewFooterView.h */,
 				799C0C631B5C7E1400A3888A /* FormTableViewFooterView.m */,
+				79BE2B731B65442700ADE997 /* FormTableViewCell.h */,
+				79BE2B741B65442700ADE997 /* FormTableViewCell.m */,
 				799C0C401B5B6DDA00A3888A /* DetailViewController.h */,
 				799C0C411B5B6DDA00A3888A /* DetailViewController.m */,
 				799C0C431B5B6E1B00A3888A /* DetailViewController.xib */,
@@ -2226,6 +2231,7 @@
 				07C23AA81B54320500D3C072 /* TokenTextAttachment.m in Sources */,
 				79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */,
 				07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */,
+				79BE2B751B65442700ADE997 /* FormTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
 				799C0C611B5C6CB800A3888A /* FormTableViewHeaderView.m in Sources */,
 				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,

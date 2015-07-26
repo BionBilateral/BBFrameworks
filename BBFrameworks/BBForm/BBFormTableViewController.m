@@ -129,26 +129,31 @@ static void *kObservingContext = &kObservingContext;
     return Nil;
 }
 - (Class)tableViewCellClassForFormField:(BBFormField *)formField; {
-    switch (formField.type) {
-        case BBFormFieldTypeText:
-        case BBFormFieldTypeLabel:
-            return [BBFormTextTableViewCell class];
-        case BBFormFieldTypeBooleanSwitch:
-            return [BBFormBooleanSwitchTableViewCell class];
-        case BBFormFieldTypeBooleanCheckmark:
-            return [BBFormBooleanCheckmarkTableViewCell class];
-        case BBFormFieldTypePicker:
-            return [BBFormPickerTableViewCell class];
-        case BBFormFieldTypeDatePicker:
-            return [BBFormDatePickerTableViewCell class];
-        case BBFormFieldTypeStepper:
-            return [BBFormStepperTableViewCell class];
-        case BBFormFieldTypeSlider:
-            return [BBFormSliderTableViewCell class];
-        case BBFormFieldTypeSegmented:
-            return [BBFormSegmentedTableViewCell class];
-        default:
-            return Nil;
+    if (formField.tableViewCellClass) {
+        return formField.tableViewCellClass;
+    }
+    else {
+        switch (formField.type) {
+            case BBFormFieldTypeText:
+            case BBFormFieldTypeLabel:
+                return [BBFormTextTableViewCell class];
+            case BBFormFieldTypeBooleanSwitch:
+                return [BBFormBooleanSwitchTableViewCell class];
+            case BBFormFieldTypeBooleanCheckmark:
+                return [BBFormBooleanCheckmarkTableViewCell class];
+            case BBFormFieldTypePicker:
+                return [BBFormPickerTableViewCell class];
+            case BBFormFieldTypeDatePicker:
+                return [BBFormDatePickerTableViewCell class];
+            case BBFormFieldTypeStepper:
+                return [BBFormStepperTableViewCell class];
+            case BBFormFieldTypeSlider:
+                return [BBFormSliderTableViewCell class];
+            case BBFormFieldTypeSegmented:
+                return [BBFormSegmentedTableViewCell class];
+            default:
+                return Nil;
+        }
     }
 }
 
