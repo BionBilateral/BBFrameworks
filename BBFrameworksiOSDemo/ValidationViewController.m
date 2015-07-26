@@ -20,6 +20,7 @@
 
 @interface ValidationViewController ()
 @property (weak,nonatomic) IBOutlet BBTextField *phoneNumberTextField;
+@property (weak,nonatomic) IBOutlet BBTextField *customTextField;
 @end
 
 @implementation ValidationViewController
@@ -31,9 +32,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.phoneNumberTextField setTextEdgeInsets:UIEdgeInsetsMake(0, 8.0, 0, 8.0)];
-    [self.phoneNumberTextField setRightViewEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 8.0)];
+    UIEdgeInsets textEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 8.0);
+    UIEdgeInsets rightViewEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 8.0);
+    
+    [self.phoneNumberTextField setTextEdgeInsets:textEdgeInsets];
+    [self.phoneNumberTextField setRightViewEdgeInsets:rightViewEdgeInsets];
     [self.phoneNumberTextField BB_addTextValidator:[[BBTextPhoneNumberValidator alloc] init]];
+    
+    [self.customTextField setTextEdgeInsets:textEdgeInsets];
+    [self.customTextField setRightViewEdgeInsets:rightViewEdgeInsets];
+    [self.customTextField BB_addTextValidator:[[BBTextCustomValidator alloc] initWithValidatorBlock:^BOOL(BBTextCustomValidator *validator, NSString *text, NSError *__autoreleasing *error) {
+        if (text.length > 0) {
+            if (![text containsString:@"@"]) {
+                [validator setTextValidatorRightView:[[BBValidationTextFieldErrorView alloc] initWithError:[NSError errorWithDomain:@"" code:0 userInfo:@{BBErrorAlertMessageKey: @"Please enter a valid email address."}]]];
+                return NO;
+            }
+            else if (![text containsString:@"@gmail.com"]) {
+                [validator setTextValidatorRightView:[[BBValidationTextFieldWarningView alloc] initWithError:[NSError errorWithDomain:@"" code:0 userInfo:@{BBErrorAlertMessageKey: @"Please enter a valid Gmail email address."}]]];
+                return NO;
+            }
+        }
+        return YES;
+    }]];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

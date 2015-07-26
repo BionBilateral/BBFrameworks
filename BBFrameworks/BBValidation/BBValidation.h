@@ -19,9 +19,15 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
+#import "BBValidationMacros.h"
+
 #import "UITextField+BBValidationExtensions.h"
 
 #import "BBTextPhoneNumberValidator.h"
+#import "BBTextCustomValidator.h"
+
+#import "BBValidationTextFieldErrorView.h"
+#import "BBValidationTextFieldWarningView.h"
 #endif
 
 #endif

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ValidationViewController">
             <connections>
+                <outlet property="customTextField" destination="m3s-wA-mQf" id="KLL-k0-lPn"/>
                 <outlet property="phoneNumberTextField" destination="HnY-eN-MP0" id="WH9-1r-bd1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yic-G3-m2V"/>
             </connections>
@@ -20,12 +21,20 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                 </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a gmail email address…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m3s-wA-mQf" customClass="BBTextField">
+                    <rect key="frame" x="8" y="113" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="m3s-wA-mQf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="1wR-sy-Hp3"/>
                 <constraint firstAttribute="trailing" secondItem="HnY-eN-MP0" secondAttribute="trailing" constant="8" id="W3X-fw-Q3B"/>
                 <constraint firstItem="HnY-eN-MP0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="agJ-hP-bRu"/>
                 <constraint firstItem="HnY-eN-MP0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="dgZ-Yg-m2K"/>
+                <constraint firstItem="m3s-wA-mQf" firstAttribute="top" secondItem="HnY-eN-MP0" secondAttribute="bottom" constant="8" id="dny-Jk-eh5"/>
+                <constraint firstAttribute="trailing" secondItem="m3s-wA-mQf" secondAttribute="trailing" constant="8" id="tQ2-Ef-39V"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>

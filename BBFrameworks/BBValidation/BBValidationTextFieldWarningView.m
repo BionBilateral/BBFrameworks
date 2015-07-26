@@ -1,5 +1,5 @@
 //
-//  BBValidationTextFieldView.m
+//  BBValidationTextFieldWarningView.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -13,15 +13,17 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBValidationTextFieldView.h"
+#import "BBValidationTextFieldWarningView.h"
 #import "BBKit.h"
 #import "BBTooltip.h"
+#import "BBValidationMacros.h"
+#import "BBFoundation.h"
 
-@interface BBValidationTooltipViewController : BBTooltipViewController
+@interface _BBValidationWarningTooltipViewController : BBTooltipViewController
 
 @end
 
-@implementation BBValidationTooltipViewController
+@implementation _BBValidationWarningTooltipViewController
 
 - (instancetype)init {
     if (!(self = [super init]))
@@ -34,18 +36,21 @@
 
 @end
 
-@interface BBValidationTextFieldView ()
+#define kImageBackgroundColor() BBColorRGB(0.95, 0.95, 0)
+#define kTextColor() [UIColor darkGrayColor]
+
+@interface BBValidationTextFieldWarningView ()
 @property (strong,nonatomic) UIButton *button;
 
 @property (strong,nonatomic) NSError *error;
 @end
 
-@implementation BBValidationTextFieldView
+@implementation BBValidationTextFieldWarningView
 
 + (void)initialize {
-    if (self == [BBValidationTextFieldView class]) {
-        [[BBTooltipView appearanceWhenContainedIn:[BBValidationTooltipViewController class], nil] setTooltipTextColor:[UIColor whiteColor]];
-        [[BBTooltipView appearanceWhenContainedIn:[BBValidationTooltipViewController class], nil] setTooltipBackgroundColor:BBColorRGB(0.75, 0, 0)];
+    if (self == [BBValidationTextFieldWarningView class]) {
+        [[BBTooltipView appearanceWhenContainedIn:[_BBValidationWarningTooltipViewController class], nil] setTooltipTextColor:kTextColor()];
+        [[BBTooltipView appearanceWhenContainedIn:[_BBValidationWarningTooltipViewController class], nil] setTooltipBackgroundColor:kImageBackgroundColor()];
     }
 }
 
@@ -67,8 +72,16 @@
     [self.button setImage:({
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
         
-        [BBColorRGB(0.75, 0, 0) setFill];
+        [kImageBackgroundColor() setFill];
         [[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 22, 22)] fill];
+        
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        
+        [style setAlignment:NSTextAlignmentCenter];
+        
+        NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:14.0], NSForegroundColorAttributeName: kTextColor(), NSParagraphStyleAttributeName: style};
+        
+        [BBValidationLocalizedWarningString() drawInRect:BBCGRectCenterInRectVertically(CGRectMake(0, 0, 22, ceil([BBValidationLocalizedWarningString() sizeWithAttributes:attributes].height)), CGRectMake(0, 0, 22, 22)) withAttributes:attributes];
         
         UIImage *image = [UIGraphicsGetImageFromCurrentImageContext() imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
@@ -83,7 +96,7 @@
 }
 
 - (IBAction)_buttonAction:(id)sender {
-    [[UIViewController BB_viewControllerForPresenting] BB_presentTooltipViewControllerWithText:self.error.BB_alertMessage attachmentView:self tooltipViewControllerClass:[BBValidationTooltipViewController class]];
+    [[UIViewController BB_viewControllerForPresenting] BB_presentTooltipViewControllerWithText:self.error.BB_alertMessage attachmentView:self tooltipViewControllerClass:[_BBValidationWarningTooltipViewController class]];
 }
 
 @end

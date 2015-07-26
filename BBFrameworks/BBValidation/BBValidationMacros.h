@@ -1,5 +1,5 @@
 //
-//  BBTextPhoneNumberValidator.m
+//  BBValidationMacros.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -13,19 +13,12 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBTextPhoneNumberValidator.h"
-#import "NSError+BBFoundationExtensions.h"
+#ifndef __BB_FRAMEWORKS_VALIDATION_MACROS__
+#define __BB_FRAMEWORKS_VALIDATION_MACROS__
 
-@implementation BBTextPhoneNumberValidator
+#import "BBFrameworksFunctions.h"
 
-- (BOOL)validateText:(NSString *)text error:(NSError *__autoreleasing *)error {
-    BOOL retval = text.length == 0 || [[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:NULL] firstMatchInString:text options:0 range:NSMakeRange(0, text.length)] != nil;
-    
-    if (!retval) {
-        *error = [NSError errorWithDomain:@"" code:0 userInfo:@{BBErrorAlertMessageKey: @"Please enter a valid phone number."}];
-    }
-    
-    return retval;
-}
+#define BBValidationLocalizedErrorString() NSLocalizedStringWithDefaultValue(@"BB_VALIDATION_LOCALIZED_ERROR_STRING",@"Validation",BBFrameworksResourcesBundle(),@"!",@"Validation localized error string")
+#define BBValidationLocalizedWarningString() NSLocalizedStringWithDefaultValue(@"BB_VALIDATION_LOCALIZED_WARNING_STRING",@"Validation",BBFrameworksResourcesBundle(),@"!",@"Validation localized error string")
 
-@end
+#endif
