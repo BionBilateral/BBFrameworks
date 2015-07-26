@@ -1,5 +1,5 @@
 //
-//  BBTextPhoneNumberValidator.h
+//  BBTextLinkValidator.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -16,8 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBTextValidator.h"
 
-extern NSInteger const BBTextPhoneNumberValidatorErrorCode;
+extern NSInteger const BBTextLinkValidatorErrorCode;
 
-@interface BBTextPhoneNumberValidator : NSObject <BBTextValidator>
+@interface BBTextLinkValidator : NSObject <BBTextValidator>
 
 @end

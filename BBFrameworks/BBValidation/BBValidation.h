@@ -25,6 +25,7 @@
 #import "UITextField+BBValidationExtensions.h"
 
 #import "BBTextPhoneNumberValidator.h"
+#import "BBTextLinkValidator.h"
 #import "BBTextCustomValidator.h"
 
 #import "BBValidationTextFieldErrorView.h"

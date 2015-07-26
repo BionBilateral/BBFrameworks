@@ -18,7 +18,7 @@
 #import "BBFrameworksFunctions.h"
 #import "BBValidationConstants.h"
 
-NSInteger const BBTextPhoneNumberValidatorErrorCodeInvalidPhoneNumber = 1;
+NSInteger const BBTextPhoneNumberValidatorErrorCode = 1;
 
 @implementation BBTextPhoneNumberValidator
 
@@ -26,7 +26,7 @@ NSInteger const BBTextPhoneNumberValidatorErrorCodeInvalidPhoneNumber = 1;
     BOOL retval = text.length == 0 || [[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:NULL] firstMatchInString:text options:0 range:NSMakeRange(0, text.length)] != nil;
     
     if (!retval) {
-        *error = [NSError errorWithDomain:BBValidationErrorDomain code:BBTextPhoneNumberValidatorErrorCodeInvalidPhoneNumber userInfo:@{BBErrorAlertMessageKey: NSLocalizedStringWithDefaultValue(@"VALIDATION_TEXT_PHONE_NUMBER_ERROR_MESSAGE", @"Validation", BBFrameworksResourcesBundle(), @"Please enter a valid phone number.", @"Validation text phone number error message")}];
+        *error = [NSError errorWithDomain:BBValidationErrorDomain code:BBTextPhoneNumberValidatorErrorCode userInfo:@{BBErrorAlertMessageKey: NSLocalizedStringWithDefaultValue(@"VALIDATION_TEXT_PHONE_NUMBER_ERROR_MESSAGE", @"Validation", BBFrameworksResourcesBundle(), @"Please enter a valid phone number.", @"Validation text phone number error message")}];
     }
     
     return retval;
