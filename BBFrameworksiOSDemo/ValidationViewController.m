@@ -16,11 +16,13 @@
 #import "ValidationViewController.h"
 
 #import <BBFrameworks/BBKit.h>
+#import <BBFrameworks/BBReactiveKit.h>
 #import <BBFrameworks/BBValidation.h>
 
 @interface ValidationViewController ()
 @property (weak,nonatomic) IBOutlet BBTextField *phoneNumberTextField;
 @property (weak,nonatomic) IBOutlet BBTextField *customTextField;
+@property (weak,nonatomic) IBOutlet BBTextView *textView;
 @end
 
 @implementation ValidationViewController
@@ -54,6 +56,13 @@
         }
         return YES;
     }]];
+    
+    [self.textView.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.textView.layer setBorderWidth:1.0];
+    [self.textView setTextContainerInset:UIEdgeInsetsMake(8.0, 8.0, 0, 8.0)];
+    [self.textView setFont:[UIFont systemFontOfSize:17.0]];
+    [self.textView setPlaceholder:@"Type a link…"];
+    [self.textView BB_addTextValidator:[[BBTextLinkValidator alloc] init]];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

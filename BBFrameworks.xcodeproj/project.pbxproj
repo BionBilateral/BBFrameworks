@@ -147,6 +147,8 @@
 		79BE2BA51B657AC400ADE997 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BA31B657AC400ADE997 /* Validation.strings */; };
 		79BE2BA81B657C1E00ADE997 /* BBTextLinkValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2BA71B657C1E00ADE997 /* BBTextLinkValidator.m */; };
 		79BE2BA91B657D3700ADE997 /* BBTextLinkValidator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BA61B657C1E00ADE997 /* BBTextLinkValidator.h */; };
+		79BE2BBF1B658C6A00ADE997 /* UITextView+BBValidationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2BBE1B658C6A00ADE997 /* UITextView+BBValidationExtensions.m */; };
+		79BE2BC01B658E3600ADE997 /* UITextView+BBValidationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BBD1B658C6A00ADE997 /* UITextView+BBValidationExtensions.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -466,6 +468,7 @@
 				79BE2B841B655F0C00ADE997 /* BBValidation.h in CopyFiles */,
 				79BE2BA21B657A4600ADE997 /* BBValidationConstants.h in CopyFiles */,
 				79BE2BA91B657D3700ADE997 /* BBTextLinkValidator.h in CopyFiles */,
+				79BE2BC01B658E3600ADE997 /* UITextView+BBValidationExtensions.h in CopyFiles */,
 				79BE2B8C1B6566D900ADE997 /* UITextField+BBValidationExtensions.h in CopyFiles */,
 				79BE2B9A1B656E2000ADE997 /* BBTextPhoneNumberValidator.h in CopyFiles */,
 				79BE2B9E1B6570EE00ADE997 /* BBTextCustomValidator.h in CopyFiles */,
@@ -871,6 +874,8 @@
 		79BE2BA41B657AC400ADE997 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79BE2BA61B657C1E00ADE997 /* BBTextLinkValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextLinkValidator.h; sourceTree = "<group>"; };
 		79BE2BA71B657C1E00ADE997 /* BBTextLinkValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextLinkValidator.m; sourceTree = "<group>"; };
+		79BE2BBD1B658C6A00ADE997 /* UITextView+BBValidationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+BBValidationExtensions.h"; sourceTree = "<group>"; };
+		79BE2BBE1B658C6A00ADE997 /* UITextView+BBValidationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+BBValidationExtensions.m"; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1398,6 +1403,8 @@
 				79BE2B881B655FCB00ADE997 /* BBTextValidator.h */,
 				79BE2B851B655FA300ADE997 /* UITextField+BBValidationExtensions.h */,
 				79BE2B861B655FA300ADE997 /* UITextField+BBValidationExtensions.m */,
+				79BE2BBD1B658C6A00ADE997 /* UITextView+BBValidationExtensions.h */,
+				79BE2BBE1B658C6A00ADE997 /* UITextView+BBValidationExtensions.m */,
 				79BE2B921B65686200ADE997 /* BBTextPhoneNumberValidator.h */,
 				79BE2B931B65686200ADE997 /* BBTextPhoneNumberValidator.m */,
 				79BE2BA61B657C1E00ADE997 /* BBTextLinkValidator.h */,
@@ -2364,6 +2371,7 @@
 				79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */,
 				79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */,
 				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
+				79BE2BBF1B658C6A00ADE997 /* UITextView+BBValidationExtensions.m in Sources */,
 				79EA80DA1B3F0D0000D50B6B /* BBProgressNavigationBar.m in Sources */,
 				077656671B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m in Sources */,
 				07B3D90A1B60373B00FA1853 /* BBFormBooleanCheckmarkTableViewCell.m in Sources */,

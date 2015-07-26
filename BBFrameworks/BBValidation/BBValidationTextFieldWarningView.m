@@ -62,6 +62,10 @@
     return [self.button sizeThatFits:size];
 }
 
+- (CGSize)intrinsicContentSize {
+    return [self sizeThatFits:CGSizeZero];
+}
+
 - (instancetype)initWithError:(NSError *)error; {
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;

@@ -17,6 +17,8 @@
 #import "BBTextValidator.h"
 
 @interface UITextField (BBValidationExtensions)
+
 - (void)BB_addTextValidator:(id<BBTextValidator>)textValidator;
 - (void)BB_removeTextValidator;
+
 @end

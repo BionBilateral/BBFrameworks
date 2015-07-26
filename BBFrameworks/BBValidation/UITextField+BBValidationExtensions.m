@@ -18,14 +18,14 @@
 
 #import <objc/runtime.h>
 
-@interface _BBTextValidatorWrapper : NSObject
+@interface _BBTextValidatorTextFieldWrapper : NSObject
 @property (strong,nonatomic) id<BBTextValidator> textValidator;
 @property (weak,nonatomic) UITextField *textField;
 
 - (instancetype)initWithTextValidator:(id<BBTextValidator>)textValidator textField:(UITextField *)textField;
 @end
 
-@implementation _BBTextValidatorWrapper
+@implementation _BBTextValidatorTextFieldWrapper
 
 - (instancetype)initWithTextValidator:(id<BBTextValidator>)textValidator textField:(UITextField *)textField {
     if (!(self = [super init]))
@@ -68,13 +68,13 @@
 @end
 
 @interface UITextField (BBValidationExtensionsPrivate)
-@property (strong,nonatomic) _BBTextValidatorWrapper *BB_textValidatorWrapper;
+@property (strong,nonatomic) _BBTextValidatorTextFieldWrapper *BB_textValidatorWrapper;
 @end
 
 @implementation UITextField (BBValidationExtensions)
 
 - (void)BB_addTextValidator:(id<BBTextValidator>)textValidator; {
-    [self setBB_textValidatorWrapper:[[_BBTextValidatorWrapper alloc] initWithTextValidator:textValidator textField:self]];
+    [self setBB_textValidatorWrapper:[[_BBTextValidatorTextFieldWrapper alloc] initWithTextValidator:textValidator textField:self]];
 }
 - (void)BB_removeTextValidator; {
     [self setBB_textValidatorWrapper:nil];
@@ -87,10 +87,10 @@
 static void *kBB_textValidatorWrapperKey = &kBB_textValidatorWrapperKey;
 
 @dynamic BB_textValidatorWrapper;
-- (_BBTextValidatorWrapper *)BB_textValidatorWrapper {
+- (_BBTextValidatorTextFieldWrapper *)BB_textValidatorWrapper {
     return objc_getAssociatedObject(self, kBB_textValidatorWrapperKey);
 }
-- (void)setBB_textValidatorWrapper:(_BBTextValidatorWrapper *)BB_textValidator {
+- (void)setBB_textValidatorWrapper:(_BBTextValidatorTextFieldWrapper *)BB_textValidator {
     objc_setAssociatedObject(self, kBB_textValidatorWrapperKey, BB_textValidator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

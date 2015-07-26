@@ -1,5 +1,5 @@
 //
-//  BBValidation.h
+//  UITextView+BBValidationExtensions.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -13,24 +13,12 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __BB_FRAMEWORKS_VALIDATION__
-#define __BB_FRAMEWORKS_VALIDATION__
+#import <UIKit/UIKit.h>
+#import "BBTextValidator.h"
 
-#import <TargetConditionals.h>
+@interface UITextView (BBValidationExtensions)
 
-#if (TARGET_OS_IPHONE)
-#import "BBValidationConstants.h"
-#import "BBValidationMacros.h"
+- (void)BB_addTextValidator:(id<BBTextValidator>)textValidator;
+- (void)BB_removeTextValidator;
 
-#import "UITextField+BBValidationExtensions.h"
-#import "UITextView+BBValidationExtensions.h"
-
-#import "BBTextPhoneNumberValidator.h"
-#import "BBTextLinkValidator.h"
-#import "BBTextCustomValidator.h"
-
-#import "BBValidationTextFieldErrorView.h"
-#import "BBValidationTextFieldWarningView.h"
-#endif
-
-#endif
+@end
