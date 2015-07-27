@@ -20,6 +20,7 @@
 #import "FormTableViewFooterView.h"
 #import "BBFrameworksMacros.h"
 #import "FormTableViewCell.h"
+#import "FormTextTableViewCell.h"
 
 #import <BBFrameworks/BBKit.h>
 #import <BBFrameworks/BBForm.h>
@@ -41,12 +42,6 @@
 @end
 
 @implementation FormViewController
-
-+ (void)initialize {
-    if (self == [FormViewController class]) {
-        
-    }
-}
 
 - (NSString *)title {
     return [self.class rowClassTitle];
@@ -180,6 +175,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self setTableViewController:[[BBFormTableViewController alloc] init]];
+    [self.tableViewController registerCellClass:[FormTextTableViewCell class] forFormFieldType:BBFormFieldTypeLabel];
     [self addChildViewController:self.tableViewController];
     [self.view addSubview:self.tableViewController.view];
     [self.tableViewController didMoveToParentViewController:self];

@@ -140,6 +140,7 @@
 		79BE2BC21B65CF4700ADE997 /* BBFormFieldTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */; };
 		79BE2BC51B65D2D200ADE997 /* BBFormFieldTableViewHeaderView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */; };
 		79BE2BC61B65D2D600ADE997 /* BBFormFieldTableViewFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */; };
+		79BE2BD61B65D67900ADE997 /* FormTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2BD51B65D67900ADE997 /* FormTextTableViewCell.m */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -850,6 +851,8 @@
 		79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormFieldTableViewCell.h; sourceTree = "<group>"; };
 		79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormFieldTableViewHeaderView.h; sourceTree = "<group>"; };
 		79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormFieldTableViewFooterView.h; sourceTree = "<group>"; };
+		79BE2BD41B65D67900ADE997 /* FormTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextTableViewCell.h; sourceTree = "<group>"; };
+		79BE2BD51B65D67900ADE997 /* FormTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTextTableViewCell.m; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1522,6 +1525,8 @@
 				799C0C631B5C7E1400A3888A /* FormTableViewFooterView.m */,
 				79BE2B731B65442700ADE997 /* FormTableViewCell.h */,
 				79BE2B741B65442700ADE997 /* FormTableViewCell.m */,
+				79BE2BD41B65D67900ADE997 /* FormTextTableViewCell.h */,
+				79BE2BD51B65D67900ADE997 /* FormTextTableViewCell.m */,
 				799C0C401B5B6DDA00A3888A /* DetailViewController.h */,
 				799C0C411B5B6DDA00A3888A /* DetailViewController.m */,
 				799C0C431B5B6E1B00A3888A /* DetailViewController.xib */,
@@ -2381,6 +2386,7 @@
 				79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */,
 				79C001101B1AD081004C9A6E /* main.m in Sources */,
 				79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */,
+				79BE2BD61B65D67900ADE997 /* FormTextTableViewCell.m in Sources */,
 				7915515E1B3335E7009FA353 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
