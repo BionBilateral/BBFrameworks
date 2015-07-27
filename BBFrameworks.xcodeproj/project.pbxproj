@@ -53,8 +53,6 @@
 		07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80291B4EDBC100F5729E /* BBTextField.m */; };
 		07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE802C1B4EE78800F5729E /* FormViewController.m */; };
 		07CE802E1B4EE86100F5729E /* BBTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80281B4EDBC100F5729E /* BBTextField.h */; };
-		07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */; };
-		07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */; };
 		07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80441B5060DC00F5729E /* BBForm.h */; };
 		07CE80481B50654100F5729E /* BBPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80471B50654100F5729E /* BBPickerButton.m */; };
 		07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80461B50654100F5729E /* BBPickerButton.h */; };
@@ -472,7 +470,6 @@
 				79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */,
 				077656691B6185A3000DD318 /* NSOrderedSet+BBBlocksExtensions.h in CopyFiles */,
 				077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */,
-				07CE80431B5060D100F5729E /* BBTextFieldErrorView.h in CopyFiles */,
 				799C0C721B61B54300A3888A /* BBFrameworksMacros.h in CopyFiles */,
 				799C0C311B58A0A300A3888A /* BBFormField.h in CopyFiles */,
 				799C0C321B58A0A300A3888A /* BBFormTableViewControllerDataSource.h in CopyFiles */,
@@ -613,8 +610,6 @@
 		07CE80291B4EDBC100F5729E /* BBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextField.m; path = iOS/BBTextField.m; sourceTree = "<group>"; };
 		07CE802B1B4EE78800F5729E /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
 		07CE802C1B4EE78800F5729E /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
-		07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextFieldErrorView.h; sourceTree = "<group>"; };
-		07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextFieldErrorView.m; sourceTree = "<group>"; };
 		07CE80441B5060DC00F5729E /* BBForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBForm.h; sourceTree = "<group>"; };
 		07CE80461B50654100F5729E /* BBPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButton.h; path = iOS/BBPickerButton.h; sourceTree = "<group>"; };
 		07CE80471B50654100F5729E /* BBPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBPickerButton.m; path = iOS/BBPickerButton.m; sourceTree = "<group>"; };
@@ -1042,38 +1037,11 @@
 			isa = PBXGroup;
 			children = (
 				07CE80441B5060DC00F5729E /* BBForm.h */,
-				07CE80401B5060C600F5729E /* BBTextFieldErrorView.h */,
-				07CE80411B5060C600F5729E /* BBTextFieldErrorView.m */,
-				799C0C281B587C0C00A3888A /* BBFormField.h */,
-				799C0C291B587C0C00A3888A /* BBFormField.m */,
-				799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */,
-				799C0C241B5876E300A3888A /* BBFormTableViewController.h */,
-				799C0C251B5876E300A3888A /* BBFormTableViewController.m */,
-				79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */,
-				799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */,
-				799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */,
-				79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */,
-				799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */,
-				799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */,
-				79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */,
-				799C0C2B1B58888800A3888A /* BBFormTableViewCell.h */,
-				799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */,
-				799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */,
-				799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */,
-				799C0C361B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.h */,
-				799C0C371B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m */,
-				799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */,
-				799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */,
-				799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */,
-				799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */,
-				799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */,
-				799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */,
-				799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */,
-				799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */,
-				799C0C571B5C48ED00A3888A /* BBFormSliderTableViewCell.h */,
-				799C0C581B5C48ED00A3888A /* BBFormSliderTableViewCell.m */,
-				799C0C5B1B5C562F00A3888A /* BBFormSegmentedTableViewCell.h */,
-				799C0C5C1B5C562F00A3888A /* BBFormSegmentedTableViewCell.m */,
+				79BE2BC81B65D53800ADE997 /* Model */,
+				79BE2BC71B65D52D00ADE997 /* Table View Controller */,
+				79BE2BC91B65D53F00ADE997 /* Header View */,
+				79BE2BCA1B65D54A00ADE997 /* Footer View */,
+				79BE2BCB1B65D55700ADE997 /* Table View Cells */,
 			);
 			path = BBForm;
 			sourceTree = "<group>";
@@ -1375,6 +1343,135 @@
 				79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */,
 			);
 			path = BBTransitions;
+			sourceTree = "<group>";
+		};
+		79BE2BC71B65D52D00ADE997 /* Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */,
+				799C0C241B5876E300A3888A /* BBFormTableViewController.h */,
+				799C0C251B5876E300A3888A /* BBFormTableViewController.m */,
+			);
+			name = "Table View Controller";
+			sourceTree = "<group>";
+		};
+		79BE2BC81B65D53800ADE997 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C281B587C0C00A3888A /* BBFormField.h */,
+				799C0C291B587C0C00A3888A /* BBFormField.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		79BE2BC91B65D53F00ADE997 /* Header View */ = {
+			isa = PBXGroup;
+			children = (
+				79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */,
+				799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */,
+				799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */,
+			);
+			name = "Header View";
+			sourceTree = "<group>";
+		};
+		79BE2BCA1B65D54A00ADE997 /* Footer View */ = {
+			isa = PBXGroup;
+			children = (
+				79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */,
+				799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */,
+				799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */,
+			);
+			name = "Footer View";
+			sourceTree = "<group>";
+		};
+		79BE2BCB1B65D55700ADE997 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */,
+				799C0C2B1B58888800A3888A /* BBFormTableViewCell.h */,
+				799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */,
+				79BE2BCC1B65D56800ADE997 /* Text */,
+				79BE2BCD1B65D57100ADE997 /* Boolean Switch */,
+				79BE2BCE1B65D57A00ADE997 /* Boolean Checkmark */,
+				79BE2BCF1B65D58400ADE997 /* Picker */,
+				79BE2BD01B65D58A00ADE997 /* Date Picker */,
+				79BE2BD11B65D59000ADE997 /* Stepper */,
+				79BE2BD21B65D59700ADE997 /* Slider */,
+				79BE2BD31B65D59E00ADE997 /* Segmented */,
+			);
+			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		79BE2BCC1B65D56800ADE997 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */,
+				799C0C2F1B58892900A3888A /* BBFormTextTableViewCell.m */,
+			);
+			name = Text;
+			sourceTree = "<group>";
+		};
+		79BE2BCD1B65D57100ADE997 /* Boolean Switch */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C361B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.h */,
+				799C0C371B5B3E8800A3888A /* BBFormBooleanSwitchTableViewCell.m */,
+			);
+			name = "Boolean Switch";
+			sourceTree = "<group>";
+		};
+		79BE2BCE1B65D57A00ADE997 /* Boolean Checkmark */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C4F1B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.h */,
+				799C0C501B5B99E900A3888A /* BBFormBooleanCheckmarkTableViewCell.m */,
+			);
+			name = "Boolean Checkmark";
+			sourceTree = "<group>";
+		};
+		79BE2BCF1B65D58400ADE997 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C3A1B5B478900A3888A /* BBFormPickerTableViewCell.h */,
+				799C0C3B1B5B478900A3888A /* BBFormPickerTableViewCell.m */,
+			);
+			name = Picker;
+			sourceTree = "<group>";
+		};
+		79BE2BD01B65D58A00ADE997 /* Date Picker */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C3D1B5B570600A3888A /* BBFormDatePickerTableViewCell.h */,
+				799C0C3E1B5B570600A3888A /* BBFormDatePickerTableViewCell.m */,
+			);
+			name = "Date Picker";
+			sourceTree = "<group>";
+		};
+		79BE2BD11B65D59000ADE997 /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C531B5C3A9E00A3888A /* BBFormStepperTableViewCell.h */,
+				799C0C541B5C3A9E00A3888A /* BBFormStepperTableViewCell.m */,
+			);
+			name = Stepper;
+			sourceTree = "<group>";
+		};
+		79BE2BD21B65D59700ADE997 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C571B5C48ED00A3888A /* BBFormSliderTableViewCell.h */,
+				799C0C581B5C48ED00A3888A /* BBFormSliderTableViewCell.m */,
+			);
+			name = Slider;
+			sourceTree = "<group>";
+		};
+		79BE2BD31B65D59E00ADE997 /* Segmented */ = {
+			isa = PBXGroup;
+			children = (
+				799C0C5B1B5C562F00A3888A /* BBFormSegmentedTableViewCell.h */,
+				799C0C5C1B5C562F00A3888A /* BBFormSegmentedTableViewCell.m */,
+			);
+			name = Segmented;
 			sourceTree = "<group>";
 		};
 		79C0009F1B1ACC7C004C9A6E /* Products */ = {
@@ -2323,7 +2420,6 @@
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				07B3D9061B60373B00FA1853 /* BBFormTableViewFooterView.m in Sources */,
-				07CE80421B5060C600F5729E /* BBTextFieldErrorView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,

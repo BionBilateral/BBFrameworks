@@ -19,12 +19,18 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
-#import "BBTextFieldErrorView.h"
-
 #import "BBFormField.h"
 #import "BBFormTableViewController.h"
-#import "BBFormTableViewCell.h"
+#import "BBFormTableViewHeaderView.h"
+#import "BBFormTableViewFooterView.h"
 #import "BBFormTextTableViewCell.h"
+#import "BBFormBooleanSwitchTableViewCell.h"
+#import "BBFormBooleanCheckmarkTableViewCell.h"
+#import "BBFormPickerTableViewCell.h"
+#import "BBFormDatePickerTableViewCell.h"
+#import "BBFormStepperTableViewCell.h"
+#import "BBFormSliderTableViewCell.h"
+#import "BBFormSegmentedTableViewCell.h"
 #endif
 
 #endif
