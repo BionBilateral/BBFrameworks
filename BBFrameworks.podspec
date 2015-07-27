@@ -164,4 +164,13 @@ Pod::Spec.new do |spec|
     
     subspec.ios.frameworks = "MobileCoreServices"
   end
+  
+  spec.subspec "BBForm" do |subspec|
+    subspec.ios.dependency "BBFrameworks/BBFoundation"
+    subspec.ios.dependency "BBFrameworks/BBKit"
+    subspec.ios.dependency "BBFrameworks/BBBlocks"
+    
+    subspec.ios.source_files = "BBFrameworks/BBForm"
+    subspec.osx.source_files = "BBFrameworks/BBForm/BBForm.h"
+  end
 end
