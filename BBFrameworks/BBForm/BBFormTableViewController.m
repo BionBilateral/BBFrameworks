@@ -32,8 +32,10 @@
 @interface BBFormTableViewController ()
 @property (copy,nonatomic) NSArray *formFields;
 
-- (UITableViewHeaderFooterView *)_tableViewHeaderViewForFormField:(BBFormField *)formField;
-- (UITableViewHeaderFooterView *)_tableViewFooterViewForFormField:(BBFormField *)formField;
+@property (strong,nonatomic) NSMutableDictionary *formFieldTypesToCellClasses;
+
+- (UITableViewHeaderFooterView<BBFormFieldTableViewHeaderView> *)_tableViewHeaderViewForFormField:(BBFormField *)formField;
+- (UITableViewHeaderFooterView<BBFormFieldTableViewFooterView> *)_tableViewFooterViewForFormField:(BBFormField *)formField;
 @end
 
 @implementation BBFormTableViewController
@@ -45,6 +47,8 @@
 - (instancetype)init {
     if (!(self = [super initWithStyle:UITableViewStyleGrouped]))
         return nil;
+    
+    _formFieldTypesToCellClasses = [[NSMutableDictionary alloc] init];
     
     return self;
 }
@@ -72,7 +76,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BBFormField *formField = self.formFields[indexPath.section][indexPath.row];
     Class cellClass = [self tableViewCellClassForFormField:formField];
-    BBFormTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];
+    UITableViewCell<BBFormFieldTableViewCell> *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];
     
     if (!cell) {
         cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(cellClass)];
@@ -117,8 +121,14 @@
     }
 }
 #pragma mark *** Public Methods ***
-- (Class)tableViewHeaderClassForFormField:(BBFormField *)formField; {
+- (void)registerCellClass:(Class<BBFormFieldTableViewCell>)cellClass forFormFieldType:(BBFormFieldType)formFieldType; {
+    [self.formFieldTypesToCellClasses setObject:cellClass forKey:@(formFieldType)];
+}
+
+- (Class<BBFormFieldTableViewHeaderView>)tableViewHeaderClassForFormField:(BBFormField *)formField; {
     if (formField.tableViewHeaderViewClass) {
+        NSParameterAssert([formField.tableViewHeaderViewClass conformsToProtocol:@protocol(BBFormFieldTableViewHeaderView)]);
+        
         return formField.tableViewHeaderViewClass;
     }
     else if (formField.titleHeader) {
@@ -128,6 +138,8 @@
 }
 - (Class)tableViewFooterClassForFormField:(BBFormField *)formField {
     if (formField.tableViewFooterViewClass) {
+        NSParameterAssert([formField.tableViewFooterViewClass conformsToProtocol:@protocol(BBFormFieldTableViewFooterView)]);
+        
         return formField.tableViewFooterViewClass;
     }
     else if (formField.titleFooter) {
@@ -135,9 +147,12 @@
     }
     return Nil;
 }
-- (Class)tableViewCellClassForFormField:(BBFormField *)formField; {
+- (Class<BBFormFieldTableViewCell>)tableViewCellClassForFormField:(BBFormField *)formField; {
     if (formField.tableViewCellClass) {
         return formField.tableViewCellClass;
+    }
+    else if (self.formFieldTypesToCellClasses[@(formField.type)]) {
+        return self.formFieldTypesToCellClasses[@(formField.type)];
     }
     else {
         switch (formField.type) {
@@ -231,37 +246,33 @@
     }
 }
 #pragma mark *** Private Methods ***
-- (UITableViewHeaderFooterView *)_tableViewHeaderViewForFormField:(BBFormField *)formField; {
+- (UITableViewHeaderFooterView<BBFormFieldTableViewHeaderView> *)_tableViewHeaderViewForFormField:(BBFormField *)formField; {
     Class viewClass = [self tableViewHeaderClassForFormField:formField];
     
     if (viewClass) {
-        UITableViewHeaderFooterView *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        UITableViewHeaderFooterView<BBFormFieldTableViewHeaderView> *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
         
         if (!view) {
             view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
         }
         
-        if ([view respondsToSelector:@selector(setFormField:)]) {
-            [(id)view setFormField:formField];
-        }
+        [view setFormField:formField];
         
         return view;
     }
     return nil;
 }
-- (UITableViewHeaderFooterView *)_tableViewFooterViewForFormField:(BBFormField *)formField; {
+- (UITableViewHeaderFooterView<BBFormFieldTableViewFooterView> *)_tableViewFooterViewForFormField:(BBFormField *)formField; {
     Class viewClass = [self tableViewFooterClassForFormField:formField];
     
     if (viewClass) {
-        UITableViewHeaderFooterView *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
+        UITableViewHeaderFooterView<BBFormFieldTableViewFooterView> *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(viewClass)];
         
         if (!view) {
             view = [[viewClass alloc] initWithReuseIdentifier:NSStringFromClass(viewClass)];
         }
         
-        if ([view respondsToSelector:@selector(setFormField:)]) {
-            [(id)view setFormField:formField];
-        }
+        [view setFormField:formField];
         
         return view;
     }

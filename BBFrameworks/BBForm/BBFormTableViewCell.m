@@ -118,6 +118,7 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     }
 }
 
+@synthesize formField=_formField;
 - (void)setFormField:(BBFormField *)formField {
     _formField = formField;
     

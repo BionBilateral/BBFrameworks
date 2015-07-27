@@ -139,6 +139,9 @@
 		79BE2BBA1B65831A00ADE997 /* kit_previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB41B65831A00ADE997 /* kit_previous.png */; };
 		79BE2BBB1B65831A00ADE997 /* kit_previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */; };
 		79BE2BBC1B65831A00ADE997 /* kit_previous@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */; };
+		79BE2BC21B65CF4700ADE997 /* BBFormFieldTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */; };
+		79BE2BC51B65D2D200ADE997 /* BBFormFieldTableViewHeaderView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */; };
+		79BE2BC61B65D2D600ADE997 /* BBFormFieldTableViewFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */; };
 		79C001101B1AD081004C9A6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0010F1B1AD081004C9A6E /* main.m */; };
 		79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001121B1AD081004C9A6E /* AppDelegate.m */; };
 		79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C001151B1AD081004C9A6E /* ViewsRowViewController.m */; };
@@ -459,8 +462,11 @@
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
 				79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */,
 				799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */,
+				79BE2BC61B65D2D600ADE997 /* BBFormFieldTableViewFooterView.h in CopyFiles */,
 				79BE2BB01B65809C00ADE997 /* BBNextPreviousInputAccessoryView.h in CopyFiles */,
 				799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */,
+				79BE2BC21B65CF4700ADE997 /* BBFormFieldTableViewCell.h in CopyFiles */,
+				79BE2BC51B65D2D200ADE997 /* BBFormFieldTableViewHeaderView.h in CopyFiles */,
 				799C0C831B61B9B200A3888A /* BBAddressBookTableViewModel.h in CopyFiles */,
 				799C0C6E1B6082B400A3888A /* NSSet+BBBlocksExtensions.h in CopyFiles */,
 				79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */,
@@ -846,6 +852,9 @@
 		79BE2BB41B65831A00ADE997 /* kit_previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kit_previous.png; sourceTree = "<group>"; };
 		79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kit_previous@2x.png"; sourceTree = "<group>"; };
 		79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kit_previous@3x.png"; sourceTree = "<group>"; };
+		79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormFieldTableViewCell.h; sourceTree = "<group>"; };
+		79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormFieldTableViewHeaderView.h; sourceTree = "<group>"; };
+		79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormFieldTableViewFooterView.h; sourceTree = "<group>"; };
 		79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFrameworks.h; sourceTree = "<group>"; };
 		79C0010B1B1AD080004C9A6E /* BBFrameworksiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C0010E1B1AD081004C9A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1040,10 +1049,13 @@
 				799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */,
 				799C0C241B5876E300A3888A /* BBFormTableViewController.h */,
 				799C0C251B5876E300A3888A /* BBFormTableViewController.m */,
+				79BE2BC31B65D07C00ADE997 /* BBFormFieldTableViewHeaderView.h */,
 				799C0C451B5B76A000A3888A /* BBFormTableViewHeaderView.h */,
 				799C0C461B5B76A000A3888A /* BBFormTableViewHeaderView.m */,
+				79BE2BC41B65D11200ADE997 /* BBFormFieldTableViewFooterView.h */,
 				799C0C481B5B82B400A3888A /* BBFormTableViewFooterView.h */,
 				799C0C491B5B82B400A3888A /* BBFormTableViewFooterView.m */,
+				79BE2BC11B65CEEA00ADE997 /* BBFormFieldTableViewCell.h */,
 				799C0C2B1B58888800A3888A /* BBFormTableViewCell.h */,
 				799C0C2C1B58888800A3888A /* BBFormTableViewCell.m */,
 				799C0C2E1B58892900A3888A /* BBFormTextTableViewCell.h */,

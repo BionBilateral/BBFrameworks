@@ -58,6 +58,8 @@
     return [self.textView sizeThatFits:size];
 }
 
+@synthesize formField=_formField;
+
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     [[UIViewController BB_viewControllerForPresenting] BB_presentWebKitViewControllerForURL:URL];
     return NO;

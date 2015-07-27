@@ -57,6 +57,7 @@
     return retval;
 }
 
+@synthesize formField=_formField;
 - (void)setFormField:(BBFormField *)formField {
     _formField = formField;
     
