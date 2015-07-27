@@ -17,8 +17,7 @@
 #import "BBMoviePlayerController.h"
 #import "BBMediaPlayerDefines.h"
 #import "BBFrameworksFunctions.h"
-
-#import <BBFrameworks/BBFoundation.h>
+#import "BBFoundation.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 

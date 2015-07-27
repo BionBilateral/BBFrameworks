@@ -16,8 +16,7 @@
 #import "BBMoviePlayerViewController.h"
 #import "BBMoviePlayerController.h"
 #import "BBMoviePlayerView.h"
-
-#import <BBFrameworks/BBFoundation.h>
+#import "BBFoundation.h"
 
 static NSTimeInterval const kTransitionDuration = 1.0;
 
