@@ -23,15 +23,22 @@
 
 @implementation BBFrameworksNSArrayFoundationExtensionsTestCase
 
+- (void)testReversedArray {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@3,@2,@1];
+    
+    XCTAssertEqualObjects([begin BB_reversedArray], end);
+}
+
 - (void)testSet {
-    NSArray *const array = @[@1,@2,@3];
-    NSSet *const set = [NSSet setWithArray:array];
+    NSArray *array = @[@1,@2,@3];
+    NSSet *set = [NSSet setWithArray:array];
     
     XCTAssertEqualObjects([array BB_set], set);
 }
 - (void)setMutableSet {
-    NSArray *const array = @[@1,@2,@3];
-    NSMutableSet *const set = [NSMutableSet setWithArray:array];
+    NSArray *array = @[@1,@2,@3];
+    NSMutableSet *set = [NSMutableSet setWithArray:array];
     
     XCTAssertEqualObjects([array BB_mutableSet], set);
 }
