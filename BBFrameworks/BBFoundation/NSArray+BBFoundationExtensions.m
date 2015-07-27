@@ -18,6 +18,10 @@
 
 @implementation NSArray (BBFoundationExtensions)
 
+- (NSArray *)BB_reversedArray; {
+    return [self reverseObjectEnumerator].allObjects;
+}
+
 - (NSSet *)BB_set; {
     return [NSSet setWithArray:self];
 }

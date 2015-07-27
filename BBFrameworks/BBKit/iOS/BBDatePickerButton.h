@@ -54,4 +54,9 @@
  */
 @property (strong,nonatomic) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
 
+/**
+ Redefine input accessory view as readwrite.
+ */
+@property (readwrite,retain) UIView *inputAccessoryView;
+
 @end

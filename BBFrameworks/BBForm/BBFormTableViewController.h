@@ -25,6 +25,10 @@
 - (Class)tableViewFooterClassForFormField:(BBFormField *)formField;
 - (Class)tableViewCellClassForFormField:(BBFormField *)formField;
 
+- (BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForFormField:(BBFormField *)formField;
+
 - (void)reloadData;
+- (void)reloadRowsForFormFields:(NSArray *)formFields;
 
 @end

@@ -134,6 +134,8 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 
 @property (readonly,nonatomic) BBFormFieldType type;
 
+@property (readonly,nonatomic,getter=isEditable) BOOL editable;
+
 @property (readonly,nonatomic) NSString *key;
 
 @property (strong,nonatomic) id value;

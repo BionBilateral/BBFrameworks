@@ -21,6 +21,13 @@
 @interface NSArray (BBFoundationExtensions)
 
 /**
+ Creates and returns an NSArray with the receiver's objects in reverse order.
+ 
+ @return The reversed array
+ */
+- (NSArray *)BB_reversedArray;
+
+/**
  Creates and returns an NSArray with the receiver's objects.
  
  @return The NSSet created from the receiver

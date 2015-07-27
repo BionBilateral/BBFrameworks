@@ -50,6 +50,10 @@ NSString *const BBFormFieldKeyTableViewCellClass = @"BBFormFieldKeyTableViewCell
 
 @implementation BBFormField
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p> key: %@ value: %@",NSStringFromClass(self.class),self,self.key,self.value];
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource {
     if (!(self = [super init]))
         return nil;
@@ -155,6 +159,17 @@ NSString *const BBFormFieldKeyTableViewCellClass = @"BBFormFieldKeyTableViewCell
 }
 - (Class)tableViewCellClass {
     return self[BBFormFieldKeyTableViewCellClass];
+}
+
+- (BOOL)isEditable {
+    switch (self.type) {
+        case BBFormFieldTypeDatePicker:
+        case BBFormFieldTypePicker:
+        case BBFormFieldTypeText:
+            return YES;
+        default:
+            return NO;
+    }
 }
 
 @dynamic value;

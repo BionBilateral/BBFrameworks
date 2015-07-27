@@ -15,6 +15,7 @@
 
 #import "BBFormTextTableViewCell.h"
 #import "BBFormField.h"
+#import "BBNextPreviousInputAccessoryView.h"
 
 @interface BBFormTextTableViewCell ()
 @property (strong,nonatomic) UITextField *textField;
@@ -39,10 +40,24 @@
     [self.textField setTintColor:_caretColor];
     [self.textField setTextColor:_enabledTextColor];
     [self.textField setTextAlignment:NSTextAlignmentRight];
+    [self.textField setInputAccessoryView:[BBNextPreviousInputAccessoryView nextPreviousInputAccessoryViewWithResponder:self.textField]];
     [self.textField addTarget:self action:@selector(_textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:self.textField];
     
     return self;
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return [self.textField canBecomeFirstResponder];
+}
+- (BOOL)becomeFirstResponder {
+    return [self.textField becomeFirstResponder];
+}
+- (BOOL)resignFirstResponder {
+    return [self.textField resignFirstResponder];
+}
+- (BOOL)isFirstResponder {
+    return [self.textField isFirstResponder];
 }
 
 - (void)layoutSubviews {

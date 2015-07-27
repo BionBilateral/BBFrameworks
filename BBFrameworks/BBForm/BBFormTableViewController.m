@@ -25,10 +25,9 @@
 #import "BBFormStepperTableViewCell.h"
 #import "BBFormSliderTableViewCell.h"
 #import "BBFormSegmentedTableViewCell.h"
-
-static NSString *const kFormFieldDictionariesKey = @"formFieldDictionaries";
-
-static void *kObservingContext = &kObservingContext;
+#import "BBNextPreviousInputAccessoryView.h"
+#import "BBBlocks.h"
+#import "NSArray+BBFoundationExtensions.h"
 
 @interface BBFormTableViewController ()
 @property (copy,nonatomic) NSArray *formFields;
@@ -39,6 +38,10 @@ static void *kObservingContext = &kObservingContext;
 
 @implementation BBFormTableViewController
 #pragma mark *** Subclass Overrides ***
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)init {
     if (!(self = [super initWithStyle:UITableViewStyleGrouped]))
         return nil;
@@ -49,7 +52,11 @@ static void *kObservingContext = &kObservingContext;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_nextPreviousInputAccessoryViewNotification:) name:BBNextPreviousInputAccessoryViewNotificationNext object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_nextPreviousInputAccessoryViewNotification:) name:BBNextPreviousInputAccessoryViewNotificationPrevious object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma mark UIScrollView
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -157,6 +164,28 @@ static void *kObservingContext = &kObservingContext;
     }
 }
 
+- (BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath; {
+    return self.formFields[indexPath.section][indexPath.row];
+}
+- (NSIndexPath *)indexPathForFormField:(BBFormField *)formField; {
+    __block NSIndexPath *retval = nil;
+    
+    [self.formFields enumerateObjectsUsingBlock:^(NSArray *rows, NSUInteger section, BOOL *stop) {
+        [rows enumerateObjectsUsingBlock:^(BBFormField *ff, NSUInteger row, BOOL *stop) {
+            if ([ff isEqual:formField]) {
+                retval = [NSIndexPath indexPathForRow:row inSection:section];
+                *stop = YES;
+            }
+        }];
+        
+        if (retval) {
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+}
+
 - (void)reloadData; {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     NSMutableArray *section = [[NSMutableArray alloc] init];
@@ -187,6 +216,11 @@ static void *kObservingContext = &kObservingContext;
     }
     
     [self setFormFields:temp];
+}
+- (void)reloadRowsForFormFields:(NSArray *)formFields; {
+    [self.tableView reloadRowsAtIndexPaths:[formFields BB_map:^id(id object, NSInteger index) {
+        return [self indexPathForFormField:object];
+    }] withRowAnimation:UITableViewRowAnimationNone];
 }
 #pragma mark Properties
 - (void)setDataSource:(id<BBFormTableViewControllerDataSource>)dataSource {
@@ -238,6 +272,102 @@ static void *kObservingContext = &kObservingContext;
     _formFields = formFields;
 
     [self.tableView reloadData];
+}
+#pragma mark Notifications
+- (void)_nextPreviousInputAccessoryViewNotification:(NSNotification *)note {
+    UITableViewCell *tableViewCell = nil;
+    
+    // loop through all visible cells and find the one that is currently first responder
+    for (UITableViewCell *tvc in self.tableView.visibleCells) {
+        if ([tvc isFirstResponder]) {
+            tableViewCell = tvc;
+            break;
+        }
+    }
+    
+    // if something in our table view is first responder, continue
+    if (tableViewCell) {
+        // flatten our array of form field arrays into a single array
+        NSArray *flattenedFormFields = [self.formFields BB_reduceWithStart:[[NSMutableArray alloc] init] block:^id(NSMutableArray *sum, id object, NSInteger index) {
+            [sum addObjectsFromArray:object];
+            return sum;
+        }];
+        // find the index of the form field represented by the table view cell
+        NSInteger index = [flattenedFormFields indexOfObject:[(BBFormTableViewCell *)tableViewCell formField]];
+        BBFormField *formField = nil;
+        
+        // if the next item was tapped, increment the index
+        if ([note.name isEqualToString:BBNextPreviousInputAccessoryViewNotificationNext]) {
+            if ((++index) == flattenedFormFields.count) {
+                index = 0;
+            }
+        }
+        // if the previous item was tapped, check to make sure we aren't at the beginning of the table view
+        else {
+            if ((index - 1) < 0) {
+                index = flattenedFormFields.count - 1;
+            }
+        }
+        
+        // if the next item was tapped, look at the subarray starting with index to the end of the array, otherwise look at the reverse of the beginning of the array to index
+        NSArray *subarray = [note.name isEqualToString:BBNextPreviousInputAccessoryViewNotificationNext] ? [flattenedFormFields subarrayWithRange:NSMakeRange(index, flattenedFormFields.count - index)] : [[flattenedFormFields subarrayWithRange:NSMakeRange(0, index)] BB_reversedArray];
+        for (BBFormField *ff in subarray) {
+            if (ff.isEditable) {
+                formField = ff;
+                break;
+            }
+        }
+        
+        // if the next item was tapped and we didn't find the next form field, start at the beginning of the array
+        if (!formField &&
+            [note.name isEqualToString:BBNextPreviousInputAccessoryViewNotificationNext]) {
+            
+            subarray = flattenedFormFields;
+            
+            for (BBFormField *ff in subarray) {
+                if (ff.isEditable) {
+                    formField = ff;
+                    break;
+                }
+            }
+        }
+        
+        // if we found the next form field, continue
+        if (formField) {
+            // get the index path for the next form field
+            NSIndexPath *indexPath = [self indexPathForFormField:formField];
+            
+            // scroll to the middle for the index path
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+            // tell the cell representing the next form field to become first responder
+            [[self.tableView cellForRowAtIndexPath:indexPath] becomeFirstResponder];
+        }
+    }
+}
+- (void)_keyboardNotification:(NSNotification *)note {
+    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    if ([note.name isEqualToString:UIKeyboardWillShowNotification]) {
+        CGRect keyboardFrame = [self.tableView convertRect:[self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil] fromView:nil];
+        
+        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [UIView setAnimationCurve:curve];
+            
+            [self.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, CGRectGetHeight(CGRectIntersection(self.tableView.bounds, keyboardFrame)), 0)];
+        } completion:^(BOOL finished) {
+            [self.tableView flashScrollIndicators];
+        }];
+    }
+    else {
+        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            [UIView setAnimationCurve:curve];
+            
+            [self.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0)];
+        } completion:^(BOOL finished) {
+            [self.tableView flashScrollIndicators];
+        }];
+    }
 }
 
 @end

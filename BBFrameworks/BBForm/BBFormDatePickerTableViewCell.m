@@ -16,6 +16,7 @@
 #import "BBFormDatePickerTableViewCell.h"
 #import "BBDatePickerButton.h"
 #import "BBFormField.h"
+#import "BBNextPreviousInputAccessoryView.h"
 
 @interface BBFormDatePickerTableViewCell ()
 @property (strong,nonatomic) BBDatePickerButton *datePickerButton;
@@ -34,10 +35,24 @@
     [self setDatePickerButton:[[BBDatePickerButton alloc] initWithFrame:CGRectZero]];
     [self.datePickerButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [self.datePickerButton setTitleColor:_datePickerTextColor forState:UIControlStateNormal];
+    [self.datePickerButton setInputAccessoryView:[BBNextPreviousInputAccessoryView nextPreviousInputAccessoryViewWithResponder:self.datePickerButton]];
     [self.datePickerButton addTarget:self action:@selector(_datePickerButtonAction:) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:self.datePickerButton];
     
     return self;
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return [self.datePickerButton canBecomeFirstResponder];
+}
+- (BOOL)becomeFirstResponder {
+    return [self.datePickerButton becomeFirstResponder];
+}
+- (BOOL)resignFirstResponder {
+    return [self.datePickerButton resignFirstResponder];
+}
+- (BOOL)isFirstResponder {
+    return [self.datePickerButton isFirstResponder];
 }
 
 - (void)layoutSubviews {

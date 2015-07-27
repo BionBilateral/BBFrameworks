@@ -16,6 +16,7 @@
 #import "BBFormPickerTableViewCell.h"
 #import "BBPickerButton.h"
 #import "BBFormField.h"
+#import "BBNextPreviousInputAccessoryView.h"
 
 @interface BBFormPickerTableViewCell () <BBPickerButtonDataSource,BBPickerButtonDelegate>
 @property (strong,nonatomic) BBPickerButton *pickerButton;
@@ -34,11 +35,25 @@
     [self setPickerButton:[[BBPickerButton alloc] initWithFrame:CGRectZero]];
     [self.pickerButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [self.pickerButton setTitleColor:_pickerTextColor forState:UIControlStateNormal];
+    [self.pickerButton setInputAccessoryView:[BBNextPreviousInputAccessoryView nextPreviousInputAccessoryViewWithResponder:self.pickerButton]];
     [self.pickerButton setDataSource:self];
     [self.pickerButton setDelegate:self];
     [self.contentView addSubview:self.pickerButton];
     
     return self;
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return [self.pickerButton canBecomeFirstResponder];
+}
+- (BOOL)becomeFirstResponder {
+    return [self.pickerButton becomeFirstResponder];
+}
+- (BOOL)resignFirstResponder {
+    return [self.pickerButton resignFirstResponder];
+}
+- (BOOL)isFirstResponder {
+    return [self.pickerButton isFirstResponder];
 }
 
 - (void)layoutSubviews {
