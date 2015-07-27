@@ -32,6 +32,8 @@
 @interface BBFormTableViewController ()
 @property (copy,nonatomic) NSArray *formFields;
 
+@property (strong,nonatomic) Class<BBFormFieldTableViewHeaderView> tableViewHeaderClass;
+@property (strong,nonatomic) Class<BBFormFieldTableViewFooterView> tableViewFooterClass;
 @property (strong,nonatomic) NSMutableDictionary *formFieldTypesToCellClasses;
 
 - (UITableViewHeaderFooterView<BBFormFieldTableViewHeaderView> *)_tableViewHeaderViewForFormField:(BBFormField *)formField;
@@ -121,6 +123,12 @@
     }
 }
 #pragma mark *** Public Methods ***
+- (void)registerTableViewHeaderClass:(Class<BBFormFieldTableViewHeaderView>)tableViewHeaderClass; {
+    [self setTableViewHeaderClass:tableViewHeaderClass];
+}
+- (void)registerTableViewFooterClass:(Class<BBFormFieldTableViewFooterView>)tableViewFooterClass; {
+    [self setTableViewFooterClass:tableViewFooterClass];
+}
 - (void)registerCellClass:(Class<BBFormFieldTableViewCell>)cellClass forFormFieldType:(BBFormFieldType)formFieldType; {
     [self.formFieldTypesToCellClasses setObject:cellClass forKey:@(formFieldType)];
 }
@@ -131,16 +139,22 @@
         
         return formField.tableViewHeaderViewClass;
     }
+    else if (self.tableViewHeaderClass) {
+        return self.tableViewHeaderClass;
+    }
     else if (formField.titleHeader) {
         return [BBFormTableViewHeaderView class];
     }
     return Nil;
 }
-- (Class)tableViewFooterClassForFormField:(BBFormField *)formField {
+- (Class<BBFormFieldTableViewFooterView>)tableViewFooterClassForFormField:(BBFormField *)formField {
     if (formField.tableViewFooterViewClass) {
         NSParameterAssert([formField.tableViewFooterViewClass conformsToProtocol:@protocol(BBFormFieldTableViewFooterView)]);
         
         return formField.tableViewFooterViewClass;
+    }
+    else if (self.tableViewFooterClass) {
+        return self.tableViewFooterClass;
     }
     else if (formField.titleFooter) {
         return [BBFormTableViewFooterView class];

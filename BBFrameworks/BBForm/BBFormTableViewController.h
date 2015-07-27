@@ -18,15 +18,18 @@
 #import "BBFormField.h"
 #import "BBFormFieldTableViewCell.h"
 #import "BBFormFieldTableViewHeaderView.h"
+#import "BBFormFieldTableViewFooterView.h"
 
 @interface BBFormTableViewController : UITableViewController
 
 @property (weak,nonatomic) id<BBFormTableViewControllerDataSource> dataSource;
 
+- (void)registerTableViewHeaderClass:(Class<BBFormFieldTableViewHeaderView>)tableViewHeaderClass;
+- (void)registerTableViewFooterClass:(Class<BBFormFieldTableViewFooterView>)tableViewFooterClass;
 - (void)registerCellClass:(Class<BBFormFieldTableViewCell>)cellClass forFormFieldType:(BBFormFieldType)formFieldType;
 
 - (Class<BBFormFieldTableViewHeaderView>)tableViewHeaderClassForFormField:(BBFormField *)formField;
-- (Class)tableViewFooterClassForFormField:(BBFormField *)formField;
+- (Class<BBFormFieldTableViewFooterView>)tableViewFooterClassForFormField:(BBFormField *)formField;
 - (Class<BBFormFieldTableViewCell>)tableViewCellClassForFormField:(BBFormField *)formField;
 
 - (BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath;
