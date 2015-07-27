@@ -15,7 +15,7 @@
 
 #import "BBAddressBookManager.h"
 #import "BBAddressBookPerson.h"
-#import "BBFoundation.h"
+#import "BBFoundationFunctions.h"
 #import "BBBlocks.h"
 #import "BBFrameworksMacros.h"
 #import "BBAddressBookGroup.h"
