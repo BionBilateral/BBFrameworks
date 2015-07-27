@@ -7,15 +7,6 @@
 
 Repository for common iOS/OSX categories, classes, and functions.
 
-###BBCoreData
-
-Classes, and categories extending the CoreData framework.
-
-- Categories
-    - NSManagedObjectContext+BBCoreDataExtensions, methods to save recursively and fetch
-- Import
-    - NSManagedObjectContext+BBCoreDataImportExtensions, methods to import into a context from json
-
 ###BBKit
 
 Classes, categories, and functions extending the UIKit and AppKit frameworks.
