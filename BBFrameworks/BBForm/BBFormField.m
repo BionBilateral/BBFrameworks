@@ -29,6 +29,7 @@ NSString *const BBFormFieldKeyDateFormatter = @"BBFormFieldKeyDateFormatter";
 NSString *const BBFormFieldKeyTableViewCellAccessoryType = @"BBFormFieldKeyTableViewCellAccessoryType";
 NSString *const BBFormFieldKeyViewControllerClass = @"BBFormFieldKeyViewControllerClass";
 NSString *const BBFormFieldKeyDidSelectBlock = @"BBFormFieldKeyDidSelectBlock";
+NSString *const BBFormFieldKeyWillUpdateBlock = @"BBFormFieldKeyWillUpdateBlock";
 NSString *const BBFormFieldKeyDidUpdateBlock = @"BBFormFieldKeyDidUpdateBlock";
 NSString *const BBFormFieldKeyTitleHeader = @"BBFormFieldKeyTitleHeader";
 NSString *const BBFormFieldKeyTitleFooter = @"BBFormFieldKeyTitleFooter";
@@ -106,6 +107,9 @@ NSString *const BBFormFieldKeyTableViewCellClass = @"BBFormFieldKeyTableViewCell
 - (BBFormFieldDidSelectBlock)didSelectBlock {
     return self[BBFormFieldKeyDidSelectBlock];
 }
+- (BBFormFieldWillUpdateBlock)willUpdateBlock {
+    return self[BBFormFieldKeyWillUpdateBlock];
+}
 - (BBFormFieldDidUpdateBlock)didUpdateBlock {
     return self[BBFormFieldKeyDidUpdateBlock];
 }
@@ -178,6 +182,10 @@ NSString *const BBFormFieldKeyTableViewCellClass = @"BBFormFieldKeyTableViewCell
 }
 - (void)setValue:(id)value {
     if (self.key) {
+        if (self.willUpdateBlock) {
+            self.willUpdateBlock(self);
+        }
+        
         [(id)self.dataSource setValue:value forKey:self.key];
         
         if (self.didUpdateBlock) {
