@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.6.4"
+  spec.version = "0.7.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -161,6 +161,8 @@ Pod::Spec.new do |spec|
   spec.subspec "BBToken" do |subspec|
     subspec.ios.source_files = "BBFrameworks/BBToken"
     subspec.osx.source_files = "BBFrameworks/BBToken/BBToken.h"
+    
+    subspec.ios.dependency "BBFrameworks/BBKit"
     
     subspec.ios.frameworks = "MobileCoreServices"
   end
