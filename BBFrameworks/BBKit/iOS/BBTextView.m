@@ -68,7 +68,7 @@ static void *kObservingContext = &kObservingContext;
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize retval = [super sizeThatFits:size];
     
-    retval.height = ceil(MIN(retval.height, [self.placeholderLabel sizeThatFits:CGSizeMake(size.width - self.contentInset.left - self.textContainerInset.left - self.textContainerInset.right - self.contentInset.right, CGFLOAT_MAX)].height));
+    retval.height = ceil(MAX(retval.height, [self.placeholderLabel sizeThatFits:CGSizeMake(size.width - self.contentInset.left - self.textContainerInset.left - self.textContainerInset.right - self.contentInset.right, CGFLOAT_MAX)].height));
     
     return retval;
 }
@@ -136,6 +136,7 @@ static void *kObservingContext = &kObservingContext;
     [self addObserver:self forKeyPath:kPlaceholderTextColorKey options:0 context:kObservingContext];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textStorageDidProcessEditingNotification:) name:NSTextStorageDidProcessEditingNotification object:self.textStorage];
 }
 
 + (UIFont *)_defaultPlaceholderFont {
@@ -147,6 +148,11 @@ static void *kObservingContext = &kObservingContext;
 #pragma mark Notifications
 - (void)_textDidChangeNotification:(NSNotification *)note {
     [self.placeholderLabel setHidden:self.text.length > 0];
+}
+- (void)_textStorageDidProcessEditingNotification:(NSNotification *)note {
+    if (self.textStorage.editedMask & NSTextStorageEditedCharacters) {
+        [self.placeholderLabel setHidden:self.textStorage.length > 0];
+    }
 }
 
 @end
