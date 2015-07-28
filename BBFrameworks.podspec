@@ -16,6 +16,8 @@ Pod::Spec.new do |spec|
     "BBFrameworksResources" => ["BBFrameworks/BBMediaPicker/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
   }
   
+  spec.default_subspecs = "BBCore", "BBFoundation", "BBBlocks", "BBKit"
+  
   spec.subspec "BBCore" do |subspec|
     subspec.source_files = "BBFrameworks"
     
