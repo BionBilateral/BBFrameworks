@@ -18,7 +18,10 @@
 @implementation UIViewController (BBKitExtensions)
 
 + (UIViewController *)BB_viewControllerForPresenting; {
-    UIViewController *retval = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [[UIApplication sharedApplication].keyWindow.rootViewController BB_viewControllerForPresenting];
+}
+- (UIViewController *)BB_viewControllerForPresenting {
+    UIViewController *retval = self;
     
     while (retval.presentedViewController) {
         retval = retval.presentedViewController;

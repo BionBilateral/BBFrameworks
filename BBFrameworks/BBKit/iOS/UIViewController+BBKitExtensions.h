@@ -21,10 +21,16 @@
 @interface UIViewController (BBKitExtensions)
 
 /**
- Returns the view controller that should be used for modal presentation.
+ Calls `[[UIApplication sharedApplication].keyWindow.rootViewController BB_viewControllerForPresenting]`.
  
  @return The view controller
  */
 + (UIViewController *)BB_viewControllerForPresenting;
+/**
+ Returns the view controller that should be used for modal presentation.
+ 
+ @return The view controller
+ */
+- (UIViewController *)BB_viewControllerForPresenting;
 
 @end
