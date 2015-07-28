@@ -20,6 +20,8 @@
 
 @interface BBMediaPickerCollectionTableViewCell ()
 @property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak,nonatomic) IBOutlet UIImageView *secondThumbnailImageView;
+@property (weak,nonatomic) IBOutlet UIImageView *thirdThumbnailImageView;
 @property (weak,nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak,nonatomic) IBOutlet UILabel *countLabel;
 
@@ -50,11 +52,13 @@
         @weakify(self);
         [self setRequestThumbnailDisposable:
          [[[_viewModel
-            requestThumbnailImageWithSize:CGSizeMake(75.0, 75.0)]
+            requestCollectionThumbnailImagesWithSize:CGSizeMake(75.0, 75.0)]
            deliverOn:[RACScheduler mainThreadScheduler]]
-          subscribeNext:^(UIImage *value) {
+          subscribeNext:^(RACTuple *value) {
               @strongify(self);
-              [self.thumbnailImageView setImage:value];
+              [self.thumbnailImageView setImage:value.first];
+              [self.secondThumbnailImageView setImage:value.second];
+              [self.thirdThumbnailImageView setImage:value.third];
           }]];
     }
     else {

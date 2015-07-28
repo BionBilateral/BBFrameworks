@@ -97,11 +97,11 @@
     [self setSelectedAssetViewModels:temp.array];
 }
 
-- (RACSignal *)requestThumbnailImageWithSize:(CGSize)size; {
+- (RACSignal *)requestCollectionThumbnailImagesWithSize:(CGSize)size; {
     @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
-        PHAsset *asset = nil;
+        NSArray *assets = nil;
         
         if ([self.assetsGroup isKindOfClass:[PHAssetCollection class]]) {
             PHFetchOptions *options = [[PHFetchOptions alloc] init];
@@ -110,11 +110,22 @@
             
             PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:(PHAssetCollection *)self.assetsGroup options:options];
             
-            asset = result.firstObject;
+            if (result.count >= 3) {
+                assets = [result objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)]];
+            }
+            else if (result.count >= 2) {
+                assets = [result objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]];
+            }
+            else if (result.count >= 1) {
+                assets = @[result.firstObject];
+            }
         }
         
-        if (asset) {
-            return [[self.viewModel requestThumbnailImageForAsset:asset size:size] subscribe:subscriber];
+        if (assets.count > 0) {
+            return [[RACSignal zip:[assets.rac_sequence map:^id(PHAsset *value) {
+                @strongify(self);
+                return [self.viewModel requestThumbnailImageForAsset:value size:size];
+            }]] subscribe:subscriber];
         }
         else {
             [subscriber sendNext:nil];

@@ -41,6 +41,6 @@
 - (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 
-- (RACSignal *)requestThumbnailImageWithSize:(CGSize)size;
+- (RACSignal *)requestCollectionThumbnailImagesWithSize:(CGSize)size;
 
 @end
