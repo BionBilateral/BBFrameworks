@@ -57,6 +57,12 @@ static void *kObservingContext = &kObservingContext;
     return self;
 }
 
+- (void)didAddSubview:(UIView *)subview {
+    [super didAddSubview:subview];
+    
+    [self sendSubviewToBack:self.placeholderLabel];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
