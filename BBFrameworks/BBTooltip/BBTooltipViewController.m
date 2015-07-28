@@ -180,7 +180,7 @@ static CGFloat const kSpringDamping = 0.5;
     return UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
 }
 + (UIColor *)_defaultTooltipOverlayBackgroundColor; {
-    return BBColorWA(0.0, 0.33);
+    return [UIColor clearColor];
 }
 #pragma mark Properties
 - (void)setTooltipIndex:(NSInteger)tooltipIndex {
