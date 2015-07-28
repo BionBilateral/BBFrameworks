@@ -17,7 +17,6 @@
 #import "TableViewController.h"
 
 #import <BBFrameworks/BBKit.h>
-#import <BBFrameworks/BBReactiveKit.h>
 
 @interface ViewsRowViewController ()
 @property (strong,nonatomic) UIImageView *blurImageView;

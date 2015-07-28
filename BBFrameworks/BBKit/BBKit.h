@@ -41,4 +41,5 @@
 #import "BBBadgeView.h"
 #import "BBGradientView.h"
 #import "BBView.h"
+#import "BBTextView.h"
 #endif

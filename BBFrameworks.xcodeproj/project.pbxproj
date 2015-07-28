@@ -11,6 +11,8 @@
 		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07605AB61B67D72B00333678 /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07605AB51B67D72B00333678 /* BBTextView.m */; };
+		07605AB71B67D7C800333678 /* BBTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605AB41B67D72B00333678 /* BBTextView.h */; };
 		0776565F1B617C24000DD318 /* BBFoundationGeometryFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */; };
 		077656621B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */; };
@@ -204,7 +206,6 @@
 		79EA809A1B3F08EB00D50B6B /* UIViewController+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79B4FFB41B364384007B8629 /* UIViewController+BBKitExtensions.h */; };
 		79EA809B1B3F08FD00D50B6B /* BBReactiveKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF931B1AD2B90034288D /* BBReactiveKit.h */; };
 		79EA809C1B3F08FF00D50B6B /* BBProgressNavigationBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */; };
-		79EA809D1B3F090100D50B6B /* BBTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74E230801B3B55C900DE56B3 /* BBTextView.h */; };
 		79EA809E1B3F090500D50B6B /* BBThumbnail.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF991B1AD2B90034288D /* BBThumbnail.h */; };
 		79EA809F1B3F090800D50B6B /* BBThumbnailDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF9A1B1AD2B90034288D /* BBThumbnailDefines.h */; };
 		79EA80A01B3F091300D50B6B /* BBThumbnailGenerator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */; };
@@ -259,7 +260,6 @@
 		79EA80D81B3F0CF300D50B6B /* UIView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB31B364384007B8629 /* UIView+BBKitExtensions.m */; };
 		79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFB51B364384007B8629 /* UIViewController+BBKitExtensions.m */; };
 		79EA80DA1B3F0D0000D50B6B /* BBProgressNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */; };
-		79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E230811B3B55C900DE56B3 /* BBTextView.m */; };
 		79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */; };
 		79EA80DD1B3F0D1B00D50B6B /* BBThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */; };
 		79EA80DE1B3F0D1B00D50B6B /* BBThumbnailImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */; };
@@ -463,6 +463,7 @@
 				799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */,
 				79BE2BC61B65D2D600ADE997 /* BBFormFieldTableViewFooterView.h in CopyFiles */,
 				79BE2BB01B65809C00ADE997 /* BBNextPreviousInputAccessoryView.h in CopyFiles */,
+				07605AB71B67D7C800333678 /* BBTextView.h in CopyFiles */,
 				799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */,
 				79BE2BC21B65CF4700ADE997 /* BBFormFieldTableViewCell.h in CopyFiles */,
 				79BE2BC51B65D2D200ADE997 /* BBFormFieldTableViewHeaderView.h in CopyFiles */,
@@ -536,7 +537,6 @@
 				79EA80A01B3F091300D50B6B /* BBThumbnailGenerator.h in CopyFiles */,
 				79EA809F1B3F090800D50B6B /* BBThumbnailDefines.h in CopyFiles */,
 				79EA809C1B3F08FF00D50B6B /* BBProgressNavigationBar.h in CopyFiles */,
-				79EA809D1B3F090100D50B6B /* BBTextView.h in CopyFiles */,
 				79EA808B1B3F08B900D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in CopyFiles */,
 				79EA80931B3F08D800D50B6B /* BBGradientView.h in CopyFiles */,
 				79EA80951B3F08E100D50B6B /* UIBarButtonItem+BBKitExtensions.h in CopyFiles */,
@@ -574,6 +574,8 @@
 		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
 		0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookManager.h; sourceTree = "<group>"; };
 		0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookManager.m; sourceTree = "<group>"; };
+		07605AB41B67D72B00333678 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
+		07605AB51B67D72B00333678 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationGeometryFunctions.h; sourceTree = "<group>"; };
 		077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationGeometryFunctions.m; sourceTree = "<group>"; };
 		077656641B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+BBBlocksExtensions.h"; sourceTree = "<group>"; };
@@ -623,8 +625,6 @@
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BBFoundationExtensions.m"; sourceTree = "<group>"; };
-		74E230801B3B55C900DE56B3 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
-		74E230811B3B55C900DE56B3 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
 		79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
@@ -1663,6 +1663,8 @@
 				790DE0851B51B01B0029C004 /* BBDatePickerButton.m */,
 				79BE2BAD1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.h */,
 				79BE2BAE1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m */,
+				07605AB41B67D72B00333678 /* BBTextView.h */,
+				07605AB51B67D72B00333678 /* BBTextView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1779,8 +1781,6 @@
 			children = (
 				79E0BC001B27B5C700892D81 /* BBProgressNavigationBar.h */,
 				79E0BC011B27B5C700892D81 /* BBProgressNavigationBar.m */,
-				74E230801B3B55C900DE56B3 /* BBTextView.h */,
-				74E230811B3B55C900DE56B3 /* BBTextView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2426,11 +2426,11 @@
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				07B3D9061B60373B00FA1853 /* BBFormTableViewFooterView.m in Sources */,
+				07605AB61B67D72B00333678 /* BBTextView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
 				79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,
-				79EA80DB1B3F0D0000D50B6B /* BBTextView.m in Sources */,
 				07B3D90E1B60373B00FA1853 /* BBFormSliderTableViewCell.m in Sources */,
 				79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */,
 				077656621B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */,

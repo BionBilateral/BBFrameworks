@@ -15,7 +15,10 @@
 
 #import "BBTextView.h"
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+static NSString *const kPlaceholderFontKey = @"placeholderFont";
+static NSString *const kPlaceholderTextColorKey = @"placeholderTextColor";
+
+static void *kObservingContext = &kObservingContext;
 
 @interface BBTextView ()
 
@@ -30,6 +33,13 @@
 
 @implementation BBTextView
 #pragma mark *** Subclass Overrides ***
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:kPlaceholderFontKey context:kObservingContext];
+    [self removeObserver:self forKeyPath:kPlaceholderTextColorKey context:kObservingContext];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -38,8 +48,6 @@
     
     return self;
 }
-
-#pragma mark NSCoding
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (!(self = [super initWithCoder:aDecoder]))
         return nil;
@@ -57,6 +65,34 @@
     [self.placeholderLabel setFrame:CGRectMake(self.contentInset.left + self.textContainerInset.left, self.contentInset.top + self.textContainerInset.top, maxWidth, ceil([self.placeholderLabel sizeThatFits:CGSizeMake(maxWidth, CGFLOAT_MAX)].height))];
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize retval = [super sizeThatFits:size];
+    
+    retval.height = ceil(MIN(retval.height, [self.placeholderLabel sizeThatFits:CGSizeMake(size.width - self.contentInset.left - self.textContainerInset.left - self.textContainerInset.right - self.contentInset.right, CGFLOAT_MAX)].height));
+    
+    return retval;
+}
+
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+    [super setAttributedText:attributedText];
+    
+    [self.placeholderLabel setHidden:attributedText.length > 0];
+}
+#pragma mark NSKeyValueObserving
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context == kObservingContext) {
+        if ([keyPath isEqualToString:kPlaceholderFontKey] ||
+            [keyPath isEqualToString:kPlaceholderTextColorKey]) {
+            
+            [self setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:self.placeholder ?: @"" attributes:@{NSFontAttributeName: self.placeholderFont, NSForegroundColorAttributeName: self.placeholderTextColor}]];
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 @dynamic placeholder;
 - (NSString *)placeholder {
     return self.attributedPlaceholder.string;
@@ -69,13 +105,11 @@
     return self.placeholderLabel.attributedText;
 }
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
-    [self willChangeValueForKey:@keypath(self,attributedPlaceholder)];
     [self.placeholderLabel setAttributedText:attributedPlaceholder];
-    [self didChangeValueForKey:@keypath(self,attributedPlaceholder)];
+    
+    [self setNeedsLayout];
 }
 
-#pragma mark *** Public Methods ***
-#pragma mark Properties
 - (void)setPlaceholderFont:(UIFont *)placeholderFont {
     _placeholderFont = placeholderFont ?: [self.class _defaultPlaceholderFont];
 }
@@ -98,35 +132,10 @@
     [self.placeholderLabel setLineBreakMode:NSLineBreakByWordWrapping];
     [self addSubview:self.placeholderLabel];
     
-    @weakify(self);
+    [self addObserver:self forKeyPath:kPlaceholderFontKey options:0 context:kObservingContext];
+    [self addObserver:self forKeyPath:kPlaceholderTextColorKey options:0 context:kObservingContext];
     
-    RAC(self.placeholderLabel,hidden) = [[[[[[NSNotificationCenter defaultCenter]
-                                             rac_addObserverForName:UITextViewTextDidChangeNotification object:self]
-                                            takeUntil:[self rac_willDeallocSignal]]
-                                           mapReplace:self]
-                                          map:^id(UITextView *value) {
-                                              return @(value.text.length > 0);
-                                          }]
-                                         deliverOn:[RACScheduler mainThreadScheduler]];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self, placeholderFont),
-                                RACObserve(self, placeholderTextColor)]]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(RACTuple *value) {
-         @strongify(self);
-         RACTupleUnpack(UIFont *font, UIColor *textColor) = value;
-         
-         if (self.placeholder.length > 0) {
-             [self setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}]];
-         }
-     }];
-    
-    [[RACObserve(self, attributedPlaceholder)
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         [self setNeedsLayout];
-     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self];
 }
 
 + (UIFont *)_defaultPlaceholderFont {
@@ -134,6 +143,10 @@
 }
 + (UIColor *)_defaultPlaceholderTextColor {
     return [UIColor darkGrayColor];
+}
+#pragma mark Notifications
+- (void)_textDidChangeNotification:(NSNotification *)note {
+    [self.placeholderLabel setHidden:self.text.length > 0];
 }
 
 @end

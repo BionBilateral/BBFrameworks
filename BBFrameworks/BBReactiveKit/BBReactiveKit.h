@@ -20,7 +20,6 @@
 
 #if (TARGET_OS_IPHONE)
 #import "BBProgressNavigationBar.h"
-#import "BBTextView.h"
 #endif
 
 #endif
