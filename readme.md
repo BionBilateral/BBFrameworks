@@ -11,28 +11,6 @@ Repository for common iOS/OSX categories, classes, and functions.
 
 A library that wraps the AddressBook framework. The principal classes are BBAddressBookManager, BBAddressBookPerson, and BBAddressBookGroup.
 
-###BBThumbnail
-
-A thumbnail generation library for local and remote URLs. The principal class is BBThumbnailGenerator. This library is available on iOS and OSX.
-
-Supported local UTIs and file extensions:
-
-- kUTTypeImage
-- kUTTypeMovie
-- kUTTypePDF
-- kUTTypeRTF
-- kUTTypeRTFD
-- kUTTypePlainText
-- kUTTypeCommaSeparatedText
-- kUTTypeHTML
-- doc, docx, xls, xlsx, ppt, pptx
-
-Supported remote URL schemes and domains:
-
-- http and https
-- youtube (requires API key)
-- vimeo
-
 ###BBReactiveThumbnail
 
 Categories that add signal generating methods to BBThumbnail.
