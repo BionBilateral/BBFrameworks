@@ -16,6 +16,7 @@
 #import "BBMediaPickerAssetsGroupTableViewController.h"
 #import "BBMediaPickerAssetsGroupTableViewCell.h"
 #import "BBMediaPickerViewModel.h"
+#import "BBMediaPickerAssetCollectionViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -28,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
     [self.tableView setRowHeight:[BBMediaPickerAssetsGroupTableViewCell rowHeight]];
     [self.tableView registerClass:[BBMediaPickerAssetsGroupTableViewCell class] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetsGroupTableViewCell class])];
     
@@ -52,7 +54,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self.navigationController pushViewController:[[BBMediaPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel.assetsGroupViewModels[indexPath.row]] animated:YES];
 }
 
 - (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel; {

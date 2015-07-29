@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetGroupViewModel.h
+//  BBMediaPickerAssetCollectionViewCell.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/29/15.
@@ -13,23 +13,37 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <ReactiveViewModel/RVMViewModel.h>
-#import <UIKit/UIImage.h>
-#import <AssetsLibrary/ALAssetsGroup.h>
+#import "BBMediaPickerAssetCollectionViewCell.h"
+#import "BBMediaPickerAssetViewModel.h"
 
-@class BBMediaPickerViewModel;
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
+@interface BBMediaPickerAssetCollectionViewCell ()
+@property (strong,nonatomic) UIImageView *thumbnailImageView;
+@end
 
-@property (readonly,nonatomic) UIImage *posterImage;
-@property (readonly,nonatomic) UIImage *secondPosterImage;
-@property (readonly,nonatomic) UIImage *thirdPosterImage;
-@property (readonly,nonatomic) NSString *name;
-@property (readonly,nonatomic) NSString *countString;
+@implementation BBMediaPickerAssetCollectionViewCell
 
-@property (readonly,copy,nonatomic) NSArray *assetViewModels;
-@property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.thumbnailImageView];
+    
+    RAC(self.thumbnailImageView,image) = RACObserve(self, viewModel.thumbnailImage);
+    
+    return self;
+}
 
-- (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel;
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.thumbnailImageView setFrame:self.contentView.bounds];
+}
+
++ (CGSize)cellSize; {
+    return CGSizeMake(78.0, 78.0);
+}
 
 @end

@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetGroupViewModel.h
+//  BBMediaPickerAssetViewModel.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/29/15.
@@ -13,23 +13,27 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <ReactiveViewModel/RVMViewModel.h>
-#import <UIKit/UIImage.h>
-#import <AssetsLibrary/ALAssetsGroup.h>
+#import "BBMediaPickerAssetViewModel.h"
 
-@class BBMediaPickerViewModel;
+@interface BBMediaPickerAssetViewModel ()
+@property (strong,nonatomic) ALAsset *asset;
+@end
 
-@interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
+@implementation BBMediaPickerAssetViewModel
 
-@property (readonly,nonatomic) UIImage *posterImage;
-@property (readonly,nonatomic) UIImage *secondPosterImage;
-@property (readonly,nonatomic) UIImage *thirdPosterImage;
-@property (readonly,nonatomic) NSString *name;
-@property (readonly,nonatomic) NSString *countString;
+- (instancetype)initWithAsset:(ALAsset *)asset; {
+    if (!(self = [super init]))
+        return nil;
+    
+    NSParameterAssert(asset);
+    
+    [self setAsset:asset];
+    
+    return self;
+}
 
-@property (readonly,copy,nonatomic) NSArray *assetViewModels;
-@property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
-
-- (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel;
+- (UIImage *)thumbnailImage {
+    return [UIImage imageWithCGImage:self.asset.thumbnail];
+}
 
 @end

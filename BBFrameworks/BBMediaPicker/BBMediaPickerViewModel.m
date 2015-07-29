@@ -80,7 +80,7 @@
             
             [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
                 if (group) {
-                    [temp addObject:[[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group]];
+                    [temp addObject:[[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group parentViewModel:self]];
                 }
                 else {
                     [self setAssetsGroupViewModels:temp];

@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetGroupViewModel.h
+//  BBMediaPickerAssetViewModel.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/29/15.
@@ -15,21 +15,12 @@
 
 #import <ReactiveViewModel/RVMViewModel.h>
 #import <UIKit/UIImage.h>
-#import <AssetsLibrary/ALAssetsGroup.h>
+#import <AssetsLibrary/ALAsset.h>
 
-@class BBMediaPickerViewModel;
+@interface BBMediaPickerAssetViewModel : RVMViewModel
 
-@interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
+@property (readonly,nonatomic) UIImage *thumbnailImage;
 
-@property (readonly,nonatomic) UIImage *posterImage;
-@property (readonly,nonatomic) UIImage *secondPosterImage;
-@property (readonly,nonatomic) UIImage *thirdPosterImage;
-@property (readonly,nonatomic) NSString *name;
-@property (readonly,nonatomic) NSString *countString;
-
-@property (readonly,copy,nonatomic) NSArray *assetViewModels;
-@property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
-
-- (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel;
+- (instancetype)initWithAsset:(ALAsset *)asset;
 
 @end
