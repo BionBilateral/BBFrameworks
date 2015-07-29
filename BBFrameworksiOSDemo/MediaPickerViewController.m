@@ -16,7 +16,7 @@
 #import "MediaPickerViewController.h"
 #import "BBFoundationDebugging.h"
 
-#import <BBFrameworks/BBMediaPickerViewController.h>
+#import <BBFrameworks/BBMediaPicker.h>
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -46,9 +46,12 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)assetsPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets {
-    BBLogObject(assets);
+#pragma mark BBMediaPickerViewControllerDelegate
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
+    BBLogObject(media);
+}
+- (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
+    BBLogObject(viewController);
 }
 
 - (IBAction)_systemButtonAction:(id)sender {
@@ -64,7 +67,6 @@
 - (IBAction)_customButtonAction:(id)sender {
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
-    [viewController setAllowsMultipleSelection:YES];
     [viewController setDelegate:self];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];

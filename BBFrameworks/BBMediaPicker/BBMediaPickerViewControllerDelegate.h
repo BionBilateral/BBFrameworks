@@ -2,7 +2,7 @@
 //  BBMediaPickerViewControllerDelegate.h
 //  BBFrameworks
 //
-//  Created by William Towe on 6/19/15.
+//  Created by William Towe on 7/29/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,6 +19,6 @@
 
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
-- (void)assetsPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingAssets:(NSArray *)assets;
-- (void)assetsPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media;
+- (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end

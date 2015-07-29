@@ -1,8 +1,8 @@
 //
-//  BBAssetsPickerAssetGroupTableViewController.m
+//  BBMediaPickerAssetsGroupTableViewController.m
 //  BBFrameworks
 //
-//  Created by William Towe on 6/19/15.
+//  Created by William Towe on 7/29/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,53 +13,50 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaPickerCollectionTableViewController.h"
+#import "BBMediaPickerAssetsGroupTableViewController.h"
+#import "BBMediaPickerAssetsGroupTableViewCell.h"
 #import "BBMediaPickerViewModel.h"
-#import "BBMediaPickerCollectionViewModel.h"
-#import "BBMediaPickerCollectionTableViewCell.h"
-#import "BBMediaPickerAssetCollectionViewController.h"
-#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaPickerCollectionTableViewController ()
+@interface BBMediaPickerAssetsGroupTableViewController ()
 @property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 @end
 
-@implementation BBMediaPickerCollectionTableViewController
-#pragma mark *** Subclass Overrides ***
+@implementation BBMediaPickerAssetsGroupTableViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView setRowHeight:[BBMediaPickerCollectionTableViewCell rowHeight]];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerCollectionTableViewCell class])];
+    [self.tableView setRowHeight:[BBMediaPickerAssetsGroupTableViewCell rowHeight]];
+    [self.tableView registerClass:[BBMediaPickerAssetsGroupTableViewCell class] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetsGroupTableViewCell class])];
     
     @weakify(self);
-    [[RACObserve(self.viewModel, assetGroupViewModels)
+    [[RACObserve(self.viewModel, assetsGroupViewModels)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
          [self.tableView reloadData];
      }];
 }
-#pragma mark UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.viewModel.assetGroupViewModels.count;
+    return self.viewModel.assetsGroupViewModels.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BBMediaPickerCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBMediaPickerCollectionTableViewCell class]) forIndexPath:indexPath];
+    BBMediaPickerAssetsGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBMediaPickerAssetsGroupTableViewCell class]) forIndexPath:indexPath];
     
-    [cell setViewModel:self.viewModel.assetGroupViewModels[indexPath.row]];
+    [cell setViewModel:self.viewModel.assetsGroupViewModels[indexPath.row]];
     
     return cell;
 }
-#pragma mark UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[[BBMediaPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel.assetGroupViewModels[indexPath.row]] animated:YES];
+    
 }
-#pragma mark *** Public Methods ***
+
 - (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel; {
-    if (!(self = [super initWithStyle:UITableViewStylePlain]))
+    if (!(self = [super init]))
         return nil;
     
     NSParameterAssert(viewModel);

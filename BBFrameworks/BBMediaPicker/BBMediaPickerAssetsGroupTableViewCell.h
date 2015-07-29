@@ -1,8 +1,8 @@
 //
-//  BBAssetsPickerAssetCollectionViewController.h
+//  BBMediaPickerAssetsGroupTableViewCell.h
 //  BBFrameworks
 //
-//  Created by William Towe on 6/19/15.
+//  Created by William Towe on 7/29/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,10 +15,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBMediaPickerCollectionViewModel;
+@class BBMediaPickerAssetsGroupViewModel;
 
-@interface BBMediaPickerAssetCollectionViewController : UICollectionViewController
+@interface BBMediaPickerAssetsGroupTableViewCell : UITableViewCell
 
-- (instancetype)initWithViewModel:(BBMediaPickerCollectionViewModel *)viewModel;
+@property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
+
++ (CGFloat)rowHeight;
 
 @end
