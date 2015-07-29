@@ -15,10 +15,6 @@ A library to acts as a replacement for the UIImagePickerController media selecti
 
 A library that acts as a replacement for the MPMoviePlayerController and its associated classes. The principal classes are BBMoviePlayerController and BBMoviePlayerViewController.
 
-###BBWebKit
-
-A library that wraps a WKWebView for convenient in app display. The principal classes are BBWebKitViewController and BBWebKitTitleView.
-
 ###BBForm
 
 A library that facilitates the creation and display of settings style views.
