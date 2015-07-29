@@ -16,12 +16,29 @@
 #ifndef __BB_FRAMEWORKS_MACROS__
 #define __BB_FRAMEWORKS_MACROS__
 
-#define BBWeakify(var) __weak typeof(var) AHKWeak_##var = var;
+/**
+ Macro to create a weakly referenced variable of type var.
+ 
+ @param The variable you want to weakly reference
+ */
+#define BBWeakify(var) __weak typeof(var) BBWeak_##var = var;
 
+/**
+ Macro to strongly reference a previously weakly referenced variable created by using BBWeakify. The strongly referenced variable shadows the weakly referenced variable, preventing a retain cycle. Especially useful for referencing self within a block.
+ 
+ BBWeakify(self); // expands to __weak typeof(self) BBWeak_selfvar = self;
+ self.myBlock = ^{
+    BBStrongify(self); // expands to  __strong typeof(self) self = BBWeak_selfvar;
+    // safely reference self within the block because self is actually a shadow variable
+    self.myString = @"myStringValue";
+ }
+ 
+ @param The variable you want to strongly reference, which must have been previously created using BBWeakify
+ */
 #define BBStrongify(var) \
 _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Wshadow\"") \
-__strong typeof(var) var = AHKWeak_##var; \
+__strong typeof(var) var = BBWeak_##var; \
 _Pragma("clang diagnostic pop")
 
 #endif
