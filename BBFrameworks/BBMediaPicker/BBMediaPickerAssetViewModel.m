@@ -16,7 +16,7 @@
 #import "BBMediaPickerAssetViewModel.h"
 
 @interface BBMediaPickerAssetViewModel ()
-@property (strong,nonatomic) ALAsset *asset;
+@property (readwrite,strong,nonatomic) ALAsset *asset;
 @end
 
 @implementation BBMediaPickerAssetViewModel

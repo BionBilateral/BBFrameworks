@@ -19,6 +19,8 @@
 
 @interface BBMediaPickerAssetViewModel : RVMViewModel
 
+@property (readonly,strong,nonatomic) ALAsset *asset;
+
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
 - (instancetype)initWithAsset:(ALAsset *)asset;

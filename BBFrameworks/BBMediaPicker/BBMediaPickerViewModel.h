@@ -17,6 +17,7 @@
 #import <UIKit/UIBarButtonItem.h>
 #import "BBMediaPickerDefines.h"
 
+@class BBMediaPickerAssetViewModel;
 @class RACCommand;
 
 @interface BBMediaPickerViewModel : RVMViewModel
@@ -26,10 +27,16 @@
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 
 @property (readonly,copy,nonatomic) NSArray *assetsGroupViewModels;
+@property (readonly,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *cancelCommand;
+@property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
 @property (readonly,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
+@property (readonly,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
+
+- (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
+- (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 
 - (RACSignal *)requestAssetsLibraryAuthorization;
 

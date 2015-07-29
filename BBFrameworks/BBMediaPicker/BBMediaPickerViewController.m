@@ -17,6 +17,8 @@
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPickerAssetsGroupTableViewController.h"
 #import "BBFrameworksFunctions.h"
+#import "BBBlocks.h"
+#import "BBMediaPickerAssetViewModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -62,6 +64,20 @@
              @strongify(self);
              if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
                  [self.delegate mediaPickerViewControllerDidCancel:self];
+             }
+         }];
+     }];
+    
+    [[self.viewModel.doneCommand.executionSignals
+     concat]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+             @strongify(self);
+             if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didFinishPickingMedia:)]) {
+                 [self.delegate mediaPickerViewController:self didFinishPickingMedia:[self.viewModel.selectedAssetViewModels BB_map:^id(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                     return object.asset;
+                 }].array];
              }
          }];
      }];

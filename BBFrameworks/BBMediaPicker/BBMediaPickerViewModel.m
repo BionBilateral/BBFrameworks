@@ -24,8 +24,11 @@
 
 @interface BBMediaPickerViewModel ()
 @property (readwrite,copy,nonatomic) NSArray *assetsGroupViewModels;
+@property (readwrite,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
 @property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
+@property (readwrite,strong,nonatomic) RACCommand *doneCommand;
 @property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
+@property (readwrite,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
 @end
@@ -51,14 +54,51 @@
         return [RACSignal return:self];
     }]];
     
+    [self setDoneCommand:[[RACCommand alloc] initWithEnabled:[RACSignal combineLatest:@[RACObserve(self, selectedAssetViewModels)] reduce:^id(NSOrderedSet *value){
+        return @(value.count > 0);
+    }] signalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        return [RACSignal return:self];
+    }]];
+    
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
     [self.cancelBarButtonItem setRac_command:self.cancelCommand];
+    
+    [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
+    [self.doneBarButtonItem setRac_command:self.doneCommand];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self, allowsMultipleSelection),RACObserve(self, selectedAssetViewModels)] reduce:^id(NSNumber *flag, NSOrderedSet *value){
+        return @(!flag.boolValue && value.count > 0);
+    }]
+     ignore:@NO]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             @strongify(self);
+             [self.doneCommand execute:nil];
+         });
+     }];
     
     return self;
 }
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return (BBMediaPickerAuthorizationStatus)[ALAssetsLibrary authorizationStatus];
+}
+
+- (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel; {
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
+    
+    [temp addObject:viewModel];
+    
+    [self setSelectedAssetViewModels:temp];
+}
+- (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel; {
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
+    
+    [temp removeObject:viewModel];
+    
+    [self setSelectedAssetViewModels:temp];
 }
 
 - (RACSignal *)requestAssetsLibraryAuthorization; {

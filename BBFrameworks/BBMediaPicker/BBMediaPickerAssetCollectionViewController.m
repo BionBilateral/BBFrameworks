@@ -33,7 +33,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.cancelBarButtonItem]];
+    if (self.viewModel.parentViewModel.allowsMultipleSelection) {
+        [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.doneBarButtonItem]];
+    }
+    else {
+        [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.cancelBarButtonItem]];
+    }
     
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setAllowsMultipleSelection:self.viewModel.parentViewModel.allowsMultipleSelection];
@@ -59,8 +64,19 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.viewModel.parentViewModel.selectedAssetViewModels containsObject:self.viewModel.assetViewModels[indexPath.row]]) {
+        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    }
+    else {
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    }
+}
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self.viewModel.parentViewModel selectAssetViewModel:self.viewModel.assetViewModels[indexPath.row]];
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.viewModel.parentViewModel deselectAssetViewModel:self.viewModel.assetViewModels[indexPath.row]];
 }
 
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel; {
