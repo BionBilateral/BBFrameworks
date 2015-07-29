@@ -83,5 +83,13 @@
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return [BBMediaPickerViewModel authorizationStatus];
 }
+#pragma mark Properties
+@dynamic allowsMultipleSelection;
+- (BOOL)allowsMultipleSelection {
+    return self.viewModel.allowsMultipleSelection;
+}
+- (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
+    [self.viewModel setAllowsMultipleSelection:allowsMultipleSelection];
+}
 
 @end

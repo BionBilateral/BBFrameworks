@@ -15,11 +15,13 @@
 
 #import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetViewModel.h"
+#import "BBKitColorMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
+@property (strong,nonatomic) UIView *selectedOverlayView;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
@@ -31,6 +33,9 @@
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
     
+    [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.selectedOverlayView];
+    
     RAC(self.thumbnailImageView,image) = RACObserve(self, viewModel.thumbnailImage);
     
     return self;
@@ -40,6 +45,13 @@
     [super layoutSubviews];
     
     [self.thumbnailImageView setFrame:self.contentView.bounds];
+    [self.selectedOverlayView setFrame:self.contentView.bounds];
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    [self.selectedOverlayView setBackgroundColor:selected ? BBColorWA(1.0, 0.5) : [UIColor clearColor]];
 }
 
 + (CGSize)cellSize; {

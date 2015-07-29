@@ -23,4 +23,6 @@
 
 @property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
 
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 @end

@@ -23,6 +23,8 @@
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 @property (readonly,copy,nonatomic) NSArray *assetsGroupViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *cancelCommand;
