@@ -7,10 +7,6 @@
 
 Repository for common iOS/OSX categories, classes, and functions.
 
-###BBAddressBook
-
-A library that wraps the AddressBook framework. The principal classes are BBAddressBookManager, BBAddressBookPerson, and BBAddressBookGroup.
-
 ###BBReactiveThumbnail
 
 Categories that add signal generating methods to BBThumbnail.
