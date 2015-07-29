@@ -7,10 +7,6 @@
 
 Repository for common iOS/OSX categories, classes, and functions.
 
-###BBReactiveThumbnail
-
-Categories that add signal generating methods to BBThumbnail.
-
 ###BBMediaPicker
 
 A library to acts as a replacement for the UIImagePickerController media selection functionality. The principal class is BBMediaPickerViewController.
