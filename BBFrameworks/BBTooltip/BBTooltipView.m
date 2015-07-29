@@ -16,8 +16,6 @@
 #import "BBTooltipView.h"
 #import "UIView+BBTooltipAttachmentViewExtensions.h"
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
-
 @interface BBTooltipView ()
 @property (strong,nonatomic) UILabel *textLabel;
 
@@ -49,17 +47,6 @@
     [self.textLabel setTextColor:_tooltipTextColor];
     [self addSubview:self.textLabel];
     
-    RAC(self.textLabel,attributedText) = [RACObserve(self, attributedText) deliverOn:[RACScheduler mainThreadScheduler]];
-    
-    @weakify(self);
-    [[[RACObserve(self, arrowDirection)
-     distinctUntilChanged]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         [self setNeedsLayout];
-     }];
-    
     return self;
 }
 #pragma mark Layout
@@ -90,13 +77,13 @@
         case BBTooltipViewArrowDirectionDown:
             retval.height += self.tooltipArrowHeight;
             retval.height += self.tooltipEdgeInsets.top;
-            retval.height += CGRectGetHeight(CGRectIntegral([self.attributedText boundingRectWithSize:CGSizeMake(retval.width - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil]));
+            retval.height += ceil([self.textLabel sizeThatFits:CGSizeMake(retval.width - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right, CGFLOAT_MAX)].height);
             retval.height += self.tooltipEdgeInsets.bottom;
             break;
         case BBTooltipViewArrowDirectionLeft:
         case BBTooltipViewArrowDirectionRight:
             retval.height += self.tooltipEdgeInsets.top;
-            retval.height += CGRectGetHeight(CGRectIntegral([self.attributedText boundingRectWithSize:CGSizeMake(retval.width - self.tooltipArrowHeight - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil]));
+            retval.height += ceil([self.textLabel sizeThatFits:CGSizeMake(retval.width - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowHeight, CGFLOAT_MAX)].height);
             retval.height += self.tooltipEdgeInsets.bottom;
             break;
         default:
@@ -210,12 +197,25 @@
     return retval;
 }
 #pragma mark Properties
+- (void)setArrowDirection:(BBTooltipViewArrowDirection)arrowDirection {
+    _arrowDirection = arrowDirection;
+    
+    [self setNeedsLayout];
+}
+
 @dynamic text;
 - (NSString *)text {
     return self.attributedText.string;
 }
 - (void)setText:(NSString *)text {
     [self setAttributedText:[[NSAttributedString alloc] initWithString:text ?: @"" attributes:@{NSFontAttributeName: self.tooltipFont, NSForegroundColorAttributeName: self.tooltipTextColor}]];
+}
+@dynamic attributedText;
+- (NSAttributedString *)attributedText {
+    return self.textLabel.attributedText;
+}
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+    [self.textLabel setAttributedText:attributedText];
 }
 
 - (void)setTooltipFont:(UIFont *)tooltipFont {
