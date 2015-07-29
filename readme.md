@@ -19,10 +19,6 @@ A library that acts as a replacement for the MPMoviePlayerController and its ass
 
 A library that wraps a WKWebView for convenient in app display. The principal classes are BBWebKitViewController and BBWebKitTitleView.
 
-###BBTooltip
-
-A library that facilitates the display of tooltips within an app. Similar to the Facebook app. The principal classes are BBTooltipViewController and BBTooltipView.
-
 ###BBForm
 
 A library that facilitates the creation and display of settings style views.
