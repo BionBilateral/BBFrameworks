@@ -15,11 +15,13 @@
 
 #import "BBFoundationGeometryFunctions.h"
 
+#import <math.h>
+
 CGRect BBCGRectCenterInRect(CGRect rect_to_center, CGRect in_rect) {
-    return CGRectIntegral(CGRectMake(CGRectGetMinX(in_rect) + (CGRectGetWidth(in_rect) * 0.5) - (CGRectGetWidth(rect_to_center) * 0.5),
-                                     CGRectGetMinY(in_rect) + (CGRectGetHeight(in_rect) * 0.5) - (CGRectGetHeight(rect_to_center) * 0.5),
-                                     CGRectGetWidth(rect_to_center),
-                                     CGRectGetHeight(rect_to_center)));
+    return CGRectMake(floor(CGRectGetMinX(in_rect) + (CGRectGetWidth(in_rect) * 0.5) - (CGRectGetWidth(rect_to_center) * 0.5)),
+                      floor(CGRectGetMinY(in_rect) + (CGRectGetHeight(in_rect) * 0.5) - (CGRectGetHeight(rect_to_center) * 0.5)),
+                      CGRectGetWidth(rect_to_center),
+                      CGRectGetHeight(rect_to_center));
 }
 CGRect BBCGRectCenterInRectHorizontally(CGRect rect_to_center, CGRect in_rect) {
     CGRect new_rect = BBCGRectCenterInRect(rect_to_center, in_rect);
@@ -38,10 +40,10 @@ CGRect BBCGRectCenterInRectVertically(CGRect rect_to_center, CGRect in_rect) {
 
 #if (!TARGET_OS_IPHONE)
 NSRect BBNSRectCenterInRect(NSRect rect_to_center, NSRect in_rect) {
-    return NSIntegralRect(NSMakeRect(NSMinX(in_rect) + (NSWidth(in_rect) * 0.5) - (NSWidth(rect_to_center) * 0.5),
-                                     NSMinY(in_rect) + (NSHeight(in_rect) * 0.5) - (NSHeight(rect_to_center) * 0.5),
-                                     NSWidth(rect_to_center),
-                                     NSHeight(rect_to_center)));
+    return NSMakeRect(floor(NSMinX(in_rect) + (NSWidth(in_rect) * 0.5) - (NSWidth(rect_to_center) * 0.5)),
+                      floor(NSMinY(in_rect) + (NSHeight(in_rect) * 0.5) - (NSHeight(rect_to_center) * 0.5)),
+                      NSWidth(rect_to_center),
+                      NSHeight(rect_to_center));
 }
 NSRect BBNSRectCenterInRectHorizontally(NSRect rect_to_center, NSRect in_rect) {
     NSRect new_rect = BBNSRectCenterInRect(rect_to_center, in_rect);
