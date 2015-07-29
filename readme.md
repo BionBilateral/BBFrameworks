@@ -7,15 +7,6 @@
 
 Repository for common iOS/OSX categories, classes, and functions.
 
-
-###BBReactiveKit
-
-Classes extending the UIKit framework, built on top of [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa).
-
-- Classes
-	- BBProgressNavigationBar, UINavigationBar subclass that manages a UIProgressView instance and provides methods to show/hide and change its associated progress
-	- BBTextView, UITextView subclass that provides placeholder functionality similar to UITextField
-	
 ###BBAddressBook
 
 A library that wraps the AddressBook framework. The principal classes are BBAddressBookManager, BBAddressBookPerson, and BBAddressBookGroup.
