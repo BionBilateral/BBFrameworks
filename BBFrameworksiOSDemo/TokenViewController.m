@@ -120,7 +120,7 @@
     NSMutableArray *retval = [representedObjects mutableCopy];
     
     for (TokenModel *model in representedObjects) {
-        if ([model.string rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"@"]].length == 0) {
+        if ([model.string rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].length == 0) {
             [retval removeObject:model];
         }
     }
