@@ -31,8 +31,8 @@
 + (void)initialize {
     if (self == [TooltipsRowViewController class]) {
         [[BBTooltipView appearance] setTooltipFont:[UIFont boldSystemFontOfSize:12.0]];
-        [[BBTooltipView appearance] setTooltipTextColor:[UIColor darkGrayColor]];
-        [[BBTooltipView appearance] setTooltipBackgroundColor:[UIColor whiteColor]];
+        [[BBTooltipView appearance] setTooltipTextColor:[UIColor whiteColor]];
+        [[BBTooltipView appearance] setTooltipBackgroundColor:[UIColor blueColor]];
     }
 }
 
