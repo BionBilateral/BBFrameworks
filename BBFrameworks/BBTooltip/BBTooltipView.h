@@ -15,11 +15,40 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Enum describing the arrow direction of the receiver.
+ */
 typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
+    /**
+     The arrow is pointing up.
+     */
     BBTooltipViewArrowDirectionUp,
+    /**
+     The arrow is pointing left.
+     */
     BBTooltipViewArrowDirectionLeft,
+    /**
+     The arrow is pointing down.
+     */
     BBTooltipViewArrowDirectionDown,
+    /**
+     The arrow is pointing right.
+     */
     BBTooltipViewArrowDirectionRight
+};
+
+/**
+ Enum describing the arrow style of the receiver.
+ */
+typedef NS_ENUM(NSInteger, BBTooltipViewArrowStyle) {
+    /**
+     The default arrow style, which is to display the arrow.
+     */
+    BBTooltipViewArrowStyleDefault,
+    /**
+     Hide the arrow, draw the tooltip as a rounded rectangle.
+     */
+    BBTooltipViewArrowStyleNone
 };
 
 /**
@@ -29,8 +58,18 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
 
 /**
  Set and get the arrow direction of the receiver.
+ 
+ @see BBTooltipViewArrowDirection
  */
 @property (assign,nonatomic) BBTooltipViewArrowDirection arrowDirection;
+/**
+ Set and get the arrow style of the receiver.
+ 
+ The default is BBTooltipViewArrowStyleDefault.
+ 
+ @see BBTooltipViewArrowStyle
+ */
+@property (assign,nonatomic) BBTooltipViewArrowStyle arrowStyle UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the text of the receiver.
