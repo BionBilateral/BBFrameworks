@@ -63,7 +63,7 @@
     __block UIImage *retval = nil;
     
     if (self.assetsGroup.numberOfAssets >= 3) {
-        [self.assetsGroup enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] options:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        [self.assetsGroup enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] options:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if (result) {
                 retval = [UIImage imageWithCGImage:result.thumbnail];
                 *stop = YES;
