@@ -7,14 +7,6 @@
 
 Repository for common iOS/OSX categories, classes, and functions.
 
-###BBMediaPicker
+See the wiki for information on individual modules.
 
-A library to acts as a replacement for the UIImagePickerController media selection functionality. The principal class is BBMediaPickerViewController.
-
-###BBMediaPlayer
-
-A library that acts as a replacement for the MPMoviePlayerController and its associated classes. The principal classes are BBMoviePlayerController and BBMoviePlayerViewController.
-
-###BBForm
-
-A library that facilitates the creation and display of settings style views.
+Use cocoapods to install.
