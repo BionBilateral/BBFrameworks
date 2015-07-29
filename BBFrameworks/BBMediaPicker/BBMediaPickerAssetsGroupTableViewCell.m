@@ -20,7 +20,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 static CGFloat const kSubviewMargin = 8.0;
-static CGSize const kImageViewSize = {.width=75.0, .height=75.0};
+static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
 
 @interface BBMediaPickerAssetsGroupTableViewCell ()
 @property (strong,nonatomic) UIImageView *firstThumbnailImageView;
