@@ -81,6 +81,8 @@
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
 		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
 		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
+		79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */; };
+		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
@@ -461,6 +463,7 @@
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
 				79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */,
 				799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */,
+				79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */,
 				79BE2BC61B65D2D600ADE997 /* BBFormFieldTableViewFooterView.h in CopyFiles */,
 				79BE2BB01B65809C00ADE997 /* BBNextPreviousInputAccessoryView.h in CopyFiles */,
 				07605AB71B67D7C800333678 /* BBTextView.h in CopyFiles */,
@@ -710,6 +713,8 @@
 		7927CFA71B1AD2B90034288D /* BBThumbnailRTFOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailRTFOperation.m; sourceTree = "<group>"; };
 		7927CFA81B1AD2B90034288D /* BBThumbnailTextOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailTextOperation.h; sourceTree = "<group>"; };
 		7927CFA91B1AD2B90034288D /* BBThumbnailTextOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailTextOperation.m; sourceTree = "<group>"; };
+		79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBAnythingGestureRecognizer.h; path = iOS/BBAnythingGestureRecognizer.h; sourceTree = "<group>"; };
+		79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBAnythingGestureRecognizer.m; path = iOS/BBAnythingGestureRecognizer.m; sourceTree = "<group>"; };
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
@@ -1665,6 +1670,8 @@
 				79BE2BAE1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m */,
 				07605AB41B67D72B00333678 /* BBTextView.h */,
 				07605AB51B67D72B00333678 /* BBTextView.m */,
+				79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */,
+				79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2456,6 +2463,7 @@
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
 				79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */,
 				07B3D9051B60373B00FA1853 /* BBFormTableViewHeaderView.m in Sources */,
+				79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */,
 				79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */,
 				790DE0861B51B01B0029C004 /* BBDatePickerButton.m in Sources */,
 				799C0C7B1B61B95B00A3888A /* BBAddressBookPersonTableViewCell.m in Sources */,

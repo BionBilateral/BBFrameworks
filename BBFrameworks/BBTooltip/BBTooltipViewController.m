@@ -18,6 +18,7 @@
 #import "BBKitColorMacros.h"
 #import "UIView+BBTooltipAttachmentViewExtensions.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "BBAnythingGestureRecognizer.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -63,7 +64,7 @@ static CGFloat const kSpringDamping = 0.5;
 @interface BBTooltipViewController () <UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (strong,nonatomic) BBTooltipView *tooltipView;
 
-@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
+@property (strong,nonatomic) BBAnythingGestureRecognizer *gestureRecognizer;
 
 @property (assign,nonatomic) NSInteger tooltipIndex;
 - (void)setTooltipIndex:(NSInteger)tooltipIndex animated:(BOOL)animated completion:(void(^)(void))completion;
@@ -100,13 +101,11 @@ static CGFloat const kSpringDamping = 0.5;
     
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] init]];
-    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:self.tapGestureRecognizer];
+    [self setGestureRecognizer:[[BBAnythingGestureRecognizer alloc] init]];
+    [self.view addGestureRecognizer:self.gestureRecognizer];
     
     @weakify(self);
-    [[[self.tapGestureRecognizer
+    [[[self.gestureRecognizer
      rac_gestureSignal]
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
