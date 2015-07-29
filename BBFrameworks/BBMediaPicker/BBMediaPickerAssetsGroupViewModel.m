@@ -15,6 +15,8 @@
 
 #import "BBMediaPickerAssetsGroupViewModel.h"
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 @interface BBMediaPickerAssetsGroupViewModel ()
 @property (strong,nonatomic) ALAssetsGroup *assetsGroup;
 @end
@@ -34,6 +36,34 @@
 
 - (UIImage *)posterImage {
     return [UIImage imageWithCGImage:self.assetsGroup.posterImage];
+}
+- (UIImage *)secondPosterImage {
+    __block UIImage *retval = nil;
+    
+    if (self.assetsGroup.numberOfAssets >= 2) {
+        [self.assetsGroup enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] options:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result) {
+                retval = [UIImage imageWithCGImage:result.thumbnail];
+                *stop = YES;
+            }
+        }];
+    }
+    
+    return retval;
+}
+- (UIImage *)thirdPosterImage {
+    __block UIImage *retval = nil;
+    
+    if (self.assetsGroup.numberOfAssets >= 3) {
+        [self.assetsGroup enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] options:NSEnumerationReverse usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result) {
+                retval = [UIImage imageWithCGImage:result.thumbnail];
+                *stop = YES;
+            }
+        }];
+    }
+    
+    return retval;
 }
 - (NSString *)name {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];

@@ -38,6 +38,12 @@ static CGSize const kImageViewSize = {.width=75.0, .height=75.0};
     
     [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
+    [self setThirdThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.thirdThumbnailImageView];
+    
+    [self setSecondThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.secondThumbnailImageView];
+    
     [self setFirstThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.firstThumbnailImageView];
     
@@ -49,6 +55,8 @@ static CGSize const kImageViewSize = {.width=75.0, .height=75.0};
     [self.contentView addSubview:self.countLabel];
     
     RAC(self.firstThumbnailImageView,image) = RACObserve(self, viewModel.posterImage);
+    RAC(self.secondThumbnailImageView,image) = RACObserve(self, viewModel.secondPosterImage);
+    RAC(self.thirdThumbnailImageView,image) = RACObserve(self, viewModel.thirdPosterImage);
     RAC(self.nameLabel,text) = RACObserve(self, viewModel.name);
     RAC(self.countLabel,text) = RACObserve(self, viewModel.countString);
     
@@ -59,6 +67,8 @@ static CGSize const kImageViewSize = {.width=75.0, .height=75.0};
     [super layoutSubviews];
     
     [self.firstThumbnailImageView setFrame:BBCGRectCenterInRectVertically(CGRectMake(kSubviewMargin, 0, kImageViewSize.width, kImageViewSize.height), self.contentView.bounds)];
+    [self.secondThumbnailImageView setFrame:CGRectOffset(CGRectInset(self.firstThumbnailImageView.frame, 2.0, 0), 0, -2.0)];
+    [self.thirdThumbnailImageView setFrame:CGRectOffset(CGRectInset(self.secondThumbnailImageView.frame, 2.0, 0), 0, -2.0)];
     
     CGRect rect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.firstThumbnailImageView.frame) + kSubviewMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.firstThumbnailImageView.frame) - kSubviewMargin - kSubviewMargin, ceil(self.nameLabel.font.lineHeight + self.countLabel.font.lineHeight)), self.contentView.bounds);
     
