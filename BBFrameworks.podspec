@@ -109,8 +109,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPicker" do |subspec|
-    subspec.platform = :ios, "8.0"
-    
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
     
