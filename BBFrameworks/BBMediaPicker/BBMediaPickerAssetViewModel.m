@@ -32,9 +32,9 @@
     return self.asset.defaultRepresentation.size;
 }
 - (NSData *)mediaData {
-    uint8_t *buffer = malloc(self.mediaSize);
+    uint8_t *buffer = malloc((size_t)self.mediaSize);
     NSError *outError;
-    NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:0 length:self.mediaSize error:&outError];
+    NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:0 length:(NSUInteger)self.mediaSize error:&outError];
     
     if (retval == 0) {
         BBLogObject(outError);
@@ -50,7 +50,7 @@
         size = max;
     }
     
-    uint8_t *buffer = malloc(size);
+    uint8_t *buffer = malloc((size_t)size);
     NSError *outError;
     NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:offset length:(NSUInteger)size error:&outError];
     
