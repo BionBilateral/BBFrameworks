@@ -15,6 +15,9 @@
 
 #import "BBMediaPickerAssetViewModel.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBFoundationDebugging.h"
+
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BBMediaPickerAssetViewModel ()
 @property (readwrite,strong,nonatomic) ALAsset *asset;
@@ -24,6 +27,21 @@
 
 - (NSURL *)mediaURL {
     return self.URL;
+}
+- (int64_t)mediaSize {
+    return self.asset.defaultRepresentation.size;
+}
+- (NSData *)mediaData {
+    uint8_t *buffer = malloc(self.mediaSize);
+    NSError *outError;
+    NSInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:0 length:self.mediaSize error:&outError];
+    
+    if (retval == 0) {
+        BBLogObject(outError);
+        return nil;
+    }
+    
+    return [NSData dataWithBytesNoCopy:buffer length:retval freeWhenDone:YES];
 }
 
 - (instancetype)initWithAsset:(ALAsset *)asset; {

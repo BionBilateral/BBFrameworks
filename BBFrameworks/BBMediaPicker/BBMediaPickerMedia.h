@@ -18,4 +18,6 @@
 @protocol BBMediaPickerMedia <NSObject>
 @required
 - (NSURL *)mediaURL;
+- (int64_t)mediaSize;
+- (NSData *)mediaData;
 @end
