@@ -34,7 +34,7 @@
 - (NSData *)mediaData {
     uint8_t *buffer = malloc(self.mediaSize);
     NSError *outError;
-    NSInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:0 length:self.mediaSize error:&outError];
+    NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:0 length:self.mediaSize error:&outError];
     
     if (retval == 0) {
         BBLogObject(outError);
@@ -43,7 +43,7 @@
     
     return [NSData dataWithBytesNoCopy:buffer length:retval freeWhenDone:YES];
 }
-- (NSData *)mediaDataFromOffset:(int64_t)offset max:(int64_t)max; {
+- (NSData *)mediaDataFromOffset:(int64_t)offset max:(NSUInteger)max; {
     int64_t size = self.mediaSize - offset;
     
     if (size > max) {
