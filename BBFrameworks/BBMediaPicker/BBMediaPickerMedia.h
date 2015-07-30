@@ -20,4 +20,5 @@
 - (NSURL *)mediaURL;
 - (int64_t)mediaSize;
 - (NSData *)mediaData;
+- (NSData *)mediaDataFromOffset:(int64_t)offset max:(int64_t)max;
 @end

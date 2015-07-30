@@ -43,6 +43,24 @@
     
     return [NSData dataWithBytesNoCopy:buffer length:retval freeWhenDone:YES];
 }
+- (NSData *)mediaDataFromOffset:(int64_t)offset max:(int64_t)max; {
+    int64_t size = self.mediaSize - offset;
+    
+    if (size > max) {
+        size = max;
+    }
+    
+    uint8_t *buffer = malloc(size);
+    NSError *outError;
+    NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:offset length:size error:&outError];
+    
+    if (retval == 0) {
+        BBLogObject(outError);
+        return nil;
+    }
+    
+    return [NSData dataWithBytesNoCopy:buffer length:retval freeWhenDone:YES];
+}
 
 - (instancetype)initWithAsset:(ALAsset *)asset; {
     if (!(self = [super init]))
