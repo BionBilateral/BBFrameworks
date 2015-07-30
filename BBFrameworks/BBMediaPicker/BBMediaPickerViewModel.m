@@ -55,10 +55,12 @@
      subscribeNext:^(NSNotification *value) {
          @strongify(self);
          BBLogObject(value);
+         // if userInfo is nil, reload everything
          if (value.userInfo == nil) {
              [self _refreshAssetsGroupViewModels];
          }
          else {
+             // if there are inserted assets group, create a new view model for each one and add them to the end of the array
              if (value.userInfo[ALAssetLibraryInsertedAssetGroupsKey]) {
                  NSMutableArray *assetsGroupViewModels = [NSMutableArray arrayWithArray:self.assetsGroupViewModels];
                  
@@ -85,6 +87,7 @@
                  [self setAssetsGroupViewModels:assetsGroupViewModels];
              }
              
+             // if there are deleted assets group, find the matching view model and mark it as deleted
              if (value.userInfo[ALAssetLibraryDeletedAssetGroupsKey]) {
                  NSMutableArray *assetsGroupViewModels = [NSMutableArray arrayWithArray:self.assetsGroupViewModels];
                  
@@ -103,6 +106,7 @@
                  [self setAssetsGroupViewModels:assetsGroupViewModels];
              }
              
+             // if there are updated assets group, find the matching view model and mark it as deleted, but only if the corresponding group no longer exists
              if (value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
                  for (NSURL *assetsGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
                      dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -130,6 +134,7 @@
                      dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                  }
                  
+                 // if any view models were marked as deleted, filter them out of the resulting view models array
                  if ([self.assetsGroupViewModels BB_any:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
                      return object.isDeleted;
                  }]) {
@@ -138,6 +143,7 @@
                      }]];
                  }
                  
+                 // for all view models that remain in the array, refresh their asset view models which will also refresh their name and count
                  for (NSURL *assetsGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
                      BBMediaPickerAssetsGroupViewModel *viewModel = [self.assetsGroupViewModels BB_find:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
                          return [assetsGroupURL isEqual:object.URL];
