@@ -17,6 +17,7 @@
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBKitColorMacros.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "UIImage+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -24,6 +25,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
+@property (strong,nonatomic) UIImageView *typeImageView;
 @property (strong,nonatomic) UIView *selectedOverlayView;
 @property (strong,nonatomic) UIImageView *selectedImageView;
 @end
@@ -37,6 +39,9 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
     
+    [self setTypeImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.typeImageView];
+    
     [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.selectedOverlayView setBackgroundColor:BBColorWA(1.0, 0.33)];
     [self.contentView addSubview:self.selectedOverlayView];
@@ -44,7 +49,16 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self setSelectedImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.selectedOverlayView addSubview:self.selectedImageView];
     
+    @weakify(self);
     RAC(self.thumbnailImageView,image) = RACObserve(self, viewModel.thumbnailImage);
+    RAC(self.typeImageView,image) = [[RACObserve(self, viewModel.typeImage)
+                                      map:^id(UIImage *value) {
+                                          return [value BB_imageByRenderingWithColor:[UIColor whiteColor]];
+                                      }]
+                                     doNext:^(id _) {
+                                         @strongify(self);
+                                         [self setNeedsLayout];
+                                     }];
     
     return self;
 }
@@ -53,6 +67,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [super layoutSubviews];
     
     [self.thumbnailImageView setFrame:self.contentView.bounds];
+    [self.typeImageView setFrame:CGRectMake(kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.typeImageView.image.size.height - kSubviewMarginHalf, self.typeImageView.image.size.width, self.typeImageView.image.size.height)];
     [self.selectedOverlayView setFrame:self.contentView.bounds];
     [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.selectedImageView.image.size.height - kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
 }
