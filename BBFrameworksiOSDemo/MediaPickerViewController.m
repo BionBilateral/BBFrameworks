@@ -28,6 +28,15 @@
 
 @implementation MediaPickerViewController
 
++ (void)initialize {
+    if (self == [MediaPickerViewController class]) {
+        [[BBMediaPickerAssetsGroupTableViewCell appearance] setContentBackgroundColor:[UIColor darkGrayColor]];
+        [[BBMediaPickerAssetsGroupTableViewCell appearance] setSelectedContentBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameFont:[UIFont boldSystemFontOfSize:17.0]];
+        [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameTextColor:[UIColor whiteColor]];
+    }
+}
+
 - (NSString *)title {
     return [self.class rowClassTitle];
 }

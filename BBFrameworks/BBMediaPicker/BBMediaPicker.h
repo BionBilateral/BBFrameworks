@@ -20,6 +20,7 @@
 
 #if (TARGET_OS_IPHONE)
 #import "BBMediaPickerViewController.h"
+#import "BBMediaPickerAssetsGroupTableViewCell.h"
 #endif
 
 #endif

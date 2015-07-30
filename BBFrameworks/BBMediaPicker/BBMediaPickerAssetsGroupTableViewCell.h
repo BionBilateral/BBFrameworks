@@ -21,6 +21,13 @@
 
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 
+@property (strong,nonatomic) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIColor *selectedContentBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIFont *nameFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIColor *nameTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIFont *countFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIColor *countTextColor UI_APPEARANCE_SELECTOR;
+
 + (CGFloat)rowHeight;
 
 @end

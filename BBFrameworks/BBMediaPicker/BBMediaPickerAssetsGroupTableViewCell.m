@@ -31,6 +31,12 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
 @property (strong,nonatomic) UIImageView *thirdThumbnailImageView;
 @property (strong,nonatomic) UILabel *nameLabel;
 @property (strong,nonatomic) UILabel *countLabel;
+
++ (UIColor *)_defaultContentBackgroundColor;
++ (UIFont *)_defaultNameFont;
++ (UIColor *)_defaultNameTextColor;
++ (UIFont *)_defaultCountFont;
++ (UIColor *)_defaultCountTextColor;
 @end
 
 @implementation BBMediaPickerAssetsGroupTableViewCell
@@ -39,6 +45,13 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
     
+    _contentBackgroundColor = [self.class _defaultContentBackgroundColor];
+    _nameFont = [self.class _defaultNameFont];
+    _nameTextColor = [self.class _defaultNameTextColor];
+    _countFont = [self.class _defaultCountFont];
+    _countTextColor = [self.class _defaultCountTextColor];
+    
+    [self setBackgroundColor:_contentBackgroundColor];
     [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     [self setThirdThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
@@ -54,10 +67,13 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     [self.contentView addSubview:self.badgeImageView];
     
     [self setNameLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.nameLabel setFont:_nameFont];
+    [self.nameLabel setTextColor:_nameTextColor];
     [self.contentView addSubview:self.nameLabel];
     
     [self setCountLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.countLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [self.countLabel setFont:_countFont];
+    [self.countLabel setTextColor:_countTextColor];
     [self.contentView addSubview:self.countLabel];
     
     @weakify(self);
@@ -98,6 +114,64 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
 
 + (CGFloat)rowHeight {
     return 90.0;
+}
+
+- (void)setContentBackgroundColor:(UIColor *)contentBackgroundColor {
+    _contentBackgroundColor = contentBackgroundColor ?: [self.class _defaultContentBackgroundColor];
+    
+    [self setBackgroundColor:_contentBackgroundColor];
+}
+- (void)setSelectedContentBackgroundColor:(UIColor *)selectedContentBackgroundColor {
+    _selectedContentBackgroundColor = selectedContentBackgroundColor;
+    
+    if (_selectedContentBackgroundColor) {
+        [self setSelectedBackgroundView:({
+            UIView *retval = [[UIView alloc] initWithFrame:CGRectZero];
+            
+            [retval setBackgroundColor:selectedContentBackgroundColor];
+            
+            retval;
+        })];
+    }
+    else {
+        [self setSelectedBackgroundView:nil];
+    }
+}
+- (void)setNameFont:(UIFont *)nameFont {
+    _nameFont = nameFont ?: [self.class _defaultNameFont];
+    
+    [self.nameLabel setFont:_nameFont];
+}
+- (void)setNameTextColor:(UIColor *)nameTextColor {
+    _nameTextColor = nameTextColor ?: [self.class _defaultNameTextColor];
+    
+    [self.nameLabel setTextColor:_nameTextColor];
+}
+- (void)setCountFont:(UIFont *)countFont {
+    _countFont = countFont ?: [self.class _defaultCountFont];
+    
+    [self.countLabel setFont:_countFont];
+}
+- (void)setCountTextColor:(UIColor *)countTextColor {
+    _countTextColor = countTextColor ?: [self.class _defaultCountTextColor];
+    
+    [self.countLabel setTextColor:_countTextColor];
+}
+
++ (UIColor *)_defaultContentBackgroundColor; {
+    return [UIColor whiteColor];
+}
++ (UIFont *)_defaultNameFont; {
+    return [UIFont systemFontOfSize:17.0];
+}
++ (UIColor *)_defaultNameTextColor; {
+    return [UIColor blackColor];
+}
++ (UIFont *)_defaultCountFont; {
+    return [UIFont systemFontOfSize:12.0];
+}
++ (UIColor *)_defaultCountTextColor; {
+    return [UIColor lightGrayColor];
 }
 
 @end
