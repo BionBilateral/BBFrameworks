@@ -1044,6 +1044,34 @@
 			path = BBAddressBook;
 			sourceTree = "<group>";
 		};
+		0750D6451B6A9640002F2C1A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				79EA80B91B3F0C5600D50B6B /* media_player_pause.png */,
+				79EA80BA1B3F0C5600D50B6B /* media_player_pause@2x.png */,
+				79EA80BB1B3F0C5600D50B6B /* media_player_pause@3x.png */,
+				79EA80BC1B3F0C5600D50B6B /* media_player_play.png */,
+				79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */,
+				79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */,
+				799B96061B6997550010E1CD /* media_picker_camera_roll.png */,
+				799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */,
+				799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */,
+				799B960C1B69A2880010E1CD /* media_picker_recently_added.png */,
+				799B960D1B69A2880010E1CD /* media_picker_recently_added@2x.png */,
+				799B960E1B69A2880010E1CD /* media_picker_recently_added@3x.png */,
+				799B96191B69C3450010E1CD /* media_picker_type_video.png */,
+				799B961A1B69C3450010E1CD /* media_picker_type_video@2x.png */,
+				799B961B1B69C3450010E1CD /* media_picker_type_video@3x.png */,
+				79BE2BB11B65831A00ADE997 /* kit_next.png */,
+				79BE2BB21B65831A00ADE997 /* kit_next@2x.png */,
+				79BE2BB31B65831A00ADE997 /* kit_next@3x.png */,
+				79BE2BB41B65831A00ADE997 /* kit_previous.png */,
+				79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */,
+				79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		07605ACE1B695F4000333678 /* Assets Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -1812,27 +1840,7 @@
 		79EA80771B3F06ED00D50B6B /* BBFrameworksResources */ = {
 			isa = PBXGroup;
 			children = (
-				79EA80B91B3F0C5600D50B6B /* media_player_pause.png */,
-				79EA80BA1B3F0C5600D50B6B /* media_player_pause@2x.png */,
-				79EA80BB1B3F0C5600D50B6B /* media_player_pause@3x.png */,
-				79EA80BC1B3F0C5600D50B6B /* media_player_play.png */,
-				79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */,
-				79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */,
-				799B96061B6997550010E1CD /* media_picker_camera_roll.png */,
-				799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */,
-				799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */,
-				799B960C1B69A2880010E1CD /* media_picker_recently_added.png */,
-				799B960D1B69A2880010E1CD /* media_picker_recently_added@2x.png */,
-				799B960E1B69A2880010E1CD /* media_picker_recently_added@3x.png */,
-				799B96191B69C3450010E1CD /* media_picker_type_video.png */,
-				799B961A1B69C3450010E1CD /* media_picker_type_video@2x.png */,
-				799B961B1B69C3450010E1CD /* media_picker_type_video@3x.png */,
-				79BE2BB11B65831A00ADE997 /* kit_next.png */,
-				79BE2BB21B65831A00ADE997 /* kit_next@2x.png */,
-				79BE2BB31B65831A00ADE997 /* kit_next@3x.png */,
-				79BE2BB41B65831A00ADE997 /* kit_previous.png */,
-				79BE2BB51B65831A00ADE997 /* kit_previous@2x.png */,
-				79BE2BB61B65831A00ADE997 /* kit_previous@3x.png */,
+				0750D6451B6A9640002F2C1A /* Assets */,
 				79EA80781B3F06ED00D50B6B /* Supporting Files */,
 			);
 			path = BBFrameworksResources;
