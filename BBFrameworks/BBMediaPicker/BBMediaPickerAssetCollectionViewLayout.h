@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetCollectionViewCell.h
+//  BBMediaPickerAssetCollectionViewLayout.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/29/15.
@@ -15,10 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBMediaPickerAssetViewModel;
+@interface BBMediaPickerAssetCollectionViewLayout : UICollectionViewFlowLayout
 
-@interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
-
-@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
+@property (assign,nonatomic) NSInteger numberOfColumns;
 
 @end

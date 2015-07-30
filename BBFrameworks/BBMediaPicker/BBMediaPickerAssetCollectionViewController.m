@@ -17,6 +17,7 @@
 #import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetsGroupViewModel.h"
 #import "BBMediaPickerViewModel.h"
+#import "BBMediaPickerAssetCollectionViewLayout.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -80,12 +81,9 @@
 }
 
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel; {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    BBMediaPickerAssetCollectionViewLayout *layout = [[BBMediaPickerAssetCollectionViewLayout alloc] init];
     
-    [layout setMinimumInteritemSpacing:2.0];
-    [layout setMinimumLineSpacing:2.0];
-    [layout setSectionInset:UIEdgeInsetsZero];
-    [layout setItemSize:[BBMediaPickerAssetCollectionViewCell cellSize]];
+    [layout setNumberOfColumns:4];
     
     if (!(self = [super initWithCollectionViewLayout:layout]))
         return nil;

@@ -16,12 +16,16 @@
 #import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBKitColorMacros.h"
+#import "BBFoundationGeometryFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
+static CGFloat const kSubviewMarginHalf = 4.0;
 
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
 @property (strong,nonatomic) UIView *selectedOverlayView;
+@property (strong,nonatomic) UIImageView *selectedImageView;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
@@ -34,7 +38,11 @@
     [self.contentView addSubview:self.thumbnailImageView];
     
     [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.selectedOverlayView setBackgroundColor:BBColorWA(1.0, 0.33)];
     [self.contentView addSubview:self.selectedOverlayView];
+    
+    [self setSelectedImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.selectedOverlayView addSubview:self.selectedImageView];
     
     RAC(self.thumbnailImageView,image) = RACObserve(self, viewModel.thumbnailImage);
     
@@ -46,16 +54,45 @@
     
     [self.thumbnailImageView setFrame:self.contentView.bounds];
     [self.selectedOverlayView setFrame:self.contentView.bounds];
+    [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.selectedImageView.image.size.height - kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
 }
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     
-    [self.selectedOverlayView setBackgroundColor:selected ? BBColorWA(1.0, 0.5) : [UIColor clearColor]];
-}
-
-+ (CGSize)cellSize; {
-    return CGSizeMake(78.0, 78.0);
+    [self.selectedImageView setImage:({
+        UIImage *retval = nil;
+        
+        if (selected) {
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+            
+            CGRect rect = CGRectMake(0, 0, 22, 22);
+            
+            [[UIColor whiteColor] setFill];
+            [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
+            
+            [self.tintColor setFill];
+            [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
+            
+            NSString *string = @"✓";
+            NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+            CGSize size = [string sizeWithAttributes:attributes];
+            
+            [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];
+            
+            retval = UIGraphicsGetImageFromCurrentImageContext();
+            
+            UIGraphicsEndImageContext();
+        }
+        
+        retval;
+    })];
+    
+    [self.selectedOverlayView setAlpha:selected ? 1.0 : 0.0];
+    
+    if (selected) {
+        [self setNeedsLayout];
+    }
 }
 
 @end

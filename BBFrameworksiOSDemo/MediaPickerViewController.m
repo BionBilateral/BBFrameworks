@@ -68,7 +68,7 @@
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
     [viewController setDelegate:self];
-//    [viewController setAllowsMultipleSelection:YES];
+    [viewController setAllowsMultipleSelection:YES];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }

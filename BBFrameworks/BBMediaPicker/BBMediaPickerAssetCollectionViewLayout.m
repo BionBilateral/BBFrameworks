@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetCollectionViewCell.h
+//  BBMediaPickerAssetCollectionViewLayout.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/29/15.
@@ -13,12 +13,38 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import "BBMediaPickerAssetCollectionViewLayout.h"
 
-@class BBMediaPickerAssetViewModel;
+@implementation BBMediaPickerAssetCollectionViewLayout
 
-@interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setSectionInset:UIEdgeInsetsMake(8.0, 0, 8.0, 0)];
+    [self setMinimumInteritemSpacing:2.0];
+    [self setMinimumLineSpacing:2.0];
+    
+    return self;
+}
 
-@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
+- (void)prepareLayout {
+    [super prepareLayout];
+    
+    CGFloat availableWidth = CGRectGetWidth(self.collectionView.bounds) - (self.minimumInteritemSpacing * (self.numberOfColumns - 1));
+    CGFloat itemWidth = floor(availableWidth / (CGFloat)self.numberOfColumns);
+    
+    [self setItemSize:CGSizeMake(itemWidth, itemWidth)];
+}
+
+- (void)setNumberOfColumns:(NSInteger)numberOfColumns {
+    if (_numberOfColumns == numberOfColumns) {
+        return;
+    }
+    
+    _numberOfColumns = numberOfColumns;
+    
+    [self invalidateLayout];
+}
 
 @end
