@@ -113,6 +113,7 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
     
     subspec.ios.dependency "BBFrameworks/BBKit"
+    subspec.ios.dependency "BBFrameworks/BBBlocks"
     
     subspec.ios.source_files = "BBFrameworks/BBMediaPicker"
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
