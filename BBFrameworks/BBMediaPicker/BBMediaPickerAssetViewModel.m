@@ -52,7 +52,7 @@
     
     uint8_t *buffer = malloc(size);
     NSError *outError;
-    NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:offset length:size error:&outError];
+    NSUInteger retval = [self.asset.defaultRepresentation getBytes:buffer fromOffset:offset length:(NSUInteger)size error:&outError];
     
     if (retval == 0) {
         BBLogObject(outError);
