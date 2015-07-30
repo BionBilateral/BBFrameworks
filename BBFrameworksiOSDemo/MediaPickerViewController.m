@@ -69,23 +69,23 @@
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
     [viewController setDelegate:self];
-//    [viewController setAllowsMultipleSelection:YES];
+    [viewController setAllowsMultipleSelection:YES];
     [viewController setHidesEmptyMediaGroups:YES];
-    [viewController setCancelBarButtonItemTitle:@"End"];
-    [viewController setAutomaticallyDismissForSingleSelection:NO];
+//    [viewController setCancelBarButtonItemTitle:@"End"];
+//    [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
-    [viewController setCancelConfirmBlock:^(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion){
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm End" message:@"Are you sure you want to end?" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            completion(NO);
-        }]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"End" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            completion(YES);
-        }]];
-        
-        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
-    }];
+//    [viewController setCancelConfirmBlock:^(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion){
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm End" message:@"Are you sure you want to end?" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//            completion(NO);
+//        }]];
+//        [alertController addAction:[UIAlertAction actionWithTitle:@"End" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//            completion(YES);
+//        }]];
+//        
+//        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
+//    }];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }

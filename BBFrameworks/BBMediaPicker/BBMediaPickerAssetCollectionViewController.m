@@ -73,6 +73,10 @@
      subscribeNext:^(id _) {
          @strongify(self);
          [self.collectionView reloadData];
+         
+         if (self.assetViewModels.count > 0) {
+             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assetViewModels.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+         }
      }];
 }
 
