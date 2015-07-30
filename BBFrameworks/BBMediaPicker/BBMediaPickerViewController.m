@@ -19,6 +19,7 @@
 #import "BBFrameworksFunctions.h"
 #import "BBBlocks.h"
 #import "BBMediaPickerAssetViewModel.h"
+#import "BBFoundationDebugging.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 

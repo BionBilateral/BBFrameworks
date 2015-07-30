@@ -17,6 +17,8 @@
 #import "BBFrameworksFunctions.h"
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerAssetsGroupViewModel.h"
+#import "NSArray+BBFoundationExtensions.h"
+#import "BBBlocks.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -31,6 +33,8 @@
 @property (readwrite,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
+
+- (void)_refreshAssetsGroupViewModels;
 @end
 
 @implementation BBMediaPickerViewModel
@@ -44,11 +48,105 @@
     [self setAssetsLibrary:[[ALAssetsLibrary alloc] init]];
     
     @weakify(self);
-    [[[[NSNotificationCenter defaultCenter]
+    [[[[[NSNotificationCenter defaultCenter]
      rac_addObserverForName:ALAssetsLibraryChangedNotification object:self.assetsLibrary]
       takeUntil:[self rac_willDeallocSignal]]
-     subscribeNext:^(NSNotification *note) {
-         
+      deliverOn:[RACScheduler schedulerWithPriority:RACSchedulerPriorityDefault]]
+     subscribeNext:^(NSNotification *value) {
+         @strongify(self);
+         BBLogObject(value);
+         if (value.userInfo == nil) {
+             [self _refreshAssetsGroupViewModels];
+         }
+         else {
+             if (value.userInfo[ALAssetLibraryInsertedAssetGroupsKey]) {
+                 NSMutableArray *assetsGroupViewModels = [NSMutableArray arrayWithArray:self.assetsGroupViewModels];
+                 
+                 for (NSURL *assetsGroupURL in value.userInfo[ALAssetLibraryInsertedAssetGroupsKey]) {
+                     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                     
+                     __block BBMediaPickerAssetsGroupViewModel *viewModel = nil;
+                     
+                     [self.assetsLibrary groupForURL:assetsGroupURL resultBlock:^(ALAssetsGroup *group) {
+                         viewModel = [[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group parentViewModel:self];
+                         
+                         dispatch_semaphore_signal(semaphore);
+                     } failureBlock:^(NSError *error) {
+                         dispatch_semaphore_signal(semaphore);
+                     }];
+                     
+                     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                     
+                     if (viewModel) {
+                         [assetsGroupViewModels addObject:viewModel];
+                     }
+                 }
+                 
+                 [self setAssetsGroupViewModels:assetsGroupViewModels];
+             }
+             
+             if (value.userInfo[ALAssetLibraryDeletedAssetGroupsKey]) {
+                 NSMutableArray *assetsGroupViewModels = [NSMutableArray arrayWithArray:self.assetsGroupViewModels];
+                 
+                 for (NSURL *assetsGroupURL in value.userInfo[ALAssetLibraryDeletedAssetGroupsKey]) {
+                     BBMediaPickerAssetsGroupViewModel *viewModel = [assetsGroupViewModels BB_find:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
+                         return [assetsGroupURL isEqual:object.URL];
+                     }];
+                     
+                     if (viewModel) {
+                         [viewModel setDeleted:YES];
+                         
+                         [assetsGroupViewModels removeObject:viewModel];
+                     }
+                 }
+                 
+                 [self setAssetsGroupViewModels:assetsGroupViewModels];
+             }
+             
+             if (value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                 for (NSURL *assetsGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                     
+                     void(^markViewModelWithURLAsDeletedBlock)(void) = ^{
+                         BBMediaPickerAssetsGroupViewModel *viewModel = [self.assetsGroupViewModels BB_find:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
+                             return [assetsGroupURL isEqual:object.URL];
+                         }];
+                         
+                         [viewModel setDeleted:YES];
+                     };
+                     
+                     [self.assetsLibrary groupForURL:assetsGroupURL resultBlock:^(ALAssetsGroup *group) {
+                         if (!group) {
+                             markViewModelWithURLAsDeletedBlock();
+                         }
+                         
+                         dispatch_semaphore_signal(semaphore);
+                     } failureBlock:^(NSError *error) {
+                         markViewModelWithURLAsDeletedBlock();
+                         
+                         dispatch_semaphore_signal(semaphore);
+                     }];
+                     
+                     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                 }
+                 
+                 if ([self.assetsGroupViewModels BB_any:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
+                     return object.isDeleted;
+                 }]) {
+                     [self setAssetsGroupViewModels:[self.assetsGroupViewModels BB_filter:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
+                         return !object.isDeleted;
+                     }]];
+                 }
+                 
+                 for (NSURL *assetsGroupURL in value.userInfo[ALAssetLibraryUpdatedAssetGroupsKey]) {
+                     BBMediaPickerAssetsGroupViewModel *viewModel = [self.assetsGroupViewModels BB_find:^BOOL(BBMediaPickerAssetsGroupViewModel *object, NSInteger index) {
+                         return [assetsGroupURL isEqual:object.URL];
+                     }];
+                     
+                     [viewModel refreshAssetViewModels];
+                 }
+             }
+         }
      }];
     
     [self setCancelCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -117,28 +215,32 @@
         }];
         return nil;
     }] doNext:^(id x) {
-        if (!self.assetsGroupViewModels) {
-            NSMutableArray *temp = [[NSMutableArray alloc] init];
+        [self _refreshAssetsGroupViewModels];
+    }];
+}
+
+- (void)_refreshAssetsGroupViewModels; {
+    [self setSelectedAssetViewModels:nil];
+    
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (group) {
+            BBMediaPickerAssetsGroupViewModel *viewModel = [[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group parentViewModel:self];
             
-            [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                if (group) {
-                    BBMediaPickerAssetsGroupViewModel *viewModel = [[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group parentViewModel:self];
-                    
-                    if (viewModel.count == 0 &&
-                        self.hidesEmptyMediaGroups) {
-                        
-                        return;
-                    }
-                    
-                    [temp addObject:viewModel];
-                }
-                else {
-                    [self setAssetsGroupViewModels:temp];
-                }
-            } failureBlock:^(NSError *error) {
-                BBLogObject(error);
-            }];
+            if (viewModel.count == 0 &&
+                self.hidesEmptyMediaGroups) {
+                
+                return;
+            }
+            
+            [temp addObject:viewModel];
         }
+        else {
+            [self setAssetsGroupViewModels:temp];
+        }
+    } failureBlock:^(NSError *error) {
+        BBLogObject(error);
     }];
 }
 

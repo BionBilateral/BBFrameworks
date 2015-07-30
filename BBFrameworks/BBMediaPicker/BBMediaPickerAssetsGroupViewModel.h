@@ -18,12 +18,14 @@
 #import <AssetsLibrary/ALAssetsGroup.h>
 
 @class BBMediaPickerViewModel;
-@class RACSignal;
 
 @interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
 
 @property (readonly,strong,nonatomic) ALAssetsGroup *assetsGroup;
 
+@property (assign,nonatomic,getter=isDeleted) BOOL deleted;
+
+@property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) NSNumber *type;
 @property (readonly,nonatomic) UIImage *badgeImage;
 @property (readonly,nonatomic) UIImage *posterImage;
@@ -36,6 +38,8 @@
 @property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
 
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel;
+
+- (void)refreshAssetViewModels;
 
 - (RACSignal *)assetViewModels;
 

@@ -17,7 +17,13 @@
 #import <UIKit/UIBarButtonItem.h>
 #import "BBMediaPickerDefines.h"
 
-@class BBMediaPickerAssetViewModel;
+typedef NS_ENUM(NSInteger, BBMediaPickerViewModelRefreshType) {
+    BBMediaPickerViewModelRefreshTypeNone,
+    BBMediaPickerViewModelRefreshTypeDelete,
+    BBMediaPickerViewModelRefreshTypeUpdate
+};
+
+@class BBMediaPickerAssetsGroupViewModel,BBMediaPickerAssetViewModel;
 @class RACCommand;
 
 @interface BBMediaPickerViewModel : RVMViewModel

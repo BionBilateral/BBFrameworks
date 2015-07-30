@@ -43,10 +43,28 @@
     }
     
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setAlwaysBounceVertical:YES];
     [self.collectionView setAllowsMultipleSelection:self.viewModel.parentViewModel.allowsMultipleSelection];
     [self.collectionView registerClass:[BBMediaPickerAssetCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
+    
+    [[[RACObserve(self.viewModel, name)
+       skip:1]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSString *value) {
+         @strongify(self);
+         [self setTitle:value];
+     }];
+    
+    [[[RACObserve(self.viewModel, deleted)
+     ignore:@NO]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.navigationController popToRootViewControllerAnimated:YES];
+     }];
+    
     RAC(self,assetViewModels) = [self.viewModel assetViewModels];
     
     [[RACObserve(self, assetViewModels)

@@ -53,31 +53,46 @@
     return self;
 }
 
-- (RACSignal *)assetViewModels; {
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSMutableArray *temp = [[NSMutableArray alloc] init];
-        
-        [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-            if (result) {
-                [temp addObject:[[BBMediaPickerAssetViewModel alloc] initWithAsset:result]];
-            }
-            else {
-                [subscriber sendNext:[[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
-                    return (([object.type isEqualToString:ALAssetTypePhoto] &&
-                             self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
-                            ([object.type isEqualToString:ALAssetTypeVideo] &&
-                             self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
-                            ([object.type isEqualToString:ALAssetTypeUnknown] &&
-                             self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
-                }] BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
-                    return !self.parentViewModel.mediaFilterBlock || self.parentViewModel.mediaFilterBlock(object);
-                }]];
-            }
-        }];
-        return nil;
-    }] takeUntil:[self rac_willDeallocSignal]];
+- (void)refreshAssetViewModels {
+    [self willChangeValueForKey:@keypath(self,name)];
+    [self willChangeValueForKey:@keypath(self,countString)];
+    [self didChangeValueForKey:@keypath(self,name)];
+    [self didChangeValueForKey:@keypath(self,countString)];
 }
 
+- (RACSignal *)assetViewModels; {
+    return [[[self rac_signalForSelector:@selector(refreshAssetViewModels)]
+             startWith:nil]
+            flattenMap:^RACStream *(id _) {
+                return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                    NSMutableArray *temp = [[NSMutableArray alloc] init];
+                    
+                    [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                        if (result) {
+                            [temp addObject:[[BBMediaPickerAssetViewModel alloc] initWithAsset:result]];
+                        }
+                        else {
+                            [subscriber sendNext:[[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                                return (([object.type isEqualToString:ALAssetTypePhoto] &&
+                                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
+                                        ([object.type isEqualToString:ALAssetTypeVideo] &&
+                                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
+                                        ([object.type isEqualToString:ALAssetTypeUnknown] &&
+                                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
+                            }] BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                                return !self.parentViewModel.mediaFilterBlock || self.parentViewModel.mediaFilterBlock(object);
+                            }]];
+                            [subscriber sendCompleted];
+                        }
+                    }];
+                    return nil;
+                }];
+            }];
+}
+
+- (NSURL *)URL {
+    return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyURL];
+}
 - (NSNumber *)type {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyType];
 }
