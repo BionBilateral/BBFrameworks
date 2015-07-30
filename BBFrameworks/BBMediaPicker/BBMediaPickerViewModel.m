@@ -39,6 +39,8 @@
     if (!(self = [super init]))
         return nil;
     
+    _mediaTypes = BBMediaPickerMediaTypesAll;
+    
     [self setAssetsLibrary:[[ALAssetsLibrary alloc] init]];
     
     @weakify(self);

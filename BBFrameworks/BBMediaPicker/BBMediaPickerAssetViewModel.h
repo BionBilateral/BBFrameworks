@@ -21,6 +21,7 @@
 
 @property (readonly,strong,nonatomic) ALAsset *asset;
 
+@property (readonly,nonatomic) NSString *type;
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
 - (instancetype)initWithAsset:(ALAsset *)asset;

@@ -107,5 +107,12 @@
 - (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
     [self.viewModel setAllowsMultipleSelection:allowsMultipleSelection];
 }
+@dynamic mediaTypes;
+- (BBMediaPickerMediaTypes)mediaTypes {
+    return self.viewModel.mediaTypes;
+}
+- (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
+    [self.viewModel setMediaTypes:mediaTypes];
+}
 
 @end

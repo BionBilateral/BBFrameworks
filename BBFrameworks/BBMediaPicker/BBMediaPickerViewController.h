@@ -25,4 +25,6 @@
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 
+@property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
+
 @end

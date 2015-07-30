@@ -26,6 +26,8 @@
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 
+@property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
+
 @property (readonly,copy,nonatomic) NSArray *assetsGroupViewModels;
 @property (readonly,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
 

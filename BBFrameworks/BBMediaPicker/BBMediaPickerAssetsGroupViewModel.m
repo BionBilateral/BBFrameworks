@@ -16,6 +16,8 @@
 #import "BBMediaPickerAssetsGroupViewModel.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBMediaPickerViewModel.h"
+#import "BBBlocks.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -110,7 +112,14 @@
             [temp addObject:[[BBMediaPickerAssetViewModel alloc] initWithAsset:result]];
         }
         else {
-            [self setAssetViewModels:temp];
+            [self setAssetViewModels:[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                return (([object.type isEqualToString:ALAssetTypePhoto] &&
+                        self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
+                        ([object.type isEqualToString:ALAssetTypeVideo] &&
+                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
+                        ([object.type isEqualToString:ALAssetTypeUnknown] &&
+                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
+            }]];
         }
     }];
 }

@@ -32,6 +32,9 @@
     return self;
 }
 
+- (NSString *)type {
+    return [self.asset valueForProperty:ALAssetPropertyType];
+}
 - (UIImage *)thumbnailImage {
     return [UIImage imageWithCGImage:self.asset.thumbnail];
 }
