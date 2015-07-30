@@ -15,6 +15,7 @@
 
 #import "BBMediaPickerAssetsGroupViewModel.h"
 #import "BBMediaPickerAssetViewModel.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -42,6 +43,20 @@
     return self;
 }
 
+- (NSNumber *)type {
+    return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyType];
+}
+
+- (UIImage *)badgeImage {
+    ALAssetsGroupType type = self.type.integerValue;
+    
+    switch (type) {
+        case ALAssetsGroupSavedPhotos:
+            return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_camera_roll"];
+        default:
+            return nil;
+    }
+}
 - (UIImage *)posterImage {
     return [UIImage imageWithCGImage:self.assetsGroup.posterImage];
 }

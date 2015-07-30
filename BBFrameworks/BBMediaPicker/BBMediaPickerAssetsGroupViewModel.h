@@ -21,6 +21,9 @@
 
 @interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
 
+@property (readonly,nonatomic) NSNumber *type;
+
+@property (readonly,nonatomic) UIImage *badgeImage;
 @property (readonly,nonatomic) UIImage *posterImage;
 @property (readonly,nonatomic) UIImage *secondPosterImage;
 @property (readonly,nonatomic) UIImage *thirdPosterImage;

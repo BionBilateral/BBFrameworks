@@ -16,13 +16,16 @@
 #import "BBMediaPickerAssetsGroupTableViewCell.h"
 #import "BBFoundationGeometryFunctions.h"
 #import "BBMediaPickerAssetsGroupViewModel.h"
+#import "UIImage+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 static CGFloat const kSubviewMargin = 8.0;
+static CGFloat const kSubviewMarginHalf = 4.0;
 static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
 
 @interface BBMediaPickerAssetsGroupTableViewCell ()
+@property (strong,nonatomic) UIImageView *badgeImageView;
 @property (strong,nonatomic) UIImageView *firstThumbnailImageView;
 @property (strong,nonatomic) UIImageView *secondThumbnailImageView;
 @property (strong,nonatomic) UIImageView *thirdThumbnailImageView;
@@ -47,6 +50,9 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     [self setFirstThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.firstThumbnailImageView];
     
+    [self setBadgeImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.contentView addSubview:self.badgeImageView];
+    
     [self setNameLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.nameLabel];
     
@@ -54,6 +60,15 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     [self.countLabel setFont:[UIFont systemFontOfSize:12.0]];
     [self.contentView addSubview:self.countLabel];
     
+    @weakify(self);
+    RAC(self.badgeImageView,image) = [[RACObserve(self, viewModel.badgeImage)
+                                       map:^id(UIImage *value) {
+                                           return [value BB_imageByRenderingWithColor:[UIColor whiteColor]];
+                                       }]
+                                      doNext:^(id _) {
+                                          @strongify(self);
+                                          [self setNeedsLayout];
+                                      }];
     RAC(self.firstThumbnailImageView,image) = RACObserve(self, viewModel.posterImage);
     RAC(self.secondThumbnailImageView,image) = RACObserve(self, viewModel.secondPosterImage);
     RAC(self.thirdThumbnailImageView,image) = RACObserve(self, viewModel.thirdPosterImage);
@@ -69,6 +84,11 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     [self.firstThumbnailImageView setFrame:BBCGRectCenterInRectVertically(CGRectMake(kSubviewMargin, 0, kImageViewSize.width, kImageViewSize.height), self.contentView.bounds)];
     [self.secondThumbnailImageView setFrame:CGRectOffset(CGRectInset(self.firstThumbnailImageView.frame, 2.0, 0), 0, -2.0)];
     [self.thirdThumbnailImageView setFrame:CGRectOffset(CGRectInset(self.secondThumbnailImageView.frame, 2.0, 0), 0, -2.0)];
+    
+    [self.badgeImageView setFrame:CGRectMake(CGRectGetMinX(self.firstThumbnailImageView.frame) + kSubviewMarginHalf,
+                                             CGRectGetMaxY(self.firstThumbnailImageView.frame) - self.badgeImageView.image.size.height - kSubviewMarginHalf,
+                                             self.badgeImageView.image.size.width,
+                                             self.badgeImageView.image.size.height)];
     
     CGRect rect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.firstThumbnailImageView.frame) + kSubviewMargin, 0, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.firstThumbnailImageView.frame) - kSubviewMargin - kSubviewMargin, ceil(self.nameLabel.font.lineHeight + self.countLabel.font.lineHeight)), self.contentView.bounds);
     

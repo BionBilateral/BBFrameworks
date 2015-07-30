@@ -102,6 +102,12 @@
 		7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9D71B1ADE65009B1CE9 /* Images.xcassets */; };
 		7989DD511B345A2D0001F7C3 /* MediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD501B345A2D0001F7C3 /* MediaPickerViewController.m */; };
 		7989DD531B345A3E0001F7C3 /* MediaPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7989DD521B345A3E0001F7C3 /* MediaPickerViewController.xib */; };
+		799B96091B6997550010E1CD /* media_picker_camera_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B96061B6997550010E1CD /* media_picker_camera_roll.png */; };
+		799B960A1B6997550010E1CD /* media_picker_camera_roll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */; };
+		799B960B1B6997550010E1CD /* media_picker_camera_roll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */; };
+		799B960F1B69A2880010E1CD /* media_picker_recently_added.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B960C1B69A2880010E1CD /* media_picker_recently_added.png */; };
+		799B96101B69A2880010E1CD /* media_picker_recently_added@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B960D1B69A2880010E1CD /* media_picker_recently_added@2x.png */; };
+		799B96111B69A2880010E1CD /* media_picker_recently_added@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B960E1B69A2880010E1CD /* media_picker_recently_added@3x.png */; };
 		799C0C261B5876E300A3888A /* BBFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C251B5876E300A3888A /* BBFormTableViewController.m */; };
 		799C0C2A1B587C0C00A3888A /* BBFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C291B587C0C00A3888A /* BBFormField.m */; };
 		799C0C311B58A0A300A3888A /* BBFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C281B587C0C00A3888A /* BBFormField.h */; };
@@ -742,6 +748,12 @@
 		7989DD4F1B345A2D0001F7C3 /* MediaPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPickerViewController.h; sourceTree = "<group>"; };
 		7989DD501B345A2D0001F7C3 /* MediaPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPickerViewController.m; sourceTree = "<group>"; };
 		7989DD521B345A3E0001F7C3 /* MediaPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaPickerViewController.xib; sourceTree = "<group>"; };
+		799B96061B6997550010E1CD /* media_picker_camera_roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_picker_camera_roll.png; sourceTree = "<group>"; };
+		799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_camera_roll@2x.png"; sourceTree = "<group>"; };
+		799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_camera_roll@3x.png"; sourceTree = "<group>"; };
+		799B960C1B69A2880010E1CD /* media_picker_recently_added.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_picker_recently_added.png; sourceTree = "<group>"; };
+		799B960D1B69A2880010E1CD /* media_picker_recently_added@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_recently_added@2x.png"; sourceTree = "<group>"; };
+		799B960E1B69A2880010E1CD /* media_picker_recently_added@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_recently_added@3x.png"; sourceTree = "<group>"; };
 		799C0C241B5876E300A3888A /* BBFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewController.h; sourceTree = "<group>"; };
 		799C0C251B5876E300A3888A /* BBFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewController.m; sourceTree = "<group>"; };
 		799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewControllerDataSource.h; sourceTree = "<group>"; };
@@ -1787,6 +1799,12 @@
 				79EA80BC1B3F0C5600D50B6B /* media_player_play.png */,
 				79EA80BD1B3F0C5600D50B6B /* media_player_play@2x.png */,
 				79EA80BE1B3F0C5600D50B6B /* media_player_play@3x.png */,
+				799B96061B6997550010E1CD /* media_picker_camera_roll.png */,
+				799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */,
+				799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */,
+				799B960C1B69A2880010E1CD /* media_picker_recently_added.png */,
+				799B960D1B69A2880010E1CD /* media_picker_recently_added@2x.png */,
+				799B960E1B69A2880010E1CD /* media_picker_recently_added@3x.png */,
 				79BE2BB11B65831A00ADE997 /* kit_next.png */,
 				79BE2BB21B65831A00ADE997 /* kit_next@2x.png */,
 				79BE2BB31B65831A00ADE997 /* kit_next@3x.png */,
@@ -2170,13 +2188,19 @@
 				07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */,
 				79BE2BBB1B65831A00ADE997 /* kit_previous@2x.png in Resources */,
 				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
+				799B960A1B6997550010E1CD /* media_picker_camera_roll@2x.png in Resources */,
+				799B96101B69A2880010E1CD /* media_picker_recently_added@2x.png in Resources */,
 				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
 				79EA81441B3F212700D50B6B /* MediaPicker.strings in Resources */,
+				799B960F1B69A2880010E1CD /* media_picker_recently_added.png in Resources */,
 				79EA80C11B3F0C5600D50B6B /* media_player_pause@3x.png in Resources */,
 				79BE2BB81B65831A00ADE997 /* kit_next@2x.png in Resources */,
+				799B96111B69A2880010E1CD /* media_picker_recently_added@3x.png in Resources */,
+				799B96091B6997550010E1CD /* media_picker_camera_roll.png in Resources */,
 				79BE2BB71B65831A00ADE997 /* kit_next.png in Resources */,
 				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
+				799B960B1B6997550010E1CD /* media_picker_camera_roll@3x.png in Resources */,
 				79EA80C41B3F0C5600D50B6B /* media_player_play@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
