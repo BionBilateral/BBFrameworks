@@ -18,6 +18,7 @@
 
 #import <BBFrameworks/BBMediaPicker.h>
 #import <BBFrameworks/UIViewController+BBKitExtensions.h>
+#import <BBFrameworks/BBKitColorMacros.h>
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -30,8 +31,10 @@
 
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setContentBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setSelectedContentBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerAssetsGroupTableView appearance] setContentBackgroundColor:[UIColor blackColor]];
+        
+        [[BBMediaPickerAssetsGroupTableViewCell appearance] setContentBackgroundColor:BBColorW(0.1)];
+        [[BBMediaPickerAssetsGroupTableViewCell appearance] setSelectedContentBackgroundColor:[UIColor darkGrayColor]];
         [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameTextColor:[UIColor whiteColor]];
     }
