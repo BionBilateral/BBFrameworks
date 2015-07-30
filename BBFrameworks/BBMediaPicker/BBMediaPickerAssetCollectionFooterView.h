@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetGroupViewModel.h
+//  BBMediaPickerAssetCollectionFooterView.h
 //  BBFrameworks
 //
-//  Created by William Towe on 7/29/15.
+//  Created by William Towe on 7/30/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,35 +13,14 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <ReactiveViewModel/RVMViewModel.h>
-#import <UIKit/UIImage.h>
-#import <AssetsLibrary/ALAssetsGroup.h>
+#import <UIKit/UIKit.h>
 
-@class BBMediaPickerViewModel;
+@class BBMediaPickerAssetsGroupViewModel;
 
-@interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
+@interface BBMediaPickerAssetCollectionFooterView : UICollectionReusableView
 
-@property (readonly,strong,nonatomic) ALAssetsGroup *assetsGroup;
+@property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 
-@property (assign,nonatomic,getter=isDeleted) BOOL deleted;
-
-@property (readonly,nonatomic) NSURL *URL;
-@property (readonly,nonatomic) NSNumber *type;
-@property (readonly,nonatomic) UIImage *badgeImage;
-@property (readonly,nonatomic) UIImage *posterImage;
-@property (readonly,nonatomic) UIImage *secondPosterImage;
-@property (readonly,nonatomic) UIImage *thirdPosterImage;
-@property (readonly,nonatomic) NSString *name;
-@property (readonly,nonatomic) NSInteger count;
-@property (readonly,nonatomic) NSString *countString;
-@property (readonly,copy,nonatomic) NSString *detailCountString;
-
-@property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
-
-- (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel;
-
-- (void)refreshAssetViewModels;
-
-- (RACSignal *)assetViewModels;
++ (CGFloat)rowHeight;
 
 @end

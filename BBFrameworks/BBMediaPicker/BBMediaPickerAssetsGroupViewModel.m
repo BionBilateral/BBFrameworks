@@ -24,6 +24,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BBMediaPickerAssetsGroupViewModel ()
+@property (readwrite,copy,nonatomic) NSString *detailCountString;
 @property (readwrite,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
 @property (readwrite,nonatomic) ALAssetsGroup *assetsGroup;
 @end
@@ -56,8 +57,11 @@
 - (void)refreshAssetViewModels {
     [self willChangeValueForKey:@keypath(self,name)];
     [self willChangeValueForKey:@keypath(self,countString)];
+    [self willChangeValueForKey:@keypath(self,detailCountString)];
+    _detailCountString = nil;
     [self didChangeValueForKey:@keypath(self,name)];
     [self didChangeValueForKey:@keypath(self,countString)];
+    [self didChangeValueForKey:@keypath(self,detailCountString)];
 }
 
 - (RACSignal *)assetViewModels; {
@@ -145,6 +149,39 @@
 }
 - (NSString *)countString {
     return @(self.count).stringValue;
+}
+- (NSString *)detailCountString {
+    if (!_detailCountString) {
+        __block NSInteger photos = 0, videos = 0;
+        
+        [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if ([[result valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypePhoto]) {
+                photos++;
+            }
+            else if ([[result valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
+                videos++;
+            }
+        }];
+        
+        NSMutableArray *comps = [[NSMutableArray alloc] init];
+        
+        if (photos == 1) {
+            [comps addObject:@"1 Photo"];
+        }
+        else if (photos > 1) {
+            [comps addObject:[NSString stringWithFormat:@"%@ Photos",@(photos)]];
+        }
+        
+        if (videos == 1) {
+            [comps addObject:@"1 Video"];
+        }
+        else if (videos > 1) {
+            [comps addObject:[NSString stringWithFormat:@"%@ Videos",@(videos)]];
+        }
+        
+        _detailCountString = [comps componentsJoinedByString:@", "];
+    }
+    return _detailCountString;
 }
 
 @end

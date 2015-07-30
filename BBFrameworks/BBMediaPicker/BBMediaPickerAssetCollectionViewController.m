@@ -19,10 +19,11 @@
 #import "BBMediaPickerViewModel.h"
 #import "BBMediaPickerAssetCollectionViewLayout.h"
 #import "BBMediaPickerViewController.h"
+#import "BBMediaPickerAssetCollectionFooterView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaPickerAssetCollectionViewController ()
+@interface BBMediaPickerAssetCollectionViewController () <UICollectionViewDelegateFlowLayout>
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 @property (copy,nonatomic) NSArray *assetViewModels;
 @end
@@ -46,6 +47,7 @@
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setAlwaysBounceVertical:YES];
     [self.collectionView setAllowsMultipleSelection:self.viewModel.parentViewModel.allowsMultipleSelection];
+    [self.collectionView registerClass:[BBMediaPickerAssetCollectionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionFooterView class])];
     [self.collectionView registerClass:[BBMediaPickerAssetCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
@@ -83,6 +85,13 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.assetViewModels.count;
 }
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    BBMediaPickerAssetCollectionFooterView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionFooterView class]) forIndexPath:indexPath];
+    
+    [view setViewModel:self.viewModel];
+    
+    return view;
+}
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaPickerAssetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) forIndexPath:indexPath];
     
@@ -91,6 +100,9 @@
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(CGRectGetWidth(collectionView.frame), [BBMediaPickerAssetCollectionFooterView rowHeight]);
+}
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.viewModel.parentViewModel.selectedAssetViewModels containsObject:self.assetViewModels[indexPath.row]]) {
         [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
