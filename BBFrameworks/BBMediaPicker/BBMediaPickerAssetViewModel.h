@@ -16,11 +16,13 @@
 #import <ReactiveViewModel/RVMViewModel.h>
 #import <UIKit/UIImage.h>
 #import <AssetsLibrary/ALAsset.h>
+#import "BBMediaPickerMedia.h"
 
-@interface BBMediaPickerAssetViewModel : RVMViewModel
+@interface BBMediaPickerAssetViewModel : RVMViewModel <BBMediaPickerMedia>
 
 @property (readonly,strong,nonatomic) ALAsset *asset;
 
+@property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) NSString *type;
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 

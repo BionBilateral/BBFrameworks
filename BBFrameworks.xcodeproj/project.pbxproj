@@ -757,6 +757,7 @@
 		799B960E1B69A2880010E1CD /* media_picker_recently_added@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_recently_added@3x.png"; sourceTree = "<group>"; };
 		799B96121B69A7CA0010E1CD /* BBMediaPickerAssetCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewLayout.h; sourceTree = "<group>"; };
 		799B96131B69A7CA0010E1CD /* BBMediaPickerAssetCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewLayout.m; sourceTree = "<group>"; };
+		799B96151B69BA5B0010E1CD /* BBMediaPickerMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerMedia.h; sourceTree = "<group>"; };
 		799C0C241B5876E300A3888A /* BBFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewController.h; sourceTree = "<group>"; };
 		799C0C251B5876E300A3888A /* BBFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFormTableViewController.m; sourceTree = "<group>"; };
 		799C0C271B58788600A3888A /* BBFormTableViewControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFormTableViewControllerDataSource.h; sourceTree = "<group>"; };
@@ -1278,6 +1279,7 @@
 			isa = PBXGroup;
 			children = (
 				07605ABB1B69551800333678 /* BBMediaPicker.h */,
+				799B96151B69BA5B0010E1CD /* BBMediaPickerMedia.h */,
 				07605AC91B69593700333678 /* BBMediaPickerDefines.h */,
 				07605AC31B69577C00333678 /* BBMediaPickerViewModel.h */,
 				07605AC41B69577C00333678 /* BBMediaPickerViewModel.m */,

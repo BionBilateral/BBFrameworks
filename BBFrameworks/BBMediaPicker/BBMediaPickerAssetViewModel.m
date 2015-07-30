@@ -21,6 +21,10 @@
 
 @implementation BBMediaPickerAssetViewModel
 
+- (NSURL *)mediaURL {
+    return self.URL;
+}
+
 - (instancetype)initWithAsset:(ALAsset *)asset; {
     if (!(self = [super init]))
         return nil;
@@ -32,6 +36,9 @@
     return self;
 }
 
+- (NSURL *)URL {
+    return [self.asset valueForProperty:ALAssetPropertyAssetURL];
+}
 - (NSString *)type {
     return [self.asset valueForProperty:ALAssetPropertyType];
 }

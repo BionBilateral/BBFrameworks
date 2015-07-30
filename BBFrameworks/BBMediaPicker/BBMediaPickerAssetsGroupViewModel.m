@@ -112,13 +112,15 @@
             [temp addObject:[[BBMediaPickerAssetViewModel alloc] initWithAsset:result]];
         }
         else {
-            [self setAssetViewModels:[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+            [self setAssetViewModels:[[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
                 return (([object.type isEqualToString:ALAssetTypePhoto] &&
                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
                         ([object.type isEqualToString:ALAssetTypeVideo] &&
                          self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
                         ([object.type isEqualToString:ALAssetTypeUnknown] &&
                          self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
+            }] BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                return !self.parentViewModel.mediaFilterBlock || self.parentViewModel.mediaFilterBlock(object);
             }]];
         }
     }];

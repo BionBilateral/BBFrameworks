@@ -75,9 +75,7 @@
          [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
              @strongify(self);
              if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didFinishPickingMedia:)]) {
-                 [self.delegate mediaPickerViewController:self didFinishPickingMedia:[self.viewModel.selectedAssetViewModels BB_map:^id(BBMediaPickerAssetViewModel *object, NSInteger index) {
-                     return object.asset;
-                 }].array];
+                 [self.delegate mediaPickerViewController:self didFinishPickingMedia:self.viewModel.selectedAssetViewModels.array];
              }
          }];
      }];
@@ -113,6 +111,13 @@
 }
 - (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
     [self.viewModel setMediaTypes:mediaTypes];
+}
+@dynamic mediaFilterBlock;
+- (BBMediaPickerMediaFilterBlock)mediaFilterBlock {
+    return self.viewModel.mediaFilterBlock;
+}
+- (void)setMediaFilterBlock:(BBMediaPickerMediaFilterBlock)mediaFilterBlock {
+    [self.viewModel setMediaFilterBlock:mediaFilterBlock];
 }
 
 @end

@@ -16,6 +16,7 @@
 #ifndef __BB_FRAMEWORKS_MEDIA_PICKER_DEFINES__
 #define __BB_FRAMEWORKS_MEDIA_PICKER_DEFINES__
 
+#import "BBMediaPickerMedia.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
 typedef NS_ENUM(NSInteger, BBMediaPickerAuthorizationStatus) {
@@ -31,5 +32,7 @@ typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
     BBMediaPickerMediaTypesUnknown = 1 << 2,
     BBMediaPickerMediaTypesAll = BBMediaPickerMediaTypesPhoto | BBMediaPickerMediaTypesVideo | BBMediaPickerMediaTypesUnknown
 };
+
+typedef BOOL(^BBMediaPickerMediaFilterBlock)(id<BBMediaPickerMedia> media);
 
 #endif
