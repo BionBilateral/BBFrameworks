@@ -79,7 +79,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize retval = CGSizeMake(floor(size.width * 0.5), 0);
+    CGSize retval = CGSizeMake(floor(size.width * 0.75), 0);
     
     switch (self.arrowStyle) {
         case BBTooltipViewArrowStyleDefault:
