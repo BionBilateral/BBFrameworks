@@ -68,8 +68,9 @@
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
     [viewController setDelegate:self];
-    [viewController setAllowsMultipleSelection:YES];
+//    [viewController setAllowsMultipleSelection:YES];
     [viewController setHidesEmptyMediaGroups:YES];
+    [viewController setCancelBarButtonItemTitle:@"End"];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];

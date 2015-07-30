@@ -113,6 +113,13 @@
 - (void)setHidesEmptyMediaGroups:(BOOL)hidesEmptyMediaGroups {
     [self.viewModel setHidesEmptyMediaGroups:hidesEmptyMediaGroups];
 }
+@dynamic cancelBarButtonItemTitle;
+- (NSString *)cancelBarButtonItemTitle {
+    return self.viewModel.cancelBarButtonItemTitle;
+}
+- (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
+    [self.viewModel setCancelBarButtonItemTitle:cancelBarButtonItemTitle];
+}
 
 @dynamic mediaTypes;
 - (BBMediaPickerMediaTypes)mediaTypes {

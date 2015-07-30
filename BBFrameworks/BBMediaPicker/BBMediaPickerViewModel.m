@@ -35,6 +35,8 @@
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
 
 - (void)_refreshAssetsGroupViewModels;
+
++ (NSString *)_defaultCancelBarButtonItemTitle;
 @end
 
 @implementation BBMediaPickerViewModel
@@ -43,6 +45,7 @@
     if (!(self = [super init]))
         return nil;
     
+    _cancelBarButtonItemTitle = [self.class _defaultCancelBarButtonItemTitle];
     _mediaTypes = BBMediaPickerMediaTypesAll;
     
     [self setAssetsLibrary:[[ALAssetsLibrary alloc] init]];
@@ -167,7 +170,7 @@
         return [RACSignal return:self];
     }]];
     
-    [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:self.cancelBarButtonItemTitle style:UIBarButtonItemStylePlain target:nil action:NULL]];
     [self.cancelBarButtonItem setRac_command:self.cancelCommand];
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
@@ -225,6 +228,13 @@
     }];
 }
 
+- (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
+    _cancelBarButtonItemTitle = cancelBarButtonItemTitle ?: [self.class _defaultCancelBarButtonItemTitle];
+    
+    [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:_cancelBarButtonItemTitle style:UIBarButtonItemStylePlain target:nil action:NULL]];
+    [self.cancelBarButtonItem setRac_command:self.cancelCommand];
+}
+
 - (void)_refreshAssetsGroupViewModels; {
     [self setSelectedAssetViewModels:nil];
     
@@ -248,6 +258,10 @@
     } failureBlock:^(NSError *error) {
         BBLogObject(error);
     }];
+}
+
++ (NSString *)_defaultCancelBarButtonItemTitle {
+    return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_CANCEL_BAR_BUTTON_ITEM_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Cancel", @"Media picker cancel bar button item title");
 }
 
 @end
