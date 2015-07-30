@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.8.0"
+  spec.version = "0.8.1"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -121,7 +121,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
-    platform :ios, "8.0"
+    platform = :ios, "8.0"
     
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
