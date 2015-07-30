@@ -18,6 +18,7 @@
 #import "UIImage+BBKitExtensionsPrivate.h"
 #import "BBMediaPickerViewModel.h"
 #import "BBBlocks.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -166,17 +167,17 @@
         NSMutableArray *comps = [[NSMutableArray alloc] init];
         
         if (photos == 1) {
-            [comps addObject:@"1 Photo"];
+            [comps addObject:[NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_SINGLE_PHOTO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Photo", @"Media picker single photo format"),@(photos)]];
         }
         else if (photos > 1) {
-            [comps addObject:[NSString stringWithFormat:@"%@ Photos",@(photos)]];
+            [comps addObject:[NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_MULTIPLE_PHOTO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Photos", @"Media picker multiple photo format"),@(photos)]];
         }
         
         if (videos == 1) {
-            [comps addObject:@"1 Video"];
+            [comps addObject:[NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_SINGLE_VIDEO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Video", @"Media picker single video format"),@(videos)]];
         }
         else if (videos > 1) {
-            [comps addObject:[NSString stringWithFormat:@"%@ Videos",@(videos)]];
+            [comps addObject:[NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_MULTIPLE_VIDEO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Videos", @"Media picker multiple video format"),@(videos)]];
         }
         
         _detailCountString = [comps componentsJoinedByString:@", "];

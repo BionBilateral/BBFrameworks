@@ -586,6 +586,7 @@
 		0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookManager.m; sourceTree = "<group>"; };
 		0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionFooterView.h; sourceTree = "<group>"; };
 		0750D6421B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionFooterView.m; sourceTree = "<group>"; };
+		0750D6441B6A94C0002F2C1A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPicker.strings; sourceTree = "<group>"; };
 		07605AB41B67D72B00333678 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		07605AB51B67D72B00333678 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		07605ABB1B69551800333678 /* BBMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMediaPicker.h; sourceTree = "<group>"; };
@@ -2137,6 +2138,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 796B00E61B1ACBEC0087D3FD;
 			productRefGroup = 79C0009F1B1ACC7C004C9A6E /* Products */;
@@ -2676,6 +2678,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				79EA81431B3F212700D50B6B /* en */,
+				0750D6441B6A94C0002F2C1A /* es */,
 			);
 			name = MediaPicker.strings;
 			sourceTree = "<group>";

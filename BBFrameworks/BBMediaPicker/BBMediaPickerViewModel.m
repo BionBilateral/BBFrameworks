@@ -38,8 +38,6 @@
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
 
 - (void)_refreshAssetsGroupViewModels;
-
-+ (NSString *)_defaultCancelBarButtonItemTitle;
 @end
 
 @implementation BBMediaPickerViewModel
@@ -275,10 +273,6 @@
     } failureBlock:^(NSError *error) {
         BBLogObject(error);
     }];
-}
-
-+ (NSString *)_defaultCancelBarButtonItemTitle {
-    return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_CANCEL_BAR_BUTTON_ITEM_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Cancel", @"Media picker cancel bar button item title");
 }
 
 @end
