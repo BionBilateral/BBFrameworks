@@ -19,6 +19,7 @@
 #import "BBMediaPickerAssetsGroupViewModel.h"
 #import "NSArray+BBFoundationExtensions.h"
 #import "BBBlocks.h"
+#import "BBMediaPickerViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -32,6 +33,8 @@
 @property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (readwrite,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 
+@property (readwrite,weak,nonatomic) BBMediaPickerViewController *mediaPickerViewController;
+
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
 
 - (void)_refreshAssetsGroupViewModels;
@@ -40,21 +43,22 @@
 @end
 
 @implementation BBMediaPickerViewModel
-
-- (instancetype)init {
+#pragma mark *** Public Methods ***
+- (instancetype)initWithViewController:(BBMediaPickerViewController *)viewController {
     if (!(self = [super init]))
         return nil;
     
+    [self setMediaPickerViewController:viewController];
+    
     _automaticallyDismissForSingleSelection = YES;
-    _cancelBarButtonItemTitle = [self.class _defaultCancelBarButtonItemTitle];
     _mediaTypes = BBMediaPickerMediaTypesAll;
     
     [self setAssetsLibrary:[[ALAssetsLibrary alloc] init]];
     
     @weakify(self);
     [[[[[NSNotificationCenter defaultCenter]
-     rac_addObserverForName:ALAssetsLibraryChangedNotification object:self.assetsLibrary]
-      takeUntil:[self rac_willDeallocSignal]]
+        rac_addObserverForName:ALAssetsLibraryChangedNotification object:self.assetsLibrary]
+       takeUntil:[self rac_willDeallocSignal]]
       deliverOn:[RACScheduler schedulerWithPriority:RACSchedulerPriorityDefault]]
      subscribeNext:^(NSNotification *value) {
          @strongify(self);
@@ -171,8 +175,7 @@
         return [RACSignal return:self];
     }]];
     
-    [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:self.cancelBarButtonItemTitle style:UIBarButtonItemStylePlain target:nil action:NULL]];
-    [self.cancelBarButtonItem setRac_command:self.cancelCommand];
+    [self setCancelBarButtonItemTitle:nil];
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self.doneBarButtonItem setRac_command:self.doneCommand];
@@ -180,9 +183,9 @@
     [[[RACSignal combineLatest:@[RACObserve(self, automaticallyDismissForSingleSelection),
                                  RACObserve(self, allowsMultipleSelection),
                                  RACObserve(self, selectedAssetViewModels)] reduce:^id(NSNumber *dismiss,NSNumber *flag, NSOrderedSet *value){
-        return @(dismiss.boolValue && !flag.boolValue && value.count > 0);
-    }]
-     ignore:@NO]
+                                     return @(dismiss.boolValue && !flag.boolValue && value.count > 0);
+                                 }]
+      ignore:@NO]
      subscribeNext:^(id _) {
          @strongify(self);
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -199,11 +202,16 @@
 }
 
 - (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel; {
-    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
-    
-    [temp addObject:viewModel];
-    
-    [self setSelectedAssetViewModels:temp];
+    if (self.allowsMultipleSelection) {
+        NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
+        
+        [temp addObject:viewModel];
+        
+        [self setSelectedAssetViewModels:temp];
+    }
+    else {
+        [self setSelectedAssetViewModels:[NSOrderedSet orderedSetWithObject:viewModel]];
+    }
 }
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel; {
     NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
@@ -217,7 +225,7 @@
     @weakify(self);
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
-        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupLibrary usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
             *stop = YES;
             
             [subscriber sendNext:@YES];
@@ -232,9 +240,15 @@
 }
 
 - (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
-    _cancelBarButtonItemTitle = cancelBarButtonItemTitle ?: [self.class _defaultCancelBarButtonItemTitle];
+    _cancelBarButtonItemTitle = cancelBarButtonItemTitle;
     
-    [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:_cancelBarButtonItemTitle style:UIBarButtonItemStylePlain target:nil action:NULL]];
+    if (_cancelBarButtonItemTitle) {
+        [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:_cancelBarButtonItemTitle style:UIBarButtonItemStylePlain target:nil action:NULL]];
+    }
+    else {
+        [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    }
+    
     [self.cancelBarButtonItem setRac_command:self.cancelCommand];
 }
 

@@ -47,6 +47,9 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark BBMediaPickerViewControllerDelegate
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(NSArray *)media {
+    BBLogObject(media);
+}
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
     BBLogObject(media);
 }
@@ -71,6 +74,7 @@
 //    [viewController setAllowsMultipleSelection:YES];
     [viewController setHidesEmptyMediaGroups:YES];
     [viewController setCancelBarButtonItemTitle:@"End"];
+    [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];

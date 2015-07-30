@@ -39,7 +39,7 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setViewModel:[[BBMediaPickerViewModel alloc] init]];
+    [self setViewModel:[[BBMediaPickerViewModel alloc] initWithViewController:self]];
     
     return self;
 }

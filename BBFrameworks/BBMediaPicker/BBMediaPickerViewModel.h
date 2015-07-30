@@ -17,13 +17,7 @@
 #import <UIKit/UIBarButtonItem.h>
 #import "BBMediaPickerDefines.h"
 
-typedef NS_ENUM(NSInteger, BBMediaPickerViewModelRefreshType) {
-    BBMediaPickerViewModelRefreshTypeNone,
-    BBMediaPickerViewModelRefreshTypeDelete,
-    BBMediaPickerViewModelRefreshTypeUpdate
-};
-
-@class BBMediaPickerAssetsGroupViewModel,BBMediaPickerAssetViewModel;
+@class BBMediaPickerAssetsGroupViewModel,BBMediaPickerAssetViewModel,BBMediaPickerViewController;
 @class RACCommand;
 
 @interface BBMediaPickerViewModel : RVMViewModel
@@ -47,6 +41,10 @@ typedef NS_ENUM(NSInteger, BBMediaPickerViewModelRefreshType) {
 
 @property (readonly,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (readonly,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
+
+@property (readonly,weak,nonatomic) BBMediaPickerViewController *mediaPickerViewController;
+
+- (instancetype)initWithViewController:(BBMediaPickerViewController *)viewController;
 
 - (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
