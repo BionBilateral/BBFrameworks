@@ -45,6 +45,7 @@
     if (!(self = [super init]))
         return nil;
     
+    _automaticallyDismissForSingleSelection = YES;
     _cancelBarButtonItemTitle = [self.class _defaultCancelBarButtonItemTitle];
     _mediaTypes = BBMediaPickerMediaTypesAll;
     
@@ -176,8 +177,10 @@
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self.doneBarButtonItem setRac_command:self.doneCommand];
     
-    [[[RACSignal combineLatest:@[RACObserve(self, allowsMultipleSelection),RACObserve(self, selectedAssetViewModels)] reduce:^id(NSNumber *flag, NSOrderedSet *value){
-        return @(!flag.boolValue && value.count > 0);
+    [[[RACSignal combineLatest:@[RACObserve(self, automaticallyDismissForSingleSelection),
+                                 RACObserve(self, allowsMultipleSelection),
+                                 RACObserve(self, selectedAssetViewModels)] reduce:^id(NSNumber *dismiss,NSNumber *flag, NSOrderedSet *value){
+        return @(dismiss.boolValue && !flag.boolValue && value.count > 0);
     }]
      ignore:@NO]
      subscribeNext:^(id _) {

@@ -25,6 +25,7 @@
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
+@property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
 @property (copy,nonatomic) NSString *cancelBarButtonItemTitle;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;

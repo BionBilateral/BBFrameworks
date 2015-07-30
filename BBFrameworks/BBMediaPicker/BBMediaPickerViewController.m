@@ -113,6 +113,13 @@
 - (void)setHidesEmptyMediaGroups:(BOOL)hidesEmptyMediaGroups {
     [self.viewModel setHidesEmptyMediaGroups:hidesEmptyMediaGroups];
 }
+@dynamic automaticallyDismissForSingleSelection;
+- (BOOL)automaticallyDismissForSingleSelection {
+    return self.viewModel.automaticallyDismissForSingleSelection;
+}
+- (void)setAutomaticallyDismissForSingleSelection:(BOOL)automaticallyDismissForSingleSelection {
+    [self.viewModel setAutomaticallyDismissForSingleSelection:automaticallyDismissForSingleSelection];
+}
 @dynamic cancelBarButtonItemTitle;
 - (NSString *)cancelBarButtonItemTitle {
     return self.viewModel.cancelBarButtonItemTitle;
