@@ -31,10 +31,6 @@
 
 @implementation BBMediaPickerAssetCollectionViewController
 
-- (NSString *)title {
-    return self.viewModel.name;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,14 +48,6 @@
     [self.collectionView registerClass:[BBMediaPickerAssetCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
-    
-    [[[RACObserve(self.viewModel, name)
-       skip:1]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(NSString *value) {
-         @strongify(self);
-         [self setTitle:value];
-     }];
     
     [[[RACObserve(self.viewModel, deleted)
      ignore:@NO]
@@ -81,6 +69,15 @@
              [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assetViewModels.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
          }
      }];
+    
+    if (self.viewModel.parentViewModel.allowsMultipleSelection) {
+        RAC(self,title) = [RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
+            return selected.length > 0 ? selected : name;
+        }];
+    }
+    else {
+        RAC(self,title) = RACObserve(self.viewModel, name);
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -128,6 +125,7 @@
         return nil;
     
     [self setViewModel:viewModel];
+    [self setTitle:self.viewModel.name];
     
     return self;
 }

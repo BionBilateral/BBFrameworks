@@ -76,14 +76,24 @@
 - (NSURL *)URL {
     return [self.asset valueForProperty:ALAssetPropertyAssetURL];
 }
-- (NSString *)type {
-    return [self.asset valueForProperty:ALAssetPropertyType];
+- (BBMediaPickerAssetViewModelType)type {
+    NSString *typeString = [self.asset valueForProperty:ALAssetPropertyType];
+    
+    if ([typeString isEqualToString:ALAssetTypePhoto]) {
+        return BBMediaPickerAssetViewModelTypePhoto;
+    }
+    else if ([typeString isEqualToString:ALAssetTypeVideo]) {
+        return BBMediaPickerAssetViewModelTypeVideo;
+    }
+    else {
+        return BBMediaPickerAssetViewModelTypeUnknown;
+    }
 }
 - (UIImage *)typeImage {
-    return [self.type isEqualToString:ALAssetTypeVideo] ? [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"] : nil;
+    return self.type == BBMediaPickerAssetViewModelTypeVideo ? [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"] : nil;
 }
 - (NSString *)durationString {
-    if ([self.type isEqualToString:ALAssetTypeVideo]) {
+    if (self.type == BBMediaPickerAssetViewModelTypeVideo) {
         NSTimeInterval duration = [[self.asset valueForProperty:ALAssetPropertyDuration] doubleValue];
         NSDate *date = [NSDate dateWithTimeIntervalSinceNow:duration];
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSinceNow:duration] options:0];

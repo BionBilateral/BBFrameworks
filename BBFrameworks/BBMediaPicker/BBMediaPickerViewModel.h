@@ -33,6 +33,8 @@
 
 @property (copy,nonatomic) BBMediaPickerMediaFilterBlock mediaFilterBlock;
 
+@property (readonly,copy,nonatomic) NSString *selectedAssetString;
+
 @property (readonly,copy,nonatomic) NSArray *assetsGroupViewModels;
 @property (readonly,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
 

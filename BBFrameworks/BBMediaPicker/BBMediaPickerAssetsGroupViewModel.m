@@ -78,11 +78,11 @@
                         }
                         else {
                             [subscriber sendNext:[[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
-                                return (([object.type isEqualToString:ALAssetTypePhoto] &&
+                                return ((object.type == BBMediaPickerAssetViewModelTypePhoto &&
                                          self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
-                                        ([object.type isEqualToString:ALAssetTypeVideo] &&
+                                        (object.type == BBMediaPickerAssetViewModelTypeVideo &&
                                          self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
-                                        ([object.type isEqualToString:ALAssetTypeUnknown] &&
+                                        (object.type == BBMediaPickerAssetViewModelTypeUnknown &&
                                          self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
                             }] BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
                                 return !self.parentViewModel.mediaFilterBlock || self.parentViewModel.mediaFilterBlock(object);

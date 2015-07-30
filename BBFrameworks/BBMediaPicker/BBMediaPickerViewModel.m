@@ -20,12 +20,14 @@
 #import "NSArray+BBFoundationExtensions.h"
 #import "BBBlocks.h"
 #import "BBMediaPickerViewController.h"
+#import "BBMediaPickerAssetViewModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BBMediaPickerViewModel ()
+@property (readwrite,copy,nonatomic) NSString *selectedAssetString;
 @property (readwrite,copy,nonatomic) NSArray *assetsGroupViewModels;
 @property (readwrite,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
 @property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
@@ -191,6 +193,46 @@
              [self.doneCommand execute:nil];
          });
      }];
+    
+    RAC(self,selectedAssetString) = [RACObserve(self, selectedAssetViewModels)
+                                     map:^id(NSOrderedSet *value) {
+                                         if (value.count > 0) {
+                                             NSInteger photos = 0, videos = 0;
+                                             
+                                             for (BBMediaPickerAssetViewModel *viewModel in value) {
+                                                 if (viewModel.type == BBMediaPickerAssetViewModelTypePhoto) {
+                                                     photos++;
+                                                 }
+                                                 else if (viewModel.type == BBMediaPickerAssetViewModelTypeVideo) {
+                                                     videos++;
+                                                 }
+                                             }
+                                             
+                                             if (photos > 0 &&
+                                                 videos > 0) {
+                                                 
+                                                 return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_MULTIPLE_SELECTED_ITEM_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Selected Items", @"Media picker multiple selected item format"),@(photos + videos)];
+                                             }
+                                             else if (photos > 1) {
+                                                 return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_MULTIPLE_SELECTED_PHOTO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Selected Photos", @"Media picker multiple selected photo format"),@(photos)];
+                                             }
+                                             else if (photos == 1) {
+                                                 return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_SINGLE_SELECTED_PHOTO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Selected Photo", @"Media picker single selected photo format"),@(photos)];
+                                             }
+                                             else if (videos > 1) {
+                                                 return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_MULTIPLE_SELECTED_VIDEO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Selected Videos", @"Media picker multiple selected video format"),@(videos)];
+                                             }
+                                             else if (videos == 1) {
+                                                 return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_SINGLE_SELECTED_VIDEO_FORMAT", @"MediaPicker", BBFrameworksResourcesBundle(), @"%@ Selected Video", @"Media picker single selected video format"),@(videos)];
+                                             }
+                                             else {
+                                                 return nil;
+                                             }
+                                         }
+                                         else {
+                                             return nil;
+                                         }
+                                     }];
     
     return self;
 }

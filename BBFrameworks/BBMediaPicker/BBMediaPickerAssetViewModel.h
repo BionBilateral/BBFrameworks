@@ -18,12 +18,18 @@
 #import <AssetsLibrary/ALAsset.h>
 #import "BBMediaPickerMedia.h"
 
+typedef NS_ENUM(NSInteger, BBMediaPickerAssetViewModelType) {
+    BBMediaPickerAssetViewModelTypePhoto,
+    BBMediaPickerAssetViewModelTypeVideo,
+    BBMediaPickerAssetViewModelTypeUnknown
+};
+
 @interface BBMediaPickerAssetViewModel : RVMViewModel <BBMediaPickerMedia>
 
 @property (readonly,strong,nonatomic) ALAsset *asset;
 
 @property (readonly,nonatomic) NSURL *URL;
-@property (readonly,nonatomic) NSString *type;
+@property (readonly,nonatomic) BBMediaPickerAssetViewModelType type;
 @property (readonly,nonatomic) UIImage *typeImage;
 @property (readonly,nonatomic) NSString *durationString;
 @property (readonly,nonatomic) UIImage *thumbnailImage;
