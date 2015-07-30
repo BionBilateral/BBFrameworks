@@ -23,6 +23,7 @@
 
 @interface BBMediaPickerAssetCollectionViewController ()
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
+@property (copy,nonatomic) NSArray *assetViewModels;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewController
@@ -46,7 +47,9 @@
     [self.collectionView registerClass:[BBMediaPickerAssetCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
-    [[RACObserve(self.viewModel, assetViewModels)
+    RAC(self,assetViewModels) = [self.viewModel assetViewModels];
+    
+    [[RACObserve(self, assetViewModels)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
@@ -55,18 +58,18 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.viewModel.assetViewModels.count;
+    return self.assetViewModels.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaPickerAssetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) forIndexPath:indexPath];
     
-    [cell setViewModel:self.viewModel.assetViewModels[indexPath.row]];
+    [cell setViewModel:self.assetViewModels[indexPath.row]];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.viewModel.parentViewModel.selectedAssetViewModels containsObject:self.viewModel.assetViewModels[indexPath.row]]) {
+    if ([self.viewModel.parentViewModel.selectedAssetViewModels containsObject:self.assetViewModels[indexPath.row]]) {
         [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     }
     else {
@@ -74,10 +77,10 @@
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.viewModel.parentViewModel selectAssetViewModel:self.viewModel.assetViewModels[indexPath.row]];
+    [self.viewModel.parentViewModel selectAssetViewModel:self.assetViewModels[indexPath.row]];
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.viewModel.parentViewModel deselectAssetViewModel:self.viewModel.assetViewModels[indexPath.row]];
+    [self.viewModel.parentViewModel deselectAssetViewModel:self.assetViewModels[indexPath.row]];
 }
 
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel; {

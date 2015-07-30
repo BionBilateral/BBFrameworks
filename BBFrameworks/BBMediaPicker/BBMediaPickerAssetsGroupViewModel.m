@@ -19,15 +19,13 @@
 #import "BBMediaPickerViewModel.h"
 #import "BBBlocks.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BBMediaPickerAssetsGroupViewModel ()
-@property (readwrite,copy,nonatomic) NSArray *assetViewModels;
 @property (readwrite,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
-
-@property (strong,nonatomic) ALAssetsGroup *assetsGroup;
-
-- (void)_reloadAssetViewModels;
+@property (readwrite,nonatomic) ALAssetsGroup *assetsGroup;
 @end
 
 @implementation BBMediaPickerAssetsGroupViewModel
@@ -42,13 +40,47 @@
     [self setAssetsGroup:assetsGroup];
     [self setParentViewModel:parentViewModel];
     
+    if (self.parentViewModel.mediaTypes == BBMediaPickerMediaTypesPhoto) {
+        [self.assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+    }
+    else if (self.parentViewModel.mediaTypes == BBMediaPickerMediaTypesVideo) {
+        [self.assetsGroup setAssetsFilter:[ALAssetsFilter allVideos]];
+    }
+    else {
+        [self.assetsGroup setAssetsFilter:[ALAssetsFilter allAssets]];
+    }
+    
     return self;
+}
+
+- (RACSignal *)assetViewModels; {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        
+        [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result) {
+                [temp addObject:[[BBMediaPickerAssetViewModel alloc] initWithAsset:result]];
+            }
+            else {
+                [subscriber sendNext:[[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                    return (([object.type isEqualToString:ALAssetTypePhoto] &&
+                             self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
+                            ([object.type isEqualToString:ALAssetTypeVideo] &&
+                             self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
+                            ([object.type isEqualToString:ALAssetTypeUnknown] &&
+                             self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
+                }] BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
+                    return !self.parentViewModel.mediaFilterBlock || self.parentViewModel.mediaFilterBlock(object);
+                }]];
+            }
+        }];
+        return nil;
+    }] takeUntil:[self rac_willDeallocSignal]];
 }
 
 - (NSNumber *)type {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyType];
 }
-
 - (UIImage *)badgeImage {
     ALAssetsGroupType type = self.type.integerValue;
     
@@ -95,35 +127,6 @@
 }
 - (NSString *)countString {
     return @(self.assetsGroup.numberOfAssets).stringValue;
-}
-
-- (NSArray *)assetViewModels {
-    if (!_assetViewModels) {
-        [self _reloadAssetViewModels];
-    }
-    return _assetViewModels;
-}
-
-- (void)_reloadAssetViewModels; {
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    
-    [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        if (result) {
-            [temp addObject:[[BBMediaPickerAssetViewModel alloc] initWithAsset:result]];
-        }
-        else {
-            [self setAssetViewModels:[[temp BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
-                return (([object.type isEqualToString:ALAssetTypePhoto] &&
-                        self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesPhoto) ||
-                        ([object.type isEqualToString:ALAssetTypeVideo] &&
-                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesVideo) ||
-                        ([object.type isEqualToString:ALAssetTypeUnknown] &&
-                         self.parentViewModel.mediaTypes & BBMediaPickerMediaTypesUnknown));
-            }] BB_filter:^BOOL(BBMediaPickerAssetViewModel *object, NSInteger index) {
-                return !self.parentViewModel.mediaFilterBlock || self.parentViewModel.mediaFilterBlock(object);
-            }]];
-        }
-    }];
 }
 
 @end

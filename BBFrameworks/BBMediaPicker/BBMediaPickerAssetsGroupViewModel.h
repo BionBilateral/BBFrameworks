@@ -18,11 +18,13 @@
 #import <AssetsLibrary/ALAssetsGroup.h>
 
 @class BBMediaPickerViewModel;
+@class RACSignal;
 
 @interface BBMediaPickerAssetsGroupViewModel : RVMViewModel
 
-@property (readonly,nonatomic) NSNumber *type;
+@property (readonly,strong,nonatomic) ALAssetsGroup *assetsGroup;
 
+@property (readonly,nonatomic) NSNumber *type;
 @property (readonly,nonatomic) UIImage *badgeImage;
 @property (readonly,nonatomic) UIImage *posterImage;
 @property (readonly,nonatomic) UIImage *secondPosterImage;
@@ -30,9 +32,10 @@
 @property (readonly,nonatomic) NSString *name;
 @property (readonly,nonatomic) NSString *countString;
 
-@property (readonly,copy,nonatomic) NSArray *assetViewModels;
 @property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;
 
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel;
+
+- (RACSignal *)assetViewModels;
 
 @end
