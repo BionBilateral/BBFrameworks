@@ -25,6 +25,7 @@
 @property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) NSString *type;
 @property (readonly,nonatomic) UIImage *typeImage;
+@property (readonly,nonatomic) NSString *durationString;
 @property (readonly,nonatomic) UIImage *thumbnailImage;
 
 - (instancetype)initWithAsset:(ALAsset *)asset;

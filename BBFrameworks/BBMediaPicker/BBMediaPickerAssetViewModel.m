@@ -46,6 +46,26 @@
 - (UIImage *)typeImage {
     return [self.type isEqualToString:ALAssetTypeVideo] ? [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"] : nil;
 }
+- (NSString *)durationString {
+    if ([self.type isEqualToString:ALAssetTypeVideo]) {
+        NSTimeInterval duration = [[self.asset valueForProperty:ALAssetPropertyDuration] doubleValue];
+        NSDate *date = [NSDate dateWithTimeIntervalSinceNow:duration];
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSinceNow:duration] options:0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        if (comps.hour > 0) {
+            [dateFormatter setDateFormat:@"H:mm:ss"];
+        }
+        else {
+            [dateFormatter setDateFormat:@"m:ss"];
+        }
+        
+        date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+        
+        return [dateFormatter stringFromDate:date];
+    }
+    return nil;
+}
 - (UIImage *)thumbnailImage {
     return [UIImage imageWithCGImage:self.asset.thumbnail];
 }

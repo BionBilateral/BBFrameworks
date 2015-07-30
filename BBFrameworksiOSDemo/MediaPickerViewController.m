@@ -69,6 +69,7 @@
     
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
+    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }

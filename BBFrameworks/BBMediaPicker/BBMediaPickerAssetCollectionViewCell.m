@@ -18,6 +18,7 @@
 #import "BBKitColorMacros.h"
 #import "BBFoundationGeometryFunctions.h"
 #import "UIImage+BBKitExtensions.h"
+#import "BBGradientView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -25,7 +26,9 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
+@property (strong,nonatomic) BBGradientView *gradientView;
 @property (strong,nonatomic) UIImageView *typeImageView;
+@property (strong,nonatomic) UILabel *durationLabel;
 @property (strong,nonatomic) UIView *selectedOverlayView;
 @property (strong,nonatomic) UIImageView *selectedImageView;
 @end
@@ -39,8 +42,18 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
     
+    [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
+    [self.gradientView setColors:@[BBColorWA(0.0, 0.0),BBColorWA(0.0, 1.0)]];
+    [self.contentView addSubview:self.gradientView];
+    
     [self setTypeImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.typeImageView];
+    
+    [self setDurationLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.durationLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [self.durationLabel setTextColor:[UIColor whiteColor]];
+    [self.durationLabel setTextAlignment:NSTextAlignmentRight];
+    [self.contentView addSubview:self.durationLabel];
     
     [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.selectedOverlayView setBackgroundColor:BBColorWA(1.0, 0.33)];
@@ -51,6 +64,10 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     
     @weakify(self);
     RAC(self.thumbnailImageView,image) = RACObserve(self, viewModel.thumbnailImage);
+    RAC(self.gradientView,alpha) = [RACObserve(self, viewModel.typeImage)
+                                    map:^id(id value) {
+                                        return value ? @1.0 : @0.0;
+                                    }];
     RAC(self.typeImageView,image) = [[RACObserve(self, viewModel.typeImage)
                                       map:^id(UIImage *value) {
                                           return [value BB_imageByRenderingWithColor:[UIColor whiteColor]];
@@ -59,6 +76,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
                                          @strongify(self);
                                          [self setNeedsLayout];
                                      }];
+    RAC(self.durationLabel,text) = RACObserve(self, viewModel.durationString);
     
     return self;
 }
@@ -68,6 +86,8 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     
     [self.thumbnailImageView setFrame:self.contentView.bounds];
     [self.typeImageView setFrame:CGRectMake(kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.typeImageView.image.size.height - kSubviewMarginHalf, self.typeImageView.image.size.width, self.typeImageView.image.size.height)];
+    [self.durationLabel setFrame:CGRectMake(CGRectGetMaxX(self.typeImageView.frame), CGRectGetHeight(self.contentView.bounds) - ceil(self.durationLabel.font.lineHeight) - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.typeImageView.frame) - kSubviewMarginHalf, ceil(self.durationLabel.font.lineHeight))];
+    [self.gradientView setFrame:CGRectMake(0, CGRectGetHeight(self.contentView.bounds) - self.typeImageView.image.size.height - kSubviewMarginHalf - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds), self.typeImageView.image.size.height + kSubviewMarginHalf + kSubviewMarginHalf)];
     [self.selectedOverlayView setFrame:self.contentView.bounds];
     [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.selectedImageView.image.size.height - kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
 }
