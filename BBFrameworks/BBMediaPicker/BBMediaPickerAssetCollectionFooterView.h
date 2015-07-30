@@ -21,6 +21,9 @@
 
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 
+@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+
 + (CGFloat)rowHeight;
 
 @end

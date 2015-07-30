@@ -20,6 +20,7 @@
 #import "BBMediaPickerAssetCollectionViewLayout.h"
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerAssetCollectionFooterView.h"
+#import "BBMediaPickerAssetCollectionView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -44,7 +45,7 @@
         [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.cancelBarButtonItem]];
     }
     
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self setCollectionView:[[BBMediaPickerAssetCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[BBMediaPickerAssetCollectionViewLayout alloc] init]]];
     [self.collectionView setAlwaysBounceVertical:YES];
     [self.collectionView setAllowsMultipleSelection:self.viewModel.parentViewModel.allowsMultipleSelection];
     [self.collectionView registerClass:[BBMediaPickerAssetCollectionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionFooterView class])];
@@ -123,11 +124,7 @@
 }
 
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel; {
-    BBMediaPickerAssetCollectionViewLayout *layout = [[BBMediaPickerAssetCollectionViewLayout alloc] init];
-    
-    [layout setNumberOfColumns:4];
-    
-    if (!(self = [super initWithCollectionViewLayout:layout]))
+    if (!(self = [super initWithCollectionViewLayout:[[BBMediaPickerAssetCollectionViewLayout alloc] init]]))
         return nil;
     
     [self setViewModel:viewModel];

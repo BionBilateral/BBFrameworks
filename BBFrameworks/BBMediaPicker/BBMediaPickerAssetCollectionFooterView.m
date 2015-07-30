@@ -20,6 +20,9 @@
 
 @interface BBMediaPickerAssetCollectionFooterView ()
 @property (strong,nonatomic) UILabel *titleLabel;
+
++ (UIFont *)_defaultTitleFont;
++ (UIColor *)_defaultTitleTextColor;
 @end
 
 @implementation BBMediaPickerAssetCollectionFooterView
@@ -28,7 +31,12 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
+    _titleFont = [self.class _defaultTitleFont];
+    _titleTextColor = [self.class _defaultTitleTextColor];
+    
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.titleLabel setFont:_titleFont];
+    [self.titleLabel setTextColor:_titleTextColor];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:self.titleLabel];
     
@@ -45,6 +53,24 @@
 
 + (CGFloat)rowHeight {
     return 60.0;
+}
+
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont ?: [self.class _defaultTitleFont];
+    
+    [self.titleLabel setFont:_titleFont];
+}
+- (void)setTitleTextColor:(UIColor *)titleTextColor {
+    _titleTextColor = titleTextColor ?: [self.class _defaultTitleTextColor];
+    
+    [self.titleLabel setTextColor:_titleTextColor];
+}
+
++ (UIFont *)_defaultTitleFont; {
+    return [UIFont systemFontOfSize:17.0];
+}
++ (UIColor *)_defaultTitleTextColor; {
+    return [UIColor blackColor];
 }
 
 @end
