@@ -105,6 +105,14 @@
 - (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
     [self.viewModel setAllowsMultipleSelection:allowsMultipleSelection];
 }
+@dynamic hidesEmptyMediaGroups;
+- (BOOL)hidesEmptyMediaGroups {
+    return self.viewModel.hidesEmptyMediaGroups;
+}
+- (void)setHidesEmptyMediaGroups:(BOOL)hidesEmptyMediaGroups {
+    [self.viewModel setHidesEmptyMediaGroups:hidesEmptyMediaGroups];
+}
+
 @dynamic mediaTypes;
 - (BBMediaPickerMediaTypes)mediaTypes {
     return self.viewModel.mediaTypes;

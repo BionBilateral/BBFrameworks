@@ -122,7 +122,15 @@
             
             [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
                 if (group) {
-                    [temp addObject:[[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group parentViewModel:self]];
+                    BBMediaPickerAssetsGroupViewModel *viewModel = [[BBMediaPickerAssetsGroupViewModel alloc] initWithAssetsGroup:group parentViewModel:self];
+                    
+                    if (viewModel.count == 0 &&
+                        self.hidesEmptyMediaGroups) {
+                        
+                        return;
+                    }
+                    
+                    [temp addObject:viewModel];
                 }
                 else {
                     [self setAssetsGroupViewModels:temp];

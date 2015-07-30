@@ -125,8 +125,11 @@
 - (NSString *)name {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
 }
+- (NSInteger)count {
+    return self.assetsGroup.numberOfAssets;
+}
 - (NSString *)countString {
-    return @(self.assetsGroup.numberOfAssets).stringValue;
+    return @(self.count).stringValue;
 }
 
 @end

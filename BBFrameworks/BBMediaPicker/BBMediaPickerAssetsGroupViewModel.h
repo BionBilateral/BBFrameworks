@@ -30,6 +30,7 @@
 @property (readonly,nonatomic) UIImage *secondPosterImage;
 @property (readonly,nonatomic) UIImage *thirdPosterImage;
 @property (readonly,nonatomic) NSString *name;
+@property (readonly,nonatomic) NSInteger count;
 @property (readonly,nonatomic) NSString *countString;
 
 @property (readonly,weak,nonatomic) BBMediaPickerViewModel *parentViewModel;

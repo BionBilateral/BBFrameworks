@@ -25,6 +25,7 @@
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
+@property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
