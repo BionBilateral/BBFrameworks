@@ -32,4 +32,6 @@
 
 @property (copy,nonatomic) BBMediaPickerMediaFilterBlock mediaFilterBlock;
 
+@property (copy,nonatomic) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
+
 @end

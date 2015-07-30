@@ -33,6 +33,11 @@ typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
     BBMediaPickerMediaTypesAll = BBMediaPickerMediaTypesPhoto | BBMediaPickerMediaTypesVideo | BBMediaPickerMediaTypesUnknown
 };
 
+@class BBMediaPickerViewController;
+
 typedef BOOL(^BBMediaPickerMediaFilterBlock)(id<BBMediaPickerMedia> media);
+
+typedef void(^BBMediaPickerCancelConfirmCompletionBlock)(BOOL confirm);
+typedef void(^BBMediaPickerCancelConfirmBlock)(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion);
 
 #endif

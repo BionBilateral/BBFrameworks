@@ -61,12 +61,26 @@
      concat]
      subscribeNext:^(id _) {
          @strongify(self);
-         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+         void(^completionBlock)(void) = ^{
              @strongify(self);
-             if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
-                 [self.delegate mediaPickerViewControllerDidCancel:self];
-             }
-         }];
+             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                 @strongify(self);
+                 if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
+                     [self.delegate mediaPickerViewControllerDidCancel:self];
+                 }
+             }];
+         };
+         
+         if (self.cancelConfirmBlock) {
+             self.cancelConfirmBlock(self,^(BOOL confirm){
+                 if (confirm) {
+                     completionBlock();
+                 }
+             });
+         }
+         else {
+             completionBlock();
+         }
      }];
     
     [[self.viewModel.doneCommand.executionSignals

@@ -17,6 +17,7 @@
 #import "BBFoundationDebugging.h"
 
 #import <BBFrameworks/BBMediaPicker.h>
+#import <BBFrameworks/UIViewController+BBKitExtensions.h>
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -35,9 +36,6 @@
     return @"Media Picker";
 }
 
-- (NSUInteger)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController {
-    return UIInterfaceOrientationMaskAll;
-}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     BBLogObject(info);
     
@@ -76,6 +74,18 @@
     [viewController setCancelBarButtonItemTitle:@"End"];
     [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
+    [viewController setCancelConfirmBlock:^(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm End" message:@"Are you sure you want to end?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            completion(NO);
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"End" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            completion(YES);
+        }]];
+        
+        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
+    }];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }
