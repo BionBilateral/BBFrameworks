@@ -22,6 +22,26 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface MediaPickerNavigationController : UINavigationController
+
+@end
+
+@implementation MediaPickerNavigationController
+
++ (void)initialize {
+    if (self == [MediaPickerNavigationController class]) {
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:BBColorW(0.1)];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+@end
+
 @interface MediaPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBMediaPickerViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
@@ -40,6 +60,9 @@
         [[BBMediaPickerAssetCollectionView appearance] setContentBackgroundColor:[UIColor blackColor]];
         
         [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
+        
+        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.33)];
+        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayTintColor:[UIColor lightGrayColor]];
     }
 }
 
@@ -106,7 +129,7 @@
 //        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
 //    }];
     
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
+    [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }
 
 @end
