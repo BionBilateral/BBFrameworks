@@ -236,7 +236,7 @@
     
     return self;
 }
-
+#pragma mark *** Public Methods ***
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return (BBMediaPickerAuthorizationStatus)[ALAssetsLibrary authorizationStatus];
 }
@@ -252,6 +252,10 @@
     else {
         [self setSelectedAssetViewModels:[NSOrderedSet orderedSetWithObject:viewModel]];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewModel:didSelectMedia:)]) {
+        [self.delegate mediaPickerViewModel:self didSelectMedia:viewModel];
+    }
 }
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel; {
     NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
@@ -259,6 +263,10 @@
     [temp removeObject:viewModel];
     
     [self setSelectedAssetViewModels:temp];
+    
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewModel:didDeselectMedia:)]) {
+        [self.delegate mediaPickerViewModel:self didDeselectMedia:viewModel];
+    }
 }
 
 - (RACSignal *)requestAssetsLibraryAuthorization; {
@@ -278,7 +286,7 @@
         [self _refreshAssetsGroupViewModels];
     }];
 }
-
+#pragma mark Properties
 - (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
     _cancelBarButtonItemTitle = cancelBarButtonItemTitle;
     
@@ -291,7 +299,7 @@
     
     [self.cancelBarButtonItem setRac_command:self.cancelCommand];
 }
-
+#pragma mark *** Private Methods ***
 - (void)_refreshAssetsGroupViewModels; {
     [self setSelectedAssetViewModels:nil];
     

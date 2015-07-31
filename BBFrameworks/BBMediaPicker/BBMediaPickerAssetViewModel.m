@@ -24,7 +24,8 @@
 @end
 
 @implementation BBMediaPickerAssetViewModel
-
+#pragma mark *** Subclass Overrides ***
+#pragma mark BBMediaPickerMedia
 - (NSURL *)mediaURL {
     return self.URL;
 }
@@ -61,7 +62,7 @@
     
     return [NSData dataWithBytesNoCopy:buffer length:retval freeWhenDone:YES];
 }
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithAsset:(ALAsset *)asset; {
     if (!(self = [super init]))
         return nil;
@@ -72,7 +73,7 @@
     
     return self;
 }
-
+#pragma mark Properties
 - (NSURL *)URL {
     return [self.asset valueForProperty:ALAssetPropertyAssetURL];
 }

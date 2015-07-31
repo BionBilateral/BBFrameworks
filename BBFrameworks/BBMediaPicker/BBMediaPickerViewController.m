@@ -23,14 +23,14 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaPickerViewController ()
+@interface BBMediaPickerViewController () <BBMediaPickerViewModelDelegate>
 @property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 
 @property (strong,nonatomic) BBMediaPickerAssetsGroupTableViewController *tableViewController;
 @end
 
 @implementation BBMediaPickerViewController
-
+#pragma mark *** Subclass Overrides ***
 - (NSString *)title {
     return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_VIEW_CONTROLLER_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Photos", @"Media picker view controller title");
 }
@@ -40,6 +40,7 @@
         return nil;
     
     [self setViewModel:[[BBMediaPickerViewModel alloc] initWithViewController:self]];
+    [self.viewModel setDelegate:self];
     
     return self;
 }
@@ -106,6 +107,17 @@
          subscribeError:^(NSError *error) {
              // TODO: display error to the user
          }];
+    }
+}
+#pragma mark BBMediaPickerViewModelDelegate
+- (void)mediaPickerViewModel:(BBMediaPickerViewModel *)viewModel didSelectMedia:(id<BBMediaPickerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didSelectMedia:)]) {
+        [self.delegate mediaPickerViewController:self didSelectMedia:media];
+    }
+}
+- (void)mediaPickerViewModel:(BBMediaPickerViewModel *)viewModel didDeselectMedia:(id<BBMediaPickerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didDeselectMedia:)]) {
+        [self.delegate mediaPickerViewController:self didDeselectMedia:media];
     }
 }
 #pragma mark *** Public Methods ***

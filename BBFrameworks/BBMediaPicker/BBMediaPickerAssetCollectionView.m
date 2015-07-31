@@ -20,13 +20,14 @@
 @end
 
 @implementation BBMediaPickerAssetCollectionView
-
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 - (void)setContentBackgroundColor:(UIColor *)contentBackgroundColor {
     _contentBackgroundColor = contentBackgroundColor ?: [self.class _defaultContentBackgroundColor];
     
     [self setBackgroundColor:_contentBackgroundColor];
 }
-
+#pragma mark *** Private Methods ***
 + (UIColor *)_defaultContentBackgroundColor; {
     return [UIColor whiteColor];
 }

@@ -34,7 +34,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;

@@ -627,6 +627,7 @@
 		077656641B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		077656651B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+BBBlocksExtensions.m"; sourceTree = "<group>"; };
 		0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
+		07AEC82B1B6BBD5800013470 /* BBMediaPickerViewModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModelDelegate.h; sourceTree = "<group>"; };
 		07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAttachmentView.h; sourceTree = "<group>"; };
 		07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTooltipAttachmentViewExtensions.h"; sourceTree = "<group>"; };
 		07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTooltipAttachmentViewExtensions.m"; sourceTree = "<group>"; };
@@ -1339,6 +1340,7 @@
 				07605ABB1B69551800333678 /* BBMediaPicker.h */,
 				799B96151B69BA5B0010E1CD /* BBMediaPickerMedia.h */,
 				07605AC91B69593700333678 /* BBMediaPickerDefines.h */,
+				07AEC82B1B6BBD5800013470 /* BBMediaPickerViewModelDelegate.h */,
 				07605AC31B69577C00333678 /* BBMediaPickerViewModel.h */,
 				07605AC41B69577C00333678 /* BBMediaPickerViewModel.m */,
 				07605AC11B6955EA00333678 /* BBMediaPickerViewControllerDelegate.h */,

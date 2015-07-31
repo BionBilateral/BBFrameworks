@@ -111,17 +111,9 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.viewModel.parentViewModel selectAssetViewModel:self.assetViewModels[indexPath.row]];
-    
-    if ([self.viewModel.parentViewModel.mediaPickerViewController.delegate respondsToSelector:@selector(mediaPickerViewController:didSelectMedia:)]) {
-        [self.viewModel.parentViewModel.mediaPickerViewController.delegate mediaPickerViewController:self.viewModel.parentViewModel.mediaPickerViewController didSelectMedia:@[self.assetViewModels[indexPath.row]]];
-    }
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.viewModel.parentViewModel deselectAssetViewModel:self.assetViewModels[indexPath.row]];
-    
-    if ([self.viewModel.parentViewModel.mediaPickerViewController.delegate respondsToSelector:@selector(mediaPickerViewController:didDeselectMedia:)]) {
-        [self.viewModel.parentViewModel.mediaPickerViewController.delegate mediaPickerViewController:self.viewModel.parentViewModel.mediaPickerViewController didDeselectMedia:@[self.assetViewModels[indexPath.row]]];
-    }
 }
 
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel; {

@@ -28,7 +28,7 @@
 @end
 
 @implementation MediaPickerViewController
-
+#pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
         [[BBMediaPickerAssetsGroupTableView appearance] setContentBackgroundColor:[UIColor blackColor]];
@@ -50,7 +50,7 @@
 + (NSString *)rowClassTitle {
     return @"Media Picker";
 }
-
+#pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     BBLogObject(info);
     
@@ -60,10 +60,10 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark BBMediaPickerViewControllerDelegate
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(NSArray *)media {
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media {
     BBLogObject(media);
 }
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(NSArray *)media {
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media {
     BBLogObject(media);
 }
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
@@ -72,7 +72,8 @@
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
     BBLogObject(viewController);
 }
-
+#pragma mark *** Private Methods ***
+#pragma mark Actions
 - (IBAction)_systemButtonAction:(id)sender {
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     

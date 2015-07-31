@@ -31,7 +31,7 @@
 @end
 
 @implementation BBMediaPickerAssetsGroupViewModel
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel; {
     if (!(self = [super init]))
         return nil;
@@ -94,7 +94,7 @@
                 }];
             }];
 }
-
+#pragma mark Properties
 - (NSURL *)URL {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyURL];
 }
