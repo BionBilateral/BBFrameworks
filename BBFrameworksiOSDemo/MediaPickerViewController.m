@@ -61,9 +61,7 @@
         
         [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
         
-        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.33)];
-        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayTintColor:[UIColor whiteColor]];
-        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayForegroundColor:[UIColor blackColor]];
+        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.5)];
     }
 }
 
@@ -103,7 +101,7 @@
     
     [pickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [pickerController setAllowsEditing:NO];
-    [pickerController setMediaTypes:@[(__bridge id)kUTTypeImage,(__bridge id)kUTTypeVideo]];
+    [pickerController setMediaTypes:@[(__bridge id)kUTTypeImage,(__bridge id)kUTTypeMovie]];
     [pickerController setDelegate:self];
     
     [self presentViewController:pickerController animated:YES completion:nil];
