@@ -327,5 +327,16 @@
         BBLogObject(error);
     }];
 }
+#pragma mark Properties
+- (void)setAssetsGroupViewModels:(NSArray *)assetsGroupViewModels {
+    _assetsGroupViewModels = [assetsGroupViewModels sortedArrayUsingComparator:^NSComparisonResult(BBMediaPickerAssetsGroupViewModel *obj1, BBMediaPickerAssetsGroupViewModel *obj2) {
+        if (obj1.type == BBMediaPickerAssetsGroupViewModelTypeSavedPhotos) {
+            return NSOrderedAscending;
+        }
+        else {
+            return [obj1.name localizedStandardCompare:obj2.name];
+        }
+    }];
+}
 
 @end

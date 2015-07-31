@@ -16,6 +16,16 @@
 #import <ReactiveViewModel/RVMViewModel.h>
 #import <UIKit/UIImage.h>
 #import <AssetsLibrary/ALAssetsGroup.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
+
+typedef NS_ENUM(NSInteger, BBMediaPickerAssetsGroupViewModelType) {
+    BBMediaPickerAssetsGroupViewModelTypeLibrary = ALAssetsGroupLibrary,
+    BBMediaPickerAssetsGroupViewModelTypeAlbum = ALAssetsGroupAlbum,
+    BBMediaPickerAssetsGroupViewModelTypeEvent = ALAssetsGroupEvent,
+    BBMediaPickerAssetsGroupViewModelTypeFaces = ALAssetsGroupFaces,
+    BBMediaPickerAssetsGroupViewModelTypeSavedPhotos = ALAssetsGroupSavedPhotos,
+    BBMediaPickerAssetsGroupViewModelTypePhotoStream = ALAssetsGroupPhotoStream
+};
 
 @class BBMediaPickerViewModel;
 
@@ -26,7 +36,7 @@
 @property (assign,nonatomic,getter=isDeleted) BOOL deleted;
 
 @property (readonly,nonatomic) NSURL *URL;
-@property (readonly,nonatomic) NSNumber *type;
+@property (readonly,nonatomic) BBMediaPickerAssetsGroupViewModelType type;
 @property (readonly,nonatomic) UIImage *badgeImage;
 @property (readonly,nonatomic) UIImage *posterImage;
 @property (readonly,nonatomic) UIImage *secondPosterImage;
