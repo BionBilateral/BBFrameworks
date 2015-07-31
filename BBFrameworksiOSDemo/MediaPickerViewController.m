@@ -35,12 +35,10 @@
         
         [[BBMediaPickerAssetsGroupTableViewCell appearance] setContentBackgroundColor:BBColorW(0.1)];
         [[BBMediaPickerAssetsGroupTableViewCell appearance] setSelectedContentBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameTextColor:[UIColor whiteColor]];
         
         [[BBMediaPickerAssetCollectionView appearance] setContentBackgroundColor:[UIColor blackColor]];
         
-        [[BBMediaPickerAssetCollectionFooterView appearance] setTitleFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
     }
 }
