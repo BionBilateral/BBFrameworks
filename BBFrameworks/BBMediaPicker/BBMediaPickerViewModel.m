@@ -62,7 +62,7 @@
       deliverOn:[RACScheduler schedulerWithPriority:RACSchedulerPriorityDefault]]
      subscribeNext:^(NSNotification *value) {
          @strongify(self);
-         BBLogObject(value);
+
          // if userInfo is nil, reload everything
          if (value.userInfo == nil) {
              [self _refreshAssetsGroupViewModels];
