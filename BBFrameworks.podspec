@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
   spec.ios.resource_bundles = {
-    "BBFrameworksResources" => ["BBFrameworks/BBMediaPicker/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
+    "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
   }
   
   spec.default_subspecs = "BBCore", "BBFoundation", "BBBlocks", "BBKit"

@@ -63,6 +63,7 @@
 		07AEC8581B6BE70700013470 /* BBValidationTextFieldWarningView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07AEC83E1B6BE68500013470 /* BBValidationTextFieldWarningView.h */; };
 		07AEC8591B6BE70700013470 /* UITextField+BBValidationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07AEC8401B6BE68500013470 /* UITextField+BBValidationExtensions.h */; };
 		07AEC85A1B6BE70700013470 /* UITextView+BBValidationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07AEC8421B6BE68500013470 /* UITextView+BBValidationExtensions.h */; };
+		07AEC85D1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07AEC85C1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib */; };
 		07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */; };
 		07B3D8E61B5EA7E500FA1853 /* BBTooltipAttachmentView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */; };
 		07B3D8E71B5EA7E600FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */; };
@@ -171,7 +172,6 @@
 		799C0C7B1B61B95B00A3888A /* BBAddressBookPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C751B61B95B00A3888A /* BBAddressBookPersonTableViewCell.m */; };
 		799C0C7C1B61B95B00A3888A /* BBAddressBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C771B61B95B00A3888A /* BBAddressBookTableViewController.m */; };
 		799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 799C0C791B61B95B00A3888A /* BBAddressBookTableViewModel.m */; };
-		799C0C7F1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799C0C7E1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib */; };
 		799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C7A1B61B95B00A3888A /* BBAddressBookUI.h */; };
 		799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C741B61B95B00A3888A /* BBAddressBookPersonTableViewCell.h */; };
 		799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C761B61B95B00A3888A /* BBAddressBookTableViewController.h */; };
@@ -682,6 +682,7 @@
 		07AEC84B1B6BE6C700013470 /* ValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationViewController.h; sourceTree = "<group>"; };
 		07AEC84C1B6BE6C700013470 /* ValidationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationViewController.m; sourceTree = "<group>"; };
 		07AEC84D1B6BE6C700013470 /* ValidationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationViewController.xib; sourceTree = "<group>"; };
+		07AEC85C1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAddressBookPersonTableViewCell.xib; sourceTree = "<group>"; };
 		07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAttachmentView.h; sourceTree = "<group>"; };
 		07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTooltipAttachmentViewExtensions.h"; sourceTree = "<group>"; };
 		07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTooltipAttachmentViewExtensions.m"; sourceTree = "<group>"; };
@@ -882,7 +883,6 @@
 		799C0C781B61B95B00A3888A /* BBAddressBookTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookTableViewModel.h; sourceTree = "<group>"; };
 		799C0C791B61B95B00A3888A /* BBAddressBookTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookTableViewModel.m; sourceTree = "<group>"; };
 		799C0C7A1B61B95B00A3888A /* BBAddressBookUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookUI.h; sourceTree = "<group>"; };
-		799C0C7E1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAddressBookPersonTableViewCell.xib; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
@@ -1200,6 +1200,14 @@
 			path = BBValidation;
 			sourceTree = "<group>";
 		};
+		07AEC85B1B6BEE8F00013470 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				07AEC85C1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
 		07B3D8EB1B60145900FA1853 /* BBBlocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,7 +1413,6 @@
 				799C0C7A1B61B95B00A3888A /* BBAddressBookUI.h */,
 				799C0C741B61B95B00A3888A /* BBAddressBookPersonTableViewCell.h */,
 				799C0C751B61B95B00A3888A /* BBAddressBookPersonTableViewCell.m */,
-				799C0C7E1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib */,
 				799C0C761B61B95B00A3888A /* BBAddressBookTableViewController.h */,
 				799C0C771B61B95B00A3888A /* BBAddressBookTableViewController.m */,
 				799C0C781B61B95B00A3888A /* BBAddressBookTableViewModel.h */,
@@ -1944,6 +1951,7 @@
 			isa = PBXGroup;
 			children = (
 				0750D6451B6A9640002F2C1A /* Assets */,
+				07AEC85B1B6BEE8F00013470 /* Xibs */,
 				79EA80781B3F06ED00D50B6B /* Supporting Files */,
 			);
 			path = BBFrameworksResources;
@@ -2318,9 +2326,9 @@
 				79EA80BF1B3F0C5600D50B6B /* media_player_pause.png in Resources */,
 				79BE2BBC1B65831A00ADE997 /* kit_previous@3x.png in Resources */,
 				79BE2BB91B65831A00ADE997 /* kit_next@3x.png in Resources */,
+				07AEC85D1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib in Resources */,
 				799B961D1B69C3450010E1CD /* media_picker_type_video@2x.png in Resources */,
 				79BE2BBA1B65831A00ADE997 /* kit_previous.png in Resources */,
-				799C0C7F1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib in Resources */,
 				07C23A8E1B540DE500D3C072 /* WebKit.strings in Resources */,
 				79BE2BBB1B65831A00ADE997 /* kit_previous@2x.png in Resources */,
 				79EA80C31B3F0C5600D50B6B /* media_player_play@2x.png in Resources */,
