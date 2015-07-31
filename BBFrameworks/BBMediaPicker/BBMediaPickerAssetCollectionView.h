@@ -15,8 +15,16 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ BBMediaPickerAssetCollectionView is a UICollectionView subclass that displays the grid of media for the user to select.
+ */
 @interface BBMediaPickerAssetCollectionView : UICollectionView
 
+/**
+ Set and get the content background color of the receiver. This is tied to the backgroundColor of the receiver.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end

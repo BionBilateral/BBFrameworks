@@ -20,6 +20,17 @@
 @end
 
 @implementation BBMediaPickerAssetCollectionView
+#pragma mark *** Subclass Overrides ***
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
+    if (!(self = [super initWithFrame:frame collectionViewLayout:layout]))
+        return nil;
+    
+    _contentBackgroundColor = [self.class _defaultContentBackgroundColor];
+    
+    [self setBackgroundColor:_contentBackgroundColor];
+    
+    return self;
+}
 #pragma mark *** Public Methods ***
 #pragma mark Properties
 - (void)setContentBackgroundColor:(UIColor *)contentBackgroundColor {

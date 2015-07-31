@@ -19,25 +19,72 @@
 #import "BBMediaPickerMedia.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
+/**
+ Enum describing the authorization status.
+ */
 typedef NS_ENUM(NSInteger, BBMediaPickerAuthorizationStatus) {
+    /**
+     The authorization status has not been determined. The appropriate alert will be presented to the user to ask for access.
+     */
     BBMediaPickerAuthorizationStatusNotDetermined = ALAuthorizationStatusNotDetermined,
+    /**
+     The authorization status has been restricted.
+     */
     BBMediaPickerAuthorizationStatusRestricted = ALAuthorizationStatusRestricted,
+    /**
+     The authorization status has been denied by the user.
+     */
     BBMediaPickerAuthorizationStatusDenied = ALAuthorizationStatusDenied,
+    /**
+     The authorization status has been authorized.
+     */
     BBMediaPickerAuthorizationStatusAuthorized = ALAuthorizationStatusAuthorized
 };
 
+/**
+ Options mask describing the allowed media types of the media picker.
+ */
 typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
+    /**
+     Photo media is allowed.
+     */
     BBMediaPickerMediaTypesPhoto = 1 << 0,
+    /**
+     Video media is allowed.
+     */
     BBMediaPickerMediaTypesVideo = 1 << 1,
+    /**
+     Unknown media is allowed. For example, sound files.
+     */
     BBMediaPickerMediaTypesUnknown = 1 << 2,
+    /**
+     All media is allowed.
+     */
     BBMediaPickerMediaTypesAll = BBMediaPickerMediaTypesPhoto | BBMediaPickerMediaTypesVideo | BBMediaPickerMediaTypesUnknown
 };
 
 @class BBMediaPickerViewController;
 
+/**
+ Block used to filter media that will be displayed by the media picker. The block will be invoked once for each media object.
+ 
+ @param media The media object to display
+ @return YES to display the media object, NO to hide it
+ */
 typedef BOOL(^BBMediaPickerMediaFilterBlock)(id<BBMediaPickerMedia> media);
 
+/**
+ Block used to complete the invocation of a BBMediaPickerCancelConfirmBlock and inform the media picker if it should dismiss itself.
+ 
+ @param confirm YES if the media should dismiss, NO otherwise
+ */
 typedef void(^BBMediaPickerCancelConfirmCompletionBlock)(BOOL confirm);
+/**
+ Block used to confirm whether the media picker should dismiss itself. Once the desired behavior is determined, the block should invoke the passed in completion block with YES or NO.
+ 
+ @param viewController The media picker view controller that invoked the block
+ @param completion The completion block that should be invoked with the desired behavior
+ */
 typedef void(^BBMediaPickerCancelConfirmBlock)(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion);
 
 #endif

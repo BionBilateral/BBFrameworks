@@ -31,6 +31,11 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 @property (strong,nonatomic) UILabel *durationLabel;
 @property (strong,nonatomic) UIView *selectedOverlayView;
 @property (strong,nonatomic) UIImageView *selectedImageView;
+
++ (UIColor *)_defaultSelectedOverlayTintColor;
++ (UIColor *)_defaultSelectedOverlayBackgroundColor;
+
+- (UIImage *)_selectedCheckmarkImage;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
@@ -38,6 +43,8 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
+    
+    _selectedOverlayBackgroundColor = [self.class _defaultSelectedOverlayBackgroundColor];
     
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
@@ -56,7 +63,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.contentView addSubview:self.durationLabel];
     
     [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.selectedOverlayView setBackgroundColor:BBColorWA(1.0, 0.33)];
+    [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
     [self.contentView addSubview:self.selectedOverlayView];
     
     [self setSelectedImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
@@ -99,25 +106,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
         UIImage *retval = nil;
         
         if (selected) {
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
-            
-            CGRect rect = CGRectMake(0, 0, 22, 22);
-            
-            [[UIColor whiteColor] setFill];
-            [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
-            
-            [self.tintColor setFill];
-            [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
-            
-            NSString *string = @"✓";
-            NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
-            CGSize size = [string sizeWithAttributes:attributes];
-            
-            [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];
-            
-            retval = UIGraphicsGetImageFromCurrentImageContext();
-            
-            UIGraphicsEndImageContext();
+            retval = [self _selectedCheckmarkImage];
         }
         
         retval;
@@ -128,6 +117,51 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     if (selected) {
         [self setNeedsLayout];
     }
+}
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+- (void)setSelectedOverlayTintColor:(UIColor *)selectedOverlayTintColor {
+    _selectedOverlayTintColor = selectedOverlayTintColor;
+    
+    if (self.isSelected) {
+        [self.selectedImageView setImage:[self _selectedCheckmarkImage]];
+    }
+}
+- (void)setSelectedOverlayBackgroundColor:(UIColor *)selectedOverlayBackgroundColor {
+    _selectedOverlayBackgroundColor = selectedOverlayBackgroundColor ?: [self.class _defaultSelectedOverlayBackgroundColor];
+    
+    [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
+}
+#pragma mark *** Private Methods ***
++ (UIColor *)_defaultSelectedOverlayTintColor; {
+    return nil;
+}
++ (UIColor *)_defaultSelectedOverlayBackgroundColor; {
+    return BBColorWA(1.0, 0.33);
+}
+
+- (UIImage *)_selectedCheckmarkImage {
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+    
+    CGRect rect = CGRectMake(0, 0, 22, 22);
+    
+    [[UIColor whiteColor] setFill];
+    [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
+    
+    [self.selectedOverlayTintColor ?: self.tintColor setFill];
+    [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
+    
+    NSString *string = @"✓";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    CGSize size = [string sizeWithAttributes:attributes];
+    
+    [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];
+    
+    UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return retval;
 }
 
 @end

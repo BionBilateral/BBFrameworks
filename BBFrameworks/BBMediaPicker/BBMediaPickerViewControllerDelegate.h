@@ -18,10 +18,36 @@
 
 @class BBMediaPickerViewController;
 
+/**
+ Protocol for BBMediaPickerViewController delegate.
+ */
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
+/**
+ Called when the user taps on a grid image to select it.
+ 
+ @param viewController The media picker view controller that sent the message
+ @param media The media object that was selected
+ */
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Called when the user taps on a previously selected grid image to deselect it.
+ 
+ @param viewController The media picker view controller that sent the message
+ @param media The media object that was deselected
+ */
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Called when the user taps the Done bar button item in multiple selection mode or selects a single image in single selection mode.
+ 
+ @param viewController The media picker view controller that sent the message
+ @param media The array of media objects that were selected
+ */
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media;
+/**
+ Called when the user taps the Cancel bar button item.
+ 
+ @param viewController The media picker view controller that sent the message
+ */
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end

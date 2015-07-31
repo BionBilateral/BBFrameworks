@@ -17,8 +17,27 @@
 
 @class BBMediaPickerAssetViewModel;
 
+/**
+ BBMediaPickerAssetCollectionViewCell is a UICollectionViewCell subclass that displays media object in the grid view.
+ */
 @interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
 
+/**
+ Set and get the view model represented by the receiver.
+ */
 @property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
+
+/**
+ Set and get the selected overlay tint color. This affects the checkmark that is drawn within the selected overlay when the represented view model is selected. If nil, the tintColor of the receiver is used.
+ 
+ The default is nil.
+ */
+@property (strong,nonatomic) UIColor *selectedOverlayTintColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the selected overlay background color. This is the view that is placed over the thumbnail image when the represented view model is selected.
+ 
+ The default is BBColorWA(1.0, 0.33).
+ */
+@property (strong,nonatomic) UIColor *selectedOverlayBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end

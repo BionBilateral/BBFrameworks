@@ -15,8 +15,16 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ BBMediaPickerAssetsGroupTableView is a UITableView subclass that is used to display the media groups.
+ */
 @interface BBMediaPickerAssetsGroupTableView : UITableView
 
+/**
+ Set and get the content background color of the receiver. This is tied to the backgroundColor of the receiver.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end

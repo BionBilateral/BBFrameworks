@@ -24,6 +24,7 @@
 #import "BBMediaPickerAssetsGroupTableViewCell.h"
 #import "BBMediaPickerAssetCollectionView.h"
 #import "BBMediaPickerAssetCollectionFooterView.h"
+#import "BBMediaPickerAssetCollectionViewCell.h"
 #endif
 
 #endif
