@@ -20,6 +20,7 @@
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(NSArray *)media;
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(NSArray *)media;
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media;
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end

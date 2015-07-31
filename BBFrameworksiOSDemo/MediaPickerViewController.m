@@ -63,6 +63,9 @@
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(NSArray *)media {
     BBLogObject(media);
 }
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(NSArray *)media {
+    BBLogObject(media);
+}
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
     BBLogObject(media);
 }
