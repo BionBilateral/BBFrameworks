@@ -1,5 +1,5 @@
 //
-//  TransitionChildViewController.m
+//  BBTextLinkValidator.m
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -13,41 +13,23 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "TransitionChildViewController.h"
+#import "BBTextLinkValidator.h"
+#import "NSError+BBFoundationExtensions.h"
+#import "BBFrameworksFunctions.h"
+#import "BBValidationConstants.h"
 
-#import <BBFrameworks/BBFoundation.h>
+NSInteger const BBTextLinkValidatorErrorCode = 1;
 
-@interface TransitionChildViewController ()
-@property (strong,nonatomic) UILabel *label;
+@implementation BBTextLinkValidator
 
-@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
-@end
-
-@implementation TransitionChildViewController
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (BOOL)validateText:(NSString *)text error:(NSError *__autoreleasing *)error {
+    BOOL retval = text.length == 0 || [[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:NULL] firstMatchInString:text options:0 range:NSMakeRange(0, text.length)] != nil;
     
-    [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.label setText:@"This is a label"];
-    [self.label sizeToFit];
-    [self.view addSubview:self.label];
+    if (!retval) {
+        *error = [NSError errorWithDomain:BBValidationErrorDomain code:BBTextLinkValidatorErrorCode userInfo:@{BBErrorAlertMessageKey: NSLocalizedStringWithDefaultValue(@"VALIDATION_TEXT_LINK_ERROR_MESSAGE", @"Validation", BBFrameworksResourcesBundle(), @"Please enter a valid link.", @"Validation text link error message")}];
+    }
     
-    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
-    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:self.tapGestureRecognizer];
-}
-- (void)viewDidLayoutSubviews {
-    [self.label setFrame:BBCGRectCenterInRect(CGRectMake(0, 0, CGRectGetWidth(self.label.frame), CGRectGetHeight(self.label.frame)), self.view.bounds)];
-}
-
-- (IBAction)_tapGestureRecognizerAction:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    return retval;
 }
 
 @end

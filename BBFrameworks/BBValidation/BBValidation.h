@@ -1,5 +1,5 @@
 //
-//  TransitionChildViewController.m
+//  BBValidation.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -13,41 +13,24 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "TransitionChildViewController.h"
+#ifndef __BB_FRAMEWORKS_VALIDATION__
+#define __BB_FRAMEWORKS_VALIDATION__
 
-#import <BBFrameworks/BBFoundation.h>
+#import <TargetConditionals.h>
 
-@interface TransitionChildViewController ()
-@property (strong,nonatomic) UILabel *label;
+#if (TARGET_OS_IPHONE)
+#import "BBValidationConstants.h"
+#import "BBValidationMacros.h"
 
-@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
-@end
+#import "UITextField+BBValidationExtensions.h"
+#import "UITextView+BBValidationExtensions.h"
 
-@implementation TransitionChildViewController
+#import "BBTextPhoneNumberValidator.h"
+#import "BBTextLinkValidator.h"
+#import "BBTextCustomValidator.h"
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+#import "BBValidationTextFieldErrorView.h"
+#import "BBValidationTextFieldWarningView.h"
+#endif
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.label setText:@"This is a label"];
-    [self.label sizeToFit];
-    [self.view addSubview:self.label];
-    
-    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
-    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:self.tapGestureRecognizer];
-}
-- (void)viewDidLayoutSubviews {
-    [self.label setFrame:BBCGRectCenterInRect(CGRectMake(0, 0, CGRectGetWidth(self.label.frame), CGRectGetHeight(self.label.frame)), self.view.bounds)];
-}
-
-- (IBAction)_tapGestureRecognizerAction:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-@end
+#endif

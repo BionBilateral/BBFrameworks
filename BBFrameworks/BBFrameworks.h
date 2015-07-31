@@ -31,5 +31,6 @@
 #import "BBTooltip.h"
 #import "BBToken.h"
 #import "BBTransitions.h"
+#import "BBValidation.h"
 
 #endif

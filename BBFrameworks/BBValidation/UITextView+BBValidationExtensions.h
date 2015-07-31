@@ -1,5 +1,5 @@
 //
-//  TransitionChildViewController.m
+//  UITextView+BBValidationExtensions.h
 //  BBFrameworks
 //
 //  Created by William Towe on 7/26/15.
@@ -13,41 +13,23 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "TransitionChildViewController.h"
+#import <UIKit/UIKit.h>
+#import "BBTextValidator.h"
 
-#import <BBFrameworks/BBFoundation.h>
+/**
+ Category on UITextView adding support for text validation.
+ */
+@interface UITextView (BBValidationExtensions)
 
-@interface TransitionChildViewController ()
-@property (strong,nonatomic) UILabel *label;
-
-@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
-@end
-
-@implementation TransitionChildViewController
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.label setText:@"This is a label"];
-    [self.label sizeToFit];
-    [self.view addSubview:self.label];
-    
-    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
-    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
-    [self.view addGestureRecognizer:self.tapGestureRecognizer];
-}
-- (void)viewDidLayoutSubviews {
-    [self.label setFrame:BBCGRectCenterInRect(CGRectMake(0, 0, CGRectGetWidth(self.label.frame), CGRectGetHeight(self.label.frame)), self.view.bounds)];
-}
-
-- (IBAction)_tapGestureRecognizerAction:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
+/**
+ Add a text validator to the receiver.
+ 
+ @param textValidator The text validator to add
+ */
+- (void)BB_addTextValidator:(id<BBTextValidator>)textValidator;
+/**
+ Remove any text validator associated with the receiver.
+ */
+- (void)BB_removeTextValidator;
 
 @end
