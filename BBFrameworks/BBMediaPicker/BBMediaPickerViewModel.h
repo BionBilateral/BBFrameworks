@@ -53,6 +53,7 @@
 
 - (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
+- (void)deselectAllAssetViewModels;
 
 - (RACSignal *)requestAssetsLibraryAuthorization;
 

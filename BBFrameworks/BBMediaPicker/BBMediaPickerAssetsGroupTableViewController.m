@@ -43,6 +43,11 @@
          [self.tableView reloadData];
      }];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.viewModel deselectAllAssetViewModels];
+}
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.viewModel.assetsGroupViewModels.count;

@@ -268,6 +268,9 @@
         [self.delegate mediaPickerViewModel:self didDeselectMedia:viewModel];
     }
 }
+- (void)deselectAllAssetViewModels; {
+    [self setSelectedAssetViewModels:nil];
+}
 
 - (RACSignal *)requestAssetsLibraryAuthorization; {
     @weakify(self);

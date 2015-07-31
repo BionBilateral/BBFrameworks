@@ -16,6 +16,7 @@
 #import "BBMediaPickerAssetViewModel.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
 #import "BBFoundationDebugging.h"
+#import "ALAsset+BBMediaPickerExtensions.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -25,6 +26,12 @@
 
 @implementation BBMediaPickerAssetViewModel
 #pragma mark *** Subclass Overrides ***
+- (NSUInteger)hash {
+    return [self.asset BB_hash];
+}
+- (BOOL)isEqual:(id)object {
+    return [self.asset BB_isEqualToAsset:[(BBMediaPickerAssetViewModel *)object asset]];
+}
 #pragma mark BBMediaPickerMedia
 - (NSURL *)mediaURL {
     return self.URL;
