@@ -325,6 +325,7 @@
         }
     } failureBlock:^(NSError *error) {
         BBLogObject(error);
+        [self setAssetsGroupViewModels:nil];
     }];
 }
 #pragma mark Properties
