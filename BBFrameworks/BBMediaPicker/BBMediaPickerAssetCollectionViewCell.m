@@ -97,7 +97,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.durationLabel setFrame:CGRectMake(CGRectGetMaxX(self.typeImageView.frame), CGRectGetHeight(self.contentView.bounds) - ceil(self.durationLabel.font.lineHeight) - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.typeImageView.frame) - kSubviewMarginHalf, ceil(self.durationLabel.font.lineHeight))];
     [self.gradientView setFrame:CGRectMake(0, CGRectGetHeight(self.contentView.bounds) - self.typeImageView.image.size.height - kSubviewMarginHalf - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds), self.typeImageView.image.size.height + kSubviewMarginHalf + kSubviewMarginHalf)];
     [self.selectedOverlayView setFrame:self.contentView.bounds];
-    [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.selectedImageView.image.size.height - kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
+    [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
 }
 
 - (void)setSelected:(BOOL)selected {
