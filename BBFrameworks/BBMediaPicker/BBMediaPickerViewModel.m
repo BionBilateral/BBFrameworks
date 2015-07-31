@@ -334,6 +334,9 @@
         if (obj1.type == BBMediaPickerAssetsGroupViewModelTypeSavedPhotos) {
             return NSOrderedAscending;
         }
+        else if (obj2.type == BBMediaPickerAssetsGroupViewModelTypeSavedPhotos) {
+            return NSOrderedDescending;
+        }
         else {
             return [obj1.name localizedStandardCompare:obj2.name];
         }

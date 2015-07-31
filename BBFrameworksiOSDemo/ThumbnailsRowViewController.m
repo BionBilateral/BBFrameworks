@@ -34,6 +34,8 @@
         return nil;
     
     [self setImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.imageView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.imageView.layer setBorderWidth:1.0];
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.imageView setClipsToBounds:YES];
     [self.contentView addSubview:self.imageView];
@@ -104,6 +106,8 @@
     
     [self.thumbnailGenerator setYouTubeAPIKey:APIKeys[@"thumbnail_youtube_api_key"]];
     
+    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setAlwaysBounceVertical:YES];
     [self.collectionView registerClass:[ThumbnailCell class] forCellWithReuseIdentifier:NSStringFromClass([ThumbnailCell class])];
 }
 
