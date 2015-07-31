@@ -32,7 +32,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 @property (strong,nonatomic) UIView *selectedOverlayView;
 @property (strong,nonatomic) UIImageView *selectedImageView;
 
-+ (UIColor *)_defaultSelectedOverlayTintColor;
++ (UIColor *)_defaultSelectedOverlayForegroundColor;
 + (UIColor *)_defaultSelectedOverlayBackgroundColor;
 
 - (UIImage *)_selectedCheckmarkImage;
@@ -44,6 +44,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
+    _selectedOverlayForegroundColor = [self.class _defaultSelectedOverlayForegroundColor];
     _selectedOverlayBackgroundColor = [self.class _defaultSelectedOverlayBackgroundColor];
     
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
@@ -120,6 +121,13 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 }
 #pragma mark *** Public Methods ***
 #pragma mark Properties
+- (void)setSelectedOverlayForegroundColor:(UIColor *)selectedOverlayForegroundColor {
+    _selectedOverlayForegroundColor = selectedOverlayForegroundColor ?: [self.class _defaultSelectedOverlayForegroundColor];
+    
+    if (self.isSelected) {
+        [self.selectedImageView setImage:[self _selectedCheckmarkImage]];
+    }
+}
 - (void)setSelectedOverlayTintColor:(UIColor *)selectedOverlayTintColor {
     _selectedOverlayTintColor = selectedOverlayTintColor;
     
@@ -133,8 +141,8 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
 }
 #pragma mark *** Private Methods ***
-+ (UIColor *)_defaultSelectedOverlayTintColor; {
-    return nil;
++ (UIColor *)_defaultSelectedOverlayForegroundColor {
+    return [UIColor whiteColor];
 }
 + (UIColor *)_defaultSelectedOverlayBackgroundColor; {
     return BBColorWA(1.0, 0.33);
@@ -145,14 +153,14 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     
     CGRect rect = CGRectMake(0, 0, 22, 22);
     
-    [[UIColor whiteColor] setFill];
+    [self.selectedOverlayForegroundColor setFill];
     [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
     
     [self.selectedOverlayTintColor ?: self.tintColor setFill];
     [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
     
     NSString *string = @"✓";
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: self.selectedOverlayForegroundColor};
     CGSize size = [string sizeWithAttributes:attributes];
     
     [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];

@@ -28,6 +28,12 @@
 @property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
 
 /**
+ Set and get the selected overlay foreground color. This used to draw the border around the checkmark as well as the checkmark itself.
+ 
+ The default is [UIColor whiteColor].
+ */
+@property (strong,nonatomic) UIColor *selectedOverlayForegroundColor UI_APPEARANCE_SELECTOR;
+/**
  Set and get the selected overlay tint color. This affects the checkmark that is drawn within the selected overlay when the represented view model is selected. If nil, the tintColor of the receiver is used.
  
  The default is nil.
