@@ -39,6 +39,7 @@
     
     if (retval == 0) {
         BBLogObject(outError);
+        free(buffer);
         return nil;
     }
     
@@ -57,6 +58,7 @@
     
     if (retval == 0) {
         BBLogObject(outError);
+        free(buffer);
         return nil;
     }
     
