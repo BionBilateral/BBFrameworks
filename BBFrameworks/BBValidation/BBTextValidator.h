@@ -15,9 +15,24 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Protocol for validation object attached to a UITextField or UITextView.
+ */
 @protocol BBTextValidator <NSObject>
 @required
+/**
+ Called when the text to validate has changed. Return YES if the text is valid, otherwise NO. Also, return a NSError by reference explaining why the text is invalid.
+ 
+ @param text The text to validate
+ @param error If the text is invalid, an error explaining why the text is invalid
+ @return YES if the text is valid, otherwise NO
+ */
 - (BOOL)validateText:(NSString *)text error:(NSError **)error;
 @optional
+/**
+ Called when validateText:error: returns NO to determine which view to show within the view to indicate failure.
+ 
+ @return The view to display, if nil, BBValidationTextFieldErrorView is used
+ */
 - (UIView *)textValidatorRightView;
 @end

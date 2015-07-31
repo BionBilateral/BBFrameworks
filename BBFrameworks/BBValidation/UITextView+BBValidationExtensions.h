@@ -16,9 +16,20 @@
 #import <UIKit/UIKit.h>
 #import "BBTextValidator.h"
 
+/**
+ Category on UITextView adding support for text validation.
+ */
 @interface UITextView (BBValidationExtensions)
 
+/**
+ Add a text validator to the receiver.
+ 
+ @param textValidator The text validator to add
+ */
 - (void)BB_addTextValidator:(id<BBTextValidator>)textValidator;
+/**
+ Remove any text validator associated with the receiver.
+ */
 - (void)BB_removeTextValidator;
 
 @end

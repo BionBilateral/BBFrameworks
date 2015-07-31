@@ -18,7 +18,13 @@
 
 #import "BBFrameworksFunctions.h"
 
-#define BBValidationLocalizedErrorString() NSLocalizedStringWithDefaultValue(@"VALIDATION_LOCALIZED_ERROR_STRING",@"Validation",BBFrameworksResourcesBundle(),@"x",@"Validation localized error string")
+/**
+ Localized string for default error view text.
+ */
+#define BBValidationLocalizedErrorString() NSLocalizedStringWithDefaultValue(@"VALIDATION_LOCALIZED_ERROR_STRING",@"Validation",BBFrameworksResourcesBundle(),@"!",@"Validation localized error string")
+/**
+ Localized string for default warning view text.
+ */
 #define BBValidationLocalizedWarningString() NSLocalizedStringWithDefaultValue(@"VALIDATION_LOCALIZED_WARNING_STRING",@"Validation",BBFrameworksResourcesBundle(),@"!",@"Validation localized error string")
 
 #endif

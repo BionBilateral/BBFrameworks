@@ -15,8 +15,17 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ BBValidationTextFieldErrorView is a UIView that is the default error view to display if the validator does not reuturn an object from textValidatorRightView. It is a red circle with a ! character in centered within its bounds. If tapped, displays a tooltip with the localized description text of the NSError object it was initialized with.
+ */
 @interface BBValidationTextFieldErrorView : UIView
 
+/**
+ Designated Initializer.
+ 
+ @param error The error to display when tapped
+ @return An initialized instance of the receiver
+ */
 - (instancetype)initWithError:(NSError *)error;
 
 @end

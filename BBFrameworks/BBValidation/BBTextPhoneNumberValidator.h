@@ -18,6 +18,9 @@
 
 extern NSInteger const BBTextPhoneNumberValidatorErrorCode;
 
+/**
+ BBTextPhoneNumberValidator is an NSObject subclass that provides phone number validation.
+ */
 @interface BBTextPhoneNumberValidator : NSObject <BBTextValidator>
 
 @end

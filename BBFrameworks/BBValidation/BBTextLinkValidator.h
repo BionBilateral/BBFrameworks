@@ -18,6 +18,9 @@
 
 extern NSInteger const BBTextLinkValidatorErrorCode;
 
+/**
+ BBTextLinkValidator is a NSObject subclass that provides link validation.
+ */
 @interface BBTextLinkValidator : NSObject <BBTextValidator>
 
 @end

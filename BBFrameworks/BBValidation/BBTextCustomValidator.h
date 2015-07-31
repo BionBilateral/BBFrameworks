@@ -18,12 +18,32 @@
 
 @class BBTextCustomValidator;
 
+/**
+ Block that is invoked to validate the text whenever it changes.
+ 
+ @param The validator invoking the block
+ @param text The text to validate
+ @param error A pointer to an NSError object, return an error by reference if returning NO
+ @return YES if the text validates, otherwise NO
+ */
 typedef BOOL(^BBTextCustomValidatorBlock)(BBTextCustomValidator *validator, NSString *text, NSError **error);
 
+/**
+ BBTextCustomValidator is a NSObject subclass that provides custom validation via its validatorBlock.
+ */
 @interface BBTextCustomValidator : NSObject <BBTextValidator>
 
+/**
+ Set and get the text validator right view of the receiver. Set this before returning from validatorBlock to have the current view displayed if returning NO from validatorBlock.
+ */
 @property (strong,nonatomic) UIView *textValidatorRightView;
 
+/**
+ Designated Initializer.
+ 
+ @param validatorBlock The validator block that will be invoked whenever the text to validate changes
+ @return An initialized instance of the receiver
+ */
 - (instancetype)initWithValidatorBlock:(BBTextCustomValidatorBlock)validatorBlock NS_DESIGNATED_INITIALIZER;
 
 @end
