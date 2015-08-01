@@ -16,13 +16,48 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+/**
+ Protocol for objects that map JSON keys to managed object property names.
+ */
 @protocol BBManagedObjectPropertyMapping <NSObject>
 @required
+/**
+ Return the entity property name for the JSON key. For example, `first_name` -> `firstName`.
+ 
+ @param JSONKey The JSON key
+ @param entityName The entity name
+ @return The entity property name
+ */
 - (NSString *)entityPropertyKeyForJSONKey:(NSString *)JSONKey entityName:(NSString *)entityName;
+/**
+ Return the JSON key for the entity property name. For example, `firstName` -> `first_name`.
+ 
+ @param propertyKey The JSON key
+ @param entityName The entity name
+ @return The JSON key
+ */
 - (NSString *)JSONKeyForEntityPropertyKey:(NSString *)propertyKey entityName:(NSString *)entityName;
 
+/**
+ Return the entity property value for property key and entity name in context.
+ 
+ @param propertyKey The entity property key
+ @param value The JSON value
+ @param entityName The entity name
+ @param context The managed object context
+ @return The entity property value
+ */
 - (id)entityPropertyValueForEntityPropertyKey:(NSString *)propertyKey value:(id)value entityName:(NSString *)entityName context:(NSManagedObjectContext *)context;
 
 @optional
+/**
+ Return the JSON value for the entity property key, value, and entity name in context.
+ 
+ @param propertyKey The entity property key
+ @param value The entity property value
+ @param entityName The entity name
+ @param context The managed object context
+ @return The JSON value
+ */
 - (id)JSONValueForEntityPropertyKey:(NSString *)propertyKey value:(id)value entityName:(NSString *)entityName context:(NSManagedObjectContext *)context;
 @end

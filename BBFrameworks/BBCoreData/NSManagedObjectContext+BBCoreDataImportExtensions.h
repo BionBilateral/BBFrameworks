@@ -17,19 +17,75 @@
 #import "BBManagedObjectEntityMapping.h"
 #import "BBManagedObjectPropertyMapping.h"
 
+/**
+ Category on NSManagedObjectContext adding import related methods.
+ */
 @interface NSManagedObjectContext (BBCoreDataImportExtensions)
 
+/**
+ Get the key used for testing equality.
+ 
+ @return The identity key
+ */
 + (NSString *)BB_defaultIdentityKey;
+/**
+ Set the key used for testing equality. This should be set before calling `BB_importJSON:entityOrder:entityMapping:completion:`.
+ 
+ @param key The identity key
+ */
 + (void)BB_setDefaultIdentityKey:(NSString *)key;
 
+/**
+ Get the date formatter used to convert between JSON and NSDate objects.
+ 
+ The default is a NSDateFormatter with @"yyyy-MM-dd'T'HH:mm:ssZZZZZ" as its date format.
+ 
+ @return The date formatter
+ */
 + (NSDateFormatter *)BB_defaultDateFormatter;
+/**
+ Set the date formatter used to convert between JSON and NSDate objects.
+ 
+ @param dateFormatter The date formatter
+ */
 + (void)BB_setDefaultDateFormatter:(NSDateFormatter *)dateFormatter;
 
+/**
+ Get the object responsible for mapping between entity properties and JSON keys.
+ 
+ The default is an instance of BBDefaultManagedObjectPropertyMapping.
+ 
+ @param entityName The name of the entity
+ @return The property mapping object for the entity with name
+ */
 + (id<BBManagedObjectPropertyMapping>)BB_propertyMappingForEntityNamed:(NSString *)entityName;
+/**
+ Register a property mapping for a particular entity.
+ 
+ @param propertyMapping An object conforming to BBManagedObjectPropertyMapping
+ @param entityName The name of the entity
+ */
 + (void)BB_registerPropertyMapping:(id<BBManagedObjectPropertyMapping>)propertyMapping forEntityNamed:(NSString *)entityName;
 
+/**
+ Returns a NSManagedObject of entityName by mapping keys and values in dictionary using propertyMapping.
+ 
+ @param dictionary The dictionary of property/relationship key/value pairs
+ @param entityName The name of the entity to create
+ @param propertyMapping The property mapping to use during creation
+ @param error If the method returns nil, an error describing the reason for failure
+ @return The managed object
+ */
 - (NSManagedObject *)BB_managedObjectWithDictionary:(NSDictionary *)dictionary entityName:(NSString *)entityName propertyMapping:(id<BBManagedObjectPropertyMapping>)propertyMapping error:(NSError *__autoreleasing *)error;
 
+/**
+ Imports the provided JSON, creating managed objects for each entry using entityMapping, which maps between JSON keys and entity names. Invokes the completion block when the operation is finished.
+ 
+ @param JSON A collection conforming to NSFastEnumeration, if a NSDictionary is provided, entityOrder can be nil
+ @param entityOrder The order to import the entities in JSON
+ @param entityMapping The entity mapping
+ @param completion The completion block invoked when the operation is finished
+ */
 - (void)BB_importJSON:(id<NSFastEnumeration,NSObject>)JSON entityOrder:(NSArray *)entityOrder entityMapping:(id<BBManagedObjectEntityMapping>)entityMapping completion:(void(^)(BOOL success, NSError *error))completion;
 
 @end

@@ -15,9 +15,24 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Protocol for objects that map JSON keys to entity names.
+ */
 @protocol BBManagedObjectEntityMapping <NSObject>
 @required
+/**
+ Return the entity name for JSON key. For example, `my_document` -> `MyDocument`.
+ 
+ @parm JSONName The JSON name
+ @return The entity name
+ */
 - (NSString *)entityNameForJSONEntityName:(NSString *)JSONName;
 @optional
+/**
+ Return the JSON key for entity name. For example, `MyDocument` -> `my_document`.
+ 
+ @param entityName The entity name
+ @return The JSON name
+ */
 - (NSString *)JSONEntityNameForEntityName:(NSString *)entityName;
 @end
