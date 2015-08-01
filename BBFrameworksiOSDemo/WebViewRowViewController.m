@@ -58,6 +58,12 @@
          [self.view endEditing:NO];
      }];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.textField setText:@"https://www.google.com"];
+    [self.textField becomeFirstResponder];
+}
 
 + (NSString *)rowClassTitle {
     return @"Web View Controller";

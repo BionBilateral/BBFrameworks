@@ -17,6 +17,8 @@
 #import "BBFoundation.h"
 #import "BBFrameworksFunctions.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
+#import "UIImage+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -35,6 +37,7 @@
 + (UIColor *)_defaultTitleTextColor;
 + (UIFont *)_defaultURLFont;
 + (UIColor *)_defaultURLTextColor;
++ (UIImage *)_defaultSecureContentImage;
 @end
 
 @implementation BBWebKitTitleView
@@ -49,14 +52,15 @@
     }
     else {
         CGRect rect = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), [self.urlLabel sizeThatFits:CGSizeZero].width, ceil(self.urlLabel.font.lineHeight)), self.bounds);
+        CGFloat secureMarginX = 4.0;
         
-        if (CGRectGetWidth(self.bounds) - CGRectGetWidth(rect) < self.hasOnlySecureContentImage.size.width) {
+        if (CGRectGetWidth(self.bounds) - CGRectGetWidth(rect) < self.hasOnlySecureContentImage.size.width + secureMarginX) {
             [self.secureImageView setFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), self.hasOnlySecureContentImage.size.width, self.hasOnlySecureContentImage.size.height)];
-            [self.urlLabel setFrame:CGRectMake(CGRectGetMaxX(self.secureImageView.frame), CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(self.bounds) - CGRectGetMaxX(self.secureImageView.frame), CGRectGetHeight(rect))];
+            [self.urlLabel setFrame:CGRectMake(CGRectGetMaxX(self.secureImageView.frame) + secureMarginX, CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(self.bounds) - CGRectGetMaxX(self.secureImageView.frame) - secureMarginX, CGRectGetHeight(rect))];
         }
         else {
             [self.urlLabel setFrame:rect];
-            [self.secureImageView setFrame:CGRectMake(CGRectGetMinX(self.urlLabel.frame) - self.hasOnlySecureContentImage.size.width, CGRectGetMinY(self.urlLabel.frame), self.hasOnlySecureContentImage.size.width, self.hasOnlySecureContentImage.size.height)];
+            [self.secureImageView setFrame:CGRectMake(CGRectGetMinX(self.urlLabel.frame) - self.hasOnlySecureContentImage.size.width - secureMarginX, CGRectGetMinY(self.urlLabel.frame), self.hasOnlySecureContentImage.size.width, self.hasOnlySecureContentImage.size.height)];
         }
     }
 }
@@ -84,6 +88,7 @@
     _titleTextColor = [self.class _defaultTitleTextColor];
     _URLFont = [self.class _defaultURLFont];
     _URLTextColor = [self.class _defaultURLTextColor];
+    _hasOnlySecureContentImage = [self.class _defaultSecureContentImage];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -112,8 +117,16 @@
         @strongify(self);
         [self setNeedsLayout];
     }];
-    RAC(self.secureImageView,hidden) = [[RACObserve(self.webView, hasOnlySecureContent) not] deliverOn:[RACScheduler mainThreadScheduler]];
-    RAC(self.secureImageView,image) = [RACObserve(self, hasOnlySecureContentImage) deliverOn:[RACScheduler mainThreadScheduler]];
+    RAC(self.secureImageView,hidden) = [[[RACObserve(self.webView, hasOnlySecureContent) not] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {
+        @strongify(self);
+        [self setNeedsLayout];
+    }];
+    RAC(self.secureImageView,image) = [[[RACSignal combineLatest:@[RACObserve(self, hasOnlySecureContentImage),RACObserve(self, URLTextColor)] reduce:^id(UIImage *image, UIColor *color){
+        return image && color ? [image BB_imageByRenderingWithColor:color] : nil;
+    }] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {
+        @strongify(self);
+        [self setNeedsLayout];
+    }];
     
     return self;
 }
@@ -138,6 +151,9 @@
     
     [self.urlLabel setTextColor:_URLTextColor];
 }
+- (void)setHasOnlySecureContentImage:(UIImage *)hasOnlySecureContentImage {
+    _hasOnlySecureContentImage = hasOnlySecureContentImage ?: [self.class _defaultSecureContentImage];
+}
 #pragma mark *** Private Methods ***
 + (UIFont *)_defaultTitleFont; {
     return [UIFont boldSystemFontOfSize:15.0];
@@ -150,6 +166,9 @@
 }
 + (UIColor *)_defaultURLTextColor; {
     return [UIColor darkGrayColor];
+}
++ (UIImage *)_defaultSecureContentImage; {
+    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_lock"];
 }
 
 @end
