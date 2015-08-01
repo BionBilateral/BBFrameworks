@@ -891,6 +891,7 @@
 		799F9B9C1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSViewController+BBKitExtensions.m"; path = "OSX/NSViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		799F9B9F1B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+BBKitExtensions.h"; path = "OSX/NSWindow+BBKitExtensions.h"; sourceTree = "<group>"; };
 		799F9BA01B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+BBKitExtensions.m"; path = "OSX/NSWindow+BBKitExtensions.m"; sourceTree = "<group>"; };
+		799F9BB51B6D7B260067BAA8 /* BBWebKitTitleView+BBWebKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBWebKitTitleView+BBWebKitExtensionsPrivate.h"; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
@@ -1455,6 +1456,7 @@
 				79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */,
 				79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */,
 				79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */,
+				799F9BB51B6D7B260067BAA8 /* BBWebKitTitleView+BBWebKitExtensionsPrivate.h */,
 				79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */,
 			);
 			path = BBWebKit;

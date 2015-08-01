@@ -17,18 +17,50 @@
 
 @class WKWebView;
 
+/**
+ BBWebKitTitleView is a UIView subclass that displays the document title and URL of its associated WKWebView. If the hasOnlySecureContent flag on the WKWebView is YES, the hasOnlySecureContentImage will be displayed to the left of the URL.
+ 
+ The feature set of this class was modeled after the in app browser used in the Twitter app.
+ */
 @interface BBWebKitTitleView : UIView
 
-@property (copy,nonatomic) NSString *customTitle;
-
+/**
+ Set and get the font used to display the title.
+ 
+ The default is [UIFont boldSystemFontOfSize:15.0].
+ */
 @property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the color used to display the title.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
+/**
+ Set and get the font used to display the URL.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic) UIFont *URLFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the color used to display the URL.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic) UIColor *URLTextColor UI_APPEARANCE_SELECTOR;
 
+/**
+ Set and get the secure content image of the receiver.
+ */
 @property (strong,nonatomic) UIImage *hasOnlySecureContentImage UI_APPEARANCE_SELECTOR;
 
+/**
+ Designated Initializer.
+ 
+ @param webKitView The web view associated with the receiver
+ @return An initialized instance of the receiver
+ */
 - (instancetype)initWithWebKitView:(WKWebView *)webKitView NS_DESIGNATED_INITIALIZER;
 
 @end

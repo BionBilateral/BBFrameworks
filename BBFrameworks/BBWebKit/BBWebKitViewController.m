@@ -15,7 +15,7 @@
 
 #import "BBWebKitViewController.h"
 #import "BBProgressNavigationBar.h"
-#import "BBWebKitTitleView.h"
+#import "BBWebKitTitleView+BBWebKitExtensionsPrivate.h"
 #import "UIImage+BBKitExtensions.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
 
