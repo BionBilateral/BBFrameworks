@@ -40,7 +40,7 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
 @end
 
 @implementation BBMediaPickerAssetsGroupTableViewCell
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
         return nil;
@@ -111,11 +111,11 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     [self.nameLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), ceil(self.nameLabel.font.lineHeight))];
     [self.countLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(self.nameLabel.frame), CGRectGetWidth(rect), ceil(self.countLabel.font.lineHeight))];
 }
-
+#pragma mark *** Public Methods ***
 + (CGFloat)rowHeight {
     return 90.0;
 }
-
+#pragma mark Properties
 - (void)setContentBackgroundColor:(UIColor *)contentBackgroundColor {
     _contentBackgroundColor = contentBackgroundColor ?: [self.class _defaultContentBackgroundColor];
     
@@ -157,7 +157,7 @@ static CGSize const kImageViewSize = {.width=70.0, .height=70.0};
     
     [self.countLabel setTextColor:_countTextColor];
 }
-
+#pragma mark *** Private Methods ***
 + (UIColor *)_defaultContentBackgroundColor; {
     return [UIColor whiteColor];
 }

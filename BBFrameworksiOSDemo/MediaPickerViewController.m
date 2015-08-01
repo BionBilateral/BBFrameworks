@@ -22,13 +22,33 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface MediaPickerNavigationController : UINavigationController
+
+@end
+
+@implementation MediaPickerNavigationController
+
++ (void)initialize {
+    if (self == [MediaPickerNavigationController class]) {
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:BBColorW(0.1)];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+@end
+
 @interface MediaPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBMediaPickerViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 @end
 
 @implementation MediaPickerViewController
-
+#pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
         [[BBMediaPickerAssetsGroupTableView appearance] setContentBackgroundColor:[UIColor blackColor]];
@@ -40,6 +60,8 @@
         [[BBMediaPickerAssetCollectionView appearance] setContentBackgroundColor:[UIColor blackColor]];
         
         [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
+        
+        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.5)];
     }
 }
 
@@ -50,7 +72,7 @@
 + (NSString *)rowClassTitle {
     return @"Media Picker";
 }
-
+#pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     BBLogObject(info);
     
@@ -60,10 +82,10 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark BBMediaPickerViewControllerDelegate
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(NSArray *)media {
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media {
     BBLogObject(media);
 }
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(NSArray *)media {
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media {
     BBLogObject(media);
 }
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
@@ -72,13 +94,14 @@
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
     BBLogObject(viewController);
 }
-
+#pragma mark *** Private Methods ***
+#pragma mark Actions
 - (IBAction)_systemButtonAction:(id)sender {
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     
     [pickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [pickerController setAllowsEditing:NO];
-    [pickerController setMediaTypes:@[(__bridge id)kUTTypeImage,(__bridge id)kUTTypeVideo]];
+    [pickerController setMediaTypes:@[(__bridge id)kUTTypeImage,(__bridge id)kUTTypeMovie]];
     [pickerController setDelegate:self];
     
     [self presentViewController:pickerController animated:YES completion:nil];
@@ -105,7 +128,7 @@
 //        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
 //    }];
     
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
+    [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }
 
 @end

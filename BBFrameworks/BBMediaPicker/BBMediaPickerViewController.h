@@ -17,21 +17,75 @@
 #import "BBMediaPickerDefines.h"
 #import "BBMediaPickerViewControllerDelegate.h"
 
+/**
+ BBMediaPickerViewController is a UIViewController subclass that mirrors the media browsing functionality provided by UIImagePickerController.
+ */
 @interface BBMediaPickerViewController : UIViewController
 
+/**
+ The authorization status of the app to access the user's media.
+ 
+ @see BBMediaPickerAuthorizationStatus
+ */
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 
+/**
+ Set and get the delegate of the receiver.
+ 
+ @see BBMediaPickerViewControllerDelegate
+ */
 @property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
 
+/**
+ Set and get whether the receiver allows multiple selection.
+ 
+ The default is NO.
+ */
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
+/**
+ Set and get whether the receiver hides empty media groups.
+ 
+ The default is NO.
+ */
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
+/**
+ Set and get whether the receiver should automatically dismiss itself when the user selects media in single selection mode.
+ 
+ The default is YES.
+ */
 @property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
+/**
+ Set and get the cancel bar button item title. If nil, uses the UIBarButtonSystemItemCancel item, otherwise creates a bar button item with the provided title.
+ 
+ The default is nil.
+ */
 @property (copy,nonatomic) NSString *cancelBarButtonItemTitle;
 
+/**
+ Set and get the allowed media types of the receiver.
+ 
+ The default is BBMediaPickerMediaTypesAll.
+ 
+ @see BBMediaPickerMediaTypes
+ */
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
+/**
+ Set and get the media filter block of the receiver. The allows the client fine grained control over the media that is displayed. The block will be invoked once for each media object after the media has been filtered according to the mediaTypes value of the receiver.
+ 
+ The default is nil.
+ 
+ @see BBMediaPickerMediaFilterBlock
+ */
 @property (copy,nonatomic) BBMediaPickerMediaFilterBlock mediaFilterBlock;
 
+/**
+ Set and get the cancel confirm block of the receiver. If non-nil, this will be invoked and the completion block value consulted before dismissing the receiver. This can be used to provide confirmation to the user before ending interaction with the receiver.
+ 
+ The default is nil.
+ 
+ @see BBMediaPickerCancelConfirmBlock
+ */
 @property (copy,nonatomic) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
 
 @end

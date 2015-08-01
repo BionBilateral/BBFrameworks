@@ -24,6 +24,7 @@
 #import "FormViewController.h"
 #import "TokenViewController.h"
 #import "TransitionViewController.h"
+#import "ValidationViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -40,6 +41,7 @@
         return nil;
     
     [self setRowClasses:@[[ViewsRowViewController class],
+                          [ValidationViewController class],
                           [FormViewController class],
                           [TokenViewController class],
                           [TransitionViewController class],

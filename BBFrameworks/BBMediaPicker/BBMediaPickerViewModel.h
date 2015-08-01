@@ -16,6 +16,7 @@
 #import <ReactiveViewModel/RVMViewModel.h>
 #import <UIKit/UIBarButtonItem.h>
 #import "BBMediaPickerDefines.h"
+#import "BBMediaPickerViewModelDelegate.h"
 
 @class BBMediaPickerAssetsGroupViewModel,BBMediaPickerAssetViewModel,BBMediaPickerViewController;
 @class RACCommand;
@@ -23,6 +24,8 @@
 @interface BBMediaPickerViewModel : RVMViewModel
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
+
+@property (weak,nonatomic) id<BBMediaPickerViewModelDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
@@ -50,6 +53,7 @@
 
 - (void)selectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel;
+- (void)deselectAllAssetViewModels;
 
 - (RACSignal *)requestAssetsLibraryAuthorization;
 

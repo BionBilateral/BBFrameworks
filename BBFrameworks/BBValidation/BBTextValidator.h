@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetCollectionViewCell.h
+//  BBTextValidator.h
 //  BBFrameworks
 //
-//  Created by William Towe on 7/29/15.
+//  Created by William Towe on 7/26/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,35 +15,24 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBMediaPickerAssetViewModel;
-
 /**
- BBMediaPickerAssetCollectionViewCell is a UICollectionViewCell subclass that displays media object in the grid view.
+ Protocol for validation object attached to a UITextField or UITextView.
  */
-@interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
-
+@protocol BBTextValidator <NSObject>
+@required
 /**
- Set and get the view model represented by the receiver.
- */
-@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
-
-/**
- Set and get the selected overlay foreground color. This used to draw the border around the checkmark as well as the checkmark itself.
+ Called when the text to validate has changed. Return YES if the text is valid, otherwise NO. Also, return a NSError by reference explaining why the text is invalid.
  
- The default is [UIColor whiteColor].
+ @param text The text to validate
+ @param error If the text is invalid, an error explaining why the text is invalid
+ @return YES if the text is valid, otherwise NO
  */
-@property (strong,nonatomic) UIColor *selectedOverlayForegroundColor UI_APPEARANCE_SELECTOR;
+- (BOOL)validateText:(NSString *)text error:(NSError **)error;
+@optional
 /**
- Set and get the selected overlay tint color. This affects the checkmark that is drawn within the selected overlay when the represented view model is selected. If nil, the tintColor of the receiver is used.
+ Called when validateText:error: returns NO to determine which view to show within the view to indicate failure.
  
- The default is nil.
+ @return The view to display, if nil, BBValidationTextFieldErrorView is used
  */
-@property (strong,nonatomic) UIColor *selectedOverlayTintColor UI_APPEARANCE_SELECTOR;
-/**
- Set and get the selected overlay background color. This is the view that is placed over the thumbnail image when the represented view model is selected.
- 
- The default is BBColorWA(1.0, 0.33).
- */
-@property (strong,nonatomic) UIColor *selectedOverlayBackgroundColor UI_APPEARANCE_SELECTOR;
-
+- (UIView *)textValidatorRightView;
 @end

@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetCollectionViewLayout.m
+//  BBTextCustomValidator.m
 //  BBFrameworks
 //
-//  Created by William Towe on 7/29/15.
+//  Created by William Towe on 7/26/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,41 +13,34 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaPickerAssetCollectionViewLayout.h"
+#import "BBTextCustomValidator.h"
 
-@implementation BBMediaPickerAssetCollectionViewLayout
-#pragma mark *** Subclass Overrides ***
-- (instancetype)init {
+@interface BBTextCustomValidator ()
+@property (copy,nonatomic) BBTextCustomValidatorBlock validatorBlock;
+@end
+
+@implementation BBTextCustomValidator
+
+- (BOOL)validateText:(NSString *)text error:(NSError *__autoreleasing *)error {
+    NSError *outError;
+    BOOL retval = self.validatorBlock(self,text,&outError);
+    
+    if (!retval) {
+        *error = outError;
+    }
+    
+    return retval;
+}
+
+- (instancetype)initWithValidatorBlock:(BBTextCustomValidatorBlock)validatorBlock {
     if (!(self = [super init]))
         return nil;
     
-    _numberOfColumns = 4;
+    NSParameterAssert(validatorBlock);
     
-    [self setSectionInset:UIEdgeInsetsMake(8.0, 0, 8.0, 0)];
-    [self setMinimumInteritemSpacing:2.0];
-    [self setMinimumLineSpacing:2.0];
+    [self setValidatorBlock:validatorBlock];
     
     return self;
-}
-
-- (void)prepareLayout {
-    [super prepareLayout];
-    
-    CGFloat availableWidth = CGRectGetWidth(self.collectionView.bounds) - (self.minimumInteritemSpacing * (self.numberOfColumns - 1));
-    CGFloat itemWidth = floor(availableWidth / (CGFloat)self.numberOfColumns);
-    
-    [self setItemSize:CGSizeMake(itemWidth, itemWidth)];
-}
-#pragma mark *** Public Methods ***
-#pragma mark Properties
-- (void)setNumberOfColumns:(NSInteger)numberOfColumns {
-    if (_numberOfColumns == numberOfColumns) {
-        return;
-    }
-    
-    _numberOfColumns = numberOfColumns;
-    
-    [self invalidateLayout];
 }
 
 @end

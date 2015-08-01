@@ -17,13 +17,34 @@
 
 @class BBMediaPickerAssetsGroupViewModel;
 
+/**
+ BBMediaPickerAssetCollectionFooterView is a UICollectionReusableView subclass that displayed the count and type of media in the grid view.
+ */
 @interface BBMediaPickerAssetCollectionFooterView : UICollectionReusableView
 
+/**
+ Set and get the view model represented by the receiver.
+ */
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 
+/**
+ Set and get the font used to display the title of the receiver.
+ 
+ The default is [UIFont systemFontOfSize:17.0].
+ */
 @property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the color used to display the title of the receiver.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
+/**
+ Get the row height of the receiver.
+ 
+ The default is 60.0.
+ */
 + (CGFloat)rowHeight;
 
 @end

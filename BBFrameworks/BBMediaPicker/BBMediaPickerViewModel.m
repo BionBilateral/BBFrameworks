@@ -236,7 +236,7 @@
     
     return self;
 }
-
+#pragma mark *** Public Methods ***
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return (BBMediaPickerAuthorizationStatus)[ALAssetsLibrary authorizationStatus];
 }
@@ -252,6 +252,10 @@
     else {
         [self setSelectedAssetViewModels:[NSOrderedSet orderedSetWithObject:viewModel]];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewModel:didSelectMedia:)]) {
+        [self.delegate mediaPickerViewModel:self didSelectMedia:viewModel];
+    }
 }
 - (void)deselectAssetViewModel:(BBMediaPickerAssetViewModel *)viewModel; {
     NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetViewModels];
@@ -259,6 +263,13 @@
     [temp removeObject:viewModel];
     
     [self setSelectedAssetViewModels:temp];
+    
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewModel:didDeselectMedia:)]) {
+        [self.delegate mediaPickerViewModel:self didDeselectMedia:viewModel];
+    }
+}
+- (void)deselectAllAssetViewModels; {
+    [self setSelectedAssetViewModels:nil];
 }
 
 - (RACSignal *)requestAssetsLibraryAuthorization; {
@@ -278,7 +289,7 @@
         [self _refreshAssetsGroupViewModels];
     }];
 }
-
+#pragma mark Properties
 - (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
     _cancelBarButtonItemTitle = cancelBarButtonItemTitle;
     
@@ -291,7 +302,7 @@
     
     [self.cancelBarButtonItem setRac_command:self.cancelCommand];
 }
-
+#pragma mark *** Private Methods ***
 - (void)_refreshAssetsGroupViewModels; {
     [self setSelectedAssetViewModels:nil];
     
@@ -314,6 +325,21 @@
         }
     } failureBlock:^(NSError *error) {
         BBLogObject(error);
+        [self setAssetsGroupViewModels:nil];
+    }];
+}
+#pragma mark Properties
+- (void)setAssetsGroupViewModels:(NSArray *)assetsGroupViewModels {
+    _assetsGroupViewModels = [assetsGroupViewModels sortedArrayUsingComparator:^NSComparisonResult(BBMediaPickerAssetsGroupViewModel *obj1, BBMediaPickerAssetsGroupViewModel *obj2) {
+        if (obj1.type == BBMediaPickerAssetsGroupViewModelTypeSavedPhotos) {
+            return NSOrderedAscending;
+        }
+        else if (obj2.type == BBMediaPickerAssetsGroupViewModelTypeSavedPhotos) {
+            return NSOrderedDescending;
+        }
+        else {
+            return [obj1.name localizedStandardCompare:obj2.name];
+        }
     }];
 }
 

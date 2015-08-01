@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ValidationViewController">
+            <connections>
+                <outlet property="customTextField" destination="m3s-wA-mQf" id="KLL-k0-lPn"/>
+                <outlet property="phoneNumberTextField" destination="HnY-eN-MP0" id="WH9-1r-bd1"/>
+                <outlet property="textView" destination="7Xa-ko-4Ai" id="bFr-bi-0cV"/>
+                <outlet property="view" destination="iN0-l3-epB" id="yic-G3-m2V"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a phone number…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HnY-eN-MP0" customClass="BBTextField">
+                    <rect key="frame" x="8" y="75" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a gmail email address…" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m3s-wA-mQf" customClass="BBTextField">
+                    <rect key="frame" x="8" y="113" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xa-ko-4Ai" customClass="BBTextView">
+                    <rect key="frame" x="8" y="151" width="584" height="125"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="125" id="J1m-mH-efV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="m3s-wA-mQf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="1wR-sy-Hp3"/>
+                <constraint firstAttribute="trailing" secondItem="HnY-eN-MP0" secondAttribute="trailing" constant="8" id="W3X-fw-Q3B"/>
+                <constraint firstItem="7Xa-ko-4Ai" firstAttribute="top" secondItem="m3s-wA-mQf" secondAttribute="bottom" constant="8" id="W3f-1r-w6q"/>
+                <constraint firstItem="HnY-eN-MP0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="agJ-hP-bRu"/>
+                <constraint firstItem="HnY-eN-MP0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="dgZ-Yg-m2K"/>
+                <constraint firstItem="m3s-wA-mQf" firstAttribute="top" secondItem="HnY-eN-MP0" secondAttribute="bottom" constant="8" id="dny-Jk-eh5"/>
+                <constraint firstItem="7Xa-ko-4Ai" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="r5A-O2-3SW"/>
+                <constraint firstAttribute="trailing" secondItem="m3s-wA-mQf" secondAttribute="trailing" constant="8" id="tQ2-Ef-39V"/>
+                <constraint firstAttribute="trailing" secondItem="7Xa-ko-4Ai" secondAttribute="trailing" constant="8" id="vP9-b1-D7l"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+        </view>
+    </objects>
+</document>

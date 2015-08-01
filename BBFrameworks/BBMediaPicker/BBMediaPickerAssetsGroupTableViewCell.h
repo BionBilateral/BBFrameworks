@@ -17,17 +17,58 @@
 
 @class BBMediaPickerAssetsGroupViewModel;
 
+/**
+ BBMediaPickerAssetsGroupTableViewCell is a UITableViewCell that displays a single media group.
+ */
 @interface BBMediaPickerAssetsGroupTableViewCell : UITableViewCell
 
+/**
+ Set and get the view model represented by the receiver.
+ */
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 
+/**
+ Set and get the content background color of the receiver. This is tied to the backgroundColor of the receiver.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the selected content background color of the receiver. This is tied to the selectedBackgroundView of the receiver.
+ 
+ The default is [UIColor lightGrayColor].
+ */
 @property (strong,nonatomic) UIColor *selectedContentBackgroundColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the font used to display the name of the receiver.
+ 
+ The default is [UIFont systemFontOfSize:17.0].
+ */
 @property (strong,nonatomic) UIFont *nameFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the color used to display the name of the receiver.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic) UIColor *nameTextColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the font used to display the count of the receiver.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic) UIFont *countFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the color used to display the count of the receiver.
+ 
+ The default is [UIColor lightGrayColor].
+ */
 @property (strong,nonatomic) UIColor *countTextColor UI_APPEARANCE_SELECTOR;
 
+/**
+ Get the row height of the receiver.
+ 
+ The default is 90.0.
+ */
 + (CGFloat)rowHeight;
 
 @end

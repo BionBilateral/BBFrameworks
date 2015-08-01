@@ -31,7 +31,7 @@
 @end
 
 @implementation BBMediaPickerAssetsGroupViewModel
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)assetsGroup parentViewModel:(BBMediaPickerViewModel *)parentViewModel; {
     if (!(self = [super init]))
         return nil;
@@ -94,18 +94,16 @@
                 }];
             }];
 }
-
+#pragma mark Properties
 - (NSURL *)URL {
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyURL];
 }
-- (NSNumber *)type {
-    return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyType];
+- (BBMediaPickerAssetsGroupViewModelType)type {
+    return [[self.assetsGroup valueForProperty:ALAssetsGroupPropertyType] integerValue];
 }
 - (UIImage *)badgeImage {
-    ALAssetsGroupType type = self.type.integerValue;
-    
-    switch (type) {
-        case ALAssetsGroupSavedPhotos:
+    switch (self.type) {
+        case BBMediaPickerAssetsGroupViewModelTypeSavedPhotos:
             return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_camera_roll"];
         default:
             return nil;

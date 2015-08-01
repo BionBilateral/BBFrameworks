@@ -20,13 +20,25 @@
 @end
 
 @implementation BBMediaPickerAssetsGroupTableView
-
+#pragma mark *** Subclass Overrides ***
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    _contentBackgroundColor = [self.class _defaultContentBackgroundColor];
+    
+    [self setBackgroundColor:_contentBackgroundColor];
+    
+    return self;
+}
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 - (void)setContentBackgroundColor:(UIColor *)contentBackgroundColor {
     _contentBackgroundColor = contentBackgroundColor ?: [self.class _defaultContentBackgroundColor];
     
     [self setBackgroundColor:_contentBackgroundColor];
 }
-
+#pragma mark *** Private Methods ***
 + (UIColor *)_defaultContentBackgroundColor; {
     return [UIColor whiteColor];
 }

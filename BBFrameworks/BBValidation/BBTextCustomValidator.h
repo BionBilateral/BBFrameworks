@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetCollectionViewCell.h
+//  BBTextCustomValidator.h
 //  BBFrameworks
 //
-//  Created by William Towe on 7/29/15.
+//  Created by William Towe on 7/26/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,37 +13,37 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "BBTextValidator.h"
 
-@class BBMediaPickerAssetViewModel;
-
-/**
- BBMediaPickerAssetCollectionViewCell is a UICollectionViewCell subclass that displays media object in the grid view.
- */
-@interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
+@class BBTextCustomValidator;
 
 /**
- Set and get the view model represented by the receiver.
- */
-@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
-
-/**
- Set and get the selected overlay foreground color. This used to draw the border around the checkmark as well as the checkmark itself.
+ Block that is invoked to validate the text whenever it changes.
  
- The default is [UIColor whiteColor].
+ @param The validator invoking the block
+ @param text The text to validate
+ @param error A pointer to an NSError object, return an error by reference if returning NO
+ @return YES if the text validates, otherwise NO
  */
-@property (strong,nonatomic) UIColor *selectedOverlayForegroundColor UI_APPEARANCE_SELECTOR;
+typedef BOOL(^BBTextCustomValidatorBlock)(BBTextCustomValidator *validator, NSString *text, NSError **error);
+
 /**
- Set and get the selected overlay tint color. This affects the checkmark that is drawn within the selected overlay when the represented view model is selected. If nil, the tintColor of the receiver is used.
- 
- The default is nil.
+ BBTextCustomValidator is a NSObject subclass that provides custom validation via its validatorBlock.
  */
-@property (strong,nonatomic) UIColor *selectedOverlayTintColor UI_APPEARANCE_SELECTOR;
+@interface BBTextCustomValidator : NSObject <BBTextValidator>
+
 /**
- Set and get the selected overlay background color. This is the view that is placed over the thumbnail image when the represented view model is selected.
- 
- The default is BBColorWA(1.0, 0.33).
+ Set and get the text validator right view of the receiver. Set this before returning from validatorBlock to have the current view displayed if returning NO from validatorBlock.
  */
-@property (strong,nonatomic) UIColor *selectedOverlayBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) UIView *textValidatorRightView;
+
+/**
+ Designated Initializer.
+ 
+ @param validatorBlock The validator block that will be invoked whenever the text to validate changes
+ @return An initialized instance of the receiver
+ */
+- (instancetype)initWithValidatorBlock:(BBTextCustomValidatorBlock)validatorBlock NS_DESIGNATED_INITIALIZER;
 
 @end

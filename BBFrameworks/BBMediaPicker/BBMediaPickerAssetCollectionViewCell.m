@@ -31,13 +31,21 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 @property (strong,nonatomic) UILabel *durationLabel;
 @property (strong,nonatomic) UIView *selectedOverlayView;
 @property (strong,nonatomic) UIImageView *selectedImageView;
+
++ (UIColor *)_defaultSelectedOverlayForegroundColor;
++ (UIColor *)_defaultSelectedOverlayBackgroundColor;
+
+- (UIImage *)_selectedCheckmarkImage;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
+    
+    _selectedOverlayForegroundColor = [self.class _defaultSelectedOverlayForegroundColor];
+    _selectedOverlayBackgroundColor = [self.class _defaultSelectedOverlayBackgroundColor];
     
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
@@ -56,7 +64,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.contentView addSubview:self.durationLabel];
     
     [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.selectedOverlayView setBackgroundColor:BBColorWA(1.0, 0.33)];
+    [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
     [self.contentView addSubview:self.selectedOverlayView];
     
     [self setSelectedImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
@@ -89,7 +97,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.durationLabel setFrame:CGRectMake(CGRectGetMaxX(self.typeImageView.frame), CGRectGetHeight(self.contentView.bounds) - ceil(self.durationLabel.font.lineHeight) - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.typeImageView.frame) - kSubviewMarginHalf, ceil(self.durationLabel.font.lineHeight))];
     [self.gradientView setFrame:CGRectMake(0, CGRectGetHeight(self.contentView.bounds) - self.typeImageView.image.size.height - kSubviewMarginHalf - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds), self.typeImageView.image.size.height + kSubviewMarginHalf + kSubviewMarginHalf)];
     [self.selectedOverlayView setFrame:self.contentView.bounds];
-    [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, CGRectGetHeight(self.contentView.bounds) - self.selectedImageView.image.size.height - kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
+    [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -99,25 +107,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
         UIImage *retval = nil;
         
         if (selected) {
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
-            
-            CGRect rect = CGRectMake(0, 0, 22, 22);
-            
-            [[UIColor whiteColor] setFill];
-            [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
-            
-            [self.tintColor setFill];
-            [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
-            
-            NSString *string = @"✓";
-            NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: [UIColor whiteColor]};
-            CGSize size = [string sizeWithAttributes:attributes];
-            
-            [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];
-            
-            retval = UIGraphicsGetImageFromCurrentImageContext();
-            
-            UIGraphicsEndImageContext();
+            retval = [self _selectedCheckmarkImage];
         }
         
         retval;
@@ -128,6 +118,58 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     if (selected) {
         [self setNeedsLayout];
     }
+}
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+- (void)setSelectedOverlayForegroundColor:(UIColor *)selectedOverlayForegroundColor {
+    _selectedOverlayForegroundColor = selectedOverlayForegroundColor ?: [self.class _defaultSelectedOverlayForegroundColor];
+    
+    if (self.isSelected) {
+        [self.selectedImageView setImage:[self _selectedCheckmarkImage]];
+    }
+}
+- (void)setSelectedOverlayTintColor:(UIColor *)selectedOverlayTintColor {
+    _selectedOverlayTintColor = selectedOverlayTintColor;
+    
+    if (self.isSelected) {
+        [self.selectedImageView setImage:[self _selectedCheckmarkImage]];
+    }
+}
+- (void)setSelectedOverlayBackgroundColor:(UIColor *)selectedOverlayBackgroundColor {
+    _selectedOverlayBackgroundColor = selectedOverlayBackgroundColor ?: [self.class _defaultSelectedOverlayBackgroundColor];
+    
+    [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
+}
+#pragma mark *** Private Methods ***
++ (UIColor *)_defaultSelectedOverlayForegroundColor {
+    return [UIColor whiteColor];
+}
++ (UIColor *)_defaultSelectedOverlayBackgroundColor; {
+    return BBColorWA(1.0, 0.33);
+}
+
+- (UIImage *)_selectedCheckmarkImage {
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
+    
+    CGRect rect = CGRectMake(0, 0, 22, 22);
+    
+    [self.selectedOverlayForegroundColor setFill];
+    [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
+    
+    [self.selectedOverlayTintColor ?: self.tintColor setFill];
+    [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
+    
+    NSString *string = @"✓";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: self.selectedOverlayForegroundColor};
+    CGSize size = [string sizeWithAttributes:attributes];
+    
+    [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];
+    
+    UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return retval;
 }
 
 @end

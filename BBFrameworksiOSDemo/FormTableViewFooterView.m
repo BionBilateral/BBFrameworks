@@ -38,7 +38,7 @@
         NSMutableAttributedString *retval = [[NSMutableAttributedString alloc] initWithString:@"This is a custom table view footer view class. Tap on " attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
         
         [retval appendAttributedString:[[NSAttributedString alloc] initWithString:@"https://www.arstechnica.com" attributes:@{NSLinkAttributeName: [NSURL URLWithString:@"https://www.arstechnica.com"]}]];
-        [retval appendAttributedString:[[NSAttributedString alloc] initWithString:@" to open a modal browser taking to you the link" attributes:[retval attributesAtIndex:0 effectiveRange:NULL]]];
+        [retval appendAttributedString:[[NSAttributedString alloc] initWithString:@" to open a modal browser taking you to the link" attributes:[retval attributesAtIndex:0 effectiveRange:NULL]]];
         
         retval;
     })];

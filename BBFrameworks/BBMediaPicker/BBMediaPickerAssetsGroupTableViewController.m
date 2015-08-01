@@ -26,7 +26,7 @@
 @end
 
 @implementation BBMediaPickerAssetsGroupTableViewController
-
+#pragma mark *** Subclass Overrides ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -43,7 +43,12 @@
          [self.tableView reloadData];
      }];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.viewModel deselectAllAssetViewModels];
+}
+#pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.viewModel.assetsGroupViewModels.count;
 }
@@ -54,11 +59,11 @@
     
     return cell;
 }
-
+#pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.navigationController pushViewController:[[BBMediaPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel.assetsGroupViewModels[indexPath.row]] animated:YES];
 }
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel; {
     if (!(self = [super init]))
         return nil;

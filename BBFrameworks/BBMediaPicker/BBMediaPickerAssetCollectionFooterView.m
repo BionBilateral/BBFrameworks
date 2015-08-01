@@ -26,7 +26,7 @@
 @end
 
 @implementation BBMediaPickerAssetCollectionFooterView
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -50,11 +50,11 @@
     
     [self.titleLabel setFrame:self.bounds];
 }
-
+#pragma mark *** Public Methods ***
 + (CGFloat)rowHeight {
     return 60.0;
 }
-
+#pragma mark Properties
 - (void)setTitleFont:(UIFont *)titleFont {
     _titleFont = titleFont ?: [self.class _defaultTitleFont];
     
@@ -65,7 +65,7 @@
     
     [self.titleLabel setTextColor:_titleTextColor];
 }
-
+#pragma mark *** Private Methods ***
 + (UIFont *)_defaultTitleFont; {
     return [UIFont systemFontOfSize:17.0];
 }
