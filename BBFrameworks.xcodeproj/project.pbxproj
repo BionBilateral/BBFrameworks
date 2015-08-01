@@ -155,6 +155,8 @@
 		799C0C811B61B9B200A3888A /* BBAddressBookPersonTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C741B61B95B00A3888A /* BBAddressBookPersonTableViewCell.h */; };
 		799C0C821B61B9B200A3888A /* BBAddressBookTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C761B61B95B00A3888A /* BBAddressBookTableViewController.h */; };
 		799C0C831B61B9B200A3888A /* BBAddressBookTableViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799C0C781B61B95B00A3888A /* BBAddressBookTableViewModel.h */; };
+		799F9B991B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 799F9B971B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		799F9B9A1B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F9B981B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.m */; };
 		79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */; };
 		79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */; };
 		79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B691B64944A00ADE997 /* BBTransitions.h */; };
@@ -828,6 +830,8 @@
 		799C0C791B61B95B00A3888A /* BBAddressBookTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookTableViewModel.m; sourceTree = "<group>"; };
 		799C0C7A1B61B95B00A3888A /* BBAddressBookUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookUI.h; sourceTree = "<group>"; };
 		799C0C7E1B61B96F00A3888A /* BBAddressBookPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAddressBookPersonTableViewCell.xib; sourceTree = "<group>"; };
+		799F9B971B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSViewController+BBKitExtensions.h"; path = "OSX/NSViewController+BBKitExtensions.h"; sourceTree = "<group>"; };
+		799F9B981B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSViewController+BBKitExtensions.m"; path = "OSX/NSViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
@@ -1775,6 +1779,8 @@
 				79D540791B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m */,
 				79D5407C1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.h */,
 				79D5407D1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.m */,
+				799F9B971B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.h */,
+				799F9B981B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1934,6 +1940,7 @@
 				79EA81771B3F22A800D50B6B /* BBWebKit.h in Headers */,
 				79EA81461B3F21F100D50B6B /* BBFrameworks.h in Headers */,
 				79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */,
+				799F9B991B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.h in Headers */,
 				79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */,
 				79EA816A1B3F228400D50B6B /* BBThumbnailMovieOperation.h in Headers */,
 				077656661B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h in Headers */,
@@ -2617,6 +2624,7 @@
 				79EA817F1B3F22C300D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
 				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
+				799F9B9A1B6C9A6F0067BAA8 /* NSViewController+BBKitExtensions.m in Sources */,
 				79EA82C71B3F945700D50B6B /* BBView.m in Sources */,
 				077656681B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m in Sources */,
 				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
