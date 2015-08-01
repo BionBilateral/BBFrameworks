@@ -18,11 +18,11 @@
 @implementation NSWindow (BBKitExtensions)
 
 + (NSWindow *)BB_windowForPresenting; {
-    return [[NSApplication sharedApplication].keyWindow BB_windowForPresenting];
+    return [[NSApplication sharedApplication].keyWindow ?: [NSApplication sharedApplication].mainWindow BB_windowForPresenting];
 }
 
 - (NSWindow *)BB_windowForPresenting; {
-    NSWindow *retval = nil;
+    NSWindow *retval = self;
     
     while (retval.attachedSheet) {
         retval = retval.attachedSheet;
