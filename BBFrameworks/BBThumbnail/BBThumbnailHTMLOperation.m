@@ -25,8 +25,6 @@
 
 #import <WebKit/WebKit.h>
 
-static void *kObservingContext = &kObservingContext;
-
 @interface BBThumbnailHTMLOperation () <WKNavigationDelegate>
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;

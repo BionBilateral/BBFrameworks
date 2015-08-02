@@ -912,8 +912,8 @@
 		799F9BB81B6D85170067BAA8 /* web_kit_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_kit_lock.png; sourceTree = "<group>"; };
 		799F9BB91B6D85170067BAA8 /* web_kit_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@2x.png"; sourceTree = "<group>"; };
 		799F9BBA1B6D85170067BAA8 /* web_kit_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@3x.png"; sourceTree = "<group>"; };
-		799F9BBE1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailQuickLookOperation.h; sourceTree = "<group>"; };
-		799F9BBF1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailQuickLookOperation.m; sourceTree = "<group>"; };
+		799F9BBE1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBThumbnailQuickLookOperation.h; path = OSX/BBThumbnailQuickLookOperation.h; sourceTree = "<group>"; };
+		799F9BBF1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBThumbnailQuickLookOperation.m; path = OSX/BBThumbnailQuickLookOperation.m; sourceTree = "<group>"; };
 		799F9BC31B6DA9BB0067BAA8 /* BBThumbnailDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailDownloadOperation.h; sourceTree = "<group>"; };
 		799F9BC41B6DA9BB0067BAA8 /* BBThumbnailDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailDownloadOperation.m; sourceTree = "<group>"; };
 		799F9BC81B6DB0980067BAA8 /* BBThumbnailGenerator+BBThumbnailExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBThumbnailGenerator+BBThumbnailExtensionsPrivate.h"; sourceTree = "<group>"; };
@@ -952,8 +952,8 @@
 		79B4FFE21B369EE2007B8629 /* BBThumbnailAsyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailAsyncOperation.m; sourceTree = "<group>"; };
 		79B4FFE71B36ADF6007B8629 /* BBThumbnailHTMLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailHTMLOperation.h; sourceTree = "<group>"; };
 		79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailHTMLOperation.m; sourceTree = "<group>"; };
-		79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailDocumentOperation.h; sourceTree = "<group>"; };
-		79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailDocumentOperation.m; sourceTree = "<group>"; };
+		79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBThumbnailDocumentOperation.h; path = iOS/BBThumbnailDocumentOperation.h; sourceTree = "<group>"; };
+		79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBThumbnailDocumentOperation.m; path = iOS/BBThumbnailDocumentOperation.m; sourceTree = "<group>"; };
 		79B4FFF81B3908FC007B8629 /* BBMediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayer.h; sourceTree = "<group>"; };
 		79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerController.h; sourceTree = "<group>"; };
 		79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerController.m; sourceTree = "<group>"; };
