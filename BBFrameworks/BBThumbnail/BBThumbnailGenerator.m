@@ -30,6 +30,8 @@
 #import "BBThumbnailDocumentOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
+#else
+#import "BBThumbnailQuickLookOperation.h"
 #endif
 
 #import <ReactiveCocoa/RACEXTScope.h>
@@ -249,12 +251,18 @@ static NSTimeInterval const kDefaultTime = 1.0;
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
                 [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
+#if (TARGET_OS_IPHONE)
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
                      [@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx",@"csv"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
                 [retval setOperation:[[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
+#endif
             else {
+#if (TARGET_OS_IPHONE)
                 cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
+#else
+                [retval setOperation:[[BBThumbnailQuickLookOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+#endif
             }
         }
         else {

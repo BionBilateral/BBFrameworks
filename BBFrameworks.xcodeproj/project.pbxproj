@@ -183,6 +183,8 @@
 		799F9BBB1B6D85170067BAA8 /* web_kit_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F9BB81B6D85170067BAA8 /* web_kit_lock.png */; };
 		799F9BBC1B6D85170067BAA8 /* web_kit_lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F9BB91B6D85170067BAA8 /* web_kit_lock@2x.png */; };
 		799F9BBD1B6D85170067BAA8 /* web_kit_lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F9BBA1B6D85170067BAA8 /* web_kit_lock@3x.png */; };
+		799F9BC01B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 799F9BBE1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h */; };
+		799F9BC21B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F9BBF1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m */; };
 		79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */; };
 		79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */; };
 		79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B691B64944A00ADE997 /* BBTransitions.h */; };
@@ -898,6 +900,8 @@
 		799F9BB81B6D85170067BAA8 /* web_kit_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_kit_lock.png; sourceTree = "<group>"; };
 		799F9BB91B6D85170067BAA8 /* web_kit_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@2x.png"; sourceTree = "<group>"; };
 		799F9BBA1B6D85170067BAA8 /* web_kit_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@3x.png"; sourceTree = "<group>"; };
+		799F9BBE1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailQuickLookOperation.h; sourceTree = "<group>"; };
+		799F9BBF1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailQuickLookOperation.m; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
@@ -1939,6 +1943,8 @@
 				79B4FFE81B36ADF6007B8629 /* BBThumbnailHTMLOperation.m */,
 				79B4FFF11B37856D007B8629 /* BBThumbnailDocumentOperation.h */,
 				79B4FFF21B37856D007B8629 /* BBThumbnailDocumentOperation.m */,
+				799F9BBE1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h */,
+				799F9BBF1B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2060,6 +2066,7 @@
 				0776565F1B617C24000DD318 /* BBFoundationGeometryFunctions.h in Headers */,
 				79EA81471B3F21FE00D50B6B /* BBFrameworksConstants.h in Headers */,
 				79EA81591B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.h in Headers */,
+				799F9BC01B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.h in Headers */,
 				74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */,
 				79EA81551B3F222F00D50B6B /* BBCoreData.h in Headers */,
 				79EA81491B3F221600D50B6B /* BBFoundation.h in Headers */,
@@ -2746,6 +2753,7 @@
 				79EA81901B3F22FC00D50B6B /* BBThumbnailTextOperation.m in Sources */,
 				79EA81941B3F22FC00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,
 				79EA817F1B3F22C300D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
+				799F9BC21B6D98B70067BAA8 /* BBThumbnailQuickLookOperation.m in Sources */,
 				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				799F9B9E1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m in Sources */,
