@@ -91,9 +91,9 @@ Pod::Spec.new do |spec|
     
     subspec.dependency "BBFrameworks/BBKit"
     
-    subspec.source_files = "BBFrameworks/BBThumbnail"
-    subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS"
-    subspec.osx.source_files = "BBFrameworks/BBThumbnail/OSX"
+    subspec.source_files = "BBFrameworks/BBThumbnail", "BBFrameworks/BBThumbnail/Private"
+    subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS/**"
+    subspec.osx.source_files = "BBFrameworks/BBThumbnail/OSX/**"
     
     subspec.private_header_files = "BBFrameworks/BBThumbnail/Private"
     subspec.ios.private_header_files = "BBFrameworks/BBThumbnail/iOS/Private"
