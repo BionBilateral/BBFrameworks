@@ -52,7 +52,7 @@
 - (void)main {
     [super main];
     
-    [self setTask:[[NSURLSession sessionWithConfiguration:self.thumbnailGenerator.URLSessionConfiguration ?: [NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil] dataTaskWithURL:self.URL]];
+    [self setTask:[[NSURLSession sessionWithConfiguration:self.thumbnailGenerator.URLSessionConfiguration delegate:self delegateQueue:nil] dataTaskWithURL:self.URL]];
     [self.task resume];
 }
 #pragma mark NSURLSessionDelegate

@@ -50,7 +50,7 @@ static CGSize const kDefaultSize = {.width=175.0, .height=175.0};
 static NSInteger const kDefaultPage = 1;
 static NSTimeInterval const kDefaultTime = 1.0;
 
-@interface BBThumbnailGenerator () <NSCacheDelegate,NSURLSessionDelegate,NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
+@interface BBThumbnailGenerator () <NSCacheDelegate>
 @property (copy,nonatomic) NSURL *fileCacheDirectoryURL;
 @property (copy,nonatomic) NSURL *downloadCacheDirectoryURL;
 
@@ -60,9 +60,8 @@ static NSTimeInterval const kDefaultTime = 1.0;
 
 @property (readwrite,strong,nonatomic) NSOperationQueue *webViewOperationQueue;
 
-@property (strong,nonatomic) NSURLSession *URLSession;
-
 + (NSOperationQueue *)_defaultCompletionQueue;
++ (NSURLSessionConfiguration *)_defaultURLSessionConfiguration;
 @end
 
 @implementation BBThumbnailGenerator
@@ -97,6 +96,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
     [self setDefaultTime:kDefaultTime];
     
     [self setCompletionQueue:[self.class _defaultCompletionQueue]];
+    [self setURLSessionConfiguration:[self.class _defaultURLSessionConfiguration]];
     
     [self setMemoryCache:[[NSCache alloc] init]];
     [self.memoryCache setName:[NSString stringWithFormat:@"%@.%p",kCacheDirectoryName,self]];
@@ -122,28 +122,6 @@ static NSTimeInterval const kDefaultTime = 1.0;
 #pragma mark NSCacheDelegate
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj {
     BBLog(@"%@ %@",cache.name,obj);
-}
-#pragma mark NSURLSessionDelegate
-- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error {
-    BBLog(@"%@ %@",session,error);
-}
-#pragma mark NSURLSessionDelegate
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
-    
-}
-#pragma mark NSURLSessionDataDelegate
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-    NSURL *URL = [self downloadCacheURLForURL:downloadTask.originalRequest.URL];
-    
-    [[NSFileManager defaultManager] removeItemAtURL:URL error:NULL];
-    
-    NSError *outError;
-    if ([[NSFileManager defaultManager] moveItemAtURL:location toURL:URL error:&outError]) {
-        
-    }
-    else {
-        BBLogObject(outError);
-    }
 }
 #pragma mark *** Public Methods ***
 - (void)clearFileCache; {
@@ -359,9 +337,16 @@ static NSTimeInterval const kDefaultTime = 1.0;
 - (void)setCompletionQueue:(NSOperationQueue *)completionQueue {
     _completionQueue = completionQueue ?: [self.class _defaultCompletionQueue];
 }
+
+- (void)setURLSessionConfiguration:(NSURLSessionConfiguration *)URLSessionConfiguration {
+    _URLSessionConfiguration = URLSessionConfiguration ?: [self.class _defaultURLSessionConfiguration];
+}
 #pragma mark *** Private Methods ***
 + (NSOperationQueue *)_defaultCompletionQueue; {
     return [NSOperationQueue mainQueue];
+}
++ (NSURLSessionConfiguration *)_defaultURLSessionConfiguration; {
+    return [NSURLSessionConfiguration defaultSessionConfiguration];
 }
 #pragma mark Properties
 - (void)setFileCacheDirectoryURL:(NSURL *)fileCacheDirectoryURL {
