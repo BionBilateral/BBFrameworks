@@ -129,6 +129,11 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  */
 @property (copy,nonatomic) NSString *youTubeAPIKey;
 
+/**
+ Set and get the URL session configuration used when downloading files from remote thumbnail URLs.
+ 
+ The default is [NSURLSessionConfiguration defaultSessionConfiguration].
+ */
 @property (copy,nonatomic) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
@@ -173,8 +178,26 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  */
 - (void)cancelAllThumbnailGeneration;
 
+/**
+ Returns the download cache key for a given URL.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @return The download cache key
+ */
 - (NSString *)downloadCacheKeyForURL:(NSURL *)URL;
+/**
+ Returns the download cache URL for a download cache key. If the key represents a remote URL, the returned URL represents the location of the downloaded file.
+ 
+ @param key The download cache key
+ @return The download cache URL
+ */
 - (NSURL *)downloadCacheURLForDownloadCacheKey:(NSString *)key;
+/**
+ Returns the download cache URL for a thumbnail URL.
+ 
+ @param URL The thumbnail URL
+ @return The download cache URL
+ */
 - (NSURL *)downloadCacheURLForURL:(NSURL *)URL;
 
 /**
