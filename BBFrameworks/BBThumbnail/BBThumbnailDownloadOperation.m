@@ -61,6 +61,7 @@
 }
 #pragma mark NSURLSessionTaskDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    // only signal an error if our task was not cancelled
     if (error && error.code != NSURLErrorCancelled) {
         BBLog(@"%@ %@ %@",session,task,error);
         [self finishOperationWithImage:nil error:error];
@@ -69,30 +70,34 @@
 #pragma mark NSURLSessionDataDelegate
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
     NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)response.MIMEType, NULL);
-    BBLogObject(UTI);
+    
+    // if HTML, cancel our task and have the HTML operation handle it
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
         completionHandler(NSURLSessionResponseCancel);
         
         [self.thumbnailOperationWrapper setOperation:[[BBThumbnailHTMLOperation alloc] initWithURL:self.URL size:self.size completion:self.operationCompletionBlock]];
         [self.thumbnailGenerator.webViewOperationQueue addOperation:self.thumbnailOperationWrapper.operation];
     }
+    // if movie, cancel our task and have the movie operation handle it
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
         completionHandler(NSURLSessionResponseCancel);
         
         [self.thumbnailOperationWrapper setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:self.URL size:self.size time:self.time completion:self.operationCompletionBlock]];
         [self.thumbnailGenerator.operationQueue addOperation:self.thumbnailOperationWrapper.operation];
     }
+    // if image or pdf, change our data task to a download task to download the file
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage) ||
              UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
         
         completionHandler(NSURLSessionResponseBecomeDownload);
     }
+    // otherwise the UTI is not supported, cancel our task
     else {
         completionHandler(NSURLSessionResponseCancel);
     }
 }
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
-    
+    BBLog(@"%@ %@ %@",session,dataTask,downloadTask);
 }
 #pragma mark NSURLSessionDownloadDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
@@ -101,13 +106,16 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     NSURL *URL = [self.thumbnailGenerator downloadCacheURLForURL:downloadTask.originalRequest.URL];
     
+    // first remove any file that exists at URL
     [[NSFileManager defaultManager] removeItemAtURL:URL error:NULL];
     
+    // move the file from location to URL
     NSError *outError;
     if ([[NSFileManager defaultManager] moveItemAtURL:location toURL:URL error:&outError]) {
         NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)downloadTask.response.MIMEType, NULL);
         NSOperation<BBThumbnailOperation> *thumbnailOperation = nil;
         
+        // if the UTI is supported, create the appropriate thumbnail operation to read from URL
         if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
             thumbnailOperation = [[BBThumbnailImageOperation alloc] initWithURL:URL size:self.size completion:self.operationCompletionBlock];
         }
