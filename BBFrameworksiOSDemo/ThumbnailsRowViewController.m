@@ -18,6 +18,7 @@
 #import <BBFrameworks/BBReactiveThumbnail.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <BBFrameworks/BBFoundation.h>
+#import <BBFrameworks/BBBlocks.h>
 
 @interface ThumbnailCell : UICollectionViewCell
 
@@ -90,13 +91,13 @@
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
+    [temp addObjectsFromArray:[[NSArray arrayWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"RemoteURLs" withExtension:@"plist"]] BB_map:^id(id object, NSInteger index) {
+        return [NSURL URLWithString:object];
+    }]];
+    
     for (NSURL *URL in [[NSFileManager defaultManager] enumeratorAtURL:[[NSBundle mainBundle] URLForResource:@"docs" withExtension:@""] includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants errorHandler:nil]) {
         [temp addObject:URL];
     }
-    
-    [temp insertObject:[NSURL URLWithString:@"https://www.youtube.com/watch?v=dQw4w9WgXcQ"] atIndex:0];
-    [temp insertObject:[NSURL URLWithString:@"https://vimeo.com/38195013"] atIndex:0];
-    [temp insertObject:[NSURL URLWithString:@"https://www.arstechnica.com"] atIndex:0];
     
     [self setThumbnailURLs:temp];
     

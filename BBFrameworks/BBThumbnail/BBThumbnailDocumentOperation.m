@@ -16,23 +16,15 @@
 #import "BBThumbnailDocumentOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
-#else
-#import "NSImage+BBKitExtensions.h"
 #endif
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#if (TARGET_OS_IPHONE)
 @interface BBThumbnailDocumentOperation () <UIWebViewDelegate>
-#else
-@interface BBThumbnailDocumentOperation ()
-#endif
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
 
-#if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) UIWebView *webView;
-#endif
 @end
 
 @implementation BBThumbnailDocumentOperation
@@ -49,7 +41,6 @@
 - (void)main {
     [super main];
     
-#if (TARGET_OS_IPHONE)
     [self setWebView:[[UIWebView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds]];
     [self.webView setUserInteractionEnabled:NO];
     [self.webView setScalesPageToFit:YES];
@@ -58,16 +49,12 @@
     [[UIApplication sharedApplication].keyWindow insertSubview:self.webView atIndex:0];
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
-#else
-    [self finishOperationWithImage:nil error:nil];
-#endif
 }
 
 - (BOOL)wantsWebViewOperationQueue {
     return YES;
 }
 
-#if (TARGET_OS_IPHONE)
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.webView setDelegate:nil];
     [self.webView stopLoading];
@@ -104,7 +91,6 @@
     [self.webView setDelegate:self];
     [self.webView removeFromSuperview];
 }
-#endif
 
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {
     if (!(self = [super init]))

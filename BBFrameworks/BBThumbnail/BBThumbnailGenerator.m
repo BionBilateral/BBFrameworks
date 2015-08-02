@@ -13,7 +13,7 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBThumbnailGenerator.h"
+#import "BBThumbnailGenerator+BBThumbnailExtensionsPrivate.h"
 #import "NSBundle+BBFoundationExtensions.h"
 #import "BBFoundationDebugging.h"
 #import "BBFoundationFunctions.h"
@@ -27,9 +27,11 @@
 #import "BBThumbnailYouTubeOperation.h"
 #import "BBThumbnailVimeoOperation.h"
 #import "BBThumbnailHTMLOperation.h"
-#import "BBThumbnailDocumentOperation.h"
+#import "BBThumbnailDownloadOperation.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
+
+#import "BBThumbnailDocumentOperation.h"
 #else
 #import "BBThumbnailQuickLookOperation.h"
 #endif
@@ -42,19 +44,23 @@
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
 static NSString *const kThumbnailCacheDirectoryName = @"thumbnails";
+static NSString *const kDownloadCacheDirectoryName = @"downloads";
 
 static CGSize const kDefaultSize = {.width=175.0, .height=175.0};
 static NSInteger const kDefaultPage = 1;
 static NSTimeInterval const kDefaultTime = 1.0;
 
-@interface BBThumbnailGenerator () <NSCacheDelegate>
+@interface BBThumbnailGenerator () <NSCacheDelegate,NSURLSessionDelegate,NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
 @property (copy,nonatomic) NSURL *fileCacheDirectoryURL;
+@property (copy,nonatomic) NSURL *downloadCacheDirectoryURL;
 
 @property (strong,nonatomic) dispatch_queue_t fileCacheQueue;
 @property (strong,nonatomic) NSCache *memoryCache;
-@property (strong,nonatomic) NSOperationQueue *operationQueue;
+@property (readwrite,strong,nonatomic) NSOperationQueue *operationQueue;
 
-@property (strong,nonatomic) NSOperationQueue *webViewOperationQueue;
+@property (readwrite,strong,nonatomic) NSOperationQueue *webViewOperationQueue;
+
+@property (strong,nonatomic) NSURLSession *URLSession;
 
 + (NSOperationQueue *)_defaultCompletionQueue;
 @end
@@ -81,6 +87,10 @@ static NSTimeInterval const kDefaultTime = 1.0;
     NSURL *thumbnailFileCacheDirectoryURL = [fileCacheDirectoryURL URLByAppendingPathComponent:kThumbnailCacheDirectoryName isDirectory:YES];
     
     [self setFileCacheDirectoryURL:thumbnailFileCacheDirectoryURL];
+    
+    NSURL *downloadCacheDirectoryURL = [fileCacheDirectoryURL URLByAppendingPathComponent:kDownloadCacheDirectoryName isDirectory:YES];
+    
+    [self setDownloadCacheDirectoryURL:downloadCacheDirectoryURL];
     
     [self setDefaultSize:kDefaultSize];
     [self setDefaultPage:kDefaultPage];
@@ -113,6 +123,28 @@ static NSTimeInterval const kDefaultTime = 1.0;
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj {
     BBLog(@"%@ %@",cache.name,obj);
 }
+#pragma mark NSURLSessionDelegate
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error {
+    BBLog(@"%@ %@",session,error);
+}
+#pragma mark NSURLSessionDelegate
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
+    
+}
+#pragma mark NSURLSessionDataDelegate
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    NSURL *URL = [self downloadCacheURLForURL:downloadTask.originalRequest.URL];
+    
+    [[NSFileManager defaultManager] removeItemAtURL:URL error:NULL];
+    
+    NSError *outError;
+    if ([[NSFileManager defaultManager] moveItemAtURL:location toURL:URL error:&outError]) {
+        
+    }
+    else {
+        BBLogObject(outError);
+    }
+}
 #pragma mark *** Public Methods ***
 - (void)clearFileCache; {
     NSError *outError;
@@ -144,6 +176,16 @@ static NSTimeInterval const kDefaultTime = 1.0;
 
 - (void)cancelAllThumbnailGeneration; {
     [self.operationQueue cancelAllOperations];
+}
+
+- (NSString *)downloadCacheKeyForURL:(NSURL *)URL; {
+    return [URL.absoluteString BB_MD5String];
+}
+- (NSURL *)downloadCacheURLForDownloadCacheKey:(NSString *)key; {
+    return [self.downloadCacheDirectoryURL URLByAppendingPathComponent:key isDirectory:NO];
+}
+- (NSURL *)downloadCacheURLForURL:(NSURL *)URL; {
+    return [self downloadCacheURLForDownloadCacheKey:[self downloadCacheKeyForURL:URL]];
 }
 
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion; {
@@ -275,13 +317,13 @@ static NSTimeInterval const kDefaultTime = 1.0;
                 [retval setOperation:[[BBThumbnailVimeoOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
-                [retval setOperation:[[BBThumbnailHTMLOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+                [retval setOperation:[[BBThumbnailDownloadOperation alloc] initWithURL:URL size:size page:page time:time thumbnailOperationWrapper:retval thumbnailGenerator:self completion:operationCompletionBlock]];
             }
         }
         
         if (retval.operation) {
             if ([retval.operation respondsToSelector:@selector(wantsWebViewOperationQueue)]) {
-                [self.operationQueue addOperation:retval.operation];
+                [self.webViewOperationQueue addOperation:retval.operation];
             }
             else {
                 [self.operationQueue addOperation:retval.operation];
@@ -317,6 +359,20 @@ static NSTimeInterval const kDefaultTime = 1.0;
                 BBLogObject(outError);
             }
         }
+        BBLogObject(_fileCacheDirectoryURL);
+    }
+}
+- (void)setDownloadCacheDirectoryURL:(NSURL *)downloadCacheDirectoryURL {
+    _downloadCacheDirectoryURL = downloadCacheDirectoryURL;
+    
+    if (_downloadCacheDirectoryURL) {
+        if (![_downloadCacheDirectoryURL checkResourceIsReachableAndReturnError:NULL]) {
+            NSError *outError;
+            if (![[NSFileManager defaultManager] createDirectoryAtURL:_downloadCacheDirectoryURL withIntermediateDirectories:YES attributes:nil error:&outError]) {
+                BBLogObject(outError);
+            }
+        }
+        BBLogObject(_downloadCacheDirectoryURL);
     }
 }
 #pragma mark Notifications

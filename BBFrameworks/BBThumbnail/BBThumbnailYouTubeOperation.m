@@ -15,6 +15,7 @@
 
 #import "BBThumbnailYouTubeOperation.h"
 #import "NSURL+BBFoundationExtensions.h"
+#import "BBFoundationDebugging.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #else
@@ -49,12 +50,12 @@ NSString *const BBThumbnailYouTubeOperationErrorDomain = @"com.bionbilateral.bbt
         if (data &&
             [(NSHTTPURLResponse *)response statusCode] == 200) {
             
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            
-            if ([json[@"items"] count] > 0 &&
-                [json[@"items"][0][@"snippet"][@"thumbnails"] count] > 0) {
+            NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+
+            if ([JSON[@"items"] count] > 0 &&
+                [JSON[@"items"][0][@"snippet"][@"thumbnails"] count] > 0) {
                 
-                NSDictionary *thumbnailsDict = json[@"items"][0][@"snippet"][@"thumbnails"];
+                NSDictionary *thumbnailsDict = JSON[@"items"][0][@"snippet"][@"thumbnails"];
                 __block NSDictionary *thumbnailDict = nil;
                 
                 [thumbnailsDict enumerateKeysAndObjectsUsingBlock:^(id key, NSDictionary *dict, BOOL *stop) {

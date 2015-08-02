@@ -120,6 +120,8 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  */
 @property (copy,nonatomic) NSString *youTubeAPIKey;
 
+@property (copy,nonatomic) NSURLSessionConfiguration *URLSessionConfiguration;
+
 /**
  Clears the on disk cache.
  */
@@ -161,6 +163,10 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  Cancels all remaining thumbnail generation. Outstanding requests will have their completion blocks invoked with nil for image and error.
  */
 - (void)cancelAllThumbnailGeneration;
+
+- (NSString *)downloadCacheKeyForURL:(NSURL *)URL;
+- (NSURL *)downloadCacheURLForDownloadCacheKey:(NSString *)key;
+- (NSURL *)downloadCacheURLForURL:(NSURL *)URL;
 
 /**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_ and _completion_ respectively.
