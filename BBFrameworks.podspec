@@ -89,13 +89,15 @@ Pod::Spec.new do |spec|
   spec.subspec "BBThumbnail" do |subspec|
     subspec.ios.deployment_target = "8.0"
     
-    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
-    
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBThumbnail"
     subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS"
     subspec.osx.source_files = "BBFrameworks/BBThumbnail/OSX"
+    
+    subspec.private_header_files = "BBFrameworks/BBThumbnail/Private"
+    subspec.ios.private_header_files = "BBFrameworks/BBThumbnail/iOS/Private"
+    subspec.osx.private_header_files = "BBFrameworks/BBThumbnail/OSX/Private"
     
     subspec.frameworks = "WebKit"
     subspec.ios.frameworks = "MobileCoreServices"
@@ -104,6 +106,8 @@ Pod::Spec.new do |spec|
   
   spec.subspec "BBReactiveThumbnail" do |subspec|
     subspec.ios.deployment_target = "8.0"
+    
+    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
     
     subspec.dependency "BBFrameworks/BBThumbnail"
     
