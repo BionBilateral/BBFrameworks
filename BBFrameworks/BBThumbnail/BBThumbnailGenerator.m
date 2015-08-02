@@ -28,6 +28,7 @@
 #import "BBThumbnailVimeoOperation.h"
 #import "BBThumbnailHTMLOperation.h"
 #import "BBThumbnailDownloadOperation.h"
+#import "BBFrameworksMacros.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 
@@ -36,7 +37,6 @@
 #import "BBThumbnailQuickLookOperation.h"
 #endif
 
-#import <ReactiveCocoa/RACEXTScope.h>
 #if (TARGET_OS_IPHONE)
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
@@ -218,15 +218,15 @@ static NSTimeInterval const kDefaultTime = 1.0;
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     BBThumbnailOperationWrapper *retval = [[BBThumbnailOperationWrapper alloc] init];
     
-    @weakify(self);
+    BBWeakify(self);
     [self.operationQueue addOperationWithBlock:^{
-        @strongify(self);
+        BBStrongify(self);
         
         NSString *key = [self memoryCacheKeyForURL:URL size:size page:page time:time];
         NSURL *fileCacheURL = [self fileCacheURLForMemoryCacheKey:key];
         
         void(^cacheImageBlock)(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType) = ^(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType){
-            @strongify(self);
+            BBStrongify(self);
             
             if (image) {
                 switch (cacheType) {

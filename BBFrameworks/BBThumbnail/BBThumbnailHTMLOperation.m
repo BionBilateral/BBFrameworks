@@ -15,13 +15,12 @@
 
 #import "BBThumbnailHTMLOperation.h"
 #import "BBFoundationDebugging.h"
+#import "BBFrameworksMacros.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #else
 #import "NSImage+BBKitExtensions.h"
 #endif
-
-#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <WebKit/WebKit.h>
 
@@ -116,9 +115,9 @@
     [image addRepresentation:bitmap];
 #endif
     
-    @weakify(self);
+    BBWeakify(self);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @strongify(self);
+        BBStrongify(self);
         
         BBThumbnailGeneratorImageClass *retval = [image BB_imageByResizingToSize:self.size];
         
