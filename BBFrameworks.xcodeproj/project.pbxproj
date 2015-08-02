@@ -122,6 +122,9 @@
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
 		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
 		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
+		791996C91B6DF0F400FC674A /* BBThumbnailBaseOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 791996C71B6DF0F400FC674A /* BBThumbnailBaseOperation.h */; };
+		791996CA1B6DF0F400FC674A /* BBThumbnailBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791996C81B6DF0F400FC674A /* BBThumbnailBaseOperation.m */; };
+		791996CB1B6DF0F400FC674A /* BBThumbnailBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791996C81B6DF0F400FC674A /* BBThumbnailBaseOperation.m */; };
 		79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */; };
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
@@ -765,6 +768,8 @@
 		791551641B33388D009FA353 /* TableViewControllerRowClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerRowClass.h; sourceTree = "<group>"; };
 		791551651B333FEF009FA353 /* WebViewRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewRowViewController.xib; sourceTree = "<group>"; };
 		791551671B3340B9009FA353 /* TooltipsRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TooltipsRowViewController.xib; sourceTree = "<group>"; };
+		791996C71B6DF0F400FC674A /* BBThumbnailBaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailBaseOperation.h; sourceTree = "<group>"; };
+		791996C81B6DF0F400FC674A /* BBThumbnailBaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailBaseOperation.m; sourceTree = "<group>"; };
 		7927CF5E1B1AD2B90034288D /* BBCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCoreData.h; sourceTree = "<group>"; };
 		7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBDefaultManagedObjectEntityMapping.h; sourceTree = "<group>"; };
 		7927CF601B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBDefaultManagedObjectEntityMapping.m; sourceTree = "<group>"; };
@@ -1938,6 +1943,8 @@
 				7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */,
 				7927CFA21B1AD2B90034288D /* BBThumbnailOperationWrapper.h */,
 				7927CFA31B1AD2B90034288D /* BBThumbnailOperationWrapper.m */,
+				791996C71B6DF0F400FC674A /* BBThumbnailBaseOperation.h */,
+				791996C81B6DF0F400FC674A /* BBThumbnailBaseOperation.m */,
 				7927CF9D1B1AD2B90034288D /* BBThumbnailImageOperation.h */,
 				7927CF9E1B1AD2B90034288D /* BBThumbnailImageOperation.m */,
 				7927CF9F1B1AD2B90034288D /* BBThumbnailMovieOperation.h */,
@@ -2076,6 +2083,7 @@
 				79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */,
 				799F9B9D1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.h in Headers */,
 				799F9BA11B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.h in Headers */,
+				791996C91B6DF0F400FC674A /* BBThumbnailBaseOperation.h in Headers */,
 				79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */,
 				79EA816A1B3F228400D50B6B /* BBThumbnailMovieOperation.h in Headers */,
 				077656661B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h in Headers */,
@@ -2655,6 +2663,7 @@
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
 				79EA80E61B3F0D1B00D50B6B /* BBThumbnailHTMLOperation.m in Sources */,
+				791996CA1B6DF0F400FC674A /* BBThumbnailBaseOperation.m in Sources */,
 				07AEC8481B6BE68500013470 /* BBValidationTextFieldWarningView.m in Sources */,
 				07B3D90E1B60373B00FA1853 /* BBFormSliderTableViewCell.m in Sources */,
 				79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */,
@@ -2762,6 +2771,7 @@
 				79EA81891B3F22E400D50B6B /* NSURL+BBKitExtensions.m in Sources */,
 				79EA81911B3F22FC00D50B6B /* BBThumbnailAsyncOperation.m in Sources */,
 				79EA81801B3F22C300D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
+				791996CB1B6DF0F400FC674A /* BBThumbnailBaseOperation.m in Sources */,
 				799F9BC71B6DA9BB0067BAA8 /* BBThumbnailDownloadOperation.m in Sources */,
 				799F9BA21B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.m in Sources */,
 				79EA818E1B3F22FC00D50B6B /* BBThumbnailPDFOperation.m in Sources */,

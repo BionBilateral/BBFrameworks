@@ -22,47 +22,32 @@
 @interface ThumbnailItemViewController ()
 @property (readonly,nonatomic) NSImageView *thumbnailImageView;
 
-@property (strong,nonatomic) RACDisposable *disposable;
-
 @property (readonly,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
 @property (readonly,nonatomic) NSURL *thumbnailURL;
 @end
 
 @implementation ThumbnailItemViewController
 
+- (void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+    
+    @weakify(self);
+    [[[self.thumbnailGenerator BB_generateThumbnailForURL:self.thumbnailURL]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(RACTuple *value) {
+         @strongify(self);
+         [self.thumbnailImageView setImage:value.first];
+     } error:^(NSError *error) {
+         @strongify(self);
+         [self.thumbnailImageView setImage:nil];
+     }];
+}
+
 - (NSImageView *)thumbnailImageView {
     return [self.view.subviews BB_find:^BOOL(id obj, NSInteger idx) {
         return [obj isKindOfClass:[NSImageView class]];
     }];
 }
-
-- (void)viewWillDisappear {
-    [super viewWillDisappear];
-    
-    [self setDisposable:nil];
-}
-- (void)viewDidAppear {
-    [super viewDidAppear];
-    
-    @weakify(self);
-    [self setDisposable:
-     [[[self.thumbnailGenerator BB_generateThumbnailForURL:self.thumbnailURL]
-       deliverOn:[RACScheduler mainThreadScheduler]]
-      subscribeNext:^(RACTuple *value) {
-         @strongify(self);
-         [self.thumbnailImageView setImage:value.first];
-      } error:^(NSError *error) {
-         @strongify(self);
-         [self.thumbnailImageView setImage:nil];
-      }]];
-}
-
-- (void)setDisposable:(RACDisposable *)disposable {
-    [_disposable dispose];
-    
-    _disposable = disposable;
-}
-
 - (BBThumbnailGenerator *)thumbnailGenerator {
     return self.representedObject[1];
 }

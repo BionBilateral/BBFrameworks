@@ -14,6 +14,9 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBThumbnailAsyncOperation.h"
+#import "BBFoundationDebugging.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation BBThumbnailAsyncOperation
 
@@ -27,7 +30,7 @@
 }
 
 - (void)main {
-    [self setExecuting:YES];
+    [self setExecutingAndGenerateKVO:YES];
 }
 
 - (void)cancel {
@@ -40,14 +43,29 @@
     return YES;
 }
 
+@synthesize executing=_executing;
+@synthesize finished=_finished;
+
+- (void)setExecutingAndGenerateKVO:(BOOL)executing; {
+    [self willChangeValueForKey:@keypath(self,isExecuting)];
+    
+    [self setExecuting:executing];
+    
+    [self didChangeValueForKey:@keypath(self,isExecuting)];
+}
+- (void)setFinishedAndGenerateKVO:(BOOL)finished; {
+    [self willChangeValueForKey:@keypath(self,isFinished)];
+    
+    [self setFinished:finished];
+    
+    [self didChangeValueForKey:@keypath(self,isFinished)];
+}
+
 - (void)finishOperationWithImage:(BBThumbnailGeneratorImageClass *)image error:(NSError *)error; {
     self.operationCompletionBlock(image,error);
     
-    [self setExecuting:NO];
-    [self setFinished:YES];
+    [self setExecutingAndGenerateKVO:NO];
+    [self setFinishedAndGenerateKVO:YES];
 }
-
-@synthesize executing=_executing;
-@synthesize finished=_finished;
 
 @end

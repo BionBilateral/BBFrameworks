@@ -33,6 +33,7 @@
 @property (assign,nonatomic) NSTimeInterval time;
 @property (weak,nonatomic) BBThumbnailOperationWrapper *thumbnailOperationWrapper;
 @property (weak,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
+@property (copy,nonatomic) BBThumbnailOperationProgressBlock progressBlock;
 @end
 
 @implementation BBThumbnailDownloadOperation
@@ -61,10 +62,16 @@
 }
 #pragma mark NSURLSessionTaskDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    [session invalidateAndCancel];
+    
     // only signal an error if our task was not cancelled
     if (error && error.code != NSURLErrorCancelled) {
         BBLog(@"%@ %@ %@",session,task,error);
         [self finishOperationWithImage:nil error:error];
+    }
+    else {
+        [self setExecutingAndGenerateKVO:NO];
+        [self setFinishedAndGenerateKVO:YES];
     }
 }
 #pragma mark NSURLSessionDataDelegate
@@ -73,17 +80,17 @@
     
     // if HTML, cancel our task and have the HTML operation handle it
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
-        completionHandler(NSURLSessionResponseCancel);
-        
         [self.thumbnailOperationWrapper setOperation:[[BBThumbnailHTMLOperation alloc] initWithURL:self.URL size:self.size completion:self.operationCompletionBlock]];
         [self.thumbnailGenerator.webViewOperationQueue addOperation:self.thumbnailOperationWrapper.operation];
+        
+        completionHandler(NSURLSessionResponseCancel);
     }
     // if movie, cancel our task and have the movie operation handle it
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
-        completionHandler(NSURLSessionResponseCancel);
-        
         [self.thumbnailOperationWrapper setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:self.URL size:self.size time:self.time completion:self.operationCompletionBlock]];
         [self.thumbnailGenerator.operationQueue addOperation:self.thumbnailOperationWrapper.operation];
+        
+        completionHandler(NSURLSessionResponseCancel);
     }
     // if image or pdf, change our data task to a download task to download the file
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage) ||
@@ -96,12 +103,11 @@
         completionHandler(NSURLSessionResponseCancel);
     }
 }
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
-    BBLog(@"%@ %@ %@",session,dataTask,downloadTask);
-}
 #pragma mark NSURLSessionDownloadDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-    BBLog(@"%@ %@ %@ %@",session,downloadTask,@(totalBytesWritten),@(totalBytesExpectedToWrite));
+    if (self.progressBlock) {
+        self.progressBlock(self.URL,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
+    }
 }
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     NSURL *URL = [self.thumbnailGenerator downloadCacheURLForURL:downloadTask.originalRequest.URL];
@@ -128,15 +134,15 @@
             [self.thumbnailGenerator.operationQueue addOperation:thumbnailOperation];
         }
         
-        [self setExecuting:NO];
-        [self setFinished:YES];
+        [self setExecutingAndGenerateKVO:NO];
+        [self setFinishedAndGenerateKVO:YES];
     }
     else {
         [self finishOperationWithImage:nil error:outError];
     }
 }
 #pragma mark *** Public Methods ***
-- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time thumbnailOperationWrapper:(BBThumbnailOperationWrapper *)thumbnailOperationWrapper thumbnailGenerator:(BBThumbnailGenerator *)thumbnailGenerator completion:(BBThumbnailOperationCompletionBlock)completion; {
+- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time thumbnailOperationWrapper:(BBThumbnailOperationWrapper *)thumbnailOperationWrapper thumbnailGenerator:(BBThumbnailGenerator *)thumbnailGenerator progress:(BBThumbnailOperationProgressBlock)progress completion:(BBThumbnailOperationCompletionBlock)completion; {
     if (!(self = [super init]))
         return nil;
     
@@ -146,6 +152,7 @@
     [self setTime:time];
     [self setThumbnailOperationWrapper:thumbnailOperationWrapper];
     [self setThumbnailGenerator:thumbnailGenerator];
+    [self setProgressBlock:progress];
     [self setOperationCompletionBlock:completion];
     
     return self;

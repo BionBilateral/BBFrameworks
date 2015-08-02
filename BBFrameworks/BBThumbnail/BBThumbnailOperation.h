@@ -16,6 +16,7 @@
 #import <Foundation/Foundation.h>
 #import "BBThumbnailDefines.h"
 
+typedef void(^BBThumbnailOperationProgressBlock)(NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
 typedef void(^BBThumbnailOperationCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error);
 
 @protocol BBThumbnailOperation <NSObject>

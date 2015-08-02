@@ -191,16 +191,31 @@ static NSTimeInterval const kDefaultTime = 1.0;
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:self.defaultSize page:self.defaultPage time:self.defaultTime completion:completion];
 }
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion; {
+    return [self generateThumbnailForURL:URL size:self.defaultSize page:self.defaultPage time:self.defaultTime progress:progress completion:completion];
+}
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:size page:self.defaultPage time:self.defaultTime completion:completion];
+}
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion; {
+    return [self generateThumbnailForURL:URL size:size page:self.defaultPage time:self.defaultTime progress:progress completion:completion];
 }
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:size page:page time:self.defaultTime completion:completion];
 }
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion; {
+    return [self generateThumbnailForURL:URL size:size page:page time:self.defaultTime progress:progress completion:completion];
+}
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     return [self generateThumbnailForURL:URL size:size page:self.defaultPage time:time completion:completion];
 }
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion; {
+    return [self generateThumbnailForURL:URL size:size page:self.defaultPage time:time progress:progress completion:completion];
+}
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion; {
+    return [self generateThumbnailForURL:URL size:size page:page time:time progress:nil completion:completion];
+}
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion; {
     BBThumbnailOperationWrapper *retval = [[BBThumbnailOperationWrapper alloc] init];
     
     @weakify(self);
@@ -317,7 +332,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
                 [retval setOperation:[[BBThumbnailVimeoOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
             }
             else {
-                [retval setOperation:[[BBThumbnailDownloadOperation alloc] initWithURL:URL size:size page:page time:time thumbnailOperationWrapper:retval thumbnailGenerator:self completion:operationCompletionBlock]];
+                [retval setOperation:[[BBThumbnailDownloadOperation alloc] initWithURL:URL size:size page:page time:time thumbnailOperationWrapper:retval thumbnailGenerator:self progress:progress completion:operationCompletionBlock]];
             }
         }
         

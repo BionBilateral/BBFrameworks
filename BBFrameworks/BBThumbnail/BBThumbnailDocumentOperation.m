@@ -88,7 +88,7 @@
 - (void)cancel {
     [super cancel];
     
-    [self.webView setDelegate:self];
+    [self.webView setDelegate:nil];
     [self.webView removeFromSuperview];
 }
 

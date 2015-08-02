@@ -55,6 +55,15 @@ typedef NS_OPTIONS(NSInteger, BBThumbnailGeneratorCacheOptions) {
 };
 
 /**
+ Block signature for thumbnail download progress callback.
+ 
+ @param URL The url for which the thumbnail is being generated
+ @param bytesWritten The bytes that were written
+ @param totalBytesWritten The total bytes that have been written so far
+ @param totalBytesExpectedToWrite The total expected bytes to write
+ */
+typedef void(^BBThumbnailGeneratorProgressBlock)(NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
+/**
  Block signature for thumbnail generation callback.
  
  @param image The generated thumbnail image or nil
@@ -177,6 +186,15 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
+ Calls `-[generateThumbnailForURL:size:page:time:progress:completion:]`, passing _URL_, _progress_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param progress The progress block called while downloading files
+ @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
+ */
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, and _completion_ respectively.
  
  @param URL The URL to use when generating the thumbnail
@@ -185,6 +203,16 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Calls `-[generateThumbnailForURL:size:page:time:progress:completion:]`, passing _URL_, _size_, _progress_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param progress The progress block called while downloading files
+ @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
+ */
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, _page_, and _completion_ respectively.
  
@@ -196,6 +224,17 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
+ Calls `-[generateThumbnailForURL:size:page:time:progress:completion:]`, passing _URL_, _size_, _page_, _progress_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param page The page of the generated thumbnail, applicable to PDF thumbnails
+ @param progress The progress block called while downloading files
+ @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
+ */
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, _time_, and _completion_ respectively.
  
  @param URL The URL to use when generating the thumbnail
@@ -206,7 +245,18 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
- Generates a thumbnail, optionally accessing the memory or disk cache, and invokes the completion block once finished.
+ Calls `-[generateThumbnailForURL:size:page:time:progress:completion:]`, passing _URL_, _size_, _time_, _progress_, and _completion_ respectively.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param time The time of the generated thumbnail, applicable to movie thumbnails
+ @param progress The progress block called while downloading files
+ @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
+ */
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Calls `-[generateThumbnailForURL:size:page:time:progress:completion:]`, passing _URL_, _size_, _time_, nil, and _completion_ respectively.
  
  @param URL The URL to use when generating the thumbnail
  @param size The size of the generated thumbnail
@@ -216,5 +266,17 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @return An object that can be used to cancel the thumbnail generation
  */
 - (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time completion:(BBThumbnailGeneratorCompletionBlock)completion;
+/**
+ Generates a thumbnail, optionally accessing the memory or disk cache, and invokes the completion block once finished.
+ 
+ @param URL The URL to use when generating the thumbnail
+ @param size The size of the generated thumbnail
+ @param page The page of the generated thumbnail, applicable to PDF thumbnails
+ @param time The time of the generated thumbnail, applicable to movie thumbnails
+ @param progress The progress block that is called during a file download
+ @param completion The completion block to invoke upon completion
+ @return An object that can be used to cancel the thumbnail generation
+ */
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 
 @end

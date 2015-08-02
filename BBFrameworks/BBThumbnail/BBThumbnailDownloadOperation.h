@@ -17,8 +17,8 @@
 
 @class BBThumbnailGenerator,BBThumbnailOperationWrapper;
 
-@interface BBThumbnailDownloadOperation : BBThumbnailAsyncOperation <BBThumbnailOperation>
+@interface BBThumbnailDownloadOperation : BBThumbnailAsyncOperation
 
-- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time thumbnailOperationWrapper:(BBThumbnailOperationWrapper *)thumbnailOperationWrapper thumbnailGenerator:(BBThumbnailGenerator *)thumbnailGenerator completion:(BBThumbnailOperationCompletionBlock)completion;
+- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time thumbnailOperationWrapper:(BBThumbnailOperationWrapper *)thumbnailOperationWrapper thumbnailGenerator:(BBThumbnailGenerator *)thumbnailGenerator progress:(BBThumbnailOperationProgressBlock)progress completion:(BBThumbnailOperationCompletionBlock)completion;
 
 @end

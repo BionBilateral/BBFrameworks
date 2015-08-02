@@ -25,11 +25,17 @@
 
 #import <WebKit/WebKit.h>
 
-@interface BBThumbnailHTMLOperation ()
+static void *kObservingContext = &kObservingContext;
+
+@interface BBThumbnailHTMLOperation () <WKNavigationDelegate>
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
 
 @property (strong,nonatomic) WKWebView *webView;
+
+#if (!TARGET_OS_IPHONE)
+@property (strong,nonatomic) NSWindow *window;
+#endif
 @end
 
 @implementation BBThumbnailHTMLOperation
@@ -51,58 +57,84 @@
     [self.webView setUserInteractionEnabled:NO];
     
     [[UIApplication sharedApplication].keyWindow insertSubview:self.webView atIndex:0];
-    
-    [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
-    
-    @weakify(self);
-    [[[[[[RACObserve(self.webView, loading)
-          distinctUntilChanged]
-     combinePreviousWithStart:@NO reduce:^id(id previous, id current) {
-         return RACTuplePack(previous,current);
-     }]
-        filter:^BOOL(RACTuple *value) {
-            RACTupleUnpack(NSNumber *previous, NSNumber *current) = value;
-            
-            return previous.boolValue && !current.boolValue;
-        }]
-     take:1]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
-         
-         [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
-         
-         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-         
-         UIGraphicsEndImageContext();
-         
-         [self.webView removeFromSuperview];
-         
-         @weakify(self);
-         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-             @strongify(self);
-             UIImage *retval = [image BB_imageByResizingToSize:self.size];
-             
-             [self finishOperationWithImage:retval error:nil];
-         });
-     }];
 #else
-    [self finishOperationWithImage:nil error:nil];
+    NSSize windowSize = NSMakeSize(1024, 768);
+    
+    [self setWindow:[[NSWindow alloc] initWithContentRect:NSMakeRect(-windowSize.width, -windowSize.height, windowSize.width, windowSize.height) styleMask:NSBorderlessWindowMask backing:NSBackingStoreNonretained defer:NO]];
+    
+    [self setWebView:[[WKWebView alloc] initWithFrame:NSMakeRect(0, 0, windowSize.width, windowSize.height)]];
+    
+    [self.window setContentView:self.webView];
 #endif
+    
+    [self.webView setNavigationDelegate:self];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
 }
 
 - (void)cancel {
     [super cancel];
     
     [self.webView stopLoading];
+    
+#if (TARGET_OS_IPHONE)
     [self.webView removeFromSuperview];
+#endif
 }
 
 - (BOOL)wantsWebViewOperationQueue {
     return YES;
 }
-
+#pragma mark WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    BBThumbnailGeneratorImageClass *image;
+    
+#if (TARGET_OS_IPHONE)
+    UIGraphicsBeginImageContextWithOptions(self.webView.frame.size, YES, 0);
+    
+    [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
+    
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    [self.webView removeFromSuperview];
+#else
+    NSDisableScreenUpdates();
+    
+    [self.window orderFront:nil];
+    
+    CGImageRef imageRef = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, (CGWindowID)self.window.windowNumber, kCGWindowImageBoundsIgnoreFraming);
+    
+    [self.window orderOut:nil];
+    
+    NSEnableScreenUpdates();
+    
+    NSBitmapImageRep *bitmap = [[NSBitmapImageRep alloc] initWithCGImage:imageRef];
+    
+    CGImageRelease(imageRef);
+    
+    image = [[NSImage alloc] initWithSize:NSMakeSize(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef))];
+    
+    [image addRepresentation:bitmap];
+#endif
+    
+    @weakify(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @strongify(self);
+        
+        BBThumbnailGeneratorImageClass *retval = [image BB_imageByResizingToSize:self.size];
+        
+        [self finishOperationWithImage:retval error:nil];
+    });
+}
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+#if (TARGET_OS_IPHONE)
+    [self.webView removeFromSuperview];
+#endif
+    
+    [self finishOperationWithImage:nil error:error];
+}
+#pragma mark *** Public Methods ***
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion; {
     if (!(self = [super init]))
         return nil;
