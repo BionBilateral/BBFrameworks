@@ -34,6 +34,8 @@
 @property (weak,nonatomic) BBThumbnailOperationWrapper *thumbnailOperationWrapper;
 @property (weak,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
 @property (copy,nonatomic) BBThumbnailOperationProgressBlock progressBlock;
+
+@property (assign,nonatomic) BOOL shouldInvalidateSession;
 @end
 
 @implementation BBThumbnailDownloadOperation
@@ -62,7 +64,9 @@
 }
 #pragma mark NSURLSessionTaskDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-    [session invalidateAndCancel];
+    if (self.shouldInvalidateSession) {
+        [session invalidateAndCancel];
+    }
     
     // only signal an error if our task was not cancelled
     if (error && error.code != NSURLErrorCancelled) {
@@ -83,6 +87,8 @@
         [self.thumbnailOperationWrapper setOperation:[[BBThumbnailHTMLOperation alloc] initWithURL:self.URL size:self.size completion:self.operationCompletionBlock]];
         [self.thumbnailGenerator.webViewOperationQueue addOperation:self.thumbnailOperationWrapper.operation];
         
+        [self setShouldInvalidateSession:YES];
+        
         completionHandler(NSURLSessionResponseCancel);
     }
     // if movie, cancel our task and have the movie operation handle it
@@ -90,18 +96,27 @@
         [self.thumbnailOperationWrapper setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:self.URL size:self.size time:self.time completion:self.operationCompletionBlock]];
         [self.thumbnailGenerator.operationQueue addOperation:self.thumbnailOperationWrapper.operation];
         
+        [self setShouldInvalidateSession:YES];
+        
         completionHandler(NSURLSessionResponseCancel);
     }
     // if image or pdf, change our data task to a download task to download the file
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage) ||
              UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
         
+        [self setShouldInvalidateSession:NO];
+        
         completionHandler(NSURLSessionResponseBecomeDownload);
     }
     // otherwise the UTI is not supported, cancel our task
     else {
+        [self setShouldInvalidateSession:YES];
+        
         completionHandler(NSURLSessionResponseCancel);
     }
+}
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
+    [self setShouldInvalidateSession:YES];
 }
 #pragma mark NSURLSessionDownloadDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
