@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_THUMBNAIL_DEFINES__
 #define __BB_FRAMEWORKS_THUMBNAIL_DEFINES__
 
+#import <TargetConditionals.h>
+
 #if (TARGET_OS_IPHONE)
 #import <UIKit/UIImage.h>
 
