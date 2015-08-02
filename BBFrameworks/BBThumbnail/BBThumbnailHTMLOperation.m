@@ -58,6 +58,7 @@
     NSSize windowSize = NSMakeSize(1024, 768);
     
     [self setWindow:[[NSWindow alloc] initWithContentRect:NSMakeRect(-windowSize.width, -windowSize.height, windowSize.width, windowSize.height) styleMask:NSBorderlessWindowMask backing:NSBackingStoreNonretained defer:NO]];
+    [self.window setExcludedFromWindowsMenu:YES];
     
     [self setWebView:[[WKWebView alloc] initWithFrame:NSMakeRect(0, 0, windowSize.width, windowSize.height)]];
     
