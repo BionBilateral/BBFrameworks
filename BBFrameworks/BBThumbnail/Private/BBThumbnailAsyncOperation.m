@@ -16,7 +16,8 @@
 #import "BBThumbnailAsyncOperation.h"
 #import "BBFoundationDebugging.h"
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+static NSString *const kIsExecutingKey = @"isExecuting";
+static NSString *const kIsFinishedKey = @"isFinished";
 
 @implementation BBThumbnailAsyncOperation
 
@@ -47,18 +48,18 @@
 @synthesize finished=_finished;
 
 - (void)setExecutingAndGenerateKVO:(BOOL)executing; {
-    [self willChangeValueForKey:@keypath(self,isExecuting)];
+    [self willChangeValueForKey:kIsExecutingKey];
     
     [self setExecuting:executing];
     
-    [self didChangeValueForKey:@keypath(self,isExecuting)];
+    [self didChangeValueForKey:kIsExecutingKey];
 }
 - (void)setFinishedAndGenerateKVO:(BOOL)finished; {
-    [self willChangeValueForKey:@keypath(self,isFinished)];
+    [self willChangeValueForKey:kIsFinishedKey];
     
     [self setFinished:finished];
     
-    [self didChangeValueForKey:@keypath(self,isFinished)];
+    [self didChangeValueForKey:kIsFinishedKey];
 }
 
 - (void)finishOperationWithImage:(BBThumbnailGeneratorImageClass *)image error:(NSError *)error; {

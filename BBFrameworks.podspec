@@ -95,9 +95,9 @@ Pod::Spec.new do |spec|
     subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS/**"
     subspec.osx.source_files = "BBFrameworks/BBThumbnail/OSX/**"
     
-    subspec.private_header_files = "BBFrameworks/BBThumbnail/Private"
-    subspec.ios.private_header_files = "BBFrameworks/BBThumbnail/iOS/Private"
-    subspec.osx.private_header_files = "BBFrameworks/BBThumbnail/OSX/Private"
+    subspec.private_header_files = "BBFrameworks/BBThumbnail/Private/*.h"
+    subspec.ios.private_header_files = "BBFrameworks/BBThumbnail/iOS/Private/*.h"
+    subspec.osx.private_header_files = "BBFrameworks/BBThumbnail/OSX/Private/*.h"
     
     subspec.frameworks = "WebKit"
     subspec.ios.frameworks = "MobileCoreServices"
