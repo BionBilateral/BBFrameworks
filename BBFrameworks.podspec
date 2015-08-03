@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.8.19"
+  spec.version = "0.8.20"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -92,8 +92,8 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBThumbnail", "BBFrameworks/BBThumbnail/Private"
-    subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS/**"
-    subspec.osx.source_files = "BBFrameworks/BBThumbnail/OSX/**"
+    subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS", "BBFrameworks/BBThumbnail/iOS/Private"
+    subspec.osx.source_files = "BBFrameworks/BBThumbnail/OSX", "BBFrameworks/BBThumbnail/OSX/Private"
     
     subspec.private_header_files = "BBFrameworks/BBThumbnail/Private/*.h"
     subspec.ios.private_header_files = "BBFrameworks/BBThumbnail/iOS/Private/*.h"
