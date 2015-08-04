@@ -88,4 +88,39 @@
  */
 @property (copy,nonatomic) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
 
+/**
+ Returns the number of media objects being displayed.
+ 
+ @return The number of media objects
+ */
+- (NSInteger)countOfMedia;
+/**
+ Returns the index of the provided media object, or NSNotFound if the media object cannot be found.
+ 
+ @param media The media object for which to return index
+ @return The index of media or NSNotFound if media does not exist
+ */
+- (NSInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Returns the media at the provided index or nil if index is out of bounds.
+ 
+ @param index The index of the media object to return
+ @return The media object or nil
+ */
+- (id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index;
+
+@end
+
+/**
+ Category on UIViewController providing access to the nearest media picker view controller.
+ */
+@interface UIViewController (BBMediaPickerViewControllerExtensions)
+
+/**
+ Returns the nearest media picker view controller in the view hierarchy, or nil if there is not one.
+ 
+ @return The media picker view controller or nil
+ */
+- (BBMediaPickerViewController *)BB_mediaPickerViewController;
+
 @end

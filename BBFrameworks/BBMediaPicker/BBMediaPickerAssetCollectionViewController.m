@@ -26,7 +26,7 @@
 
 @interface BBMediaPickerAssetCollectionViewController () <UICollectionViewDelegateFlowLayout>
 @property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
-@property (copy,nonatomic) NSArray *assetViewModels;
+@property (readwrite,copy,nonatomic) NSArray *assetViewModels;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewController

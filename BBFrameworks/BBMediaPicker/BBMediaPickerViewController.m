@@ -20,6 +20,7 @@
 #import "BBBlocks.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBFoundationDebugging.h"
+#import "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -124,6 +125,30 @@
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return [BBMediaPickerViewModel authorizationStatus];
 }
+
+- (NSInteger)countOfMedia; {
+    return [self BB_mediaPickerAssetCollectionViewController].assetViewModels.count;
+}
+- (NSInteger)indexOfMedia:(id<BBMediaPickerMedia>)media; {
+    BBMediaPickerAssetCollectionViewController *viewController = [self BB_mediaPickerAssetCollectionViewController];
+    NSInteger retval = NSNotFound;
+    
+    if (viewController) {
+        retval = [viewController.assetViewModels indexOfObject:media];
+    }
+    
+    return retval;
+}
+- (id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index; {
+    BBMediaPickerAssetCollectionViewController *viewController = [self BB_mediaPickerAssetCollectionViewController];
+    id<BBMediaPickerMedia> retval = nil;
+    
+    if (index < [self countOfMedia]) {
+        retval = viewController.assetViewModels[index];
+    }
+    
+    return retval;
+}
 #pragma mark Properties
 @dynamic allowsMultipleSelection;
 - (BOOL)allowsMultipleSelection {
@@ -167,6 +192,23 @@
 }
 - (void)setMediaFilterBlock:(BBMediaPickerMediaFilterBlock)mediaFilterBlock {
     [self.viewModel setMediaFilterBlock:mediaFilterBlock];
+}
+
+@end
+
+@implementation UIViewController (BBMediaPickerViewControllerExtensions)
+
+- (BBMediaPickerViewController *)BB_mediaPickerViewController {
+    BBMediaPickerViewController *retval = nil;
+    
+    for (UIViewController *viewController in self.navigationController.viewControllers) {
+        if ([viewController isKindOfClass:[BBMediaPickerViewController class]]) {
+            retval = (BBMediaPickerViewController *)viewController;
+            break;
+        }
+    }
+    
+    return retval;
 }
 
 @end
