@@ -126,4 +126,12 @@
     return self;
 }
 
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
+    NSInteger index = [self.assetViewModels indexOfObject:media];
+    
+    if (index != NSNotFound) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+    }
+}
+
 @end

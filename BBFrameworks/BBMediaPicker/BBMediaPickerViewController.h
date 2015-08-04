@@ -109,6 +109,13 @@
  */
 - (id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index;
 
+/**
+ Scrolls the collection view containing media so that it is visible, centered vertically. If the media does not exist in the collection view, does nothing.
+ 
+ @param media The media to scroll to visible
+ */
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+
 @end
 
 /**

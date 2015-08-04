@@ -149,6 +149,10 @@
     
     return retval;
 }
+
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
+    [[self BB_mediaPickerAssetCollectionViewController] scrollMediaToVisible:media];
+}
 #pragma mark Properties
 @dynamic allowsMultipleSelection;
 - (BOOL)allowsMultipleSelection {

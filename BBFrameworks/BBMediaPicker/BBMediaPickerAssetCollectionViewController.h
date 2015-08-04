@@ -21,4 +21,6 @@
 
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel;
 
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+
 @end
