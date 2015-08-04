@@ -69,7 +69,7 @@
 
 @end
 
-@interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate,NSTextStorageDelegate>
+@interface BBTokenTextView () <BBTokenTextViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,NSTextStorageDelegate>
 @property (strong,nonatomic) _BBTokenTextViewInternalDelegate *internalDelegate;
 
 @property (strong,nonatomic) UITableView *tableView;
@@ -250,6 +250,10 @@
     
     [self performSelector:@selector(_showCompletionsTableView) withObject:nil afterDelay:self.completionDelay];
 }
+#pragma mark UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return self.text.length > 0;
+}
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.completions.count;
@@ -341,6 +345,7 @@
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
     [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self.tapGestureRecognizer setDelegate:self];
     [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
