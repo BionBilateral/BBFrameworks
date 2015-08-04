@@ -125,6 +125,10 @@ Pod::Spec.new do |spec|
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
     
     subspec.ios.frameworks = "AssetsLibrary"
+    
+    subspec.ios.resource_bundles = {
+      "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
+    }
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
