@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   
   spec.requires_arc = true
   
-  spec.resource_bundles = {
+  spec.ios.resource_bundles = {
     "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
   }
   
