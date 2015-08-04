@@ -16,6 +16,7 @@
 #import <UIKit/UIKit.h>
 #import "BBTooltipViewControllerDataSource.h"
 #import "BBTooltipViewControllerDelegate.h"
+#import "BBTooltipViewDefines.h"
 
 /**
  BBTooltipViewController is a subclass of UIViewController that manages the display of tooltips, views with text (or attributed text) and an arrow attached to a particular view.
@@ -84,6 +85,23 @@
  
  @param text The text of the tooltip
  @param attachmentView The attachment view for the tooltip
+ @param arrowStyle The arrow style of the tooltip
+ */
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle;
+/**
+ Presents a BBTooltipViewController with a single tooltip containing attributed text.
+ 
+ @param attributedText The attributed text of the tooltip
+ @param attachmentView The attachment view for the tooltip
+ @param arrowStyle The arrow style of the tooltip
+ */
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle;
+
+/**
+ Presents a BBTooltipViewController with a single tooltip containing text.
+ 
+ @param text The text of the tooltip
+ @param attachmentView The attachment view for the tooltip
  @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
  */
 - (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass;
@@ -95,5 +113,24 @@
  @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
  */
 - (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass;
+
+/**
+ Presents a BBTooltipViewController with a single tooltip containing text.
+ 
+ @param text The text of the tooltip
+ @param attachmentView The attachment view for the tooltip
+ @param arrowStyle The arrow style of the tooltip
+ @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
+ */
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass;
+/**
+ Presents a BBTooltipViewController with a single tooltip containing attributed text.
+ 
+ @param attributedText The attributed text of the tooltip
+ @param attachmentView The attachment view for the tooltip
+ @param arrowStyle The arrow style of the tooltip
+ @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
+ */
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass;
 
 @end
