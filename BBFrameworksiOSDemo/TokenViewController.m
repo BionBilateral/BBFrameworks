@@ -79,8 +79,8 @@
     [self.view setBackgroundColor:[UIColor blackColor]];
     
     [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
-    [self.tokenTextView setBackgroundColor:[UIColor blackColor]];
     [self.tokenTextView setTypingTextColor:[UIColor whiteColor]];
+    [self.tokenTextView setTypingFont:[UIFont systemFontOfSize:17.0]];
     [self.tokenTextView setPlaceholderFont:self.tokenTextView.typingFont];
     [self.tokenTextView setPlaceholder:@"Type some text…"];
     [self.tokenTextView setTokenTextAttachmentClass:[TokenTextAttachment class]];
