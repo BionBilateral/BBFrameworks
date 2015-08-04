@@ -12,16 +12,16 @@ Pod::Spec.new do |spec|
   
   spec.requires_arc = true
   
-  spec.ios.resource_bundles = {
-    "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
-  }
-  
   spec.default_subspecs = "BBCore", "BBFoundation", "BBBlocks", "BBKit"
   
   spec.subspec "BBCore" do |subspec|
     subspec.source_files = "BBFrameworks"
     
     subspec.frameworks = "Foundation"
+    
+    subspec.ios.resource_bundles = {
+      "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
+    }
   end
   
   spec.subspec "BBFoundation" do |subspec|
@@ -125,10 +125,6 @@ Pod::Spec.new do |spec|
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
     
     subspec.ios.frameworks = "AssetsLibrary"
-    
-    subspec.ios.resource_bundles = {
-      "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
-    }
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
