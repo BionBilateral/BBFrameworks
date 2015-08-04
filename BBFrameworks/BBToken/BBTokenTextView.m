@@ -16,6 +16,7 @@
 #import "BBTokenTextView.h"
 #import "BBTokenDefaultTextAttachment.h"
 #import "BBTokenCompletionDefaultTableViewCell.h"
+#import "BBFoundationDebugging.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -114,9 +115,7 @@
 }
 // disable cut:, copy:, and paste: for now, need to investigate how to duplicate Mail.app interactions using text attachments
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (action == @selector(select:) ||
-        action == @selector(selectAll:)) {
-        
+    if (action == @selector(selectAll:)) {
         return YES;
     }
     return NO;
@@ -539,26 +538,21 @@
         // if there is a token
         if (value) {
             // if our selection is zero length or a different token is selected, select the entire range of the token
-            if (self.selectedRange.length == 0 ||
-                [self.selectedTextAttachmentRanges containsIndexesInRange:self.selectedRange]) {
-                
+            if (self.selectedRange.length == 0) {
                 [self setSelectedRange:range];
             }
-            // otherwise set the selected range as zero length after the token
-            else {
+            // if the user tapped on a token that was already selected, move the caret immediately after the token
+            else if (NSEqualRanges(range, self.selectedRange)) {
                 [self setSelectedRange:NSMakeRange(NSMaxRange(range), 0)];
+            }
+            // otherwise select the different token
+            else {
+                [self setSelectedRange:range];
             }
             
             if (!self.isFirstResponder) {
                 [self becomeFirstResponder];
             }
-        }
-    }
-    else {
-        [self setSelectedRange:NSMakeRange(self.text.length, 0)];
-        
-        if (!self.isFirstResponder) {
-            [self becomeFirstResponder];
         }
     }
 }
