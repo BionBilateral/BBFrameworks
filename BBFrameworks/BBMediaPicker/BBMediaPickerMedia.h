@@ -21,4 +21,6 @@
 - (int64_t)mediaSize;
 - (NSData *)mediaData;
 - (NSData *)mediaDataFromOffset:(int64_t)offset max:(NSUInteger)max;
+- (UIImage *)mediaThumbnailImage;
+- (UIImage *)mediaImage;
 @end

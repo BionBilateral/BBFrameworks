@@ -64,6 +64,12 @@
     
     return [NSData dataWithBytesNoCopy:buffer length:retval freeWhenDone:YES];
 }
+- (UIImage *)mediaThumbnailImage {
+    return self.thumbnailImage;
+}
+- (UIImage *)mediaImage {
+    return [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage];
+}
 #pragma mark *** Public Methods ***
 - (instancetype)initWithAsset:(ALAsset *)asset; {
     if (!(self = [super init]))
