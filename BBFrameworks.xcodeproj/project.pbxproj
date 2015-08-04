@@ -122,6 +122,10 @@
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
 		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
 		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
+		79184C6C1B7041DD0044789F /* BBReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 79184C6A1B7041DD0044789F /* BBReachability.h */; };
+		79184C6D1B7041DD0044789F /* BBReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 79184C6B1B7041DD0044789F /* BBReachability.m */; };
+		79184C6E1B7041DD0044789F /* BBReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 79184C6B1B7041DD0044789F /* BBReachability.m */; };
+		79184C6F1B7056330044789F /* BBReachability.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79184C6A1B7041DD0044789F /* BBReachability.h */; };
 		791996E61B6EB3C500FC674A /* BBThumbnailAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 791996CD1B6EB3C500FC674A /* BBThumbnailAsyncOperation.h */; };
 		791996E71B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791996CE1B6EB3C500FC674A /* BBThumbnailAsyncOperation.m */; };
 		791996E81B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791996CE1B6EB3C500FC674A /* BBThumbnailAsyncOperation.m */; };
@@ -512,6 +516,7 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
+				79184C6F1B7056330044789F /* BBReachability.h in CopyFiles */,
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
 				79EA809E1B3F090500D50B6B /* BBThumbnail.h in CopyFiles */,
 				79EA809F1B3F090800D50B6B /* BBThumbnailDefines.h in CopyFiles */,
@@ -767,6 +772,8 @@
 		791551641B33388D009FA353 /* TableViewControllerRowClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerRowClass.h; sourceTree = "<group>"; };
 		791551651B333FEF009FA353 /* WebViewRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewRowViewController.xib; sourceTree = "<group>"; };
 		791551671B3340B9009FA353 /* TooltipsRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TooltipsRowViewController.xib; sourceTree = "<group>"; };
+		79184C6A1B7041DD0044789F /* BBReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBReachability.h; sourceTree = "<group>"; };
+		79184C6B1B7041DD0044789F /* BBReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBReachability.m; sourceTree = "<group>"; };
 		791996CD1B6EB3C500FC674A /* BBThumbnailAsyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailAsyncOperation.h; sourceTree = "<group>"; };
 		791996CE1B6EB3C500FC674A /* BBThumbnailAsyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailAsyncOperation.m; sourceTree = "<group>"; };
 		791996CF1B6EB3C500FC674A /* BBThumbnailBaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailBaseOperation.h; sourceTree = "<group>"; };
@@ -1310,6 +1317,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		79184C691B70415F0044789F /* BBReachability */ = {
+			isa = PBXGroup;
+			children = (
+				79184C6A1B7041DD0044789F /* BBReachability.h */,
+				79184C6B1B7041DD0044789F /* BBReachability.m */,
+			);
+			path = BBReachability;
+			sourceTree = "<group>";
+		};
 		791996CC1B6EB3C500FC674A /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -1381,6 +1397,7 @@
 			children = (
 				7927CF691B1AD2B90034288D /* BBFoundation */,
 				07B3D8EB1B60145900FA1853 /* BBBlocks */,
+				79184C691B70415F0044789F /* BBReachability */,
 				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
 				79BE2B641B648FCB00ADE997 /* BBTransitions */,
@@ -2107,6 +2124,7 @@
 				79EA81581B3F222F00D50B6B /* BBManagedObjectPropertyMapping.h in Headers */,
 				79EA815A1B3F223600D50B6B /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 				07B3D8ED1B60149000FA1853 /* BBBlocks.h in Headers */,
+				79184C6C1B7041DD0044789F /* BBReachability.h in Headers */,
 				79EA81501B3F221600D50B6B /* NSData+BBFoundationExtensions.h in Headers */,
 				79EA81741B3F228C00D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
 				79EA815D1B3F225400D50B6B /* BBKit.h in Headers */,
@@ -2700,6 +2718,7 @@
 				07605ADA1B6970BF00333678 /* BBMediaPickerAssetCollectionViewController.m in Sources */,
 				07605AB61B67D72B00333678 /* BBTextView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
+				79184C6D1B7041DD0044789F /* BBReachability.m in Sources */,
 				791997061B6EB3C500FC674A /* BBThumbnailVimeoOperation.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
@@ -2833,6 +2852,7 @@
 				077656681B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m in Sources */,
 				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
+				79184C6E1B7041DD0044789F /* BBReachability.m in Sources */,
 				791997171B6EB46100FC674A /* BBThumbnailQuickLookOperation.m in Sources */,
 				07B3D8F21B6014D900FA1853 /* NSArray+BBBlocksExtensions.m in Sources */,
 				077656631B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */,

@@ -32,5 +32,6 @@
 #import "BBToken.h"
 #import "BBTransitions.h"
 #import "BBValidation.h"
+#import "BBReachability.h"
 
 #endif
