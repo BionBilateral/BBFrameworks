@@ -67,8 +67,13 @@
 - (UIImage *)mediaThumbnailImage {
     return self.thumbnailImage;
 }
+- (UIImage *)mediaFullScreenImage {
+    return [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullScreenImage];
+}
 - (UIImage *)mediaImage {
-    return [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage];
+    ALAssetRepresentation *rep = self.asset.defaultRepresentation;
+    
+    return [UIImage imageWithCGImage:rep.fullResolutionImage scale:rep.scale orientation:(UIImageOrientation)rep.orientation];
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithAsset:(ALAsset *)asset; {
