@@ -16,6 +16,7 @@
 #import "BBReachability.h"
 #import "BBFoundationDebugging.h"
 #import "BBFrameworksMacros.h"
+#import "BBFoundationFunctions.h"
 
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <sys/socket.h>
@@ -27,8 +28,6 @@ NSString *const BBReachabilityNotificationFlagsDidChange = @"BBReachabilityNotif
 @property (strong,nonatomic) dispatch_queue_t serialQueue;
 
 - (void)_networkReachabilityFlagsChanged;
-
-+ (NSOperationQueue *)_defaultCallbackOperationQueue;
 @end
 
 static void kBBReachabilityCallback(SCNetworkReachabilityRef networkReachability, SCNetworkReachabilityFlags flags, void *info) {
@@ -70,8 +69,6 @@ static void kBBReachabilityCallback(SCNetworkReachabilityRef networkReachability
     
     [self setNetworkReachability:networkReachability];
     
-    _callbackOperationQueue = [self.class _defaultCallbackOperationQueue];
-    
     [self setSerialQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
     SCNetworkReachabilityContext context = {0,(__bridge void *)self,NULL,NULL,NULL};
@@ -108,20 +105,15 @@ static void kBBReachabilityCallback(SCNetworkReachabilityRef networkReachability
 }
 #endif
 
-- (void)setCallbackOperationQueue:(NSOperationQueue *)callbackOperationQueue {
-    _callbackOperationQueue = callbackOperationQueue ?: [self.class _defaultCallbackOperationQueue];
-}
-
 - (void)_networkReachabilityFlagsChanged; {
     BBWeakify(self);
-    [self.callbackOperationQueue addOperationWithBlock:^{
+    BBDispatchMainSyncSafe(^{
         BBStrongify(self);
+        [self willChangeValueForKey:@"flags"];
+        [self didChangeValueForKey:@"flags"];
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:BBReachabilityNotificationFlagsDidChange object:self];
-    }];
-}
-
-+ (NSOperationQueue *)_defaultCallbackOperationQueue; {
-    return [NSOperationQueue mainQueue];
+    });
 }
 
 @end

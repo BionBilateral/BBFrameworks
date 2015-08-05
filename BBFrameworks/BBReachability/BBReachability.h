@@ -44,8 +44,6 @@ extern NSString *const BBReachabilityNotificationFlagsDidChange;
 @property (readonly,nonatomic,getter=isReachableViaWWAN) BOOL reachableViaWWAN;
 #endif
 
-@property (strong,nonatomic) NSOperationQueue *callbackOperationQueue;
-
 + (instancetype)reachabilityForInternetConnection;
 + (instancetype)reachabilityWithHostName:(NSString *)hostName;
 
