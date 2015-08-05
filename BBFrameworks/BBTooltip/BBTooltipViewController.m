@@ -214,8 +214,7 @@ static CGFloat const kSpringDamping = 0.5;
     
     void(^animateOutTooltipViewBlock)(BBTooltipView *) = ^(BBTooltipView *tooltipView){
         @strongify(self);
-        [UIView animateWithDuration:self.tooltipAnimationDuration delay:0 usingSpringWithDamping:kSpringDamping initialSpringVelocity:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [tooltipView setTransform:CGAffineTransformMakeScale(0.25, 0.25)];
+        [UIView animateWithDuration:self.tooltipAnimationDuration * 0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             [tooltipView setAlpha:0.0];
         } completion:^(BOOL finished) {
             [tooltipView removeFromSuperview];
