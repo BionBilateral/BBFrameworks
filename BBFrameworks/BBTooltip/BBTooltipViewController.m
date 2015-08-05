@@ -84,7 +84,7 @@ static CGFloat const kSpringDamping = 0.5;
     return self.presentingViewController.preferredStatusBarStyle;
 }
 - (UIModalPresentationStyle)modalPresentationStyle {
-    return UIModalPresentationOverFullScreen;
+    return UIModalPresentationCustom;
 }
 
 - (instancetype)init {
