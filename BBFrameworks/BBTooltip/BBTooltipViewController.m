@@ -233,6 +233,8 @@ static CGFloat const kSpringDamping = 0.5;
         @weakify(self);
         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
             @strongify(self);
+            [self setTransitioningDelegate:nil];
+            
             if ([self.delegate respondsToSelector:@selector(tooltipViewControllerDidDismiss:)]) {
                 [self.delegate tooltipViewControllerDidDismiss:self];
             }
