@@ -73,6 +73,9 @@ static CGFloat const kSpringDamping = 0.5;
 @property (assign,nonatomic) NSInteger tooltipIndex;
 - (void)setTooltipIndex:(NSInteger)tooltipIndex animated:(BOOL)animated completion:(void(^)(void))completion;
 
+- (void)_animateToNextTooltip;
+- (void)_dismissForLastTooltip;
+
 + (NSTimeInterval)_defaultTooltipAnimationDuration;
 + (UIEdgeInsets)_defaultTooltipMinimumEdgeInsets;
 + (UIColor *)_defaultTooltipOverlayBackgroundColor;
@@ -87,10 +90,16 @@ static CGFloat const kSpringDamping = 0.5;
     return UIModalPresentationCustom;
 }
 
+- (BOOL)accessibilityPerformEscape {
+    [self _dismissForLastTooltip];
+    return YES;
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
     
+    _tooltipIndex = -1;
     _tooltipAnimationDuration = [self.class _defaultTooltipAnimationDuration];
     _tooltipMinimumEdgeInsets = [self.class _defaultTooltipMinimumEdgeInsets];
     _tooltipOverlayBackgroundColor = [self.class _defaultTooltipOverlayBackgroundColor];
@@ -103,9 +112,10 @@ static CGFloat const kSpringDamping = 0.5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setIsAccessibilityElement:YES];
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    [self setGestureRecognizer:[[BBAnythingGestureRecognizer alloc] init]];
+    [self setGestureRecognizer:[[BBAnythingGestureRecognizer alloc] initWithTarget:nil action:NULL]];
     [self.view addGestureRecognizer:self.gestureRecognizer];
     
     @weakify(self);
@@ -114,13 +124,13 @@ static CGFloat const kSpringDamping = 0.5;
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
-         [self setTooltipIndex:self.tooltipIndex + 1 animated:YES completion:nil];
+         [self _animateToNextTooltip];
      }];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self setTooltipIndex:0 animated:YES completion:nil];
+    [self _animateToNextTooltip];
 }
 #pragma mark UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
@@ -176,6 +186,28 @@ static CGFloat const kSpringDamping = 0.5;
     }
 }
 #pragma mark *** Private Methods ***
+- (void)_animateToNextTooltip; {
+    [self setTooltipIndex:self.tooltipIndex + 1 animated:YES completion:nil];
+}
+- (void)_dismissForLastTooltip {
+    [self.view setAccessibilityLabel:nil];
+    [self.view setAccessibilityHint:nil];
+    
+    if ([self.delegate respondsToSelector:@selector(tooltipViewControllerWillDismiss:)]) {
+        [self.delegate tooltipViewControllerWillDismiss:self];
+    }
+    
+    @weakify(self);
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        @strongify(self);
+        [self setTransitioningDelegate:nil];
+        
+        if ([self.delegate respondsToSelector:@selector(tooltipViewControllerDidDismiss:)]) {
+            [self.delegate tooltipViewControllerDidDismiss:self];
+        }
+    }];
+}
+
 + (NSTimeInterval)_defaultTooltipAnimationDuration; {
     return 0.5;
 }
@@ -226,19 +258,7 @@ static CGFloat const kSpringDamping = 0.5;
     };
     
     if (self.tooltipIndex == [self.dataSource numberOfTooltipsForTooltipViewController:self]) {
-        if ([self.delegate respondsToSelector:@selector(tooltipViewControllerWillDismiss:)]) {
-            [self.delegate tooltipViewControllerWillDismiss:self];
-        }
-        
-        @weakify(self);
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            @strongify(self);
-            [self setTransitioningDelegate:nil];
-            
-            if ([self.delegate respondsToSelector:@selector(tooltipViewControllerDidDismiss:)]) {
-                [self.delegate tooltipViewControllerDidDismiss:self];
-            }
-        }];
+        [self _dismissForLastTooltip];
     }
     else {
         BBTooltipView *oldTooltipView = self.tooltipView;
@@ -254,6 +274,8 @@ static CGFloat const kSpringDamping = 0.5;
         else {
             [self.tooltipView setText:[self.dataSource tooltipViewController:self textForTooltipAtIndex:self.tooltipIndex]];
         }
+        
+        [self.view setAccessibilityLabel:self.tooltipView.text];
         
         if ([self.delegate respondsToSelector:@selector(tooltipViewController:arrowStyleForTooltipAtIndex:)]) {
             [self.tooltipView setArrowStyle:[self.delegate tooltipViewController:self arrowStyleForTooltipAtIndex:self.tooltipIndex]];
