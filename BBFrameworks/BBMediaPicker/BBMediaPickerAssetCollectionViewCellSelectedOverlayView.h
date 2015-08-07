@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetCollectionViewCell.h
+//  BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h
 //  BBFrameworks
 //
-//  Created by William Towe on 7/29/15.
+//  Created by William Towe on 8/7/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,23 +15,30 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBMediaPickerAssetViewModel;
+@interface BBMediaPickerAssetCollectionViewCellSelectedOverlayView : UIView
 
 /**
- BBMediaPickerAssetCollectionViewCell is a UICollectionViewCell subclass that displays media object in the grid view.
+ Set and get whether the receiver is highlighted. This will get set automatically by the owning collection view cell.
  */
-@interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
+@property (assign,nonatomic,getter=isHighlighted) BOOL highlighted;
 
 /**
- Set and get the view model represented by the receiver.
- */
-@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
-
-/**
- The class of the selected overlay view to display when the receiver is selected.
+ Set and get the selected overlay foreground color. This used to draw the border around the checkmark as well as the checkmark itself.
  
- The default is BBMediaPickerAssetCollectionViewCellSelectedOverlayView.
+ The default is [UIColor whiteColor].
  */
-@property (strong,nonatomic) Class selectedOverlayViewClass;
+@property (strong,nonatomic) UIColor *selectedOverlayForegroundColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the selected overlay tint color. This affects the checkmark that is drawn within the selected overlay when the represented view model is selected. If nil, the tintColor of the receiver is used.
+ 
+ The default is nil.
+ */
+@property (strong,nonatomic) UIColor *selectedOverlayTintColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the selected overlay background color. This is the view that is placed over the thumbnail image when the represented view model is selected.
+ 
+ The default is BBColorWA(1.0, 0.33).
+ */
+@property (strong,nonatomic) UIColor *selectedOverlayBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end

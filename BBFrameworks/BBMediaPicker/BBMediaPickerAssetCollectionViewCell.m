@@ -19,6 +19,7 @@
 #import "BBFoundationGeometryFunctions.h"
 #import "UIImage+BBKitExtensions.h"
 #import "BBGradientView.h"
+#import "BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -30,12 +31,8 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 @property (strong,nonatomic) UIImageView *typeImageView;
 @property (strong,nonatomic) UILabel *durationLabel;
 @property (strong,nonatomic) UIView *selectedOverlayView;
-@property (strong,nonatomic) UIImageView *selectedImageView;
 
-+ (UIColor *)_defaultSelectedOverlayForegroundColor;
-+ (UIColor *)_defaultSelectedOverlayBackgroundColor;
-
-- (UIImage *)_selectedCheckmarkImage;
++ (Class)_defaultSelectedOverlayViewClass;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
@@ -44,8 +41,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    _selectedOverlayForegroundColor = [self.class _defaultSelectedOverlayForegroundColor];
-    _selectedOverlayBackgroundColor = [self.class _defaultSelectedOverlayBackgroundColor];
+    _selectedOverlayViewClass = [self.class _defaultSelectedOverlayViewClass];
     
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
@@ -63,12 +59,8 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.durationLabel setTextAlignment:NSTextAlignmentRight];
     [self.contentView addSubview:self.durationLabel];
     
-    [self setSelectedOverlayView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
+    [self setSelectedOverlayView:[[_selectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.selectedOverlayView];
-    
-    [self setSelectedImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
-    [self.selectedOverlayView addSubview:self.selectedImageView];
     
     @weakify(self);
     RAC(self.thumbnailImageView,image) = RACObserve(self, viewModel.thumbnailImage);
@@ -97,79 +89,31 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.durationLabel setFrame:CGRectMake(CGRectGetMaxX(self.typeImageView.frame), CGRectGetHeight(self.contentView.bounds) - ceil(self.durationLabel.font.lineHeight) - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds) - CGRectGetMaxX(self.typeImageView.frame) - kSubviewMarginHalf, ceil(self.durationLabel.font.lineHeight))];
     [self.gradientView setFrame:CGRectMake(0, CGRectGetHeight(self.contentView.bounds) - self.typeImageView.image.size.height - kSubviewMarginHalf - kSubviewMarginHalf, CGRectGetWidth(self.contentView.bounds), self.typeImageView.image.size.height + kSubviewMarginHalf + kSubviewMarginHalf)];
     [self.selectedOverlayView setFrame:self.contentView.bounds];
-    [self.selectedImageView setFrame:CGRectMake(CGRectGetWidth(self.contentView.bounds) - self.selectedImageView.image.size.width - kSubviewMarginHalf, kSubviewMarginHalf, self.selectedImageView.image.size.width, self.selectedImageView.image.size.height)];
 }
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     
-    [self.selectedImageView setImage:({
-        UIImage *retval = nil;
-        
-        if (selected) {
-            retval = [self _selectedCheckmarkImage];
-        }
-        
-        retval;
-    })];
-    
     [self.selectedOverlayView setAlpha:selected ? 1.0 : 0.0];
     
-    if (selected) {
-        [self setNeedsLayout];
-    }
+//    if ([self.selectedOverlayView respondsToSelector:@selector(setHighlighted:)]) {
+//        [(id)self.selectedOverlayView setHighlighted:selected];
+//    }
 }
 #pragma mark *** Public Methods ***
-#pragma mark Properties
-- (void)setSelectedOverlayForegroundColor:(UIColor *)selectedOverlayForegroundColor {
-    _selectedOverlayForegroundColor = selectedOverlayForegroundColor ?: [self.class _defaultSelectedOverlayForegroundColor];
+- (void)setSelectedOverlayViewClass:(Class)selectedOverlayViewClass {
+    _selectedOverlayViewClass = selectedOverlayViewClass ?: [self.class _defaultSelectedOverlayViewClass];
     
-    if (self.isSelected) {
-        [self.selectedImageView setImage:[self _selectedCheckmarkImage]];
+    if (![self.selectedOverlayView isKindOfClass:selectedOverlayViewClass]) {
+        [self.selectedOverlayView removeFromSuperview];
+        
+        [self setSelectedOverlayView:[[selectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+        [self.contentView addSubview:self.selectedOverlayView];
     }
-}
-- (void)setSelectedOverlayTintColor:(UIColor *)selectedOverlayTintColor {
-    _selectedOverlayTintColor = selectedOverlayTintColor;
-    
-    if (self.isSelected) {
-        [self.selectedImageView setImage:[self _selectedCheckmarkImage]];
-    }
-}
-- (void)setSelectedOverlayBackgroundColor:(UIColor *)selectedOverlayBackgroundColor {
-    _selectedOverlayBackgroundColor = selectedOverlayBackgroundColor ?: [self.class _defaultSelectedOverlayBackgroundColor];
-    
-    [self.selectedOverlayView setBackgroundColor:_selectedOverlayBackgroundColor];
 }
 #pragma mark *** Private Methods ***
-+ (UIColor *)_defaultSelectedOverlayForegroundColor {
-    return [UIColor whiteColor];
-}
-+ (UIColor *)_defaultSelectedOverlayBackgroundColor; {
-    return BBColorWA(1.0, 0.33);
-}
-
-- (UIImage *)_selectedCheckmarkImage {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0);
-    
-    CGRect rect = CGRectMake(0, 0, 22, 22);
-    
-    [self.selectedOverlayForegroundColor setFill];
-    [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
-    
-    [self.selectedOverlayTintColor ?: self.tintColor setFill];
-    [[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 1, 1)] fill];
-    
-    NSString *string = @"✓";
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: self.selectedOverlayForegroundColor};
-    CGSize size = [string sizeWithAttributes:attributes];
-    
-    [string drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), rect) withAttributes:attributes];
-    
-    UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return retval;
++ (Class)_defaultSelectedOverlayViewClass {
+    return [BBMediaPickerAssetCollectionViewCellSelectedOverlayView class];
 }
 
 @end

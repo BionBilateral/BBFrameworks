@@ -61,7 +61,7 @@
         
         [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
         
-        [[BBMediaPickerAssetCollectionViewCell appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.5)];
+        [[BBMediaPickerAssetCollectionViewCellSelectedOverlayView appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.5)];
     }
 }
 
