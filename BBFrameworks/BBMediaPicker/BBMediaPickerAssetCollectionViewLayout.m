@@ -33,7 +33,7 @@
 - (void)prepareLayout {
     [super prepareLayout];
     
-    CGFloat availableWidth = CGRectGetWidth(self.collectionView.bounds) - (self.minimumInteritemSpacing * (self.numberOfColumns - 1));
+    CGFloat availableWidth = CGRectGetWidth(self.collectionView.bounds) - self.sectionInset.left - self.sectionInset.right - (self.minimumInteritemSpacing * (self.numberOfColumns - 1));
     CGFloat itemWidth = floor(availableWidth / (CGFloat)self.numberOfColumns);
     
     [self setItemSize:CGSizeMake(itemWidth, itemWidth)];
