@@ -32,6 +32,6 @@
  
  The default is BBMediaPickerAssetCollectionViewCellSelectedOverlayView.
  */
-@property (strong,nonatomic) Class selectedOverlayViewClass;
+@property (strong,nonatomic) Class selectedOverlayViewClass UI_APPEARANCE_SELECTOR;
 
 @end
