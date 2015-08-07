@@ -32,7 +32,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 @property (strong,nonatomic) UILabel *durationLabel;
 @property (strong,nonatomic) UIView *selectedOverlayView;
 
-+ (Class)_defaultSelectedOverlayViewClass;
++ (NSString *)_defaultSelectedOverlayViewClassName;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
@@ -41,7 +41,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    _selectedOverlayViewClass = [self.class _defaultSelectedOverlayViewClass];
+    _selectedOverlayViewClassName = [self.class _defaultSelectedOverlayViewClassName];
     
     [self setThumbnailImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.thumbnailImageView];
@@ -59,7 +59,7 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [self.durationLabel setTextAlignment:NSTextAlignmentRight];
     [self.contentView addSubview:self.durationLabel];
     
-    [self setSelectedOverlayView:[[_selectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+    [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
     [self.contentView addSubview:self.selectedOverlayView];
     
     @weakify(self);
@@ -101,19 +101,19 @@ static CGFloat const kSubviewMarginHalf = 4.0;
 //    }
 }
 #pragma mark *** Public Methods ***
-- (void)setSelectedOverlayViewClass:(Class)selectedOverlayViewClass {
-    _selectedOverlayViewClass = selectedOverlayViewClass ?: [self.class _defaultSelectedOverlayViewClass];
+- (void)setSelectedOverlayViewClassName:(NSString *)selectedOverlayViewClassName {
+    _selectedOverlayViewClassName = [selectedOverlayViewClassName ?: [self.class _defaultSelectedOverlayViewClassName] copy];
     
-    if (![self.selectedOverlayView isKindOfClass:selectedOverlayViewClass]) {
+    if (![self.selectedOverlayView isKindOfClass:NSClassFromString(_selectedOverlayViewClassName)]) {
         [self.selectedOverlayView removeFromSuperview];
         
-        [self setSelectedOverlayView:[[selectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+        [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
         [self.contentView addSubview:self.selectedOverlayView];
     }
 }
 #pragma mark *** Private Methods ***
-+ (Class)_defaultSelectedOverlayViewClass {
-    return [BBMediaPickerAssetCollectionViewCellSelectedOverlayView class];
++ (NSString *)_defaultSelectedOverlayViewClassName {
+    return NSStringFromClass([BBMediaPickerAssetCollectionViewCellSelectedOverlayView class]);
 }
 
 @end
