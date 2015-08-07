@@ -312,11 +312,11 @@
     _completionDelay = completionDelay < 0.0 ? [self.class _defaultCompletionDelay] : completionDelay;
 }
 - (void)setCompletionTableViewCellClassName:(NSString *)completionTableViewCellClassName {
-    _completionTableViewCellClassName = completionTableViewCellClassName ?: [self.class _defaultCompletionTableViewCellClassName];
+    _completionTableViewCellClassName = [completionTableViewCellClassName ?: [self.class _defaultCompletionTableViewCellClassName] copy];
 }
 
 - (void)setTokenTextAttachmentClassName:(NSString *)tokenTextAttachmentClassName {
-    _tokenTextAttachmentClassName = tokenTextAttachmentClassName ?: [self.class _defaultTokenTextAttachmentClassName];
+    _tokenTextAttachmentClassName = [tokenTextAttachmentClassName ?: [self.class _defaultTokenTextAttachmentClassName] copy];
 }
 
 - (void)setTypingFont:(UIFont *)typingFont {
