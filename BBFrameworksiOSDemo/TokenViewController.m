@@ -65,6 +65,13 @@
 
 @implementation TokenViewController
 
++ (void)initialize {
+    if (self == [TokenViewController class]) {
+        [[BBTokenTextView appearance] setTokenTextAttachmentClassName:NSStringFromClass([TokenTextAttachment class])];
+        [[BBTokenTextView appearance] setCompletionTableViewCellClassName:NSStringFromClass([TokenCompletionTableViewCell class])];
+    }
+}
+
 - (BOOL)automaticallyAdjustsScrollViewInsets {
     return NO;
 }
@@ -79,12 +86,11 @@
     [self.view setBackgroundColor:[UIColor blackColor]];
     
     [self setTokenTextView:[[BBTokenTextView alloc] initWithFrame:CGRectZero]];
+    [self.tokenTextView setBackgroundColor:[UIColor blackColor]];
     [self.tokenTextView setTypingTextColor:[UIColor whiteColor]];
     [self.tokenTextView setTypingFont:[UIFont systemFontOfSize:17.0]];
     [self.tokenTextView setPlaceholderFont:self.tokenTextView.typingFont];
     [self.tokenTextView setPlaceholder:@"Type some text…"];
-    [self.tokenTextView setTokenTextAttachmentClass:[TokenTextAttachment class]];
-    [self.tokenTextView setCompletionTableViewCellClass:[TokenCompletionTableViewCell class]];
     [self.tokenTextView setDelegate:self];
     [self.view addSubview:self.tokenTextView];
     

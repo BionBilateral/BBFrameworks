@@ -46,7 +46,7 @@
  
  The default is BBTokenTextAttachment.
  */
-@property (strong,nonatomic) Class tokenTextAttachmentClass UI_APPEARANCE_SELECTOR;
+@property (copy,nonatomic) NSString *tokenTextAttachmentClassName UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the completion delay of the receiver.
@@ -59,7 +59,7 @@
  
  The default is BBTokenCompletionDefaultTableViewCell.
  */
-@property (strong,nonatomic) Class completionTableViewCellClass UI_APPEARANCE_SELECTOR;
+@property (copy,nonatomic) NSString *completionTableViewCellClassName UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the typing font of the receiver. Set this instead of the font of the receiver.

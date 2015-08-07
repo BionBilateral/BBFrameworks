@@ -89,8 +89,8 @@
 
 + (NSCharacterSet *)_defaultTokenizingCharacterSet;
 + (NSTimeInterval)_defaultCompletionDelay;
-+ (Class)_defaultCompletionTableViewCellClass;
-+ (Class)_defaultTokenTextAttachmentClass;
++ (NSString *)_defaultCompletionTableViewCellClassName;
++ (NSString *)_defaultTokenTextAttachmentClassName;
 + (UIFont *)_defaultTypingFont;
 + (UIColor *)_defaultTypingTextColor;
 @end
@@ -175,7 +175,7 @@
                         displayText = [self.delegate tokenTextView:self displayTextForRepresentedObject:obj];
                     }
                     
-                    [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:obj text:displayText tokenTextView:self]]];
+                    [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:obj text:displayText tokenTextView:self]]];
                 }
                 
                 // replace all characters in token range with the text attachments
@@ -259,10 +259,10 @@
     return self.completions.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell<BBTokenCompletionTableViewCell> *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
+    UITableViewCell<BBTokenCompletionTableViewCell> *cell = [tableView dequeueReusableCellWithIdentifier:self.completionTableViewCellClassName];
     
     if (!cell) {
-        cell = [[self.completionTableViewCellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(self.completionTableViewCellClass)];
+        cell = [[NSClassFromString(self.completionTableViewCellClassName) alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.completionTableViewCellClassName];
     }
     
     [cell setCompletion:self.completions[indexPath.row]];
@@ -298,7 +298,7 @@
             text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
         }
         
-        [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[[self tokenTextAttachmentClass] alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self]]];
+        [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self]]];
     }
     
     [self.textStorage replaceCharactersInRange:NSMakeRange(0, self.textStorage.length) withAttributedString:temp];
@@ -311,12 +311,12 @@
 - (void)setCompletionDelay:(NSTimeInterval)completionDelay {
     _completionDelay = completionDelay < 0.0 ? [self.class _defaultCompletionDelay] : completionDelay;
 }
-- (void)setCompletionTableViewCellClass:(Class)completionTableViewCellClass {
-    _completionTableViewCellClass = completionTableViewCellClass ?: [self.class _defaultCompletionTableViewCellClass];
+- (void)setCompletionTableViewCellClassName:(NSString *)completionTableViewCellClassName {
+    _completionTableViewCellClassName = completionTableViewCellClassName ?: [self.class _defaultCompletionTableViewCellClassName];
 }
 
-- (void)setTokenTextAttachmentClass:(Class)tokenTextAttachmentClass {
-    _tokenTextAttachmentClass = tokenTextAttachmentClass ?: [self.class _defaultTokenTextAttachmentClass];
+- (void)setTokenTextAttachmentClassName:(NSString *)tokenTextAttachmentClassName {
+    _tokenTextAttachmentClassName = tokenTextAttachmentClassName ?: [self.class _defaultTokenTextAttachmentClassName];
 }
 
 - (void)setTypingFont:(UIFont *)typingFont {
@@ -329,8 +329,8 @@
 - (void)_BBTokenTextViewInit; {
     _tokenizingCharacterSet = [self.class _defaultTokenizingCharacterSet];
     _completionDelay = [self.class _defaultCompletionDelay];
-    _completionTableViewCellClass = [self.class _defaultCompletionTableViewCellClass];
-    _tokenTextAttachmentClass = [self.class _defaultTokenTextAttachmentClass];
+    _completionTableViewCellClassName = [self.class _defaultCompletionTableViewCellClassName];
+    _tokenTextAttachmentClassName = [self.class _defaultTokenTextAttachmentClassName];
     _typingFont = [self.class _defaultTypingFont];
     _typingTextColor = [self.class _defaultTypingTextColor];
     
@@ -360,7 +360,7 @@
     if (!self.tableView) {
         if ([self.delegate respondsToSelector:@selector(tokenTextView:showCompletionsTableView:)]) {
             [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
-            [self.tableView setRowHeight:[self.completionTableViewCellClass respondsToSelector:@selector(rowHeight)] ? [self.completionTableViewCellClass rowHeight] : [BBTokenCompletionDefaultTableViewCell rowHeight]];
+            [self.tableView setRowHeight:[NSClassFromString(self.completionTableViewCellClassName) respondsToSelector:@selector(rowHeight)] ? [NSClassFromString(self.completionTableViewCellClassName) rowHeight] : [BBTokenCompletionDefaultTableViewCell rowHeight]];
             [self.tableView setDataSource:self];
             [self.tableView setDelegate:self];
             
@@ -413,7 +413,7 @@
             
             if (representedObjects.count > 0) {
                 NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
-                NSTextAttachment *attachment = [[self.tokenTextAttachmentClass alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
+                NSTextAttachment *attachment = [[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
                 
                 [self.textStorage replaceCharactersInRange:[self _completionRangeForRange:self.selectedRange] withAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
                 
@@ -485,11 +485,11 @@
 + (NSTimeInterval)_defaultCompletionDelay; {
     return 0.0;
 }
-+ (Class)_defaultCompletionTableViewCellClass {
-    return [BBTokenCompletionDefaultTableViewCell class];
++ (NSString *)_defaultCompletionTableViewCellClassName {
+    return NSStringFromClass([BBTokenCompletionDefaultTableViewCell class]);
 }
-+ (Class)_defaultTokenTextAttachmentClass {
-    return [BBTokenDefaultTextAttachment class];
++ (NSString *)_defaultTokenTextAttachmentClassName {
+    return NSStringFromClass([BBTokenDefaultTextAttachment class]);
 }
 + (UIFont *)_defaultTypingFont; {
     return [UIFont systemFontOfSize:14.0];
