@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "NSManagedObjectContext+BBCoreDataExtensions.h"
+#import "BBFoundationFunctions.h"
 
 @implementation NSManagedObjectContext (BBCoreDataExtensions)
 
@@ -53,6 +54,27 @@
     return retval;
 }
 
+- (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset; {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
+    
+    if (predicate) {
+        [request setPredicate:predicate];
+    }
+    if (sortDescriptors) {
+        [request setSortDescriptors:sortDescriptors];
+    }
+    if (limit > 0) {
+        [request setFetchLimit:limit];
+    }
+    if (offset > 0) {
+        [request setFetchOffset:offset];
+    }
+    
+    return request;
+}
+
 - (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error; {
     return [self BB_fetchEntityNamed:entityName predicate:predicate sortDescriptors:sortDescriptors limit:0 offset:0 error:error];
 }
@@ -80,6 +102,61 @@
     }
     
     return [self executeFetchRequest:request error:error];
+}
+
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(void(^)(NSArray *objects, NSError *error))completion; {
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    
+    if (NSClassFromString(@"NSAsynchronousFetchRequest")) {
+        NSFetchRequest *request = [context BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
+        NSAsynchronousFetchRequest *asyncFetchRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:request completionBlock:^(NSAsynchronousFetchResult *result) {
+            [self performBlock:^{
+                completion(result.finalResult,nil);
+            }];
+        }];
+        
+        [self performBlock:^{
+            NSError *outError;
+            NSAsynchronousFetchResult *result = (NSAsynchronousFetchResult *)[self executeRequest:asyncFetchRequest error:&outError];
+            
+            if (!result) {
+                completion(nil,outError);
+            }
+        }];
+    }
+    else {
+        [context setUndoManager:nil];
+        [context setParentContext:self];
+        [context performBlock:^{
+            NSFetchRequest *request = [context BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
+            
+            [request setResultType:NSManagedObjectIDResultType];
+            
+            NSError *outError;
+            NSArray *objectIDs = [context executeFetchRequest:request error:&outError];
+            
+            if (objectIDs) {
+                [self performBlock:^{
+                    NSMutableArray *objects = [[NSMutableArray alloc] init];
+                    
+                    for (NSManagedObjectID *objectID in objectIDs) {
+                        NSManagedObject *object = [self existingObjectWithID:objectID error:NULL];
+                        
+                        if (object) {
+                            [objects addObject:object];
+                        }
+                    }
+                    
+                    completion(objects,nil);
+                }];
+            }
+            else {
+                [self performBlock:^{
+                    completion(nil,outError);
+                }];
+            }
+        }];
+    }
 }
 
 - (NSUInteger)BB_countForEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate error:(NSError *__autoreleasing *)error; {

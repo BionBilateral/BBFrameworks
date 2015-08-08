@@ -27,6 +27,8 @@
  */
 - (BOOL)BB_saveRecursively:(NSError *__autoreleasing *)error;
 
+- (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset;
+
 /**
  Calls BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:error:, passing _entityName_, _predicate_, _sortDescriptors_, and _error_ respectively.
  
@@ -63,6 +65,8 @@
  @exception NSException Thrown if _entityName_ is nil
  */
 - (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset error:(NSError *__autoreleasing *)error;
+
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(void(^)(NSArray *objects, NSError *error))completion;
 
 /**
  Constructs and executes a NSFetchRequest using _entityName_, _predicate_, and _error_.
