@@ -19,7 +19,7 @@
 @interface BBMediaViewerDetailViewController ()
 @property (strong,nonatomic) UIImageView *imageView;
 
-@property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *model;
+@property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @end
 
 @implementation BBMediaViewerDetailViewController
@@ -30,17 +30,23 @@
     [self.view setBackgroundColor:[UIColor blackColor]];
     
     [self setImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.view addSubview:self.imageView];
 }
 - (void)viewWillLayoutSubviews {
     [self.imageView setFrame:self.view.bounds];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.imageView setImage:self.viewModel.image];
+}
 
-- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)model; {
+- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
     if (!(self = [super init]))
         return nil;
     
-    [self setModel:model];
+    [self setViewModel:viewModel];
     
     return self;
 }

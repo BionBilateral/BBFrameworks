@@ -69,6 +69,7 @@
     QLPreviewController *viewController = [[QLPreviewController alloc] init];
     
     [viewController setDataSource:self];
+    [viewController setCurrentPreviewItemIndex:0];
     
     [self presentViewController:viewController animated:YES completion:nil];
 }

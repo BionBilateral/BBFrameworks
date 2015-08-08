@@ -87,10 +87,13 @@
          [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
      }];
 }
+- (void)viewWillLayoutSubviews {
+    [self.pageViewController.view setFrame:self.view.bounds];
+}
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    BBMediaViewerDetailViewModel *model = [(BBMediaViewerDetailViewController *)viewController model];
-    NSInteger index = model.index;
+    BBMediaViewerDetailViewModel *viewModel = [(BBMediaViewerDetailViewController *)viewController viewModel];
+    NSInteger index = viewModel.index;
     
     if ((++index) == [self.dataSource numberOfMediaInMediaViewer:self]) {
         return nil;
@@ -101,8 +104,8 @@
     return [[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]];
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    BBMediaViewerDetailViewModel *model = [(BBMediaViewerDetailViewController *)viewController model];
-    NSInteger index = model.index;
+    BBMediaViewerDetailViewModel *viewModel = [(BBMediaViewerDetailViewController *)viewController viewModel];
+    NSInteger index = viewModel.index;
     
     if ((--index) < 0) {
         return nil;

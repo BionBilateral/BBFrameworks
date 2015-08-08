@@ -19,8 +19,8 @@
 
 @interface BBMediaViewerDetailViewController : UIViewController
 
-@property (readonly,strong,nonatomic) BBMediaViewerDetailViewModel *model;
+@property (readonly,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 
-- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)model;
+- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 
 @end

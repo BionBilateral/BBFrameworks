@@ -15,6 +15,8 @@
 
 #import "BBMediaViewerDetailViewModel.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+
 @interface BBMediaViewerDetailViewModel ()
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
 @property (readwrite,assign,nonatomic) NSInteger index;
@@ -32,6 +34,22 @@
     [self setIndex:index];
     
     return self;
+}
+
+- (NSURL *)URL {
+    return [self.media mediaURL];
+}
+- (NSString *)title {
+    return [self.media respondsToSelector:@selector(mediaTitle)] ? [self.media mediaTitle] : [self.media mediaURL].lastPathComponent;
+}
+
+- (UIImage *)image {
+    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.URL.lastPathComponent.pathExtension, NULL);
+    
+    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+        return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:self.URL]];
+    }
+    return nil;
 }
 
 @end
