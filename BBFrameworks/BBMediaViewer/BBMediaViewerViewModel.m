@@ -1,5 +1,5 @@
 //
-//  BBMediaBrowserMedia.h
+//  BBMediaViewerModel.m
 //  BBFrameworks
 //
 //  Created by William Towe on 8/8/15.
@@ -13,11 +13,27 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+#import "BBMediaViewerViewModel.h"
 
-@protocol BBMediaViewerMedia <NSObject>
-@required
-- (NSURL *)mediaURL;
-@optional
-- (NSString *)mediaTitle;
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+@interface BBMediaViewerViewModel ()
+@property (readwrite,strong,nonatomic) RACCommand *doneCommand;
+@end
+
+@implementation BBMediaViewerViewModel
+
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    @weakify(self);
+    [self setDoneCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        return [RACSignal return:self];
+    }]];
+    
+    return self;
+}
+
 @end

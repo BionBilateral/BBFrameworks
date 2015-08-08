@@ -19,5 +19,9 @@
 @class BBMediaViewerViewController;
 
 @protocol BBMediaViewerViewControllerDataSource <NSObject>
-
+@required
+- (NSInteger)numberOfMediaInMediaViewer:(BBMediaViewerViewController *)mediaViewer;
+- (id<BBMediaViewerMedia>)mediaViewer:(BBMediaViewerViewController *)mediaViewer mediaAtIndex:(NSInteger)index;
+@optional
+- (id<BBMediaViewerMedia>)initialMediaForMediaViewer:(BBMediaViewerViewController *)mediaViewer;
 @end

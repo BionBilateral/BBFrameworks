@@ -16,6 +16,6 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaViewerMedia.h"
 
-@interface NSURL (BBMediaViewerMediaExtensions) <BBMediaBrowserMedia>
+@interface NSURL (BBMediaViewerMediaExtensions) <BBMediaViewerMedia>
 
 @end
