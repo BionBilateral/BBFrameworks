@@ -1435,7 +1435,7 @@
 				7927CF981B1AD2B90034288D /* BBThumbnail */,
 				7927CF941B1AD2B90034288D /* BBReactiveThumbnail */,
 				79B4FF661B363B04007B8629 /* BBMediaPicker */,
-				792F152A1B7693A60034A09A /* BBMediaBrowser */,
+				792F152A1B7693A60034A09A /* BBMediaViewer */,
 				79B4FFF71B3908C3007B8629 /* BBMediaPlayer */,
 				79B4FF9B1B363F1F007B8629 /* BBWebKit */,
 				79B4FFC21B3647DD007B8629 /* BBTooltip */,
@@ -1506,7 +1506,7 @@
 			path = BBThumbnail;
 			sourceTree = "<group>";
 		};
-		792F152A1B7693A60034A09A /* BBMediaBrowser */ = {
+		792F152A1B7693A60034A09A /* BBMediaViewer */ = {
 			isa = PBXGroup;
 			children = (
 				792F152B1B7694030034A09A /* BBMediaViewer.h */,
@@ -1517,7 +1517,6 @@
 				792F152C1B76944B0034A09A /* BBMediaViewerViewController.h */,
 				792F152D1B76944B0034A09A /* BBMediaViewerViewController.m */,
 			);
-			name = BBMediaBrowser;
 			path = BBMediaViewer;
 			sourceTree = "<group>";
 		};
