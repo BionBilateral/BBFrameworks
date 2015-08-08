@@ -169,6 +169,8 @@
 		791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7919970F1B6EB44E00FC674A /* BBThumbnailDocumentOperation.m */; };
 		791997161B6EB46100FC674A /* BBThumbnailQuickLookOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 791997141B6EB46100FC674A /* BBThumbnailQuickLookOperation.h */; };
 		791997171B6EB46100FC674A /* BBThumbnailQuickLookOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791997151B6EB46100FC674A /* BBThumbnailQuickLookOperation.m */; };
+		792F15381B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
+		792F15391B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
 		79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */; };
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
@@ -863,6 +865,7 @@
 		7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailGenerator.h; sourceTree = "<group>"; };
 		7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailGenerator.m; sourceTree = "<group>"; };
 		7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailOperation.h; sourceTree = "<group>"; };
+		792F15371B76A7160034A09A /* BBFrameworks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworks.m; sourceTree = "<group>"; };
 		79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBAnythingGestureRecognizer.h; path = iOS/BBAnythingGestureRecognizer.h; sourceTree = "<group>"; };
 		79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBAnythingGestureRecognizer.m; path = iOS/BBAnythingGestureRecognizer.m; sourceTree = "<group>"; };
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
@@ -1789,6 +1792,7 @@
 			isa = PBXGroup;
 			children = (
 				79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */,
+				792F15371B76A7160034A09A /* BBFrameworks.m */,
 				79EA81081B3F143300D50B6B /* Headers */,
 				7927CF5C1B1AD29A0034288D /* Modules */,
 			);
@@ -2700,6 +2704,7 @@
 				0750D6431B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m in Sources */,
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
 				07605ABE1B69556E00333678 /* BBMediaPickerViewController.m in Sources */,
+				792F15381B76A7160034A09A /* BBFrameworks.m in Sources */,
 				79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				79EA80F71B3F0D4B00D50B6B /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
 				79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */,
@@ -2845,6 +2850,7 @@
 				79EA81891B3F22E400D50B6B /* NSURL+BBKitExtensions.m in Sources */,
 				791997041B6EB3C500FC674A /* BBThumbnailTextOperation.m in Sources */,
 				79EA81801B3F22C300D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
+				792F15391B76A7160034A09A /* BBFrameworks.m in Sources */,
 				791996EE1B6EB3C500FC674A /* BBThumbnailDownloadOperation.m in Sources */,
 				799F9BA21B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.m in Sources */,
 				79EA81841B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
