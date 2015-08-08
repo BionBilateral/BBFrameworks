@@ -49,6 +49,8 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
+    [self.pageViewController.view setBackgroundColor:[UIColor blackColor]];
+    
     id<BBMediaViewerMedia> media = nil;
     NSInteger index = 0;
     

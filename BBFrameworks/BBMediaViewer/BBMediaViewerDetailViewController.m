@@ -17,6 +17,8 @@
 #import "BBMediaViewerDetailViewModel.h"
 
 @interface BBMediaViewerDetailViewController ()
+@property (strong,nonatomic) UIImageView *imageView;
+
 @property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *model;
 @end
 
@@ -26,6 +28,12 @@
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    [self setImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.view addSubview:self.imageView];
+}
+- (void)viewWillLayoutSubviews {
+    [self.imageView setFrame:self.view.bounds];
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)model; {
