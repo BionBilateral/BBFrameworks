@@ -15,6 +15,9 @@
 
 #import <CoreData/CoreData.h>
 
+/**
+ Category on NSFetchRequest adding convenience creation methods.
+ */
 @interface NSFetchRequest (BBCoreDataExtensions)
 
 /**
