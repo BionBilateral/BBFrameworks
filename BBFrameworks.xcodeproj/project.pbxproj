@@ -894,6 +894,7 @@
 		792F154A1B76C4800034A09A /* MediaViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewerViewController.m; sourceTree = "<group>"; };
 		792F154C1B76C4C00034A09A /* MediaViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaViewerViewController.xib; sourceTree = "<group>"; };
 		792F154E1B76C6BB0034A09A /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
+		792F15501B76CCBB0034A09A /* BBMediaViewerViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerViewControllerDelegate.h; sourceTree = "<group>"; };
 		79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBAnythingGestureRecognizer.h; path = iOS/BBAnythingGestureRecognizer.h; sourceTree = "<group>"; };
 		79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBAnythingGestureRecognizer.m; path = iOS/BBAnythingGestureRecognizer.m; sourceTree = "<group>"; };
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
@@ -1534,6 +1535,7 @@
 				792F15431B76BBDC0034A09A /* BBMediaViewerDetailViewModel.h */,
 				792F15441B76BBDC0034A09A /* BBMediaViewerDetailViewModel.m */,
 				792F15331B769A480034A09A /* BBMediaViewerViewControllerDataSource.h */,
+				792F15501B76CCBB0034A09A /* BBMediaViewerViewControllerDelegate.h */,
 				792F152C1B76944B0034A09A /* BBMediaViewerViewController.h */,
 				792F152D1B76944B0034A09A /* BBMediaViewerViewController.m */,
 				792F15401B76B55F0034A09A /* BBMediaViewerDetailViewController.h */,

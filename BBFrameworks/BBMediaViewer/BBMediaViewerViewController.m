@@ -84,7 +84,16 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
-         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+         if ([self.delegate respondsToSelector:@selector(mediaViewerWillDismiss:)]) {
+             [self.delegate mediaViewerWillDismiss:self];
+         }
+         
+         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+             @strongify(self);
+             if ([self.delegate respondsToSelector:@selector(mediaViewerDidDismiss:)]) {
+                 [self.delegate mediaViewerDidDismiss:self];
+             }
+         }];
      }];
 }
 - (void)viewWillLayoutSubviews {
