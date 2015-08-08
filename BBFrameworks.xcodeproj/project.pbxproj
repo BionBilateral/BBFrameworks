@@ -171,6 +171,10 @@
 		791997171B6EB46100FC674A /* BBThumbnailQuickLookOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791997151B6EB46100FC674A /* BBThumbnailQuickLookOperation.m */; };
 		792F15381B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
 		792F15391B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
+		792F153C1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		792F153D1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F153B1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m */; };
+		792F153E1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F153B1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m */; };
+		792F153F1B76AD080034A09A /* NSFetchRequest+BBCoreDataExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */; };
 		79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */; };
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
@@ -521,6 +525,7 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
+				792F153F1B76AD080034A09A /* NSFetchRequest+BBCoreDataExtensions.h in CopyFiles */,
 				79184C6F1B7056330044789F /* BBReachability.h in CopyFiles */,
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
 				79EA809E1B3F090500D50B6B /* BBThumbnail.h in CopyFiles */,
@@ -866,6 +871,8 @@
 		7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailGenerator.m; sourceTree = "<group>"; };
 		7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailOperation.h; sourceTree = "<group>"; };
 		792F15371B76A7160034A09A /* BBFrameworks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworks.m; sourceTree = "<group>"; };
+		792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+BBCoreDataExtensions.h"; sourceTree = "<group>"; };
+		792F153B1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+BBCoreDataExtensions.m"; sourceTree = "<group>"; };
 		79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBAnythingGestureRecognizer.h; path = iOS/BBAnythingGestureRecognizer.h; sourceTree = "<group>"; };
 		79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBAnythingGestureRecognizer.m; path = iOS/BBAnythingGestureRecognizer.m; sourceTree = "<group>"; };
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
@@ -1881,6 +1888,8 @@
 		79C2E1591B1AF9A500CCACF9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */,
+				792F153B1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m */,
 				7927CF651B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.h */,
 				7927CF661B1AD2B90034288D /* NSManagedObjectContext+BBCoreDataExtensions.m */,
 			);
@@ -2151,6 +2160,7 @@
 				79EA814C1B3F221600D50B6B /* BBFoundationMacros.h in Headers */,
 				79EA81651B3F227600D50B6B /* BBThumbnailDefines.h in Headers */,
 				79EA81771B3F22A800D50B6B /* BBWebKit.h in Headers */,
+				792F153C1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h in Headers */,
 				791996EF1B6EB3C500FC674A /* BBThumbnailGenerator+BBThumbnailExtensionsPrivate.h in Headers */,
 				79EA81461B3F21F100D50B6B /* BBFrameworks.h in Headers */,
 				79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */,
@@ -2790,6 +2800,7 @@
 				791996F41B6EB3C500FC674A /* BBThumbnailImageOperation.m in Sources */,
 				799B96141B69A7CA0010E1CD /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				07B3D8F11B6014D900FA1853 /* NSArray+BBBlocksExtensions.m in Sources */,
+				792F153D1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */,
 				79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */,
 				79EA80D11B3F0CE400D50B6B /* BBBadgeView.m in Sources */,
 				07B3D9091B60373B00FA1853 /* BBFormBooleanSwitchTableViewCell.m in Sources */,
@@ -2841,6 +2852,7 @@
 				791996E81B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */,
 				79EA81821B3F22D200D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				79EA817D1B3F22C300D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
+				792F153E1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */,
 				791996F51B6EB3C500FC674A /* BBThumbnailImageOperation.m in Sources */,
 				79EA81871B3F22E400D50B6B /* NSColor+BBKitExtensions.m in Sources */,
 				79EA817B1B3F22C300D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,

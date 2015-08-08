@@ -15,6 +15,8 @@
 
 #import <CoreData/CoreData.h>
 
+typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
+
 @interface NSManagedObjectContext (BBCoreDataExtensions)
 
 /**
@@ -26,8 +28,6 @@
  @return YES if the save was successful, otherwise NO
  */
 - (BOOL)BB_saveRecursively:(NSError *__autoreleasing *)error;
-
-- (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset;
 
 /**
  Calls BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:error:, passing _entityName_, _predicate_, _sortDescriptors_, and _error_ respectively.
@@ -66,7 +66,39 @@
  */
 - (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset error:(NSError *__autoreleasing *)error;
 
-- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(void(^)(NSArray *objects, NSError *error))completion;
+/**
+ Calls `BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:completion:`, passing `entityName`, `predicate`, `sortDescriptors`, 0, 0, and `completion` respectively.
+ 
+ @param entityName The name of the entity to fetch
+ @param predicate The predicate that will constrain the resulting set of objects
+ @param sortDescriptors The sort descriptors to apply to the resulting set of objects
+ @param completion The completion block that is invoked when the operation is complete, objects contains NSManagedObject instance, if nil, error contains information about the reason for failure
+ @exception NSException Thrown if entityName or completion are nil
+ */
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors completion:(BBCoreDataCompletionBlock)completion;
+/**
+ Calls `BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:completion:`, passing `entityName`, `predicate`, `sortDescriptors`, `limit`, 0, and `completion` respectively.
+ 
+ @param entityName The name of the entity to fetch
+ @param predicate The predicate that will constrain the resulting set of objects
+ @param sortDescriptors The sort descriptors to apply to the resulting set of objects
+ @param limit The fetch limit to apply to the fetch request
+ @param completion The completion block that is invoked when the operation is complete, objects contains NSManagedObject instance, if nil, error contains information about the reason for failure
+ @exception NSException Thrown if entityName or completion are nil
+ */
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit completion:(BBCoreDataCompletionBlock)completion;
+/**
+ Performs an asynchronous fetch request, using NSAsynchronousFetchRequest if it is available. Falls back to fetching object IDs and converting them to managed objects on the calling thread.
+ 
+ @param entityName The name of the entity to fetch
+ @param predicate The predicate that will constrain the resulting set of objects
+ @param sortDescriptors The sort descriptors to apply to the resulting set of objects
+ @param limit The fetch limit to apply to the fetch request
+ @param offset The fetch offset to apply to the fetch request
+ @param completion The completion block that is invoked when the operation is complete, objects contains NSManagedObject instance, if nil, error contains information about the reason for failure
+ @exception NSException Thrown if entityName or completion are nil
+ */
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(BBCoreDataCompletionBlock)completion;
 
 /**
  Constructs and executes a NSFetchRequest using _entityName_, _predicate_, and _error_.

@@ -15,6 +15,8 @@
 
 #import "NSManagedObjectContext+BBCoreDataExtensions.h"
 #import "BBFoundationFunctions.h"
+#import "NSFetchRequest+BBCoreDataExtensions.h"
+#import "BBFrameworksMacros.h"
 
 @implementation NSManagedObjectContext (BBCoreDataExtensions)
 
@@ -23,14 +25,13 @@
     __block NSError *blockError = nil;
     
     if (self.hasChanges) {
-        __weak typeof(self) weakSelf = self;
-        
+        BBWeakify(self);
         [self performBlockAndWait:^{
-            __strong typeof(weakSelf) strongSelf = weakSelf;
+            BBStrongify(self);
             
             NSError *outError;
-            if ([strongSelf save:&outError]) {
-                NSManagedObjectContext *parentContext = strongSelf.parentContext;
+            if ([self save:&outError]) {
+                NSManagedObjectContext *parentContext = self.parentContext;
                 
                 while (parentContext) {
                     [parentContext performBlockAndWait:^{
@@ -54,27 +55,6 @@
     return retval;
 }
 
-- (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset; {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
-    
-    if (predicate) {
-        [request setPredicate:predicate];
-    }
-    if (sortDescriptors) {
-        [request setSortDescriptors:sortDescriptors];
-    }
-    if (limit > 0) {
-        [request setFetchLimit:limit];
-    }
-    if (offset > 0) {
-        [request setFetchOffset:offset];
-    }
-    
-    return request;
-}
-
 - (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error; {
     return [self BB_fetchEntityNamed:entityName predicate:predicate sortDescriptors:sortDescriptors limit:0 offset:0 error:error];
 }
@@ -82,40 +62,34 @@
     return [self BB_fetchEntityNamed:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:0 error:error];
 }
 - (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset error:(NSError *__autoreleasing *)error; {
-    NSParameterAssert(entityName);
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
-    
-    if (predicate) {
-        [request setPredicate:predicate];
-    }
-    if (sortDescriptors) {
-        [request setSortDescriptors:sortDescriptors];
-    }
-    if (limit > 0) {
-        [request setFetchLimit:limit];
-    }
-    if (offset > 0) {
-        [request setFetchOffset:offset];
-    }
+    NSFetchRequest *request = [NSFetchRequest BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
     
     return [self executeFetchRequest:request error:error];
 }
 
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *objects, NSError *error))completion; {
+    [self BB_fetchEntityNamed:entityName predicate:predicate sortDescriptors:sortDescriptors limit:0 offset:0 completion:completion];
+}
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit completion:(void(^)(NSArray *objects, NSError *error))completion; {
+    [self BB_fetchEntityNamed:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:0 completion:completion];
+}
 - (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(void(^)(NSArray *objects, NSError *error))completion; {
+    NSParameterAssert(completion);
+    
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     
     if (NSClassFromString(@"NSAsynchronousFetchRequest")) {
-        NSFetchRequest *request = [context BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
+        BBWeakify(self);
+        NSFetchRequest *request = [NSFetchRequest BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
         NSAsynchronousFetchRequest *asyncFetchRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:request completionBlock:^(NSAsynchronousFetchResult *result) {
+            BBStrongify(self);
             [self performBlock:^{
                 completion(result.finalResult,nil);
             }];
         }];
         
         [self performBlock:^{
+            BBStrongify(self);
             NSError *outError;
             NSAsynchronousFetchResult *result = (NSAsynchronousFetchResult *)[self executeRequest:asyncFetchRequest error:&outError];
             
@@ -125,10 +99,12 @@
         }];
     }
     else {
+        BBWeakify(self);
         [context setUndoManager:nil];
         [context setParentContext:self];
         [context performBlock:^{
-            NSFetchRequest *request = [context BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
+            BBStrongify(self);
+            NSFetchRequest *request = [NSFetchRequest BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:limit offset:offset];
             
             [request setResultType:NSManagedObjectIDResultType];
             
@@ -137,6 +113,7 @@
             
             if (objectIDs) {
                 [self performBlock:^{
+                    BBStrongify(self);
                     NSMutableArray *objects = [[NSMutableArray alloc] init];
                     
                     for (NSManagedObjectID *objectID in objectIDs) {
@@ -160,36 +137,20 @@
 }
 
 - (NSUInteger)BB_countForEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate error:(NSError *__autoreleasing *)error; {
-    NSParameterAssert(entityName);
+    NSFetchRequest *request = [NSFetchRequest BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:nil limit:0 offset:0];
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
     [request setResultType:NSCountResultType];
-    
-    if (predicate) {
-        [request setPredicate:predicate];
-    }
     
     return [self countForFetchRequest:request error:error];
 }
 
 - (NSArray *)BB_fetchPropertiesForEntityNamed:(NSString *)entityName properties:(NSArray *)properties predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error; {
-    NSParameterAssert(entityName);
     NSParameterAssert(properties);
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSFetchRequest *request = [NSFetchRequest BB_fetchRequestForEntityName:entityName predicate:predicate sortDescriptors:sortDescriptors limit:0 offset:0];
     
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
     [request setResultType:NSDictionaryResultType];
     [request setPropertiesToFetch:properties];
-    
-    if (predicate) {
-        [request setPredicate:predicate];
-    }
-    if (sortDescriptors) {
-        [request setSortDescriptors:sortDescriptors];
-    }
     
     return [self executeFetchRequest:request error:error];
 }

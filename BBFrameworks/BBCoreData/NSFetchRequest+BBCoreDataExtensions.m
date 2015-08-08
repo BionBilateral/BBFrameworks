@@ -1,8 +1,8 @@
 //
-//  BBCoreData.h
+//  NSFetchRequest+BBCoreDataExtensions.m
 //  BBFrameworks
 //
-//  Created by William Towe on 5/13/15.
+//  Created by William Towe on 8/8/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,15 +13,29 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __BB_FRAMEWORKS_CORE_DATA__
-#define __BB_FRAMEWORKS_CORE_DATA__
-
 #import "NSFetchRequest+BBCoreDataExtensions.h"
-#import "NSManagedObjectContext+BBCoreDataExtensions.h"
 
-#import "BBManagedObjectEntityMapping.h"
-#import "BBManagedObjectEntityMapping.h"
+@implementation NSFetchRequest (BBCoreDataExtensions)
 
-#import "NSManagedObjectContext+BBCoreDataImportExtensions.h"
++ (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset; {
+    NSParameterAssert(entityName);
+    
+    NSFetchRequest *retval = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    
+    if (predicate) {
+        [retval setPredicate:predicate];
+    }
+    if (sortDescriptors) {
+        [retval setSortDescriptors:sortDescriptors];
+    }
+    if (limit > 0) {
+        [retval setFetchLimit:limit];
+    }
+    if (offset > 0) {
+        [retval setFetchOffset:offset];
+    }
+    
+    return retval;
+}
 
-#endif
+@end
