@@ -1,8 +1,8 @@
 //
-//  BBMediaViewerDetailViewController.m
+//  BBMediaViewerPlaceholderViewController.m
 //  BBFrameworks
 //
-//  Created by William Towe on 8/8/15.
+//  Created by William Towe on 8/9/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,30 +13,31 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerDetailViewController.h"
-#import "BBMediaViewerImageViewController.h"
-#import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerPlaceholderViewController.h"
+#import "BBFoundationGeometryFunctions.h"
+#import "BBMediaViewerDetailViewModel.h"
 
-@interface BBMediaViewerDetailViewController ()
-@property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
+@interface BBMediaViewerPlaceholderViewController ()
+@property (strong,nonatomic) UILabel *placeholderLabel;
 @end
 
-@implementation BBMediaViewerDetailViewController
+@implementation BBMediaViewerPlaceholderViewController
 
-- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
-    if (self.class == [BBMediaViewerDetailViewController class]) {
-        switch (viewModel.type) {
-            case BBMediaViewerDetailViewModelTypeImage:
-                return [[BBMediaViewerImageViewController alloc] initWithViewModel:viewModel];
-            default:
-                return [[BBMediaViewerPlaceholderViewController alloc] initWithViewModel:viewModel];
-        }
-    }
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    [self setViewModel:viewModel];
+    [self setPlaceholderLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.placeholderLabel setNumberOfLines:0];
+    [self.placeholderLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.placeholderLabel setTextColor:[UIColor whiteColor]];
+    [self.placeholderLabel setText:[NSString stringWithFormat:@"%@\n%@",self.viewModel.UTI,self.viewModel.URL]];
+    [self.view addSubview:self.placeholderLabel];
+}
+- (void)viewWillLayoutSubviews {
+    CGFloat maxWidth = CGRectGetWidth(self.view.bounds) - 40.0;
+    CGFloat height = ceil([self.placeholderLabel sizeThatFits:CGSizeMake(maxWidth, CGFLOAT_MAX)].height);
     
-    return self;
+    [self.placeholderLabel setFrame:BBCGRectCenterInRectVertically(CGRectMake(20.0, 0, maxWidth, height), self.view.bounds)];
 }
 
 @end

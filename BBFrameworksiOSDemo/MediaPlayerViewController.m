@@ -35,7 +35,7 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"mp4"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"sample" withExtension:@"mp4" subdirectory:@"media"];
     
     [self setSystemMoviePlayerController:[[MPMoviePlayerController alloc] initWithContentURL:URL]];
     [self.systemMoviePlayerController setShouldAutoplay:NO];
