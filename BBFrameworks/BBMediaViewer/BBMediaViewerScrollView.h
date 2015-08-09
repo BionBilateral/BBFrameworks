@@ -23,4 +23,7 @@
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 
+- (void)centerImageView;
+- (void)updateZoomScale;
+
 @end

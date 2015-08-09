@@ -45,13 +45,12 @@
     [self.view addGestureRecognizer:self.doubleTapGestureRecognizer];
     
     @weakify(self);
-    [[[self.doubleTapGestureRecognizer
+    [[self.doubleTapGestureRecognizer
      rac_gestureSignal]
-     deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
          CGPoint pointInView = [self.doubleTapGestureRecognizer locationInView:self.scrollView.imageView];
-         
+
          CGFloat newZoomScale = self.scrollView.maximumZoomScale;
          
          if (self.scrollView.zoomScale >= self.scrollView.maximumZoomScale) {
@@ -66,12 +65,18 @@
          CGFloat originY = pointInView.y - (height / 2.0);
          
          CGRect rectToZoomTo = CGRectMake(originX, originY, width, height);
-         BBLogCGRect(rectToZoomTo);
+
          [self.scrollView zoomToRect:rectToZoomTo animated:YES];
      }];
 }
 - (void)viewWillLayoutSubviews {
     [self.scrollView setFrame:self.view.bounds];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.scrollView updateZoomScale];
+    [self.scrollView centerImageView];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
