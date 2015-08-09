@@ -21,10 +21,12 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+@interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
+
+@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 @end
 
 @implementation BBMediaViewerViewController
@@ -54,6 +56,12 @@
     
     [self.pageViewController.view setBackgroundColor:[UIColor blackColor]];
     
+    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
+    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
+    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self.tapGestureRecognizer setDelegate:self];
+    [self.pageViewController.view addGestureRecognizer:self.tapGestureRecognizer];
+    
     id<BBMediaViewerMedia> media = nil;
     NSInteger index = 0;
     
@@ -80,6 +88,14 @@
         BBMediaViewerDetailViewController *viewController = self.pageViewController.viewControllers.firstObject;
         
         [self.viewModel setCurrentViewModel:viewController.viewModel];
+    }];
+    
+    [[self.tapGestureRecognizer
+      rac_gestureSignal]
+    subscribeNext:^(id _) {
+        @strongify(self);
+        [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:YES];
+        [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:YES];
     }];
     
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
@@ -115,6 +131,11 @@
 }
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return ([otherGestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
+            [(UITapGestureRecognizer *)otherGestureRecognizer numberOfTapsRequired] == 2);
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
