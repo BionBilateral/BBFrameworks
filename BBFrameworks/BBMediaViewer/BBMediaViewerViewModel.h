@@ -15,9 +15,15 @@
 
 #import <ReactiveViewModel/RVMViewModel.h>
 
+@class BBMediaViewerDetailViewModel;
 @class RACCommand;
 
 @interface BBMediaViewerViewModel : RVMViewModel
+
+@property (readonly,copy,nonatomic) NSString *title;
+
+@property (strong,nonatomic) BBMediaViewerDetailViewModel *currentViewModel;
+@property (assign,nonatomic) NSInteger numberOfViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 

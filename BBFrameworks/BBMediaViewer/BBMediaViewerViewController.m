@@ -23,7 +23,7 @@
 @interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 
-@property (strong,nonatomic) BBMediaViewerViewModel *model;
+@property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 @end
 
 @implementation BBMediaViewerViewController
@@ -32,7 +32,9 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setModel:[[BBMediaViewerViewModel alloc] init]];
+    [self setViewModel:[[BBMediaViewerViewModel alloc] init]];
+    
+    RAC(self,title) = RACObserve(self.viewModel, title);
     
     return self;
 }
@@ -74,12 +76,12 @@
     
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
     
-    [doneItem setRac_command:self.model.doneCommand];
+    [doneItem setRac_command:self.viewModel.doneCommand];
     
     [self.navigationItem setRightBarButtonItems:@[doneItem]];
     
     @weakify(self);
-    [[[self.model.doneCommand.executionSignals
+    [[[self.viewModel.doneCommand.executionSignals
      concat]
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
@@ -127,7 +129,17 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if (completed) {
+        BBMediaViewerDetailViewController *viewController = pageViewController.viewControllers.firstObject;
         
+        [self.viewModel setCurrentViewModel:viewController.viewModel];
+    }
+}
+
+- (void)setDataSource:(id<BBMediaViewerViewControllerDataSource>)dataSource {
+    _dataSource = dataSource;
+    
+    if (_dataSource) {
+        [self.viewModel setNumberOfViewModels:[_dataSource numberOfMediaInMediaViewer:self]];
     }
 }
 
