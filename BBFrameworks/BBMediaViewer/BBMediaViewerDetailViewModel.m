@@ -36,6 +36,18 @@
     return self;
 }
 
+- (BBMediaViewerDetailViewModelType)type {
+    NSString *UTI = self.UTI;
+    
+    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+        return BBMediaViewerDetailViewModelTypeImage;
+    }
+    return BBMediaViewerDetailViewModelTypeNone;
+}
+- (NSString *)UTI {
+    return (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.URL.lastPathComponent.pathExtension, NULL);
+}
+
 - (NSURL *)URL {
     return [self.media mediaURL];
 }
@@ -44,12 +56,12 @@
 }
 
 - (UIImage *)image {
-    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.URL.lastPathComponent.pathExtension, NULL);
-    
-    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
-        return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:self.URL]];
+    switch (self.type) {
+        case BBMediaViewerDetailViewModelTypeImage:
+            return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:self.URL]];
+        default:
+            return nil;
     }
-    return nil;
 }
 
 @end

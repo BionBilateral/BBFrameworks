@@ -70,7 +70,7 @@
         media = [self.dataSource mediaViewer:self mediaAtIndex:0];
     }
     
-    [self.pageViewController setViewControllers:@[[[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setViewControllers:@[[BBMediaViewerDetailViewController detailViewControllerWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
     
@@ -110,7 +110,7 @@
     
     id<BBMediaViewerMedia> media = [self.dataSource mediaViewer:self mediaAtIndex:index];
     
-    return [[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]];
+    return [BBMediaViewerDetailViewController detailViewControllerWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]];
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     BBMediaViewerDetailViewModel *viewModel = [(BBMediaViewerDetailViewController *)viewController viewModel];
@@ -122,7 +122,7 @@
     
     id<BBMediaViewerMedia> media = [self.dataSource mediaViewer:self mediaAtIndex:index];
     
-    return [[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]];
+    return [BBMediaViewerDetailViewController detailViewControllerWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
