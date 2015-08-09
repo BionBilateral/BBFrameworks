@@ -23,6 +23,4 @@
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 
-+ (instancetype)detailViewControllerWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
-
 @end

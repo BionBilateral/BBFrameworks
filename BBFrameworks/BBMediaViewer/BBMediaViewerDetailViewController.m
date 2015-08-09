@@ -24,24 +24,18 @@
 @implementation BBMediaViewerDetailViewController
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
-    if (!(self = [super init]))
-        return nil;
-    
-    [self setViewModel:viewModel];
-    
-    return self;
-}
-
-+ (instancetype)detailViewControllerWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
-    if (self == [BBMediaViewerDetailViewController class]) {
+    if (self.class == [BBMediaViewerDetailViewController class]) {
         switch (viewModel.type) {
             case BBMediaViewerDetailViewModelTypeImage:
-                return [BBMediaViewerImageViewController alloc];
+                return [[BBMediaViewerImageViewController alloc] initWithViewModel:viewModel];
             default:
                 return nil;
         }
     }
-    return [super alloc];
+    
+    [self setViewModel:viewModel];
+    
+    return self;
 }
 
 @end
