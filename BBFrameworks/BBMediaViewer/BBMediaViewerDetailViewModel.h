@@ -32,6 +32,8 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
 
 @property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) NSString *title;
+@property (readonly,nonatomic) id activityItem;
+
 @property (readonly,nonatomic) UIImage *image;
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media index:(NSInteger)index NS_DESIGNATED_INITIALIZER;

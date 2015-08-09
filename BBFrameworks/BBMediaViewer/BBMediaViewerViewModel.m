@@ -16,13 +16,20 @@
 #import "BBMediaViewerViewModel.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBFrameworksFunctions.h"
+#import "UIViewController+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerViewModel ()
+#import <UIKit/UIKit.h>
+
+@interface BBMediaViewerViewModel () <UIPopoverControllerDelegate>
 @property (readwrite,copy,nonatomic) NSString *title;
 
 @property (readwrite,strong,nonatomic) RACCommand *doneCommand;
+@property (readwrite,strong,nonatomic) RACCommand *actionCommand;
+
+@property (strong,nonatomic) UIPopoverController *popoverController;
+@property (copy,nonatomic) void(^popoverCompletionBlock)(void);
 @end
 
 @implementation BBMediaViewerViewModel
@@ -33,7 +40,9 @@
     
     @weakify(self);
     
-    RAC(self,title) = [RACSignal combineLatest:@[RACObserve(self, currentViewModel),RACObserve(self, numberOfViewModels)] reduce:^id(BBMediaViewerDetailViewModel *viewModel, NSNumber *numberOfViewModels){
+    RACSignal *currentViewModelSignal = RACObserve(self, currentViewModel);
+    
+    RAC(self,title) = [RACSignal combineLatest:@[currentViewModelSignal,RACObserve(self, numberOfViewModels)] reduce:^id(BBMediaViewerDetailViewModel *viewModel, NSNumber *numberOfViewModels){
         return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_TITLE_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ of %@", @"media viewer title format"),@(viewModel.index + 1),numberOfViewModels];
     }];
     
@@ -42,7 +51,50 @@
         return [RACSignal return:self];
     }]];
     
+    [self setActionCommand:[[RACCommand alloc] initWithEnabled:[RACSignal combineLatest:@[currentViewModelSignal] reduce:^id(BBMediaViewerDetailViewModel *viewModel){
+        return @(viewModel.activityItem != nil);
+    }] signalBlock:^RACSignal *(UIBarButtonItem *input) {
+        @strongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            @strongify(self);
+            
+            [self setPopoverCompletionBlock:^{
+                @strongify(self);
+                [subscriber sendNext:self];
+                [subscriber sendCompleted];
+                
+                [self setPopoverCompletionBlock:nil];
+            }];
+            
+            UIActivityViewController *viewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.currentViewModel.activityItem] applicationActivities:nil];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                [[UIViewController BB_viewControllerForPresenting] presentViewController:viewController animated:YES completion:self.popoverCompletionBlock];
+            }
+            else {
+                if ([viewController respondsToSelector:@selector(popoverPresentationController)]) {
+                    [viewController.popoverPresentationController setBarButtonItem:input];
+                    
+                    [[UIViewController BB_viewControllerForPresenting] presentViewController:viewController animated:YES completion:self.popoverCompletionBlock];
+                }
+                else {
+                    [self setPopoverController:[[UIPopoverController alloc] initWithContentViewController:viewController]];
+                    [self.popoverController setDelegate:self];
+                    
+                    [self.popoverController presentPopoverFromBarButtonItem:input permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                }
+            }
+            return nil;
+        }];
+    }]];
+    
     return self;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    [self setPopoverController:nil];
+    
+    self.popoverCompletionBlock();
 }
 
 @end

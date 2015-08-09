@@ -1531,12 +1531,15 @@
 			isa = PBXGroup;
 			children = (
 				792F152B1B7694030034A09A /* BBMediaViewer.h */,
+				792F152F1B7694BB0034A09A /* BBMediaViewerMedia.h */,
+				792F15341B769ADE0034A09A /* NSURL+BBMediaViewerMediaExtensions.h */,
+				792F15351B769ADE0034A09A /* NSURL+BBMediaViewerMediaExtensions.m */,
+				792F15461B76C22E0034A09A /* BBMediaViewerViewModel.h */,
+				792F15471B76C22E0034A09A /* BBMediaViewerViewModel.m */,
 				792F15331B769A480034A09A /* BBMediaViewerViewControllerDataSource.h */,
 				792F15501B76CCBB0034A09A /* BBMediaViewerViewControllerDelegate.h */,
 				792F152C1B76944B0034A09A /* BBMediaViewerViewController.h */,
 				792F152D1B76944B0034A09A /* BBMediaViewerViewController.m */,
-				792F155E1B770BB40034A09A /* Model */,
-				792F155D1B770BAA0034A09A /* View Model */,
 				792F155C1B770B8D0034A09A /* Detail */,
 			);
 			path = BBMediaViewer;
@@ -1565,33 +1568,14 @@
 		792F155C1B770B8D0034A09A /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				792F15431B76BBDC0034A09A /* BBMediaViewerDetailViewModel.h */,
+				792F15441B76BBDC0034A09A /* BBMediaViewerDetailViewModel.m */,
 				792F15541B76FE6D0034A09A /* BBMediaViewerDetailViewController.h */,
 				792F15551B76FE6D0034A09A /* BBMediaViewerDetailViewController.m */,
 				792F15581B7709770034A09A /* Placeholder */,
 				792F15571B7709720034A09A /* Image */,
 			);
 			name = Detail;
-			sourceTree = "<group>";
-		};
-		792F155D1B770BAA0034A09A /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-				792F15461B76C22E0034A09A /* BBMediaViewerViewModel.h */,
-				792F15471B76C22E0034A09A /* BBMediaViewerViewModel.m */,
-				792F15431B76BBDC0034A09A /* BBMediaViewerDetailViewModel.h */,
-				792F15441B76BBDC0034A09A /* BBMediaViewerDetailViewModel.m */,
-			);
-			name = "View Model";
-			sourceTree = "<group>";
-		};
-		792F155E1B770BB40034A09A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				792F152F1B7694BB0034A09A /* BBMediaViewerMedia.h */,
-				792F15341B769ADE0034A09A /* NSURL+BBMediaViewerMediaExtensions.h */,
-				792F15351B769ADE0034A09A /* NSURL+BBMediaViewerMediaExtensions.m */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		796B00E61B1ACBEC0087D3FD = {

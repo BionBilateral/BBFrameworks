@@ -26,5 +26,6 @@
 @property (assign,nonatomic) NSInteger numberOfViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
+@property (readonly,strong,nonatomic) RACCommand *actionCommand;
 
 @end

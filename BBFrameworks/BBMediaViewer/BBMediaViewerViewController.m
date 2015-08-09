@@ -17,6 +17,7 @@
 #import "BBMediaViewerDetailViewController.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerViewModel.h"
+#import "UIBarButtonItem+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -72,7 +73,14 @@
         media = [self.dataSource mediaViewer:self mediaAtIndex:0];
     }
     
-    [self.pageViewController setViewControllers:@[[[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    @weakify(self);
+    [self.pageViewController setViewControllers:@[[[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
+        @strongify(self);
+        
+        BBMediaViewerDetailViewController *viewController = self.pageViewController.viewControllers.firstObject;
+        
+        [self.viewModel setCurrentViewModel:viewController.viewModel];
+    }];
     
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
     
@@ -80,7 +88,14 @@
     
     [self.navigationItem setRightBarButtonItems:@[doneItem]];
     
-    @weakify(self);
+    UIBarButtonItem *actionItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL];
+    
+    [actionItem setRac_command:self.viewModel.actionCommand];
+    
+    [self setToolbarItems:@[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],actionItem]];
+    
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    
     [[[self.viewModel.doneCommand.executionSignals
      concat]
      deliverOn:[RACScheduler mainThreadScheduler]]

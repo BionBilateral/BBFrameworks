@@ -54,6 +54,14 @@
 - (NSString *)title {
     return [self.media respondsToSelector:@selector(mediaTitle)] ? [self.media mediaTitle] : [self.media mediaURL].lastPathComponent;
 }
+- (id)activityItem {
+    switch (self.type) {
+        case BBMediaViewerDetailViewModelTypeImage:
+            return self.image;
+        default:
+            return nil;
+    }
+}
 
 - (UIImage *)image {
     switch (self.type) {
