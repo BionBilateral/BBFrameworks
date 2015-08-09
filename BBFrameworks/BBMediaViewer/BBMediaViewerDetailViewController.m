@@ -16,9 +16,14 @@
 #import "BBMediaViewerDetailViewController.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerScrollView.h"
+#import "BBFoundationDebugging.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerDetailViewController () <UIScrollViewDelegate>
 @property (strong,nonatomic) BBMediaViewerScrollView *scrollView;
+
+@property (strong,nonatomic) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @end
@@ -33,6 +38,37 @@
     [self setScrollView:[[BBMediaViewerScrollView alloc] initWithViewModel:self.viewModel]];
     [self.scrollView setDelegate:self];
     [self.view addSubview:self.scrollView];
+    
+    [self setDoubleTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
+    [self.doubleTapGestureRecognizer setNumberOfTapsRequired:2];
+    [self.doubleTapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:self.doubleTapGestureRecognizer];
+    
+    @weakify(self);
+    [[[self.doubleTapGestureRecognizer
+     rac_gestureSignal]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         CGPoint pointInView = [self.doubleTapGestureRecognizer locationInView:self.scrollView.imageView];
+         
+         CGFloat newZoomScale = self.scrollView.maximumZoomScale;
+         
+         if (self.scrollView.zoomScale >= self.scrollView.maximumZoomScale) {
+             newZoomScale = self.scrollView.minimumZoomScale;
+         }
+         
+         CGSize scrollViewSize = self.scrollView.bounds.size;
+         
+         CGFloat width = scrollViewSize.width / newZoomScale;
+         CGFloat height = scrollViewSize.height / newZoomScale;
+         CGFloat originX = pointInView.x - (width / 2.0);
+         CGFloat originY = pointInView.y - (height / 2.0);
+         
+         CGRect rectToZoomTo = CGRectMake(originX, originY, width, height);
+         BBLogCGRect(rectToZoomTo);
+         [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+     }];
 }
 - (void)viewWillLayoutSubviews {
     [self.scrollView setFrame:self.view.bounds];

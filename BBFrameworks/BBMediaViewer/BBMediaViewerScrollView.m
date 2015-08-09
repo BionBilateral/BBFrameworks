@@ -30,7 +30,7 @@
 - (void)didAddSubview:(UIView *)subview {
     [super didAddSubview:subview];
     
-    [self setContentSize:self.imageView.image.size];
+    [self _centerImageView];
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -50,6 +50,12 @@
     [self setDecelerationRate:UIScrollViewDecelerationRateFast];
     
     [self setImageView:[[UIImageView alloc] initWithImage:self.viewModel.image]];
+    [self.imageView setFrame:CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height)];
+    [self setContentSize:self.imageView.image.size];
+    
+    [self _updateZoomScale];
+    [self _centerImageView];
+    
     [self addSubview:self.imageView];
     
     return self;
