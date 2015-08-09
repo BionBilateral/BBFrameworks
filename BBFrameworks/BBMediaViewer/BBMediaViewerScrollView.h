@@ -1,5 +1,5 @@
 //
-//  BBMediaViewerDetailViewController.m
+//  BBMediaViewerScrollView.h
 //  BBFrameworks
 //
 //  Created by William Towe on 8/8/15.
@@ -13,42 +13,14 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerDetailViewController.h"
-#import "BBMediaViewerDetailViewModel.h"
-#import "BBMediaViewerScrollView.h"
+#import <UIKit/UIKit.h>
 
-@interface BBMediaViewerDetailViewController () <UIScrollViewDelegate>
-@property (strong,nonatomic) BBMediaViewerScrollView *scrollView;
+@class BBMediaViewerDetailViewModel;
 
-@property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
-@end
+@interface BBMediaViewerScrollView : UIScrollView
 
-@implementation BBMediaViewerDetailViewController
+@property (readonly,strong,nonatomic) UIImageView *imageView;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.view setBackgroundColor:[UIColor blackColor]];
-    
-    [self setScrollView:[[BBMediaViewerScrollView alloc] initWithViewModel:self.viewModel]];
-    [self.scrollView setDelegate:self];
-    [self.view addSubview:self.scrollView];
-}
-- (void)viewWillLayoutSubviews {
-    [self.scrollView setFrame:self.view.bounds];
-}
-
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.scrollView.imageView;
-}
-
-- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
-    if (!(self = [super init]))
-        return nil;
-    
-    [self setViewModel:viewModel];
-    
-    return self;
-}
+- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 
 @end
