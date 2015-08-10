@@ -48,7 +48,7 @@
     return nil;
 }
 - (UIImage *)mediaPlaceholderImage {
-    return nil;
+    return [UIImage imageNamed:@"optimus_prime"];
 }
 
 - (void)downloadMediaImageWithCompletion:(void (^)(BOOL, NSError *))completion {

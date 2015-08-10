@@ -67,14 +67,13 @@
     return self.imageView.image;
 }
 - (void)setImage:(UIImage *)image {
-    [self.imageView setImage:image];
+    [self.imageView removeFromSuperview];
     
-    [self setContentSize:image.size];
+    [self setImageView:[[UIImageView alloc] initWithImage:image]];
+    [self addSubview:self.imageView];
     
-    [self.imageView setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-    
-    [self updateZoomScale];
-    [self centerImageView];
+    [self _updateZoomScale];
+    [self _centerImageView];
 }
 
 - (UIView *)viewForZooming {
