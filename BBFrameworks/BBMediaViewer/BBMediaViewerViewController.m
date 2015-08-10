@@ -18,6 +18,7 @@
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerViewModel.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
+#import "BBFoundationGeometryFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -186,14 +187,6 @@
         [containerView addSubview:toView];
         
         if ([transitionContext isAnimated]) {
-            UIView *toSnapshotView = [toView snapshotViewAfterScreenUpdates:YES];
-            
-            [containerView addSubview:toSnapshotView];
-            [toSnapshotView setFrame:containerView.bounds];
-            [toSnapshotView setAlpha:0.0];
-            
-            [toView setAlpha:0.0];
-            
             CGRect startFrame = CGRectZero;
             
             if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
@@ -209,20 +202,46 @@
                 }
             }
             
+            UIView *toSnapshotView = [toView snapshotViewAfterScreenUpdates:YES];
+            UIView *imageView = nil;
+            
+            if ([self.delegate respondsToSelector:@selector(mediaViewer:transitionImageForMedia:contentRect:)]) {
+                CGRect contentRect = CGRectZero;
+                imageView = [[UIImageView alloc] initWithImage:[self.delegate mediaViewer:self transitionImageForMedia:self.viewModel.currentViewModel.media contentRect:&contentRect]];
+                
+                if (!CGRectIsEmpty(contentRect)) {
+                    imageView = [imageView resizableSnapshotViewFromRect:contentRect afterScreenUpdates:YES withCapInsets:UIEdgeInsetsZero];
+                }
+            }
+            
+            [containerView addSubview:toSnapshotView];
+            [toSnapshotView setFrame:containerView.bounds];
+            [toSnapshotView setAlpha:0.0];
+            
+            if (imageView) {
+                [containerView addSubview:imageView];
+            }
+            
+            [toView setAlpha:0.0];
+            
             if (!CGRectIsEmpty(startFrame)) {
                 [toSnapshotView setFrame:startFrame];
+                [imageView setFrame:startFrame];
             }
             
             [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 [toSnapshotView setAlpha:1.0];
+                [imageView setAlpha:0.0];
                 
                 if (!CGRectIsEmpty(startFrame)) {
                     [toSnapshotView setFrame:containerView.bounds];
+                    [imageView setFrame:containerView.bounds];
                 }
             } completion:^(BOOL finished) {
                 [toView setAlpha:1.0];
                 
                 [toSnapshotView removeFromSuperview];
+                [imageView removeFromSuperview];
                 
                 [transitionContext completeTransition:YES];
             }];
@@ -234,13 +253,6 @@
     // dismissing
     else {
         if ([transitionContext isAnimated]) {
-            UIView *fromSnapshotView = [fromView snapshotViewAfterScreenUpdates:YES];
-            
-            [containerView addSubview:fromSnapshotView];
-            [fromSnapshotView setFrame:containerView.bounds];
-            
-            [fromView setAlpha:0.0];
-            
             CGRect endFrame = CGRectZero;
             
             if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
@@ -256,11 +268,36 @@
                 }
             }
             
+            UIView *fromSnapshotView = [fromView snapshotViewAfterScreenUpdates:YES];
+            UIView *imageView = nil;
+            
+            if ([self.delegate respondsToSelector:@selector(mediaViewer:transitionImageForMedia:contentRect:)]) {
+                CGRect contentRect = CGRectZero;
+                imageView = [[UIImageView alloc] initWithImage:[self.delegate mediaViewer:self transitionImageForMedia:self.viewModel.currentViewModel.media contentRect:&contentRect]];
+                
+                if (!CGRectIsEmpty(contentRect)) {
+                    imageView = [imageView resizableSnapshotViewFromRect:contentRect afterScreenUpdates:YES withCapInsets:UIEdgeInsetsZero];
+                }
+            }
+            
+            [containerView addSubview:fromSnapshotView];
+            [fromSnapshotView setFrame:containerView.bounds];
+            
+            if (imageView) {
+                [containerView addSubview:imageView];
+                [imageView setFrame:containerView.bounds];
+                [imageView setAlpha:0.0];
+            }
+            
+            [fromView setAlpha:0.0];
+            
             [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 [fromSnapshotView setAlpha:0.0];
+                [imageView setAlpha:1.0];
                 
                 if (!CGRectIsEmpty(endFrame)) {
                     [fromSnapshotView setFrame:endFrame];
+                    [imageView setFrame:endFrame];
                 }
             } completion:^(BOOL finished) {
                 [fromSnapshotView removeFromSuperview];
