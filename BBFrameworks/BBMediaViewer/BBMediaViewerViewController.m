@@ -19,6 +19,7 @@
 #import "BBMediaViewerViewModel.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "BBKitColorMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -32,9 +33,31 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
+
+- (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated;
 @end
 
 @implementation BBMediaViewerViewController
+
++ (void)initialize {
+    if (self == [BBMediaViewerViewController class]) {
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), NO, 0);
+        
+        [[UIColor clearColor] setFill];
+        UIRectFill(CGRectMake(0, 0, 1, 1));
+        
+        UIImage *backgroundImage = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+        
+        UIGraphicsEndImageContext();
+        
+        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        
+        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
+    }
+}
 
 - (UIModalPresentationStyle)modalPresentationStyle {
     if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
@@ -50,6 +73,13 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 
 - (BOOL)hidesBottomBarWhenPushed {
     return YES;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationFade;
 }
 
 - (instancetype)init {
@@ -81,7 +111,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     if (!self.navigationController) {
         [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
-        [self.navigationBar setAlpha:0.0];
         [self.navigationBar setDelegate:self];
         [self.view addSubview:self.navigationBar];
         
@@ -126,24 +155,16 @@ static NSTimeInterval const kAnimationDuration = 0.33;
       rac_gestureSignal]
     subscribeNext:^(id _) {
         @strongify(self);
-        if (self.navigationController) {
-            [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:YES];
-            [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:YES];
-        }
-        else {
-            [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-                @strongify(self);
-                [self.navigationBar setAlpha:self.navigationBar.alpha == 0.0 ? 1.0 : 0.0];
-                [self.toolbar setAlpha:self.toolbar.alpha == 0.0 ? 1.0 : 0.0];
-            } completion:nil];
-        }
+        [self _toggleNavigationBarAndToolbarAnimated:YES];
     }];
     
-    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
-    
-    [doneItem setRac_command:self.viewModel.doneCommand];
-    
-    [self.navigationItem setRightBarButtonItems:@[doneItem]];
+    if (self.presentingViewController) {
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
+        
+        [doneItem setRac_command:self.viewModel.doneCommand];
+        
+        [self.navigationItem setRightBarButtonItems:@[doneItem]];
+    }
     
     UIBarButtonItem *actionItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL];
     
@@ -151,12 +172,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     [self setToolbarItems:@[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],actionItem]];
     
-    if (self.navigationController) {
-        [self.navigationController setToolbarHidden:NO];
-    }
-    else {
+    if (!self.navigationController) {
         [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
-        [self.toolbar setAlpha:0.0];
         [self.toolbar setItems:self.toolbarItems];
         [self.view addSubview:self.toolbar];
     }
@@ -177,6 +194,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
              }
          }];
      }];
+    
+    [self _toggleNavigationBarAndToolbarAnimated:NO];
 }
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
@@ -186,8 +205,16 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self.navigationController setToolbarHidden:YES animated:animated];
+    if (self.navigationController) {
+        [self _toggleNavigationBarAndToolbarAnimated:animated];
+    }
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (!self.navigationController) {
+        [self _toggleNavigationBarAndToolbarAnimated:animated];
+    }
 }
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
@@ -381,6 +408,28 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     if (_dataSource) {
         [self.viewModel setNumberOfViewModels:[_dataSource numberOfMediaInMediaViewer:self]];
+    }
+}
+
+- (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated; {
+    if (self.navigationController) {
+        [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:animated];
+        [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:animated];
+    }
+    else {
+        @weakify(self);
+        void(^animations)(void) = ^{
+            @strongify(self);
+            [self.navigationBar setAlpha:self.navigationBar.alpha == 0.0 ? 1.0 : 0.0];
+            [self.toolbar setAlpha:self.toolbar.alpha == 0.0 ? 1.0 : 0.0];
+        };
+        
+        if (animated) {
+            [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:animations completion:nil];
+        }
+        else {
+            animations();
+        }
     }
 }
 
