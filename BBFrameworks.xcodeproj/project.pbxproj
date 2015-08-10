@@ -278,6 +278,7 @@
 		79C27EC01B3BB84E00C4AC28 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
 		79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EC41B3BBA6000C4AC28 /* sample.mp4 */; };
+		79CE6A401B784F3600A0E969 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79CE6A3E1B784F3600A0E969 /* Validation.strings */; };
 		79D5407A1B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */; };
 		79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540791B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m */; };
 		79D5407F1B4B5F01009ECE38 /* NSAlert+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D5407C1B4B5EDB009ECE38 /* NSAlert+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1039,6 +1040,7 @@
 		79C27EC11B3BB8A100C4AC28 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
 		79C27EC41B3BBA6000C4AC28 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
+		79CE6A3F1B784F3600A0E969 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79D540761B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+BBKitExtensions.h"; path = "iOS/UIAlertController+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+BBKitExtensions.m"; path = "iOS/UIAlertController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79D540781B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BBKitExtensionsPrivate.h"; path = "iOS/UIImage+BBKitExtensionsPrivate.h"; sourceTree = "<group>"; };
@@ -2096,6 +2098,7 @@
 		79EA80781B3F06ED00D50B6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				79CE6A3E1B784F3600A0E969 /* Validation.strings */,
 				07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */,
 				79EA81421B3F212700D50B6B /* MediaPicker.strings */,
 				79F941631B436B3B00B385F0 /* AddressBook.strings */,
@@ -2494,6 +2497,7 @@
 				799F9BBB1B6D85170067BAA8 /* web_kit_lock.png in Resources */,
 				799B96091B6997550010E1CD /* media_picker_camera_roll.png in Resources */,
 				79BE2BB71B65831A00ADE997 /* kit_next.png in Resources */,
+				79CE6A401B784F3600A0E969 /* Validation.strings in Resources */,
 				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
 				799B960B1B6997550010E1CD /* media_picker_camera_roll@3x.png in Resources */,
 				799B961E1B69C3450010E1CD /* media_picker_type_video@3x.png in Resources */,
@@ -2530,7 +2534,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m BBFrameworks/BBAddressBook/*.m BBFrameworks/BBWebKit/*.m";
+			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m $SRCROOT/BBFrameworks/$SRCROOT/BBAddressBook/*.m $SRCROOT/BBFrameworks/BBWebKit/*.m $SRCROOT/BBFrameworks/BBValidation/*.m";
 		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2966,6 +2970,14 @@
 				07C23A8D1B540DE500D3C072 /* en */,
 			);
 			name = WebKit.strings;
+			sourceTree = "<group>";
+		};
+		79CE6A3E1B784F3600A0E969 /* Validation.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79CE6A3F1B784F3600A0E969 /* en */,
+			);
+			name = Validation.strings;
 			sourceTree = "<group>";
 		};
 		79EA81421B3F212700D50B6B /* MediaPicker.strings */ = {
