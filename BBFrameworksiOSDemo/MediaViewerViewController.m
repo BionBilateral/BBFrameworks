@@ -24,6 +24,7 @@
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 
 @property (copy,nonatomic) NSArray *URLs;
+@property (copy,nonatomic) NSArray *customURLs;
 @end
 
 @implementation MediaViewerViewController
@@ -41,9 +42,11 @@
         [temp addObject:URL];
     }
     
+    [self setURLs:temp];
+    
     [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
     
-    [self setURLs:temp];
+    [self setCustomURLs:temp];
     
     [self.systemButton addTarget:self action:@selector(_systemButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.customButton addTarget:self action:@selector(_customButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,10 +74,10 @@
 }
 
 - (NSInteger)numberOfMediaInMediaViewer:(BBMediaViewerViewController *)mediaViewer {
-    return self.URLs.count;
+    return self.customURLs.count;
 }
 - (id<BBMediaViewerMedia>)mediaViewer:(BBMediaViewerViewController *)mediaViewer mediaAtIndex:(NSInteger)index {
-    return self.URLs[index];
+    return self.customURLs[index];
 }
 
 - (CGRect)mediaViewer:(BBMediaViewerViewController *)mediaViewer frameForMedia:(id<BBMediaViewerMedia>)media inSourceView:(UIView *__autoreleasing *)sourceView {
