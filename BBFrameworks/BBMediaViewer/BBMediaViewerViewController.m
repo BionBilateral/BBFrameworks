@@ -41,21 +41,21 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 
 + (void)initialize {
     if (self == [BBMediaViewerViewController class]) {
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), NO, 0);
-        
-        [[UIColor clearColor] setFill];
-        UIRectFill(CGRectMake(0, 0, 1, 1));
-        
-        UIImage *backgroundImage = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
-        
-        UIGraphicsEndImageContext();
-        
-        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-        
-        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
+//        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), NO, 0);
+//        
+//        [[UIColor clearColor] setFill];
+//        UIRectFill(CGRectMake(0, 0, 1, 1));
+//        
+//        UIImage *backgroundImage = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+//        
+//        UIGraphicsEndImageContext();
+//        
+//        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+//        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
+//        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//        
+//        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
     }
 }
 

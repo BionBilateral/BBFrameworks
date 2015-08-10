@@ -465,6 +465,8 @@
 		79EA82C61B3F945700D50B6B /* BBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA82C41B3F945700D50B6B /* BBView.m */; };
 		79EA82C71B3F945700D50B6B /* BBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA82C41B3F945700D50B6B /* BBView.m */; };
 		79EA82C81B3F9B9B00D50B6B /* BBView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA82C31B3F945700D50B6B /* BBView.h */; };
+		79F577DB1B7968110078EAB8 /* BBMediaViewerMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F577DA1B7968110078EAB8 /* BBMediaViewerMovieViewController.m */; };
+		79F577DE1B7969920078EAB8 /* BBMediaViewerMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F577DD1B7969920078EAB8 /* BBMediaViewerMovieView.m */; };
 		79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */; };
 		79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941511B435AA300B385F0 /* AddressBookViewController.m */; };
 		79F941571B435D3400B385F0 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F941561B435D3400B385F0 /* AddressBookViewController.xib */; };
@@ -1108,6 +1110,10 @@
 		79EA82C31B3F945700D50B6B /* BBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBView.h; sourceTree = "<group>"; };
 		79EA82C41B3F945700D50B6B /* BBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBView.m; sourceTree = "<group>"; };
 		79F3B19E1B50B389008230D7 /* BBPickerButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButtonDelegate.h; path = iOS/BBPickerButtonDelegate.h; sourceTree = "<group>"; };
+		79F577D91B7968110078EAB8 /* BBMediaViewerMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerMovieViewController.h; sourceTree = "<group>"; };
+		79F577DA1B7968110078EAB8 /* BBMediaViewerMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerMovieViewController.m; sourceTree = "<group>"; };
+		79F577DC1B7969920078EAB8 /* BBMediaViewerMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerMovieView.h; sourceTree = "<group>"; };
+		79F577DD1B7969920078EAB8 /* BBMediaViewerMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerMovieView.m; sourceTree = "<group>"; };
 		79F9414D1B4353C300B385F0 /* BBAddressBookPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookPerson.h; sourceTree = "<group>"; };
 		79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookPerson.m; sourceTree = "<group>"; };
 		79F941501B435AA300B385F0 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
@@ -1575,6 +1581,7 @@
 				792F15541B76FE6D0034A09A /* BBMediaViewerDetailViewController.h */,
 				792F15551B76FE6D0034A09A /* BBMediaViewerDetailViewController.m */,
 				792F15581B7709770034A09A /* Placeholder */,
+				79F577D81B7967820078EAB8 /* Movie */,
 				792F15571B7709720034A09A /* Image */,
 			);
 			name = Detail;
@@ -2194,6 +2201,17 @@
 				79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */,
 			);
 			name = Headers;
+			sourceTree = "<group>";
+		};
+		79F577D81B7967820078EAB8 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				79F577D91B7968110078EAB8 /* BBMediaViewerMovieViewController.h */,
+				79F577DA1B7968110078EAB8 /* BBMediaViewerMovieViewController.m */,
+				79F577DC1B7969920078EAB8 /* BBMediaViewerMovieView.h */,
+				79F577DD1B7969920078EAB8 /* BBMediaViewerMovieView.m */,
+			);
+			name = Movie;
 			sourceTree = "<group>";
 		};
 		B57C4002BFB6D5C1DBE48B35 /* Frameworks */ = {
@@ -2820,6 +2838,7 @@
 				79BE2BAF1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m in Sources */,
 				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				07B3D9081B60373B00FA1853 /* BBFormTextTableViewCell.m in Sources */,
+				79F577DE1B7969920078EAB8 /* BBMediaViewerMovieView.m in Sources */,
 				07605ACD1B695EE000333678 /* BBMediaPickerAssetsGroupTableViewController.m in Sources */,
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
@@ -2872,6 +2891,7 @@
 				799C0C7B1B61B95B00A3888A /* BBAddressBookPersonTableViewCell.m in Sources */,
 				07B3D9071B60373B00FA1853 /* BBFormTableViewCell.m in Sources */,
 				79EA82C61B3F945700D50B6B /* BBView.m in Sources */,
+				79F577DB1B7968110078EAB8 /* BBMediaViewerMovieViewController.m in Sources */,
 				79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */,
 				79D540911B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m in Sources */,
 				791997091B6EB3C500FC674A /* BBThumbnailYouTubeOperation.m in Sources */,

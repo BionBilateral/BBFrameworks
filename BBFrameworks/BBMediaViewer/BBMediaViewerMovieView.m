@@ -1,8 +1,8 @@
 //
-//  BBMediaViewerModel.h
+//  BBMediaViewerMovieView.m
 //  BBFrameworks
 //
-//  Created by William Towe on 8/8/15.
+//  Created by William Towe on 8/10/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,42 +13,49 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <ReactiveViewModel/RVMViewModel.h>
-#import <UIKit/UIImage.h>
-#import <AVFoundation/AVPlayer.h>
-#import "BBMediaViewerMedia.h"
+#import "BBMediaViewerMovieView.h"
 
-typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
-    BBMediaViewerDetailViewModelTypeNone,
-    BBMediaViewerDetailViewModelTypeImage,
-    BBMediaViewerDetailViewModelTypeMovie
-};
+#import <AVFoundation/AVFoundation.h>
 
-@class RACCommand;
+@interface BBMediaViewerMovieView ()
+@property (readonly,nonatomic) AVPlayerLayer *playerLayer;
+@end
 
-@interface BBMediaViewerDetailViewModel : RVMViewModel
+@implementation BBMediaViewerMovieView
 
-@property (readonly,strong,nonatomic) id<BBMediaViewerMedia> media;
-@property (readonly,assign,nonatomic) NSInteger index;
++ (Class)layerClass {
+    return [AVPlayerLayer class];
+}
 
-@property (readonly,nonatomic) BBMediaViewerDetailViewModelType type;
-@property (readonly,nonatomic) NSString *UTI;
+- (instancetype)initWithPlayer:(AVPlayer *)player; {
+    if (!(self = [super initWithFrame:CGRectZero]))
+        return nil;
+    
+    [self.playerLayer setPlayer:player];
+    
+    return self;
+}
 
-@property (readonly,nonatomic) NSURL *URL;
-@property (readonly,nonatomic) NSString *title;
-@property (readonly,nonatomic) id activityItem;
+- (void)setVideoGravity:(BBMediaViewerMovieViewVideoGravity)videoGravity {
+    _videoGravity = videoGravity;
+    
+    switch (_videoGravity) {
+        case BBMediaViewerMovieViewVideoGravityResizeAspect:
+            [self.playerLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+            break;
+        case BBMediaViewerMovieViewVideoGravityResizeAspectFill:
+            [self.playerLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+            break;
+        case BBMediaViewerMovieViewVideoGravityResize:
+            [self.playerLayer setVideoGravity:AVLayerVideoGravityResize];
+            break;
+        default:
+            break;
+    }
+}
 
-@property (readonly,nonatomic) UIImage *image;
-@property (readonly,nonatomic) UIImage *placeholderImage;
-
-@property (readonly,strong,nonatomic) AVPlayer *player;
-
-@property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
-
-- (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media index:(NSInteger)index NS_DESIGNATED_INITIALIZER;
-
-- (void)play;
-- (void)pause;
-- (void)stop;
+- (AVPlayerLayer *)playerLayer {
+    return (AVPlayerLayer *)self.layer;
+}
 
 @end

@@ -15,11 +15,18 @@
 
 #import "BBMediaViewerDetailViewModel.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface BBMediaViewerDetailViewModel ()
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
 @property (readwrite,assign,nonatomic) NSInteger index;
+
+@property (readwrite,strong,nonatomic) AVPlayer *player;
+
+@property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
 @end
 
 @implementation BBMediaViewerDetailViewModel
@@ -36,11 +43,25 @@
     return self;
 }
 
+- (void)play; {
+    [self.player setRate:1.0];
+}
+- (void)pause; {
+    [self.player setRate:0.0];
+}
+- (void)stop; {
+    [self pause];
+    [self.player seekToTime:kCMTimeZero];
+}
+
 - (BBMediaViewerDetailViewModelType)type {
     NSString *UTI = self.UTI;
     
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
         return BBMediaViewerDetailViewModelTypeImage;
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
+        return BBMediaViewerDetailViewModelTypeMovie;
     }
     return BBMediaViewerDetailViewModelTypeNone;
 }
@@ -74,6 +95,13 @@
         return [self.media mediaPlaceholderImage];
     }
     return nil;
+}
+
+- (AVPlayer *)player {
+    if (!_player) {
+        _player = [AVPlayer playerWithURL:self.URL];
+    }
+    return _player;
 }
 
 @end

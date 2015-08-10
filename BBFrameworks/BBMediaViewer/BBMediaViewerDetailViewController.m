@@ -17,6 +17,7 @@
 #import "BBMediaViewerImageViewController.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerPlaceholderViewController.h"
+#import "BBMediaViewerMovieViewController.h"
 
 @interface BBMediaViewerDetailViewController ()
 @property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
@@ -29,6 +30,9 @@
         switch (viewModel.type) {
             case BBMediaViewerDetailViewModelTypeImage:
                 return [[BBMediaViewerImageViewController alloc] initWithViewModel:viewModel];
+            case BBMediaViewerDetailViewModelTypeMovie:
+                return [[BBMediaViewerMovieViewController alloc] initWithViewModel:viewModel];
+            case BBMediaViewerDetailViewModelTypeNone:
             default:
                 return [[BBMediaViewerPlaceholderViewController alloc] initWithViewModel:viewModel];
         }
