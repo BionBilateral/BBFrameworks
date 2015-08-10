@@ -2534,7 +2534,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m $SRCROOT/BBFrameworks/$SRCROOT/BBAddressBook/*.m $SRCROOT/BBFrameworks/BBWebKit/*.m $SRCROOT/BBFrameworks/BBValidation/*.m";
+			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/*.m $SRCROOT/BBFrameworks/BBMediaPlayer/*.m $SRCROOT/BBFrameworks/$SRCROOT/BBAddressBook/*.m $SRCROOT/BBFrameworks/BBWebKit/*.m $SRCROOT/BBFrameworks/BBValidation/*";
 		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
