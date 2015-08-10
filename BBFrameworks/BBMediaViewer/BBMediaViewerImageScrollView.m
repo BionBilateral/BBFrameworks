@@ -19,7 +19,7 @@
 @interface BBMediaViewerImageScrollView ()
 @property (strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 
-@property (readwrite,strong,nonatomic) UIImageView *imageView;
+@property (strong,nonatomic) UIImageView *imageView;
 
 - (void)_centerImageView;
 - (void)_updateZoomScale;
@@ -49,7 +49,7 @@
     [self setBouncesZoom:YES];
     [self setDecelerationRate:UIScrollViewDecelerationRateFast];
     
-    [self setImageView:[[UIImageView alloc] initWithImage:self.viewModel.image]];
+    [self setImageView:[[UIImageView alloc] initWithImage:self.viewModel.image ?: self.viewModel.placeholderImage]];
     [self addSubview:self.imageView];
     
     return self;
@@ -60,6 +60,25 @@
 }
 - (void)updateZoomScale; {
     [self _updateZoomScale];
+}
+
+@dynamic image;
+- (UIImage *)image {
+    return self.imageView.image;
+}
+- (void)setImage:(UIImage *)image {
+    [self.imageView setImage:image];
+    
+    [self setContentSize:image.size];
+    
+    [self.imageView setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    
+    [self updateZoomScale];
+    [self centerImageView];
+}
+
+- (UIView *)viewForZooming {
+    return self.imageView;
 }
 
 - (void)_centerImageView; {

@@ -41,6 +41,8 @@
         [temp addObject:URL];
     }
     
+    [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
+    
     [self setURLs:temp];
     
     [self.systemButton addTarget:self action:@selector(_systemButtonAction:) forControlEvents:UIControlEventTouchUpInside];

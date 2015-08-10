@@ -64,12 +64,16 @@
 }
 
 - (UIImage *)image {
-    switch (self.type) {
-        case BBMediaViewerDetailViewModelTypeImage:
-            return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:self.URL]];
-        default:
-            return nil;
+    if ([self.media respondsToSelector:@selector(mediaImage)]) {
+        return [self.media mediaImage];
     }
+    return nil;
+}
+- (UIImage *)placeholderImage {
+    if ([self.media respondsToSelector:@selector(mediaPlaceholderImage)]) {
+        return [self.media mediaPlaceholderImage];
+    }
+    return nil;
 }
 
 @end

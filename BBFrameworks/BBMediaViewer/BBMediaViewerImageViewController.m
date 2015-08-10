@@ -22,6 +22,7 @@
 
 @interface BBMediaViewerImageViewController () <UIScrollViewDelegate>
 @property (strong,nonatomic) BBMediaViewerImageScrollView *scrollView;
+@property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong,nonatomic) UITapGestureRecognizer *doubleTapGestureRecognizer;
 @end
@@ -37,6 +38,10 @@
     [self.scrollView setDelegate:self];
     [self.view addSubview:self.scrollView];
     
+    [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
+    [self.activityIndicatorView setHidesWhenStopped:YES];
+    [self.view addSubview:self.activityIndicatorView];
+    
     [self setDoubleTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
     [self.doubleTapGestureRecognizer setNumberOfTapsRequired:2];
     [self.doubleTapGestureRecognizer setNumberOfTouchesRequired:1];
@@ -47,7 +52,7 @@
      rac_gestureSignal]
      subscribeNext:^(id _) {
          @strongify(self);
-         CGPoint pointInView = [self.doubleTapGestureRecognizer locationInView:self.scrollView.imageView];
+         CGPoint pointInView = [self.doubleTapGestureRecognizer locationInView:self.scrollView.viewForZooming];
 
          CGFloat newZoomScale = self.scrollView.maximumZoomScale;
          
@@ -69,6 +74,7 @@
 }
 - (void)viewWillLayoutSubviews {
     [self.scrollView setFrame:self.view.bounds];
+    [self.activityIndicatorView setFrame:self.view.bounds];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -76,9 +82,24 @@
     [self.scrollView updateZoomScale];
     [self.scrollView centerImageView];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (!self.viewModel.image) {
+        [self.activityIndicatorView startAnimating];
+        
+        @weakify(self);
+        [self.viewModel.media downloadMediaImageWithCompletion:^(BOOL success, NSError *error) {
+            @strongify(self);
+            [self.activityIndicatorView stopAnimating];
+            
+            [self.scrollView setImage:self.viewModel.image];
+        }];
+    }
+}
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.scrollView.imageView;
+    return self.scrollView.viewForZooming;
 }
 
 @end

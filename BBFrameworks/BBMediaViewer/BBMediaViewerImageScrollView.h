@@ -19,7 +19,9 @@
 
 @interface BBMediaViewerImageScrollView : UIScrollView
 
-@property (readonly,strong,nonatomic) UIImageView *imageView;
+@property (strong,nonatomic) UIImage *image;
+
+@property (readonly,nonatomic) UIView *viewForZooming;
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 

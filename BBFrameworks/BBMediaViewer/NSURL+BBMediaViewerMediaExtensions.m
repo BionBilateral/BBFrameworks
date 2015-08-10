@@ -14,14 +14,70 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "NSURL+BBMediaViewerMediaExtensions.h"
+#import "NSURL+BBKitExtensions.h"
+#import "BBFoundationFunctions.h"
+
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <objc/runtime.h>
+
+@interface NSURL (BBMediaViewerMediaExtensionsPrivate)
+@property (strong,nonatomic) UIImage *BB_downloadedImage;
+@end
 
 @implementation NSURL (BBMediaViewerMediaExtensions)
 
 - (NSURL *)mediaURL {
     return self;
 }
+
 - (NSString *)mediaTitle {
     return self.lastPathComponent;
+}
+
+- (UIImage *)mediaImage {
+    NSString *UTI = self.isFileURL ? [self BB_typeIdentifier] : (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.lastPathComponent.pathExtension, NULL);
+    
+    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+        if (self.isFileURL) {
+            return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:self]];
+        }
+        else {
+            return self.BB_downloadedImage;
+        }
+    }
+    return nil;
+}
+- (UIImage *)mediaPlaceholderImage {
+    return nil;
+}
+
+- (void)downloadMediaImageWithCompletion:(void (^)(BOOL, NSError *))completion {
+    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:self completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self setBB_downloadedImage:nil];
+        }
+        else {
+            [self setBB_downloadedImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:location]]];
+        }
+        BBDispatchMainSyncSafe(^{
+            completion(error != nil,error);
+        });
+    }];
+    
+    [task resume];
+}
+
+@end
+
+@implementation NSURL (BBMediaViewerMediaExtensionsPrivate)
+
+static void *kBB_downloadedImageKey = &kBB_downloadedImageKey;
+
+- (UIImage *)BB_downloadedImage {
+    return objc_getAssociatedObject(self, kBB_downloadedImageKey);
+}
+- (void)setBB_downloadedImage:(UIImage *)BB_downloadedImage {
+    objc_setAssociatedObject(self, kBB_downloadedImageKey, BB_downloadedImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
