@@ -18,7 +18,7 @@
 #import "BBMoviePlayerView.h"
 #import "BBFoundation.h"
 
-static NSTimeInterval const kTransitionDuration = 1.0;
+static NSTimeInterval const kTransitionDuration = 0.5;
 
 @interface BBMoviePlayerViewController () <UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (readwrite,strong,nonatomic) BBMoviePlayerController *moviePlayerController;
@@ -31,7 +31,7 @@ static NSTimeInterval const kTransitionDuration = 1.0;
 @implementation BBMoviePlayerViewController
 #pragma mark *** Subclass Overrides ***
 - (UIModalPresentationStyle)modalPresentationStyle {
-    return UIModalPresentationFullScreen;
+    return UIModalPresentationCustom;
 }
 
 - (instancetype)init {
@@ -54,12 +54,7 @@ static NSTimeInterval const kTransitionDuration = 1.0;
     }
     [self.view addSubview:self.moviePlayerView];
 }
-- (void)viewDidLayoutSubviews {
-    if (self.isBeingDismissed ||
-        self.isBeingPresented) {
-        return;
-    }
-    
+- (void)viewWillLayoutSubviews {
     [self.moviePlayerView setFrame:self.view.bounds];
 }
 #pragma mark UIViewControllerTransitioningDelegate
@@ -75,36 +70,28 @@ static NSTimeInterval const kTransitionDuration = 1.0;
 }
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *containerView = [transitionContext containerView];
-    UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-    UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
+    UIView *fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
     
     // presenting
     if (toView == self.view) {
         [containerView addSubview:toView];
-
-        [toView setFrame:containerView.bounds];
         
-        [self.moviePlayerView setFrame:[containerView convertRect:self.fromMoviePlayerController.view.bounds fromView:self.fromMoviePlayerController.view]];
-        [self.view setBackgroundColor:[UIColor clearColor]];
+        [toView setFrame:[self.moviePlayerController.view.window convertRect:[self.fromMoviePlayerController.view convertRect:self.fromMoviePlayerController.view.bounds toView:nil] toWindow:nil]];
+        [toView setBackgroundColor:[UIColor clearColor]];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [self.moviePlayerView setFrame:containerView.bounds];
-            [self.view setBackgroundColor:[UIColor blackColor]];
+            [toView setFrame:containerView.bounds];
+            [toView setBackgroundColor:[UIColor blackColor]];
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
         }];
     }
     // dismissing
     else {
-        [containerView addSubview:toView];
-        [containerView addSubview:fromView];
-        
-        [toView setFrame:containerView.bounds];
-        [fromView setFrame:containerView.bounds];
-        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [self.moviePlayerView setFrame:[containerView convertRect:self.fromMoviePlayerController.view.bounds fromView:self.fromMoviePlayerController.view]];
-            [self.view setBackgroundColor:[UIColor clearColor]];
+            [fromView setFrame:[self.moviePlayerController.view.window convertRect:[self.fromMoviePlayerController.view convertRect:self.fromMoviePlayerController.view.bounds toView:nil] toWindow:nil]];
+            [fromView setBackgroundColor:[UIColor clearColor]];
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
         }];
