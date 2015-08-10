@@ -19,7 +19,7 @@
 
 #import <QuickLook/QuickLook.h>
 
-@interface MediaViewerViewController () <QLPreviewControllerDataSource,BBMediaViewerViewControllerDataSource>
+@interface MediaViewerViewController () <QLPreviewControllerDataSource,QLPreviewControllerDelegate,BBMediaViewerViewControllerDataSource,BBMediaViewerViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 
@@ -58,6 +58,11 @@
     return self.URLs[index];
 }
 
+- (CGRect)previewController:(QLPreviewController *)controller frameForPreviewItem:(id<QLPreviewItem>)item inSourceView:(UIView *__autoreleasing *)view {
+    *view = self.systemButton;
+    return self.systemButton.bounds;
+}
+
 - (NSInteger)numberOfMediaInMediaViewer:(BBMediaViewerViewController *)mediaViewer {
     return self.URLs.count;
 }
@@ -65,10 +70,16 @@
     return self.URLs[index];
 }
 
+- (CGRect)mediaViewer:(BBMediaViewerViewController *)mediaViewer frameForMedia:(id<BBMediaViewerMedia>)media inSourceView:(UIView *__autoreleasing *)sourceView {
+    *sourceView = self.customButton;
+    return self.customButton.bounds;
+}
+
 - (IBAction)_systemButtonAction:(id)sender {
     QLPreviewController *viewController = [[QLPreviewController alloc] init];
     
     [viewController setDataSource:self];
+    [viewController setDelegate:self];
     [viewController setCurrentPreviewItemIndex:0];
     
     [self presentViewController:viewController animated:YES completion:nil];
@@ -77,8 +88,9 @@
     BBMediaViewerViewController *viewController = [[BBMediaViewerViewController alloc] init];
     
     [viewController setDataSource:self];
+    [viewController setDelegate:self];
     
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 @end

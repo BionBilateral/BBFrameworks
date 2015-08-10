@@ -21,4 +21,6 @@
 @optional
 - (void)mediaViewerWillDismiss:(BBMediaViewerViewController *)mediaViewer;
 - (void)mediaViewerDidDismiss:(BBMediaViewerViewController *)mediaViewer;
+
+- (CGRect)mediaViewer:(BBMediaViewerViewController *)mediaViewer frameForMedia:(id<BBMediaViewerMedia>)media inSourceView:(UIView **)sourceView;
 @end

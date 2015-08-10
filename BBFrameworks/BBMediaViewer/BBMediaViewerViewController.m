@@ -21,8 +21,10 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate>
+@interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate,UINavigationBarDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
+@property (strong,nonatomic) UINavigationBar *navigationBar;
+@property (strong,nonatomic) UIToolbar *toolbar;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
@@ -31,9 +33,23 @@
 
 @implementation BBMediaViewerViewController
 
+- (UIModalPresentationStyle)modalPresentationStyle {
+    if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
+        UIView *sourceView = nil;
+        CGRect frame = [self.delegate mediaViewer:self frameForMedia:self.viewModel.currentViewModel.media inSourceView:&sourceView];
+        
+        if (!CGRectIsEmpty(frame)) {
+            return UIModalPresentationCustom;
+        }
+    }
+    return UIModalPresentationFullScreen;
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
+    
+    [self setTransitioningDelegate:self];
     
     [self setViewModel:[[BBMediaViewerViewModel alloc] init]];
     
@@ -55,6 +71,12 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     [self.pageViewController.view setBackgroundColor:[UIColor blackColor]];
+    
+    [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
+    [self.navigationBar setDelegate:self];
+    [self.view addSubview:self.navigationBar];
+    
+    [self.navigationBar setItems:@[self.navigationItem]];
     
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
@@ -94,8 +116,11 @@
       rac_gestureSignal]
     subscribeNext:^(id _) {
         @strongify(self);
-        [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:YES];
-        [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:YES];
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            @strongify(self);
+            [self.navigationBar setAlpha:self.navigationBar.alpha == 0.0 ? 1.0 : 0.0];
+            [self.toolbar setAlpha:self.toolbar.alpha == 0.0 ? 1.0 : 0.0];
+        } completion:nil];
     }];
     
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
@@ -110,7 +135,9 @@
     
     [self setToolbarItems:@[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],actionItem]];
     
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
+    [self.toolbar setItems:self.toolbarItems];
+    [self.view addSubview:self.toolbar];
     
     [[[self.viewModel.doneCommand.executionSignals
      concat]
@@ -131,6 +158,120 @@
 }
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
+    [self.navigationBar setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.navigationBar sizeThatFits:CGSizeZero].height)];
+    [self.toolbar setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.toolbar sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.toolbar sizeThatFits:CGSizeZero].height)];
+}
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self;
+}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self;
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+    return 0.33;
+}
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    UIView *fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
+    UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
+    UIView *containerView = [transitionContext containerView];
+    
+    // presenting
+    if (toView == self.view) {
+        [containerView addSubview:toView];
+        
+        if ([transitionContext isAnimated]) {
+            UIView *toSnapshotView = [toView snapshotViewAfterScreenUpdates:YES];
+            
+            [containerView addSubview:toSnapshotView];
+            [toSnapshotView setFrame:containerView.bounds];
+            [toSnapshotView setAlpha:0.0];
+            
+            [toView setAlpha:0.0];
+            
+            CGRect startFrame = CGRectZero;
+            
+            if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
+                UIView *sourceView = nil;
+                CGRect frame = [self.delegate mediaViewer:self frameForMedia:self.viewModel.currentViewModel.media inSourceView:&sourceView];
+                
+                if (!CGRectIsEmpty(frame)) {
+                    if (sourceView) {
+                        frame = [sourceView.window convertRect:[sourceView convertRect:frame toView:nil] toWindow:nil];
+                    }
+                    
+                    startFrame = frame;
+                }
+            }
+            
+            if (!CGRectIsEmpty(startFrame)) {
+                [toSnapshotView setFrame:startFrame];
+            }
+            
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                [toSnapshotView setAlpha:1.0];
+                
+                if (!CGRectIsEmpty(startFrame)) {
+                    [toSnapshotView setFrame:containerView.bounds];
+                }
+            } completion:^(BOOL finished) {
+                [toView setAlpha:1.0];
+                
+                [toSnapshotView removeFromSuperview];
+                
+                [transitionContext completeTransition:YES];
+            }];
+        }
+        else {
+            [transitionContext completeTransition:YES];
+        }
+    }
+    // dismissing
+    else {
+        if ([transitionContext isAnimated]) {
+            UIView *fromSnapshotView = [fromView snapshotViewAfterScreenUpdates:YES];
+            
+            [containerView addSubview:fromSnapshotView];
+            [fromSnapshotView setFrame:containerView.bounds];
+            
+            [fromView setAlpha:0.0];
+            
+            CGRect endFrame = CGRectZero;
+            
+            if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
+                UIView *sourceView = nil;
+                CGRect frame = [self.delegate mediaViewer:self frameForMedia:self.viewModel.currentViewModel.media inSourceView:&sourceView];
+                
+                if (!CGRectIsEmpty(frame)) {
+                    if (sourceView) {
+                        frame = [sourceView.window convertRect:[sourceView convertRect:frame toView:nil] toWindow:nil];
+                    }
+                    
+                    endFrame = frame;
+                }
+            }
+            
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                [fromSnapshotView setAlpha:0.0];
+                
+                if (!CGRectIsEmpty(endFrame)) {
+                    [fromSnapshotView setFrame:endFrame];
+                }
+            } completion:^(BOOL finished) {
+                [fromSnapshotView removeFromSuperview];
+                
+                [transitionContext completeTransition:YES];
+            }];
+        }
+        else {
+            [transitionContext completeTransition:YES];
+        }
+    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
