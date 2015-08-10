@@ -183,6 +183,12 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     [self.navigationBar setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.navigationBar sizeThatFits:CGSizeZero].height)];
     [self.toolbar setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.toolbar sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.toolbar sizeThatFits:CGSizeZero].height)];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setToolbarHidden:YES animated:animated];
+}
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
     return UIBarPositionTopAttached;
