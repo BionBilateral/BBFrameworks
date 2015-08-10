@@ -32,8 +32,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
-
-@property (assign,nonatomic,getter=isPresenting) BOOL presenting;
 @end
 
 @implementation BBMediaViewerViewController
@@ -191,11 +189,9 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    [self setPresenting:YES];
     return self;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    [self setPresenting:NO];
     return self;
 }
 
@@ -208,7 +204,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     UIView *containerView = [transitionContext containerView];
     
     // presenting
-    if (self.isPresenting) {
+    if (toView == self.view) {
         [containerView addSubview:toView];
         
         if ([transitionContext isAnimated]) {
