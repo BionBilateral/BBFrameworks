@@ -74,6 +74,7 @@
     [self.pageViewController.view setBackgroundColor:[UIColor blackColor]];
     
     [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
+    [self.navigationBar setAlpha:0.0];
     [self.navigationBar setDelegate:self];
     [self.view addSubview:self.navigationBar];
     
@@ -137,6 +138,7 @@
     [self setToolbarItems:@[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],actionItem]];
     
     [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
+    [self.toolbar setAlpha:0.0];
     [self.toolbar setItems:self.toolbarItems];
     [self.view addSubview:self.toolbar];
     
