@@ -74,6 +74,10 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     }
 }
 
+- (UIRectEdge)edgesForExtendedLayout {
+    return UIRectEdgeNone;
+}
+
 - (UIModalPresentationStyle)modalPresentationStyle {
     if ([self.delegate respondsToSelector:@selector(mediaViewer:frameForMedia:inSourceView:)]) {
         UIView *sourceView = nil;
@@ -166,6 +170,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     subscribeNext:^(id _) {
         @strongify(self);
         [self _toggleNavigationBarAndToolbarAnimated:YES];
+        
+        [self.view setNeedsLayout];
     }];
     
     if (self.presentingViewController) {

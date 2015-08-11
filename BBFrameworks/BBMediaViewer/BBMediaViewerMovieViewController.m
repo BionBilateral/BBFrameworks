@@ -17,10 +17,11 @@
 #import "BBMediaViewerMovieView.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
-#import "BBMediaViewerMovieSlider.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "UIImage+BBKitExtensions.h"
 #import "BBKitColorMacros.h"
+#import "BBFoundationDebugging.h"
+#import "BBMediaViewerMovieSliderContainerView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -28,7 +29,9 @@
 
 @interface BBMediaViewerMovieViewController ()
 @property (strong,nonatomic) BBMediaViewerMovieView *movieView;
-@property (strong,nonatomic) BBMediaViewerMovieSlider *slider;
+@property (strong,nonatomic) BBMediaViewerMovieSliderContainerView *slider;
+
+@property (strong,nonatomic) id timeObserver;
 @end
 
 @implementation BBMediaViewerMovieViewController
@@ -56,15 +59,8 @@
                                          return @(value.floatValue != 0.0);
                                      }];
     
-    [self setSlider:[[BBMediaViewerMovieSlider alloc] initWithFrame:CGRectZero]];
+    [self setSlider:[[BBMediaViewerMovieSliderContainerView alloc] initWithViewModel:self.viewModel]];
     [self.view addSubview:self.slider];
-    
-    @weakify(self);
-    [[self.slider rac_signalForControlEvents:UIControlEventValueChanged]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         [self.viewModel seekToTimeInterval:self.viewModel.duration * self.slider.value];
-     }];
     
     [self setAdditionalToolbarItems:@[[[UIBarButtonItem alloc] initWithCustomView:playPauseButton]]];
 }
