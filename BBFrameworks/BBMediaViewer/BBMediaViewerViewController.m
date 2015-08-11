@@ -34,7 +34,10 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (strong,nonatomic) UIBarButtonItem *actionBarButtonItem;
+
 - (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated;
+- (void)_updateToolbarItemsWithViewController:(UIViewController *)viewController;
 @end
 
 @implementation BBMediaViewerViewController
@@ -123,6 +126,14 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     [self.tapGestureRecognizer setDelegate:self];
     [self.pageViewController.view addGestureRecognizer:self.tapGestureRecognizer];
     
+    [self setActionBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL]];
+    [self.actionBarButtonItem setRac_command:self.viewModel.actionCommand];
+    
+    if (!self.navigationController) {
+        [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
+        [self.view addSubview:self.toolbar];
+    }
+    
     id<BBMediaViewerMedia> media = nil;
     NSInteger index = 0;
     
@@ -149,6 +160,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         BBMediaViewerDetailViewController *viewController = self.pageViewController.viewControllers.firstObject;
         
         [self.viewModel setCurrentViewModel:viewController.viewModel];
+        
+        [self _updateToolbarItemsWithViewController:self.pageViewController.viewControllers.firstObject];
     }];
     
     [[self.tapGestureRecognizer
@@ -164,18 +177,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         [doneItem setRac_command:self.viewModel.doneCommand];
         
         [self.navigationItem setRightBarButtonItems:@[doneItem]];
-    }
-    
-    UIBarButtonItem *actionItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL];
-    
-    [actionItem setRac_command:self.viewModel.actionCommand];
-    
-    [self setToolbarItems:@[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],actionItem]];
-    
-    if (!self.navigationController) {
-        [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
-        [self.toolbar setItems:self.toolbarItems];
-        [self.view addSubview:self.toolbar];
     }
     
     [[[self.viewModel.doneCommand.executionSignals
@@ -400,6 +401,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         BBMediaViewerDetailViewController *viewController = pageViewController.viewControllers.firstObject;
         
         [self.viewModel setCurrentViewModel:viewController.viewModel];
+        
+        [self _updateToolbarItemsWithViewController:self.pageViewController.viewControllers.firstObject];
     }
 }
 
@@ -430,6 +433,24 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         else {
             animations();
         }
+    }
+}
+- (void)_updateToolbarItemsWithViewController:(UIViewController *)viewController; {
+    NSArray *toolbarItems = @[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],self.actionBarButtonItem];
+    
+    if (viewController.toolbarItems.count > 0) {
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:viewController.toolbarItems];
+        
+        [temp addObjectsFromArray:toolbarItems];
+        
+        toolbarItems = [temp copy];
+    }
+    
+    if (self.navigationController) {
+        [self setToolbarItems:toolbarItems animated:YES];
+    }
+    else {
+        [self.toolbar setItems:toolbarItems animated:YES];
     }
 }
 

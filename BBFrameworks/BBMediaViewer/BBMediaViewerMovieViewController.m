@@ -16,6 +16,9 @@
 #import "BBMediaViewerMovieViewController.h"
 #import "BBMediaViewerMovieView.h"
 #import "BBMediaViewerDetailViewModel.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -30,6 +33,21 @@
     
     [self setMovieView:[[BBMediaViewerMovieView alloc] initWithPlayer:self.viewModel.player]];
     [self.view addSubview:self.movieView];
+    
+    UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+    [playPauseButton sizeToFit];
+    
+    [playPauseButton setRac_command:self.viewModel.playPauseCommand];
+    
+    RAC(playPauseButton,selected) = [RACObserve(self.viewModel.player, rate)
+                                     map:^id(NSNumber *value) {
+                                         return @(value.floatValue != 0.0);
+                                     }];
+    
+    [self setToolbarItems:@[[[UIBarButtonItem alloc] initWithCustomView:playPauseButton]]];
 }
 - (void)viewWillLayoutSubviews {
     [self.movieView setFrame:self.view.bounds];

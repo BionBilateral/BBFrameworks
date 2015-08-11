@@ -40,10 +40,36 @@
     [self setMedia:media];
     [self setIndex:index];
     
+    if (self.type == BBMediaViewerDetailViewModelTypeMovie) {
+        @weakify(self);
+        [self setPlayPauseCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(UIButton *input) {
+            @strongify(self);
+            return [RACSignal return:self];
+        }]];
+        
+        [[[self.playPauseCommand.executionSignals
+         concat]
+         deliverOn:[RACScheduler mainThreadScheduler]]
+         subscribeNext:^(id _) {
+             @strongify(self);
+             if (self.player.rate == 0.0) {
+                 [self play];
+             }
+             else {
+                 [self pause];
+             }
+         }];
+    }
+    
     return self;
 }
 
 - (void)play; {
+    if (CMTIME_IS_VALID(self.player.currentItem.duration) &&
+        CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
+        [self.player seekToTime:CMTimeMakeWithSeconds(0.0, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
+    }
+    
     [self.player setRate:1.0];
 }
 - (void)pause; {
@@ -51,7 +77,7 @@
 }
 - (void)stop; {
     [self pause];
-    [self.player seekToTime:kCMTimeZero];
+    [self.player seekToTime:CMTimeMakeWithSeconds(0.0, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
 }
 
 - (BBMediaViewerDetailViewModelType)type {
@@ -100,6 +126,8 @@
 - (AVPlayer *)player {
     if (!_player) {
         _player = [AVPlayer playerWithURL:self.URL];
+        
+        [_player setActionAtItemEnd:AVPlayerActionAtItemEndPause];
     }
     return _player;
 }
