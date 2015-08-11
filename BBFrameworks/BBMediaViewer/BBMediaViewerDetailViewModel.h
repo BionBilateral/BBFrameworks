@@ -51,4 +51,6 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
 - (void)pause;
 - (void)stop;
 
+- (void)seekToTimeInterval:(NSTimeInterval)timeInterval;
+
 @end

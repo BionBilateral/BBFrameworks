@@ -67,7 +67,7 @@
 - (void)play; {
     if (CMTIME_IS_VALID(self.player.currentItem.duration) &&
         CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
-        [self.player seekToTime:CMTimeMakeWithSeconds(0.0, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
+        [self seekToTimeInterval:0.0];
     }
     
     [self.player setRate:1.0];
@@ -77,7 +77,11 @@
 }
 - (void)stop; {
     [self pause];
-    [self.player seekToTime:CMTimeMakeWithSeconds(0.0, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
+    [self seekToTimeInterval:0.0];
+}
+
+- (void)seekToTimeInterval:(NSTimeInterval)timeInterval; {
+    [self.player seekToTime:CMTimeMakeWithSeconds(timeInterval, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
 }
 
 - (BBMediaViewerDetailViewModelType)type {
