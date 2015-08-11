@@ -37,31 +37,8 @@
 
 @implementation BBMediaViewerMovieSliderContainerView
 
-- (void)didMoveToWindow {
-    [super didMoveToWindow];
-    
-    if (self.window) {
-        @weakify(self);
-        [self setTimeObserver:[self.viewModel.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, 1) queue:NULL usingBlock:^(CMTime time) {
-            @strongify(self);
-            NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSinceNow:CMTimeGetSeconds(time)] options:0];
-            NSDate *elapsedTimeDate = [[NSCalendar currentCalendar] dateFromComponents:elapsedTimeDateComps];
-            NSDateComponents *remainingTimeDateComps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate dateWithTimeIntervalSinceNow:CMTimeGetSeconds(time)] toDate:[NSDate dateWithTimeIntervalSinceNow:self.viewModel.duration] options:0];
-            NSDate *remainingTimeDate = [[NSCalendar currentCalendar] dateFromComponents:remainingTimeDateComps];
-            
-            [self.timeElapsedLabel setText:[self.timeElapsedDateFormatter stringFromDate:elapsedTimeDate]];
-            [self.timeRemainingLabel setText:[self.timeRemainingDateFormatter stringFromDate:remainingTimeDate]];
-            
-            if (!self.slider.isTracking) {
-                [self.slider setValue:CMTimeGetSeconds(time) / self.viewModel.duration];
-            }
-            
-            [self setNeedsLayout];
-        }]];
-    }
-    else {
-        [self.viewModel.player removeTimeObserver:self.timeObserver];
-    }
+- (void)dealloc {
+    [self.viewModel.player removeTimeObserver:self.timeObserver];
 }
 
 - (void)layoutSubviews {
@@ -94,20 +71,16 @@
     [self setTimeElapsedLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.timeElapsedLabel setTextColor:textColor];
     [self.timeElapsedLabel setFont:font];
-    [self.timeElapsedLabel setText:@"00:00:00"];
     [self addSubview:self.timeElapsedLabel];
     
     [self setTimeRemainingLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.timeRemainingLabel setTextColor:textColor];
     [self.timeRemainingLabel setFont:font];
-    [self.timeRemainingLabel setText:@"-00:00:00"];
     [self addSubview:self.timeRemainingLabel];
     
     [self setTimeElapsedDateFormatter:[[NSDateFormatter alloc] init]];
-    [self.timeElapsedDateFormatter setDateFormat:@"HH:mm:ss"];
     
     [self setTimeRemainingDateFormatter:[[NSDateFormatter alloc] init]];
-    [self.timeRemainingDateFormatter setDateFormat:@"-HH:mm:ss"];
     
     @weakify(self);
     [[RACObserve(self.viewModel.player.currentItem, loadedTimeRanges)
@@ -126,6 +99,50 @@
          @strongify(self);
          [self.viewModel seekToTimeInterval:self.viewModel.duration * self.slider.value];
      }];
+    
+    void(^timeObserverBlock)(CMTime) = ^(CMTime time){
+        @strongify(self);
+        NSDateComponents *elapsedTimeDateComps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSinceNow:CMTimeGetSeconds(time)] options:0];
+        NSDate *elapsedTimeDate = [[NSCalendar currentCalendar] dateFromComponents:elapsedTimeDateComps];
+        NSDateComponents *remainingTimeDateComps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate dateWithTimeIntervalSinceNow:CMTimeGetSeconds(time)] toDate:[NSDate dateWithTimeIntervalSinceNow:self.viewModel.duration] options:0];
+        NSDate *remainingTimeDate = [[NSCalendar currentCalendar] dateFromComponents:remainingTimeDateComps];
+        
+        if (elapsedTimeDateComps.hour > 0) {
+            [self.timeElapsedDateFormatter setDateFormat:@"HH:mm:ss"];
+        }
+        else {
+            [self.timeElapsedDateFormatter setDateFormat:@"mm:ss"];
+        }
+        
+        if (remainingTimeDateComps.hour > 0) {
+            [self.timeRemainingDateFormatter setDateFormat:@"-HH:mm:ss"];
+        }
+        else {
+            [self.timeRemainingDateFormatter setDateFormat:@"-mm:ss"];
+        }
+        
+        [self.timeElapsedLabel setText:[self.timeElapsedDateFormatter stringFromDate:elapsedTimeDate]];
+        [self.timeRemainingLabel setText:[self.timeRemainingDateFormatter stringFromDate:remainingTimeDate]];
+        
+        if (!self.slider.isTracking) {
+            [self.slider setValue:CMTimeGetSeconds(time) / self.viewModel.duration];
+        }
+        
+        [self setNeedsLayout];
+    };
+    
+    [[RACObserve(self.viewModel.player.currentItem, duration)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSValue *value) {
+         @strongify(self);
+         timeObserverBlock(self.viewModel.player.currentTime);
+     }];
+    
+    [self setTimeObserver:[self.viewModel.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, 1) queue:NULL usingBlock:^(CMTime time) {
+        timeObserverBlock(time);
+    }]];
+    
+    timeObserverBlock(kCMTimeZero);
     
     return self;
 }
