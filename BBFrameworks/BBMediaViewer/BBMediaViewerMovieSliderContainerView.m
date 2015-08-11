@@ -70,9 +70,9 @@
     CGSize timeElapsedLabelSize = [self.timeElapsedLabel sizeThatFits:CGSizeZero];
     CGSize timeRemainingLabelSize = [self.timeRemainingLabel sizeThatFits:CGSizeZero];
     
-    [self.timeElapsedLabel setFrame:CGRectMake(0, 0, timeElapsedLabelSize.width, CGRectGetHeight(self.bounds))];
-    [self.timeRemainingLabel setFrame:CGRectMake(CGRectGetWidth(self.bounds) - timeRemainingLabelSize.width, 0, timeRemainingLabelSize.width, CGRectGetHeight(self.bounds))];
-    [self.slider setFrame:CGRectMake(CGRectGetMaxX(self.timeElapsedLabel.frame), 0, CGRectGetMinX(self.timeRemainingLabel.frame) - CGRectGetMaxX(self.timeElapsedLabel.frame), CGRectGetHeight(self.bounds))];
+    [self.timeElapsedLabel setFrame:CGRectMake(8.0, 0, timeElapsedLabelSize.width, CGRectGetHeight(self.bounds))];
+    [self.timeRemainingLabel setFrame:CGRectMake(CGRectGetWidth(self.bounds) - timeRemainingLabelSize.width - 8.0, 0, timeRemainingLabelSize.width, CGRectGetHeight(self.bounds))];
+    [self.slider setFrame:CGRectMake(CGRectGetMaxX(self.timeElapsedLabel.frame) + 8.0, 0, CGRectGetMinX(self.timeRemainingLabel.frame) - CGRectGetMaxX(self.timeElapsedLabel.frame) - 16.0, CGRectGetHeight(self.bounds))];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {

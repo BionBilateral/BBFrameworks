@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setMovieView:[[BBMediaViewerMovieView alloc] initWithPlayer:self.viewModel.player]];
+    [self setMovieView:[[BBMediaViewerMovieView alloc] initWithViewModel:self.viewModel]];
     [self.view addSubview:self.movieView];
     
     UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -26,6 +26,8 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
+    [self setMaximumTrackTintColor:[UIColor clearColor]];
+    
     [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
     [self.progressView setTrackTintColor:[UIColor clearColor]];
     [self.progressView setProgressTintColor:[UIColor whiteColor]];
@@ -38,15 +40,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self.progressView setFrame:BBCGRectCenterInRectVertically(CGRectMake(0, 0, CGRectGetWidth(self.bounds), [self.progressView sizeThatFits:CGSizeZero].height), self.bounds)];
-}
-
-- (CGRect)trackRectForBounds:(CGRect)bounds {
-    CGRect retval = [super trackRectForBounds:bounds];
-    
-    retval.size.height = 0;
-    
-    return retval;
+    [self.progressView setFrame:[self trackRectForBounds:self.bounds]];
 }
 
 @end

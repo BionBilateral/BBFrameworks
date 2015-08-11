@@ -22,10 +22,12 @@ typedef NS_ENUM(NSInteger, BBMediaViewerMovieViewVideoGravity) {
     BBMediaViewerMovieViewVideoGravityResize
 };
 
+@class BBMediaViewerDetailViewModel;
+
 @interface BBMediaViewerMovieView : UIView
 
 @property (assign,nonatomic) BBMediaViewerMovieViewVideoGravity videoGravity;
 
-- (instancetype)initWithPlayer:(AVPlayer *)player;
+- (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 
 @end
