@@ -109,7 +109,7 @@
     [viewController setDataSource:self];
     [viewController setDelegate:self];
     
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self BB_presentMediaViewController:viewController animated:YES completion:nil];
 }
 
 @end

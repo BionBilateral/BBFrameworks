@@ -23,3 +23,9 @@
 @property (weak,nonatomic) id<BBMediaViewerViewControllerDelegate> delegate;
 
 @end
+
+@interface UIViewController (BBMediaViewerViewControllerExtensions)
+
+- (void)BB_presentMediaViewController:(BBMediaViewerViewController *)mediaViewController animated:(BOOL)animated completion:(void(^)(void))completion;
+
+@end

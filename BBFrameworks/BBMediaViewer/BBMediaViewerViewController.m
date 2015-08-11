@@ -23,18 +23,30 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+@interface BBMediaViewerNavigationController : UINavigationController
+
+@end
+
+@implementation BBMediaViewerNavigationController
+
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return [self.viewControllers.firstObject modalPresentationStyle];
+}
+
+@end
+
 static NSTimeInterval const kAnimationDuration = 0.33;
 
 @interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate,UINavigationBarDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
-@property (strong,nonatomic) UINavigationBar *navigationBar;
-@property (strong,nonatomic) UIToolbar *toolbar;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
 @property (strong,nonatomic) UIBarButtonItem *actionBarButtonItem;
+
+@property (assign,nonatomic,getter=isPresenting) BOOL presenting;
 
 - (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated;
 - (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController;
@@ -89,8 +101,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     if (!(self = [super init]))
         return nil;
     
-    [self setTransitioningDelegate:self];
-    
     [self setViewModel:[[BBMediaViewerViewModel alloc] init]];
     
     RAC(self,title) = RACObserve(self.viewModel, title);
@@ -112,14 +122,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     [self.pageViewController.view setBackgroundColor:[UIColor blackColor]];
     
-    if (!self.navigationController) {
-        [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
-        [self.navigationBar setDelegate:self];
-        [self.view addSubview:self.navigationBar];
-        
-        [self.navigationBar setItems:@[self.navigationItem]];
-    }
-    
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
     [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
@@ -128,11 +130,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     [self setActionBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL]];
     [self.actionBarButtonItem setRac_command:self.viewModel.actionCommand];
-    
-    if (!self.navigationController) {
-        [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
-        [self.view addSubview:self.toolbar];
-    }
     
     id<BBMediaViewerMedia> media = nil;
     NSInteger index = 0;
@@ -196,25 +193,20 @@ static NSTimeInterval const kAnimationDuration = 0.33;
          }];
      }];
     
-    [self _toggleNavigationBarAndToolbarAnimated:NO];
+    if (self.navigationController.isBeingPresented) {
+        [self.navigationController setNavigationBarHidden:YES];
+        [self.navigationController setToolbarHidden:YES];
+    }
 }
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
-    [self.navigationBar setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.navigationBar sizeThatFits:CGSizeZero].height)];
-    [self.toolbar setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.toolbar sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.toolbar sizeThatFits:CGSizeZero].height)];
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (self.navigationController) {
-        [self _toggleNavigationBarAndToolbarAnimated:animated];
-    }
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (!self.navigationController) {
-        [self _toggleNavigationBarAndToolbarAnimated:animated];
+    if (self.navigationController.isBeingPresented) {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+        [self.navigationController setToolbarHidden:NO animated:animated];
     }
 }
 
@@ -223,9 +215,11 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    [self setPresenting:YES];
     return self;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    [self setPresenting:NO];
     return self;
 }
 
@@ -238,7 +232,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     UIView *containerView = [transitionContext containerView];
     
     // presenting
-    if (toView == self.view) {
+    if (self.isPresenting) {
         [containerView addSubview:toView];
         
         if ([transitionContext isAnimated]) {
@@ -415,25 +409,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 
 - (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated; {
-    if (self.navigationController) {
-        [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:animated];
-        [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:animated];
-    }
-    else {
-        @weakify(self);
-        void(^animations)(void) = ^{
-            @strongify(self);
-            [self.navigationBar setAlpha:self.navigationBar.alpha == 0.0 ? 1.0 : 0.0];
-            [self.toolbar setAlpha:self.toolbar.alpha == 0.0 ? 1.0 : 0.0];
-        };
-        
-        if (animated) {
-            [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:animations completion:nil];
-        }
-        else {
-            animations();
-        }
-    }
+    [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:animated];
+    [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:animated];
 }
 - (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController; {
     NSArray *toolbarItems = @[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],self.actionBarButtonItem];
@@ -443,7 +420,18 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     }
     
     [self setToolbarItems:toolbarItems animated:YES];
-    [self.toolbar setItems:toolbarItems animated:YES];
+}
+
+@end
+
+@implementation UIViewController (BBMediaViewerViewControllerExtensions)
+
+- (void)BB_presentMediaViewController:(BBMediaViewerViewController *)mediaViewController animated:(BOOL)animated completion:(void(^)(void))completion; {
+    BBMediaViewerNavigationController *controller = [[BBMediaViewerNavigationController alloc] initWithRootViewController:mediaViewController];
+    
+    [controller setTransitioningDelegate:mediaViewController];
+    
+    [self presentViewController:controller animated:animated completion:completion];
 }
 
 @end
