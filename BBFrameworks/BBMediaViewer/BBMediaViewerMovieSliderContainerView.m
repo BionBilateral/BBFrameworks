@@ -16,6 +16,7 @@
 #import "BBMediaViewerMovieSliderContainerView.h"
 #import "BBMediaViewerMovieSlider.h"
 #import "BBMediaViewerDetailViewModel.h"
+#import "BBBlocks.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -109,6 +110,16 @@
     [self.timeRemainingDateFormatter setDateFormat:@"-HH:mm:ss"];
     
     @weakify(self);
+    [[RACObserve(self.viewModel.player.currentItem, loadedTimeRanges)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSArray *value) {
+         NSValue *timeRange = [value BB_reduceWithStart:[NSValue valueWithCMTimeRange:kCMTimeRangeZero] block:^id(NSValue *sum, NSValue *object, NSInteger index) {
+             return [NSValue valueWithCMTimeRange:CMTimeRangeGetUnion(sum.CMTimeRangeValue, object.CMTimeRangeValue)];
+         }];
+         
+         [self.slider.progressView setProgress:CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange.CMTimeRangeValue)) / self.viewModel.duration];
+     }];
+    
     [[self.slider
      rac_signalForControlEvents:UIControlEventValueChanged]
      subscribeNext:^(id _) {

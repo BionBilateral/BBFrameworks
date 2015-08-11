@@ -17,4 +17,6 @@
 
 @interface BBMediaViewerMovieSlider : UISlider
 
+@property (readonly,strong,nonatomic) UIProgressView *progressView;
+
 @end

@@ -17,7 +17,7 @@
 #import "BBFoundationGeometryFunctions.h"
 
 @interface BBMediaViewerMovieSlider ()
-@property (strong,nonatomic) UIProgressView *progressView;
+@property (readwrite,strong,nonatomic) UIProgressView *progressView;
 @end
 
 @implementation BBMediaViewerMovieSlider
@@ -27,6 +27,8 @@
         return nil;
     
     [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
+    [self.progressView setTrackTintColor:[UIColor clearColor]];
+    [self.progressView setProgressTintColor:[UIColor whiteColor]];
     [self.progressView sizeToFit];
     [self addSubview:self.progressView];
     
