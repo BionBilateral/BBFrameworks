@@ -66,13 +66,13 @@
 }
 - (void)viewWillLayoutSubviews {
     [self.movieView setFrame:self.view.bounds];
-    [self.slider setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.slider sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.slider sizeThatFits:CGSizeZero].height)];
+    [self.slider setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.slider sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length] - 8.0, CGRectGetWidth(self.view.bounds), [self.slider sizeThatFits:CGSizeZero].height)];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (!self.isBeingPresented &&
-        !self.isBeingDismissed) {
+    if (!self.navigationController.isBeingPresented &&
+        !self.navigationController.isBeingDismissed) {
         
         [self.viewModel stop];
     }
