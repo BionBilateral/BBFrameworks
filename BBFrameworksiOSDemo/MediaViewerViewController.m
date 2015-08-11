@@ -16,6 +16,7 @@
 #import "MediaViewerViewController.h"
 
 #import <BBFrameworks/BBMediaViewer.h>
+#import <BBFrameworks/BBBlocks.h>
 
 #import <QuickLook/QuickLook.h>
 
@@ -46,7 +47,10 @@
     
     [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
     
-    [self setCustomURLs:temp];
+    [self setCustomURLs:[temp BB_filter:^BOOL(NSURL *object, NSInteger index) {
+        return [object.lastPathComponent.pathExtension isEqualToString:@"mp4"];
+    }]];
+//    [self setCustomURLs:temp];
     
     [self.systemButton addTarget:self action:@selector(_systemButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.customButton addTarget:self action:@selector(_customButtonAction:) forControlEvents:UIControlEventTouchUpInside];

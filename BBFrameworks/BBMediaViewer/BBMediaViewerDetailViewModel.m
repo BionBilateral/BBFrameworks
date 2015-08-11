@@ -135,5 +135,14 @@
     }
     return _player;
 }
+- (NSTimeInterval)duration {
+    NSTimeInterval retval = CMTimeGetSeconds(self.player.currentItem.duration);
+    
+    if (isnan(retval)) {
+        retval = 0.0;
+    }
+    
+    return retval;
+}
 
 @end

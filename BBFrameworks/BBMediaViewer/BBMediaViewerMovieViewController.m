@@ -17,6 +17,10 @@
 #import "BBMediaViewerMovieView.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBMediaViewerMovieSlider.h"
+#import "UIBarButtonItem+BBKitExtensions.h"
+#import "UIImage+BBKitExtensions.h"
+#import "BBKitColorMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -24,6 +28,7 @@
 
 @interface BBMediaViewerMovieViewController ()
 @property (strong,nonatomic) BBMediaViewerMovieView *movieView;
+@property (strong,nonatomic) BBMediaViewerMovieSlider *slider;
 @end
 
 @implementation BBMediaViewerMovieViewController
@@ -36,8 +41,12 @@
     
     UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
+    [playPauseButton setAdjustsImageWhenHighlighted:NO];
+    
     [playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByTintingWithColor:BBColorWA(0.0, 0.33)] forState:UIControlStateNormal|UIControlStateHighlighted];
     [playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+    [playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByTintingWithColor:BBColorWA(0.0, 0.33)] forState:UIControlStateSelected|UIControlStateHighlighted];
     [playPauseButton sizeToFit];
     
     [playPauseButton setRac_command:self.viewModel.playPauseCommand];
@@ -47,15 +56,30 @@
                                          return @(value.floatValue != 0.0);
                                      }];
     
-    [self setToolbarItems:@[[[UIBarButtonItem alloc] initWithCustomView:playPauseButton]]];
+    [self setSlider:[[BBMediaViewerMovieSlider alloc] initWithFrame:CGRectZero]];
+    [self.view addSubview:self.slider];
+    
+    @weakify(self);
+    [[self.slider rac_signalForControlEvents:UIControlEventValueChanged]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.viewModel seekToTimeInterval:self.viewModel.duration * self.slider.value];
+     }];
+    
+    [self setAdditionalToolbarItems:@[[[UIBarButtonItem alloc] initWithCustomView:playPauseButton]]];
 }
 - (void)viewWillLayoutSubviews {
     [self.movieView setFrame:self.view.bounds];
+    [self.slider setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.slider sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.slider sizeThatFits:CGSizeZero].height)];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [self.viewModel stop];
+    if (!self.isBeingPresented &&
+        !self.isBeingDismissed) {
+        
+        [self.viewModel stop];
+    }
 }
 
 @end

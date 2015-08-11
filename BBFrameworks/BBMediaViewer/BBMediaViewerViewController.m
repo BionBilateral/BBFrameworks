@@ -37,7 +37,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 @property (strong,nonatomic) UIBarButtonItem *actionBarButtonItem;
 
 - (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated;
-- (void)_updateToolbarItemsWithViewController:(UIViewController *)viewController;
+- (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController;
 @end
 
 @implementation BBMediaViewerViewController
@@ -75,7 +75,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 
 - (BOOL)hidesBottomBarWhenPushed {
-    return YES;
+    return self.tabBarController ? YES : NO;
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -435,23 +435,15 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         }
     }
 }
-- (void)_updateToolbarItemsWithViewController:(UIViewController *)viewController; {
+- (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController; {
     NSArray *toolbarItems = @[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],self.actionBarButtonItem];
     
-    if (viewController.toolbarItems.count > 0) {
-        NSMutableArray *temp = [NSMutableArray arrayWithArray:viewController.toolbarItems];
-        
-        [temp addObjectsFromArray:toolbarItems];
-        
-        toolbarItems = [temp copy];
+    if (viewController.additionalToolbarItems.count > 0) {
+        toolbarItems = [viewController.additionalToolbarItems arrayByAddingObjectsFromArray:toolbarItems];
     }
     
-    if (self.navigationController) {
-        [self setToolbarItems:toolbarItems animated:YES];
-    }
-    else {
-        [self.toolbar setItems:toolbarItems animated:YES];
-    }
+    [self setToolbarItems:toolbarItems animated:YES];
+    [self.toolbar setItems:toolbarItems animated:YES];
 }
 
 @end

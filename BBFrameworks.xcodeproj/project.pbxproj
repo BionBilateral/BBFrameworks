@@ -473,6 +473,7 @@
 		79F577E81B7970070078EAB8 /* media_viewer_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F577E21B7970070078EAB8 /* media_viewer_play.png */; };
 		79F577E91B7970070078EAB8 /* media_viewer_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F577E31B7970070078EAB8 /* media_viewer_play@2x.png */; };
 		79F577EA1B7970070078EAB8 /* media_viewer_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F577E41B7970070078EAB8 /* media_viewer_play@3x.png */; };
+		79F577ED1B797DEB0078EAB8 /* BBMediaViewerMovieSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F577EC1B797DEB0078EAB8 /* BBMediaViewerMovieSlider.m */; };
 		79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */; };
 		79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941511B435AA300B385F0 /* AddressBookViewController.m */; };
 		79F941571B435D3400B385F0 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F941561B435D3400B385F0 /* AddressBookViewController.xib */; };
@@ -1126,6 +1127,8 @@
 		79F577E21B7970070078EAB8 /* media_viewer_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_viewer_play.png; sourceTree = "<group>"; };
 		79F577E31B7970070078EAB8 /* media_viewer_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_viewer_play@2x.png"; sourceTree = "<group>"; };
 		79F577E41B7970070078EAB8 /* media_viewer_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_viewer_play@3x.png"; sourceTree = "<group>"; };
+		79F577EB1B797DEA0078EAB8 /* BBMediaViewerMovieSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerMovieSlider.h; sourceTree = "<group>"; };
+		79F577EC1B797DEB0078EAB8 /* BBMediaViewerMovieSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerMovieSlider.m; sourceTree = "<group>"; };
 		79F9414D1B4353C300B385F0 /* BBAddressBookPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookPerson.h; sourceTree = "<group>"; };
 		79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookPerson.m; sourceTree = "<group>"; };
 		79F941501B435AA300B385F0 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
@@ -2228,6 +2231,8 @@
 				79F577DA1B7968110078EAB8 /* BBMediaViewerMovieViewController.m */,
 				79F577DC1B7969920078EAB8 /* BBMediaViewerMovieView.h */,
 				79F577DD1B7969920078EAB8 /* BBMediaViewerMovieView.m */,
+				79F577EB1B797DEA0078EAB8 /* BBMediaViewerMovieSlider.h */,
+				79F577EC1B797DEB0078EAB8 /* BBMediaViewerMovieSlider.m */,
 			);
 			name = Movie;
 			sourceTree = "<group>";
@@ -2867,6 +2872,7 @@
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				0750D6581B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m in Sources */,
+				79F577ED1B797DEB0078EAB8 /* BBMediaViewerMovieSlider.m in Sources */,
 				07B3D9061B60373B00FA1853 /* BBFormTableViewFooterView.m in Sources */,
 				07AEC8491B6BE68500013470 /* UITextField+BBValidationExtensions.m in Sources */,
 				07605ADA1B6970BF00333678 /* BBMediaPickerAssetCollectionViewController.m in Sources */,

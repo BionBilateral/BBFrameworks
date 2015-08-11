@@ -21,6 +21,8 @@
 
 @property (readonly,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 
+@property (copy,nonatomic) NSArray *additionalToolbarItems;
+
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel;
 
 @end
