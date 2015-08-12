@@ -105,5 +105,11 @@
  @exception NSException Thrown if orderedSet is nil
  */
 - (NSOrderedSet *)BB_zip:(NSOrderedSet *)orderedSet;
+/**
+ Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
+ 
+ @return The sum
+ */
+- (id)BB_sum;
 
 @end
