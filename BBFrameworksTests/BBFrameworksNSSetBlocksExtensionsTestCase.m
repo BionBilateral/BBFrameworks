@@ -93,5 +93,21 @@
         return object.integerValue % 2 == 0;
     }]);
 }
+- (void)testSum {
+    NSSet *begin = [NSSet setWithArray:@[@1,@2,@3]];
+    NSNumber *end = @6;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSSet setWithArray:@[@1.0,@2.0,@3.0]];
+    end = @6.0;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSSet setWithArray:@[[NSDecimalNumber decimalNumberWithString:@"1"],[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"6"];
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+}
 
 @end

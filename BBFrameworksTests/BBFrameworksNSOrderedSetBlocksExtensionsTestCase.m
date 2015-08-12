@@ -136,5 +136,21 @@
     
     XCTAssertEqualObjects([first BB_zip:second], end);
 }
+- (void)testSum {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSNumber *end = @6;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[@1.0,@2.0,@3.0]];
+    end = @6.0;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[[NSDecimalNumber decimalNumberWithString:@"1"],[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"6"];
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+}
 
 @end
