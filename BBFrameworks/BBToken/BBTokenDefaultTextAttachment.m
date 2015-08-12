@@ -15,6 +15,7 @@
 
 #import "BBTokenDefaultTextAttachment.h"
 #import "BBTokenTextView.h"
+#import "BBFoundationGeometryFunctions.h"
 
 @interface BBTokenDefaultTextAttachment ()
 @property (readwrite,weak,nonatomic) BBTokenTextView *tokenTextView;
@@ -73,7 +74,10 @@
     [highlighted ? self.tokenHighlightedBackgroundColor : self.tokenBackgroundColor setFill];
     [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 1.0) cornerRadius:self.tokenCornerRadius] fill];
     
-    [self.text drawAtPoint:CGPointMake(3.0, 0) withAttributes:@{NSFontAttributeName: self.tokenFont, NSForegroundColorAttributeName: highlighted ? self.tokenHighlightedTextColor : self.tokenTextColor}];
+    UIFont *drawFont = [UIFont fontWithName:self.tokenFont.fontName size:self.tokenFont.pointSize - 1.0];
+    CGSize drawSize = [self.text sizeWithAttributes:@{NSFontAttributeName: drawFont}];
+    
+    [self.text drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, drawSize.width, drawSize.height), rect) withAttributes:@{NSFontAttributeName: drawFont, NSForegroundColorAttributeName: highlighted ? self.tokenHighlightedTextColor : self.tokenTextColor}];
     
     UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
     
