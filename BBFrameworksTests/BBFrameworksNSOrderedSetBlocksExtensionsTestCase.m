@@ -168,5 +168,11 @@
     
     XCTAssertEqualObjects([begin BB_product], end);
 }
+- (void)testMaximum {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@3,@2]];
+    NSNumber *end = @3;
+    
+    XCTAssertEqualObjects([begin BB_maximum], end);
+}
 
 @end
