@@ -152,5 +152,21 @@
     
     XCTAssertEqualObjects([begin BB_sum], end);
 }
+- (void)testProduct {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@2,@3,@4]];
+    NSNumber *end = @24;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[@2.0,@3.0,@4.0]];
+    end = @24.0;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"],[NSDecimalNumber decimalNumberWithString:@"4"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"24"];
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+}
 
 @end
