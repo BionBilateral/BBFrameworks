@@ -53,7 +53,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(225, [self.slider sizeThatFits:size].height);
+    return CGSizeMake(275, [self.slider sizeThatFits:size].height);
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
@@ -88,11 +88,16 @@
     [[RACObserve(self.viewModel.player.currentItem, loadedTimeRanges)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSArray *value) {
-         NSValue *timeRange = [value BB_reduceWithStart:[NSValue valueWithCMTimeRange:kCMTimeRangeZero] block:^id(NSValue *sum, NSValue *object, NSInteger index) {
-             return [NSValue valueWithCMTimeRange:CMTimeRangeGetUnion(sum.CMTimeRangeValue, object.CMTimeRangeValue)];
-         }];
-         
-         [self.slider.progressView setProgress:CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange.CMTimeRangeValue)) / self.viewModel.duration];
+         if (value.count > 0) {
+             NSValue *timeRange = [value BB_reduceWithStart:[NSValue valueWithCMTimeRange:kCMTimeRangeZero] block:^id(NSValue *sum, NSValue *object, NSInteger index) {
+                 return [NSValue valueWithCMTimeRange:CMTimeRangeGetUnion(sum.CMTimeRangeValue, object.CMTimeRangeValue)];
+             }];
+             
+             [self.slider setProgress:CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange.CMTimeRangeValue)) / self.viewModel.duration];
+         }
+         else {
+             [self.slider setProgress:0.0];
+         }
      }];
     
     [[self.slider

@@ -32,32 +32,38 @@
     [self setMinimumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_minimum_track"] BB_imageByRenderingWithColor:self.tintColor] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
     [self setMaximumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_maximum_track"] BB_imageByRenderingWithColor:[UIColor lightGrayColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
     
-    [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
-    [self.progressView setProgress:0.0];
-    [self.progressView setTrackImage:({
-        UIGraphicsBeginImageContextWithOptions([UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"].size, YES, 0);
-        
-        [[UIColor blackColor] setFill];
-        UIRectFill(CGRectMake(0, 0, 1, [UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"].size.height));
-        
-        UIImage *retval = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero];
-        
-        UIGraphicsEndImageContext();
-        
-        retval;
-    })];
-    [self.progressView setProgressImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"] BB_imageByRenderingWithColor:[UIColor lightGrayColor]] resizableImageWithCapInsets:UIEdgeInsetsZero]];
-    [self.progressView sizeToFit];
-    [self addSubview:self.progressView];
+//    [self setProgressView:[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar]];
+//    [self.progressView setTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"] BB_imageByRenderingWithColor:[UIColor whiteColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 1, 0)]];
+//    [self.progressView setProgressImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"] BB_imageByRenderingWithColor:[UIColor orangeColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 1, 0)]];
+//    [self addSubview:self.progressView];
     
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    BBLogCGRect([self trackRectForBounds:self.bounds]);
-    [self.progressView setFrame:CGRectInset([self trackRectForBounds:self.bounds], 1, 1)];
+- (void)drawRect:(CGRect)rect {
+    if (self.progress > 0.0) {
+        CGRect trackRect = [self trackRectForBounds:self.bounds];
+        CGFloat availableWidth = CGRectGetWidth(trackRect) - 2.0;
+        CGFloat width = ceil(availableWidth * self.progress);
+        
+        [[UIColor lightGrayColor] setFill];
+        UIRectFill(BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(trackRect) + 1.0, 0, width, 9.0), self.bounds));
+    }
 }
+
+- (void)setProgress:(float)progress {
+    _progress = progress;
+    
+    [self setNeedsDisplay];
+}
+
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    
+//    CGRect trackRect = [self trackRectForBounds:self.bounds];
+//    
+//    [self.progressView setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(trackRect) + 1.0, 0, CGRectGetWidth(trackRect) - 2.0, CGRectGetHeight(self.bounds) - 2.0), self.bounds)];
+//}
 
 //- (CGRect)trackRectForBounds:(CGRect)bounds {
 //    CGRect retval = [super trackRectForBounds:bounds];
