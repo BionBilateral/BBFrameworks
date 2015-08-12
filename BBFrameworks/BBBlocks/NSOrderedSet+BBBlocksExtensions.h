@@ -90,5 +90,12 @@
  @return The new ordered set
  */
 - (NSOrderedSet *)BB_take:(NSInteger)count;
+/**
+ Returns a new ordered set created by taking the last count objects in the receiver. If count > self.count, returns an empty array.
+ 
+ @param count The number of objects to take from the end of the receiver
+ @return The new ordered set
+ */
+- (NSOrderedSet *)BB_drop:(NSInteger)count;
 
 @end

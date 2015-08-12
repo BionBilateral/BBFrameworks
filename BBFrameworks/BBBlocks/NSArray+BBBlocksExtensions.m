@@ -123,5 +123,13 @@
         return [self subarrayWithRange:NSMakeRange(0, count)];
     }
 }
+- (NSArray *)BB_drop:(NSInteger)count; {
+    if (count > self.count) {
+        return @[];
+    }
+    else {
+        return [self subarrayWithRange:NSMakeRange(self.count - count, count)];
+    }
+}
 
 @end

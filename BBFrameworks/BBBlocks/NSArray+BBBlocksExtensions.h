@@ -84,11 +84,18 @@
  */
 - (BOOL)BB_all:(BOOL(^)(id object, NSInteger index))block;
 /**
- Returns a new ordered set created by taking the first count objects in the receiver. If count > self.count, returns self.
+ Returns a new array created by taking the first count objects in the receiver. If count > self.count, returns self.
  
- @param count The number of elements to take from the beginning of the receiver
- @return The new ordered set
+ @param count The number of objects to take from the beginning of the receiver
+ @return The new array
  */
 - (NSArray *)BB_take:(NSInteger)count;
+/**
+ Returns a new array created by taking the last count objects in the receiver. If count > self.count, returns an empty array.
+ 
+ @param count The number of objects to take from the end of the receiver
+ @return The new array
+ */
+- (NSArray *)BB_drop:(NSInteger)count;
 
 @end

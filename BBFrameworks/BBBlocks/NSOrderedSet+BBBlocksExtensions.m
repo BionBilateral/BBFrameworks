@@ -123,5 +123,13 @@
         return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, count)]]];
     }
 }
+- (NSOrderedSet *)BB_drop:(NSInteger)count; {
+    if (count > self.count) {
+        return [NSOrderedSet orderedSet];
+    }
+    else {
+        return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.count - count, count)]]];
+    }
+}
 
 @end
