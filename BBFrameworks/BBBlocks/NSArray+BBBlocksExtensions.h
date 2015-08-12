@@ -113,5 +113,11 @@
  @return The sum
  */
 - (id)BB_sum;
+/**
+ Returns the product of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
+ 
+ @return The product
+ */
+- (id)BB_product;
 
 @end

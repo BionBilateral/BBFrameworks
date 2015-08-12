@@ -172,5 +172,33 @@
     }
     return @0;
 }
+- (id)BB_product; {
+    if (self.count > 0) {
+        NSNumber *first = self.firstObject;
+        
+        if ([first isKindOfClass:[NSDecimalNumber class]]) {
+            return [self BB_reduceWithStart:[NSDecimalNumber one] block:^id(NSDecimalNumber *sum, NSDecimalNumber *object, NSInteger index) {
+                return [sum decimalNumberByMultiplyingBy:object];
+            }];
+        }
+        else {
+            NSString *type = [NSString stringWithUTF8String:first.objCType];
+            
+            if ([type isEqualToString:@"d"] ||
+                [type isEqualToString:@"f"]) {
+                
+                return [self BB_reduceWithStart:@1.0 block:^id(NSNumber *sum, NSNumber *object, NSInteger index) {
+                    return @(sum.doubleValue * object.doubleValue);
+                }];
+            }
+            else {
+                return [self BB_reduceWithStart:@1 block:^id(NSNumber *sum, NSNumber *object, NSInteger index) {
+                    return @(sum.integerValue * object.integerValue);
+                }];
+            }
+        }
+    }
+    return @0;
+}
 
 @end
