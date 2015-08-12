@@ -15,6 +15,9 @@
 
 #import "BBMediaViewerMovieSlider.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "UIImage+BBKitExtensions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBFoundationDebugging.h"
 
 @interface BBMediaViewerMovieSlider ()
 @property (readwrite,strong,nonatomic) UIProgressView *progressView;
@@ -26,11 +29,24 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self setMaximumTrackTintColor:[UIColor clearColor]];
+    [self setMinimumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_minimum_track"] BB_imageByRenderingWithColor:self.tintColor] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
+    [self setMaximumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_maximum_track"] BB_imageByRenderingWithColor:[UIColor lightGrayColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
     
     [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
-    [self.progressView setTrackTintColor:[UIColor clearColor]];
-    [self.progressView setProgressTintColor:[UIColor whiteColor]];
+    [self.progressView setProgress:0.0];
+    [self.progressView setTrackImage:({
+        UIGraphicsBeginImageContextWithOptions([UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"].size, YES, 0);
+        
+        [[UIColor blackColor] setFill];
+        UIRectFill(CGRectMake(0, 0, 1, [UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"].size.height));
+        
+        UIImage *retval = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero];
+        
+        UIGraphicsEndImageContext();
+        
+        retval;
+    })];
+    [self.progressView setProgressImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"] BB_imageByRenderingWithColor:[UIColor lightGrayColor]] resizableImageWithCapInsets:UIEdgeInsetsZero]];
     [self.progressView sizeToFit];
     [self addSubview:self.progressView];
     
@@ -39,8 +55,16 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    [self.progressView setFrame:[self trackRectForBounds:self.bounds]];
+    BBLogCGRect([self trackRectForBounds:self.bounds]);
+    [self.progressView setFrame:CGRectInset([self trackRectForBounds:self.bounds], 1, 1)];
 }
+
+//- (CGRect)trackRectForBounds:(CGRect)bounds {
+//    CGRect retval = [super trackRectForBounds:bounds];
+//    
+//    retval.size.height = [UIImage imageNamed:@"media_viewer_scrubber_minimum_track"].size.height;
+//    
+//    return retval;
+//}
 
 @end

@@ -53,19 +53,21 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return [self.slider sizeThatFits:size];
+    return CGSizeMake(225, [self.slider sizeThatFits:size].height);
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;
     
+    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    
     [self setViewModel:viewModel];
     
     [self setSlider:[[BBMediaViewerMovieSlider alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.slider];
     
-    UIColor *textColor = [UIColor whiteColor];
+    UIColor *textColor = [UIColor blackColor];
     UIFont *font = [UIFont systemFontOfSize:12.0];
     
     [self setTimeElapsedLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
