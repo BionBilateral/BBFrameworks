@@ -131,5 +131,11 @@
     
     XCTAssertEqualObjects([begin BB_maximum], end);
 }
+- (void)testMinimum {
+    NSSet *begin = [NSSet setWithArray:@[@1,@-1,@2]];
+    NSNumber *end = @-1;
+    
+    XCTAssertEqualObjects([begin BB_minimum], end);
+}
 
 @end
