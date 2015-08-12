@@ -205,5 +205,10 @@
         return [object compare:sum] == NSOrderedDescending ? object : sum;
     }];
 }
+- (id)BB_minimum; {
+    return [self BB_reduceWithStart:self.firstObject block:^id(id sum, id object, NSInteger index) {
+        return [object compare:sum] == NSOrderedAscending ? object : sum;
+    }];
+}
 
 @end

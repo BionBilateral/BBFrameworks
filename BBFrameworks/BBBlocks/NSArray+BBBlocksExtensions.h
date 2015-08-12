@@ -125,5 +125,11 @@
  @return The maximum value
  */
 - (id)BB_maximum;
+/**
+ Returns the minimum value of the objects in the receiver, which should all respond to the `compare`: method.
+ 
+ @return The minimum value
+ */
+- (id)BB_minimum;
 
 @end
