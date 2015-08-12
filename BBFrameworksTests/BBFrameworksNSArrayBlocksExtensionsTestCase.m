@@ -101,5 +101,17 @@
         return object.integerValue % 2 == 0;
     }]);
 }
+- (void)testTake {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@1,@2];
+    
+    XCTAssertEqualObjects([begin BB_take:2], end);
+    
+    end = @[@1,@2,@3];
+    
+    XCTAssertEqualObjects([begin BB_take:3], end);
+    
+    XCTAssertEqualObjects([begin BB_take:4], begin);
+}
 
 @end
