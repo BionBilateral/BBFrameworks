@@ -21,6 +21,13 @@
 @interface NSOrderedSet (BBBlocksExtensions)
 
 /**
+ Invokes block once for each object in the receiver.
+ 
+ @param block The block to invoke
+ @exception NSException Thrown if block is nil
+ */
+- (void)BB_each:(void(^)(id object, NSInteger idx))block;
+/**
  Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including it in the new array if block returns YES.
  
  @param block The block to invoke for each object in the receiver

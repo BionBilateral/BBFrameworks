@@ -17,6 +17,13 @@
 
 @implementation NSArray (BBBlocksExtensions)
 
+- (void)BB_each:(void(^)(id object, NSInteger index))block; {
+    NSParameterAssert(block);
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        block(obj,idx);
+    }];
+}
 - (NSArray *)BB_filter:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     

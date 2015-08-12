@@ -17,6 +17,13 @@
 
 @implementation NSOrderedSet (BBBlocksExtensions)
 
+- (void)BB_each:(void(^)(id object, NSInteger idx))block; {
+    NSParameterAssert(block);
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        block(obj,idx);
+    }];
+}
 - (NSOrderedSet *)BB_filter:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     

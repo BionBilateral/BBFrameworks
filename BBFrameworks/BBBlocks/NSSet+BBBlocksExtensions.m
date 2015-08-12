@@ -17,6 +17,13 @@
 
 @implementation NSSet (BBBlocksExtensions)
 
+- (void)BB_each:(void(^)(id object))block; {
+    NSParameterAssert(block);
+    
+    [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        block(obj);
+    }];
+}
 - (NSSet *)BB_filter:(BOOL(^)(id object))block; {
     NSParameterAssert(block);
     
