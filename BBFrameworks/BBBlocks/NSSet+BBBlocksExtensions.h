@@ -76,5 +76,11 @@
  @exception NSException Throw if block is nil
  */
 - (BOOL)BB_all:(BOOL(^)(id object))block;
+/**
+ Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
+ 
+ @return The sum
+ */
+- (id)BB_sum;
 
 @end
