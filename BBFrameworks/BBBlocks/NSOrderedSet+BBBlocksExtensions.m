@@ -115,5 +115,13 @@
     
     return retval;
 }
+- (NSOrderedSet *)BB_take:(NSInteger)count; {
+    if (count > self.count) {
+        return self;
+    }
+    else {
+        return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, count)]]];
+    }
+}
 
 @end

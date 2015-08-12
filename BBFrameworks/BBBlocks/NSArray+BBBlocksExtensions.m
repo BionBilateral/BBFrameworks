@@ -115,5 +115,13 @@
     
     return retval;
 }
+- (NSArray *)BB_take:(NSInteger)count; {
+    if (count > self.count) {
+        return self;
+    }
+    else {
+        return [self subarrayWithRange:NSMakeRange(0, count)];
+    }
+}
 
 @end

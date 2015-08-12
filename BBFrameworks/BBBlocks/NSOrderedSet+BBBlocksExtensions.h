@@ -83,5 +83,12 @@
  @exception NSException Throw if block is nil
  */
 - (BOOL)BB_all:(BOOL(^)(id object, NSInteger index))block;
+/**
+ Returns a new ordered set created by taking the first count objects in the receiver. If count > self.count, returns self.
+ 
+ @param count The number of elements to take from the beginning of the receiver
+ @return The new ordered set
+ */
+- (NSOrderedSet *)BB_take:(NSInteger)count;
 
 @end
