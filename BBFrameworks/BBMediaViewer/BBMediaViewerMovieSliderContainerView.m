@@ -115,17 +115,17 @@
         NSDate *remainingTimeDate = [[NSCalendar currentCalendar] dateFromComponents:remainingTimeDateComps];
         
         if (elapsedTimeDateComps.hour > 0) {
-            [self.timeElapsedDateFormatter setDateFormat:@"HH:mm:ss"];
+            [self.timeElapsedDateFormatter setDateFormat:@"H:mm:ss"];
         }
         else {
-            [self.timeElapsedDateFormatter setDateFormat:@"mm:ss"];
+            [self.timeElapsedDateFormatter setDateFormat:@"m:ss"];
         }
         
         if (remainingTimeDateComps.hour > 0) {
-            [self.timeRemainingDateFormatter setDateFormat:@"-HH:mm:ss"];
+            [self.timeRemainingDateFormatter setDateFormat:@"-H:mm:ss"];
         }
         else {
-            [self.timeRemainingDateFormatter setDateFormat:@"-mm:ss"];
+            [self.timeRemainingDateFormatter setDateFormat:@"-m:ss"];
         }
         
         [self.timeElapsedLabel setText:[self.timeElapsedDateFormatter stringFromDate:elapsedTimeDate]];
