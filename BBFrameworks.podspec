@@ -190,4 +190,12 @@ Pod::Spec.new do |spec|
     subspec.ios.source_files = "BBFrameworks/BBForm"
     subspec.osx.source_files = "BBFrameworks/BBForm/BBForm.h"
   end
+  
+  spec.subspec "BBReachability" do |subspec|
+    subspec.dependency "BBFrameworks/BBFoundation"
+    
+    subspec.source_files = "BBFrameworks/BBReachability"
+    
+    subspec.frameworks = "SystemConfiguration"
+  end
 end
