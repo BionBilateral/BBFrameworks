@@ -128,7 +128,7 @@
         return [NSOrderedSet orderedSet];
     }
     else {
-        return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.count - count, count)]]];
+        return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.count - count)]]];
     }
 }
 

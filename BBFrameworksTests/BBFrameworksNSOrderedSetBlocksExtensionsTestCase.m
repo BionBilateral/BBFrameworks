@@ -109,9 +109,21 @@
     
     end = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
     
-    XCTAssertEqualObjects([begin BB_take:3], end);
+    XCTAssertEqualObjects([begin BB_take:begin.count], end);
     
-    XCTAssertEqualObjects([begin BB_take:4], begin);
+    XCTAssertEqualObjects([begin BB_take:begin.count + 1], begin);
+}
+- (void)testDrop {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@1,@2]];
+    
+    XCTAssertEqualObjects([begin BB_drop:1], end);
+    
+    end = [NSOrderedSet orderedSet];
+    
+    XCTAssertEqualObjects([begin BB_drop:begin.count], end);
+    
+    XCTAssertEqualObjects([begin BB_drop:begin.count + 1], end);
 }
 
 @end

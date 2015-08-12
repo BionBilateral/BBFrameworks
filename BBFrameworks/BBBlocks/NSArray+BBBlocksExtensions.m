@@ -128,7 +128,7 @@
         return @[];
     }
     else {
-        return [self subarrayWithRange:NSMakeRange(self.count - count, count)];
+        return [self subarrayWithRange:NSMakeRange(0, self.count - count)];
     }
 }
 

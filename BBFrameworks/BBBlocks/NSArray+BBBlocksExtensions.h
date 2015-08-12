@@ -91,9 +91,9 @@
  */
 - (NSArray *)BB_take:(NSInteger)count;
 /**
- Returns a new array created by taking the last count objects in the receiver. If count > self.count, returns an empty array.
+ Returns a new array created by taking the remaining objects after dropping count objects from the end of the receiver. If count > self.count, returns an empty array.
  
- @param count The number of objects to take from the end of the receiver
+ @param count The number of objects to drop from the end of the receiver
  @return The new array
  */
 - (NSArray *)BB_drop:(NSInteger)count;
