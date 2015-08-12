@@ -78,7 +78,6 @@ static NSTimeInterval const kObserverInterval = 1.0;
     [self.elapsedTimeDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
     
     [self setRemainingTimeDateFormatter:[[NSDateComponentsFormatter alloc] init]];
-    [self.remainingTimeDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
     [self.remainingTimeDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
     
     @weakify(self);
@@ -94,6 +93,20 @@ static NSTimeInterval const kObserverInterval = 1.0;
     
     void(^nextTimeBlock)(NSNumber *) = ^(NSNumber *time){
         @strongify(self);
+        if (time.doubleValue > 3600) {
+            [self.elapsedTimeDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
+        }
+        else {
+            [self.elapsedTimeDateFormatter setAllowedUnits:NSCalendarUnitMinute|NSCalendarUnitSecond];
+        }
+        
+        if (self.moviePlayerController.duration - time.doubleValue > 3600) {
+            [self.remainingTimeDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
+        }
+        else {
+            [self.remainingTimeDateFormatter setAllowedUnits:NSCalendarUnitMinute|NSCalendarUnitSecond];
+        }
+        
         [self.elapsedTimeLabel setText:[self.elapsedTimeDateFormatter stringFromTimeInterval:time.doubleValue]];
         [self.remainingTimeLabel setText:[NSLocalizedStringWithDefaultValue(@"MEDIA_PLAYER_NEGATIVE_INTERVAL_PREFIX", @"MediaPlayer", BBFrameworksResourcesBundle(), @"-", @"media player negative interval prefix") stringByAppendingString:[self.remainingTimeDateFormatter stringFromTimeInterval:self.moviePlayerController.duration - time.doubleValue]]];
         
