@@ -125,5 +125,16 @@
     
     XCTAssertEqualObjects([begin BB_drop:begin.count + 1], end);
 }
+- (void)testZip {
+    NSArray *first = @[@1,@2];
+    NSArray *second = @[@3,@4];
+    NSArray *end = @[@[@1,@3],@[@2,@4]];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+    
+    second = @[@3,@4,@5];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+}
 
 @end

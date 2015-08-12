@@ -125,5 +125,16 @@
     
     XCTAssertEqualObjects([begin BB_drop:begin.count + 1], end);
 }
+- (void)testZip {
+    NSOrderedSet *first = [NSOrderedSet orderedSetWithArray:@[@1,@2]];
+    NSOrderedSet *second = [NSOrderedSet orderedSetWithArray:@[@3,@4]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[[NSOrderedSet orderedSetWithArray:@[@1,@3]],[NSOrderedSet orderedSetWithArray:@[@2,@4]]]];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+    
+    second = [NSOrderedSet orderedSetWithArray:@[@3,@4,@5]];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+}
 
 @end

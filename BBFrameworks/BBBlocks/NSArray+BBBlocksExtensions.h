@@ -98,7 +98,7 @@
  */
 - (NSArray *)BB_drop:(NSInteger)count;
 /**
- Returns a new array created by taking pairs of objects from the receiver and array.
+ Returns a new array created by taking pairs of objects from the receiver and array. If either array has more objects than the other, the extra objects are not included in the return value.
  
  For example, `[@[@1,@2] BB_zip:@[@3,@4]]` -> `@[@[@1,@3],@[@2,@4]]`.
  
