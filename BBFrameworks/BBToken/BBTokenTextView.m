@@ -130,7 +130,8 @@
 }
 #pragma mark NSTextStorageDelegate
 - (void)textStorage:(NSTextStorage *)textStorage didProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta {
-    [textStorage addAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor} range:NSMakeRange(0, textStorage.length)];
+    // fix up our attributes so that everything, including the attachments, use our desired font and text color
+    [textStorage addAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor} range:editedRange];
 }
 #pragma mark UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
