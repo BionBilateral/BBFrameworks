@@ -23,6 +23,17 @@
 
 @implementation BBFrameworksNSOrderedSetBlocksExtensionsTestCase
 
+- (void)testEach {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@2,@3,@4]];
+    NSMutableOrderedSet *temp = [[NSMutableOrderedSet alloc] init];
+    
+    [begin BB_each:^(NSNumber *object, NSInteger index) {
+        [temp addObject:@(object.integerValue + 1)];
+    }];
+    
+    XCTAssertEqualObjects(temp, end);
+}
 - (void)testFilter {
     NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3,@4]];
     NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@2,@4]];

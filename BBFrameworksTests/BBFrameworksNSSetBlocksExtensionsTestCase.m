@@ -23,6 +23,17 @@
 
 @implementation BBFrameworksNSSetBlocksExtensionsTestCase
 
+- (void)testEach {
+    NSSet *begin = [NSSet setWithArray:@[@1,@2,@3]];
+    NSSet *end = [NSSet setWithArray:@[@2,@3,@4]];
+    NSMutableSet *temp = [[NSMutableSet alloc] init];
+    
+    [begin BB_each:^(NSNumber *object) {
+        [temp addObject:@(object.integerValue + 1)];
+    }];
+    
+    XCTAssertEqualObjects(temp, end);
+}
 - (void)testFilter {
     NSSet *begin = [NSSet setWithArray:@[@1,@2,@3,@4]];
     NSSet *end = [NSSet setWithArray:@[@2,@4]];

@@ -23,6 +23,17 @@
 
 @implementation BBFrameworksNSArrayBlocksExtensionsTestCase
 
+- (void)testEach {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@2,@3,@4];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    [begin BB_each:^(NSNumber *object, NSInteger index) {
+        [temp addObject:@(object.integerValue + 1)];
+    }];
+    
+    XCTAssertEqualObjects(temp, end);
+}
 - (void)testFilter {
     NSArray *begin = @[@1,@2,@3,@4];
     NSArray *end = @[@2,@4];
