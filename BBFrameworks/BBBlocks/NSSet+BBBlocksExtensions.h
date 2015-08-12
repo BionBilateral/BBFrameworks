@@ -88,5 +88,11 @@
  @return The product
  */
 - (id)BB_product;
+/**
+ Returns the maximum value of the objects in the receiver, which should all respond to the `compare:` method.
+ 
+ @return The maximum value
+ */
+- (id)BB_maximum;
 
 @end
