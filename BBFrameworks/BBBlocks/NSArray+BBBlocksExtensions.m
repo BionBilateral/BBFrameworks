@@ -131,5 +131,18 @@
         return [self subarrayWithRange:NSMakeRange(0, self.count - count)];
     }
 }
+- (NSArray *)BB_zip:(NSArray *)array; {
+    NSParameterAssert(array);
+    
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (idx < array.count) {
+            [retval addObject:@[obj,array[idx]]];
+        }
+    }];
+    
+    return retval;
+}
 
 @end

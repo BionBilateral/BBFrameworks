@@ -131,5 +131,18 @@
         return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.count - count)]]];
     }
 }
+- (NSOrderedSet *)BB_zip:(NSOrderedSet *)orderedSet; {
+    NSParameterAssert(orderedSet);
+    
+    NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (idx < orderedSet.count) {
+            [retval addObject:[NSOrderedSet orderedSetWithArray:@[obj,orderedSet[idx]]]];
+        }
+    }];
+    
+    return retval;
+}
 
 @end

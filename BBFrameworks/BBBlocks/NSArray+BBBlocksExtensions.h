@@ -97,5 +97,15 @@
  @return The new array
  */
 - (NSArray *)BB_drop:(NSInteger)count;
+/**
+ Returns a new array created by taking pairs of objects from the receiver and array.
+ 
+ For example, `[@[@1,@2] BB_zip:@[@3,@4]]` -> `@[@[@1,@3],@[@2,@4]]`.
+ 
+ @param array The array to zip with
+ @return The new array
+ @exception NSException Thrown if array is nil
+ */
+- (NSArray *)BB_zip:(NSArray *)array;
 
 @end

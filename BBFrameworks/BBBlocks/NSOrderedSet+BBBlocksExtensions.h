@@ -97,5 +97,13 @@
  @return The new ordered set
  */
 - (NSOrderedSet *)BB_drop:(NSInteger)count;
+/**
+ Returns a new ordered set created by taking pairs of objects from the receiver and array. The behavior is identical to [NSArray BB_zip:].
+ 
+ @param orderedSet The ordered set to zip with
+ @return The new ordered set
+ @exception NSException Thrown if orderedSet is nil
+ */
+- (NSOrderedSet *)BB_zip:(NSOrderedSet *)orderedSet;
 
 @end
