@@ -32,11 +32,6 @@
     [self setMinimumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_minimum_track"] BB_imageByRenderingWithColor:self.tintColor] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
     [self setMaximumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_maximum_track"] BB_imageByRenderingWithColor:[UIColor lightGrayColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
     
-//    [self setProgressView:[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar]];
-//    [self.progressView setTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"] BB_imageByRenderingWithColor:[UIColor whiteColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 1, 0)]];
-//    [self.progressView setProgressImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_progress"] BB_imageByRenderingWithColor:[UIColor orangeColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 0, 1, 0)]];
-//    [self addSubview:self.progressView];
-    
     return self;
 }
 
@@ -47,7 +42,7 @@
         CGFloat width = ceil(availableWidth * self.progress);
         
         [[UIColor lightGrayColor] setFill];
-        UIRectFill(BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(trackRect) + 1.0, 0, width, 9.0), self.bounds));
+        UIRectFill(BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(trackRect) + 1.0, 0, width, [UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_minimum_track"].size.height - 1.0), self.bounds));
     }
 }
 
@@ -56,21 +51,5 @@
     
     [self setNeedsDisplay];
 }
-
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    
-//    CGRect trackRect = [self trackRectForBounds:self.bounds];
-//    
-//    [self.progressView setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(trackRect) + 1.0, 0, CGRectGetWidth(trackRect) - 2.0, CGRectGetHeight(self.bounds) - 2.0), self.bounds)];
-//}
-
-//- (CGRect)trackRectForBounds:(CGRect)bounds {
-//    CGRect retval = [super trackRectForBounds:bounds];
-//    
-//    retval.size.height = [UIImage imageNamed:@"media_viewer_scrubber_minimum_track"].size.height;
-//    
-//    return retval;
-//}
 
 @end
