@@ -24,6 +24,8 @@
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
 @property (readwrite,assign,nonatomic) NSInteger index;
 
+@property (readwrite,copy,nonatomic) NSString *text;
+
 @property (readwrite,strong,nonatomic) AVPlayer *player;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
@@ -93,6 +95,9 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
         return BBMediaViewerDetailViewModelTypeMovie;
     }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
+        return BBMediaViewerDetailViewModelTypePlainText;
+    }
     return BBMediaViewerDetailViewModelTypeNone;
 }
 - (NSString *)UTI {
@@ -111,6 +116,8 @@
             return self.image;
         case BBMediaViewerDetailViewModelTypeMovie:
             return self.URL;
+        case BBMediaViewerDetailViewModelTypePlainText:
+            return self.text;
         default:
             return nil;
     }
@@ -127,6 +134,13 @@
         return [self.media mediaPlaceholderImage];
     }
     return nil;
+}
+
+- (NSString *)text {
+    if (!_text) {
+        _text = [NSString stringWithContentsOfURL:self.URL encoding:NSUTF8StringEncoding error:NULL];
+    }
+    return _text;
 }
 
 - (AVPlayer *)player {

@@ -113,6 +113,7 @@
 		74A018E41B478D03007F87EE /* NSError+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
 		74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */; };
+		7903E42C1B7C1C380063DEE1 /* BBMediaViewerTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7903E42B1B7C1C380063DEE1 /* BBMediaViewerTextViewController.m */; };
 		790DE0861B51B01B0029C004 /* BBDatePickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 790DE0851B51B01B0029C004 /* BBDatePickerButton.m */; };
 		790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 790DE0841B51B01B0029C004 /* BBDatePickerButton.h */; };
 		790DE0881B51B1D30029C004 /* BBToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540871B4B662B009ECE38 /* BBToken.h */; };
@@ -790,6 +791,8 @@
 		6082717414F73E66FE85824A /* Pods-OSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		74A018E21B478D03007F87EE /* NSError+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		74A018E31B478D03007F87EE /* NSError+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BBFoundationExtensions.m"; sourceTree = "<group>"; };
+		7903E42A1B7C1C380063DEE1 /* BBMediaViewerTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerTextViewController.h; sourceTree = "<group>"; };
+		7903E42B1B7C1C380063DEE1 /* BBMediaViewerTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerTextViewController.m; sourceTree = "<group>"; };
 		79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksCoreDataImportTests.m; sourceTree = "<group>"; };
 		79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
@@ -1390,6 +1393,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7903E4291B7C1BE50063DEE1 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				7903E42A1B7C1C380063DEE1 /* BBMediaViewerTextViewController.h */,
+				7903E42B1B7C1C380063DEE1 /* BBMediaViewerTextViewController.m */,
+			);
+			name = Text;
+			sourceTree = "<group>";
+		};
 		79052AFE1B1AF3270097B7AF /* BBFrameworksTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1622,6 +1634,7 @@
 				792F15441B76BBDC0034A09A /* BBMediaViewerDetailViewModel.m */,
 				792F15541B76FE6D0034A09A /* BBMediaViewerDetailViewController.h */,
 				792F15551B76FE6D0034A09A /* BBMediaViewerDetailViewController.m */,
+				7903E4291B7C1BE50063DEE1 /* Text */,
 				792F15581B7709770034A09A /* Placeholder */,
 				79F577D81B7967820078EAB8 /* Movie */,
 				792F15571B7709720034A09A /* Image */,
@@ -2913,6 +2926,7 @@
 				791997061B6EB3C500FC674A /* BBThumbnailVimeoOperation.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
+				7903E42C1B7C1C380063DEE1 /* BBMediaViewerTextViewController.m in Sources */,
 				07AEC8481B6BE68500013470 /* BBValidationTextFieldWarningView.m in Sources */,
 				791996E71B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */,
 				07B3D90E1B60373B00FA1853 /* BBFormSliderTableViewCell.m in Sources */,

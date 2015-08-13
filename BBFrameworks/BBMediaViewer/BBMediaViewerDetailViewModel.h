@@ -21,7 +21,8 @@
 typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
     BBMediaViewerDetailViewModelTypeNone,
     BBMediaViewerDetailViewModelTypeImage,
-    BBMediaViewerDetailViewModelTypeMovie
+    BBMediaViewerDetailViewModelTypeMovie,
+    BBMediaViewerDetailViewModelTypePlainText
 };
 
 @class RACCommand;
@@ -40,6 +41,8 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
 
 @property (readonly,nonatomic) UIImage *image;
 @property (readonly,nonatomic) UIImage *placeholderImage;
+
+@property (readonly,copy,nonatomic) NSString *text;
 
 @property (readonly,strong,nonatomic) AVPlayer *player;
 @property (readonly,nonatomic) NSTimeInterval duration;
