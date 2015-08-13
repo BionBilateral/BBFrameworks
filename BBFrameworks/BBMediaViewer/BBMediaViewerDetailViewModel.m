@@ -109,6 +109,8 @@
     switch (self.type) {
         case BBMediaViewerDetailViewModelTypeImage:
             return self.image;
+        case BBMediaViewerDetailViewModelTypeMovie:
+            return self.URL;
         default:
             return nil;
     }

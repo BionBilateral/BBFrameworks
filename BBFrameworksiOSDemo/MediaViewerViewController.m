@@ -45,13 +45,10 @@
     
     [self setURLs:temp];
     
-    [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
-    [temp insertObject:[NSURL URLWithString:@"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4"] atIndex:0];
+//    [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
+//    [temp insertObject:[NSURL URLWithString:@"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4"] atIndex:0];
     
-    [self setCustomURLs:[temp BB_filter:^BOOL(NSURL *object, NSInteger index) {
-        return [object.lastPathComponent.pathExtension isEqualToString:@"mp4"];
-    }]];
-//    [self setCustomURLs:temp];
+    [self setCustomURLs:temp];
     
     [self.systemButton addTarget:self action:@selector(_systemButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.customButton addTarget:self action:@selector(_customButtonAction:) forControlEvents:UIControlEventTouchUpInside];
