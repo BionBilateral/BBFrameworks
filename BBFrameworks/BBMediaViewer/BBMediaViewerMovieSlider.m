@@ -20,7 +20,7 @@
 #import "BBFoundationDebugging.h"
 
 @interface BBMediaViewerMovieSlider ()
-@property (readwrite,strong,nonatomic) UIProgressView *progressView;
+
 @end
 
 @implementation BBMediaViewerMovieSlider
