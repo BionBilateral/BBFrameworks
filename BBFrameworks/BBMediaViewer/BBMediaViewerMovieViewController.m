@@ -67,6 +67,10 @@
 - (void)viewWillLayoutSubviews {
     [self.movieView setFrame:self.view.bounds];
     [self.slider setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.slider sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.slider sizeThatFits:CGSizeZero].height)];
+    
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.slider setAlpha:self.navigationController.isToolbarHidden ? 0.0 : 1.0];
+    } completion:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
