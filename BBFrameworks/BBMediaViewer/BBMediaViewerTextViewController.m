@@ -37,7 +37,8 @@
 }
 - (void)viewWillLayoutSubviews {
     [self.textView setFrame:self.view.bounds];
-    
+}
+- (void)viewDidLayoutSubviews {
     [self.textView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0)];
 }
 
