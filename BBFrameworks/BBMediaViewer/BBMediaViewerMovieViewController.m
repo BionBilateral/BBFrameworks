@@ -60,14 +60,13 @@
                                      }];
     
     [self setSlider:[[BBMediaViewerMovieSliderContainerView alloc] initWithViewModel:self.viewModel]];
-    [self.slider sizeToFit];
-//    [self.view addSubview:self.slider];
+    [self.view addSubview:self.slider];
     
-    [self setAdditionalToolbarItems:@[[[UIBarButtonItem alloc] initWithCustomView:playPauseButton],[[UIBarButtonItem alloc] initWithCustomView:self.slider]]];
+    [self setAdditionalToolbarItems:@[[[UIBarButtonItem alloc] initWithCustomView:playPauseButton]]];
 }
 - (void)viewWillLayoutSubviews {
     [self.movieView setFrame:self.view.bounds];
-//    [self.slider setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.slider sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length] - 8.0, CGRectGetWidth(self.view.bounds), [self.slider sizeThatFits:CGSizeZero].height)];
+    [self.slider setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.slider sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.slider sizeThatFits:CGSizeZero].height)];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

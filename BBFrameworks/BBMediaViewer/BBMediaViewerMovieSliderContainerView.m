@@ -53,14 +53,14 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(275, [self.slider sizeThatFits:size].height);
+    return CGSizeMake(UIViewNoIntrinsicMetric, [self.slider sizeThatFits:size].height + 16.0);
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;
     
-    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [self setBackgroundColor:[UIColor whiteColor]];
     
     [self setViewModel:viewModel];
     
