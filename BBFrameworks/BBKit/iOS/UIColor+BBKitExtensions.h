@@ -41,4 +41,20 @@
  */
 + (UIColor *)BB_colorWithHexadecimalString:(NSString *)hexadecimalString;
 
+/**
+ Creates and returns a new color by adjusting the bright of color by delta. Clamps the new brightness between 0.0 and 1.0.
+ 
+ @param color The color to adjust
+ @param delta The amount to adjust the brightness
+ @return The new color
+ */
++ (UIColor *)BB_colorByAdjustingBrightnessOfColor:(UIColor *)color delta:(CGFloat)delta;
+/**
+ Calls `[self.class BB_colorByAdjustingBrightnessOfColor:self delta:delta]`.
+ 
+ @param delta The amount to adjust the brightness
+ @return The new color
+ */
+- (UIColor *)BB_colorByAdjustingBrightnessBy:(CGFloat)delta;
+
 @end
