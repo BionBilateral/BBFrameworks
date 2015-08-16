@@ -29,21 +29,47 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self setMinimumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_minimum_track"] BB_imageByRenderingWithColor:self.tintColor] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
-    [self setMaximumTrackImage:[[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_maximum_track"] BB_imageByRenderingWithColor:[UIColor lightGrayColor]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)] forState:UIControlStateNormal];
+    [self setMinimumTrackTintColor:[UIColor clearColor]];
+    [self setMaximumTrackTintColor:[UIColor clearColor]];
     
     return self;
 }
 
 - (void)drawRect:(CGRect)rect {
+    CGRect trackRect = [self trackRectForBounds:self.bounds];
+    
+    [[UIColor lightGrayColor] setFill];
+    UIRectFill(trackRect);
+    
+    CGRect thumbRect = [self thumbRectForBounds:self.bounds trackRect:trackRect value:self.value];
+    
+    [self.tintColor setFill];
+    UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), CGRectGetMidX(thumbRect), CGRectGetHeight(trackRect)));
+    
     if (self.progress > 0.0) {
         CGRect trackRect = [self trackRectForBounds:self.bounds];
-        CGFloat availableWidth = CGRectGetWidth(trackRect) - 2.0;
+        CGFloat availableWidth = CGRectGetWidth(trackRect);
         CGFloat width = ceil(availableWidth * self.progress);
         
-        [[UIColor lightGrayColor] setFill];
-        UIRectFill(BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(trackRect) + 1.0, 0, width, [UIImage BB_imageInResourcesBundleNamed:@"media_viewer_scrubber_minimum_track"].size.height - 1.0), self.bounds));
+        [[UIColor blackColor] setFill];
+        UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), width, CGRectGetHeight(trackRect)));
     }
+}
+
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    BOOL retval = [super continueTrackingWithTouch:touch withEvent:event];
+    
+    if (retval) {
+        [self setNeedsDisplay];
+    }
+    
+    return retval;
+}
+
+- (void)setValue:(float)value {
+    [super setValue:value];
+    
+    [self setNeedsDisplay];
 }
 
 - (void)setProgress:(float)progress {
