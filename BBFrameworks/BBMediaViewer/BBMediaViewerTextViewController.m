@@ -26,7 +26,8 @@
     [super viewDidLoad];
     
     [self setTextView:[[UITextView alloc] initWithFrame:CGRectZero]];
-    [self.textView setTextContainerInset:UIEdgeInsetsZero];
+    [self.textView setTextContainerInset:UIEdgeInsetsMake(8.0, 8.0, 0, 8.0)];
+    [self.textView.textContainer setLineFragmentPadding:0];
     [self.textView setEditable:NO];
     [self.textView setSelectable:YES];
     [self.view addSubview:self.textView];
