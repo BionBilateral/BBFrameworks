@@ -16,6 +16,9 @@
 #import "UIImage+BBKitExtensions.h"
 #import "BBFoundationDebugging.h"
 #import "BBKitCGImageFunctions.h"
+#import "BBFoundationMacros.h"
+
+#import <Accelerate/Accelerate.h>
 
 #if !__has_feature(objc_arc)
 #error This file requires ARC
@@ -90,7 +93,7 @@
 {
     NSParameterAssert(image);
     
-    radius = MAX(MIN(radius, 1.0), 0.0);
+    radius = BBBoundedValue(radius, 0.0, 1.0);
     
     uint32_t boxSize = (uint32_t)(radius * 100);
     

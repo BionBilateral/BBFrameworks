@@ -17,10 +17,6 @@
 #define __BB_FRAMEWORKS_KIT_CGIMAGE_FUNCTIONS__
 
 #import <CoreGraphics/CGImage.h>
-#import "BBFoundationDebugging.h"
-
-#import <Accelerate/Accelerate.h>
-#import <AVFoundation/AVFoundation.h>
 
 /**
  Returns whether _imageRef_ has an alpha component.
@@ -28,14 +24,7 @@
  @param imageRef The CGImage to inspect
  @return YES if _imageRef_ has alpha, otherwise NO
  */
-static inline BOOL BBKitCGImageHasAlpha(CGImageRef imageRef) {
-    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
-    
-    return (alphaInfo == kCGImageAlphaFirst ||
-            alphaInfo == kCGImageAlphaLast ||
-            alphaInfo == kCGImageAlphaPremultipliedFirst ||
-            alphaInfo == kCGImageAlphaPremultipliedLast);
-}
+extern bool BBKitCGImageHasAlpha(CGImageRef imageRef);
 
 /**
  Creates a new CGImage by resizing _imageRef_ to _size_ while maintaining the aspect ratio of _imageRef_.
@@ -47,58 +36,6 @@ static inline BOOL BBKitCGImageHasAlpha(CGImageRef imageRef) {
  @return The CGImage thumbnail
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
-static inline CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size) {
-    NSCParameterAssert(imageRef);
-    NSCParameterAssert(!CGSizeEqualToSize(size, CGSizeZero));
-    
-    CGSize destSize = AVMakeRectWithAspectRatioInsideRect(CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), CGRectMake(0, 0, size.width, size.height)).size;
-    CGImageRef sourceImageRef = imageRef;
-    CFDataRef sourceDataRef = CGDataProviderCopyData(CGImageGetDataProvider(sourceImageRef));
-    vImage_Buffer source = {
-        .data = (void *)CFDataGetBytePtr(sourceDataRef),
-        .height = CGImageGetHeight(sourceImageRef),
-        .width = CGImageGetWidth(sourceImageRef),
-        .rowBytes = CGImageGetBytesPerRow(sourceImageRef)
-    };
-    vImage_Buffer destination;
-    vImage_Error error = vImageBuffer_Init(&destination, (vImagePixelCount)destSize.height, (vImagePixelCount)destSize.width, (uint32_t)CGImageGetBitsPerPixel(sourceImageRef), kvImageNoFlags);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CFRelease(sourceDataRef);
-        return NULL;
-    }
-    
-    error = vImageScale_ARGB8888(&source, &destination, NULL, kvImageHighQualityResampling|kvImageEdgeExtend);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CFRelease(sourceDataRef);
-        return NULL;
-    }
-    
-    CFRelease(sourceDataRef);
-    
-    vImage_CGImageFormat format = {
-        .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(sourceImageRef),
-        .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(sourceImageRef),
-        .colorSpace = NULL,
-        .bitmapInfo = CGImageGetBitmapInfo(sourceImageRef),
-        .version = 0,
-        .decode = NULL,
-        .renderingIntent = kCGRenderingIntentDefault
-    };
-    CGImageRef destImageRef = vImageCreateCGImageFromBuffer(&destination, &format, NULL, NULL, kvImageNoFlags, &error);
-    
-    free(destination.data);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CGImageRelease(destImageRef);
-        return NULL;
-    }
-    
-    return destImageRef;
-}
+extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size);
 
 #endif
