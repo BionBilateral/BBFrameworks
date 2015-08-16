@@ -374,7 +374,7 @@
     UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     if ([note.name isEqualToString:UIKeyboardWillShowNotification]) {
-        CGRect keyboardFrame = [self.tableView convertRect:[self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil] fromView:nil];
+        CGRect keyboardFrame = [self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil];
         
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             [UIView setAnimationCurve:curve];
