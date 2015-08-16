@@ -207,14 +207,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
 }
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (self.navigationController.isBeingPresented) {
-        [self.navigationController setNavigationBarHidden:NO animated:animated];
-        [self.navigationController setToolbarHidden:NO animated:animated];
-    }
-}
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
     return UIBarPositionTopAttached;
