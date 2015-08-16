@@ -17,6 +17,7 @@
 #import "BBMediaViewerMovieSlider.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBBlocks.h"
+#import "BBKitColorMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -60,7 +61,7 @@
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;
     
-    [self setBackgroundColor:[UIColor whiteColor]];
+    [self setBackgroundColor:BBColorWA(1.0, 0.97)];
     
     [self setViewModel:viewModel];
     

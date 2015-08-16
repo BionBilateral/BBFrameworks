@@ -35,25 +35,33 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    if (!self.isTracking) {
+        [self setNeedsDisplay];
+    }
+}
+
 - (void)drawRect:(CGRect)rect {
     CGRect trackRect = [self trackRectForBounds:self.bounds];
     
     [[UIColor lightGrayColor] setFill];
     UIRectFill(trackRect);
     
-    CGRect thumbRect = [self thumbRectForBounds:self.bounds trackRect:trackRect value:self.value];
-    
-    [self.tintColor setFill];
-    UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), CGRectGetMidX(thumbRect), CGRectGetHeight(trackRect)));
-    
     if (self.progress > 0.0) {
         CGRect trackRect = [self trackRectForBounds:self.bounds];
         CGFloat availableWidth = CGRectGetWidth(trackRect);
         CGFloat width = ceil(availableWidth * self.progress);
         
-        [[UIColor blackColor] setFill];
+        [[self.tintColor colorWithAlphaComponent:0.2] setFill];
         UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), width, CGRectGetHeight(trackRect)));
     }
+    
+    CGRect thumbRect = [self thumbRectForBounds:self.bounds trackRect:trackRect value:self.value];
+
+    [self.tintColor setFill];
+    UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), CGRectGetMidX(thumbRect), CGRectGetHeight(trackRect)));
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
@@ -64,12 +72,6 @@
     }
     
     return retval;
-}
-
-- (void)setValue:(float)value {
-    [super setValue:value];
-    
-    [self setNeedsDisplay];
 }
 
 - (void)setProgress:(float)progress {
