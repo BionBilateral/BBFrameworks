@@ -17,7 +17,13 @@
 
 @class BBFormTableViewController;
 
+/**
+ Protocol describing the data source for a BBFormTableViewController.
+ */
 @protocol BBFormTableViewControllerDataSource <NSObject>
 @required
+/**
+ Return an array of dictionaries containing key/value pairs defined in BBFormField.
+ */
 - (NSArray *)formFieldDictionaries;
 @end
