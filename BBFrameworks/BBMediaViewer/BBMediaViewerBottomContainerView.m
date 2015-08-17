@@ -1,8 +1,8 @@
 //
-//  BBMediaViewerMovieViewController.m
+//  BBMediaViewerBottomContainerView.m
 //  BBFrameworks
 //
-//  Created by William Towe on 8/10/15.
+//  Created by William Towe on 8/17/15.
 //  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,46 +13,52 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerMovieViewController.h"
-#import "BBMediaViewerMovieView.h"
-#import "BBMediaViewerDetailViewModel.h"
-#import "UIImage+BBKitExtensionsPrivate.h"
-#import "UIBarButtonItem+BBKitExtensions.h"
-#import "UIImage+BBKitExtensions.h"
+#import "BBMediaViewerBottomContainerView.h"
+#import "BBGradientView.h"
+#import "BBMediaViewerViewModel.h"
 #import "BBKitColorMacros.h"
-#import "BBFoundationDebugging.h"
-#import "BBMediaViewerMovieSliderContainerView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import <AVFoundation/AVFoundation.h>
+@interface BBMediaViewerBottomContainerView ()
+@property (strong,nonatomic) BBGradientView *gradientView;
 
-@interface BBMediaViewerMovieViewController ()
-@property (strong,nonatomic) BBMediaViewerMovieView *movieView;
-
-@property (strong,nonatomic) id timeObserver;
+@property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 @end
 
-@implementation BBMediaViewerMovieViewController
+@implementation BBMediaViewerBottomContainerView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setMovieView:[[BBMediaViewerMovieView alloc] initWithViewModel:self.viewModel]];
-    [self.view addSubview:self.movieView];
-    
-    [self setBottomContentView:[[BBMediaViewerMovieSliderContainerView alloc] initWithViewModel:self.viewModel]];
+- (void)layoutSubviews {
+    [self.gradientView setFrame:self.bounds];
+    [self.contentView setFrame:self.bounds];
 }
-- (void)viewWillLayoutSubviews {
-    [self.movieView setFrame:self.view.bounds];
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    return CGSizeMake(UIViewNoIntrinsicMetric, [self.contentView sizeThatFits:CGSizeZero].height);
 }
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+
+- (instancetype)initWithViewModel:(BBMediaViewerViewModel *)viewModel; {
+    if (!(self = [super initWithFrame:CGRectZero]))
+        return nil;
     
-    if (!self.navigationController.isBeingPresented &&
-        !self.navigationController.isBeingDismissed) {
-        
-        [self.viewModel stop];
+    NSParameterAssert(viewModel);
+    
+    [self setViewModel:viewModel];
+    
+    [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
+    [self.gradientView setColors:@[BBColorWA(0.0, 0.25),BBColorWA(0.0, 0.75)]];
+    [self addSubview:self.gradientView];
+    
+    return self;
+}
+
+- (void)setContentView:(UIView *)contentView {
+    [_contentView removeFromSuperview];
+    
+    _contentView = contentView;
+    
+    if (_contentView) {
+        [self addSubview:_contentView];
     }
 }
 

@@ -54,7 +54,7 @@
         CGFloat availableWidth = CGRectGetWidth(trackRect);
         CGFloat width = ceil(availableWidth * self.progress);
         
-        [[self.tintColor colorWithAlphaComponent:0.2] setFill];
+        [[UIColor whiteColor] setFill];
         UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), width, CGRectGetHeight(trackRect)));
     }
     

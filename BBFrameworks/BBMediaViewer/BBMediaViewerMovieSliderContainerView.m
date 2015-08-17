@@ -18,16 +18,23 @@
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBBlocks.h"
 #import "BBKitColorMacros.h"
+#import "UIImage+BBKitExtensions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBFoundationGeometryFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AVFoundation/AVFoundation.h>
+
+static CGFloat const kMarginXY = 8.0;
 
 @interface BBMediaViewerMovieSliderContainerView ()
 @property (strong,nonatomic) BBMediaViewerMovieSlider *slider;
 
 @property (strong,nonatomic) UILabel *timeElapsedLabel;
 @property (strong,nonatomic) UILabel *timeRemainingLabel;
+
+@property (strong,nonatomic) UIButton *playPauseButton;
 
 @property (strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @property (strong,nonatomic) id timeObserver;
@@ -47,28 +54,46 @@
     
     CGSize timeElapsedLabelSize = [self.timeElapsedLabel sizeThatFits:CGSizeZero];
     CGSize timeRemainingLabelSize = [self.timeRemainingLabel sizeThatFits:CGSizeZero];
+    CGFloat sliderHeight = [self.slider sizeThatFits:CGSizeZero].height;
     
-    [self.timeElapsedLabel setFrame:CGRectMake(8.0, 0, timeElapsedLabelSize.width, CGRectGetHeight(self.bounds))];
-    [self.timeRemainingLabel setFrame:CGRectMake(CGRectGetWidth(self.bounds) - timeRemainingLabelSize.width - 8.0, 0, timeRemainingLabelSize.width, CGRectGetHeight(self.bounds))];
-    [self.slider setFrame:CGRectMake(CGRectGetMaxX(self.timeElapsedLabel.frame) + 8.0, 0, CGRectGetMinX(self.timeRemainingLabel.frame) - CGRectGetMaxX(self.timeElapsedLabel.frame) - 16.0, CGRectGetHeight(self.bounds))];
+    [self.timeElapsedLabel setFrame:CGRectMake(kMarginXY, kMarginXY, timeElapsedLabelSize.width, sliderHeight)];
+    [self.timeRemainingLabel setFrame:CGRectMake(CGRectGetWidth(self.bounds) - timeRemainingLabelSize.width - kMarginXY, kMarginXY, timeRemainingLabelSize.width, sliderHeight)];
+    [self.slider setFrame:CGRectMake(CGRectGetMaxX(self.timeElapsedLabel.frame) + kMarginXY, kMarginXY, CGRectGetMinX(self.timeRemainingLabel.frame) - CGRectGetMaxX(self.timeElapsedLabel.frame) - kMarginXY - kMarginXY, sliderHeight)];
+    
+    CGSize playPauseButtonSize = [self.playPauseButton sizeThatFits:CGSizeZero];
+    
+    [self.playPauseButton setFrame:BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(self.slider.frame) + kMarginXY, playPauseButtonSize.width, playPauseButtonSize.height), self.bounds)];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(UIViewNoIntrinsicMetric, [self.slider sizeThatFits:size].height + 16.0);
+    return CGSizeMake(UIViewNoIntrinsicMetric, 8.0 + [self.slider sizeThatFits:size].height + 8.0 + [self.playPauseButton sizeThatFits:CGSizeZero].height + 8.0);
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;
     
-    [self setBackgroundColor:BBColorWA(1.0, 0.97)];
-    
     [self setViewModel:viewModel];
+    
+    [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.playPauseButton setAdjustsImageWhenHighlighted:NO];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:BBColorWA(0.0, 0.33)] forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:[UIColor whiteColor]] forState:UIControlStateSelected];
+    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:BBColorWA(0.0, 0.33)] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [self.playPauseButton setRac_command:self.viewModel.playPauseCommand];
+    [self.playPauseButton sizeToFit];
+    [self addSubview:self.playPauseButton];
+    
+    RAC(self.playPauseButton,selected) = [RACObserve(self.viewModel.player, rate)
+                                          map:^id(NSNumber *value) {
+                                              return @(value.floatValue != 0.0);
+                                          }];
     
     [self setSlider:[[BBMediaViewerMovieSlider alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.slider];
     
-    UIColor *textColor = [UIColor blackColor];
+    UIColor *textColor = [UIColor whiteColor];
     UIFont *font = [UIFont systemFontOfSize:12.0];
     
     [self setTimeElapsedLabel:[[UILabel alloc] initWithFrame:CGRectZero]];

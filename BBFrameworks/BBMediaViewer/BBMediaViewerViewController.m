@@ -21,6 +21,7 @@
 #import "BBFoundationGeometryFunctions.h"
 #import "BBKitColorMacros.h"
 #import "BBMediaViewerTopContainerView.h"
+#import "BBMediaViewerBottomContainerView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -29,6 +30,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 @interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 @property (strong,nonatomic) BBMediaViewerTopContainerView *topContainerView;
+@property (strong,nonatomic) BBMediaViewerBottomContainerView *bottomContainerView;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
@@ -41,7 +43,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 @end
 
 @implementation BBMediaViewerViewController
-
+#pragma mark *** Subclass Overrides ***
 - (UIRectEdge)edgesForExtendedLayout {
     return UIRectEdgeNone;
 }
@@ -96,6 +98,9 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     [self setTopContainerView:[[BBMediaViewerTopContainerView alloc] initWithViewModel:self.viewModel]];
     [self.view addSubview:self.topContainerView];
+    
+    [self setBottomContainerView:[[BBMediaViewerBottomContainerView alloc] initWithViewModel:self.viewModel]];
+    [self.view addSubview:self.bottomContainerView];
     
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
@@ -157,7 +162,9 @@ static NSTimeInterval const kAnimationDuration = 0.33;
                  }
              }];
          }];
-        
+    }
+    
+    if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:YES];
         [self.navigationController setToolbarHidden:YES];
     }
@@ -165,8 +172,9 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
     [self.topContainerView setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.topContainerView sizeThatFits:CGSizeZero].height)];
+    [self.bottomContainerView setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - [self.bottomContainerView sizeThatFits:CGSizeZero].height - [self.bottomLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.bottomContainerView sizeThatFits:CGSizeZero].height)];
 }
-
+#pragma mark UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     [self setPresenting:YES];
     return self;
@@ -175,7 +183,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     [self setPresenting:NO];
     return self;
 }
-
+#pragma mark UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return kAnimationDuration;
 }
@@ -312,12 +320,12 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         }
     }
 }
-
+#pragma mark UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return ([otherGestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
             [(UITapGestureRecognizer *)otherGestureRecognizer numberOfTapsRequired] == 2);
 }
-
+#pragma mark UIPageViewControllerDataSource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     BBMediaViewerDetailViewModel *viewModel = [(BBMediaViewerDetailViewController *)viewController viewModel];
     NSInteger index = viewModel.index;
@@ -342,7 +350,10 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     return [[BBMediaViewerDetailViewController alloc] initWithViewModel:[[BBMediaViewerDetailViewModel alloc] initWithMedia:media index:index]];
 }
-
+#pragma mark UIPageViewControllerDelegate
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
+    
+}
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if (completed) {
         BBMediaViewerDetailViewController *viewController = pageViewController.viewControllers.firstObject;
@@ -352,7 +363,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         [self _updateToolbarItemsWithViewController:self.pageViewController.viewControllers.firstObject];
     }
 }
-
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 - (void)setDataSource:(id<BBMediaViewerViewControllerDataSource>)dataSource {
     _dataSource = dataSource;
     
@@ -360,20 +372,17 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         [self.viewModel setNumberOfViewModels:[_dataSource numberOfMediaInMediaViewer:self]];
     }
 }
-
+#pragma mark *** Private Methods ***
 - (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated; {
     [UIView animateWithDuration:animated ? kAnimationDuration : 0.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         [self.topContainerView setAlpha:self.topContainerView.alpha == 0.0 ? 1.0 : 0.0];
+        [self.bottomContainerView setAlpha:self.bottomContainerView.alpha == 0.0 ? 1.0 : 0.0];
     } completion:nil];
 }
 - (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController; {
-    NSArray *toolbarItems = @[];
+    [self.bottomContainerView setContentView:viewController.bottomContentView];
     
-    if (viewController.additionalToolbarItems.count > 0) {
-        toolbarItems = [viewController.additionalToolbarItems arrayByAddingObjectsFromArray:toolbarItems];
-    }
-    
-    [self setToolbarItems:toolbarItems animated:YES];
+    [self.view setNeedsLayout];
 }
 
 @end
