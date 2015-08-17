@@ -37,14 +37,12 @@
 
 static NSTimeInterval const kAnimationDuration = 0.33;
 
-@interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate,UINavigationBarDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
+@interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
 @property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
-
-@property (strong,nonatomic) UIBarButtonItem *actionBarButtonItem;
 
 @property (assign,nonatomic,getter=isPresenting) BOOL presenting;
 
@@ -132,8 +130,11 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     [self.tapGestureRecognizer setDelegate:self];
     [self.pageViewController.view addGestureRecognizer:self.tapGestureRecognizer];
     
-    [self setActionBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL]];
-    [self.actionBarButtonItem setRac_command:self.viewModel.actionCommand];
+    UIBarButtonItem *actionItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL];
+    
+    [actionItem setRac_command:self.viewModel.actionCommand];
+    
+    [self.navigationItem setRightBarButtonItems:@[actionItem]];
     
     id<BBMediaViewerMedia> media = nil;
     NSInteger index = 0;
@@ -179,25 +180,25 @@ static NSTimeInterval const kAnimationDuration = 0.33;
         
         [doneItem setRac_command:self.viewModel.doneCommand];
         
-        [self.navigationItem setRightBarButtonItems:@[doneItem]];
-    }
-    
-    [[[self.viewModel.doneCommand.executionSignals
-     concat]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         if ([self.delegate respondsToSelector:@selector(mediaViewerWillDismiss:)]) {
-             [self.delegate mediaViewerWillDismiss:self];
-         }
-         
-         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        [self.navigationItem setLeftBarButtonItems:@[doneItem]];
+        
+        [[[self.viewModel.doneCommand.executionSignals
+           concat]
+          deliverOn:[RACScheduler mainThreadScheduler]]
+         subscribeNext:^(id _) {
              @strongify(self);
-             if ([self.delegate respondsToSelector:@selector(mediaViewerDidDismiss:)]) {
-                 [self.delegate mediaViewerDidDismiss:self];
+             if ([self.delegate respondsToSelector:@selector(mediaViewerWillDismiss:)]) {
+                 [self.delegate mediaViewerWillDismiss:self];
              }
+             
+             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                 @strongify(self);
+                 if ([self.delegate respondsToSelector:@selector(mediaViewerDidDismiss:)]) {
+                     [self.delegate mediaViewerDidDismiss:self];
+                 }
+             }];
          }];
-     }];
+    }
     
     if (self.navigationController.isBeingPresented) {
         [self.navigationController setNavigationBarHidden:YES];
@@ -206,10 +207,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
-}
-
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-    return UIBarPositionTopAttached;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
@@ -411,7 +408,7 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:animated];
 }
 - (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController; {
-    NSArray *toolbarItems = @[[UIBarButtonItem BB_flexibleSpaceBarButtonItem],self.actionBarButtonItem];
+    NSArray *toolbarItems = @[];
     
     if (viewController.additionalToolbarItems.count > 0) {
         toolbarItems = [viewController.additionalToolbarItems arrayByAddingObjectsFromArray:toolbarItems];
