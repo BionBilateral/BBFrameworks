@@ -102,7 +102,10 @@
         }
     }
     else {
-        [self.pickerButton selectRow:[formField.pickerRows indexOfObject:formField.value] inComponent:0];
+        NSInteger row = [formField.pickerRows indexOfObject:formField.value];
+        if (row != NSNotFound) {
+            [self.pickerButton selectRow:row inComponent:0];
+        }
     }
 }
 
