@@ -20,25 +20,15 @@
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "BBFoundationGeometryFunctions.h"
 #import "BBKitColorMacros.h"
+#import "BBMediaViewerTopContainerView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-
-@interface BBMediaViewerNavigationController : UINavigationController
-
-@end
-
-@implementation BBMediaViewerNavigationController
-
-- (UIModalPresentationStyle)modalPresentationStyle {
-    return [self.viewControllers.firstObject modalPresentationStyle];
-}
-
-@end
 
 static NSTimeInterval const kAnimationDuration = 0.33;
 
 @interface BBMediaViewerViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
+@property (strong,nonatomic) BBMediaViewerTopContainerView *topContainerView;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 
@@ -51,26 +41,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 @end
 
 @implementation BBMediaViewerViewController
-
-+ (void)initialize {
-    if (self == [BBMediaViewerViewController class]) {
-//        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), NO, 0);
-//        
-//        [[UIColor clearColor] setFill];
-//        UIRectFill(CGRectMake(0, 0, 1, 1));
-//        
-//        UIImage *backgroundImage = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
-//        
-//        UIGraphicsEndImageContext();
-//        
-//        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-//        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
-//        [[UINavigationBar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-//        
-//        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setBackgroundImage:backgroundImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-//        [[UIToolbar appearanceWhenContainedIn:[BBMediaViewerViewController class], nil] setTintColor:[UIColor whiteColor]];
-    }
-}
 
 - (UIRectEdge)edgesForExtendedLayout {
     return UIRectEdgeNone;
@@ -124,17 +94,14 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     
     [self.pageViewController.view setBackgroundColor:[UIColor blackColor]];
     
+    [self setTopContainerView:[[BBMediaViewerTopContainerView alloc] initWithViewModel:self.viewModel]];
+    [self.view addSubview:self.topContainerView];
+    
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
     [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
     [self.tapGestureRecognizer setDelegate:self];
     [self.pageViewController.view addGestureRecognizer:self.tapGestureRecognizer];
-    
-    UIBarButtonItem *actionItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL];
-    
-    [actionItem setRac_command:self.viewModel.actionCommand];
-    
-    [self.navigationItem setRightBarButtonItems:@[actionItem]];
     
     id<BBMediaViewerMedia> media = nil;
     NSInteger index = 0;
@@ -171,17 +138,9 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     subscribeNext:^(id _) {
         @strongify(self);
         [self _toggleNavigationBarAndToolbarAnimated:YES];
-        
-        [self.view setNeedsLayout];
     }];
     
     if (self.presentingViewController) {
-        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
-        
-        [doneItem setRac_command:self.viewModel.doneCommand];
-        
-        [self.navigationItem setLeftBarButtonItems:@[doneItem]];
-        
         [[[self.viewModel.doneCommand.executionSignals
            concat]
           deliverOn:[RACScheduler mainThreadScheduler]]
@@ -198,15 +157,14 @@ static NSTimeInterval const kAnimationDuration = 0.33;
                  }
              }];
          }];
-    }
-    
-    if (self.navigationController.isBeingPresented) {
+        
         [self.navigationController setNavigationBarHidden:YES];
         [self.navigationController setToolbarHidden:YES];
     }
 }
 - (void)viewWillLayoutSubviews {
     [self.pageViewController.view setFrame:self.view.bounds];
+    [self.topContainerView setFrame:CGRectMake(0, [self.topLayoutGuide length], CGRectGetWidth(self.view.bounds), [self.topContainerView sizeThatFits:CGSizeZero].height)];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
@@ -404,8 +362,9 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 
 - (void)_toggleNavigationBarAndToolbarAnimated:(BOOL)animated; {
-    [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:animated];
-    [self.navigationController setToolbarHidden:!self.navigationController.isToolbarHidden animated:animated];
+    [UIView animateWithDuration:animated ? kAnimationDuration : 0.0 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.topContainerView setAlpha:self.topContainerView.alpha == 0.0 ? 1.0 : 0.0];
+    } completion:nil];
 }
 - (void)_updateToolbarItemsWithViewController:(BBMediaViewerDetailViewController *)viewController; {
     NSArray *toolbarItems = @[];
@@ -415,18 +374,6 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     }
     
     [self setToolbarItems:toolbarItems animated:YES];
-}
-
-@end
-
-@implementation UIViewController (BBMediaViewerViewControllerExtensions)
-
-- (void)BB_presentMediaViewController:(BBMediaViewerViewController *)mediaViewController animated:(BOOL)animated completion:(void(^)(void))completion; {
-    BBMediaViewerNavigationController *controller = [[BBMediaViewerNavigationController alloc] initWithRootViewController:mediaViewController];
-    
-    [controller setTransitioningDelegate:mediaViewController];
-    
-    [self presentViewController:controller animated:animated completion:completion];
 }
 
 @end

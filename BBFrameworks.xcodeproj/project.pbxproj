@@ -45,6 +45,7 @@
 		077E21D31B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E21D21B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m */; };
 		077E21D41B755052006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 077E21D11B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h */; };
 		0795691E1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */; };
+		07AA682E1B826161000959DA /* BBMediaViewerTopContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA682D1B826161000959DA /* BBMediaViewerTopContainerView.m */; };
 		07AEC82C1B6BCCCD00013470 /* BBMediaPickerAssetCollectionViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ADB1B69712100333678 /* BBMediaPickerAssetCollectionViewCell.h */; };
 		07AEC8441B6BE68500013470 /* BBTextCustomValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */; };
 		07AEC8451B6BE68500013470 /* BBTextLinkValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC8351B6BE68500013470 /* BBTextLinkValidator.m */; };
@@ -724,6 +725,8 @@
 		0795691A1B71171B00257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"; sourceTree = "<group>"; };
 		0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m"; sourceTree = "<group>"; };
 		0795691F1B711C9500257CE9 /* BBTooltipViewDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewDefines.h; sourceTree = "<group>"; };
+		07AA682C1B826161000959DA /* BBMediaViewerTopContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerTopContainerView.h; sourceTree = "<group>"; };
+		07AA682D1B826161000959DA /* BBMediaViewerTopContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerTopContainerView.m; sourceTree = "<group>"; };
 		07AEC82B1B6BBD5800013470 /* BBMediaPickerViewModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModelDelegate.h; sourceTree = "<group>"; };
 		07AEC8321B6BE68500013470 /* BBTextCustomValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextCustomValidator.h; sourceTree = "<group>"; };
 		07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextCustomValidator.m; sourceTree = "<group>"; };
@@ -1602,6 +1605,8 @@
 				792F15501B76CCBB0034A09A /* BBMediaViewerViewControllerDelegate.h */,
 				792F152C1B76944B0034A09A /* BBMediaViewerViewController.h */,
 				792F152D1B76944B0034A09A /* BBMediaViewerViewController.m */,
+				07AA682C1B826161000959DA /* BBMediaViewerTopContainerView.h */,
+				07AA682D1B826161000959DA /* BBMediaViewerTopContainerView.m */,
 				792F155C1B770B8D0034A09A /* Detail */,
 			);
 			path = BBMediaViewer;
@@ -2914,6 +2919,7 @@
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
 				74A018E51B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				0750D6581B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m in Sources */,
+				07AA682E1B826161000959DA /* BBMediaViewerTopContainerView.m in Sources */,
 				79F577ED1B797DEB0078EAB8 /* BBMediaViewerMovieSlider.m in Sources */,
 				07B3D9061B60373B00FA1853 /* BBFormTableViewFooterView.m in Sources */,
 				79F577F91B79C3150078EAB8 /* BBMediaViewerMovieSliderContainerView.m in Sources */,
