@@ -16,8 +16,17 @@
 #import <UIKit/UIKit.h>
 #import "NSError+BBFoundationExtensions.h"
 
+/**
+ Category on UIAlertController providing convenience methods related to creation from error objects.
+ */
 @interface UIAlertController (BBKitExtensions)
 
+/**
+ Create and return a UIAlertController instance from the provided error. This will check the specific user info keys defined in NSError+BBFoundationExtensions.h for title and message.
+ 
+ @param error The error from which to create a UIAlertController instance
+ @return The UIAlertController instance
+ */
 + (UIAlertController *)BB_alertControllerWithError:(NSError *)error;
 
 @end
