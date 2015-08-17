@@ -49,8 +49,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (!self.navigationController.isBeingPresented &&
-        !self.navigationController.isBeingDismissed) {
+    if (!self.isBeingPresented &&
+        !self.isBeingDismissed) {
         
         [self.viewModel stop];
     }
