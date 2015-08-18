@@ -75,6 +75,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     if (!(self = [super init]))
         return nil;
     
+    [self setTransitioningDelegate:self];
+    
     [self setViewModel:[[BBMediaViewerViewModel alloc] init]];
     
     RAC(self,title) = RACObserve(self.viewModel, title);
@@ -352,9 +354,15 @@ static NSTimeInterval const kAnimationDuration = 0.33;
 }
 #pragma mark UIPageViewControllerDelegate
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
-    
+    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.bottomContainerView setAlpha:0.0];
+    } completion:nil];
 }
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
+    [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.bottomContainerView setAlpha:1.0];
+    } completion:nil];
+    
     if (completed) {
         BBMediaViewerDetailViewController *viewController = pageViewController.viewControllers.firstObject;
         

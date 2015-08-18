@@ -54,7 +54,7 @@ static CGFloat const kMarginX = 8.0;
     [self setViewModel:viewModel];
     
     [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
-    [self.gradientView setColors:@[BBColorWA(0.0, 0.75),BBColorWA(0.0, 0.25)]];
+    [self.gradientView setColors:@[BBColorWA(0.0, 0.75),BBColorWA(0.0, 0.0)]];
     [self addSubview:self.gradientView];
     
     [self setCloseButton:[UIButton buttonWithType:UIButtonTypeCustom]];

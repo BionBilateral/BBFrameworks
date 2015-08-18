@@ -46,7 +46,7 @@
     [self setViewModel:viewModel];
     
     [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
-    [self.gradientView setColors:@[BBColorWA(0.0, 0.25),BBColorWA(0.0, 0.75)]];
+    [self.gradientView setColors:@[BBColorWA(0.0, 0.0),BBColorWA(0.0, 0.75)]];
     [self addSubview:self.gradientView];
     
     return self;
