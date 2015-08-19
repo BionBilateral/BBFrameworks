@@ -303,6 +303,10 @@
     }
     
     [self.textStorage replaceCharactersInRange:NSMakeRange(0, self.textStorage.length) withAttributedString:temp];
+    
+    if (self.selectedRange.length == 0) {
+        [self setSelectedRange:NSMakeRange(self.text.length, 0)];
+    }
 }
 
 - (void)setTokenizingCharacterSet:(NSCharacterSet *)tokenizingCharacterSet {
