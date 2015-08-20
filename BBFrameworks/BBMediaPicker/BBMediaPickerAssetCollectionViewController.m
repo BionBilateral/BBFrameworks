@@ -34,13 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.viewModel.parentViewModel.allowsMultipleSelection) {
-        [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.doneBarButtonItem]];
-    }
-    else {
-        [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.cancelBarButtonItem]];
-    }
-    
     [self setCollectionView:[[BBMediaPickerAssetCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[BBMediaPickerAssetCollectionViewLayout alloc] init]]];
     [self.collectionView setAlwaysBounceVertical:YES];
     [self.collectionView setAllowsMultipleSelection:self.viewModel.parentViewModel.allowsMultipleSelection];
@@ -48,14 +41,6 @@
     [self.collectionView registerClass:[BBMediaPickerAssetCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     @weakify(self);
-    
-    [[[RACObserve(self.viewModel, deleted)
-     ignore:@NO]
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         [self.navigationController popToRootViewControllerAnimated:YES];
-     }];
     
     RAC(self,assetViewModels) = [self.viewModel assetViewModels];
     
@@ -69,15 +54,6 @@
              [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assetViewModels.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
          }
      }];
-    
-    if (self.viewModel.parentViewModel.allowsMultipleSelection) {
-        RAC(self,title) = [RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
-            return selected.length > 0 ? selected : name;
-        }];
-    }
-    else {
-        RAC(self,title) = RACObserve(self.viewModel, name);
-    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

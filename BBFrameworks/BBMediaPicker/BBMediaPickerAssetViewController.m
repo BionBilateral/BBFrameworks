@@ -16,11 +16,17 @@
 #import "BBMediaPickerAssetViewController.h"
 #import "BBMediaPickerAssetCollectionViewController.h"
 #import "BBMediaPickerViewController.h"
+#import "BBMediaPickerAssetsGroupViewModel.h"
+#import "BBMediaPickerViewModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetViewController ()
 @property (strong,nonatomic) BBMediaPickerAssetCollectionViewController *collectionViewController;
+
+@property (strong,nonatomic) UIView *assetBottomAccessoryView;
+
+@property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
 @end
 
 @implementation BBMediaPickerAssetViewController
@@ -28,23 +34,71 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setCollectionViewController:[[BBMediaPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel]];
     [self addChildViewController:self.collectionViewController];
     [self.view addSubview:self.collectionViewController.view];
     [self.collectionViewController didMoveToParentViewController:self];
     
-    RAC(self,title) = RACObserve(self.collectionViewController, title);
+    @weakify(self);
+    [[[RACObserve(self.viewModel, deleted)
+       ignore:@NO]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.navigationController popToRootViewControllerAnimated:YES];
+     }];
     
-    [self.navigationItem setRightBarButtonItems:self.collectionViewController.navigationItem.rightBarButtonItems];
+    if (self.viewModel.parentViewModel.allowsMultipleSelection) {
+        RAC(self,title) = [RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
+            return selected.length > 0 ? selected : name;
+        }];
+    }
+    else {
+        RAC(self,title) = RACObserve(self.viewModel, name);
+    }
+    
+    if ([self BB_mediaPickerViewController].assetBottomAccessoryView) {
+        [self setAssetBottomAccessoryView:[self BB_mediaPickerViewController].assetBottomAccessoryView];
+        [self.view addSubview:self.assetBottomAccessoryView];
+        
+        if ([self.assetBottomAccessoryView respondsToSelector:@selector(setRac_command:)]) {
+            [(id)self.assetBottomAccessoryView setRac_command:self.viewModel.parentViewModel.doneCommand];
+        }
+        else if ([self.assetBottomAccessoryView respondsToSelector:@selector(setEnabled:)]) {
+            [self.viewModel.parentViewModel.doneCommand.enabled
+             subscribeNext:^(NSNumber *value) {
+                 @strongify(self);
+                 [(id)self.assetBottomAccessoryView setEnabled:value.boolValue];
+             }];
+        }
+    }
+    
+    if (!self.assetBottomAccessoryView) {
+        if (self.viewModel.parentViewModel.allowsMultipleSelection) {
+            [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.doneBarButtonItem]];
+        }
+        else {
+            [self.navigationItem setRightBarButtonItems:@[self.viewModel.parentViewModel.cancelBarButtonItem]];
+        }
+    }
 }
 - (void)viewWillLayoutSubviews {
-    [self.collectionViewController.view setFrame:self.view.bounds];
+    if (self.assetBottomAccessoryView) {
+        CGFloat height = [self.assetBottomAccessoryView sizeThatFits:CGSizeZero].height;
+        
+        [self.assetBottomAccessoryView setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - height, CGRectGetWidth(self.view.bounds), height)];
+        [self.collectionViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetMinY(self.assetBottomAccessoryView.frame))];
+    }
+    else {
+        [self.collectionViewController.view setFrame:self.view.bounds];
+    }
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBMediaPickerAssetsGroupViewModel *)viewModel; {
     if (!(self = [super init]))
         return nil;
     
-    [self setCollectionViewController:[[BBMediaPickerAssetCollectionViewController alloc] initWithViewModel:viewModel]];
+    [self setViewModel:viewModel];
     
     return self;
 }

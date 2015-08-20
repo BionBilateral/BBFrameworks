@@ -112,6 +112,18 @@
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
     [viewController setHidesEmptyMediaGroups:YES];
+    [viewController setAssetBottomAccessoryView:({
+        UIButton *retval = [[UIButton alloc] initWithFrame:CGRectZero];
+        
+        [retval setBackgroundColor:self.view.tintColor];
+        [retval.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
+        [retval setContentEdgeInsets:UIEdgeInsetsMake(16, 0, 16, 0)];
+        [retval setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [retval setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+        [retval setTitle:@"Next" forState:UIControlStateNormal];
+        
+        retval;
+    })];
 //    [viewController setCancelBarButtonItemTitle:@"End"];
 //    [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];

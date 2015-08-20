@@ -89,6 +89,13 @@
 @property (copy,nonatomic) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
 
 /**
+ Set and get the asset bottom accessory view. If non-nil, this view is placed at the bottom of the asset collection view anchored to the bottom of its superview. It should implement the `sizeThatFits:` so its desired height can be determined. It will always have its width set to the width of its superview.
+ 
+ The default is nil.
+ */
+@property (strong,nonatomic) UIView *assetBottomAccessoryView;
+
+/**
  Returns the number of media objects being displayed.
  
  @return The number of media objects
