@@ -44,12 +44,23 @@
     [self.didBecomeActiveSignal
      subscribeNext:^(BBAddressBookTableViewModel *value) {
          @strongify(self);
-         if (value.people.count == 0) {
-             [value.addressBookManager requestAllPeopleWithSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@keypath(BBAddressBookPerson.new,lastName) ascending:YES selector:@selector(localizedStandardCompare:)]] completion:^(NSArray *people, NSError *error) {
+         if (self.people.count == 0) {
+             [self.addressBookManager requestAllPeopleWithSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@keypath(BBAddressBookPerson.new,lastName) ascending:YES selector:@selector(localizedStandardCompare:)]] completion:^(NSArray *people, NSError *error) {
                  @strongify(self);
                  [self setPeople:people];
              }];
          }
+     }];
+    
+    [[[[NSNotificationCenter defaultCenter]
+     rac_addObserverForName:BBAddressBookManagerNotificationNameExternalChange object:self.addressBookManager]
+     takeUntil:[self rac_willDeallocSignal]]
+     subscribeNext:^(id _) {
+         @strongify(self);
+         [self.addressBookManager requestAllPeopleWithSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@keypath(BBAddressBookPerson.new,lastName) ascending:YES selector:@selector(localizedStandardCompare:)]] completion:^(NSArray *people, NSError *error) {
+             @strongify(self);
+             [self setPeople:people];
+         }];
      }];
     
     return self;
