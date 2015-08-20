@@ -16,8 +16,8 @@
 #import "BBMediaPickerAssetsGroupTableViewController.h"
 #import "BBMediaPickerAssetsGroupTableViewCell.h"
 #import "BBMediaPickerViewModel.h"
-#import "BBMediaPickerAssetCollectionViewController.h"
 #import "BBMediaPickerAssetsGroupTableView.h"
+#import "BBMediaPickerAssetViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -61,7 +61,7 @@
 }
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[[BBMediaPickerAssetCollectionViewController alloc] initWithViewModel:self.viewModel.assetsGroupViewModels[indexPath.row]] animated:YES];
+    [self.navigationController pushViewController:[[BBMediaPickerAssetViewController alloc] initWithViewModel:self.viewModel.assetsGroupViewModels[indexPath.row]] animated:YES];
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel; {

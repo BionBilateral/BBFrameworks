@@ -71,9 +71,9 @@
      }];
     
     if (self.viewModel.parentViewModel.allowsMultipleSelection) {
-        RAC(self,title) = [[RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
+        RAC(self,title) = [RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
             return selected.length > 0 ? selected : name;
-        }] deliverOn:[RACScheduler mainThreadScheduler]];
+        }];
     }
     else {
         RAC(self,title) = RACObserve(self.viewModel, name);

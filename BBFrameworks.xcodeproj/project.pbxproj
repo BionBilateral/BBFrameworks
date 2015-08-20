@@ -45,6 +45,7 @@
 		077E21D31B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E21D21B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m */; };
 		077E21D41B755052006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 077E21D11B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h */; };
 		0795691E1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */; };
+		07988C4E1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */; };
 		07AEC82C1B6BCCCD00013470 /* BBMediaPickerAssetCollectionViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ADB1B69712100333678 /* BBMediaPickerAssetCollectionViewCell.h */; };
 		07AEC8441B6BE68500013470 /* BBTextCustomValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */; };
 		07AEC8451B6BE68500013470 /* BBTextLinkValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC8351B6BE68500013470 /* BBTextLinkValidator.m */; };
@@ -702,6 +703,8 @@
 		0795691A1B71171B00257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"; sourceTree = "<group>"; };
 		0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m"; sourceTree = "<group>"; };
 		0795691F1B711C9500257CE9 /* BBTooltipViewDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewDefines.h; sourceTree = "<group>"; };
+		07988C4C1B86451E00AA7C3C /* BBMediaPickerAssetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetViewController.h; sourceTree = "<group>"; };
+		07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetViewController.m; sourceTree = "<group>"; };
 		07AEC82B1B6BBD5800013470 /* BBMediaPickerViewModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModelDelegate.h; sourceTree = "<group>"; };
 		07AEC8321B6BE68500013470 /* BBTextCustomValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextCustomValidator.h; sourceTree = "<group>"; };
 		07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextCustomValidator.m; sourceTree = "<group>"; };
@@ -1230,6 +1233,8 @@
 			children = (
 				07605AD51B696F1B00333678 /* BBMediaPickerAssetViewModel.h */,
 				07605AD61B696F1B00333678 /* BBMediaPickerAssetViewModel.m */,
+				07988C4C1B86451E00AA7C3C /* BBMediaPickerAssetViewController.h */,
+				07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */,
 				07605AD81B6970BF00333678 /* BBMediaPickerAssetCollectionViewController.h */,
 				07605AD91B6970BF00333678 /* BBMediaPickerAssetCollectionViewController.m */,
 				0795691A1B71171B00257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h */,
@@ -2752,6 +2757,7 @@
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
 				791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */,
+				07988C4E1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m in Sources */,
 				07605AD71B696F1B00333678 /* BBMediaPickerAssetViewModel.m in Sources */,
 				07B3D90C1B60373B00FA1853 /* BBFormDatePickerTableViewCell.m in Sources */,
 				79239D0B1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */,
