@@ -14,13 +14,13 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaViewerMovieSliderContainerView.h"
-#import "BBMediaViewerMovieSlider.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBBlocks.h"
 #import "BBKitColorMacros.h"
 #import "UIImage+BBKitExtensions.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "BBProgressSlider.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -29,7 +29,7 @@
 static CGFloat const kMarginXY = 8.0;
 
 @interface BBMediaViewerMovieSliderContainerView ()
-@property (strong,nonatomic) BBMediaViewerMovieSlider *slider;
+@property (strong,nonatomic) BBProgressSlider *slider;
 
 @property (strong,nonatomic) UILabel *timeElapsedLabel;
 @property (strong,nonatomic) UILabel *timeRemainingLabel;
@@ -90,7 +90,7 @@ static CGFloat const kMarginXY = 8.0;
                                               return @(value.floatValue != 0.0);
                                           }];
     
-    [self setSlider:[[BBMediaViewerMovieSlider alloc] initWithFrame:CGRectZero]];
+    [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.slider];
     
     UIColor *textColor = [UIColor whiteColor];
