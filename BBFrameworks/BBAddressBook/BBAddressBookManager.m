@@ -28,6 +28,7 @@ NSString *const BBAddressBookManagerNotificationNameExternalChange = @"BBAddress
 @property (assign,nonatomic) ABAddressBookRef addressBook;
 @property (strong,nonatomic) dispatch_queue_t addressBookQueue;
 
+- (void)_createAddressBookIfNecessary;
 - (void)_addressBookChanged;
 @end
 
@@ -49,11 +50,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     if (!(self = [super init]))
         return nil;
     
-    [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
-    
-    if (self.addressBook) {
-        ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
-    }
+    [self _createAddressBookIfNecessary];
     
     [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
@@ -75,6 +72,8 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
         BBDispatchMainSyncSafe(^{
             if (granted) {
+                [self _createAddressBookIfNecessary];
+                
                 completion(YES,nil);
             }
             else {
@@ -243,6 +242,15 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }];
 }
 #pragma mark *** Private Methods ***
+- (void)_createAddressBookIfNecessary; {
+    if (!self.addressBook) {
+        [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
+        
+        if (self.addressBook) {
+            ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
+        }
+    }
+}
 - (void)_addressBookChanged; {
     [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
 }
