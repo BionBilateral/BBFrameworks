@@ -171,7 +171,19 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
                 BBStrongify(self);
-                NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+                NSArray *peopleRefs;
+                
+                if (sortDescriptors.count > 0) {
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+                }
+                else {
+                    ABRecordRef sourceRef = ABAddressBookCopyDefaultSource(self.addressBook);
+                    
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(self.addressBook, sourceRef, ABPersonGetSortOrdering());
+                    
+                    CFRelease(sourceRef);
+                }
+                
                 NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
                     return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
                 }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
