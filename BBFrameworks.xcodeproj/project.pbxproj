@@ -45,6 +45,7 @@
 		077E21D31B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E21D21B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m */; };
 		077E21D41B755052006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 077E21D11B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h */; };
 		0795691E1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */; };
+		07A67E931B87A5F6008CCB02 /* BBProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A67E921B87A5F6008CCB02 /* BBProgressSlider.m */; };
 		07AA682E1B826161000959DA /* BBMediaViewerTopContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA682D1B826161000959DA /* BBMediaViewerTopContainerView.m */; };
 		07AA68311B8266B5000959DA /* BBMediaViewerBottomContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA68301B8266B5000959DA /* BBMediaViewerBottomContainerView.m */; };
 		07AEC82C1B6BCCCD00013470 /* BBMediaPickerAssetCollectionViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ADB1B69712100333678 /* BBMediaPickerAssetCollectionViewCell.h */; };
@@ -726,6 +727,8 @@
 		0795691A1B71171B00257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"; sourceTree = "<group>"; };
 		0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m"; sourceTree = "<group>"; };
 		0795691F1B711C9500257CE9 /* BBTooltipViewDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBTooltipViewDefines.h; sourceTree = "<group>"; };
+		07A67E911B87A5F6008CCB02 /* BBProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressSlider.h; path = iOS/BBProgressSlider.h; sourceTree = "<group>"; };
+		07A67E921B87A5F6008CCB02 /* BBProgressSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressSlider.m; path = iOS/BBProgressSlider.m; sourceTree = "<group>"; };
 		07AA682C1B826161000959DA /* BBMediaViewerTopContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerTopContainerView.h; sourceTree = "<group>"; };
 		07AA682D1B826161000959DA /* BBMediaViewerTopContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerTopContainerView.m; sourceTree = "<group>"; };
 		07AA682F1B8266B5000959DA /* BBMediaViewerBottomContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerBottomContainerView.h; sourceTree = "<group>"; };
@@ -2129,6 +2132,8 @@
 				07605AB51B67D72B00333678 /* BBTextView.m */,
 				79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */,
 				79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */,
+				07A67E911B87A5F6008CCB02 /* BBProgressSlider.h */,
+				07A67E921B87A5F6008CCB02 /* BBProgressSlider.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2958,6 +2963,7 @@
 				07B3D90A1B60373B00FA1853 /* BBFormBooleanCheckmarkTableViewCell.m in Sources */,
 				07605ADD1B69712100333678 /* BBMediaPickerAssetCollectionViewCell.m in Sources */,
 				791997031B6EB3C500FC674A /* BBThumbnailTextOperation.m in Sources */,
+				07A67E931B87A5F6008CCB02 /* BBProgressSlider.m in Sources */,
 				799C0C2A1B587C0C00A3888A /* BBFormField.m in Sources */,
 				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
