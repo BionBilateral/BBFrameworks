@@ -102,6 +102,9 @@
 }
 
 - (void)_BBProgressSliderInit; {
+    _progressFillColor = [self.class _defaultProgressFillColor];
+    _maximumTrackFillColor = [self.class _defaultMaximumTrackFillColor];
+    
     [self setMinimumTrackTintColor:[UIColor clearColor]];
     [self setMaximumTrackTintColor:[UIColor clearColor]];
 }
