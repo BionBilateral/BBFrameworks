@@ -99,6 +99,9 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
  */
 @property (assign,nonatomic) CGFloat tooltipCornerRadius UI_APPEARANCE_SELECTOR;
 
+@property (strong,nonatomic) UIView *accessoryView;
+@property (assign,nonatomic) UIEdgeInsets accessoryViewEdgeInsets UI_APPEARANCE_SELECTOR;
+
 /**
  Returns the background rect for the provided bounds.
  
@@ -114,5 +117,7 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
  @return The arrow rect
  */
 - (CGRect)arrowRectForBounds:(CGRect)bounds attachmentView:(UIView *)attachmentView;
+
+- (CGRect)accessoryViewRectForBounds:(CGRect)bounds;
 
 @end

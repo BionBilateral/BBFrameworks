@@ -17,7 +17,7 @@
 
 #import <BBFrameworks/BBTooltip.h>
 
-@interface TooltipsRowViewController () <BBTooltipViewControllerDataSource>
+@interface TooltipsRowViewController () <BBTooltipViewControllerDataSource,BBTooltipViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *button;
 @property (weak,nonatomic) IBOutlet UILabel *label1;
 @property (weak,nonatomic) IBOutlet UILabel *label2;
@@ -33,6 +33,7 @@
         [[BBTooltipView appearance] setTooltipFont:[UIFont boldSystemFontOfSize:12.0]];
         [[BBTooltipView appearance] setTooltipTextColor:[UIColor whiteColor]];
         [[BBTooltipView appearance] setTooltipBackgroundColor:[UIColor blueColor]];
+        [[BBTooltipView appearance] setAccessoryViewEdgeInsets:UIEdgeInsetsMake(0, 1, 1, 1)];
     }
 }
 
@@ -61,10 +62,27 @@
     return self.tooltipDicts[index][@"view"];
 }
 
+- (UIView *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index {
+    if ((index % 2) == 0) {
+        UIButton *retval = [[UIButton alloc] initWithFrame:CGRectZero];
+        
+        [retval setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [retval setTitle:@"OK" forState:UIControlStateNormal];
+        [retval.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+        [retval setContentEdgeInsets:UIEdgeInsetsMake(8.0, 0, 8.0, 0)];
+        
+        return retval;
+    }
+    else {
+        return nil;
+    }
+}
+
 - (IBAction)_buttonAction:(id)sender {
     BBTooltipViewController *viewController = [[BBTooltipViewController alloc] init];
     
     [viewController setDataSource:self];
+    [viewController setDelegate:self];
     
     [self presentViewController:viewController animated:YES completion:nil];
 }

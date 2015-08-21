@@ -281,6 +281,10 @@ static CGFloat const kSpringDamping = 0.5;
             [self.tooltipView setArrowStyle:[self.delegate tooltipViewController:self arrowStyleForTooltipAtIndex:self.tooltipIndex]];
         }
         
+        if ([self.delegate respondsToSelector:@selector(tooltipViewController:accessoryViewForTooltipAtIndex:)]) {
+            [self.tooltipView setAccessoryView:[self.delegate tooltipViewController:self accessoryViewForTooltipAtIndex:self.tooltipIndex]];
+        }
+        
         UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex];
         CGRect attachmentViewBounds = attachmentView.bounds;
         

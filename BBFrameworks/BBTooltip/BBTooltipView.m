@@ -77,6 +77,15 @@
         default:
             break;
     }
+    
+    if (self.accessoryView) {
+        CGFloat width = CGRectGetWidth(self.bounds) - self.accessoryViewEdgeInsets.left - self.accessoryViewEdgeInsets.right;
+        CGFloat height = [self.accessoryView sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
+        
+        [self.accessoryView setFrame:CGRectMake(self.accessoryViewEdgeInsets.left, CGRectGetMaxY([self backgroundRectForBounds:self.bounds]) - height - self.accessoryViewEdgeInsets.bottom, width, height)];
+        
+        [self.textLabel setFrame:CGRectMake(CGRectGetMinX(self.textLabel.frame), CGRectGetMinY(self.textLabel.frame), CGRectGetWidth(self.textLabel.frame), CGRectGetHeight(self.textLabel.frame) - self.accessoryViewEdgeInsets.top - height - self.accessoryViewEdgeInsets.bottom)];
+    }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -109,6 +118,12 @@
             break;
         default:
             break;
+    }
+    
+    if (self.accessoryView) {
+        retval.height += self.accessoryViewEdgeInsets.top;
+        retval.height += [self.accessoryView sizeThatFits:CGSizeMake(retval.width - self.accessoryViewEdgeInsets.left - self.accessoryViewEdgeInsets.right, CGFLOAT_MAX)].height;
+        retval.height += self.accessoryViewEdgeInsets.bottom;
     }
     
     return retval;
@@ -232,6 +247,18 @@
     
     return retval;
 }
+- (CGRect)accessoryViewRectForBounds:(CGRect)bounds; {
+    CGRect retval = CGRectZero;
+    
+    if (self.accessoryView) {
+        CGFloat width = CGRectGetWidth(bounds) - self.accessoryViewEdgeInsets.left - self.accessoryViewEdgeInsets.right;
+        CGFloat height = [self.accessoryView sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
+        
+        retval = CGRectMake(self.accessoryViewEdgeInsets.left, 0, width, height);
+    }
+    
+    return retval;
+}
 #pragma mark Properties
 - (void)setArrowDirection:(BBTooltipViewArrowDirection)arrowDirection {
     _arrowDirection = arrowDirection;
@@ -262,6 +289,16 @@
 }
 - (void)setTooltipBackgroundColor:(UIColor *)tooltipBackgroundColor {
     _tooltipBackgroundColor = tooltipBackgroundColor ?: [self.class _defaultTooltipBackgroundColor];
+}
+
+- (void)setAccessoryView:(UIView *)accessoryView {
+    [_accessoryView removeFromSuperview];
+    
+    _accessoryView = accessoryView;
+    
+    if (_accessoryView) {
+        [self addSubview:_accessoryView];
+    }
 }
 #pragma mark *** Private Methods ***
 + (UIFont *)_defaultTooltipFont; {

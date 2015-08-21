@@ -31,6 +31,8 @@
  @return The arrow style for the tooltip
  */
 - (BBTooltipViewArrowStyle)tooltipViewController:(BBTooltipViewController *)viewController arrowStyleForTooltipAtIndex:(NSInteger)index;
+
+- (UIView *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index;
 /**
  Called immediately before the tooltip view controller is dismissed.
  
