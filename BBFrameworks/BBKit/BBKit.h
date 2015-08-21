@@ -35,6 +35,7 @@
 #import "BBNextPreviousInputAccessoryView.h"
 #import "BBTextView.h"
 #import "BBAnythingGestureRecognizer.h"
+#import "BBProgressSlider.h"
 #else
 #import "NSImage+BBKitExtensions.h"
 #import "NSAlert+BBKitExtensions.h"
