@@ -40,8 +40,9 @@
     _tooltipArrowHeight = [self.class _defaultTooltipArrowHeight];
     _tooltipCornerRadius = [self.class _defaultTooltipCornerRadius];
     
+    [self setIsAccessibilityElement:NO];
+    
     [self setTextLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.textLabel setIsAccessibilityElement:NO];
     [self.textLabel setNumberOfLines:0];
     [self.textLabel setLineBreakMode:NSLineBreakByWordWrapping];
     [self.textLabel setFont:_tooltipFont];
@@ -50,6 +51,17 @@
     
     return self;
 }
+#pragma mark Accessibility
+- (NSInteger)accessibilityElementCount {
+    return [self.accessoryView respondsToSelector:@selector(setDisplayNextTooltipBlock:)] ? 2 : 0;
+}
+- (id)accessibilityElementAtIndex:(NSInteger)index {
+    return index == 0 ? self.textLabel : self.accessoryView;
+}
+- (NSInteger)indexOfAccessibilityElement:(id)element {
+    return element == self.textLabel ? 0 : 1;
+}
+
 #pragma mark Layout
 - (void)layoutSubviews {
     switch (self.arrowStyle) {
@@ -79,12 +91,9 @@
     }
     
     if (self.accessoryView) {
-        CGFloat width = CGRectGetWidth(self.bounds) - self.accessoryViewEdgeInsets.left - self.accessoryViewEdgeInsets.right;
-        CGFloat height = [self.accessoryView sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
+        [self.accessoryView setFrame:[self accessoryViewRectForBounds:self.bounds]];
         
-        [self.accessoryView setFrame:CGRectMake(self.accessoryViewEdgeInsets.left, CGRectGetMaxY([self backgroundRectForBounds:self.bounds]) - height - self.accessoryViewEdgeInsets.bottom, width, height)];
-        
-        [self.textLabel setFrame:CGRectMake(CGRectGetMinX(self.textLabel.frame), CGRectGetMinY(self.textLabel.frame), CGRectGetWidth(self.textLabel.frame), CGRectGetHeight(self.textLabel.frame) - self.accessoryViewEdgeInsets.top - height - self.accessoryViewEdgeInsets.bottom)];
+        [self.textLabel setFrame:CGRectMake(CGRectGetMinX(self.textLabel.frame), CGRectGetMinY(self.textLabel.frame), CGRectGetWidth(self.textLabel.frame), CGRectGetHeight(self.textLabel.frame) - self.accessoryViewEdgeInsets.top - CGRectGetHeight(self.accessoryView.frame) - self.accessoryViewEdgeInsets.bottom)];
     }
 }
 
@@ -254,7 +263,7 @@
         CGFloat width = CGRectGetWidth(bounds) - self.accessoryViewEdgeInsets.left - self.accessoryViewEdgeInsets.right;
         CGFloat height = [self.accessoryView sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
         
-        retval = CGRectMake(self.accessoryViewEdgeInsets.left, 0, width, height);
+        retval = CGRectMake(self.accessoryViewEdgeInsets.left, CGRectGetMaxY([self backgroundRectForBounds:bounds]) - height - self.accessoryViewEdgeInsets.bottom, width, height);
     }
     
     return retval;
@@ -291,7 +300,7 @@
     _tooltipBackgroundColor = tooltipBackgroundColor ?: [self.class _defaultTooltipBackgroundColor];
 }
 
-- (void)setAccessoryView:(UIView *)accessoryView {
+- (void)setAccessoryView:(UIView<BBTooltipAccessoryView> *)accessoryView {
     [_accessoryView removeFromSuperview];
     
     _accessoryView = accessoryView;

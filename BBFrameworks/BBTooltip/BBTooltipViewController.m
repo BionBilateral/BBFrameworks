@@ -275,14 +275,44 @@ static CGFloat const kSpringDamping = 0.5;
             [self.tooltipView setText:[self.dataSource tooltipViewController:self textForTooltipAtIndex:self.tooltipIndex]];
         }
         
-        [self.view setAccessibilityLabel:self.tooltipView.text];
-        
         if ([self.delegate respondsToSelector:@selector(tooltipViewController:arrowStyleForTooltipAtIndex:)]) {
             [self.tooltipView setArrowStyle:[self.delegate tooltipViewController:self arrowStyleForTooltipAtIndex:self.tooltipIndex]];
         }
         
+        void(^setupAccessibilityAttributes)(BOOL) = ^(BOOL isAccessibilityElement){
+            @strongify(self);
+            if (isAccessibilityElement) {
+                [self.gestureRecognizer setEnabled:YES];
+                
+                [self.view setIsAccessibilityElement:YES];
+                [self.view setAccessibilityLabel:self.tooltipView.text];
+            }
+            else {
+                [self.gestureRecognizer setEnabled:NO];
+                
+                [self.view setIsAccessibilityElement:NO];
+            }
+        };
+        
         if ([self.delegate respondsToSelector:@selector(tooltipViewController:accessoryViewForTooltipAtIndex:)]) {
-            [self.tooltipView setAccessoryView:[self.delegate tooltipViewController:self accessoryViewForTooltipAtIndex:self.tooltipIndex]];
+            UIView<BBTooltipAccessoryView> *accessoryView = [self.delegate tooltipViewController:self accessoryViewForTooltipAtIndex:self.tooltipIndex];
+            
+            if ([accessoryView respondsToSelector:@selector(setDisplayNextTooltipBlock:)]) {
+                setupAccessibilityAttributes(NO);
+                
+                [accessoryView setDisplayNextTooltipBlock:^{
+                    @strongify(self);
+                    [self _animateToNextTooltip];
+                }];
+            }
+            else {
+                setupAccessibilityAttributes(YES);
+            }
+            
+            [self.tooltipView setAccessoryView:accessoryView];
+        }
+        else {
+            setupAccessibilityAttributes(YES);
         }
         
         UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex];

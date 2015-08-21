@@ -708,6 +708,7 @@
 		07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetViewController.m; sourceTree = "<group>"; };
 		07A67E8E1B87A1DA008CCB02 /* BBProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressSlider.h; path = iOS/BBProgressSlider.h; sourceTree = "<group>"; };
 		07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressSlider.m; path = iOS/BBProgressSlider.m; sourceTree = "<group>"; };
+		07A67E941B87BBB1008CCB02 /* BBTooltipAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAccessoryView.h; sourceTree = "<group>"; };
 		07AEC82B1B6BBD5800013470 /* BBMediaPickerViewModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModelDelegate.h; sourceTree = "<group>"; };
 		07AEC8321B6BE68500013470 /* BBTextCustomValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextCustomValidator.h; sourceTree = "<group>"; };
 		07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextCustomValidator.m; sourceTree = "<group>"; };
@@ -1642,6 +1643,7 @@
 				07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */,
 				07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */,
 				0795691F1B711C9500257CE9 /* BBTooltipViewDefines.h */,
+				07A67E941B87BBB1008CCB02 /* BBTooltipAccessoryView.h */,
 				79B4FFC31B3647F8007B8629 /* BBTooltipView.h */,
 				79B4FFC41B3647F8007B8629 /* BBTooltipView.m */,
 			);
