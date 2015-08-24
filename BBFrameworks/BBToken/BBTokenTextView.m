@@ -113,8 +113,11 @@
     
     return self;
 }
-// disable cut:, copy:, paste:, select:, and selectAll: for now, need to investigate how to duplicate Mail.app interactions using text attachments
+// disable cut:, copy:, select:, and selectAll: for now, need to investigate how to duplicate Mail.app interactions using text attachments
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    if (action == @selector(paste:)) {
+        return [super canPerformAction:action withSender:sender];
+    }
     return NO;
 }
 
