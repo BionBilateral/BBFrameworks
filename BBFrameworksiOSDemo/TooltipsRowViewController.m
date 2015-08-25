@@ -59,6 +59,8 @@
         [[BBTooltipView appearance] setTooltipTextColor:[UIColor whiteColor]];
         [[BBTooltipView appearance] setTooltipBackgroundColor:[UIColor blueColor]];
         [[BBTooltipView appearance] setTooltipCornerRadius:0.0];
+        [[BBTooltipView appearance] setTooltipArrowWidth:20.0];
+        [[BBTooltipView appearance] setTooltipArrowHeight:10.0];
     }
 }
 

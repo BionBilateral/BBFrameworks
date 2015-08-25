@@ -77,26 +77,44 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
 
 /**
  Set and get the tooltip font of the receiver.
+ 
+ The default is [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].
  */
 @property (strong,nonatomic) UIFont *tooltipFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip text color of the receiver.
+ 
+ The default is [UIColor whiteColor].
  */
 @property (strong,nonatomic) UIColor *tooltipTextColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip background color.
+ 
+ The default is [UIColor darkGrayColor].
  */
 @property (strong,nonatomic) UIColor *tooltipBackgroundColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip edge insets.
+ 
+ The default is UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0).
  */
 @property (assign,nonatomic) UIEdgeInsets tooltipEdgeInsets UI_APPEARANCE_SELECTOR;
 /**
+ Set and get the tooltip arrow width.
+ 
+ The default is 8.0.
+ */
+@property (assign,nonatomic) CGFloat tooltipArrowWidth UI_APPEARANCE_SELECTOR;
+/**
  Set and get the tooltip arrow height.
+ 
+ The default is 8.0.
  */
 @property (assign,nonatomic) CGFloat tooltipArrowHeight UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip corner radius.
+ 
+ The default is 5.0.
  */
 @property (assign,nonatomic) CGFloat tooltipCornerRadius UI_APPEARANCE_SELECTOR;
 

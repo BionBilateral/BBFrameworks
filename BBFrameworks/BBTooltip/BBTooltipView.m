@@ -23,6 +23,7 @@
 + (UIColor *)_defaultTooltipTextColor;
 + (UIColor *)_defaultTooltipBackgroundColor;
 + (UIEdgeInsets)_defaultTooltipEdgeInsets;
++ (CGFloat)_defaultTooltipArrowWidth;
 + (CGFloat)_defaultTooltipArrowHeight;
 + (CGFloat)_defaultTooltipCornerRadius;
 @end
@@ -37,6 +38,7 @@
     _tooltipTextColor = [self.class _defaultTooltipTextColor];
     _tooltipBackgroundColor = [self.class _defaultTooltipBackgroundColor];
     _tooltipEdgeInsets = [self.class _defaultTooltipEdgeInsets];
+    _tooltipArrowWidth = [self.class _defaultTooltipArrowWidth];
     _tooltipArrowHeight = [self.class _defaultTooltipArrowHeight];
     _tooltipCornerRadius = [self.class _defaultTooltipCornerRadius];
     
@@ -71,13 +73,13 @@
                     [self.textLabel setFrame:CGRectMake(self.tooltipEdgeInsets.left, self.tooltipArrowHeight + self.tooltipEdgeInsets.top, CGRectGetWidth(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right, CGRectGetHeight(self.bounds) - self.tooltipEdgeInsets.bottom - self.tooltipEdgeInsets.top - self.tooltipArrowHeight)];
                     break;
                 case BBTooltipViewArrowDirectionLeft:
-                    [self.textLabel setFrame:CGRectMake(self.tooltipArrowHeight + self.tooltipEdgeInsets.left, self.tooltipEdgeInsets.top, CGRectGetWidth(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowHeight, CGRectGetHeight(self.bounds) - self.tooltipEdgeInsets.top - self.tooltipEdgeInsets.bottom)];
+                    [self.textLabel setFrame:CGRectMake(self.tooltipArrowWidth + self.tooltipEdgeInsets.left, self.tooltipEdgeInsets.top, CGRectGetWidth(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowWidth, CGRectGetHeight(self.bounds) - self.tooltipEdgeInsets.top - self.tooltipEdgeInsets.bottom)];
                     break;
                 case BBTooltipViewArrowDirectionDown:
                     [self.textLabel setFrame:CGRectMake(self.tooltipEdgeInsets.left, self.tooltipEdgeInsets.top, CGRectGetWidth(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right, CGRectGetHeight(self.bounds) - self.tooltipEdgeInsets.top - self.tooltipEdgeInsets.bottom - self.tooltipArrowHeight)];
                     break;
                 case BBTooltipViewArrowDirectionRight:
-                    [self.textLabel setFrame:CGRectMake(self.tooltipEdgeInsets.left, self.tooltipEdgeInsets.top, CGRectGetWidth(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowHeight, CGRectGetHeight(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right)];
+                    [self.textLabel setFrame:CGRectMake(self.tooltipEdgeInsets.left, self.tooltipEdgeInsets.top, CGRectGetWidth(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowWidth, CGRectGetHeight(self.bounds) - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right)];
                     break;
                 default:
                     break;
@@ -113,7 +115,7 @@
                 case BBTooltipViewArrowDirectionLeft:
                 case BBTooltipViewArrowDirectionRight:
                     retval.height += self.tooltipEdgeInsets.top;
-                    retval.height += ceil([self.textLabel sizeThatFits:CGSizeMake(retval.width - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowHeight, CGFLOAT_MAX)].height);
+                    retval.height += ceil([self.textLabel sizeThatFits:CGSizeMake(retval.width - self.tooltipEdgeInsets.left - self.tooltipEdgeInsets.right - self.tooltipArrowWidth, CGFLOAT_MAX)].height);
                     retval.height += self.tooltipEdgeInsets.bottom;
                     break;
                 default:
@@ -200,13 +202,13 @@
                     retval = CGRectMake(0, self.tooltipArrowHeight, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.tooltipArrowHeight);
                     break;
                 case BBTooltipViewArrowDirectionLeft:
-                    retval = CGRectMake(self.tooltipArrowHeight, 0, CGRectGetWidth(bounds) - self.tooltipArrowHeight, CGRectGetHeight(bounds));
+                    retval = CGRectMake(self.tooltipArrowWidth, 0, CGRectGetWidth(bounds) - self.tooltipArrowWidth, CGRectGetHeight(bounds));
                     break;
                 case BBTooltipViewArrowDirectionDown:
                     retval = CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.tooltipArrowHeight);
                     break;
                 case BBTooltipViewArrowDirectionRight:
-                    retval = CGRectMake(0, 0, CGRectGetWidth(bounds) - self.tooltipArrowHeight, CGRectGetHeight(bounds));
+                    retval = CGRectMake(0, 0, CGRectGetWidth(bounds) - self.tooltipArrowWidth, CGRectGetHeight(bounds));
                     break;
                 default:
                     break;
@@ -234,20 +236,20 @@
         }
         
         CGPoint attachmentPoint = [self convertPoint:[self.window convertPoint:[attachmentView convertPoint:CGPointMake(CGRectGetMidX(attachmentBounds), CGRectGetMidY(attachmentBounds)) toView:nil] fromWindow:attachmentView.window] fromView:nil];
-        CGFloat arrowHalfHeight = floor(self.tooltipArrowHeight * 0.5);
+        CGFloat arrowHalfWidth = floor(self.tooltipArrowWidth * 0.5);
         
         switch (self.arrowDirection) {
             case BBTooltipViewArrowDirectionUp:
-                retval = CGRectMake(attachmentPoint.x - arrowHalfHeight, 0, self.tooltipArrowHeight, self.tooltipArrowHeight);
+                retval = CGRectMake(attachmentPoint.x - arrowHalfWidth, 0, self.tooltipArrowWidth, self.tooltipArrowHeight);
                 break;
             case BBTooltipViewArrowDirectionLeft:
-                retval = CGRectMake(0, attachmentPoint.y - arrowHalfHeight, self.tooltipArrowHeight, self.tooltipArrowHeight);
+                retval = CGRectMake(0, attachmentPoint.y - arrowHalfWidth, self.tooltipArrowWidth, self.tooltipArrowHeight);
                 break;
             case BBTooltipViewArrowDirectionDown:
-                retval = CGRectMake(attachmentPoint.x - arrowHalfHeight, CGRectGetHeight(bounds) - self.tooltipArrowHeight, self.tooltipArrowHeight, self.tooltipArrowHeight);
+                retval = CGRectMake(attachmentPoint.x - arrowHalfWidth, CGRectGetHeight(bounds) - self.tooltipArrowHeight, self.tooltipArrowWidth, self.tooltipArrowHeight);
                 break;
             case BBTooltipViewArrowDirectionRight:
-                retval = CGRectMake(CGRectGetWidth(bounds) - self.tooltipArrowHeight, attachmentPoint.y - arrowHalfHeight, self.tooltipArrowHeight, self.tooltipArrowHeight);
+                retval = CGRectMake(CGRectGetWidth(bounds) - self.tooltipArrowWidth, attachmentPoint.y - arrowHalfWidth, self.tooltipArrowWidth, self.tooltipArrowHeight);
                 break;
             default:
                 break;
@@ -299,6 +301,12 @@
 - (void)setTooltipBackgroundColor:(UIColor *)tooltipBackgroundColor {
     _tooltipBackgroundColor = tooltipBackgroundColor ?: [self.class _defaultTooltipBackgroundColor];
 }
+- (void)setTooltipArrowWidth:(CGFloat)tooltipArrowWidth {
+    _tooltipArrowWidth = tooltipArrowWidth <= 0.0 ? [self.class _defaultTooltipArrowWidth] : tooltipArrowWidth;
+}
+- (void)setTooltipArrowHeight:(CGFloat)tooltipArrowHeight {
+    _tooltipArrowHeight = tooltipArrowHeight <= 0.0 ? [self.class _defaultTooltipArrowHeight] : tooltipArrowHeight;
+}
 
 - (void)setAccessoryView:(UIView<BBTooltipAccessoryView> *)accessoryView {
     [_accessoryView removeFromSuperview];
@@ -321,6 +329,9 @@
 }
 + (UIEdgeInsets)_defaultTooltipEdgeInsets; {
     return UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+}
++ (CGFloat)_defaultTooltipArrowWidth; {
+    return 8.0;
 }
 + (CGFloat)_defaultTooltipArrowHeight; {
     return 8.0;
