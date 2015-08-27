@@ -209,6 +209,14 @@
             
             [self.textStorage deleteCharactersInRange:range];
             
+            [self setSelectedRange:NSMakeRange(range.location, 0)];
+            
+            [self textViewDidChangeSelection:self];
+            
+            if ([self.delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
+                [self.delegate textViewDidChangeSelection:self];
+            }
+            
             [self textViewDidChange:self];
             
             if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
