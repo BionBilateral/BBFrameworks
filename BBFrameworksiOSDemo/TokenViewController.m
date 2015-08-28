@@ -90,7 +90,7 @@
     [self.tokenTextView setTypingTextColor:[UIColor whiteColor]];
     [self.tokenTextView setTypingFont:[UIFont systemFontOfSize:17.0]];
     [self.tokenTextView setPlaceholderFont:self.tokenTextView.typingFont];
-    [self.tokenTextView setPlaceholder:@"Type some text…"];
+    [self.tokenTextView setPlaceholder:@"A really long placeholder that should wrap to the next line…"];
     [self.tokenTextView setDelegate:self];
     [self.view addSubview:self.tokenTextView];
     
