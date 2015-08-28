@@ -32,12 +32,12 @@
 - (void)_BB_presentTooltipViewControllerWithAttributes:(NSDictionary *)attributes;
 @end
 
+static NSString *const kAttributeText = @"kAttributeText";
+static NSString *const kAttributeAttributedText = @"kAttributeAttributedText";
+static NSString *const kAttributeAttachmentView = @"kAttributeAttachmentView";
+
 @interface _BBTooltipViewControllerDataSource : NSObject <BBTooltipViewControllerDataSource,BBTooltipViewControllerDelegate>
 
-@property (copy,nonatomic) NSString *text;
-@property (copy,nonatomic) NSAttributedString *attributedText;
-@property (strong,nonatomic) UIView *attachmentView;
-@property (assign,nonatomic) BBTooltipViewArrowStyle arrowStyle;
 @property (copy,nonatomic) NSDictionary *attributes;
 
 @end
@@ -48,19 +48,34 @@
     return 1;
 }
 - (UIView *)tooltipViewController:(BBTooltipViewController *)viewController attachmentViewForTooltipAtIndex:(NSInteger)index {
-    return self.attachmentView;
+    UIView *retval = self.attributes[kAttributeAttachmentView];
+    
+    if (self.attributes[BBTooltipAttributeAttachmentViewBounds]) {
+        [retval setBB_tooltipAttachmentViewBounds:[self.attributes[BBTooltipAttributeAttachmentViewBounds] CGRectValue]];
+    }
+    
+    return retval;
 }
 - (NSString *)tooltipViewController:(BBTooltipViewController *)viewController textForTooltipAtIndex:(NSInteger)index {
-    return self.text;
+    return self.attributes[kAttributeText];
 }
 - (NSAttributedString *)tooltipViewController:(BBTooltipViewController *)viewController attributedTextForTooltipAtIndex:(NSInteger)index {
-    return self.attributedText;
+    return self.attributes[kAttributeAttributedText];
 }
 
 - (BBTooltipViewArrowStyle)tooltipViewController:(BBTooltipViewController *)viewController arrowStyleForTooltipAtIndex:(NSInteger)index {
-    return self.arrowStyle;
+    return [self.attributes[BBTooltipAttributeArrowStyle] integerValue];
+}
+- (UIView<BBTooltipAccessoryView> *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index {
+    return self.attributes[BBTooltipAttributeAccessoryView];
 }
 - (void)tooltipViewControllerDidDismiss:(BBTooltipViewController *)viewController {
+    if (self.attributes[BBTooltipAttributeDismissCompletionBlock]) {
+        BBTooltipDismissCompletionBlock block = self.attributes[BBTooltipAttributeDismissCompletionBlock];
+        
+        block();
+    }
+    
     [viewController set_BB_dataSource:nil];
 }
 
@@ -372,10 +387,8 @@ NSString *const BBTooltipAttributeViewControllerClass = @"BBTooltipAttributeView
 NSString *const BBTooltipAttributeAttachmentViewBounds = @"BBTooltipAttributeAttachmentViewBounds";
 NSString *const BBTooltipAttributeArrowStyle = @"BBTooltipAttributeArrowStyle";
 NSString *const BBTooltipAttributeAccessoryView = @"BBTooltipAttributeAccessoryView";
-
-static NSString *const kAttributeText = @"kAttributeText";
-static NSString *const kAttributeAttributedText = @"kAttributeAttributedText";
-static NSString *const kAttributeAttachmentView = @"kAttributeAttachmentView";
+NSString *const BBTooltipAttributePresentCompletionBlock = @"BBTooltipAttributePresentCompletionBlock";
+NSString *const BBTooltipAttributeDismissCompletionBlock = @"BBTooltipAttributeDismissCompletionBlock";
 
 @implementation UIViewController (BBTooltipViewControllerExtensions)
 
@@ -399,9 +412,27 @@ static NSString *const kAttributeAttachmentView = @"kAttributeAttachmentView";
 @implementation UIViewController (BBTooltipViewControllerExtensionsPrivate)
 
 - (void)_BB_presentTooltipViewControllerWithAttributes:(NSDictionary *)attributes; {
+    NSParameterAssert(attributes[kAttributeAttachmentView]);
+    NSParameterAssert(attributes[kAttributeText] || attributes[kAttributeAttributedText]);
+    
     _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
     
     [dataSource setAttributes:attributes];
+    
+    Class viewControllerClass = attributes[BBTooltipAttributeViewControllerClass] ?: [BBTooltipViewController class];
+    BBTooltipViewController *viewController = [[viewControllerClass alloc] init];
+    
+    [viewController setDataSource:dataSource];
+    [viewController setDelegate:dataSource];
+    [viewController set_BB_dataSource:dataSource];
+    
+    [self presentViewController:viewController animated:YES completion:^{
+        if (attributes[BBTooltipAttributePresentCompletionBlock]) {
+            BBTooltipPresentCompletionBlock block = attributes[BBTooltipAttributePresentCompletionBlock];
+            
+            block();
+        }
+    }];
 }
 
 static void *_BB_dataSourceKey = &_BB_dataSourceKey;

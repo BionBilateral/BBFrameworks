@@ -60,10 +60,15 @@
 
 @end
 
+typedef void(^BBTooltipPresentCompletionBlock)(void);
+typedef void(^BBTooltipDismissCompletionBlock)(void);
+
 extern NSString *const BBTooltipAttributeViewControllerClass;
 extern NSString *const BBTooltipAttributeAttachmentViewBounds;
 extern NSString *const BBTooltipAttributeArrowStyle;
 extern NSString *const BBTooltipAttributeAccessoryView;
+extern NSString *const BBTooltipAttributePresentCompletionBlock;
+extern NSString *const BBTooltipAttributeDismissCompletionBlock;
 
 /**
  Category on UIViewController adding convenience methods to present a single tooltip with text or attributed text.
