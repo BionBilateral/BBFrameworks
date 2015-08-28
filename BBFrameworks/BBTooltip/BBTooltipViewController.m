@@ -28,6 +28,8 @@
 
 @interface UIViewController (BBTooltipViewControllerExtensionsPrivate)
 @property (strong,nonatomic) _BBTooltipViewControllerDataSource *_BB_dataSource;
+
+- (void)_BB_presentTooltipViewControllerWithAttributes:(NSDictionary *)attributes;
 @end
 
 @interface _BBTooltipViewControllerDataSource : NSObject <BBTooltipViewControllerDataSource,BBTooltipViewControllerDelegate>
@@ -36,6 +38,7 @@
 @property (copy,nonatomic) NSAttributedString *attributedText;
 @property (strong,nonatomic) UIView *attachmentView;
 @property (assign,nonatomic) BBTooltipViewArrowStyle arrowStyle;
+@property (copy,nonatomic) NSDictionary *attributes;
 
 @end
 
@@ -365,60 +368,41 @@ static CGFloat const kSpringDamping = 0.5;
 
 @end
 
+NSString *const BBTooltipAttributeViewControllerClass = @"BBTooltipAttributeViewControllerClass";
+NSString *const BBTooltipAttributeAttachmentViewBounds = @"BBTooltipAttributeAttachmentViewBounds";
+NSString *const BBTooltipAttributeArrowStyle = @"BBTooltipAttributeArrowStyle";
+NSString *const BBTooltipAttributeAccessoryView = @"BBTooltipAttributeAccessoryView";
+
+static NSString *const kAttributeText = @"kAttributeText";
+static NSString *const kAttributeAttributedText = @"kAttributeAttributedText";
+static NSString *const kAttributeAttachmentView = @"kAttributeAttachmentView";
+
 @implementation UIViewController (BBTooltipViewControllerExtensions)
 
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView; {
-    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView tooltipViewControllerClass:Nil];
-}
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView; {
-    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView tooltipViewControllerClass:Nil];
-}
-
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle; {
-    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView arrowStyle:arrowStyle tooltipViewControllerClass:Nil];
-}
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle; {
-    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView arrowStyle:arrowStyle tooltipViewControllerClass:Nil];
-}
-
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView arrowStyle:BBTooltipViewArrowStyleDefault tooltipViewControllerClass:tooltipViewControllerClass];
-}
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView arrowStyle:BBTooltipViewArrowStyleDefault tooltipViewControllerClass:tooltipViewControllerClass];
-}
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    BBTooltipViewController *viewController = [[tooltipViewControllerClass ?: [BBTooltipViewController class] alloc] init];
-    _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes; {
+    NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
     
-    [dataSource setText:text];
-    [dataSource setAttachmentView:attachmentView];
-    [dataSource setArrowStyle:arrowStyle];
+    [mutableAttributes addEntriesFromDictionary:@{kAttributeText: text, kAttributeAttachmentView: attachmentView}];
     
-    [viewController setDataSource:dataSource];
-    [viewController setDelegate:dataSource];
-    [viewController set_BB_dataSource:dataSource];
-    
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self _BB_presentTooltipViewControllerWithAttributes:mutableAttributes];
 }
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    BBTooltipViewController *viewController = [[tooltipViewControllerClass ?: [BBTooltipViewController class] alloc] init];
-    _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes; {
+    NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
     
-    [dataSource setAttributedText:attributedText];
-    [dataSource setAttachmentView:attachmentView];
-    [dataSource setArrowStyle:arrowStyle];
+    [mutableAttributes addEntriesFromDictionary:@{kAttributeAttributedText: attributedText, kAttributeAttachmentView: attachmentView}];
     
-    [viewController setDataSource:dataSource];
-    [viewController setDelegate:dataSource];
-    [viewController set_BB_dataSource:dataSource];
-    
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self _BB_presentTooltipViewControllerWithAttributes:mutableAttributes];
 }
 
 @end
 
 @implementation UIViewController (BBTooltipViewControllerExtensionsPrivate)
+
+- (void)_BB_presentTooltipViewControllerWithAttributes:(NSDictionary *)attributes; {
+    _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
+    
+    [dataSource setAttributes:attributes];
+}
 
 static void *_BB_dataSourceKey = &_BB_dataSourceKey;
 

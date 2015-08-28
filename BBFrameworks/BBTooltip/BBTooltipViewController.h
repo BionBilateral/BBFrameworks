@@ -60,77 +60,17 @@
 
 @end
 
+extern NSString *const BBTooltipAttributeViewControllerClass;
+extern NSString *const BBTooltipAttributeAttachmentViewBounds;
+extern NSString *const BBTooltipAttributeArrowStyle;
+extern NSString *const BBTooltipAttributeAccessoryView;
+
 /**
  Category on UIViewController adding convenience methods to present a single tooltip with text or attributed text.
  */
 @interface UIViewController (BBTooltipViewControllerExtensions)
 
-/**
- Presents a BBTooltipViewController with a single tooltip containing text.
- 
- @param text The text of the tooltip
- @param attachmentView The attachment view for the tooltip
- */
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView;
-/**
- Presents a BBTooltipViewController with a single tooltip containing attributed text.
- 
- @param attributedText The attributed text of the tooltip
- @param attachmentView The attachment view for the tooltip
- */
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView;
-
-/**
- Presents a BBTooltipViewController with a single tooltip containing text.
- 
- @param text The text of the tooltip
- @param attachmentView The attachment view for the tooltip
- @param arrowStyle The arrow style of the tooltip
- */
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle;
-/**
- Presents a BBTooltipViewController with a single tooltip containing attributed text.
- 
- @param attributedText The attributed text of the tooltip
- @param attachmentView The attachment view for the tooltip
- @param arrowStyle The arrow style of the tooltip
- */
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle;
-
-/**
- Presents a BBTooltipViewController with a single tooltip containing text.
- 
- @param text The text of the tooltip
- @param attachmentView The attachment view for the tooltip
- @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
- */
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass;
-/**
- Presents a BBTooltipViewController with a single tooltip containing attributed text.
- 
- @param attributedText The attributed text of the tooltip
- @param attachmentView The attachment view for the tooltip
- @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
- */
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass;
-
-/**
- Presents a BBTooltipViewController with a single tooltip containing text.
- 
- @param text The text of the tooltip
- @param attachmentView The attachment view for the tooltip
- @param arrowStyle The arrow style of the tooltip
- @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
- */
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass;
-/**
- Presents a BBTooltipViewController with a single tooltip containing attributed text.
- 
- @param attributedText The attributed text of the tooltip
- @param attachmentView The attachment view for the tooltip
- @param arrowStyle The arrow style of the tooltip
- @param tooltipViewControllerClass The subclass of BBTooltipViewController to present
- */
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass;
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes;
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes;
 
 @end
