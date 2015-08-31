@@ -100,7 +100,7 @@
 }
 
 - (IBAction)_buttonAction:(id)sender {
-    [[UIViewController BB_viewControllerForPresenting] BB_presentTooltipViewControllerWithText:self.error.BB_alertMessage attachmentView:self tooltipViewControllerClass:[_BBValidationErrorTooltipViewController class]];
+    [[UIViewController BB_viewControllerForPresenting] BB_presentTooltipViewControllerWithText:self.error.BB_alertMessage attachmentView:self attributes:@{BBTooltipAttributeViewControllerClass: [_BBValidationErrorTooltipViewController class]}];
 }
 
 @end
