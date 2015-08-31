@@ -370,29 +370,29 @@
     }
 }
 - (void)_keyboardNotification:(NSNotification *)note {
-    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
-    if ([note.name isEqualToString:UIKeyboardWillShowNotification]) {
-        CGRect keyboardFrame = [self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil];
-        
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [UIView setAnimationCurve:curve];
-            
-            [self.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, CGRectGetHeight(CGRectIntersection(self.tableView.bounds, keyboardFrame)), 0)];
-        } completion:^(BOOL finished) {
-            [self.tableView flashScrollIndicators];
-        }];
-    }
-    else {
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [UIView setAnimationCurve:curve];
-            
-            [self.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0)];
-        } completion:^(BOOL finished) {
-            [self.tableView flashScrollIndicators];
-        }];
-    }
+//    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+//    
+//    if ([note.name isEqualToString:UIKeyboardWillShowNotification]) {
+//        CGRect keyboardFrame = [self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil];
+//        
+//        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            [UIView setAnimationCurve:curve];
+//            
+//            [self.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, CGRectGetHeight(CGRectIntersection(self.tableView.bounds, keyboardFrame)), 0)];
+//        } completion:^(BOOL finished) {
+//            [self.tableView flashScrollIndicators];
+//        }];
+//    }
+//    else {
+//        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            [UIView setAnimationCurve:curve];
+//            
+//            [self.tableView setContentInset:UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0)];
+//        } completion:^(BOOL finished) {
+//            [self.tableView flashScrollIndicators];
+//        }];
+//    }
 }
 
 @end
