@@ -21,7 +21,7 @@
 #import <objc/runtime.h>
 
 @interface NSURL (BBMediaViewerMediaExtensionsPrivate)
-@property (strong,nonatomic) UIImage *BB_downloadedImage;
+@property (strong,nonatomic) id BB_downloadedMedia;
 @end
 
 @implementation NSURL (BBMediaViewerMediaExtensions)
@@ -42,7 +42,7 @@
             return [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:self]];
         }
         else {
-            return self.BB_downloadedImage;
+            return self.BB_downloadedMedia;
         }
     }
     return nil;
@@ -54,10 +54,10 @@
 - (void)downloadMediaImageWithCompletion:(void (^)(BOOL, NSError *))completion {
     NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:self completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
         if (error) {
-            [self setBB_downloadedImage:nil];
+            [self setBB_downloadedMedia:nil];
         }
         else {
-            [self setBB_downloadedImage:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:location]]];
+            [self setBB_downloadedMedia:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:location]]];
         }
         BBDispatchMainSyncSafe(^{
             completion(error != nil,error);
@@ -73,10 +73,10 @@
 
 static void *kBB_downloadedImageKey = &kBB_downloadedImageKey;
 
-- (UIImage *)BB_downloadedImage {
+- (id)BB_downloadedMedia {
     return objc_getAssociatedObject(self, kBB_downloadedImageKey);
 }
-- (void)setBB_downloadedImage:(UIImage *)BB_downloadedImage {
+- (void)setBB_downloadedMedia:(id)BB_downloadedImage {
     objc_setAssociatedObject(self, kBB_downloadedImageKey, BB_downloadedImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
