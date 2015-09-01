@@ -85,7 +85,7 @@
 - (void)_hideCompletionsTableViewAndSelectCompletion:(id<BBTokenCompletion>)completion;
 
 - (NSRange)_completionRangeForRange:(NSRange)range;
-- (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index;
+- (NSInteger)_indexOfTokenTextAttachmentInRange:(NSRange)range textAttachment:(id<BBTokenTextAttachment> *)textAttachment;
 
 + (NSCharacterSet *)_defaultTokenizingCharacterSet;
 + (NSTimeInterval)_defaultCompletionDelay;
@@ -156,8 +156,7 @@
             // initial array of represented objects to insert
             NSArray *representedObjects = @[representedObject];
             // index to insert the objects at
-            NSInteger index;
-            [self _tokenTextAttachmentForRange:range index:&index];
+            NSInteger index = [self _indexOfTokenTextAttachmentInRange:range textAttachment:NULL];
             
             // if the delegate responds to tokenTextView:shouldAddRepresentedObjects:atIndex use its return value for the represented objects to insert
             if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
@@ -226,8 +225,7 @@
             // if there are text attachments, call tokenTextView:didRemoveRepresentedObjects:atIndex: if its implemented
             if (representedObjects.count > 0) {
                 if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
-                    NSInteger index;
-                    [self _tokenTextAttachmentForRange:range index:&index];
+                    NSInteger index = [self _indexOfTokenTextAttachmentInRange:range textAttachment:NULL];
                     
                     [self.delegate tokenTextView:self didRemoveRepresentedObjects:representedObjects atIndex:index];
                 }
@@ -385,9 +383,7 @@
     if ([self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:completion:)] ||
         [self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:)]) {
         
-        NSInteger index;
-        [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
-        
+        NSInteger index = [self _indexOfTokenTextAttachmentInRange:self.selectedRange textAttachment:NULL];
         NSRange range = [self _completionRangeForRange:self.selectedRange];
         
         // prefer the async completions delegate method
@@ -416,8 +412,7 @@
             }
             
             NSArray *representedObjects = @[representedObject];
-            NSInteger index;
-            [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
+            NSInteger index = [self _indexOfTokenTextAttachmentInRange:self.selectedRange textAttachment:NULL];
             
             // if the delegate responds to tokenTextView:shouldAddRepresentedObjects:atIndex use its return value for the represented objects to insert
             if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
@@ -475,18 +470,18 @@
     
     return retval;
 }
-- (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index; {
+- (NSInteger)_indexOfTokenTextAttachmentInRange:(NSRange)range textAttachment:(id<BBTokenTextAttachment> *)textAttachment; {
     // if we don't have any text, the attachment is nil, otherwise search for an attachment clamped to the passed in range.location and the end of our text - 1
-    BBTokenDefaultTextAttachment *retval = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+    BBTokenDefaultTextAttachment *attachment = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+    NSArray *representedObjects = self.representedObjects;
+    NSInteger retval = [representedObjects indexOfObject:attachment.representedObject];
     
-    if (index) {
-        NSInteger outIndex = [self.representedObjects indexOfObject:retval.representedObject];
-        
-        if (outIndex == NSNotFound) {
-            outIndex = self.representedObjects.count;
-        }
-        
-        *index = outIndex;
+    if (retval == NSNotFound) {
+        retval = representedObjects.count;
+    }
+    
+    if (attachment) {
+        *textAttachment = attachment;
     }
     
     return retval;
