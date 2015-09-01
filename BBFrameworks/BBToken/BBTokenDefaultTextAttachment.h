@@ -16,8 +16,6 @@
 #import <UIKit/UIKit.h>
 #import "BBTokenTextAttachment.h"
 
-@class BBTokenTextView;
-
 /**
  BBTokenTextAttachment is a NSTextAttachment subclass that represents a token within a BBTokenTextView.
  */
