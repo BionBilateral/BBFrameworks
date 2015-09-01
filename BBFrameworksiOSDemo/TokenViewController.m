@@ -137,6 +137,9 @@
     return [(TokenModel *)representedObject string];
 }
 
+- (void)tokenTextView:(BBTokenTextView *)tokenTextView didAddRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index {
+    BBLog(@"%@ %@",representedObjects,@(index));
+}
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView didRemoveRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index {
     BBLog(@"%@ %@",representedObjects,@(index));
 }

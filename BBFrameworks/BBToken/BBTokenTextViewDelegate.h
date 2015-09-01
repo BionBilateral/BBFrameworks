@@ -76,6 +76,24 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView didRemoveRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index;
 
 /**
+ Called when the cut: or copy: commands are chosen from the context menu. The delegate should return YES if it intends to handle the writing of the represented objects to the pasteboard. Otherwise, return NO and the token text view will write the display string for each represented object to the pasteboard.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param reprsentedObjects The array of represented objects that should be written to the pasteboard
+ @param pasteboard The pasteboard to write to
+ @return YES if the delegate handled writing to the pasteboard, NO otherwise
+ */
+- (BOOL)tokenTextView:(BBTokenTextView *)tokenTextView writeRepresentedObjects:(NSArray *)representedObjects pasteboard:(UIPasteboard *)pasteboard;
+/**
+ Called when the paste: command is chosen from the context menu. The delegate should return an array of represented objects created by reading data from pasteboard. If this method is not implemented, the token text view will read the array of strings stored on the pasteboard and create represented objects from them.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param pasteboard The pasteboard to read from
+ @return An array of represented objects created by reading from pasteboard
+ */
+- (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView readFromPasteboard:(UIPasteboard *)pasteboard;
+
+/**
  Called when the receiver's delegate should display the completions table view.
  
  The provided table view should be inserted into the view hierarchy and its frame set accordingly.
