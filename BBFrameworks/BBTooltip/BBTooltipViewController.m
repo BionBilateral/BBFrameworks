@@ -91,6 +91,8 @@ static CGFloat const kSpringDamping = 0.5;
 @property (assign,nonatomic) NSInteger tooltipIndex;
 - (void)setTooltipIndex:(NSInteger)tooltipIndex animated:(BOOL)animated completion:(void(^)(void))completion;
 
+- (CGRect)_tooltipViewFrameForTooltipIndex:(NSInteger)tooltipIndex;
+
 - (void)_animateToNextTooltip;
 - (void)_dismissForLastTooltip;
 
@@ -144,6 +146,15 @@ static CGFloat const kSpringDamping = 0.5;
          @strongify(self);
          [self _animateToNextTooltip];
      }];
+}
+- (void)viewWillLayoutSubviews {
+    if (self.isBeingPresented ||
+        self.isBeingDismissed) {
+        
+        return;
+    }
+    
+    [self.tooltipView setFrame:[self _tooltipViewFrameForTooltipIndex:self.tooltipIndex]];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -224,6 +235,47 @@ static CGFloat const kSpringDamping = 0.5;
             [self.delegate tooltipViewControllerDidDismiss:self];
         }
     }];
+}
+
+- (CGRect)_tooltipViewFrameForTooltipIndex:(NSInteger)tooltipIndex; {
+    UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:tooltipIndex];
+    CGRect attachmentViewBounds = attachmentView.bounds;
+    
+    if ([attachmentView respondsToSelector:@selector(BB_tooltipAttachmentViewBounds)] &&
+        !CGRectIsEmpty([attachmentView BB_tooltipAttachmentViewBounds])) {
+        
+        attachmentViewBounds = attachmentView.BB_tooltipAttachmentViewBounds;
+    }
+    
+    CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentViewBounds toView:nil] fromWindow:nil] fromView:nil];
+    CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.left - self.tooltipMinimumEdgeInsets.right, CGRectGetHeight(self.view.bounds))];
+    CGRect tooltipFrame = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(attachmentViewFrame), tooltipSize.width, tooltipSize.height), attachmentViewFrame);
+    
+    // check left edge
+    if (CGRectGetMinX(tooltipFrame) < self.tooltipMinimumEdgeInsets.left) {
+        tooltipFrame.origin.x = self.tooltipMinimumEdgeInsets.left;
+    }
+    // check right edge
+    else if (CGRectGetMaxX(tooltipFrame) > CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.right) {
+        tooltipFrame.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(tooltipFrame) - self.tooltipMinimumEdgeInsets.right;
+    }
+    
+    // check top edge
+    if (CGRectGetMinY(tooltipFrame) < self.tooltipMinimumEdgeInsets.top) {
+        tooltipFrame.origin.y = self.tooltipMinimumEdgeInsets.top;
+    }
+    // check bottom edge
+    else if (CGRectGetMaxY(tooltipFrame) > CGRectGetHeight(self.view.bounds) - self.tooltipMinimumEdgeInsets.bottom) {
+        tooltipFrame.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(tooltipFrame) - self.tooltipMinimumEdgeInsets.bottom;
+        
+        if (CGRectIntersectsRect(tooltipFrame, attachmentViewFrame)) {
+            tooltipFrame.origin.y = CGRectGetMinY(attachmentViewFrame) - CGRectGetHeight(tooltipFrame);
+            
+            [self.tooltipView setArrowDirection:BBTooltipViewArrowDirectionDown];
+        }
+    }
+    
+    return tooltipFrame;
 }
 
 + (NSTimeInterval)_defaultTooltipAnimationDuration; {
@@ -333,45 +385,8 @@ static CGFloat const kSpringDamping = 0.5;
             setupAccessibilityAttributes(YES);
         }
         
-        UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex];
-        CGRect attachmentViewBounds = attachmentView.bounds;
-        
-        if ([attachmentView respondsToSelector:@selector(BB_tooltipAttachmentViewBounds)] &&
-            !CGRectIsEmpty([attachmentView BB_tooltipAttachmentViewBounds])) {
-            
-            attachmentViewBounds = attachmentView.BB_tooltipAttachmentViewBounds;
-        }
-        
-        CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentViewBounds toView:nil] fromWindow:nil] fromView:nil];
-        CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.left - self.tooltipMinimumEdgeInsets.right, CGRectGetHeight(self.view.bounds))];
-        CGRect tooltipFrame = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(attachmentViewFrame), tooltipSize.width, tooltipSize.height), attachmentViewFrame);
-        
-        // check left edge
-        if (CGRectGetMinX(tooltipFrame) < self.tooltipMinimumEdgeInsets.left) {
-            tooltipFrame.origin.x = self.tooltipMinimumEdgeInsets.left;
-        }
-        // check right edge
-        else if (CGRectGetMaxX(tooltipFrame) > CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.right) {
-            tooltipFrame.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(tooltipFrame) - self.tooltipMinimumEdgeInsets.right;
-        }
-        
-        // check top edge
-        if (CGRectGetMinY(tooltipFrame) < self.tooltipMinimumEdgeInsets.top) {
-            tooltipFrame.origin.y = self.tooltipMinimumEdgeInsets.top;
-        }
-        // check bottom edge
-        else if (CGRectGetMaxY(tooltipFrame) > CGRectGetHeight(self.view.bounds) - self.tooltipMinimumEdgeInsets.bottom) {
-            tooltipFrame.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(tooltipFrame) - self.tooltipMinimumEdgeInsets.bottom;
-            
-            if (CGRectIntersectsRect(tooltipFrame, attachmentViewFrame)) {
-                tooltipFrame.origin.y = CGRectGetMinY(attachmentViewFrame) - CGRectGetHeight(tooltipFrame);
-                
-                [self.tooltipView setArrowDirection:BBTooltipViewArrowDirectionDown];
-            }
-        }
-        
-        [self.tooltipView setFrame:tooltipFrame];
-        [self.tooltipView setAttachmentView:attachmentView];
+        [self.tooltipView setFrame:[self _tooltipViewFrameForTooltipIndex:self.tooltipIndex]];
+        [self.tooltipView setAttachmentView:[self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex]];
         
         animateInTooltipViewBlock(self.tooltipView);
         
