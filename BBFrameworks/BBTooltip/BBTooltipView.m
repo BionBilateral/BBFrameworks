@@ -43,6 +43,7 @@
     _tooltipCornerRadius = [self.class _defaultTooltipCornerRadius];
     
     [self setIsAccessibilityElement:NO];
+    [self setContentMode:UIViewContentModeRedraw];
     
     [self setTextLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.textLabel setNumberOfLines:0];
