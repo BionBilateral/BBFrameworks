@@ -18,16 +18,20 @@
 #import "BBKitColorMacros.h"
 #import "BBMediaViewerViewModel.h"
 #import "BBFoundationGeometryFunctions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
+#import "UIImage+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-static CGFloat const kMarginX = 8.0;
+static CGFloat const kMarginX = 16.0;
 
 @interface BBMediaViewerTopContainerView ()
 @property (strong,nonatomic) BBGradientView *gradientView;
 @property (strong,nonatomic) UIButton *closeButton;
 @property (strong,nonatomic) UIButton *actionButton;
 @property (strong,nonatomic) UILabel *titleLabel;
+
+@property (readonly,nonatomic) UIColor *renderColor;
 
 @property (strong,nonatomic) BBMediaViewerViewModel *viewModel;
 @end
@@ -36,7 +40,10 @@ static CGFloat const kMarginX = 8.0;
 
 - (void)layoutSubviews {
     [self.gradientView setFrame:self.bounds];
-    [self.closeButton setFrame:CGRectMake(kMarginX, 0, [self.closeButton sizeThatFits:CGSizeZero].width, CGRectGetHeight(self.bounds))];
+    
+    CGSize closeButtonSize = [self.closeButton sizeThatFits:CGSizeZero];
+    
+    [self.closeButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(kMarginX, 0, closeButtonSize.width, closeButtonSize.height), self.bounds)];
     [self.actionButton setFrame:CGRectMake(CGRectGetWidth(self.bounds) - [self.actionButton sizeThatFits:CGSizeZero].width - kMarginX, 0, [self.actionButton sizeThatFits:CGSizeZero].width, CGRectGetHeight(self.bounds))];
     [self.titleLabel setFrame:CGRectMake(CGRectGetMaxX(self.closeButton.frame), 0, CGRectGetMinX(self.actionButton.frame) - CGRectGetMaxX(self.closeButton.frame), CGRectGetHeight(self.bounds))];
 }
@@ -58,14 +65,13 @@ static CGFloat const kMarginX = 8.0;
     [self addSubview:self.gradientView];
     
     [self setCloseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    [self.closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [self.closeButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_close"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
     [self.closeButton setRac_command:self.viewModel.doneCommand];
     [self.closeButton sizeToFit];
     [self addSubview:self.closeButton];
     
     [self setActionButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    [self.actionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.actionButton setTitleColor:self.renderColor forState:UIControlStateNormal];
     [self.actionButton setTitle:@"Action" forState:UIControlStateNormal];
     [self.actionButton setRac_command:self.viewModel.actionCommand];
     [self.actionButton sizeToFit];
@@ -80,6 +86,10 @@ static CGFloat const kMarginX = 8.0;
     RAC(self.titleLabel,text) = RACObserve(self.viewModel, title);
     
     return self;
+}
+
+- (UIColor *)renderColor {
+    return [UIColor whiteColor];
 }
 
 @end
