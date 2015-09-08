@@ -163,9 +163,12 @@
     }
     else {
         NSMutableArray *temp = [[NSMutableArray alloc] init];
+        NSMutableCharacterSet *characterSet = [self.tokenizingCharacterSet mutableCopy];
+        
+        [characterSet formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
         
         for (NSString *string in pasteboard.strings) {
-            for (NSString *subString in [string componentsSeparatedByCharactersInSet:self.tokenizingCharacterSet]) {
+            for (NSString *subString in [string componentsSeparatedByCharactersInSet:characterSet]) {
                 NSString *tokenText = [subString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 id representedObject = tokenText;
                 
