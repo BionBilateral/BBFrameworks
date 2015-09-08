@@ -112,11 +112,6 @@ static CGFloat const kMarginX = 16.0;
     [self.fastForwardButton sizeToFit];
     [self addSubview:self.fastForwardButton];
     
-    RAC(self.playPauseButton,selected) = [RACObserve(self.viewModel.player, rate)
-                                          map:^id(NSNumber *value) {
-                                              return @(value.floatValue != 0.0);
-                                          }];
-    
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.slider];
     
@@ -138,6 +133,17 @@ static CGFloat const kMarginX = 16.0;
     [self setTimeRemainingDateFormatter:[[NSDateFormatter alloc] init]];
     
     @weakify(self);
+    
+    RAC(self.playPauseButton,selected) = [RACObserve(self.viewModel.player, rate)
+                                          map:^id(NSNumber *value) {
+                                              return @(value.floatValue != BBMediaViewerDetailViewModelMoviePausePlaybackRate);
+                                          }];
+    
+    RAC(self.fastForwardButton,selected) = [RACObserve(self.viewModel.player, rate)
+                                            map:^id(NSNumber *value) {
+                                                return @(value.floatValue == BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate);
+                                            }];
+    
     [[RACObserve(self.viewModel.player.currentItem, loadedTimeRanges)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSArray *value) {

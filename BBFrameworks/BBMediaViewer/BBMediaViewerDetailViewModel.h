@@ -25,6 +25,10 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
     BBMediaViewerDetailViewModelTypePlainText
 };
 
+extern float const BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate;
+extern float const BBMediaViewerDetailViewModelMoviePlaybackRate;
+extern float const BBMediaViewerDetailViewModelMoviePausePlaybackRate;
+
 @class RACCommand;
 
 @interface BBMediaViewerDetailViewModel : RVMViewModel

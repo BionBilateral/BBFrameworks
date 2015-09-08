@@ -20,6 +20,10 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 
+float const BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate = 2.0;
+float const BBMediaViewerDetailViewModelMoviePlaybackRate = 1.0;
+float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
+
 @interface BBMediaViewerDetailViewModel ()
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
 @property (readwrite,assign,nonatomic) NSInteger index;
@@ -57,7 +61,7 @@
          deliverOn:[RACScheduler mainThreadScheduler]]
          subscribeNext:^(id _) {
              @strongify(self);
-             if (self.player.rate == 0.0) {
+             if (self.player.rate == BBMediaViewerDetailViewModelMoviePausePlaybackRate) {
                  [self play];
              }
              else {
@@ -69,8 +73,6 @@
             return @(value.boolValue);
         }] signalBlock:^RACSignal *(UIButton *input) {
             @strongify(self);
-            [input setSelected:!input.isSelected];
-            
             return [RACSignal return:self];
         }]];
         
@@ -91,7 +93,7 @@
              else {
                  playerRate = @(self.player.rate);
                  
-                 [self.player setRate:2.0];
+                 [self.player setRate:BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate];
              }
          }];
     }
@@ -102,14 +104,14 @@
 - (void)play; {
     [self _seekToBeginningOfMovieIfNecessary];
     
-    [self.player setRate:1.0];
+    [self.player setRate:BBMediaViewerDetailViewModelMoviePlaybackRate];
 }
 - (void)pause; {
-    [self.player setRate:0.0];
+    [self.player setRate:BBMediaViewerDetailViewModelMoviePausePlaybackRate];
 }
 - (void)stop; {
     [self pause];
-    [self seekToTimeInterval:0.0];
+    [self seekToTimeInterval:BBMediaViewerDetailViewModelMoviePausePlaybackRate];
 }
 
 - (void)seekToTimeInterval:(NSTimeInterval)timeInterval; {
