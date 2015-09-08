@@ -27,6 +27,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 static CGFloat const kMarginXY = 8.0;
+static CGFloat const kMarginX = 16.0;
 
 @interface BBMediaViewerMovieSliderContainerView ()
 @property (strong,nonatomic) BBProgressSlider *slider;
@@ -35,18 +36,32 @@ static CGFloat const kMarginXY = 8.0;
 @property (strong,nonatomic) UILabel *timeRemainingLabel;
 
 @property (strong,nonatomic) UIButton *playPauseButton;
+@property (strong,nonatomic) UIButton *fastForwardButton;
 
 @property (strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @property (strong,nonatomic) id timeObserver;
 
 @property (strong,nonatomic) NSDateFormatter *timeElapsedDateFormatter;
 @property (strong,nonatomic) NSDateFormatter *timeRemainingDateFormatter;
+
+@property (readonly,nonatomic) UIColor *renderColor;
+@property (readonly,nonatomic) UIColor *highlightTintColor;
+
+- (void)_updateFastForwardButtonImages;
 @end
 
 @implementation BBMediaViewerMovieSliderContainerView
 
 - (void)dealloc {
     [self.viewModel.player removeTimeObserver:self.timeObserver];
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    if (self.window) {
+        [self _updateFastForwardButtonImages];
+    }
 }
 
 - (void)layoutSubviews {
@@ -63,10 +78,14 @@ static CGFloat const kMarginXY = 8.0;
     CGSize playPauseButtonSize = [self.playPauseButton sizeThatFits:CGSizeZero];
     
     [self.playPauseButton setFrame:BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(self.slider.frame) + kMarginXY, playPauseButtonSize.width, playPauseButtonSize.height), self.bounds)];
+    
+    CGSize fastForwardButtonSize = [self.fastForwardButton sizeThatFits:CGSizeZero];
+    
+    [self.fastForwardButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.playPauseButton.frame) + kMarginX, 0, fastForwardButtonSize.width, fastForwardButtonSize.height), self.playPauseButton.frame)];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(UIViewNoIntrinsicMetric, 8.0 + [self.slider sizeThatFits:size].height + 8.0 + [self.playPauseButton sizeThatFits:CGSizeZero].height + 8.0);
+    return CGSizeMake(UIViewNoIntrinsicMetric, kMarginXY + [self.slider sizeThatFits:size].height + kMarginXY + [self.playPauseButton sizeThatFits:CGSizeZero].height + kMarginXY);
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
@@ -77,13 +96,21 @@ static CGFloat const kMarginXY = 8.0;
     
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.playPauseButton setAdjustsImageWhenHighlighted:NO];
-    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:BBColorWA(0.0, 0.33)] forState:UIControlStateNormal|UIControlStateHighlighted];
-    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:[UIColor whiteColor]] forState:UIControlStateSelected];
-    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:BBColorWA(0.0, 0.33)] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateSelected];
+    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.playPauseButton setRac_command:self.viewModel.playPauseCommand];
     [self.playPauseButton sizeToFit];
     [self addSubview:self.playPauseButton];
+    
+    [self setFastForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.fastForwardButton setAdjustsImageWhenHighlighted:NO];
+    [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
+    [self.fastForwardButton setImage:[[self.fastForwardButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.fastForwardButton setRac_command:self.viewModel.fastForwardCommand];
+    [self.fastForwardButton sizeToFit];
+    [self addSubview:self.fastForwardButton];
     
     RAC(self.playPauseButton,selected) = [RACObserve(self.viewModel.player, rate)
                                           map:^id(NSNumber *value) {
@@ -178,6 +205,18 @@ static CGFloat const kMarginXY = 8.0;
     timeObserverBlock(kCMTimeZero);
     
     return self;
+}
+
+- (void)_updateFastForwardButtonImages; {
+    [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.fastForwardButton setImage:[[self.fastForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
+}
+
+- (UIColor *)renderColor {
+    return [UIColor whiteColor];
+}
+- (UIColor *)highlightTintColor {
+    return BBColorWA(0.0, 0.33);
 }
 
 @end

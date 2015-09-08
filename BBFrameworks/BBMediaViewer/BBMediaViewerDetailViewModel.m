@@ -29,6 +29,9 @@
 @property (readwrite,strong,nonatomic) AVPlayer *player;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
+@property (readwrite,strong,nonatomic) RACCommand *fastForwardCommand;
+
+- (void)_seekToBeginningOfMovieIfNecessary;
 @end
 
 @implementation BBMediaViewerDetailViewModel
@@ -61,16 +64,43 @@
                  [self pause];
              }
          }];
+        
+        [self setFastForwardCommand:[[RACCommand alloc] initWithEnabled:[RACSignal combineLatest:@[RACObserve(self.player.currentItem, canPlayFastForward)] reduce:^id(NSNumber *value){
+            return @(value.boolValue);
+        }] signalBlock:^RACSignal *(UIButton *input) {
+            @strongify(self);
+            [input setSelected:!input.isSelected];
+            
+            return [RACSignal return:self];
+        }]];
+        
+        __block NSNumber *playerRate = nil;
+        
+        [[[self.fastForwardCommand.executionSignals
+         concat]
+         deliverOn:[RACScheduler mainThreadScheduler]]
+         subscribeNext:^(id _) {
+             @strongify(self);
+             [self _seekToBeginningOfMovieIfNecessary];
+             
+             if (playerRate) {
+                 [self.player setRate:playerRate.floatValue];
+                 
+                 playerRate = nil;
+             }
+             else {
+                 playerRate = @(self.player.rate);
+                 
+                 [self.player setRate:2.0];
+             }
+         }];
     }
     
     return self;
 }
 
 - (void)play; {
-    if (CMTIME_IS_VALID(self.player.currentItem.duration) &&
-        CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
-        [self seekToTimeInterval:0.0];
-    }
+    [self _seekToBeginningOfMovieIfNecessary];
     
     [self.player setRate:1.0];
 }
@@ -159,6 +189,13 @@
     }
     
     return retval;
+}
+
+- (void)_seekToBeginningOfMovieIfNecessary; {
+    if (CMTIME_IS_VALID(self.player.currentItem.duration) &&
+        CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
+        [self seekToTimeInterval:0.0];
+    }
 }
 
 @end

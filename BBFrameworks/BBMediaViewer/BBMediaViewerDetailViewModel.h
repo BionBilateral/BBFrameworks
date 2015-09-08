@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
 @property (readonly,nonatomic) NSTimeInterval duration;
 
 @property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
+@property (readonly,strong,nonatomic) RACCommand *fastForwardCommand;
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media index:(NSInteger)index NS_DESIGNATED_INITIALIZER;
 
