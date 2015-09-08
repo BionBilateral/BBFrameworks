@@ -76,6 +76,16 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView didRemoveRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index;
 
 /**
+ Called to determine which editing commands should be displayed by the receiver. The action parameter represents the relevant command (e.g. cut:, copy:, paste:).
+ 
+ @param tokenTextView The token text view that sent the message
+ @param action The action to perform
+ @param sender The object asking to perform action
+ @return YES if the token text can perform action, NO otherwise
+ */
+- (BOOL)tokenTextView:(BBTokenTextView *)tokenTextView canPerformAction:(SEL)action withSender:(id)sender;
+
+/**
  Called when the cut: or copy: commands are chosen from the context menu. The delegate should return YES if it intends to handle the writing of the represented objects to the pasteboard. Otherwise, return NO and the token text view will write the display string for each represented object to the pasteboard.
  
  @param tokenTextView The token text view that sent the message

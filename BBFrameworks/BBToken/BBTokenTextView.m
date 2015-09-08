@@ -115,6 +115,13 @@
     return self;
 }
 
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(tokenTextView:canPerformAction:withSender:)]) {
+        return [self.delegate tokenTextView:self canPerformAction:action withSender:sender];
+    }
+    return [super canPerformAction:action withSender:sender];
+}
+
 - (void)cut:(id)sender {
     NSRange range = self.selectedRange;
     NSArray *representedObjects = [self _copyTokenTextAttachmentsInRange:range];
