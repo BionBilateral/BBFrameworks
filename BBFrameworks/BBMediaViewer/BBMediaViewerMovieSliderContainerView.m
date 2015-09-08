@@ -27,7 +27,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 static CGFloat const kMarginXY = 8.0;
-static CGFloat const kMarginX = 16.0;
+static CGFloat const kMarginX = 24.0;
 
 @interface BBMediaViewerMovieSliderContainerView ()
 @property (strong,nonatomic) BBProgressSlider *slider;
@@ -39,6 +39,7 @@ static CGFloat const kMarginX = 16.0;
 @property (strong,nonatomic) UIButton *fastForwardButton;
 @property (strong,nonatomic) UIButton *slowForwardButton;
 @property (strong,nonatomic) UIButton *fastReverseButton;
+@property (strong,nonatomic) UIButton *slowReverseButton;
 
 @property (strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @property (strong,nonatomic) id timeObserver;
@@ -88,10 +89,18 @@ static CGFloat const kMarginX = 16.0;
     CGSize fastForwardButtonSize = [self.fastForwardButton sizeThatFits:CGSizeZero];
     
     [self.fastForwardButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.slowForwardButton.frame) + kMarginX, 0, fastForwardButtonSize.width, fastForwardButtonSize.height), self.playPauseButton.frame)];
+    
+    CGSize slowReverseButtonSize = [self.slowReverseButton sizeThatFits:CGSizeZero];
+    
+    [self.slowReverseButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(self.playPauseButton.frame) - slowReverseButtonSize.width - kMarginX, 0, slowReverseButtonSize.width, slowReverseButtonSize.height), self.playPauseButton.frame)];
+    
+    CGSize fastReverseButtonSize = [self.fastReverseButton sizeThatFits:CGSizeZero];
+    
+    [self.fastReverseButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(self.slowReverseButton.frame) - fastReverseButtonSize.width - kMarginX, 0, fastReverseButtonSize.width, fastReverseButtonSize.height), self.playPauseButton.frame)];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return CGSizeMake(UIViewNoIntrinsicMetric, kMarginXY + [self.slider sizeThatFits:size].height + kMarginXY + [self.playPauseButton sizeThatFits:CGSizeZero].height + kMarginXY);
+    return CGSizeMake(UIViewNoIntrinsicMetric, kMarginXY + [self.slider sizeThatFits:size].height + kMarginXY + [self.playPauseButton sizeThatFits:CGSizeZero].height + kMarginXY + kMarginXY);
 }
 
 - (instancetype)initWithViewModel:(BBMediaViewerDetailViewModel *)viewModel; {
@@ -126,6 +135,22 @@ static CGFloat const kMarginX = 16.0;
     [self.slowForwardButton sizeToFit];
     [self addSubview:self.slowForwardButton];
     
+    [self setSlowReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.slowReverseButton setAdjustsImageWhenHighlighted:NO];
+    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
+    [self.slowReverseButton setImage:[[self.slowReverseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.slowReverseButton setRac_command:self.viewModel.slowReverseCommand];
+    [self.slowReverseButton sizeToFit];
+    [self addSubview:self.slowReverseButton];
+    
+    [self setFastReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.fastReverseButton setAdjustsImageWhenHighlighted:NO];
+    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
+    [self.fastReverseButton setImage:[[self.fastReverseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.fastReverseButton setRac_command:self.viewModel.fastReverseCommand];
+    [self.fastReverseButton sizeToFit];
+    [self addSubview:self.fastReverseButton];
+    
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.slider];
     
@@ -148,19 +173,31 @@ static CGFloat const kMarginX = 16.0;
     
     @weakify(self);
     
-    RAC(self.playPauseButton,selected) = [RACObserve(self.viewModel.player, rate)
+    RACSignal *rateSignal = RACObserve(self.viewModel.player, rate);
+    
+    RAC(self.playPauseButton,selected) = [rateSignal
                                           map:^id(NSNumber *value) {
                                               return @(value.floatValue != BBMediaViewerDetailViewModelMoviePausePlaybackRate);
                                           }];
     
-    RAC(self.fastForwardButton,selected) = [RACObserve(self.viewModel.player, rate)
+    RAC(self.fastForwardButton,selected) = [rateSignal
                                             map:^id(NSNumber *value) {
                                                 return @(value.floatValue == BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate);
                                             }];
     
-    RAC(self.slowForwardButton,selected) = [RACObserve(self.viewModel.player, rate)
+    RAC(self.slowForwardButton,selected) = [rateSignal
                                             map:^id(NSNumber *value) {
                                                 return @(value.floatValue == BBMediaViewerDetailViewModelMovieSlowForwardPlaybackRate);
+                                            }];
+    
+    RAC(self.fastReverseButton,selected) = [rateSignal
+                                            map:^id(NSNumber *value) {
+                                                return @(value.floatValue == BBMediaViewerDetailViewModelMovieFastReversePlaybackRate);
+                                            }];
+    
+    RAC(self.slowReverseButton,selected) = [rateSignal
+                                            map:^id(NSNumber *value) {
+                                                return @(value.floatValue == BBMediaViewerDetailViewModelMovieSlowReversePlaybackRate);
                                             }];
     
     [[RACObserve(self.viewModel.player.currentItem, loadedTimeRanges)
@@ -238,6 +275,12 @@ static CGFloat const kMarginX = 16.0;
     
     [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
     [self.slowForwardButton setImage:[[self.slowForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
+    
+    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.slowReverseButton setImage:[[self.slowReverseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
+    
+    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.fastReverseButton setImage:[[self.fastReverseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
 }
 
 - (UIColor *)renderColor {
