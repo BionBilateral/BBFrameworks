@@ -21,6 +21,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 float const BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate = 2.0;
+float const BBMediaViewerDetailViewModelMovieSlowForwardPlaybackRate = 0.5;
 float const BBMediaViewerDetailViewModelMoviePlaybackRate = 1.0;
 float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
 
@@ -34,6 +35,7 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readwrite,strong,nonatomic) RACCommand *fastForwardCommand;
+@property (readwrite,strong,nonatomic) RACCommand *slowForwardCommand;
 
 - (void)_seekToBeginningOfMovieIfNecessary;
 @end
@@ -94,6 +96,32 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
                  playerRate = @(self.player.rate);
                  
                  [self.player setRate:BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate];
+             }
+         }];
+        
+        [self setSlowForwardCommand:[[RACCommand alloc] initWithEnabled:[RACSignal combineLatest:@[RACObserve(self.player.currentItem, canPlaySlowForward)] reduce:^id(NSNumber *value){
+            return @(value.boolValue);
+        }] signalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            return [RACSignal return:self];
+        }]];
+        
+        [[[self.slowForwardCommand.executionSignals
+         concat]
+         deliverOn:[RACScheduler mainThreadScheduler]]
+         subscribeNext:^(id _) {
+             @strongify(self);
+             [self _seekToBeginningOfMovieIfNecessary];
+             
+             if (playerRate) {
+                 [self.player setRate:playerRate.floatValue];
+                 
+                 playerRate = nil;
+             }
+             else {
+                 playerRate = @(self.player.rate);
+                 
+                 [self.player setRate:BBMediaViewerDetailViewModelMovieSlowForwardPlaybackRate];
              }
          }];
     }

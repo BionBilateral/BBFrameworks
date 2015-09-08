@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
 };
 
 extern float const BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate;
+extern float const BBMediaViewerDetailViewModelMovieSlowForwardPlaybackRate;
 extern float const BBMediaViewerDetailViewModelMoviePlaybackRate;
 extern float const BBMediaViewerDetailViewModelMoviePausePlaybackRate;
 
@@ -53,6 +54,7 @@ extern float const BBMediaViewerDetailViewModelMoviePausePlaybackRate;
 
 @property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readonly,strong,nonatomic) RACCommand *fastForwardCommand;
+@property (readonly,strong,nonatomic) RACCommand *slowForwardCommand;
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media index:(NSInteger)index NS_DESIGNATED_INITIALIZER;
 

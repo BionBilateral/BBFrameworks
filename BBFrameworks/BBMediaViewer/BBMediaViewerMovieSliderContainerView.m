@@ -37,6 +37,7 @@ static CGFloat const kMarginX = 16.0;
 
 @property (strong,nonatomic) UIButton *playPauseButton;
 @property (strong,nonatomic) UIButton *fastForwardButton;
+@property (strong,nonatomic) UIButton *slowForwardButton;
 
 @property (strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @property (strong,nonatomic) id timeObserver;
@@ -47,7 +48,9 @@ static CGFloat const kMarginX = 16.0;
 @property (readonly,nonatomic) UIColor *renderColor;
 @property (readonly,nonatomic) UIColor *highlightTintColor;
 
+- (void)_updateButtonImages;
 - (void)_updateFastForwardButtonImages;
+- (void)_updateSlowForwardButtonImages;
 @end
 
 @implementation BBMediaViewerMovieSliderContainerView
@@ -60,7 +63,7 @@ static CGFloat const kMarginX = 16.0;
     [super didMoveToWindow];
     
     if (self.window) {
-        [self _updateFastForwardButtonImages];
+        [self _updateButtonImages];
     }
 }
 
@@ -79,9 +82,13 @@ static CGFloat const kMarginX = 16.0;
     
     [self.playPauseButton setFrame:BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(self.slider.frame) + kMarginXY, playPauseButtonSize.width, playPauseButtonSize.height), self.bounds)];
     
+    CGSize slowForwardButtonSize = [self.slowForwardButton sizeThatFits:CGSizeZero];
+    
+    [self.slowForwardButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.playPauseButton.frame) + kMarginX, 0, slowForwardButtonSize.width, slowForwardButtonSize.height), self.playPauseButton.frame)];
+    
     CGSize fastForwardButtonSize = [self.fastForwardButton sizeThatFits:CGSizeZero];
     
-    [self.fastForwardButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.playPauseButton.frame) + kMarginX, 0, fastForwardButtonSize.width, fastForwardButtonSize.height), self.playPauseButton.frame)];
+    [self.fastForwardButton setFrame:BBCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(self.slowForwardButton.frame) + kMarginX, 0, fastForwardButtonSize.width, fastForwardButtonSize.height), self.playPauseButton.frame)];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -111,6 +118,14 @@ static CGFloat const kMarginX = 16.0;
     [self.fastForwardButton setRac_command:self.viewModel.fastForwardCommand];
     [self.fastForwardButton sizeToFit];
     [self addSubview:self.fastForwardButton];
+    
+    [self setSlowForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.slowForwardButton setAdjustsImageWhenHighlighted:NO];
+    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
+    [self.slowForwardButton setImage:[[self.slowForwardButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.slowForwardButton setRac_command:self.viewModel.slowForwardCommand];
+    [self.slowForwardButton sizeToFit];
+    [self addSubview:self.slowForwardButton];
     
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.slider];
@@ -142,6 +157,11 @@ static CGFloat const kMarginX = 16.0;
     RAC(self.fastForwardButton,selected) = [RACObserve(self.viewModel.player, rate)
                                             map:^id(NSNumber *value) {
                                                 return @(value.floatValue == BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate);
+                                            }];
+    
+    RAC(self.slowForwardButton,selected) = [RACObserve(self.viewModel.player, rate)
+                                            map:^id(NSNumber *value) {
+                                                return @(value.floatValue == BBMediaViewerDetailViewModelMovieSlowForwardPlaybackRate);
                                             }];
     
     [[RACObserve(self.viewModel.player.currentItem, loadedTimeRanges)
@@ -213,9 +233,17 @@ static CGFloat const kMarginX = 16.0;
     return self;
 }
 
+- (void)_updateButtonImages; {
+    [self _updateFastForwardButtonImages];
+    [self _updateSlowForwardButtonImages];
+}
 - (void)_updateFastForwardButtonImages; {
     [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
     [self.fastForwardButton setImage:[[self.fastForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
+}
+- (void)_updateSlowForwardButtonImages; {
+    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.slowForwardButton setImage:[[self.slowForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
 }
 
 - (UIColor *)renderColor {
