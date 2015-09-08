@@ -38,6 +38,7 @@ static CGFloat const kMarginX = 16.0;
 @property (strong,nonatomic) UIButton *playPauseButton;
 @property (strong,nonatomic) UIButton *fastForwardButton;
 @property (strong,nonatomic) UIButton *slowForwardButton;
+@property (strong,nonatomic) UIButton *fastReverseButton;
 
 @property (strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
 @property (strong,nonatomic) id timeObserver;
@@ -49,8 +50,6 @@ static CGFloat const kMarginX = 16.0;
 @property (readonly,nonatomic) UIColor *highlightTintColor;
 
 - (void)_updateButtonImages;
-- (void)_updateFastForwardButtonImages;
-- (void)_updateSlowForwardButtonImages;
 @end
 
 @implementation BBMediaViewerMovieSliderContainerView
@@ -234,14 +233,9 @@ static CGFloat const kMarginX = 16.0;
 }
 
 - (void)_updateButtonImages; {
-    [self _updateFastForwardButtonImages];
-    [self _updateSlowForwardButtonImages];
-}
-- (void)_updateFastForwardButtonImages; {
     [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
     [self.fastForwardButton setImage:[[self.fastForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
-}
-- (void)_updateSlowForwardButtonImages; {
+    
     [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
     [self.slowForwardButton setImage:[[self.slowForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
 }
