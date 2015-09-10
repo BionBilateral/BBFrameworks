@@ -81,6 +81,8 @@
 
 - (void)_BBTokenTextViewInit;
 
+- (void)_resetTapGestureRecognizer;
+
 - (void)_showCompletionsTableView;
 - (void)_hideCompletionsTableViewAndSelectCompletion:(id<BBTokenCompletion>)completion;
 
@@ -452,11 +454,14 @@
     [self setInternalDelegate:[[_BBTokenTextViewInternalDelegate alloc] init]];
     [self setDelegate:nil];
 
+    [self _resetTapGestureRecognizer];
+}
+
+- (void)_resetTapGestureRecognizer; {
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
     [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
     [self.tapGestureRecognizer setDelegate:self];
-    [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)_showCompletionsTableView; {
@@ -650,6 +655,17 @@
     
     [self.tableView reloadData];
 }
+- (void)setTapGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer {
+    if (_tapGestureRecognizer) {
+        [self removeGestureRecognizer:_tapGestureRecognizer];
+    }
+    
+    _tapGestureRecognizer = tapGestureRecognizer;
+    
+    if (_tapGestureRecognizer) {
+        [self addGestureRecognizer:_tapGestureRecognizer];
+    }
+}
 - (void)setSelectedTextAttachmentRanges:(NSIndexSet *)selectedTextAttachmentRanges {
     // force a display of the old selected token ranges
     [_selectedTextAttachmentRanges enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
@@ -700,6 +716,8 @@
             }
         }
     }
+    
+    [self _resetTapGestureRecognizer];
 }
 
 @end
