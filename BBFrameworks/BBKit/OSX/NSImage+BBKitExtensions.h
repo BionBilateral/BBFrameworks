@@ -18,7 +18,6 @@
 /**
  Category on NSImage providing various convenience methods.
  */
-
 @interface NSImage (BBKitExtensions)
 
 /**
