@@ -16,6 +16,7 @@
 #import "NSImage+BBKitExtensions.h"
 #import "BBFoundationDebugging.h"
 #import "BBKitCGImageFunctions.h"
+#import "BBFoundationMacros.h"
 
 #import <Accelerate/Accelerate.h>
 
@@ -139,6 +140,70 @@
 - (NSImage *)BB_imageByBlurringWithRadius:(CGFloat)radius
 {
     return [self.class BB_imageByBlurringImage:self radius:radius];
+}
+
++ (NSImage *)BB_imageByAdjustingBrightnessOfImage:(NSImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // assume -1.0 to 1.0 range for delta, clamp actual value to -255 to 255
+    float floatDelta = BBBoundedValue(floor(delta * 255.0), -255.0, 255.0);
+    
+    size_t width = (size_t)image.size.width;
+    size_t height = (size_t)image.size.height;
+    
+    // create a context to draw original image into
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 4 * width, colorSpace, kCGBitmapByteOrderDefault | ([image BB_hasAlpha] ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst));
+    CGColorSpaceRelease(colorSpace);
+    
+    if (!context) {
+        return nil;
+    }
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), [image CGImageForProposedRect:NULL context:nil hints:nil]);
+    
+    // grab the raw pixel data
+    unsigned char *data = CGBitmapContextGetData(context);
+    
+    if (!data) {
+        CGContextRelease(context);
+        return nil;
+    }
+    
+    // convert the raw data to float, since we are using the accelerate flt functions
+    size_t numberOfPixels = width * height;
+    float *floatData = malloc(sizeof(float) * numberOfPixels);
+    float minimum = 0, maximum = 255;
+    
+    // red
+    vDSP_vfltu8(data + 1, 4, floatData, 1, numberOfPixels);
+    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
+    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
+    vDSP_vfixu8(floatData, 1, data + 1, 4, numberOfPixels);
+    
+    // green
+    vDSP_vfltu8(data + 2, 4, floatData, 1, numberOfPixels);
+    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
+    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
+    vDSP_vfixu8(floatData, 1, data + 2, 4, numberOfPixels);
+    
+    // blue
+    vDSP_vfltu8(data + 3, 4, floatData, 1, numberOfPixels);
+    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
+    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
+    vDSP_vfixu8(floatData, 1, data + 3, 4, numberOfPixels);
+    
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    
+    CGContextRelease(context);
+    free(floatData);
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (NSImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingBrightnessOfImage:self delta:delta];
 }
 
 @end
