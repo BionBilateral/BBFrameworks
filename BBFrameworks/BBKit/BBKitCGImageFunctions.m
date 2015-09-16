@@ -30,10 +30,13 @@ bool BBKitCGImageHasAlpha(CGImageRef imageRef) {
 }
 
 CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size) {
+    return BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(imageRef, size, true);
+}
+CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio) {
     NSCParameterAssert(imageRef);
     NSCParameterAssert(!CGSizeEqualToSize(size, CGSizeZero));
     
-    CGSize destSize = AVMakeRectWithAspectRatioInsideRect(CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), CGRectMake(0, 0, size.width, size.height)).size;
+    CGSize destSize = maintainAspectRatio ? AVMakeRectWithAspectRatioInsideRect(CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), CGRectMake(0, 0, size.width, size.height)).size : CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
     CGImageRef sourceImageRef = imageRef;
     CFDataRef sourceDataRef = CGDataProviderCopyData(CGImageGetDataProvider(sourceImageRef));
     vImage_Buffer source = {
