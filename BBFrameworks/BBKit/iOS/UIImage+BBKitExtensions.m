@@ -93,50 +93,14 @@
 {
     NSParameterAssert(image);
     
-    radius = BBBoundedValue(radius, 0.0, 1.0);
+    CGImageRef imageRef = BBKitCGImageCreateImageByBlurringImageWithRadius(image.CGImage, radius);
     
-    uint32_t boxSize = (uint32_t)(radius * 100);
-    
-    boxSize -= (boxSize % 2) + 1;
-    
-    CGImageRef inImageRef = image.CGImage;
-    CGDataProviderRef inProviderRef = CGImageGetDataProvider(inImageRef);
-    CFDataRef inData = CGDataProviderCopyData(inProviderRef);
-    
-    vImage_Buffer inBuffer = {
-        .width = CGImageGetWidth(inImageRef),
-        .height = CGImageGetHeight(inImageRef),
-        .rowBytes = CGImageGetBytesPerRow(inImageRef),
-        .data = (void *)CFDataGetBytePtr(inData)
-    };
-    
-    void *buffer = malloc(inBuffer.rowBytes * inBuffer.height);
-    
-    vImage_Buffer outBuffer = {
-        .width = inBuffer.width,
-        .height = inBuffer.height,
-        .rowBytes = inBuffer.rowBytes,
-        .data = buffer
-    };
-    
-    vImage_Error error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    
-    if (error != kvImageNoError) {
-        BBLog(@"%@",@(error));
-        
-        free(buffer);
-        CFRelease(inData);
+    if (!imageRef) {
+        return nil;
     }
     
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpaceRef, CGImageGetBitmapInfo(inImageRef));
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-    UIImage *retval = [UIImage imageWithCGImage:imageRef];
+    UIImage *retval = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
     
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpaceRef);
-    free(buffer);
-    CFRelease(inData);
     CGImageRelease(imageRef);
     
     return retval;
@@ -148,65 +112,49 @@
 + (UIImage *)BB_imageByAdjustingBrightnessOfImage:(UIImage *)image delta:(CGFloat)delta; {
     NSParameterAssert(image);
     
-    // assume -1.0 to 1.0 range for delta, clamp actual value to -255 to 255
-    float floatDelta = BBBoundedValue(floor(delta * 255.0), -255.0, 255.0);
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
     
-    size_t width = (size_t)image.size.width;
-    size_t height = (size_t)image.size.height;
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(image.CGImage, delta);
     
-    // create a context to draw original image into
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 4 * width, colorSpace, kCGBitmapByteOrderDefault | ([image BB_hasAlpha] ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst));
-    CGColorSpaceRelease(colorSpace);
-    
-    if (!context) {
+    if (!imageRef) {
         return nil;
     }
     
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), image.CGImage);
-    
-    // grab the raw pixel data
-    unsigned char *data = CGBitmapContextGetData(context);
-    
-    if (!data) {
-        CGContextRelease(context);
-        return nil;
-    }
-    
-    // convert the raw data to float, since we are using the accelerate flt functions
-    size_t numberOfPixels = width * height;
-    float *floatData = malloc(sizeof(float) * numberOfPixels);
-    float minimum = 0, maximum = 255;
-    
-    // red
-    vDSP_vfltu8(data + 1, 4, floatData, 1, numberOfPixels);
-    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
-    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
-    vDSP_vfixu8(floatData, 1, data + 1, 4, numberOfPixels);
-    
-    // green
-    vDSP_vfltu8(data + 2, 4, floatData, 1, numberOfPixels);
-    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
-    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
-    vDSP_vfixu8(floatData, 1, data + 2, 4, numberOfPixels);
-    
-    // blue
-    vDSP_vfltu8(data + 3, 4, floatData, 1, numberOfPixels);
-    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
-    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
-    vDSP_vfixu8(floatData, 1, data + 3, 4, numberOfPixels);
-    
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
     UIImage *retval = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
     
-    CGContextRelease(context);
-    free(floatData);
     CGImageRelease(imageRef);
     
     return retval;
 }
 - (UIImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta; {
     return [self.class BB_imageByAdjustingBrightnessOfImage:self delta:delta];
+}
+
++ (UIImage *)BB_imageByAdjustingContrastOfImage:(UIImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(image.CGImage, delta);
+    
+    if (!imageRef) {
+        return nil;
+    }
+    
+    UIImage *retval = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (UIImage *)BB_imageByAdjustingContrastBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingContrastOfImage:self delta:delta];
 }
 
 + (UIImage *)BB_imageByAdjustingSaturationOfImage:(UIImage *)image delta:(CGFloat)delta; {
@@ -217,76 +165,15 @@
         return image;
     }
     
-    // https://dvcs.w3.org/hg/FXTF/raw-file/default/filters/index.html#grayscaleEquivalent
-    CGFloat floatingPointSaturationMatrix[] = {
-        0.0722 + 0.9278 * delta,  0.0722 - 0.0722 * delta,  0.0722 - 0.0722 * delta,  0,
-        0.7152 - 0.7152 * delta,  0.7152 + 0.2848 * delta,  0.7152 - 0.7152 * delta,  0,
-        0.2126 - 0.2126 * delta,  0.2126 - 0.2126 * delta,  0.2126 + 0.7873 * delta,  0,
-        0,                    0,                    0,                    1,
-    };
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(image.CGImage, delta);
     
-    // the maxtrix elements passed to accelerate need to be int16_t, this snippet converts them
-    int32_t divisor = 256;
-    NSUInteger matrixSize = sizeof(floatingPointSaturationMatrix)/sizeof(floatingPointSaturationMatrix[0]);
-    int16_t saturationMatrix[matrixSize];
-    for (NSUInteger i = 0; i < matrixSize; i++) {
-        saturationMatrix[i] = (int16_t)roundf(floatingPointSaturationMatrix[i] * divisor);
-    }
-    
-    // setup source and destination buffers for accelerate to work on
-    CGImageRef imageRef = image.CGImage;
-    CGSize destSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
-    CGImageRef sourceImageRef = imageRef;
-    CFDataRef sourceDataRef = CGDataProviderCopyData(CGImageGetDataProvider(sourceImageRef));
-    vImage_Buffer source = {
-        .data = (void *)CFDataGetBytePtr(sourceDataRef),
-        .height = CGImageGetHeight(sourceImageRef),
-        .width = CGImageGetWidth(sourceImageRef),
-        .rowBytes = CGImageGetBytesPerRow(sourceImageRef)
-    };
-    vImage_Buffer destination;
-    vImage_Error error = vImageBuffer_Init(&destination, (vImagePixelCount)destSize.height, (vImagePixelCount)destSize.width, (uint32_t)CGImageGetBitsPerPixel(sourceImageRef), kvImageNoFlags);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CFRelease(sourceDataRef);
+    if (!imageRef) {
         return nil;
     }
     
-    // perform the matrix multiply adjusting the saturation
-    error = vImageMatrixMultiply_ARGB8888(&source, &destination, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
+    UIImage *retval = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
     
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CFRelease(sourceDataRef);
-        return nil;
-    }
-    
-    CFRelease(sourceDataRef);
-    
-    // construct the correct format for creating resulting CGImage
-    vImage_CGImageFormat format = {
-        .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(sourceImageRef),
-        .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(sourceImageRef),
-        .colorSpace = NULL,
-        .bitmapInfo = CGImageGetBitmapInfo(sourceImageRef),
-        .version = 0,
-        .decode = NULL,
-        .renderingIntent = kCGRenderingIntentDefault
-    };
-    CGImageRef destImageRef = vImageCreateCGImageFromBuffer(&destination, &format, NULL, NULL, kvImageNoFlags, &error);
-    
-    free(destination.data);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CGImageRelease(destImageRef);
-        return nil;
-    }
-    
-    UIImage *retval = [UIImage imageWithCGImage:destImageRef scale:image.scale orientation:image.imageOrientation];
-    
-    CGImageRelease(destImageRef);
+    CGImageRelease(imageRef);
     
     return retval;
 }

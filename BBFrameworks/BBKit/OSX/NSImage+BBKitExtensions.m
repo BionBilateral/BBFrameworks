@@ -86,52 +86,14 @@
 {
     NSParameterAssert(image);
     
-    radius = MAX(MIN(radius, 1.0), 0.0);
+    CGImageRef imageRef = BBKitCGImageCreateImageByBlurringImageWithRadius([image CGImageForProposedRect:NULL context:nil hints:nil], radius);
     
-    uint32_t boxSize = (uint32_t)(radius * 100);
-    
-    boxSize -= (boxSize % 2) + 1;
-    
-    CGImageRef inImageRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
-    
-    CGDataProviderRef inProviderRef = CGImageGetDataProvider(inImageRef);
-    CFDataRef inData = CGDataProviderCopyData(inProviderRef);
-    
-    vImage_Buffer inBuffer = {
-        .width = CGImageGetWidth(inImageRef),
-        .height = CGImageGetHeight(inImageRef),
-        .rowBytes = CGImageGetBytesPerRow(inImageRef),
-        .data = (void *)CFDataGetBytePtr(inData)
-    };
-    
-    void *buffer = malloc(inBuffer.rowBytes * inBuffer.height);
-    
-    vImage_Buffer outBuffer = {
-        .width = inBuffer.width,
-        .height = inBuffer.height,
-        .rowBytes = inBuffer.rowBytes,
-        .data = buffer
-    };
-    
-    vImage_Error error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    
-    if (error != kvImageNoError) {
-        BBLog(@"%@",@(error));
-        
-        free(buffer);
-        CFRelease(inData);
+    if (!imageRef) {
+        return nil;
     }
     
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpaceRef, CGImageGetBitmapInfo(inImageRef));
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
     
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:image.size];
-    
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpaceRef);
-    free(buffer);
-    CFRelease(inData);
     CGImageRelease(imageRef);
     
     return retval;
@@ -145,65 +107,73 @@
 + (NSImage *)BB_imageByAdjustingBrightnessOfImage:(NSImage *)image delta:(CGFloat)delta; {
     NSParameterAssert(image);
     
-    // assume -1.0 to 1.0 range for delta, clamp actual value to -255 to 255
-    float floatDelta = BBBoundedValue(floor(delta * 255.0), -255.0, 255.0);
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
     
-    size_t width = (size_t)image.size.width;
-    size_t height = (size_t)image.size.height;
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta([image CGImageForProposedRect:NULL context:nil hints:nil], delta);
     
-    // create a context to draw original image into
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 4 * width, colorSpace, kCGBitmapByteOrderDefault | ([image BB_hasAlpha] ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst));
-    CGColorSpaceRelease(colorSpace);
-    
-    if (!context) {
+    if (!imageRef) {
         return nil;
     }
     
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), [image CGImageForProposedRect:NULL context:nil hints:nil]);
-    
-    // grab the raw pixel data
-    unsigned char *data = CGBitmapContextGetData(context);
-    
-    if (!data) {
-        CGContextRelease(context);
-        return nil;
-    }
-    
-    // convert the raw data to float, since we are using the accelerate flt functions
-    size_t numberOfPixels = width * height;
-    float *floatData = malloc(sizeof(float) * numberOfPixels);
-    float minimum = 0, maximum = 255;
-    
-    // red
-    vDSP_vfltu8(data + 1, 4, floatData, 1, numberOfPixels);
-    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
-    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
-    vDSP_vfixu8(floatData, 1, data + 1, 4, numberOfPixels);
-    
-    // green
-    vDSP_vfltu8(data + 2, 4, floatData, 1, numberOfPixels);
-    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
-    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
-    vDSP_vfixu8(floatData, 1, data + 2, 4, numberOfPixels);
-    
-    // blue
-    vDSP_vfltu8(data + 3, 4, floatData, 1, numberOfPixels);
-    vDSP_vsadd(floatData, 1, &floatDelta, floatData, 1, numberOfPixels);
-    vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
-    vDSP_vfixu8(floatData, 1, data + 3, 4, numberOfPixels);
-    
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
     NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
     
-    CGContextRelease(context);
-    free(floatData);
     CGImageRelease(imageRef);
     
     return retval;
 }
 - (NSImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta; {
     return [self.class BB_imageByAdjustingBrightnessOfImage:self delta:delta];
+}
+
++ (NSImage *)BB_imageByAdjustingContrastOfImage:(NSImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta([image CGImageForProposedRect:NULL context:nil hints:nil], delta);
+    
+    if (!imageRef) {
+        return nil;
+    }
+    
+    UIImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (NSImage *)BB_imageByAdjustingContrastBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingContrastOfImage:self delta:delta];
+}
+
++ (NSImage *)BB_imageByAdjustingSaturationOfImage:(NSImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta([image CGImageForProposedRect:NULL context:nil hints:nil], delta);
+    
+    if (!imageRef) {
+        return nil;
+    }
+    
+    UIImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (NSImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingSaturationOfImage:self delta:delta];
 }
 
 @end

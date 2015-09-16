@@ -27,9 +27,7 @@
 extern bool BBKitCGImageHasAlpha(CGImageRef imageRef);
 
 /**
- Creates a new CGImage by resizing _imageRef_ to _size_ while maintaining the aspect ratio of _imageRef_.
- 
- The returned CGImage follows the create rule and must be released by the caller. See https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html for more information.
+ Creates a new CGImage by resizing _imageRef_ to _size_ while maintaining the aspect ratio of _imageRef_. The caller is responsible for releasing the returned CGImage.
  
  @param imageRef The CGImage to use in thumbnail creation
  @param size That target size of the thumbnail
@@ -37,5 +35,42 @@ extern bool BBKitCGImageHasAlpha(CGImageRef imageRef);
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
 extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size);
+
+/**
+ Creates a new CGImage by blurring the provided imageRef using a box filter with radius. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage to blur
+ @param radius The radius of the box filter to produce the blur
+ @return The blurred CGImage
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef, CGFloat radius);
+/**
+ Creates a new CGImage by adjusting the brightness of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose brightness to adjust
+ @param delta The amount to adjust brightness by
+ @return The image with its brightness adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+/**
+ Creates a new CGImage by adjusting the contrast of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose contrast to adjust
+ @param delta The amount to adjust contrast by
+ @return The image with its contrast adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+/**
+ Creates a new CGImage by adjusting the saturation of the provided imageRef by delta. The delta parameter should be greater than or less than 1.0. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose saturation to adjust
+ @param delta The amount to adjust saturation by
+ @return The image with its saturation adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta);
 
 #endif

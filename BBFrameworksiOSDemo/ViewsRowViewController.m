@@ -55,7 +55,7 @@
     [self.view addSubview:self.blurImageView];
     
     [self setTintImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
-    [self.tintImageView setImage:[[UIImage imageNamed:@"optimus_prime"] BB_imageByAdjustingSaturationBy:0.5]];
+    [self.tintImageView setImage:[[UIImage imageNamed:@"optimus_prime"] BB_imageByAdjustingContrastBy:0.5]];
     [self.view addSubview:self.tintImageView];
     
     [self setBadgeView:[[BBBadgeView alloc] initWithFrame:CGRectZero]];

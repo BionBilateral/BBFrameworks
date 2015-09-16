@@ -107,11 +107,45 @@
  */
 + (NSImage *)BB_imageByAdjustingBrightnessOfImage:(NSImage *)image delta:(CGFloat)delta;
 /**
- Calls `+[UIImage BB_imageByAdjustingBrightnessOfImage:delta:]`, passing self and _delta_ respectively.
+ Calls `+[NSImage BB_imageByAdjustingBrightnessOfImage:delta:]`, passing self and _delta_ respectively.
  
  @param delta The amount to brighten or darken the image
  @return The brightened or darkened image
  */
 - (NSImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta;
+
+/**
+ Creates a new image by adjusting the contrast of image by delta. The delta parameter should be between -1.0 and 1.0, with negative numbers decreasing the contrast and positive numbers increasing the contrast by a percentage. For example, 0.5 would return an image where the contrast has been increased by 50 percent over the original. The delta parameter is clamped between -1.0 and 1.0, when larger values are provided.
+ 
+ @param image The image whose contrast to adjust
+ @param delta The amount to adjust the image contrast by
+ @return The image with its contrast adjusted
+ @exception NSException Thrown if _image_ is nil
+ */
++ (NSImage *)BB_imageByAdjustingContrastOfImage:(NSImage *)image delta:(CGFloat)delta;
+/**
+ Calls `+[UIImage BB_imageByAdjustingContrastOfImage:delta:]`, passing self and _delta_ respectively.
+ 
+ @param delta The amount to adjust the image contrast by
+ @return The image with its contrast adjusted
+ */
+- (NSImage *)BB_imageByAdjustingContrastBy:(CGFloat)delta;
+
+/**
+ Creates a new image by adjusting the saturation of image by delta. Values less than 1.0 will desaturate the image, values greater than 1.0 will supersaturate the image.
+ 
+ @param image The image to desaturate or supersaturate
+ @param delta The amount to adjust the image saturation
+ @return The image with adjusted saturation
+ @exception NSException Thrown if _image_ is nil
+ */
++ (NSImage *)BB_imageByAdjustingSaturationOfImage:(NSImage *)image delta:(CGFloat)delta;
+/**
+ Calls `+[NSImage BB_imageByAdjustingSaturationOfImage:delta:]`, passing self and _delta_ respectively.
+ 
+ @param delta The amount to adjust the image saturation
+ @return The image with adjusted saturation
+ */
+- (NSImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta;
 
 @end
