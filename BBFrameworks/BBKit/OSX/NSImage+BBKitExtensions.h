@@ -124,7 +124,7 @@
  */
 + (NSImage *)BB_imageByAdjustingContrastOfImage:(NSImage *)image delta:(CGFloat)delta;
 /**
- Calls `+[UIImage BB_imageByAdjustingContrastOfImage:delta:]`, passing self and _delta_ respectively.
+ Calls `+[NSImage BB_imageByAdjustingContrastOfImage:delta:]`, passing self and _delta_ respectively.
  
  @param delta The amount to adjust the image contrast by
  @return The image with its contrast adjusted
