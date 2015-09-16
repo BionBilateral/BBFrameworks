@@ -142,7 +142,7 @@
         return nil;
     }
     
-    UIImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
     
     CGImageRelease(imageRef);
     
@@ -166,7 +166,7 @@
         return nil;
     }
     
-    UIImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
     
     CGImageRelease(imageRef);
     
