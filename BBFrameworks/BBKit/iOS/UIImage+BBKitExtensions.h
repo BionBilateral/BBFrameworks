@@ -111,4 +111,7 @@
  */
 - (UIImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta;
 
++ (UIImage *)BB_imageByAdjustingSaturationOfImage:(UIImage *)image delta:(CGFloat)delta;
+- (UIImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta;
+
 @end

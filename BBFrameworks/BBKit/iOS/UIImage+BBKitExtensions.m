@@ -209,4 +209,89 @@
     return [self.class BB_imageByAdjustingBrightnessOfImage:self delta:delta];
 }
 
++ (UIImage *)BB_imageByAdjustingSaturationOfImage:(UIImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    // https://dvcs.w3.org/hg/FXTF/raw-file/default/filters/index.html#grayscaleEquivalent
+    CGFloat floatingPointSaturationMatrix[] = {
+        0.0722 + 0.9278 * delta,  0.0722 - 0.0722 * delta,  0.0722 - 0.0722 * delta,  0,
+        0.7152 - 0.7152 * delta,  0.7152 + 0.2848 * delta,  0.7152 - 0.7152 * delta,  0,
+        0.2126 - 0.2126 * delta,  0.2126 - 0.2126 * delta,  0.2126 + 0.7873 * delta,  0,
+        0,                    0,                    0,                    1,
+    };
+    
+    // the maxtrix elements passed to accelerate need to be int16_t, this snippet converts them
+    int32_t divisor = 256;
+    NSUInteger matrixSize = sizeof(floatingPointSaturationMatrix)/sizeof(floatingPointSaturationMatrix[0]);
+    int16_t saturationMatrix[matrixSize];
+    for (NSUInteger i = 0; i < matrixSize; i++) {
+        saturationMatrix[i] = (int16_t)roundf(floatingPointSaturationMatrix[i] * divisor);
+    }
+    
+    // setup source and destination buffers for accelerate to work on
+    CGImageRef imageRef = image.CGImage;
+    CGSize destSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
+    CGImageRef sourceImageRef = imageRef;
+    CFDataRef sourceDataRef = CGDataProviderCopyData(CGImageGetDataProvider(sourceImageRef));
+    vImage_Buffer source = {
+        .data = (void *)CFDataGetBytePtr(sourceDataRef),
+        .height = CGImageGetHeight(sourceImageRef),
+        .width = CGImageGetWidth(sourceImageRef),
+        .rowBytes = CGImageGetBytesPerRow(sourceImageRef)
+    };
+    vImage_Buffer destination;
+    vImage_Error error = vImageBuffer_Init(&destination, (vImagePixelCount)destSize.height, (vImagePixelCount)destSize.width, (uint32_t)CGImageGetBitsPerPixel(sourceImageRef), kvImageNoFlags);
+    
+    if (error != kvImageNoError) {
+        BBLogObject(@(error));
+        CFRelease(sourceDataRef);
+        return nil;
+    }
+    
+    // perform the matrix multiply adjusting the saturation
+    error = vImageMatrixMultiply_ARGB8888(&source, &destination, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
+    
+    if (error != kvImageNoError) {
+        BBLogObject(@(error));
+        CFRelease(sourceDataRef);
+        return nil;
+    }
+    
+    CFRelease(sourceDataRef);
+    
+    // construct the correct format for creating resulting CGImage
+    vImage_CGImageFormat format = {
+        .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(sourceImageRef),
+        .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(sourceImageRef),
+        .colorSpace = NULL,
+        .bitmapInfo = CGImageGetBitmapInfo(sourceImageRef),
+        .version = 0,
+        .decode = NULL,
+        .renderingIntent = kCGRenderingIntentDefault
+    };
+    CGImageRef destImageRef = vImageCreateCGImageFromBuffer(&destination, &format, NULL, NULL, kvImageNoFlags, &error);
+    
+    free(destination.data);
+    
+    if (error != kvImageNoError) {
+        BBLogObject(@(error));
+        CGImageRelease(destImageRef);
+        return nil;
+    }
+    
+    UIImage *retval = [UIImage imageWithCGImage:destImageRef scale:image.scale orientation:image.imageOrientation];
+    
+    CGImageRelease(destImageRef);
+    
+    return retval;
+}
+- (UIImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingSaturationOfImage:self delta:delta];
+}
+
 @end
