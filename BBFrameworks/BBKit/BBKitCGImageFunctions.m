@@ -114,7 +114,7 @@ CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef,
         return NULL;
     }
     
-    // perform the matrix multiply adjusting the saturation
+    // perform the tent convolve which results in the blurred image
     error = vImageTentConvolve_ARGB8888(&source, &destination, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
     
     if (error != kvImageNoError) {
