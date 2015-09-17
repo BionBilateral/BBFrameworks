@@ -45,6 +45,10 @@ static void kBBReachabilityCallback(SCNetworkReachabilityRef networkReachability
     }
 }
 
+- (instancetype)init {
+    return [self initWithNetworkReachability:NULL];
+}
+
 + (instancetype)reachabilityForInternetConnection; {
     struct sockaddr address;
     
