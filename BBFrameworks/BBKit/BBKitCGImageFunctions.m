@@ -115,7 +115,7 @@ CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef,
     }
     
     // perform the matrix multiply adjusting the saturation
-    error = vImageBoxConvolve_ARGB8888(&source, &destination, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
+    error = vImageTentConvolve_ARGB8888(&source, &destination, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
     
     if (error != kvImageNoError) {
         BBLogObject(@(error));

@@ -11,6 +11,7 @@
 		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		072BCF3F1BAB12010054CB60 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072BCF3E1BAB12010054CB60 /* Accelerate.framework */; };
 		0750D6431B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750D6421B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m */; };
 		0750D6511B6AB9AC002F2C1A /* BBMediaPickerAssetsGroupTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ACF1B6960B800333678 /* BBMediaPickerAssetsGroupTableViewCell.h */; };
 		0750D6541B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750D6531B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m */; };
@@ -672,6 +673,7 @@
 		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
 		0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookManager.h; sourceTree = "<group>"; };
 		0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookManager.m; sourceTree = "<group>"; };
+		072BCF3E1BAB12010054CB60 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionFooterView.h; sourceTree = "<group>"; };
 		0750D6421B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionFooterView.m; sourceTree = "<group>"; };
 		0750D6441B6A94C0002F2C1A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPicker.strings; sourceTree = "<group>"; };
@@ -1130,6 +1132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072BCF3F1BAB12010054CB60 /* Accelerate.framework in Frameworks */,
 				79EA81071B3F12BF00D50B6B /* libBBFrameworks.a in Frameworks */,
 				333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */,
 			);
@@ -2172,6 +2175,7 @@
 		B57C4002BFB6D5C1DBE48B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				072BCF3E1BAB12010054CB60 /* Accelerate.framework */,
 				3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */,
 				A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */,
 			);
