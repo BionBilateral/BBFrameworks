@@ -280,7 +280,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef i
 CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta) {
     NSCParameterAssert(imageRef);
     
-    // https://dvcs.w3.org/hg/FXTF/raw-file/default/filters/index.html#grayscaleEquivalent
+    // http://www.w3.org/TR/filter-effects-1/#elementdef-fecolormatrix
     CGFloat floatingPointSaturationMatrix[] = {
         0.0722 + 0.9278 * delta,  0.0722 - 0.0722 * delta,  0.0722 - 0.0722 * delta,  0,
         0.7152 - 0.7152 * delta,  0.7152 + 0.2848 * delta,  0.7152 - 0.7152 * delta,  0,
