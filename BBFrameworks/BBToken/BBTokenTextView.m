@@ -203,6 +203,16 @@
             [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:obj text:displayText tokenTextView:self]]];
         }
         
+        NSMutableArray *deletedRepresentedObjects = [[NSMutableArray alloc] init];
+        
+        if (self.selectedRange.length > 0) {
+            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:self.selectedRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment  _Nullable *value, NSRange range, BOOL * _Nonnull stop) {
+                if (value.representedObject) {
+                    [deletedRepresentedObjects addObject:value.representedObject];
+                }
+            }];
+        }
+        
         NSRange newSelectedRange = NSMakeRange(self.selectedRange.location + temp.length, 0);
         
         // replace all characters in token range with the text attachments
@@ -215,6 +225,12 @@
         
         if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
             [self.delegate tokenTextView:self didAddRepresentedObjects:representedObjects atIndex:index];
+        }
+        
+        if (deletedRepresentedObjects.count > 0) {
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
+                [self.delegate tokenTextView:self didRemoveRepresentedObjects:deletedRepresentedObjects atIndex:MAX(0, index - 1)];
+            }
         }
     }
 }
