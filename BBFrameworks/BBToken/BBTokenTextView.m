@@ -206,7 +206,7 @@
         NSMutableArray *deletedRepresentedObjects = [[NSMutableArray alloc] init];
         
         if (self.selectedRange.length > 0) {
-            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:self.selectedRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment  _Nullable *value, NSRange range, BOOL * _Nonnull stop) {
+            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:self.selectedRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment *_Nullable value, NSRange range, BOOL * _Nonnull stop) {
                 if (value.representedObject) {
                     [deletedRepresentedObjects addObject:value.representedObject];
                 }
