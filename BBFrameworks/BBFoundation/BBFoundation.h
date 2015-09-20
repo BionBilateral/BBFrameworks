@@ -25,6 +25,7 @@
 #import "NSArray+BBFoundationExtensions.h"
 #import "NSMutableArray+BBFoundationExtensions.h"
 #import "NSData+BBFoundationExtensions.h"
+#import "NSDate+BBFoundationExtensions.h"
 #import "NSString+BBFoundationExtensions.h"
 #import "NSBundle+BBFoundationExtensions.h"
 #import "NSURL+BBFoundationExtensions.h"
