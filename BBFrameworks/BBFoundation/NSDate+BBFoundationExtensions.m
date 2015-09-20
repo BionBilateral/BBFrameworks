@@ -33,4 +33,20 @@
     return comps.year;
 }
 
+- (NSDate *)BB_beginningOfDay; {
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
+    NSDate *retval = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    
+    return retval;
+}
+- (NSDate *)BB_endOfDay; {
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    
+    [comps setDay:1];
+    
+    NSDate *retval = [[[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:[self BB_beginningOfDay] options:0] dateByAddingTimeInterval:-1.0];
+    
+    return retval;
+}
+
 @end

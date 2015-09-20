@@ -36,4 +36,17 @@
  */
 - (NSInteger)BB_year;
 
+/**
+ Returns a NSDate representing the beginning of the day, which is 12:00:00 AM.
+ 
+ @return The beginning of the day date
+ */
+- (NSDate *)BB_beginningOfDay;
+/**
+ Returns a NSDate representing the end of the day, which is 11:59:59 PM.
+ 
+ @return The end of the day date
+ */
+- (NSDate *)BB_endOfDay;
+
 @end
