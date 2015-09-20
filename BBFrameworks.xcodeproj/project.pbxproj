@@ -251,6 +251,9 @@
 		799F9BCF1B6DBF940067BAA8 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 799F9BCD1B6DBF940067BAA8 /* APIKeys.plist */; };
 		799F9BD11B6DC3C40067BAA8 /* RemoteURLs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 799F9BD01B6DC3C40067BAA8 /* RemoteURLs.plist */; };
 		799F9BD21B6DC3C40067BAA8 /* RemoteURLs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 799F9BD01B6DC3C40067BAA8 /* RemoteURLs.plist */; };
+		79A6BB1F1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A6BB1D1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h */; settings = {ASSET_TAGS = (); }; };
+		79A6BB201BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		79A6BB211BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */; };
 		79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */; };
 		79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B691B64944A00ADE997 /* BBTransitions.h */; };
@@ -979,6 +982,8 @@
 		799F9BBA1B6D85170067BAA8 /* web_kit_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@3x.png"; sourceTree = "<group>"; };
 		799F9BCD1B6DBF940067BAA8 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		799F9BD01B6DC3C40067BAA8 /* RemoteURLs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteURLs.plist; sourceTree = "<group>"; };
+		79A6BB1D1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BBFoundationExtensions.h"; sourceTree = "<group>"; };
+		79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
@@ -1995,6 +2000,8 @@
 				7927CF731B1AD2B90034288D /* NSBundle+BBFoundationExtensions.m */,
 				7927CF741B1AD2B90034288D /* NSData+BBFoundationExtensions.h */,
 				7927CF751B1AD2B90034288D /* NSData+BBFoundationExtensions.m */,
+				79A6BB1D1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h */,
+				79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */,
 				7927CF761B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.h */,
 				7927CF771B1AD2B90034288D /* NSFileManager+BBFoundationExtensions.m */,
 				7927CF781B1AD2B90034288D /* NSMutableArray+BBFoundationExtensions.h */,
@@ -2199,6 +2206,7 @@
 				791996F61B6EB3C500FC674A /* BBThumbnailMovieOperation.h in Headers */,
 				79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				79EA814B1B3F221600D50B6B /* BBFoundationFunctions.h in Headers */,
+				79A6BB1F1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h in Headers */,
 				07B3D8F01B6014D900FA1853 /* NSArray+BBBlocksExtensions.h in Headers */,
 				79EA815E1B3F225400D50B6B /* BBKitColorMacros.h in Headers */,
 				79EA81601B3F225400D50B6B /* BBGradientView.h in Headers */,
@@ -2841,6 +2849,7 @@
 				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
 				07AEC84A1B6BE68500013470 /* UITextView+BBValidationExtensions.m in Sources */,
+				79A6BB201BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */,
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
 				07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
@@ -2948,6 +2957,7 @@
 				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				791996EB1B6EB3C500FC674A /* BBThumbnailBaseOperation.m in Sources */,
+				79A6BB211BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */,
 				799F9B9E1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m in Sources */,
 				791996FE1B6EB3C500FC674A /* BBThumbnailPDFOperation.m in Sources */,
 				79EA82C71B3F945700D50B6B /* BBView.m in Sources */,
