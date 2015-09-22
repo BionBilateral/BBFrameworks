@@ -20,7 +20,7 @@
 
 static NSInteger const BBFrameworksVersionMajor = 0;
 static NSInteger const BBFrameworksVersionMinor = 9;
-static NSInteger const BBFrameworksVersionPatch = 13;
+static NSInteger const BBFrameworksVersionPatch = 14;
 
 static NSString *const BBFrameworksResourcesBundleName = @"BBFrameworksResources.bundle";
 
