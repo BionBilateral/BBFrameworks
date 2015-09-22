@@ -669,6 +669,12 @@
 - (void)setCompletions:(NSArray *)completions {
     _completions = completions;
     
+    if (_completions.count == 0 &&
+        _tableView != nil) {
+        
+        [self _hideCompletionsTableViewAndSelectCompletion:nil];
+    }
+    
     [self.tableView reloadData];
 }
 - (void)setTapGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer {
