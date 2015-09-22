@@ -30,4 +30,15 @@
     return retval;
 }
 
+- (NSArray *)BB_recursiveChildViewControllers; {
+    NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
+    
+    for (UIViewController *viewController in self.childViewControllers) {
+        [retval addObject:viewController];
+        [retval addObjectsFromArray:[viewController BB_recursiveChildViewControllers]];
+    }
+    
+    return retval.array;
+}
+
 @end

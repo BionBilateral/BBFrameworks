@@ -33,4 +33,13 @@
  */
 - (UIViewController *)BB_viewControllerForPresenting;
 
+/**
+ Creates and returns an array of the receiver's child view controllers recursively.
+ 
+ For each child view controller in the receiver, the child view controller is added to the return array followed by the array of recursive child view controllers.
+ 
+ @return The array of recursive child view controllers
+ */
+- (NSArray *)BB_recursiveChildViewControllers;
+
 @end
