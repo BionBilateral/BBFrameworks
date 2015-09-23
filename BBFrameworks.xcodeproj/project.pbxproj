@@ -112,6 +112,14 @@
 		07CE80481B50654100F5729E /* BBPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CE80471B50654100F5729E /* BBPickerButton.m */; };
 		07CE80491B50654500F5729E /* BBPickerButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE80461B50654100F5729E /* BBPickerButton.h */; };
 		07CE804D1B50677D00F5729E /* BBPickerButtonDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */; };
+		07E312C01BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E312BE1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07E312C11BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E312BF1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		07E312C21BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E312BF1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		07E312C31BB32CA400C71468 /* NSObject+BBKeyValueObservingExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07E312BE1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h */; };
+		07E312C51BB32CBE00C71468 /* BBKeyValueObserving.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */; };
+		07E312C91BB3327300C71468 /* KeyValueObservingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E312C81BB3327300C71468 /* KeyValueObservingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		07E312CB1BB332B300C71468 /* KeyValueObservingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		07E3E5091B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
@@ -539,7 +547,9 @@
 			dstSubfolderSpec = 16;
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
+				07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
+				07E312C31BB32CA400C71468 /* NSObject+BBKeyValueObservingExtensions.h in CopyFiles */,
 				792F153F1B76AD080034A09A /* NSFetchRequest+BBCoreDataExtensions.h in CopyFiles */,
 				79184C6F1B7056330044789F /* BBReachability.h in CopyFiles */,
 				799C0C801B61B9B200A3888A /* BBAddressBookUI.h in CopyFiles */,
@@ -785,6 +795,12 @@
 		07CE80461B50654100F5729E /* BBPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButton.h; path = iOS/BBPickerButton.h; sourceTree = "<group>"; };
 		07CE80471B50654100F5729E /* BBPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBPickerButton.m; path = iOS/BBPickerButton.m; sourceTree = "<group>"; };
 		07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButtonDataSource.h; path = iOS/BBPickerButtonDataSource.h; sourceTree = "<group>"; };
+		07E312BE1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BBKeyValueObservingExtensions.h"; sourceTree = "<group>"; };
+		07E312BF1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BBKeyValueObservingExtensions.m"; sourceTree = "<group>"; };
+		07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObserving.h; sourceTree = "<group>"; };
+		07E312C71BB3327300C71468 /* KeyValueObservingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueObservingViewController.h; sourceTree = "<group>"; };
+		07E312C81BB3327300C71468 /* KeyValueObservingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueObservingViewController.m; sourceTree = "<group>"; };
+		07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueObservingViewController.xib; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1343,6 +1359,16 @@
 			path = BBForm;
 			sourceTree = "<group>";
 		};
+		07E312BD1BB32B8600C71468 /* BBKeyValueObserving */ = {
+			isa = PBXGroup;
+			children = (
+				07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */,
+				07E312BE1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h */,
+				07E312BF1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m */,
+			);
+			path = BBKeyValueObserving;
+			sourceTree = "<group>";
+		};
 		76E18D0A91AEB5D129F5F3EC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1478,6 +1504,7 @@
 			children = (
 				7927CF691B1AD2B90034288D /* BBFoundation */,
 				07B3D8EB1B60145900FA1853 /* BBBlocks */,
+				07E312BD1BB32B8600C71468 /* BBKeyValueObserving */,
 				79184C691B70415F0044789F /* BBReachability */,
 				7927CF5D1B1AD2B90034288D /* BBCoreData */,
 				7927CF7E1B1AD2B90034288D /* BBKit */,
@@ -1882,6 +1909,9 @@
 				7915515D1B3335E7009FA353 /* TableViewController.m */,
 				79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */,
 				79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */,
+				07E312C71BB3327300C71468 /* KeyValueObservingViewController.h */,
+				07E312C81BB3327300C71468 /* KeyValueObservingViewController.m */,
+				07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */,
 				07CE802B1B4EE78800F5729E /* FormViewController.h */,
 				07CE802C1B4EE78800F5729E /* FormViewController.m */,
 				799C0C5F1B5C6CB800A3888A /* FormTableViewHeaderView.h */,
@@ -2202,6 +2232,7 @@
 				79EA81561B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
 				79EA814F1B3F221600D50B6B /* NSBundle+BBFoundationExtensions.h in Headers */,
 				79EA81781B3F22B000D50B6B /* BBTooltip.h in Headers */,
+				07E312C51BB32CBE00C71468 /* BBKeyValueObserving.h in Headers */,
 				79EA81481B3F21FE00D50B6B /* BBFrameworksFunctions.h in Headers */,
 				791996F61B6EB3C500FC674A /* BBThumbnailMovieOperation.h in Headers */,
 				79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
@@ -2248,6 +2279,7 @@
 				79EA814D1B3F221600D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.h in Headers */,
 				799C0C711B61B53A00A3888A /* BBFrameworksMacros.h in Headers */,
 				79EA81731B3F228C00D50B6B /* BBReactiveThumbnail.h in Headers */,
+				07E312C01BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h in Headers */,
 				79EA81611B3F226100D50B6B /* NSColor+BBKitExtensions.h in Headers */,
 				791996EC1B6EB3C500FC674A /* BBThumbnailDownloadOperation.h in Headers */,
 				791996F31B6EB3C500FC674A /* BBThumbnailImageOperation.h in Headers */,
@@ -2510,6 +2542,7 @@
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
 				7953FA2F1B31C4820005E3FD /* docs in Resources */,
 				79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */,
+				07E312CB1BB332B300C71468 /* KeyValueObservingViewController.xib in Resources */,
 				79C27EC51B3BBA6000C4AC28 /* sample.mp4 in Resources */,
 				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
 				799F9BD11B6DC3C40067BAA8 /* RemoteURLs.plist in Resources */,
@@ -2760,6 +2793,7 @@
 				07C23AA11B542BB200D3C072 /* TokenCompletionTableViewCell.m in Sources */,
 				79BE2B751B65442700ADE997 /* FormTableViewCell.m in Sources */,
 				79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */,
+				07E312C91BB3327300C71468 /* KeyValueObservingViewController.m in Sources */,
 				799C0C611B5C6CB800A3888A /* FormTableViewHeaderView.m in Sources */,
 				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,
 				799C0C421B5B6DDA00A3888A /* DetailViewController.m in Sources */,
@@ -2827,6 +2861,7 @@
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
 				07AEC8481B6BE68500013470 /* BBValidationTextFieldWarningView.m in Sources */,
+				07E312C11BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */,
 				791996E71B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */,
 				07B3D90E1B60373B00FA1853 /* BBFormSliderTableViewCell.m in Sources */,
 				791996ED1B6EB3C500FC674A /* BBThumbnailDownloadOperation.m in Sources */,
@@ -2961,6 +2996,7 @@
 				799F9B9E1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m in Sources */,
 				791996FE1B6EB3C500FC674A /* BBThumbnailPDFOperation.m in Sources */,
 				79EA82C71B3F945700D50B6B /* BBView.m in Sources */,
+				07E312C21BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */,
 				077656681B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m in Sources */,
 				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
 				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
