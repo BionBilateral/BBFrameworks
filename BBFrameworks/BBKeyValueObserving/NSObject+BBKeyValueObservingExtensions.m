@@ -18,11 +18,15 @@
 
 #import <objc/runtime.h>
 
+static NSMutableSet *kSwizzledClasses;
+
 @class _BBKeyValueObservingObserver;
 
 @interface NSObject (BBKeyValueObservingExtensionsPrivate)
 - (void)_BB_addKeyValueObservingObserver:(_BBKeyValueObservingObserver *)observer;
 - (void)_BB_removeKeyValueObservingObserver:(_BBKeyValueObservingObserver *)observer;
+
+- (void)_swizzleObjectClassIfNeeded:(id)object;
 @end
 
 @interface _BBKeyValueObservingObserver : NSObject
@@ -91,6 +95,10 @@
     const void *key = [NSString stringWithFormat:@"%p",observer].UTF8String;
     
     objc_setAssociatedObject(self, key, nil, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (void)_swizzleObjectClassIfNeeded:(id)object; {
+    
 }
 
 @end
