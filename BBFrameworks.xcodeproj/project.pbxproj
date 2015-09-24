@@ -11,8 +11,10 @@
 		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
 		0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		072B1D9C1BB4714900D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072BCF3E1BAB12010054CB60 /* Accelerate.framework */; };
-		072B1D9E1BB4715700D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B1D9D1BB4715700D06525 /* Accelerate.framework */; };
+		072B1D9F1BB4736E00D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072BCF3E1BAB12010054CB60 /* Accelerate.framework */; };
+		072B1DA01BB4737500D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B1D9D1BB4715700D06525 /* Accelerate.framework */; };
+		072B1DA11BB4738900D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072BCF3E1BAB12010054CB60 /* Accelerate.framework */; };
+		072B1DA21BB4739000D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B1D9D1BB4715700D06525 /* Accelerate.framework */; };
 		0750D6431B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750D6421B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m */; };
 		0750D6511B6AB9AC002F2C1A /* BBMediaPickerAssetsGroupTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ACF1B6960B800333678 /* BBMediaPickerAssetsGroupTableViewCell.h */; };
 		0750D6541B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750D6531B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m */; };
@@ -1169,6 +1171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072B1DA01BB4737500D06525 /* Accelerate.framework in Frameworks */,
 				79EA819A1B3F29BC00D50B6B /* libBBFrameworks.a in Frameworks */,
 				802386A85C63BD7461793C54 /* libPods-OSXDemo.a in Frameworks */,
 			);
@@ -1178,6 +1181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072B1D9F1BB4736E00D06525 /* Accelerate.framework in Frameworks */,
 				79EA81071B3F12BF00D50B6B /* libBBFrameworks.a in Frameworks */,
 				333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */,
 			);
@@ -1187,7 +1191,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				072B1D9C1BB4714900D06525 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072B1DA11BB4738900D06525 /* Accelerate.framework in Frameworks */,
 				79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */,
 				6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */,
 			);
@@ -1211,7 +1215,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				072B1D9E1BB4715700D06525 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,6 +1222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072B1DA21BB4739000D06525 /* Accelerate.framework in Frameworks */,
 				79EA81261B3F1E9500D50B6B /* libBBFrameworks.a in Frameworks */,
 				302CAC170B819222FB454F0D /* libPods-OSXDemo.a in Frameworks */,
 			);
