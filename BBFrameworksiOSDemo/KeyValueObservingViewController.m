@@ -18,12 +18,29 @@
 #import <BBFrameworks/BBKeyValueObserving.h>
 #import <BBFrameworks/BBFoundationDebugging.h>
 
-static void *kObservingContext = &kObservingContext;
+@interface Model : NSObject
+@property (copy,nonatomic) NSString *text;
+
+- (instancetype)initWithText:(NSString *)text;
+@end
+
+@implementation Model
+
+- (instancetype)initWithText:(NSString *)text {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setText:text];
+    
+    return self;
+}
+
+@end
 
 @interface KeyValueObservingViewController () <UITextFieldDelegate>
 @property (weak,nonatomic) IBOutlet UITextField *textField;
 
-@property (copy,nonatomic) NSString *text;
+@property (strong,nonatomic) Model *model;
 @end
 
 @implementation KeyValueObservingViewController
@@ -37,8 +54,8 @@ static void *kObservingContext = &kObservingContext;
     
     [self.textField addTarget:self action:@selector(_textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     
-    [self BB_addObserverForKeyPath:@"text" options:NSKeyValueObservingOptionInitial block:^(NSString *key, id object, NSDictionary *change) {
-        NSLog(@"%@ %@ %@ %@",key,object,change,[object valueForKey:key]);
+    [self BB_addObserverForKeyPath:@"model.text" options:NSKeyValueObservingOptionInitial block:^(NSString *key, id object, NSDictionary *change) {
+        NSLog(@"%@ %@ %@ %@",key,object,change,[object valueForKeyPath:key]);
     }];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,7 +69,7 @@ static void *kObservingContext = &kObservingContext;
 }
 
 - (IBAction)_textFieldAction:(id)sender {
-    [self setText:self.textField.text];
+    [self setModel:[[Model alloc] initWithText:self.textField.text]];
 }
 
 @end
