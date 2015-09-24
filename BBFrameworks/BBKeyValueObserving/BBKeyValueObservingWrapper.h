@@ -1,8 +1,8 @@
 //
-//  BBKeyValueObservingController.h
+//  BBKeyValueObservingWrapper.h
 //  BBFrameworks
 //
-//  Created by William Towe on 9/23/15.
+//  Created by William Towe on 9/24/15.
 //  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,10 +17,15 @@
 #import "BBKeyValueObservingDefines.h"
 #import "BBKeyValueObservingToken.h"
 
-@interface BBKeyValueObservingController : NSObject
+@interface BBKeyValueObservingWrapper : NSObject <BBKeyValueObservingToken>
 
-+ (instancetype)sharedInstance;
+@property (readonly,unsafe_unretained,nonatomic) id observer;
+@property (readonly,unsafe_unretained,nonatomic) id target;
+@property (readonly,copy,nonatomic) NSSet *keyPaths;
+@property (readonly,assign,nonatomic) NSKeyValueObservingOptions options;
+@property (readonly,copy,nonatomic) BBKeyValueObservingBlock block;
 
-- (id<BBKeyValueObservingToken>)addKeyValueObserver:(id)observer target:(id)target forKeyPaths:(id<NSFastEnumeration>)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block;
+- (instancetype)initWithObserver:(id)observer target:(id)target keyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block NS_DESIGNATED_INITIALIZER;
+- (instancetype)init __attribute__((unavailable("use initWithObserver:target:keyPaths:options:block: instead")));
 
 @end

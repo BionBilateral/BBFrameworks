@@ -32,16 +32,12 @@ static void *kObservingContext = &kObservingContext;
     return [self.class rowClassTitle];
 }
 
-- (void)dealloc {
-    BBLog();
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.textField addTarget:self action:@selector(_textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     
-    [self BB_addObserverForKeyPath:@"text" options:0 context:kObservingContext block:^(NSString *key, id object, NSDictionary *change, void *context) {
+    [self BB_addObserverForKeyPath:@"text" options:0 block:^(NSString *key, id object, NSDictionary *change) {
         NSLog(@"%@ %@ %@ %@",key,object,change,[object valueForKey:key]);
     }];
 }
