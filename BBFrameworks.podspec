@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.9.15"
+  spec.version = "0.10.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -34,6 +34,14 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBCore"
     
     subspec.source_files = "BBFrameworks/BBBlocks"
+  end
+  
+  spec.subspec "BBKeyValueObserving" do |subspec|
+    subspec.dependency "BBFrameworks/BBCore"
+    
+    subspec.source_files = "BBFrameworks/BBKeyValueObserving", "BBFrameworks/BBKeyValueObserving/Private"
+    
+    subspec.private_header_files = "BBFrameworks/BBKeyValueObserving/Private/*.h"
   end
   
   spec.subspec "BBCoreData" do |subspec|
