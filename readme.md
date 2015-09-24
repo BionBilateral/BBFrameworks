@@ -10,5 +10,3 @@ Repository for common iOS/OSX categories, classes, and functions.
 See the wiki for information on individual modules.
 
 Use cocoapods to install.
-
-The Travis-CI builds will continue to fail until they upgrade their host environment to 10.10. Terrible.
