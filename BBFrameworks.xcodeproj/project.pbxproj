@@ -45,6 +45,15 @@
 		0776566C1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */; };
 		077E21D31B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E21D21B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m */; };
 		077E21D41B755052006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 077E21D11B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h */; };
+		078563AC1BB461A900EEEFF5 /* BBKeyValueObservingController.h in Headers */ = {isa = PBXBuildFile; fileRef = 078563A61BB461A900EEEFF5 /* BBKeyValueObservingController.h */; settings = {ASSET_TAGS = (); }; };
+		078563AD1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563A71BB461A900EEEFF5 /* BBKeyValueObservingController.m */; settings = {ASSET_TAGS = (); }; };
+		078563AE1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563A71BB461A900EEEFF5 /* BBKeyValueObservingController.m */; settings = {ASSET_TAGS = (); }; };
+		078563AF1BB461A900EEEFF5 /* BBKeyValueObservingWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 078563A81BB461A900EEEFF5 /* BBKeyValueObservingWrapper.h */; settings = {ASSET_TAGS = (); }; };
+		078563B01BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563A91BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m */; settings = {ASSET_TAGS = (); }; };
+		078563B11BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563A91BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m */; settings = {ASSET_TAGS = (); }; };
+		078563B21BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 078563AA1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.h */; settings = {ASSET_TAGS = (); }; };
+		078563B31BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563AB1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m */; settings = {ASSET_TAGS = (); }; };
+		078563B41BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563AB1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m */; settings = {ASSET_TAGS = (); }; };
 		0785E90E1BA7325400076BFC /* web_kit_go_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0785E9081BA7325400076BFC /* web_kit_go_back.png */; settings = {ASSET_TAGS = (); }; };
 		0785E90F1BA7325500076BFC /* web_kit_go_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0785E9091BA7325400076BFC /* web_kit_go_back@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0785E9101BA7325500076BFC /* web_kit_go_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0785E90A1BA7325400076BFC /* web_kit_go_back@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -78,12 +87,6 @@
 		07AEC85D1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07AEC85C1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib */; };
 		07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B26DE31BB4447300CB7BAD /* BBKeyValueObservingDefines.h */; };
 		07B26DE51BB4451D00CB7BAD /* BBKeyValueObservingDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B26DE31BB4447300CB7BAD /* BBKeyValueObservingDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07B26DE81BB4460200CB7BAD /* BBKeyValueObservingWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B26DE61BB4460200CB7BAD /* BBKeyValueObservingWrapper.h */; settings = {ASSET_TAGS = (); }; };
-		07B26DE91BB4460200CB7BAD /* BBKeyValueObservingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B26DE71BB4460200CB7BAD /* BBKeyValueObservingWrapper.m */; settings = {ASSET_TAGS = (); }; };
-		07B26DEA1BB4460200CB7BAD /* BBKeyValueObservingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B26DE71BB4460200CB7BAD /* BBKeyValueObservingWrapper.m */; settings = {ASSET_TAGS = (); }; };
-		07B26DED1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B26DEB1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.h */; settings = {ASSET_TAGS = (); }; };
-		07B26DEE1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B26DEC1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m */; settings = {ASSET_TAGS = (); }; };
-		07B26DEF1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B26DEC1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m */; settings = {ASSET_TAGS = (); }; };
 		07B26DF11BB44FAE00CB7BAD /* BBKeyValueObservingToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */; };
 		07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */; };
@@ -130,9 +133,6 @@
 		07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */; };
 		07E312C91BB3327300C71468 /* KeyValueObservingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E312C81BB3327300C71468 /* KeyValueObservingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		07E312CB1BB332B300C71468 /* KeyValueObservingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		07E312CE1BB33ADB00C71468 /* BBKeyValueObservingController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E312CC1BB33ADB00C71468 /* BBKeyValueObservingController.h */; settings = {ASSET_TAGS = (); }; };
-		07E312CF1BB33ADB00C71468 /* BBKeyValueObservingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E312CD1BB33ADB00C71468 /* BBKeyValueObservingController.m */; settings = {ASSET_TAGS = (); }; };
-		07E312D01BB33ADB00C71468 /* BBKeyValueObservingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E312CD1BB33ADB00C71468 /* BBKeyValueObservingController.m */; settings = {ASSET_TAGS = (); }; };
 		07E3E5091B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
@@ -737,6 +737,12 @@
 		0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
 		077E21D11B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h; sourceTree = "<group>"; };
 		077E21D21B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m; sourceTree = "<group>"; };
+		078563A61BB461A900EEEFF5 /* BBKeyValueObservingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBKeyValueObservingController.h; path = Private/BBKeyValueObservingController.h; sourceTree = "<group>"; };
+		078563A71BB461A900EEEFF5 /* BBKeyValueObservingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBKeyValueObservingController.m; path = Private/BBKeyValueObservingController.m; sourceTree = "<group>"; };
+		078563A81BB461A900EEEFF5 /* BBKeyValueObservingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBKeyValueObservingWrapper.h; path = Private/BBKeyValueObservingWrapper.h; sourceTree = "<group>"; };
+		078563A91BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBKeyValueObservingWrapper.m; path = Private/BBKeyValueObservingWrapper.m; sourceTree = "<group>"; };
+		078563AA1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+BBKeyValueObservingExtensionsPrivate.h"; path = "Private/NSObject+BBKeyValueObservingExtensionsPrivate.h"; sourceTree = "<group>"; };
+		078563AB1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+BBKeyValueObservingExtensionsPrivate.m"; path = "Private/NSObject+BBKeyValueObservingExtensionsPrivate.m"; sourceTree = "<group>"; };
 		0785E9081BA7325400076BFC /* web_kit_go_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_kit_go_back.png; sourceTree = "<group>"; };
 		0785E9091BA7325400076BFC /* web_kit_go_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_go_back@2x.png"; sourceTree = "<group>"; };
 		0785E90A1BA7325400076BFC /* web_kit_go_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_go_back@3x.png"; sourceTree = "<group>"; };
@@ -775,10 +781,6 @@
 		07AEC84D1B6BE6C700013470 /* ValidationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationViewController.xib; sourceTree = "<group>"; };
 		07AEC85C1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBAddressBookPersonTableViewCell.xib; sourceTree = "<group>"; };
 		07B26DE31BB4447300CB7BAD /* BBKeyValueObservingDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObservingDefines.h; sourceTree = "<group>"; };
-		07B26DE61BB4460200CB7BAD /* BBKeyValueObservingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObservingWrapper.h; sourceTree = "<group>"; };
-		07B26DE71BB4460200CB7BAD /* BBKeyValueObservingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBKeyValueObservingWrapper.m; sourceTree = "<group>"; };
-		07B26DEB1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BBKeyValueObservingExtensionsPrivate.h"; sourceTree = "<group>"; };
-		07B26DEC1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BBKeyValueObservingExtensionsPrivate.m"; sourceTree = "<group>"; };
 		07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObservingToken.h; sourceTree = "<group>"; };
 		07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAttachmentView.h; sourceTree = "<group>"; };
 		07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTooltipAttachmentViewExtensions.h"; sourceTree = "<group>"; };
@@ -822,8 +824,6 @@
 		07E312C71BB3327300C71468 /* KeyValueObservingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyValueObservingViewController.h; sourceTree = "<group>"; };
 		07E312C81BB3327300C71468 /* KeyValueObservingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyValueObservingViewController.m; sourceTree = "<group>"; };
 		07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueObservingViewController.xib; sourceTree = "<group>"; };
-		07E312CC1BB33ADB00C71468 /* BBKeyValueObservingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObservingController.h; sourceTree = "<group>"; };
-		07E312CD1BB33ADB00C71468 /* BBKeyValueObservingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBKeyValueObservingController.m; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1388,14 +1388,14 @@
 				07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */,
 				07B26DE31BB4447300CB7BAD /* BBKeyValueObservingDefines.h */,
 				07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */,
-				07E312CC1BB33ADB00C71468 /* BBKeyValueObservingController.h */,
-				07E312CD1BB33ADB00C71468 /* BBKeyValueObservingController.m */,
-				07B26DE61BB4460200CB7BAD /* BBKeyValueObservingWrapper.h */,
-				07B26DE71BB4460200CB7BAD /* BBKeyValueObservingWrapper.m */,
 				07E312BE1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h */,
 				07E312BF1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m */,
-				07B26DEB1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.h */,
-				07B26DEC1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m */,
+				078563A61BB461A900EEEFF5 /* BBKeyValueObservingController.h */,
+				078563A71BB461A900EEEFF5 /* BBKeyValueObservingController.m */,
+				078563A81BB461A900EEEFF5 /* BBKeyValueObservingWrapper.h */,
+				078563A91BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m */,
+				078563AA1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.h */,
+				078563AB1BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m */,
 			);
 			path = BBKeyValueObserving;
 			sourceTree = "<group>";
@@ -2258,6 +2258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79EA81641B3F227600D50B6B /* BBThumbnail.h in Headers */,
+				078563AC1BB461A900EEEFF5 /* BBKeyValueObservingController.h in Headers */,
 				791996F91B6EB3C500FC674A /* BBThumbnailOperationWrapper.h in Headers */,
 				791996E91B6EB3C500FC674A /* BBThumbnailBaseOperation.h in Headers */,
 				79EA81561B3F222F00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.h in Headers */,
@@ -2269,8 +2270,8 @@
 				79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				79EA814B1B3F221600D50B6B /* BBFoundationFunctions.h in Headers */,
 				79A6BB1F1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h in Headers */,
-				07B26DED1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.h in Headers */,
 				07B3D8F01B6014D900FA1853 /* NSArray+BBBlocksExtensions.h in Headers */,
+				078563B21BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.h in Headers */,
 				79EA815E1B3F225400D50B6B /* BBKitColorMacros.h in Headers */,
 				79EA81601B3F225400D50B6B /* BBGradientView.h in Headers */,
 				79EA814E1B3F221600D50B6B /* NSArray+BBFoundationExtensions.h in Headers */,
@@ -2279,11 +2280,11 @@
 				79EA81581B3F222F00D50B6B /* BBManagedObjectPropertyMapping.h in Headers */,
 				79EA815A1B3F223600D50B6B /* BBDefaultManagedObjectEntityMapping.h in Headers */,
 				07B3D8ED1B60149000FA1853 /* BBBlocks.h in Headers */,
-				07B26DE81BB4460200CB7BAD /* BBKeyValueObservingWrapper.h in Headers */,
 				79184C6C1B7041DD0044789F /* BBReachability.h in Headers */,
 				79EA81501B3F221600D50B6B /* NSData+BBFoundationExtensions.h in Headers */,
 				79EA81741B3F228C00D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.h in Headers */,
 				79EA815D1B3F225400D50B6B /* BBKit.h in Headers */,
+				078563AF1BB461A900EEEFF5 /* BBKeyValueObservingWrapper.h in Headers */,
 				79EA81531B3F221600D50B6B /* NSString+BBFoundationExtensions.h in Headers */,
 				79EA81671B3F227600D50B6B /* BBThumbnailOperation.h in Headers */,
 				79EA814C1B3F221600D50B6B /* BBFoundationMacros.h in Headers */,
@@ -2327,7 +2328,6 @@
 				79EA815C1B3F224E00D50B6B /* BBKitCGImageFunctions.h in Headers */,
 				79EA81511B3F221600D50B6B /* NSFileManager+BBFoundationExtensions.h in Headers */,
 				79EA814A1B3F221600D50B6B /* BBFoundationDebugging.h in Headers */,
-				07E312CE1BB33ADB00C71468 /* BBKeyValueObservingController.h in Headers */,
 				79D5407F1B4B5F01009ECE38 /* NSAlert+BBKitExtensions.h in Headers */,
 				791997081B6EB3C500FC674A /* BBThumbnailYouTubeOperation.h in Headers */,
 				0728FFFF1B433E2F00D68D05 /* BBAddressBook.h in Headers */,
@@ -2867,7 +2867,7 @@
 				79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
 				79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
 				791996FD1B6EB3C500FC674A /* BBThumbnailPDFOperation.m in Sources */,
-				07E312CF1BB33ADB00C71468 /* BBKeyValueObservingController.m in Sources */,
+				078563AD1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */,
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
 				791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */,
@@ -2920,7 +2920,7 @@
 				799C0C2A1B587C0C00A3888A /* BBFormField.m in Sources */,
 				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
-				07B26DE91BB4460200CB7BAD /* BBKeyValueObservingWrapper.m in Sources */,
+				078563B01BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m in Sources */,
 				07AEC84A1B6BE68500013470 /* UITextView+BBValidationExtensions.m in Sources */,
 				79A6BB201BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */,
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
@@ -2947,7 +2947,7 @@
 				79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
 				79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */,
 				791996F41B6EB3C500FC674A /* BBThumbnailImageOperation.m in Sources */,
-				07B26DEE1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */,
+				078563B31BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */,
 				799B96141B69A7CA0010E1CD /* BBMediaPickerAssetCollectionViewLayout.m in Sources */,
 				07B3D8F11B6014D900FA1853 /* NSArray+BBBlocksExtensions.m in Sources */,
 				792F153D1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */,
@@ -3003,9 +3003,9 @@
 				79EA81821B3F22D200D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				79EA817D1B3F22C300D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				79239D0C1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */,
-				07B26DEA1BB4460200CB7BAD /* BBKeyValueObservingWrapper.m in Sources */,
+				078563B11BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m in Sources */,
 				792F153E1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */,
-				07B26DEF1BB44A9500CB7BAD /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */,
+				078563B41BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */,
 				791996F51B6EB3C500FC674A /* BBThumbnailImageOperation.m in Sources */,
 				79EA81871B3F22E400D50B6B /* NSColor+BBKitExtensions.m in Sources */,
 				79EA817B1B3F22C300D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
@@ -3037,7 +3037,7 @@
 				799F9B9E1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m in Sources */,
 				791996FE1B6EB3C500FC674A /* BBThumbnailPDFOperation.m in Sources */,
 				79EA82C71B3F945700D50B6B /* BBView.m in Sources */,
-				07E312D01BB33ADB00C71468 /* BBKeyValueObservingController.m in Sources */,
+				078563AE1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */,
 				07E312C21BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */,
 				077656681B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m in Sources */,
 				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
