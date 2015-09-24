@@ -29,6 +29,7 @@ static void *kObservingContext = &kObservingContext;
 @implementation BBKeyValueObservingWrapper
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    // if the change matches our context, invoke the block with the necessary parameters
     if (context == kObservingContext) {
         self.block(keyPath,object,change);
     }
@@ -38,21 +39,30 @@ static void *kObservingContext = &kObservingContext;
 }
 
 - (void)stopObserving; {
+    // if our target is an array, use the special array KVO methods
     if ([_target isKindOfClass:[NSArray class]]) {
-        // TODO: handle cleanup for NSArray properly
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_target count])];
+        
+        for (NSString *keyPath in _keyPaths) {
+            [_target removeObserver:self fromObjectsAtIndexes:indexSet forKeyPath:keyPath context:kObservingContext];
+        }
     }
+    // otherwise call the normal remove observer
     else {
         for (NSString *keyPath in _keyPaths) {
             [_target removeObserver:self forKeyPath:keyPath context:kObservingContext];
         }
     }
     
+    // if observer is non-nil, remove self from the set of wrappers associated with it
     if (_observer) {
         [_observer BB_removeKeyValueObservingWrapper:self];
     }
     
+    // remove self from the set of wrappers associated with target, which will always be non-nil
     [_target BB_removeKeyValueObservingWrapper:self];
     
+    // the API states this method does nothing if invoked multiple times, setting everything to nil, ensures that is the case
     _observer = nil;
     _target = nil;
     _keyPaths = nil;
@@ -73,18 +83,22 @@ static void *kObservingContext = &kObservingContext;
     _block = block;
     
     for (NSString *keyPath in _keyPaths) {
-        if ([keyPath isKindOfClass:[NSArray class]]) {
-            // TODO: handle NSArray observing properly
+        // if target is an array, use special array KVO methods
+        if ([_target isKindOfClass:[NSArray class]]) {
+            [_target addObserver:self toObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_target count])] forKeyPath:keyPath options:_options context:kObservingContext];
         }
+        // otherwise use normal KVO methods
         else {
-            [target addObserver:self forKeyPath:keyPath options:_options context:kObservingContext];
+            [_target addObserver:self forKeyPath:keyPath options:_options context:kObservingContext];
         }
     }
     
+    // if observer is non-nil, add self to the set of wrappers associated with observer
     if (_observer) {
         [_observer BB_addKeyValueObservingWrapper:self];
     }
     
+    // add self to the set of wrappers associated with target, which will always be non-nil
     [_target BB_addKeyValueObservingWrapper:self];
     
     return self;

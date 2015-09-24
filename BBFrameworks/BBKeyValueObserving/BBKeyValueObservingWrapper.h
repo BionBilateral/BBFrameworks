@@ -17,6 +17,11 @@
 #import "BBKeyValueObservingDefines.h"
 #import "BBKeyValueObservingToken.h"
 
+/**
+ BBKeyValueObservingWrapper is used internally to setup KVO on targets and invoke its block when changes occur. Just like KVO, references to the observer and target are unsafe_unretained.
+ 
+ BBKeyValueObservingWrapper conforms to BBKeyValueObservingToken to allow manually stopping observation.
+ */
 @interface BBKeyValueObservingWrapper : NSObject <BBKeyValueObservingToken>
 
 @property (readonly,unsafe_unretained,nonatomic) id observer;

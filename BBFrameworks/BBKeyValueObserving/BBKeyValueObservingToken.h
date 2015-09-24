@@ -15,7 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Protocol describing objects vended by the BBKeyValueObserving NSObject category methods. These can be used to stop observing a property manually.
+ */
 @protocol BBKeyValueObservingToken <NSObject>
 @required
+/**
+ Stop observing the keys originally passed upon creation. If observing has already been stopped, does nothing.
+ */
 - (void)stopObserving;
 @end

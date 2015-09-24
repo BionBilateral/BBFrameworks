@@ -17,11 +17,27 @@
 
 @class BBKeyValueObservingWrapper;
 
+/**
+ Private category on NSObject used to access the BBKeyValueObservingWrapper objects tied to a particular object. Also used to add and remove BBKeyValueObservingWrapper objects in a thread safe manner.
+ */
 @interface NSObject (BBKeyValueObservingExtensionsPrivate)
 
+/**
+ Get the set of wrappers attached to self. You should not add and remove objects from this set directly, instead use the methods below.
+ */
 @property (readonly,nonatomic) NSMutableSet *BB_keyValueObservingWrappers;
 
+/**
+ Add the wrapper to the set of wrappers associated with self.
+ 
+ @param wrapper The wrapper to add
+ */
 - (void)BB_addKeyValueObservingWrapper:(BBKeyValueObservingWrapper *)wrapper;
+/**
+ Remove the wrapper from the set of wrappers associated with self.
+ 
+ @param wrapper The wrapper to remove
+ */
 - (void)BB_removeKeyValueObservingWrapper:(BBKeyValueObservingWrapper *)wrapper;
 
 @end

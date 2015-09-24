@@ -28,6 +28,7 @@ static NSMutableSet *kSwizzledClasses;
 @implementation BBKeyValueObservingController
 
 + (void)initialize {
+    // create our set holding classes we have swizzled, use dispatch_once to ensure thread safety
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         kSwizzledClasses = [[NSMutableSet alloc] init];
@@ -44,45 +45,59 @@ static NSMutableSet *kSwizzledClasses;
 }
 
 - (id<BBKeyValueObservingToken>)addKeyValueObserver:(id)observer target:(id)target forKeyPaths:(id<NSFastEnumeration>)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block; {
+    // before creating wrapper objects, we must swizzle out dealloc on observer and target if we haven't already done so
     [self _swizzleObjectClassIfNeeded:observer];
     [self _swizzleObjectClassIfNeeded:target];
     
+    // convert collection passed in to a set for the wrapper
     NSMutableSet *setKeyPaths = [[NSMutableSet alloc] init];
     
     for (NSString *keyPath in keyPaths) {
         [setKeyPaths addObject:keyPath];
     }
     
+    // return the wrapper object, which conforms to BBKeyValueObservingToken
     return [[BBKeyValueObservingWrapper alloc] initWithObserver:observer target:target keyPaths:setKeyPaths options:options block:block];
 }
 
 - (void)_swizzleObjectClassIfNeeded:(id)object; {
+    // return early if object is nil, observer can be nil in many of the convenience methods
     if (!object) {
         return;
     }
     
+    // lock on our set of swizzled classes
     @synchronized(kSwizzledClasses) {
         Class class = [object class];
         
+        // if we already swizzled the class, return early
         if ([kSwizzledClasses containsObject:class]) {
             return;
         }
         
+        // get the selector for dealloc, @selector(dealloc) will not work because ARC does not allow referencing it
         SEL deallocSel = NSSelectorFromString(@"dealloc");
+        // get the Method for dealloc
         Method dealloc = class_getInstanceMethod(class, deallocSel);
+        // get the original implementation for dealloc
         IMP origImpl = method_getImplementation(dealloc);
+        // provide our new implementation
         IMP newImpl = imp_implementationWithBlock(^(void *obj){
             @autoreleasepool {
+                // for every wrapper attached to the object, tell the wrapper to stop observing
                 for (BBKeyValueObservingWrapper *wrapper in [[(__bridge id)obj BB_keyValueObservingWrappers] copy]) {
                     [wrapper stopObserving];
                 }
             }
             
+            // call the original dealloc implementation, it must be done this way because again, ARC does not allow referencing dealloc
             ((void (*)(void *, SEL))origImpl)(obj, deallocSel);
         });
         
+        // replace dealloc implementation with our new implementation
         class_replaceMethod(class, deallocSel, newImpl, method_getTypeEncoding(dealloc));
         
+        // add class to our set after everything is done
         [kSwizzledClasses addObject:class];
     }
 }

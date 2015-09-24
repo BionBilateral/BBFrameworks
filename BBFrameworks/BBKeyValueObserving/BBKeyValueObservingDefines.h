@@ -18,6 +18,13 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Typedef for block that is invoked for every KVO change.
+ 
+ @param key The key of the object that changed
+ @param object The object whose key changed
+ @param change The KVO change dictionary associated with KVO event
+ */
 typedef void(^BBKeyValueObservingBlock)(NSString *key, id object, NSDictionary *change);
 
 #endif

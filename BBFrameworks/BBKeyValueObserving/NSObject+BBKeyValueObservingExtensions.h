@@ -17,9 +17,32 @@
 #import "BBKeyValueObservingDefines.h"
 #import "BBKeyValueObservingToken.h"
 
+/**
+ Category on NSObject adding block based KVO methods. The object returned from each of these methods can be used to stop observing early. If the observing is not stopped beforehand, it will stop upon deallocation of self.
+ */
 @interface NSObject (BBKeyValueObservingExtensions)
 
+/**
+ Calls `[self BB_addObserverForKeyPaths:options:block:]`, passing @[keyPath], options, and block respectively.
+ 
+ @param keyPath The key path to observe on self
+ @param options The KVO options to use when setting up the observation
+ @param block The block to invoke on each KVO change
+ @return An object that can be used to stop observing early
+ @exception NSException Thrown if keyPath or block are nil
+ @see BBKeyValueObservingBlock
+ */
 - (id<BBKeyValueObservingToken>)BB_addObserverForKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block;
+/**
+ Starts observing self for changes on the provided key paths.
+ 
+ @param keyPaths A collection of key paths to observe on self
+ @param options The KVO options to use when setting up the observation
+ @param block The block to invoke on each KVO change
+ @return An object that can be used to stop observing early
+ @exception NSException Thrown if keyPath or block are nil
+ @see BBKeyValueObservingBlock
+ */
 - (id<BBKeyValueObservingToken>)BB_addObserverForKeyPaths:(id<NSFastEnumeration>)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block;
 
 @end
