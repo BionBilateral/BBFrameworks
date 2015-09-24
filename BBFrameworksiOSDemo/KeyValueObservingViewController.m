@@ -37,7 +37,7 @@ static void *kObservingContext = &kObservingContext;
     
     [self.textField addTarget:self action:@selector(_textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     
-    [self BB_addObserverForKeyPath:@"text" options:0 block:^(NSString *key, id object, NSDictionary *change) {
+    [self BB_addObserverForKeyPath:@"text" options:NSKeyValueObservingOptionInitial block:^(NSString *key, id object, NSDictionary *change) {
         NSLog(@"%@ %@ %@ %@",key,object,change,[object valueForKey:key]);
     }];
 }
