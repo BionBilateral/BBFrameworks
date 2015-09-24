@@ -30,7 +30,7 @@
  
  @param object The object to insert
  */
-- (void)BB_push:(id)object;
+- (void)BB_push:(nonnull id)object;
 /**
  Removes the first object of the receiver. Equivalent to calling `[self BB_removeFirstObject]`.
  */

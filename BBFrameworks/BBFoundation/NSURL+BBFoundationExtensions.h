@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSURL adding various convenience methods.
  */
@@ -25,7 +27,7 @@
  
  @return The query dictionary
  */
-- (NSDictionary *)BB_queryDictionary;
+- (nullable NSDictionary *)BB_queryDictionary;
 
 /**
  Create and return an NSURL with _baseString_ and optional query _parameters_.
@@ -34,6 +36,8 @@
  @param parameters Optional parameters dictionary
  @return The NSURL created from _baseString_ and _parameters_
  */
-+ (NSURL *)BB_URLWithBaseString:(NSString *)baseString parameters:(NSDictionary *)parameters;
++ (NSURL *)BB_URLWithBaseString:(NSString *)baseString parameters:(nullable NSDictionary *)parameters;
 
 @end
+
+NS_ASSUME_NONNULL_END
