@@ -17,6 +17,8 @@
 #import "BBKeyValueObservingDefines.h"
 #import "BBKeyValueObservingToken.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSObject adding block based KVO methods. The object returned from each of these methods can be used to stop observing early. If the observing is not stopped beforehand, it will stop upon deallocation of self.
  */
@@ -46,3 +48,5 @@
 - (id<BBKeyValueObservingToken>)BB_addObserverForKeyPaths:(id<NSFastEnumeration>)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block;
 
 @end
+
+NS_ASSUME_NONNULL_END

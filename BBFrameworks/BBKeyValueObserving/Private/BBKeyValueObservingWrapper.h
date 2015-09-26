@@ -17,6 +17,8 @@
 #import "BBKeyValueObservingDefines.h"
 #import "BBKeyValueObservingToken.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBKeyValueObservingWrapper is used internally to setup KVO on targets and invoke its block when changes occur. Just like KVO, references to the observer and target are unsafe_unretained.
  
@@ -24,13 +26,15 @@
  */
 @interface BBKeyValueObservingWrapper : NSObject <BBKeyValueObservingToken>
 
-@property (readonly,unsafe_unretained,nonatomic) id observer;
+@property (readonly,unsafe_unretained,nonatomic,nullable) id observer;
 @property (readonly,unsafe_unretained,nonatomic) id target;
 @property (readonly,copy,nonatomic) NSSet *keyPaths;
 @property (readonly,assign,nonatomic) NSKeyValueObservingOptions options;
 @property (readonly,copy,nonatomic) BBKeyValueObservingBlock block;
 
-- (instancetype)initWithObserver:(id)observer target:(id)target keyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithObserver:(nullable id)observer target:(id)target keyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block NS_DESIGNATED_INITIALIZER;
 - (instancetype)init __attribute__((unavailable("use initWithObserver:target:keyPaths:options:block: instead")));
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Typedef for block that is invoked for every KVO change.
  
@@ -26,5 +28,7 @@
  @param change The KVO change dictionary associated with KVO event
  */
 typedef void(^BBKeyValueObservingBlock)(NSString *key, id object, NSDictionary *change);
+
+NS_ASSUME_NONNULL_END
 
 #endif

@@ -17,6 +17,8 @@
 #import "BBKeyValueObservingDefines.h"
 #import "BBKeyValueObservingToken.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBKeyValueObservingController is a singleton instance that all KVO block observing methods funnel through.
  */
@@ -39,6 +41,8 @@
  @exception NSException Thrown if observer and target are nil, if keyPaths or block are nil
  @see BBKeyValueObservingBlock
  */
-- (id<BBKeyValueObservingToken>)addKeyValueObserver:(id)observer target:(id)target forKeyPaths:(id<NSFastEnumeration>)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block;
+- (id<BBKeyValueObservingToken>)addKeyValueObserver:(nullable id)observer target:(id)target forKeyPaths:(id<NSFastEnumeration>)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block;
 
 @end
+
+NS_ASSUME_NONNULL_END

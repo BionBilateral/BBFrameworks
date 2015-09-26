@@ -19,7 +19,7 @@
 static void *kObservingContext = &kObservingContext;
 
 @interface BBKeyValueObservingWrapper ()
-@property (readwrite,unsafe_unretained,nonatomic) id observer;
+@property (readwrite,unsafe_unretained,nonatomic,nullable) id observer;
 @property (readwrite,unsafe_unretained,nonatomic) id target;
 @property (readwrite,copy,nonatomic) NSSet *keyPaths;
 @property (readwrite,assign,nonatomic) NSKeyValueObservingOptions options;
