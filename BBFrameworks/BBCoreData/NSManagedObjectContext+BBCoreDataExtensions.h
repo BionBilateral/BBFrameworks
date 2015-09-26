@@ -15,8 +15,19 @@
 
 #import <CoreData/CoreData.h>
 
-typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
+NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Typedef for a block used when performing asynchronous fetches.
+ 
+ @param objects The managed objects
+ @param error If the fetch could not be completed, an error containing more information
+ */
+typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *_Nullable error);
+
+/**
+ Category on NSManagedObjectContext adding various convenience methods.
+ */
 @interface NSManagedObjectContext (BBCoreDataExtensions)
 
 /**
@@ -39,7 +50,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @return The resulting set of NSManagedObject instances
  @exception NSException Thrown if _entityName_ is nil
  */
-- (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error;
+- (nullable NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error;
 /**
  Calls BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:error:, passing _entityName_, _predicate_, _sortDescriptors_, _limit_, and _error_ respectively.
  
@@ -51,7 +62,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @return The resulting set of NSManagedObject instances
  @exception NSException Thrown if _entityName_ is nil
  */
-- (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit error:(NSError *__autoreleasing *)error;
+- (nullable NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors limit:(NSUInteger)limit error:(NSError *__autoreleasing *)error;
 /**
  Constructs and executes a NSFetchRequest using _entityName_, _predicate_, _sortDescriptors_, _limit_, _offset_, and _error_.
  
@@ -64,7 +75,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @return The resulting set of NSManagedObject instances
  @exception NSException Thrown if _entityName_ is nil
  */
-- (NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset error:(NSError *__autoreleasing *)error;
+- (nullable NSArray *)BB_fetchEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset error:(NSError *__autoreleasing *)error;
 
 /**
  Calls `BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:completion:`, passing `entityName`, `predicate`, `sortDescriptors`, 0, 0, and `completion` respectively.
@@ -75,7 +86,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @param completion The completion block that is invoked when the operation is complete, objects contains NSManagedObject instance, if nil, error contains information about the reason for failure
  @exception NSException Thrown if entityName or completion are nil
  */
-- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors completion:(BBCoreDataCompletionBlock)completion;
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors completion:(BBCoreDataCompletionBlock)completion;
 /**
  Calls `BB_fetchEntityNamed:predicate:sortDescriptors:limit:offset:completion:`, passing `entityName`, `predicate`, `sortDescriptors`, `limit`, 0, and `completion` respectively.
  
@@ -86,7 +97,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @param completion The completion block that is invoked when the operation is complete, objects contains NSManagedObject instance, if nil, error contains information about the reason for failure
  @exception NSException Thrown if entityName or completion are nil
  */
-- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit completion:(BBCoreDataCompletionBlock)completion;
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors limit:(NSUInteger)limit completion:(BBCoreDataCompletionBlock)completion;
 /**
  Performs an asynchronous fetch request, using NSAsynchronousFetchRequest if it is available. Falls back to fetching object IDs and converting them to managed objects on the calling thread.
  
@@ -98,7 +109,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @param completion The completion block that is invoked when the operation is complete, objects contains NSManagedObject instance, if nil, error contains information about the reason for failure
  @exception NSException Thrown if entityName or completion are nil
  */
-- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(BBCoreDataCompletionBlock)completion;
+- (void)BB_fetchEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset completion:(BBCoreDataCompletionBlock)completion;
 
 /**
  Constructs and executes a NSFetchRequest using _entityName_, _predicate_, and _error_.
@@ -111,7 +122,7 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @return The number of objects in the result set
  @exception NSException Thrown if _entityName_ is nil
  */
-- (NSUInteger)BB_countForEntityNamed:(NSString *)entityName predicate:(NSPredicate *)predicate error:(NSError *__autoreleasing *)error;
+- (NSUInteger)BB_countForEntityNamed:(NSString *)entityName predicate:(nullable NSPredicate *)predicate error:(NSError *__autoreleasing *)error;
 
 /**
  Constructs and executes a NSFetchRequest using _entityName_, _predicate_, _sortDescriptors_, and _error_.
@@ -126,6 +137,8 @@ typedef void(^BBCoreDataCompletionBlock)(NSArray *objects, NSError *error);
  @return The resulting set of NSManagedObject instances
  @exception NSException Thrown if _entityName_ or _properties_ are nil
  */
-- (NSArray *)BB_fetchPropertiesForEntityNamed:(NSString *)entityName properties:(NSArray *)properties predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error;
+- (NSArray *)BB_fetchPropertiesForEntityNamed:(NSString *)entityName properties:(NSArray *)properties predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors error:(NSError *__autoreleasing *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

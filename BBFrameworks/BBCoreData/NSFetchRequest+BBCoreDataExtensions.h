@@ -15,6 +15,8 @@
 
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSFetchRequest adding convenience creation methods.
  */
@@ -30,6 +32,8 @@
  @param offset The fetch offset to apply to the fetch request
  @return The fetch request
  */
-+ (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset;
++ (NSFetchRequest *)BB_fetchRequestForEntityName:(NSString *)entityName predicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray *)sortDescriptors limit:(NSUInteger)limit offset:(NSUInteger)offset;
 
 @end
+
+NS_ASSUME_NONNULL_END

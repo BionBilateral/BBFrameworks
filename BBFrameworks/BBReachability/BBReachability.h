@@ -125,6 +125,7 @@ extern NSString *const BBReachabilityNotificationFlagsDidChange;
  @return An initialized instance of the receiver
  */
 - (instancetype)initWithNetworkReachability:(SCNetworkReachabilityRef)networkReachability NS_DESIGNATED_INITIALIZER;
+- (instancetype)init __attribute__((unavailable("use initWithNetworkReachability: instead")));
 
 @end
 
