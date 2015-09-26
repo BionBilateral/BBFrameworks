@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSOrderedSet adding block extensions.
  */
@@ -42,7 +44,7 @@
  @return The matching object or nil
  @exception NSException Thrown if block is nil
  */
-- (id)BB_find:(BOOL(^)(id object, NSInteger index))block;
+- (nullable id)BB_find:(BOOL(^)(id object, NSInteger index))block;
 /**
  Return an array of the first object in the receiver along with its index for which block returns YES, or nil if block returns NO for all objects in the receiver.
  
@@ -50,7 +52,7 @@
  @return An array where the first object is an object in the receiver and second object is the index of the object in the receiver, or nil
  @exception NSException Thrown if block is nil
  */
-- (NSArray *)BB_findWithIndex:(BOOL(^)(id object, NSInteger index))block;
+- (nullable NSArray *)BB_findWithIndex:(BOOL(^)(id object, NSInteger index))block;
 /**
  Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including the return value of block in the new array.
  
@@ -66,7 +68,7 @@
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (id)BB_reduceWithStart:(id)start block:(id(^)(id sum, id object, NSInteger index))block;
+- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object, NSInteger index))block;
 /**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
@@ -131,3 +133,5 @@
 - (id)BB_minimum;
 
 @end
+
+NS_ASSUME_NONNULL_END
