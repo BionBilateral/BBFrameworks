@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSMutableArray adding various convenience methods.
  */
@@ -30,7 +32,7 @@
  
  @param object The object to insert
  */
-- (void)BB_push:(nonnull id)object;
+- (void)BB_push:(id)object;
 /**
  Removes the first object of the receiver. Equivalent to calling `[self BB_removeFirstObject]`.
  */
@@ -42,3 +44,6 @@
 - (void)BB_shuffle;
 
 @end
+
+
+NS_ASSUME_NONNULL_END

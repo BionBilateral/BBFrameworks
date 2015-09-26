@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDate (BBFoundationExtensions)
 
 /**
@@ -50,3 +52,5 @@
 - (NSDate *)BB_endOfDay;
 
 @end
+
+NS_ASSUME_NONNULL_END

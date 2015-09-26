@@ -280,6 +280,8 @@
 		79A6BB211BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		79B1C10C1BB67A43005A8A0D /* Foundation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79B1C10A1BB67A43005A8A0D /* Foundation.strings */; settings = {ASSET_TAGS = (); }; };
 		79B1C10D1BB67A43005A8A0D /* Foundation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79B1C10A1BB67A43005A8A0D /* Foundation.strings */; settings = {ASSET_TAGS = (); }; };
+		79B1C10F1BB67AF1005A8A0D /* BBFoundationFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */; settings = {ASSET_TAGS = (); }; };
+		79B1C1101BB67AF1005A8A0D /* BBFoundationFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */; settings = {ASSET_TAGS = (); }; };
 		79BE2B671B64917800ADE997 /* BBVisualEffectTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BE2B661B64917800ADE997 /* BBVisualEffectTransitionController.m */; };
 		79BE2B681B64943900ADE997 /* BBVisualEffectTransitionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B651B64917800ADE997 /* BBVisualEffectTransitionController.h */; };
 		79BE2B6A1B6494DE00ADE997 /* BBTransitions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BE2B691B64944A00ADE997 /* BBTransitions.h */; };
@@ -1030,6 +1032,7 @@
 		79A6BB1D1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		79B1C10B1BB67A43005A8A0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Foundation.strings; sourceTree = "<group>"; };
+		79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationFunctions.m; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
@@ -2048,6 +2051,7 @@
 			children = (
 				7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */,
 				7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */,
+				79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */,
 				7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */,
 			);
 			name = Headers;
@@ -2979,6 +2983,7 @@
 				07B3D90F1B60373B00FA1853 /* BBFormSegmentedTableViewCell.m in Sources */,
 				79EA80D81B3F0CF300D50B6B /* UIView+BBKitExtensions.m in Sources */,
 				07605AD11B6960B800333678 /* BBMediaPickerAssetsGroupTableViewCell.m in Sources */,
+				79B1C10F1BB67AF1005A8A0D /* BBFoundationFunctions.m in Sources */,
 				077E21D31B754E11006507BE /* BBMediaPickerAssetCollectionViewCellSelectedOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3059,6 +3064,7 @@
 				79184C6E1B7041DD0044789F /* BBReachability.m in Sources */,
 				791997171B6EB46100FC674A /* BBThumbnailQuickLookOperation.m in Sources */,
 				07B3D8F21B6014D900FA1853 /* NSArray+BBBlocksExtensions.m in Sources */,
+				79B1C1101BB67AF1005A8A0D /* BBFoundationFunctions.m in Sources */,
 				077656631B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

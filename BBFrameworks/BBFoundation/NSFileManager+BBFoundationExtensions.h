@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSFileManager providing various convenience methods.
  */
@@ -28,3 +30,5 @@
 - (NSURL *)BB_applicationSupportDirectoryURL;
 
 @end
+
+NS_ASSUME_NONNULL_END

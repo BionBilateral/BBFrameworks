@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSString adding various convenience methods.
  */
@@ -46,3 +48,5 @@
 - (NSString *)BB_SHA512String;
 
 @end
+
+NS_ASSUME_NONNULL_END
