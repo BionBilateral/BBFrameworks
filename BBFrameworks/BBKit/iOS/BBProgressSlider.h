@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBProgressSlider is a UISlider subclass that displays a loading progress in addition to minimum and maximum track.
  */
@@ -30,18 +32,20 @@
  
  The default is self.tintColor.
  */
-@property (strong,nonatomic) UIColor *minimumTrackFillColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,nullable) UIColor *minimumTrackFillColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the maximum track fill color.
  
  The default is [UIColor lightGrayColor];
  */
-@property (strong,nonatomic) UIColor *maximumTrackFillColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,nullable) UIColor *maximumTrackFillColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the progress fill color.
  
  The default is [UIColor whiteColor];
  */
-@property (strong,nonatomic) UIColor *progressFillColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,nullable) UIColor *progressFillColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

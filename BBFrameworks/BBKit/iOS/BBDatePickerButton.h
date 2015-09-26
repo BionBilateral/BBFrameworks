@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBDatePickerButton is a UIButton subclass that can become first responder and uses a UIDatePickerView as its input view. Tapping on a BBDatePickerButton will toggle its first responder status.
  */
@@ -25,7 +27,7 @@
  
  The default is [NSDate date].
  */
-@property (copy,nonatomic) NSDate *date;
+@property (copy,nonatomic,nullable) NSDate *date;
 
 /**
  Set and get the mode used by the managed date picker view.
@@ -39,24 +41,26 @@
  
  The default is nil.
  */
-@property (copy,nonatomic) NSDate *minimumDate;
+@property (copy,nonatomic,nullable) NSDate *minimumDate;
 /**
  Set and get the maximum date of the managed date picker view.
  
  The default is nil.
  */
-@property (copy,nonatomic) NSDate *maximumDate;
+@property (copy,nonatomic,nullable) NSDate *maximumDate;
 
 /**
  Set and get the date formatter used to format the date of the receiver for display.
  
  The default is a NSDateFormatter with date style and time style set to NSDateFormatterMediumStyle.
  */
-@property (strong,nonatomic) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,nullable) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
 
 /**
  Redefine input accessory view as readwrite.
  */
-@property (readwrite,retain) UIView *inputAccessoryView;
+@property (nullable, nonatomic, readwrite, strong) __kindof UIView *inputAccessoryView;
 
 @end
+
+NS_ASSUME_NONNULL_END

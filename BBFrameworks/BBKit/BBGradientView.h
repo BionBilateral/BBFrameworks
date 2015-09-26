@@ -21,6 +21,8 @@
 #import <AppKit/AppKit.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBGradientView is a UIView/NSView subclass that manages a CAGradientLayer and provides convenience methods to access the layer's properties.
  */
@@ -35,14 +37,14 @@
  
  The array should contain either UIColor or NSColor instances.
  */
-@property (copy,nonatomic) NSArray *colors;
+@property (copy,nonatomic,nullable) NSArray *colors;
 
 /**
  Set and get the locations of the underlying CAGradientLayer.
  
  The gradient stops are specified as values between 0 and 1. The values must be monotonically increasing. If nil, the stops are spread uniformly across the range. Defaults to nil.
  */
-@property (copy,nonatomic) NSArray *locations;
+@property (copy,nonatomic,nullable) NSArray *locations;
 
 /**
  The start point of the underlying CAGradientLayer.
@@ -67,3 +69,5 @@
 #endif
 
 @end
+
+NS_ASSUME_NONNULL_END

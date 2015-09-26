@@ -17,6 +17,8 @@
 #import "BBPickerButtonDataSource.h"
 #import "BBPickerButtonDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBPickerButton is a UIButton subclass that can become first responder and uses a UIPickerView as its input view. Tapping on a BBPickerButton will toggle its first responder status.
  */
@@ -27,20 +29,20 @@
  
  @see BBPickerButtonDataSource
  */
-@property (weak,nonatomic) id<BBPickerButtonDataSource> dataSource;
+@property (weak,nonatomic,nullable) id<BBPickerButtonDataSource> dataSource;
 /**
  Set and get the receiver's delegate.
  
  @see BBPickerButtonDelegate
  */
-@property (weak,nonatomic) id<BBPickerButtonDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBPickerButtonDelegate> delegate;
 
 /**
  Set and get the selected components join string of the receiver. This is used to join the title representing each selected row in the managed picker view together to set the title of the receiver.
  
  The default is @" ".
  */
-@property (copy,nonatomic) NSString *selectedComponentsJoinString;
+@property (copy,nonatomic,nullable) NSString *selectedComponentsJoinString;
 
 /**
  Reloads all components in the managed picker view.
@@ -65,6 +67,8 @@
 /**
  Redefine input accessory view as readwrite.
  */
-@property (readwrite,retain) UIView *inputAccessoryView;
+@property (nullable, nonatomic, readwrite, strong) __kindof UIView *inputAccessoryView;
 
 @end
+
+NS_ASSUME_NONNULL_END
