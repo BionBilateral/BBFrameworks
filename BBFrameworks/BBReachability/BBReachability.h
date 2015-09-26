@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Flags mask describing the status of the network connection.
  */
@@ -125,3 +127,5 @@ extern NSString *const BBReachabilityNotificationFlagsDidChange;
 - (instancetype)initWithNetworkReachability:(SCNetworkReachabilityRef)networkReachability NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END
