@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "NSError+BBFoundationExtensions.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIAlertController providing convenience methods related to creation from error objects.
  */
@@ -30,3 +32,5 @@
 + (UIAlertController *)BB_alertControllerWithError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
