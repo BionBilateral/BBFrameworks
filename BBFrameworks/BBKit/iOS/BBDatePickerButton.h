@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  The default is [NSDate date].
  */
-@property (copy,nonatomic,nullable) NSDate *date;
+@property (copy,nonatomic,null_resettable) NSDate *date;
 
 /**
  Set and get the mode used by the managed date picker view.
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  The default is a NSDateFormatter with date style and time style set to NSDateFormatterMediumStyle.
  */
-@property (strong,nonatomic,nullable) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
 
 /**
  Redefine input accessory view as readwrite.
