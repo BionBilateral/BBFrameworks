@@ -23,10 +23,6 @@
 
 @implementation BBAddressBookPerson
 
-- (instancetype)init {
-    return [self initWithPerson:NULL];
-}
-
 - (instancetype)initWithPerson:(ABRecordRef)person {
     if (!(self = [super init]))
         return nil;
