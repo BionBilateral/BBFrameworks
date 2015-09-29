@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIViewController adding various convenience methods.
  */
@@ -43,3 +45,5 @@
 - (NSArray *)BB_recursiveChildViewControllers;
 
 @end
+
+NS_ASSUME_NONNULL_END
