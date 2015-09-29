@@ -32,19 +32,19 @@ NS_ASSUME_NONNULL_BEGIN
  
  The default is self.tintColor.
  */
-@property (strong,nonatomic,nullable) UIColor *minimumTrackFillColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *minimumTrackFillColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the maximum track fill color.
  
  The default is [UIColor lightGrayColor];
  */
-@property (strong,nonatomic,nullable) UIColor *maximumTrackFillColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *maximumTrackFillColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the progress fill color.
  
  The default is [UIColor whiteColor];
  */
-@property (strong,nonatomic,nullable) UIColor *progressFillColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *progressFillColor UI_APPEARANCE_SELECTOR;
 
 @end
 
