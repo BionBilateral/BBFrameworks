@@ -105,9 +105,9 @@ typedef NS_OPTIONS(NSInteger, BBViewBorderOptions) {
  The default is [UIColor blackColor]/[NSColor blackColor].
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic,nullable) UIColor *borderColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *borderColor UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic,nullable) NSColor *borderColor;
+@property (strong,nonatomic,null_resettable) NSColor *borderColor;
 #endif
 
 /**
