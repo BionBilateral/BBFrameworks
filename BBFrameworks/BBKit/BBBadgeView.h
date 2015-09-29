@@ -54,9 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIColor whiteColor]` or `[NSColor whiteColor]`.
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic,nullable) UIColor *badgeForegroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *badgeForegroundColor UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic,nullable) NSColor *badgeForegroundColor;
+@property (strong,nonatomic,null_resettable) NSColor *badgeForegroundColor;
 #endif
 /**
  Set and get the background color used to display `badge` value when `highlighted` is NO.
@@ -64,9 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIColor blackColor]` or `[NSColor blackColor]`.
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic,nullable) UIColor *badgeBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *badgeBackgroundColor UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic,nullable) NSColor *badgeBackgroundColor;
+@property (strong,nonatomic,null_resettable) NSColor *badgeBackgroundColor;
 #endif
 
 /**
@@ -75,9 +75,9 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIColor lightGrayColor]` or `[NSColor lightGrayColor]`.
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic,nullable) UIColor *badgeHighlightedForegroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *badgeHighlightedForegroundColor UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic,nullable) NSColor *badgeHighlightedForegroundColor;
+@property (strong,nonatomic,null_resettable) NSColor *badgeHighlightedForegroundColor;
 #endif
 /**
  Set and get the background color used to display `badge` value when `highlighted` is YES.
@@ -85,9 +85,9 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIColor whiteColor]` or `[NSColor whiteColor]`.
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic,nullable) UIColor *badgeHighlightedBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *badgeHighlightedBackgroundColor UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic,nullable) NSColor *badgeHighlightedBackgroundColor;
+@property (strong,nonatomic,null_resettable) NSColor *badgeHighlightedBackgroundColor;
 #endif
 
 /**
@@ -96,9 +96,9 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIFont boldSystemFontOfSize:17.0]` or `[NSFont boldSystemFontOfSize:17.0]`.
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic,nullable) UIFont *badgeFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *badgeFont UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic,nullable) NSFont *badgeFont;
+@property (strong,nonatomic,null_resettable) NSFont *badgeFont;
 #endif
 /**
  Set and get the badge corner radius used to draw the rounded corners of the receiver.
