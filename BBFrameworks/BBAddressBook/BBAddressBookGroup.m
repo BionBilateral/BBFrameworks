@@ -24,9 +24,6 @@
 @end
 
 @implementation BBAddressBookGroup
-- (instancetype)init {
-    return [self initWithGroup:NULL];
-}
 
 #pragma mark *** Public Methods ***
 - (instancetype)initWithGroup:(ABRecordRef)group {

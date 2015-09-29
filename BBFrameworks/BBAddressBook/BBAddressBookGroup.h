@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/ABGroup.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBAddressBookGroup is an NSObject subclass that wraps a ABRecordRef representing a group.
  */
@@ -34,11 +36,11 @@
 /**
  Get the name. This corresponds to kABGroupNameProperty.
  */
-@property (readonly,nonatomic) NSString *name;
+@property (readonly,nonatomic,nullable) NSString *name;
 /**
  Get all the people in the group. Calls `[self sortedPeopleWithSortDescriptors:nil]`.
  */
-@property (readonly,nonatomic) NSArray *people;
+@property (readonly,nonatomic,nullable) NSArray *people;
 
 /**
  Designated initializer.
@@ -47,6 +49,7 @@
  @return An initialized instance of the receiver
  */
 - (instancetype)initWithGroup:(ABRecordRef)group NS_DESIGNATED_INITIALIZER;
+- (instancetype)init __attribute__((unavailable("use initWithGroup: instead")));
 
 /**
  Returns an array of all people in the receiver as BBAddressBookPerson objects, sorted using sortDescriptors.
@@ -54,6 +57,8 @@
  @param sortDescriptors The sort descriptors to sort by, see BBAddressBookPerson.h for supported keys
  @return The sorted array of people in the group
  */
-- (NSArray *)sortedPeopleWithSortDescriptors:(NSArray *)sortDescriptors;
+- (nullable NSArray *)sortedPeopleWithSortDescriptors:(nullable NSArray *)sortDescriptors;
 
 @end
+
+NS_ASSUME_NONNULL_END
