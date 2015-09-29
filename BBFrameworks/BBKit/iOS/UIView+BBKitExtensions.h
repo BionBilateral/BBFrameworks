@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIView adding various convenience methods.
  */
@@ -30,3 +32,5 @@
 - (NSArray *)BB_recursiveSubviews;
 
 @end
+
+NS_ASSUME_NONNULL_END
