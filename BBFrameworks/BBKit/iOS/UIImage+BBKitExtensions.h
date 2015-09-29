@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIImage providing various convenience methods.
  */
@@ -34,14 +36,14 @@
  @param size The target size
  @return The resized image
  */
-+ (UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size;
++ (nullable UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size;
 /**
  Calls `+[UIImage BB_imageByResizingImage:toSize:]`, passing self and _size_ respectively.
  
  @param size The target size
  @return The resized image
  */
-- (UIImage *)BB_imageByResizingToSize:(CGSize)size;
+- (nullable UIImage *)BB_imageByResizingToSize:(CGSize)size;
 
 /**
  Creates and returns a UIImage by rendering _image_ with _color_.
@@ -51,14 +53,14 @@
  @return The rendered template image
  @exception NSException Thrown if _image_ or _color_ are nil
  */
-+ (UIImage *)BB_imageByRenderingImage:(UIImage *)image withColor:(UIColor *)color;
++ (nullable UIImage *)BB_imageByRenderingImage:(UIImage *)image withColor:(UIColor *)color;
 /**
  Calls `+[UIImage BB_imageByRenderingImage:withColor:]`, passing self and _color_ respectively.
  
  @param color The UIColor to use when rendering self
  @return The rendered template image
  */
-- (UIImage *)BB_imageByRenderingWithColor:(UIColor *)color;
+- (nullable UIImage *)BB_imageByRenderingWithColor:(UIColor *)color;
 
 /**
  Creates a new image by first drawing the image then drawing a rectangle of color over it.
@@ -68,14 +70,14 @@
  @return The tinted image
  @exception NSException Thrown if _image_ or _color_ are nil
  */
-+ (UIImage *)BB_imageByTintingImage:(UIImage *)image withColor:(UIColor *)color;
++ (nullable UIImage *)BB_imageByTintingImage:(UIImage *)image withColor:(UIColor *)color;
 /**
  Calls `+[UIImage BB_imageByTintingImage:withColor:]`, passing self and _color_ respectively.
  
  @param color The color to overlay on top of the image, it should have some level of opacity
  @return The tinted image
  */
-- (UIImage *)BB_imageByTintingWithColor:(UIColor *)color;
+- (nullable UIImage *)BB_imageByTintingWithColor:(UIColor *)color;
 
 /**
  Creates a new image by blurring _image_ using a box blur.
@@ -85,14 +87,14 @@
  @return The blurred image
  @exception NSException Thrown if _image_ is nil
  */
-+ (UIImage *)BB_imageByBlurringImage:(UIImage *)image radius:(CGFloat)radius;
++ (nullable UIImage *)BB_imageByBlurringImage:(UIImage *)image radius:(CGFloat)radius;
 /**
  Calls `+[UIImage BB_imageByBlurringImage:radius:]`, passing self and _radius_ respectively.
  
  @param radius A value between 0.0 and 1.0 describing how much to blur the image. The value will be clamped automatically
  @return The blurred image
  */
-- (UIImage *)BB_imageByBlurringWithRadius:(CGFloat)radius;
+- (nullable UIImage *)BB_imageByBlurringWithRadius:(CGFloat)radius;
 
 /**
  Creates a new image by adjusting the brightness of image by delta. The delta parameter should be between -1.0 and 1.0, with negative numbers making the image darker and positive numbers making it lighter by a percentage. For example, 0.5 would return an image that is 50 percent brighter than the original. The delta parameter is clamped between -1.0 and 1.0, when larger values are provided.
@@ -102,14 +104,14 @@
  @return The brightened or darkened image
  @exception NSException Thrown if _image_ is nil
  */
-+ (UIImage *)BB_imageByAdjustingBrightnessOfImage:(UIImage *)image delta:(CGFloat)delta;
++ (nullable UIImage *)BB_imageByAdjustingBrightnessOfImage:(UIImage *)image delta:(CGFloat)delta;
 /**
  Calls `+[UIImage BB_imageByAdjustingBrightnessOfImage:delta:]`, passing self and _delta_ respectively.
  
  @param delta The amount to brighten or darken the image
  @return The brightened or darkened image
  */
-- (UIImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta;
+- (nullable UIImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta;
 
 /**
  Creates a new image by adjusting the contrast of image by delta. The delta parameter should be between -1.0 and 1.0, with negative numbers decreasing the contrast and positive numbers increasing the contrast by a percentage. For example, 0.5 would return an image where the contrast has been increased by 50 percent over the original. The delta parameter is clamped between -1.0 and 1.0, when larger values are provided.
@@ -119,14 +121,14 @@
  @return The image with its contrast adjusted
  @exception NSException Thrown if _image_ is nil
  */
-+ (UIImage *)BB_imageByAdjustingContrastOfImage:(UIImage *)image delta:(CGFloat)delta;
++ (nullable UIImage *)BB_imageByAdjustingContrastOfImage:(UIImage *)image delta:(CGFloat)delta;
 /**
  Calls `+[UIImage BB_imageByAdjustingContrastOfImage:delta:]`, passing self and _delta_ respectively.
  
  @param delta The amount to adjust the image contrast by
  @return The image with its contrast adjusted
  */
-- (UIImage *)BB_imageByAdjustingContrastBy:(CGFloat)delta;
+- (nullable UIImage *)BB_imageByAdjustingContrastBy:(CGFloat)delta;
 
 /**
  Creates a new image by adjusting the saturation of image by delta. Values less than 1.0 will desaturate the image, values greater than 1.0 will supersaturate the image.
@@ -136,13 +138,15 @@
  @return The image with adjusted saturation
  @exception NSException Thrown if _image_ is nil
  */
-+ (UIImage *)BB_imageByAdjustingSaturationOfImage:(UIImage *)image delta:(CGFloat)delta;
++ (nullable UIImage *)BB_imageByAdjustingSaturationOfImage:(UIImage *)image delta:(CGFloat)delta;
 /**
  Calls `+[UIImage BB_imageByAdjustingSaturationOfImage:delta:]`, passing self and _delta_ respectively.
  
  @param delta The amount to adjust the image saturation
  @return The image with adjusted saturation
  */
-- (UIImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta;
+- (nullable UIImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta;
 
 @end
+
+NS_ASSUME_NONNULL_END
