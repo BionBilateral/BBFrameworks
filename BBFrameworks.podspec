@@ -1,13 +1,13 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.10.0"
+  spec.version = "1.0.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
   spec.source = {:git => "https://github.com/BionBilateral/BBFrameworks.git", :tag => spec.version.to_s}
   spec.summary = "Repository for common iOS/OSX categories, classes, and functions."
   
-  spec.ios.deployment_target = "7.0"
+  spec.ios.deployment_target = "8.0"
   spec.osx.deployment_target = "10.10"
   
   spec.requires_arc = true
@@ -95,8 +95,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBThumbnail" do |subspec|
-    subspec.ios.deployment_target = "8.0"
-    
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBThumbnail", "BBFrameworks/BBThumbnail/Private"
@@ -113,8 +111,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBReactiveThumbnail" do |subspec|
-    subspec.ios.deployment_target = "8.0"
-    
     subspec.dependency "ReactiveCocoa", "~> 2.5.0"
     
     subspec.dependency "BBFrameworks/BBThumbnail"
@@ -136,8 +132,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
-    platform = :ios, "8.0"
-    
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
     
@@ -151,8 +145,6 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBWebKit" do |subspec|
-    subspec.ios.deployment_target = "8.0"
-    
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
     subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
