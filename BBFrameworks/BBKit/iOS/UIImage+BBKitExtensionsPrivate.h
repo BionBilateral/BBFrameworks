@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIImage providing a convenience method to retrieve images from the resources bundle.
  */
@@ -26,6 +28,8 @@
  @param imageName The name of the image
  @return The image
  */
-+ (UIImage *)BB_imageInResourcesBundleNamed:(NSString *)imageName;
++ (nullable UIImage *)BB_imageInResourcesBundleNamed:(NSString *)imageName;
 
 @end
+
+NS_ASSUME_NONNULL_END
