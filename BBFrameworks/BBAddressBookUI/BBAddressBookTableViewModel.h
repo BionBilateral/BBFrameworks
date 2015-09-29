@@ -15,12 +15,16 @@
 
 #import <ReactiveViewModel/RVMViewModel.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class RACCommand;
 
 @interface BBAddressBookTableViewModel : RVMViewModel
 
-@property (readonly,copy,nonatomic) NSArray *people;
+@property (readonly,copy,nonatomic,nullable) NSArray *people;
 
 @property (readonly,strong,nonatomic) RACCommand *cancelCommand;
 
 @end
+
+NS_ASSUME_NONNULL_END
