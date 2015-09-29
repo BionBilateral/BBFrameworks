@@ -37,14 +37,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  The default is [UIFont systemFontOfSize:17].
  */
-@property (strong,nonatomic,nullable) UIFont *placeholderFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *placeholderFont UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get text field's placeholder text color.
  
  The default is [UIColor darkGrayColor].
  */
-@property (strong,nonatomic,nullable) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
 
 @end
 
