@@ -15,10 +15,14 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBAddressBookPerson;
 
 @interface BBAddressBookPersonTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) BBAddressBookPerson *person;
+@property (strong,nonatomic,nullable) BBAddressBookPerson *person;
 
 @end
+
+NS_ASSUME_NONNULL_END
