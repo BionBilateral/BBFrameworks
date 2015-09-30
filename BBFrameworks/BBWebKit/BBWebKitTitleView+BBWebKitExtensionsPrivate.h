@@ -15,8 +15,12 @@
 
 #import "BBWebKitTitleView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBWebKitTitleView (BBWebKitExtensionsPrivate)
 
-@property (copy,nonatomic) NSString *customTitle;
+@property (copy,nonatomic,nullable) NSString *customTitle;
 
 @end
+
+NS_ASSUME_NONNULL_END
