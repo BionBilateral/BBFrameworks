@@ -76,7 +76,7 @@ typedef void(^BBThumbnailGeneratorProgressBlock)(NSURL *URL, int64_t bytesWritte
  @param page The page of the requested thumbnail, applicable for PDF thumbnails
  @param time The time of the requested thumbnail, applicable for movie thumbnails
  */
-typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, BBThumbnailGeneratorSizeStruct size, NSInteger page, NSTimeInterval time);
+typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClass *_Nullable image, NSError *_Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, BBThumbnailGeneratorSizeStruct size, NSInteger page, NSTimeInterval time);
 
 /**
  BBThumbnailGenerator is an NSObject subclass used for generating thumbnail images from various sources.
@@ -129,7 +129,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  
  The default is nil. Set this value when creating the thumbnail generator with your API key.
  */
-@property (copy,nonatomic) NSString *youTubeAPIKey;
+@property (copy,nonatomic,nullable) NSString *youTubeAPIKey;
 
 /**
  Set and get the URL session configuration used when downloading files from remote thumbnail URLs.
