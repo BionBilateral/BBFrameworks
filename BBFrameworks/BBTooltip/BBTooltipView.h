@@ -17,6 +17,8 @@
 #import "BBTooltipViewDefines.h"
 #import "BBTooltipAccessoryView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum describing the arrow direction of the receiver.
  */
@@ -80,19 +82,19 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
  
  The default is [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].
  */
-@property (strong,nonatomic) UIFont *tooltipFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *tooltipFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip text color of the receiver.
  
  The default is [UIColor whiteColor].
  */
-@property (strong,nonatomic) UIColor *tooltipTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *tooltipTextColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip background color.
  
  The default is [UIColor darkGrayColor].
  */
-@property (strong,nonatomic) UIColor *tooltipBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *tooltipBackgroundColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip edge insets.
  
@@ -123,7 +125,7 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
  
  The default is nil.
  */
-@property (strong,nonatomic) UIView<BBTooltipAccessoryView> *accessoryView;
+@property (strong,nonatomic,nullable) UIView<BBTooltipAccessoryView> *accessoryView;
 /**
  Set and get the edge insets for the accessory view. These are used when laying out the accessory view with respect to the left, right, and bottom edges of the receiver, as well as the bottom edge of the text.
  
@@ -155,3 +157,5 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
 - (CGRect)accessoryViewRectForBounds:(CGRect)bounds;
 
 @end
+
+NS_ASSUME_NONNULL_END
