@@ -214,6 +214,12 @@ static CGFloat const kSpringDamping = 0.5;
         }
     }
 }
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+- (void)setTooltipOverlayBackgroundColor:(UIColor *)tooltipOverlayBackgroundColor {
+    _tooltipOverlayBackgroundColor = tooltipOverlayBackgroundColor ?: [self.class _defaultTooltipOverlayBackgroundColor];
+}
+
 #pragma mark *** Private Methods ***
 - (void)_animateToNextTooltip; {
     [self setTooltipIndex:self.tooltipIndex + 1 animated:YES completion:nil];
