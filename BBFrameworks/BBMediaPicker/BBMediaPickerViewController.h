@@ -17,6 +17,8 @@
 #import "BBMediaPickerDefines.h"
 #import "BBMediaPickerViewControllerDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBMediaPickerViewController is a UIViewController subclass that mirrors the media browsing functionality provided by UIImagePickerController.
  */
@@ -34,7 +36,7 @@
  
  @see BBMediaPickerViewControllerDelegate
  */
-@property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBMediaPickerViewControllerDelegate> delegate;
 
 /**
  Set and get whether the receiver allows multiple selection.
@@ -59,7 +61,7 @@
  
  The default is nil.
  */
-@property (copy,nonatomic) NSString *cancelBarButtonItemTitle;
+@property (copy,nonatomic,nullable) NSString *cancelBarButtonItemTitle;
 
 /**
  Set and get the allowed media types of the receiver.
@@ -77,7 +79,7 @@
  
  @see BBMediaPickerMediaFilterBlock
  */
-@property (copy,nonatomic) BBMediaPickerMediaFilterBlock mediaFilterBlock;
+@property (copy,nonatomic,nullable) BBMediaPickerMediaFilterBlock mediaFilterBlock;
 
 /**
  Set and get the cancel confirm block of the receiver. If non-nil, this will be invoked and the completion block value consulted before dismissing the receiver. This can be used to provide confirmation to the user before ending interaction with the receiver.
@@ -86,14 +88,14 @@
  
  @see BBMediaPickerCancelConfirmBlock
  */
-@property (copy,nonatomic) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
+@property (copy,nonatomic,nullable) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
 
 /**
  Set and get the asset bottom accessory view. If non-nil, this view is placed at the bottom of the asset collection view anchored to the bottom of its superview. It should implement the `sizeThatFits:` so its desired height can be determined. It will always have its width set to the width of its superview.
  
  The default is nil.
  */
-@property (strong,nonatomic) UIView *assetBottomAccessoryView;
+@property (strong,nonatomic,nullable) UIView *assetBottomAccessoryView;
 
 /**
  Returns the number of media objects being displayed.
@@ -114,7 +116,7 @@
  @param index The index of the media object to return
  @return The media object or nil
  */
-- (id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index;
+- (nullable id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index;
 
 /**
  Scrolls the collection view containing media so that it is visible, centered vertically. If the media does not exist in the collection view, does nothing.
@@ -138,3 +140,5 @@
 - (BBMediaPickerViewController *)BB_mediaPickerViewController;
 
 @end
+
+NS_ASSUME_NONNULL_END
