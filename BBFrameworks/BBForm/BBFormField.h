@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBFormTableViewControllerDataSource.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBFormField;
 
 /**
@@ -221,7 +223,7 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Set and get the value of the receiver.
  */
-@property (strong,nonatomic) id value;
+@property (strong,nonatomic,nullable) id value;
 /**
  Set and get the value of the receiver as a boolean.
  */
@@ -238,19 +240,19 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the title of the receiver.
  */
-@property (readonly,nonatomic) NSString *title;
+@property (readonly,nonatomic,nullable) NSString *title;
 /**
  Get the subtitle of the receiver.
  */
-@property (readonly,nonatomic) NSString *subtitle;
+@property (readonly,nonatomic,nullable) NSString *subtitle;
 /**
  Get the image of the receiver.
  */
-@property (readonly,nonatomic) UIImage *image;
+@property (readonly,nonatomic,nullable) UIImage *image;
 /**
  Get the placeholder of the receiver.
  */
-@property (readonly,nonatomic) NSString *placeholder;
+@property (readonly,nonatomic,nullable) NSString *placeholder;
 /**
  Get the keyboard type of the receiver.
  */
@@ -258,11 +260,11 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the picker rows of the receiver.
  */
-@property (readonly,nonatomic) NSArray *pickerRows;
+@property (readonly,nonatomic,nullable) NSArray *pickerRows;
 /**
  Get the picker columns and rows of the receiver.
  */
-@property (readonly,nonatomic) NSArray *pickerColumnsAndRows;
+@property (readonly,nonatomic,nullable) NSArray *pickerColumnsAndRows;
 /**
  Get the date picker mode of the receiver.
  */
@@ -270,7 +272,7 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the date formatter of the receiver.
  */
-@property (readonly,nonatomic) NSDateFormatter *dateFormatter;
+@property (readonly,nonatomic,nullable) NSDateFormatter *dateFormatter;
 /**
  Get the table view cell accessory type of the receiver.
  */
@@ -278,35 +280,35 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the view controller class of the receiver.
  */
-@property (readonly,nonatomic) Class viewControllerClass;
+@property (readonly,nonatomic,nullable) Class viewControllerClass;
 /**
  Get the did select block of the receiver.
  */
-@property (readonly,nonatomic) BBFormFieldDidSelectBlock didSelectBlock;
+@property (readonly,nonatomic,nullable) BBFormFieldDidSelectBlock didSelectBlock;
 /**
  Get the will update block of the receiver.
  */
-@property (readonly,nonatomic) BBFormFieldWillUpdateBlock willUpdateBlock;
+@property (readonly,nonatomic,nullable) BBFormFieldWillUpdateBlock willUpdateBlock;
 /**
  Get the did update block of the receiver.
  */
-@property (readonly,nonatomic) BBFormFieldDidUpdateBlock didUpdateBlock;
+@property (readonly,nonatomic,nullable) BBFormFieldDidUpdateBlock didUpdateBlock;
 /**
  Get the header title of the receiver.
  */
-@property (readonly,nonatomic) NSString *titleHeader;
+@property (readonly,nonatomic,nullable) NSString *titleHeader;
 /**
  Get the footer title of the receiver.
  */
-@property (readonly,nonatomic) NSString *titleFooter;
+@property (readonly,nonatomic,nullable) NSString *titleFooter;
 /**
  Get the number formatter of the receiver.
  */
-@property (readonly,nonatomic) NSNumberFormatter *numberFormatter;
+@property (readonly,nonatomic,nullable) NSNumberFormatter *numberFormatter;
 /**
  Get the minimum value of the receiver.
  */
-@property (readonly,nonatomic) NSNumber *minimumValue;
+@property (readonly,nonatomic,nullable) NSNumber *minimumValue;
 /**
  Get the minimum value of the receiver as a float.
  */
@@ -318,7 +320,7 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the maximum value of the receiver.
  */
-@property (readonly,nonatomic) NSNumber *maximumValue;
+@property (readonly,nonatomic,nullable) NSNumber *maximumValue;
 /**
  Get the maximum value of the receiver as a float.
  */
@@ -330,7 +332,7 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the step value of the receiver.
  */
-@property (readonly,nonatomic) NSNumber *stepValue;
+@property (readonly,nonatomic,nullable) NSNumber *stepValue;
 /**
  Get the step value of the receiver as a double.
  */
@@ -338,27 +340,27 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the minimum value image of the receiver.
  */
-@property (readonly,nonatomic) UIImage *minimumValueImage;
+@property (readonly,nonatomic,nullable) UIImage *minimumValueImage;
 /**
  Get the maximum value image of the receiver.
  */
-@property (readonly,nonatomic) UIImage *maximumValueImage;
+@property (readonly,nonatomic,nullable) UIImage *maximumValueImage;
 /**
  Get the segmented items of the receiver.
  */
-@property (readonly,nonatomic) NSArray *segmentedItems;
+@property (readonly,nonatomic,nullable) NSArray *segmentedItems;
 /**
  Get the header view class of the receiver.
  */
-@property (readonly,nonatomic) Class tableViewHeaderViewClass;
+@property (readonly,nonatomic,nullable) Class tableViewHeaderViewClass;
 /**
  Get the footer view class of the receiver.
  */
-@property (readonly,nonatomic) Class tableViewFooterViewClass;
+@property (readonly,nonatomic,nullable) Class tableViewFooterViewClass;
 /**
  Get the cell class of the receiver.
  */
-@property (readonly,nonatomic) Class tableViewCellClass;
+@property (readonly,nonatomic,nullable) Class tableViewCellClass;
 
 /**
  Creates and returns an initialized instance of the receiver.
@@ -368,6 +370,8 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
  @return An initialized instance of the receiver
  */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init __attribute__((unavailable("use initWithDictionary: instead")));
 
 @end
 
@@ -382,6 +386,8 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
  @param key The key to return object for
  @return The object or nil
  */
-- (id)objectForKeyedSubscript:(NSString *)key;
+- (id)objectForKeyedSubscript:(nullable NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

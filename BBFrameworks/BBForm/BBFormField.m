@@ -55,10 +55,6 @@ NSString *const BBFormFieldKeyTableViewCellClass = @"BBFormFieldKeyTableViewCell
     return [NSString stringWithFormat:@"<%@: %p> key: %@ value: %@",NSStringFromClass(self.class),self,self.key,self.value];
 }
 
-- (instancetype)init {
-    return [self initWithDictionary:nil dataSource:nil];
-}
-
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource {
     if (!(self = [super init]))
         return nil;
