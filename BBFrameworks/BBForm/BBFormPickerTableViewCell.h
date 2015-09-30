@@ -15,8 +15,12 @@
 
 #import "BBFormTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBFormPickerTableViewCell : BBFormTableViewCell
 
-@property (strong,nonatomic) UIColor *pickerTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *pickerTextColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END
