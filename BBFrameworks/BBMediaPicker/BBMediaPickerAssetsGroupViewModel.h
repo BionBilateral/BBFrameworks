@@ -18,6 +18,8 @@
 #import <AssetsLibrary/ALAssetsGroup.h>
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, BBMediaPickerAssetsGroupViewModelType) {
     BBMediaPickerAssetsGroupViewModelTypeLibrary = ALAssetsGroupLibrary,
     BBMediaPickerAssetsGroupViewModelTypeAlbum = ALAssetsGroupAlbum,
@@ -38,9 +40,9 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetsGroupViewModelType) {
 @property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) BBMediaPickerAssetsGroupViewModelType type;
 @property (readonly,nonatomic) UIImage *badgeImage;
-@property (readonly,nonatomic) UIImage *posterImage;
-@property (readonly,nonatomic) UIImage *secondPosterImage;
-@property (readonly,nonatomic) UIImage *thirdPosterImage;
+@property (readonly,nonatomic,nullable) UIImage *posterImage;
+@property (readonly,nonatomic,nullable) UIImage *secondPosterImage;
+@property (readonly,nonatomic,nullable) UIImage *thirdPosterImage;
 @property (readonly,nonatomic) NSString *name;
 @property (readonly,nonatomic) NSInteger count;
 @property (readonly,nonatomic) NSString *countString;
@@ -55,3 +57,5 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetsGroupViewModelType) {
 - (RACSignal *)assetViewModels;
 
 @end
+
+NS_ASSUME_NONNULL_END
