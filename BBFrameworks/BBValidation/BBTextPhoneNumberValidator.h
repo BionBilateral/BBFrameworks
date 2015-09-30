@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBTextValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSInteger const BBTextPhoneNumberValidatorErrorCode;
 
 /**
@@ -24,3 +26,5 @@ extern NSInteger const BBTextPhoneNumberValidatorErrorCode;
 @interface BBTextPhoneNumberValidator : NSObject <BBTextValidator>
 
 @end
+
+NS_ASSUME_NONNULL_END
