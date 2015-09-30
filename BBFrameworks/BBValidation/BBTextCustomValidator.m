@@ -21,10 +21,6 @@
 
 @implementation BBTextCustomValidator
 
-- (instancetype)init {
-    return [self initWithValidatorBlock:nil];
-}
-
 - (BOOL)validateText:(NSString *)text error:(NSError *__autoreleasing *)error {
     NSError *outError;
     BOOL retval = self.validatorBlock(self,text,&outError);
