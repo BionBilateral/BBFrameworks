@@ -16,6 +16,8 @@
 #import "BBThumbnailBaseOperation.h"
 #import "BBThumbnailOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBThumbnailImageOperation is a NSOperation subclass that generates thumbnails for URLs conforming to the kUTTypeImage UTI.
  */
@@ -24,3 +26,5 @@
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END
