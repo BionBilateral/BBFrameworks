@@ -40,8 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly,copy,nonatomic) NSString *selectedAssetString;
 
-@property (readonly,copy,nonatomic) NSArray *assetsGroupViewModels;
-@property (readonly,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
+@property (readonly,copy,nonatomic,nullable) NSArray *assetsGroupViewModels;
+@property (readonly,copy,nonatomic,nullable) NSOrderedSet *selectedAssetViewModels;
 
 @property (readonly,strong,nonatomic) RACCommand *cancelCommand;
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;

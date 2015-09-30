@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param animated Whether the change should be animated
  @param completion The completion block to invoke when the transition completes
  */
-- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated completion:(void(^)(void))completion;
+- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated completion:(nullable void(^)(void))completion;
 
 /**
  Set and get the current playback time of the current movie in seconds.
