@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerAssetViewModel;
 
 /**
@@ -25,13 +27,15 @@
 /**
  Set and get the view model represented by the receiver.
  */
-@property (strong,nonatomic) BBMediaPickerAssetViewModel *viewModel;
+@property (strong,nonatomic,nullable) BBMediaPickerAssetViewModel *viewModel;
 
 /**
  The class of the selected overlay view to display when the receiver is selected.
  
  The default is BBMediaPickerAssetCollectionViewCellSelectedOverlayView.
  */
-@property (copy,nonatomic) NSString *selectedOverlayViewClassName UI_APPEARANCE_SELECTOR;
+@property (copy,nonatomic,null_resettable) NSString *selectedOverlayViewClassName UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END
