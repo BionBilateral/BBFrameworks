@@ -20,6 +20,8 @@
 #import "BBFormFieldTableViewHeaderView.h"
 #import "BBFormFieldTableViewFooterView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBFormTableViewController is a UITableViewController subclass that manages settings style table view.
  */
@@ -85,7 +87,7 @@
  @param indexPath The index path for which to return a form field
  @return The form field for index path
  */
-- (BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath;
+- (nullable BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath;
 /**
  Return the index path for the provided form field.
  
@@ -106,3 +108,5 @@
 - (void)reloadRowsForFormFields:(NSArray *)formFields;
 
 @end
+
+NS_ASSUME_NONNULL_END
