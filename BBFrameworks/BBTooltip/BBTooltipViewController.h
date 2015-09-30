@@ -18,6 +18,8 @@
 #import "BBTooltipViewControllerDelegate.h"
 #import "BBTooltipViewDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBTooltipViewController is a subclass of UIViewController that manages the display of tooltips, views with text (or attributed text) and an arrow attached to a particular view.
  */
@@ -28,13 +30,13 @@
  
  @see BBTooltipViewControllerDataSource
  */
-@property (weak,nonatomic) id<BBTooltipViewControllerDataSource> dataSource;
+@property (weak,nonatomic,nullable) id<BBTooltipViewControllerDataSource> dataSource;
 /**
  Set and get the delegate of the receiver.
  
  @see BBTooltipViewControllerDelegate
  */
-@property (weak,nonatomic) id<BBTooltipViewControllerDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBTooltipViewControllerDelegate> delegate;
 
 /**
  Set and get the animation duration for showing and hiding tooltips.
@@ -56,7 +58,7 @@
  
  The default is [UIColor colorWithWhite:0.0 alpha:0.33].
  */
-@property (strong,nonatomic) UIColor *tooltipOverlayBackgroundColor;
+@property (strong,nonatomic,null_resettable) UIColor *tooltipOverlayBackgroundColor;
 
 @end
 
@@ -110,7 +112,7 @@ extern NSString *const BBTooltipAttributeDismissCompletionBlock;
  @param attachmentView The attachment view of the tooltip
  @param attributes Additional attributes used to configure the tooltip
  */
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes;
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView attributes:(nullable NSDictionary *)attributes;
 /**
  Present a tooltip view controller with the provided attributedText, attached to attachmentView, configured with attributes.
  
@@ -118,6 +120,8 @@ extern NSString *const BBTooltipAttributeDismissCompletionBlock;
  @param attachmentView The attachment view of the tooltip
  @param attributes Additional attributes used to configure the tooltip
  */
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes;
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView attributes:(nullable NSDictionary *)attributes;
 
 @end
+
+NS_ASSUME_NONNULL_END
