@@ -19,6 +19,8 @@
 #import "BBMediaPickerMedia.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum describing the authorization status.
  */
@@ -86,5 +88,7 @@ typedef void(^BBMediaPickerCancelConfirmCompletionBlock)(BOOL confirm);
  @param completion The completion block that should be invoked with the desired behavior
  */
 typedef void(^BBMediaPickerCancelConfirmBlock)(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion);
+
+NS_ASSUME_NONNULL_END
 
 #endif
