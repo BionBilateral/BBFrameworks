@@ -15,6 +15,8 @@
 
 #import "BBMoviePlayerViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMoviePlayerController;
 
 @interface BBMoviePlayerViewController (BBMediaPlayerPrivate)
@@ -22,3 +24,5 @@
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController;
 
 @end
+
+NS_ASSUME_NONNULL_END
