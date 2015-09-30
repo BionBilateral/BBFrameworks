@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBTooltipAttachmentView is a protocol allowing objects to provide a custom attachment bounds for displaying a tooltip.
  */
@@ -25,3 +27,5 @@
  */
 @property (readonly,assign,nonatomic) CGRect BB_tooltipAttachmentViewBounds;
 @end
+
+NS_ASSUME_NONNULL_END
