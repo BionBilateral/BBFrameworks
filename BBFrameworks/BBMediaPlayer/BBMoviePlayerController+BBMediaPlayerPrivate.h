@@ -15,6 +15,8 @@
 
 #import "BBMoviePlayerController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMoviePlayerViewController;
 @class AVPlayer;
 
@@ -25,3 +27,5 @@
 @property (readonly,strong,nonatomic) AVPlayer *player;
 
 @end
+
+NS_ASSUME_NONNULL_END
