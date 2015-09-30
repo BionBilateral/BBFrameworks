@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBWebKitViewController;
 @class WKNavigationAction,WKNavigation;
 
@@ -38,3 +40,5 @@
  */
 - (void)webKitViewController:(BBWebKitViewController *)webKitViewController didFinishNavigation:(WKNavigation *)navigation;
 @end
+
+NS_ASSUME_NONNULL_END
