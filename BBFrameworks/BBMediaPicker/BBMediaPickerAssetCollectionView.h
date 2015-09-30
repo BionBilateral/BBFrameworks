@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBMediaPickerAssetCollectionView is a UICollectionView subclass that displays the grid of media for the user to select.
  */
@@ -25,6 +27,8 @@
  
  The default is [UIColor whiteColor].
  */
-@property (strong,nonatomic) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END
