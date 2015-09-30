@@ -18,6 +18,8 @@
 #import <AssetsLibrary/ALAsset.h>
 #import "BBMediaPickerMedia.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, BBMediaPickerAssetViewModelType) {
     BBMediaPickerAssetViewModelTypePhoto,
     BBMediaPickerAssetViewModelTypeVideo,
@@ -30,10 +32,12 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetViewModelType) {
 
 @property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) BBMediaPickerAssetViewModelType type;
-@property (readonly,nonatomic) UIImage *typeImage;
-@property (readonly,nonatomic) NSString *durationString;
-@property (readonly,nonatomic) UIImage *thumbnailImage;
+@property (readonly,nonatomic,nullable) UIImage *typeImage;
+@property (readonly,nonatomic,nullable) NSString *durationString;
+@property (readonly,nonatomic,nullable) UIImage *thumbnailImage;
 
 - (instancetype)initWithAsset:(ALAsset *)asset;
 
 @end
+
+NS_ASSUME_NONNULL_END
