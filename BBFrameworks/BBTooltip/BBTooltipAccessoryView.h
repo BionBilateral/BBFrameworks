@@ -15,9 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^BBTooltipAccessoryViewDisplayNextTooltipBlock)(void);
 
 @protocol BBTooltipAccessoryView <NSObject>
 @optional
 @property (copy,nonatomic) BBTooltipAccessoryViewDisplayNextTooltipBlock displayNextTooltipBlock;
 @end
+
+NS_ASSUME_NONNULL_END
