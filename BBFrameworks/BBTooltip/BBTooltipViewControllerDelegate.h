@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBTooltipView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBTooltipViewController;
 
 /**
@@ -32,7 +34,7 @@
  */
 - (BBTooltipViewArrowStyle)tooltipViewController:(BBTooltipViewController *)viewController arrowStyleForTooltipAtIndex:(NSInteger)index;
 
-- (UIView<BBTooltipAccessoryView> *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index;
+- (nullable UIView<BBTooltipAccessoryView> *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index;
 /**
  Called immediately before the tooltip view controller is dismissed.
  
@@ -46,3 +48,5 @@
  */
 - (void)tooltipViewControllerDidDismiss:(BBTooltipViewController *)viewController;
 @end
+
+NS_ASSUME_NONNULL_END
