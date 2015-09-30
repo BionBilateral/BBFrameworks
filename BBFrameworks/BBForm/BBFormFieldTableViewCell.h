@@ -15,9 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBFormField;
 
 @protocol BBFormFieldTableViewCell <NSObject>
 @required
-@property (strong,nonatomic) BBFormField *formField;
+@property (strong,nonatomic,nullable) BBFormField *formField;
 @end
+
+NS_ASSUME_NONNULL_END
