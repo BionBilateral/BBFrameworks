@@ -18,6 +18,8 @@
 #import "BBMediaPickerDefines.h"
 #import "BBMediaPickerViewModelDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerAssetsGroupViewModel,BBMediaPickerAssetViewModel,BBMediaPickerViewController;
 @class RACCommand;
 
@@ -25,16 +27,16 @@
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 
-@property (weak,nonatomic) id<BBMediaPickerViewModelDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBMediaPickerViewModelDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
 @property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
-@property (copy,nonatomic) NSString *cancelBarButtonItemTitle;
+@property (copy,nonatomic,nullable) NSString *cancelBarButtonItemTitle;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
-@property (copy,nonatomic) BBMediaPickerMediaFilterBlock mediaFilterBlock;
+@property (copy,nonatomic,nullable) BBMediaPickerMediaFilterBlock mediaFilterBlock;
 
 @property (readonly,copy,nonatomic) NSString *selectedAssetString;
 
@@ -58,3 +60,5 @@
 - (RACSignal *)requestAssetsLibraryAuthorization;
 
 @end
+
+NS_ASSUME_NONNULL_END
