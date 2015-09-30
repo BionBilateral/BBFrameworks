@@ -65,6 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithWebKitView:(WKWebView *)webKitView NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithWebKitView: instead")));
+- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithWebKitView: instead")));
+
 @end
 
 NS_ASSUME_NONNULL_END

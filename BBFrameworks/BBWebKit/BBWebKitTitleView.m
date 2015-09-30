@@ -42,13 +42,6 @@
 
 @implementation BBWebKitTitleView
 #pragma mark *** Subclass Overrides ***
-- (instancetype)initWithFrame:(CGRect)frame {
-    return [self initWithWebKitView:nil];
-}
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    return [self initWithWebKitView:nil];
-}
-
 - (void)layoutSubviews {
     CGRect rect = BBCGRectCenterInRectVertically(CGRectMake(0, 0, CGRectGetWidth(self.bounds), ceil(self.titleLabel.font.lineHeight) + ceil(self.urlLabel.font.lineHeight)), self.bounds);
     
