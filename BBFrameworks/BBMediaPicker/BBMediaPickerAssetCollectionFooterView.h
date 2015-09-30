@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerAssetsGroupViewModel;
 
 /**
@@ -25,20 +27,20 @@
 /**
  Set and get the view model represented by the receiver.
  */
-@property (strong,nonatomic) BBMediaPickerAssetsGroupViewModel *viewModel;
+@property (strong,nonatomic,nullable) BBMediaPickerAssetsGroupViewModel *viewModel;
 
 /**
  Set and get the font used to display the title of the receiver.
  
  The default is [UIFont systemFontOfSize:17.0].
  */
-@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the color used to display the title of the receiver.
  
  The default is [UIColor blackColor].
  */
-@property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
 /**
  Get the row height of the receiver.
@@ -48,3 +50,5 @@
 + (CGFloat)rowHeight;
 
 @end
+
+NS_ASSUME_NONNULL_END
