@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBTokenTextView;
 
 @protocol BBTokenTextAttachment <NSObject>
@@ -37,4 +39,7 @@
  @return An initialized instance of the receiver
  */
 - (instancetype)initWithRepresentedObject:(id)representedObject text:(NSString *)text tokenTextView:(BBTokenTextView *)tokenTextView;
+
 @end
+
+NS_ASSUME_NONNULL_END
