@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The array of recursive child view controllers
  */
-- (NSArray *)BB_recursiveChildViewControllers;
+- (NSArray<__kindof UIViewController *> *)BB_recursiveChildViewControllers;
 
 @end
 

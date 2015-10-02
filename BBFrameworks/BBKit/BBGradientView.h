@@ -37,14 +37,18 @@ NS_ASSUME_NONNULL_BEGIN
  
  The array should contain either UIColor or NSColor instances.
  */
-@property (copy,nonatomic,nullable) NSArray *colors;
+#if (TARGET_OS_IPHONE)
+@property (copy,nonatomic,nullable) NSArray<UIColor *> *colors;
+#else
+@property (copy,nonatomic,nullable) NSArray<NSColor *> *colors;
+#endif
 
 /**
  Set and get the locations of the underlying CAGradientLayer.
  
  The gradient stops are specified as values between 0 and 1. The values must be monotonically increasing. If nil, the stops are spread uniformly across the range. Defaults to nil.
  */
-@property (copy,nonatomic,nullable) NSArray *locations;
+@property (copy,nonatomic,nullable) NSArray<NSNumber *> *locations;
 
 /**
  The start point of the underlying CAGradientLayer.

@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The array of recursive subviews
  */
-- (NSArray *)BB_recursiveSubviews;
+- (NSArray<__kindof UIView *> *)BB_recursiveSubviews;
 
 @end
 
