@@ -130,7 +130,7 @@ static int32_t const kPreferredTimeScale = 1;
     @weakify(self);
     return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
-        id retval = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, kPreferredTimeScale) queue:NULL usingBlock:^(CMTime time) {
+        id retval = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
             @strongify(self);
             [subscriber sendNext:RACTuplePack(self,@(CMTimeGetSeconds(time)))];
         }];
