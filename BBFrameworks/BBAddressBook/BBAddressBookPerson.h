@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get the emails, which will be an array of NSString objects. This corresponds to kABPersonEmailProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *emails;
+@property (readonly,nonatomic,nullable) NSArray<NSString *> *emails;
 /**
  Get the birthday. This corresponds to kABPersonBirthdayProperty.
  */
@@ -105,11 +105,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get the addresses, which will be an array of NSDictionary objects. This corresponds to kABPersonAddressProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *addresses;
+@property (readonly,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *addresses;
 /**
  Get the dates, which will be an array of NSDate objects. This corresponds to kABPersonDateProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *dates;
+@property (readonly,nonatomic,nullable) NSArray<NSDate *> *dates;
 /**
  Get the kind. This corresponds to kABPersonKindProperty.
  */
@@ -117,27 +117,27 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get the phone numbers, which will be an array of NSString objects. This corresponds to kABPersonPhoneProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *phoneNumbers;
+@property (readonly,nonatomic,nullable) NSArray<NSString *> *phoneNumbers;
 /**
  Get the instant messages, which will be an array of NSDictionary objects. This corresponds to kABPersonInstantMessageProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *instantMessages;
+@property (readonly,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *instantMessages;
 /**
  Get the URL strings, which will be an array of NSString objects. This corresponds to kABPersonURLProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *URLStrings;
+@property (readonly,nonatomic,nullable) NSArray<NSString *> *URLStrings;
 /**
  Get the related names, which will be an array of NSString objects. This corresponds to kABPersonRelatedNamesProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *relatedNames;
+@property (readonly,nonatomic,nullable) NSArray<NSString *> *relatedNames;
 /**
  Get the social profiles, which will be an array of NSDictionary objects. This corresponds to kABPersonSocialProfileProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *socialProfiles;
+@property (readonly,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *socialProfiles;
 /**
  Get the alternate birthdays, which will be an array of NSDictionary objects. This corresponds to kABPersonAlternateBirthdayProperty.
  */
-@property (readonly,nonatomic,nullable) NSArray *alternateBirthdays;
+@property (readonly,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *alternateBirthdays;
 
 /**
  Designated initializer.
