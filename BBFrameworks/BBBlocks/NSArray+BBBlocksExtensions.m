@@ -65,7 +65,7 @@
     
     return retval;
 }
-- (NSArray *)BB_map:(id(^)(id object, NSInteger index))block; {
+- (NSArray *)BB_map:(id _Nullable(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
     NSMutableArray *retval = [[NSMutableArray alloc] init];

@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param block The block to invoke for each object in the receiver
  @return The new array
  */
-- (NSArray *)BB_map:(id(^)(id object, NSInteger index))block;
+- (NSArray *)BB_map:(id _Nullable(^)(id object, NSInteger index))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum, the object, and the index of object in the receiver. The return value of block is passed in as sum to the next invocation of block.
  
