@@ -18,6 +18,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BBAddressBookPerson;
+
 /**
  BBAddressBookGroup is an NSObject subclass that wraps a ABRecordRef representing a group.
  */
@@ -40,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get all the people in the group. Calls `[self sortedPeopleWithSortDescriptors:nil]`.
  */
-@property (readonly,nonatomic,nullable) NSArray *people;
+@property (readonly,nonatomic,nullable) NSArray<BBAddressBookPerson *> *people;
 
 /**
  Designated initializer.
@@ -57,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param sortDescriptors The sort descriptors to sort by, see BBAddressBookPerson.h for supported keys
  @return The sorted array of people in the group
  */
-- (nullable NSArray *)sortedPeopleWithSortDescriptors:(nullable NSArray *)sortDescriptors;
+- (nullable NSArray<BBAddressBookPerson *> *)sortedPeopleWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 @end
 
