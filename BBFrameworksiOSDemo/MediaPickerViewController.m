@@ -142,6 +142,9 @@
     [viewController setHidesEmptyMediaGroups:YES];
     [viewController setShouldShowCancelAndDoneBarButtonItems:NO];
     [viewController setBottomAccessoryViewClass:[MediaPickerBottomAccessoryView class]];
+    [viewController setTitleTransformBlock:^NSString *_Nullable(NSString *title){
+        return title.uppercaseString;
+    }];
 //    [viewController setCancelBarButtonItemTitle:@"End"];
 //    [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];

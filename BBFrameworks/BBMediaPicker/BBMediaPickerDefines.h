@@ -68,6 +68,14 @@ typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
 @class BBMediaPickerViewController;
 
 /**
+ Block used to transform the title of each view within a media picker view stack. The original title is passed as a parameter of the block. The client should return the actual title they want displayed.
+ 
+ @param title The original title of the view
+ @return The transformed title of the view
+ */
+typedef NSString *_Nonnull(^BBMediaPickerTitleTransformBlock)(NSString *title);
+
+/**
  Block used to filter media that will be displayed by the media picker. The block will be invoked once for each media object.
  
  @param media The media object to display

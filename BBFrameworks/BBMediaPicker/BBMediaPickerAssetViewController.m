@@ -48,12 +48,18 @@
      }];
     
     if (self.viewModel.parentViewModel.allowsMultipleSelection) {
-        RAC(self,title) = [RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
+        RAC(self,title) = [[RACSignal combineLatest:@[RACObserve(self.viewModel, name),RACObserve(self.viewModel.parentViewModel, selectedAssetString)] reduce:^id(NSString *name, NSString *selected){
             return selected.length > 0 ? selected : name;
+        }] map:^id(id value) {
+            @strongify(self);
+            return self.viewModel.parentViewModel.titleTransformBlock ? self.viewModel.parentViewModel.titleTransformBlock(value) : value;
         }];
     }
     else {
-        RAC(self,title) = RACObserve(self.viewModel, name);
+        RAC(self,title) = [RACObserve(self.viewModel, name) map:^id(id value) {
+            @strongify(self);
+            return self.viewModel.parentViewModel.titleTransformBlock ? self.viewModel.parentViewModel.titleTransformBlock(value) : value;
+        }];
     }
     
     if (self.viewModel.parentViewModel.shouldShowCancelAndDoneBarButtonItems) {

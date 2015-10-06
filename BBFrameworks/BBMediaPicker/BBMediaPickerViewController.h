@@ -56,6 +56,16 @@ NS_ASSUME_NONNULL_BEGIN
  The default is YES.
  */
 @property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
+
+/**
+ Set and get the block used to transform the title displayed in the navigation bar.
+ 
+ The default is nil.
+ 
+ @see BBMediaPickerTitleTransformBlock
+ */
+@property (copy,nonatomic,nullable) BBMediaPickerTitleTransformBlock titleTransformBlock;
+
 /**
  Set and get whether the receiver should create and display the cancel and done bar button items. If NO, the bar button items are not displayed on the right side of the navigation bar and dismissing the client is up to the client.
  

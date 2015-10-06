@@ -33,7 +33,9 @@
 @implementation BBMediaPickerViewController
 #pragma mark *** Subclass Overrides ***
 - (NSString *)title {
-    return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_VIEW_CONTROLLER_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Photos", @"Media picker view controller title");
+    NSString *retval = NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_VIEW_CONTROLLER_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Photos", @"Media picker view controller title");
+    
+    return self.titleTransformBlock ? self.titleTransformBlock(retval) : retval;
 }
 
 - (instancetype)init {
@@ -177,6 +179,15 @@
 - (void)setAutomaticallyDismissForSingleSelection:(BOOL)automaticallyDismissForSingleSelection {
     [self.viewModel setAutomaticallyDismissForSingleSelection:automaticallyDismissForSingleSelection];
 }
+
+@dynamic titleTransformBlock;
+- (BBMediaPickerTitleTransformBlock)titleTransformBlock {
+    return self.viewModel.titleTransformBlock;
+}
+- (void)setTitleTransformBlock:(BBMediaPickerTitleTransformBlock)titleTransformBlock {
+    [self.viewModel setTitleTransformBlock:titleTransformBlock];
+}
+
 @dynamic shouldShowCancelAndDoneBarButtonItems;
 - (BOOL)shouldShowCancelAndDoneBarButtonItems {
     return self.viewModel.shouldShowCancelAndDoneBarButtonItems;
