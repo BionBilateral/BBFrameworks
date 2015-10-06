@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param formFields An array of BBFormField objects
  */
-- (void)reloadRowsForFormFields:(NSArray *)formFields;
+- (void)reloadRowsForFormFields:(NSArray<BBFormField *> *)formFields;
 
 @end
 
