@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param viewController The media picker view controller that sent the message
  @param media The array of media objects that were selected
  */
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media;
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia> > *)media;
 /**
  Called when the user taps the Cancel bar button item.
  
