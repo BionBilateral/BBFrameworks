@@ -88,7 +88,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         completion(people.firstObject,error);
     }];
 }
-- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion; {
+- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
     NSParameterAssert(recordIDs);
     NSParameterAssert(completion);
     
@@ -126,7 +126,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         completion(groups.firstObject,error);
     }];
 }
-- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *groups, NSError *error))completion; {
+- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -161,7 +161,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion; {
     [self requestAllPeopleWithSortDescriptors:nil completion:completion];
 }
-- (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion; {
+- (void)requestAllPeopleWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -206,10 +206,10 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }];
 }
 
-- (void)requestAllGroupsWithCompletion:(void(^)(NSArray *groups, NSError *error))completion; {
+- (void)requestAllGroupsWithCompletion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *error))completion; {
     [self requestAllGroupsWithSortDescriptors:nil completion:completion];
 }
-- (void)requestAllGroupsWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *groups, NSError *error))completion; {
+- (void)requestAllGroupsWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
