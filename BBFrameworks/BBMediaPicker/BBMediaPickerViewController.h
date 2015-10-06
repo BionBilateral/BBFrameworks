@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The media picker view controller or nil
  */
-- (BBMediaPickerViewController *)BB_mediaPickerViewController;
+- (nullable BBMediaPickerViewController *)BB_mediaPickerViewController;
 
 @end
 
