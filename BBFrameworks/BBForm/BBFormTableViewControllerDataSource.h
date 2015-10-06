@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Return an array of dictionaries containing key/value pairs defined in BBFormField.
  */
-- (nullable NSArray *)formFieldDictionaries;
+- (nullable NSArray<NSDictionary<NSString *, id> *> *)formFieldDictionaries;
 @end
 
 NS_ASSUME_NONNULL_END
