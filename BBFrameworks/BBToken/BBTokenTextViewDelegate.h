@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param completions An array of objects conforming to BBTokenCompletion
  */
-typedef void(^BBTokenTextViewCompletionBlock)(NSArray *_Nullable completions);
+typedef void(^BBTokenTextViewCompletionBlock)(NSArray<id<BBTokenCompletion> > *_Nullable completions);
 
 @class BBTokenTextView;
 
