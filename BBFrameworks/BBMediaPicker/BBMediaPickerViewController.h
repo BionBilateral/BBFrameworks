@@ -57,6 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
 /**
+ Set and get whether the receiver should create and display the cancel and done bar button items. If NO, the bar button items are not displayed on the right side of the navigation bar and dismissing the client is up to the client.
+ 
+ The default is YES.
+ */
+@property (assign,nonatomic) BOOL shouldShowCancelAndDoneBarButtonItems;
+/**
  Set and get the cancel bar button item title. If nil, uses the UIBarButtonSystemItemCancel item, otherwise creates a bar button item with the provided title.
  
  The default is nil.
@@ -91,11 +97,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic,nullable) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
 
 /**
- Set and get the asset bottom accessory view. If non-nil, this view is placed at the bottom of the asset collection view anchored to the bottom of its superview. It should implement the `sizeThatFits:` so its desired height can be determined. It will always have its width set to the width of its superview.
+ Set and get the asset bottom accessory view class. If non-nil, an instance of this class is placed at the bottom of each view in the picker anchored to the bottom of its superview. It should implement the `sizeThatFits:` so its desired height can be determined. It will always have its width set to the width of its superview.
  
- The default is nil.
+ The default is Nil.
  */
-@property (strong,nonatomic,nullable) UIView *assetBottomAccessoryView;
+@property (strong,nonatomic,nullable) Class bottomAccessoryViewClass;
 
 /**
  Returns the number of media objects being displayed.

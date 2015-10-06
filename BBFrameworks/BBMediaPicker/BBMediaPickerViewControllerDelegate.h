@@ -52,6 +52,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param viewController The media picker view controller that sent the message
  */
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
+
+/**
+ Called when the media picker creates and adds an instance of the bottom accessory view class to one of its subviews. The delegate should use this method to perform additional configuration on the bottom accessory view.
+ 
+ @param viewController The media picker view controller that sent the message
+ @param bottomAccessoryView The bottom accessory view that was added to the view hierarchy
+ */
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didAddBottomAccessoryView:(__kindof UIView *)bottomAccessoryView;
 @end
 
 NS_ASSUME_NONNULL_END

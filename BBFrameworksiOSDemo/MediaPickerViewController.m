@@ -22,6 +22,28 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface MediaPickerBottomAccessoryView : UIButton
+
+@end
+
+@implementation MediaPickerBottomAccessoryView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setBackgroundColor:BBColorRGB(0.5, 0, 0)];
+    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
+    [self setContentEdgeInsets:UIEdgeInsetsMake(16, 0, 16, 0)];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+    [self setTitle:@"End" forState:UIControlStateNormal];
+    
+    return self;
+}
+
+@end
+
 @interface MediaPickerNavigationController : UINavigationController
 
 @end
@@ -94,6 +116,12 @@
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
     BBLogObject(viewController);
 }
+
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didAddBottomAccessoryView:(__kindof UIView *)bottomAccessoryView {
+    UIButton *button = (UIButton *)bottomAccessoryView;
+    
+    [button addTarget:self action:@selector(_bottomAccessoryViewAction:) forControlEvents:UIControlEventTouchUpInside];
+}
 #pragma mark *** Private Methods ***
 #pragma mark Actions
 - (IBAction)_systemButtonAction:(id)sender {
@@ -112,18 +140,8 @@
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
     [viewController setHidesEmptyMediaGroups:YES];
-    [viewController setAssetBottomAccessoryView:({
-        UIButton *retval = [[UIButton alloc] initWithFrame:CGRectZero];
-        
-        [retval setBackgroundColor:self.view.tintColor];
-        [retval.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
-        [retval setContentEdgeInsets:UIEdgeInsetsMake(16, 0, 16, 0)];
-        [retval setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [retval setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
-        [retval setTitle:@"Next" forState:UIControlStateNormal];
-        
-        retval;
-    })];
+    [viewController setShouldShowCancelAndDoneBarButtonItems:NO];
+    [viewController setBottomAccessoryViewClass:[MediaPickerBottomAccessoryView class]];
 //    [viewController setCancelBarButtonItemTitle:@"End"];
 //    [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
@@ -141,6 +159,10 @@
 //    }];
     
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
+}
+
+- (IBAction)_bottomAccessoryViewAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -15,19 +15,19 @@
 
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerViewModel.h"
-#import "BBMediaPickerAssetsGroupTableViewController.h"
 #import "BBFrameworksFunctions.h"
 #import "BBBlocks.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"
+#import "BBMediaPickerAssetsGroupViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerViewController () <BBMediaPickerViewModelDelegate>
 @property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 
-@property (strong,nonatomic) BBMediaPickerAssetsGroupTableViewController *tableViewController;
+@property (strong,nonatomic) BBMediaPickerAssetsGroupViewController *assetsGroupViewController;
 @end
 
 @implementation BBMediaPickerViewController
@@ -51,12 +51,14 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self.navigationItem setRightBarButtonItems:@[self.viewModel.cancelBarButtonItem]];
+    if (self.shouldShowCancelAndDoneBarButtonItems) {
+        [self.navigationItem setRightBarButtonItems:@[self.viewModel.cancelBarButtonItem]];
+    }
     
-    [self setTableViewController:[[BBMediaPickerAssetsGroupTableViewController alloc] initWithViewModel:self.viewModel]];
-    [self addChildViewController:self.tableViewController];
-    [self.view addSubview:self.tableViewController.view];
-    [self.tableViewController didMoveToParentViewController:self];
+    [self setAssetsGroupViewController:[[BBMediaPickerAssetsGroupViewController alloc] initWithViewModel:self.viewModel]];
+    [self addChildViewController:self.assetsGroupViewController];
+    [self.view addSubview:self.assetsGroupViewController.view];
+    [self.assetsGroupViewController didMoveToParentViewController:self];
     
     @weakify(self);
     [[self.viewModel.cancelCommand.executionSignals
@@ -98,7 +100,7 @@
      }];
 }
 - (void)viewDidLayoutSubviews {
-    [self.tableViewController.view setFrame:self.view.bounds];
+    [self.assetsGroupViewController.view setFrame:self.view.bounds];
 }
 - (void)willMoveToParentViewController:(UIViewController *)parent {
     [super willMoveToParentViewController:parent];
@@ -175,6 +177,13 @@
 - (void)setAutomaticallyDismissForSingleSelection:(BOOL)automaticallyDismissForSingleSelection {
     [self.viewModel setAutomaticallyDismissForSingleSelection:automaticallyDismissForSingleSelection];
 }
+@dynamic shouldShowCancelAndDoneBarButtonItems;
+- (BOOL)shouldShowCancelAndDoneBarButtonItems {
+    return self.viewModel.shouldShowCancelAndDoneBarButtonItems;
+}
+- (void)setShouldShowCancelAndDoneBarButtonItems:(BOOL)shouldShowCancelAndDoneBarButtonItems {
+    [self.viewModel setShouldShowCancelAndDoneBarButtonItems:shouldShowCancelAndDoneBarButtonItems];
+}
 @dynamic cancelBarButtonItemTitle;
 - (NSString *)cancelBarButtonItemTitle {
     return self.viewModel.cancelBarButtonItemTitle;
@@ -196,6 +205,14 @@
 }
 - (void)setMediaFilterBlock:(BBMediaPickerMediaFilterBlock)mediaFilterBlock {
     [self.viewModel setMediaFilterBlock:mediaFilterBlock];
+}
+
+@dynamic bottomAccessoryViewClass;
+- (Class)bottomAccessoryViewClass {
+    return self.viewModel.bottomAccessoryViewClass;
+}
+- (void)setBottomAccessoryViewClass:(Class)bottomAccessoryViewClass {
+    [self.viewModel setBottomAccessoryViewClass:bottomAccessoryViewClass];
 }
 
 @end

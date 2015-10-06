@@ -51,6 +51,7 @@
     [self setMediaPickerViewController:viewController];
     
     _automaticallyDismissForSingleSelection = YES;
+    _shouldShowCancelAndDoneBarButtonItems = YES;
     _mediaTypes = BBMediaPickerMediaTypesAll;
     
     [self setAssetsLibrary:[[ALAssetsLibrary alloc] init]];

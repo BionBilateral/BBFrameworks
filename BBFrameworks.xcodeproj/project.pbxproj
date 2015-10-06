@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0703A54E1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0703A54D1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		072800001B433E3400D68D05 /* BBAddressBook.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; };
 		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
@@ -705,6 +706,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0703A54C1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetsGroupViewController.h; sourceTree = "<group>"; };
+		0703A54D1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetsGroupViewController.m; sourceTree = "<group>"; };
 		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
 		0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookManager.h; sourceTree = "<group>"; };
 		0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookManager.m; sourceTree = "<group>"; };
@@ -1300,6 +1303,8 @@
 			children = (
 				07605AC61B6957E700333678 /* BBMediaPickerAssetsGroupViewModel.h */,
 				07605AC71B6957E700333678 /* BBMediaPickerAssetsGroupViewModel.m */,
+				0703A54C1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.h */,
+				0703A54D1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.m */,
 				07605ACB1B695EE000333678 /* BBMediaPickerAssetsGroupTableViewController.h */,
 				07605ACC1B695EE000333678 /* BBMediaPickerAssetsGroupTableViewController.m */,
 				0750D6521B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.h */,
@@ -2886,6 +2891,7 @@
 				79EA80C71B3F0CCD00D50B6B /* NSBundle+BBFoundationExtensions.m in Sources */,
 				791996FD1B6EB3C500FC674A /* BBThumbnailPDFOperation.m in Sources */,
 				078563AD1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */,
+				0703A54E1BC418CB00A7E95E /* BBMediaPickerAssetsGroupViewController.m in Sources */,
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
 				791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */,
