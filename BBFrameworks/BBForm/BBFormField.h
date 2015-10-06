@@ -264,7 +264,7 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
 /**
  Get the picker columns and rows of the receiver.
  */
-@property (readonly,nonatomic,nullable) NSArray *pickerColumnsAndRows;
+@property (readonly,nonatomic,nullable) NSArray<NSArray *> *pickerColumnsAndRows;
 /**
  Get the date picker mode of the receiver.
  */
@@ -369,7 +369,7 @@ extern NSString *const BBFormFieldKeyTableViewCellClass;
  @param dataSource The owning table view controller's data source
  @return An initialized instance of the receiver
  */
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDictionary:(NSDictionary<NSString *, id> *)dictionary dataSource:(id<BBFormTableViewControllerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init __attribute__((unavailable("use initWithDictionary: instead")));
 
