@@ -15,6 +15,7 @@
 
 #import "NSError+BBFoundationExtensions.h"
 #import "BBFrameworksFunctions.h"
+#import "BBFoundationMacros.h"
 
 NSString *const BBErrorAlertTitleKey = @"BBErrorAlertTitleKey";
 NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
@@ -23,12 +24,12 @@ NSString *const BBErrorAlertMessageKey = @"BBErrorAlertMessageKey";
 
 - (NSString *)BB_alertTitle
 {
-    return self.userInfo[BBErrorAlertTitleKey] ?: NSLocalizedStringWithDefaultValue(@"ERROR_ALERT_DEFAULT_TITLE", @"Foundation", BBFrameworksResourcesBundle(), @"Error", @"default error alert title");
+    return self.userInfo[BBErrorAlertTitleKey] ?: BBLocalizedStringErrorAlertDefaultTitle();
 }
 
 - (NSString *)BB_alertMessage
 {
-    return self.userInfo[BBErrorAlertMessageKey] ?: self.userInfo[NSLocalizedDescriptionKey] ?: NSLocalizedStringWithDefaultValue(@"ERROR_ALERT_DEFAULT_MESSAGE", @"Foundation", BBFrameworksResourcesBundle(), @"The operation could not be completed.", @"default error alert message");
+    return self.userInfo[BBErrorAlertMessageKey] ?: self.userInfo[NSLocalizedDescriptionKey] ?: BBLocalizedStringErrorAlertDefaultMessage();
 }
 
 @end
