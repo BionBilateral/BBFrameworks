@@ -734,7 +734,7 @@
 		072BCF3E1BAB12010054CB60 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionFooterView.h; sourceTree = "<group>"; };
 		0750D6421B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionFooterView.m; sourceTree = "<group>"; };
-		0750D6441B6A94C0002F2C1A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPicker.strings; sourceTree = "<group>"; };
+		0750D6441B6A94C0002F2C1A /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPicker.strings; sourceTree = "<group>"; };
 		0750D6521B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetsGroupTableView.h; sourceTree = "<group>"; };
 		0750D6531B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetsGroupTableView.m; sourceTree = "<group>"; };
 		0750D6561B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionView.h; sourceTree = "<group>"; };
@@ -834,8 +834,8 @@
 		07BFFECB1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerFullscreenTopView.h; sourceTree = "<group>"; };
 		07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerFullscreenTopView.m; sourceTree = "<group>"; };
 		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
-		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
-		07C23A8D1B540DE500D3C072 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WebKit.strings; sourceTree = "<group>"; };
+		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
+		07C23A8D1B540DE500D3C072 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WebKit.strings; sourceTree = "<group>"; };
 		07C23A9F1B542BB200D3C072 /* TokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCompletionTableViewCell.h; sourceTree = "<group>"; };
 		07C23AA01B542BB200D3C072 /* TokenCompletionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCompletionTableViewCell.m; sourceTree = "<group>"; };
 		07C23AA21B542C6300D3C072 /* BBTokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTokenCompletionTableViewCell.h; sourceTree = "<group>"; };
@@ -1055,7 +1055,7 @@
 		799F9BD01B6DC3C40067BAA8 /* RemoteURLs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteURLs.plist; sourceTree = "<group>"; };
 		79A6BB1D1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BBFoundationExtensions.h"; sourceTree = "<group>"; };
 		79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BBFoundationExtensions.m"; sourceTree = "<group>"; };
-		79B1C10B1BB67A43005A8A0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Foundation.strings; sourceTree = "<group>"; };
+		79B1C10B1BB67A43005A8A0D /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Foundation.strings; sourceTree = "<group>"; };
 		79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationFunctions.m; sourceTree = "<group>"; };
 		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
 		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
@@ -1142,7 +1142,7 @@
 		79C27EC11B3BB8A100C4AC28 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
 		79C27EC41B3BBA6000C4AC28 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
-		79CE6A3F1B784F3600A0E969 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
+		79CE6A3F1B784F3600A0E969 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79D540761B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+BBKitExtensions.h"; path = "iOS/UIAlertController+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+BBKitExtensions.m"; path = "iOS/UIAlertController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79D540781B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BBKitExtensionsPrivate.h"; path = "iOS/Private/UIImage+BBKitExtensionsPrivate.h"; sourceTree = "<group>"; };
@@ -1180,7 +1180,7 @@
 		79EA81251B3F1E9500D50B6B /* BBFrameworksTestsOSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsOSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA81361B3F1EB100D50B6B /* BBFrameworksResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA813D1B3F1F8200D50B6B /* BBFrameworksResourcesOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksResourcesOSX-Info.plist"; sourceTree = "<group>"; };
-		79EA81431B3F212700D50B6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPicker.strings; sourceTree = "<group>"; };
+		79EA81431B3F212700D50B6B /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPicker.strings; sourceTree = "<group>"; };
 		79EA82C31B3F945700D50B6B /* BBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBView.h; sourceTree = "<group>"; };
 		79EA82C41B3F945700D50B6B /* BBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBView.m; sourceTree = "<group>"; };
 		79F3B19E1B50B389008230D7 /* BBPickerButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButtonDelegate.h; path = iOS/BBPickerButtonDelegate.h; sourceTree = "<group>"; };
@@ -1189,7 +1189,7 @@
 		79F941501B435AA300B385F0 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
 		79F941511B435AA300B385F0 /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
 		79F941561B435D3400B385F0 /* AddressBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookViewController.xib; sourceTree = "<group>"; };
-		79F941641B436B3B00B385F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AddressBook.strings; sourceTree = "<group>"; };
+		79F941641B436B3B00B385F0 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AddressBook.strings; sourceTree = "<group>"; };
 		79F941661B437AE300B385F0 /* BBAddressBookGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookGroup.h; sourceTree = "<group>"; };
 		79F941671B437AE300B385F0 /* BBAddressBookGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookGroup.m; sourceTree = "<group>"; };
 		A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3540,10 +3540,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3593,10 +3589,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3824,10 +3816,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3877,10 +3865,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
