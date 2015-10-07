@@ -1,9 +1,9 @@
 //
-//  BBKit.h
+//  CIImage+BBKitExtensions.m
 //  BBFrameworks
 //
-//  Created by William Towe on 5/13/15.
-//  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
+//  Created by William Towe on 10/7/15.
+//  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -13,40 +13,23 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __BB_FRAMEWORKS_KIT__
-#define __BB_FRAMEWORKS_KIT__
-
-#import <TargetConditionals.h>
-
-#import "BBKitColorMacros.h"
-
-#import "NSURL+BBKitExtensions.h"
 #import "CIImage+BBKitExtensions.h"
-#import "NSString+BBKitExtensions.h"
-#import "NSData+BBKitExtensions.h"
-#if (TARGET_OS_IPHONE)
-#import "UIImage+BBKitExtensions.h"
-#import "UIView+BBKitExtensions.h"
-#import "UIViewController+BBKitExtensions.h"
-#import "UIFont+BBKitExtensions.h"
-#import "UIBarButtonItem+BBKitExtensions.h"
-#import "UIAlertController+BBKitExtensions.h"
 
-#import "BBTextField.h"
-#import "BBPickerButton.h"
-#import "BBDatePickerButton.h"
-#import "BBNextPreviousInputAccessoryView.h"
-#import "BBTextView.h"
-#import "BBAnythingGestureRecognizer.h"
-#import "BBProgressSlider.h"
-#else
-#import "NSImage+BBKitExtensions.h"
-#import "NSAlert+BBKitExtensions.h"
-#import "NSViewController+BBKitExtensions.h"
-#import "NSWindow+BBKitExtensions.h"
-#endif
+#import <CoreImage/CoreImage.h>
 
-#import "BBBadgeView.h"
-#import "BBGradientView.h"
-#import "BBView.h"
-#endif
+@implementation CIImage (BBKitExtensions)
+
++ (nullable CIImage *)BB_QRCodeImageFromData:(NSData *)data size:(CGSize)size; {
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    
+    [filter setValue:data forKey:@"inputMessage"];
+    [filter setValue:@"Q" forKey:@"inputCorrectionLevel"];
+    
+    CIImage *output = filter.outputImage;
+    CGFloat xScale = size.width / CGRectGetWidth(output.extent);
+    CGFloat yScale = size.height / CGRectGetHeight(output.extent);
+    
+    return [output imageByApplyingTransform:CGAffineTransformMakeScale(xScale, yScale)];
+}
+
+@end

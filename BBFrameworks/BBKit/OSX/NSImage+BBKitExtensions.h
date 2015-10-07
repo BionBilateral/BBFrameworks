@@ -150,6 +150,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta;
 
+/**
+ Creates and returns a NSImage representing the QR code created from the provided data scaled to fit the desired size.
+ 
+ @param data The data to create the QR code image from
+ @param size The desired size of the QR code image
+ @return The QR code image
+ */
++ (nullable NSImage *)BB_QRCodeImageFromData:(NSData *)data size:(NSSize)size;
+
 @end
 
 NS_ASSUME_NONNULL_END

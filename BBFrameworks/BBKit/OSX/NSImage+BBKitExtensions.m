@@ -15,6 +15,7 @@
 
 #import "NSImage+BBKitExtensions.h"
 #import "BBKitCGImageFunctions.h"
+#import "CIImage+BBKitExtensions.h"
 
 #if !__has_feature(objc_arc)
 #error This file requires ARC
@@ -170,6 +171,18 @@
 }
 - (NSImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta; {
     return [self.class BB_imageByAdjustingSaturationOfImage:self delta:delta];
+}
+
++ (nullable NSImage *)BB_QRCodeImageFromData:(NSData *)data size:(NSSize)size; {
+    NSParameterAssert(data);
+    
+    CIImage *image = [CIImage BB_QRCodeImageFromData:data size:NSSizeToCGSize(size)];
+    NSCIImageRep *imageRep = [NSCIImageRep imageRepWithCIImage:image];
+    NSImage *retval = [[NSImage alloc] initWithSize:imageRep.size];
+    
+    [retval addRepresentation:imageRep];
+    
+    return retval;
 }
 
 @end
