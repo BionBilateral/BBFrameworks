@@ -63,7 +63,7 @@ Pod::Spec.new do |spec|
     subspec.ios.private_header_files = "BBFrameworks/BBKit/iOS/Private/*.h"
     
     subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation", "CoreImage"
-    subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation", "CoreImage"
+    subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
   end
   
   spec.subspec "BBReactiveKit" do |subspec|
