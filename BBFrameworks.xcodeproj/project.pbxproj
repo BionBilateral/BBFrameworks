@@ -79,6 +79,10 @@
 		0795691E1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0795691D1B71181900257CE9 /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m */; };
 		07988C4E1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */; };
 		07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */; };
+		07AC57091BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AC57081BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		07AC570B1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AC57081BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		07AC570C1BC6BCFD00EC9056 /* NSParagraphStyle+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */; };
 		07AEC82C1B6BCCCD00013470 /* BBMediaPickerAssetCollectionViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ADB1B69712100333678 /* BBMediaPickerAssetCollectionViewCell.h */; };
 		07AEC8441B6BE68500013470 /* BBTextCustomValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */; };
 		07AEC8451B6BE68500013470 /* BBTextLinkValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AEC8351B6BE68500013470 /* BBTextLinkValidator.m */; };
@@ -584,6 +588,7 @@
 				07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */,
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
+				07AC570C1BC6BCFD00EC9056 /* NSParagraphStyle+BBKitExtensions.h in CopyFiles */,
 				07E312C31BB32CA400C71468 /* NSObject+BBKeyValueObservingExtensions.h in CopyFiles */,
 				792F153F1B76AD080034A09A /* NSFetchRequest+BBCoreDataExtensions.h in CopyFiles */,
 				07798B381BC5AE1600A0D030 /* NSData+BBKitExtensions.h in CopyFiles */,
@@ -789,6 +794,8 @@
 		07A67E8E1B87A1DA008CCB02 /* BBProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressSlider.h; path = iOS/BBProgressSlider.h; sourceTree = "<group>"; };
 		07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressSlider.m; path = iOS/BBProgressSlider.m; sourceTree = "<group>"; };
 		07A67E941B87BBB1008CCB02 /* BBTooltipAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAccessoryView.h; sourceTree = "<group>"; };
+		07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSParagraphStyle+BBKitExtensions.h"; sourceTree = "<group>"; };
+		07AC57081BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSParagraphStyle+BBKitExtensions.m"; sourceTree = "<group>"; };
 		07AEC82B1B6BBD5800013470 /* BBMediaPickerViewModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewModelDelegate.h; sourceTree = "<group>"; };
 		07AEC8321B6BE68500013470 /* BBTextCustomValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTextCustomValidator.h; sourceTree = "<group>"; };
 		07AEC8331B6BE68500013470 /* BBTextCustomValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTextCustomValidator.m; sourceTree = "<group>"; };
@@ -2164,6 +2171,8 @@
 				7927CF871B1AD2B90034288D /* NSImage+BBKitExtensions.m */,
 				7927CF881B1AD2B90034288D /* NSURL+BBKitExtensions.h */,
 				7927CF891B1AD2B90034288D /* NSURL+BBKitExtensions.m */,
+				07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */,
+				07AC57081BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m */,
 				79B4FFAA1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.h */,
 				79B4FFAB1B364384007B8629 /* UIBarButtonItem+BBKitExtensions.m */,
 				79B4FFAC1B364384007B8629 /* UIColor+BBKitExtensions.h */,
@@ -2373,6 +2382,7 @@
 				791996FF1B6EB3C500FC674A /* BBThumbnailRTFOperation.h in Headers */,
 				799C0C681B607D8A00A3888A /* NSSet+BBBlocksExtensions.h in Headers */,
 				791997161B6EB46100FC674A /* BBThumbnailQuickLookOperation.h in Headers */,
+				07AC57091BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h in Headers */,
 				79EA81631B3F226100D50B6B /* NSURL+BBKitExtensions.h in Headers */,
 				79EA81761B3F229F00D50B6B /* BBMediaPlayer.h in Headers */,
 				79EA81541B3F221600D50B6B /* NSURL+BBFoundationExtensions.h in Headers */,
@@ -2986,6 +2996,7 @@
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
+				07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */,
 				79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */,
 				791996F11B6EB3C500FC674A /* BBThumbnailHTMLOperation.m in Sources */,
 				07B3D9051B60373B00FA1853 /* BBFormTableViewHeaderView.m in Sources */,
@@ -3103,6 +3114,7 @@
 				07E312C21BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */,
 				077656681B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m in Sources */,
 				74A018E61B478D03007F87EE /* NSError+BBFoundationExtensions.m in Sources */,
+				07AC570B1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */,
 				79EA81881B3F22E400D50B6B /* NSImage+BBKitExtensions.m in Sources */,
 				79184C6E1B7041DD0044789F /* BBReachability.m in Sources */,
 				791997171B6EB46100FC674A /* BBThumbnailQuickLookOperation.m in Sources */,
