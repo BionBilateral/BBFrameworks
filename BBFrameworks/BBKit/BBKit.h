@@ -40,6 +40,7 @@
 #import "BBTextView.h"
 #import "BBAnythingGestureRecognizer.h"
 #import "BBProgressSlider.h"
+#import "BBProgressNavigationBar.h"
 #else
 #import "NSImage+BBKitExtensions.h"
 #import "NSAlert+BBKitExtensions.h"

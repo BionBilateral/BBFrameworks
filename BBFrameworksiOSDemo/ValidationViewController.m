@@ -16,7 +16,6 @@
 #import "ValidationViewController.h"
 
 #import <BBFrameworks/BBKit.h>
-#import <BBFrameworks/BBReactiveKit.h>
 #import <BBFrameworks/BBValidation.h>
 #import <BBFrameworks/BBFoundation.h>
 

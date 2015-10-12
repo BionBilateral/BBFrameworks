@@ -66,16 +66,6 @@ Pod::Spec.new do |spec|
     subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
   end
   
-  spec.subspec "BBReactiveKit" do |subspec|
-    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
-    
-    subspec.dependency "BBFrameworks/BBKit"
-    
-    subspec.source_files = "BBFrameworks/BBReactiveKit"
-    subspec.ios.source_files = "BBFrameworks/BBReactiveKit/iOS"
-    subspec.osx.source_files = "BBFrameworks/BBReactiveKit/OSX"
-  end
-  
   spec.subspec "BBAddressBook" do |subspec|
     subspec.dependency "BBFrameworks/BBBlocks"
     subspec.dependency "BBFrameworks/BBKit"
@@ -151,7 +141,7 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
     subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
     
-    subspec.ios.dependency "BBFrameworks/BBReactiveKit"
+    subspec.ios.dependency "BBFrameworks/BBKit"
     
     subspec.ios.source_files = "BBFrameworks/BBWebKit"
     subspec.osx.source_files = "BBFrameworks/BBWebKit/BBWebKit.h"
