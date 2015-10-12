@@ -17,6 +17,7 @@
 #define __BB_FRAMEWORKS_FUNCTIONS__
 
 #import <Foundation/NSBundle.h>
+#import <Foundation/NSPathUtilities.h>
 #import "BBFrameworksConstants.h"
 
 static inline NSBundle* BBFrameworksResourcesBundle(void) {

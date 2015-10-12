@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBTextValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UITextView adding support for text validation.
  */
@@ -33,3 +35,5 @@
 - (void)BB_removeTextValidator;
 
 @end
+
+NS_ASSUME_NONNULL_END

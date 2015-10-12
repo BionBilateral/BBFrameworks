@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBTooltipViewController;
 
 /**
@@ -45,7 +47,7 @@
  @param index The index of the tooltip
  @return The text for the tooltip
  */
-- (NSString *)tooltipViewController:(BBTooltipViewController *)viewController textForTooltipAtIndex:(NSInteger)index;
+- (nullable NSString *)tooltipViewController:(BBTooltipViewController *)viewController textForTooltipAtIndex:(NSInteger)index;
 /**
  Return the attributed text for the tooltip at the provided index.
  
@@ -55,5 +57,7 @@
  @param index The index of the tooltip
  @return The attributed text for the tooltip
  */
-- (NSAttributedString *)tooltipViewController:(BBTooltipViewController *)viewController attributedTextForTooltipAtIndex:(NSInteger)index;
+- (nullable NSAttributedString *)tooltipViewController:(BBTooltipViewController *)viewController attributedTextForTooltipAtIndex:(NSInteger)index;
 @end
+
+NS_ASSUME_NONNULL_END

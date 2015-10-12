@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIFont providing various convenience methods.
  */
@@ -28,6 +30,8 @@
  @return The font or nil
  @exception NSException Thrown if _fontName_ or _textStyle_ are nil
  */
-+ (UIFont *)BB_fontWithName:(NSString *)fontName textStyle:(NSString *)textStyle;
++ (nullable UIFont *)BB_fontWithName:(NSString *)fontName textStyle:(NSString *)textStyle;
 
 @end
+
+NS_ASSUME_NONNULL_END

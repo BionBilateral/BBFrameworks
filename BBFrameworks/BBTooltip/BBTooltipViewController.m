@@ -28,14 +28,17 @@
 
 @interface UIViewController (BBTooltipViewControllerExtensionsPrivate)
 @property (strong,nonatomic) _BBTooltipViewControllerDataSource *_BB_dataSource;
+
+- (void)_BB_presentTooltipViewControllerWithAttributes:(NSDictionary *)attributes;
 @end
+
+static NSString *const kAttributeText = @"kAttributeText";
+static NSString *const kAttributeAttributedText = @"kAttributeAttributedText";
+static NSString *const kAttributeAttachmentView = @"kAttributeAttachmentView";
 
 @interface _BBTooltipViewControllerDataSource : NSObject <BBTooltipViewControllerDataSource,BBTooltipViewControllerDelegate>
 
-@property (copy,nonatomic) NSString *text;
-@property (copy,nonatomic) NSAttributedString *attributedText;
-@property (strong,nonatomic) UIView *attachmentView;
-@property (assign,nonatomic) BBTooltipViewArrowStyle arrowStyle;
+@property (copy,nonatomic) NSDictionary *attributes;
 
 @end
 
@@ -45,19 +48,34 @@
     return 1;
 }
 - (UIView *)tooltipViewController:(BBTooltipViewController *)viewController attachmentViewForTooltipAtIndex:(NSInteger)index {
-    return self.attachmentView;
+    UIView *retval = self.attributes[kAttributeAttachmentView];
+    
+    if (self.attributes[BBTooltipAttributeAttachmentViewBounds]) {
+        [retval setBB_tooltipAttachmentViewBounds:[self.attributes[BBTooltipAttributeAttachmentViewBounds] CGRectValue]];
+    }
+    
+    return retval;
 }
 - (NSString *)tooltipViewController:(BBTooltipViewController *)viewController textForTooltipAtIndex:(NSInteger)index {
-    return self.text;
+    return self.attributes[kAttributeText];
 }
 - (NSAttributedString *)tooltipViewController:(BBTooltipViewController *)viewController attributedTextForTooltipAtIndex:(NSInteger)index {
-    return self.attributedText;
+    return self.attributes[kAttributeAttributedText];
 }
 
 - (BBTooltipViewArrowStyle)tooltipViewController:(BBTooltipViewController *)viewController arrowStyleForTooltipAtIndex:(NSInteger)index {
-    return self.arrowStyle;
+    return [self.attributes[BBTooltipAttributeArrowStyle] integerValue];
+}
+- (UIView<BBTooltipAccessoryView> *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index {
+    return self.attributes[BBTooltipAttributeAccessoryView];
 }
 - (void)tooltipViewControllerDidDismiss:(BBTooltipViewController *)viewController {
+    if (self.attributes[BBTooltipAttributeDismissCompletionBlock]) {
+        BBTooltipDismissCompletionBlock block = self.attributes[BBTooltipAttributeDismissCompletionBlock];
+        
+        block();
+    }
+    
     [viewController set_BB_dataSource:nil];
 }
 
@@ -72,6 +90,8 @@ static CGFloat const kSpringDamping = 0.5;
 
 @property (assign,nonatomic) NSInteger tooltipIndex;
 - (void)setTooltipIndex:(NSInteger)tooltipIndex animated:(BOOL)animated completion:(void(^)(void))completion;
+
+- (CGRect)_tooltipViewFrameForTooltipIndex:(NSInteger)tooltipIndex;
 
 - (void)_animateToNextTooltip;
 - (void)_dismissForLastTooltip;
@@ -126,6 +146,15 @@ static CGFloat const kSpringDamping = 0.5;
          @strongify(self);
          [self _animateToNextTooltip];
      }];
+}
+- (void)viewWillLayoutSubviews {
+    if (self.isBeingPresented ||
+        self.isBeingDismissed) {
+        
+        return;
+    }
+    
+    [self.tooltipView setFrame:[self _tooltipViewFrameForTooltipIndex:self.tooltipIndex]];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -185,6 +214,12 @@ static CGFloat const kSpringDamping = 0.5;
         }
     }
 }
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+- (void)setTooltipOverlayBackgroundColor:(UIColor *)tooltipOverlayBackgroundColor {
+    _tooltipOverlayBackgroundColor = tooltipOverlayBackgroundColor ?: [self.class _defaultTooltipOverlayBackgroundColor];
+}
+
 #pragma mark *** Private Methods ***
 - (void)_animateToNextTooltip; {
     [self setTooltipIndex:self.tooltipIndex + 1 animated:YES completion:nil];
@@ -206,6 +241,47 @@ static CGFloat const kSpringDamping = 0.5;
             [self.delegate tooltipViewControllerDidDismiss:self];
         }
     }];
+}
+
+- (CGRect)_tooltipViewFrameForTooltipIndex:(NSInteger)tooltipIndex; {
+    UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:tooltipIndex];
+    CGRect attachmentViewBounds = attachmentView.bounds;
+    
+    if ([attachmentView respondsToSelector:@selector(BB_tooltipAttachmentViewBounds)] &&
+        !CGRectIsEmpty([attachmentView BB_tooltipAttachmentViewBounds])) {
+        
+        attachmentViewBounds = attachmentView.BB_tooltipAttachmentViewBounds;
+    }
+    
+    CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentViewBounds toView:nil] fromWindow:nil] fromView:nil];
+    CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.left - self.tooltipMinimumEdgeInsets.right, CGRectGetHeight(self.view.bounds))];
+    CGRect tooltipFrame = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(attachmentViewFrame), tooltipSize.width, tooltipSize.height), attachmentViewFrame);
+    
+    // check left edge
+    if (CGRectGetMinX(tooltipFrame) < self.tooltipMinimumEdgeInsets.left) {
+        tooltipFrame.origin.x = self.tooltipMinimumEdgeInsets.left;
+    }
+    // check right edge
+    else if (CGRectGetMaxX(tooltipFrame) > CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.right) {
+        tooltipFrame.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(tooltipFrame) - self.tooltipMinimumEdgeInsets.right;
+    }
+    
+    // check top edge
+    if (CGRectGetMinY(tooltipFrame) < self.tooltipMinimumEdgeInsets.top) {
+        tooltipFrame.origin.y = self.tooltipMinimumEdgeInsets.top;
+    }
+    // check bottom edge
+    else if (CGRectGetMaxY(tooltipFrame) > CGRectGetHeight(self.view.bounds) - self.tooltipMinimumEdgeInsets.bottom) {
+        tooltipFrame.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(tooltipFrame) - self.tooltipMinimumEdgeInsets.bottom;
+        
+        if (CGRectIntersectsRect(tooltipFrame, attachmentViewFrame)) {
+            tooltipFrame.origin.y = CGRectGetMinY(attachmentViewFrame) - CGRectGetHeight(tooltipFrame);
+            
+            [self.tooltipView setArrowDirection:BBTooltipViewArrowDirectionDown];
+        }
+    }
+    
+    return tooltipFrame;
 }
 
 + (NSTimeInterval)_defaultTooltipAnimationDuration; {
@@ -275,51 +351,48 @@ static CGFloat const kSpringDamping = 0.5;
             [self.tooltipView setText:[self.dataSource tooltipViewController:self textForTooltipAtIndex:self.tooltipIndex]];
         }
         
-        [self.view setAccessibilityLabel:self.tooltipView.text];
-        
         if ([self.delegate respondsToSelector:@selector(tooltipViewController:arrowStyleForTooltipAtIndex:)]) {
             [self.tooltipView setArrowStyle:[self.delegate tooltipViewController:self arrowStyleForTooltipAtIndex:self.tooltipIndex]];
         }
         
-        UIView *attachmentView = [self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex];
-        CGRect attachmentViewBounds = attachmentView.bounds;
-        
-        if ([attachmentView respondsToSelector:@selector(BB_tooltipAttachmentViewBounds)] &&
-            !CGRectIsEmpty([attachmentView BB_tooltipAttachmentViewBounds])) {
-            
-            attachmentViewBounds = attachmentView.BB_tooltipAttachmentViewBounds;
-        }
-        
-        CGRect attachmentViewFrame = [self.view convertRect:[self.view.window convertRect:[attachmentView convertRect:attachmentViewBounds toView:nil] fromWindow:nil] fromView:nil];
-        CGSize tooltipSize = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-        CGRect tooltipFrame = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(attachmentViewFrame), tooltipSize.width, tooltipSize.height), attachmentViewFrame);
-        
-        // check left edge
-        if (CGRectGetMinX(tooltipFrame) < self.tooltipMinimumEdgeInsets.left) {
-            tooltipFrame.origin.x = self.tooltipMinimumEdgeInsets.left;
-        }
-        // check right edge
-        else if (CGRectGetMaxX(tooltipFrame) > CGRectGetWidth(self.view.bounds) - self.tooltipMinimumEdgeInsets.right) {
-            tooltipFrame.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(tooltipFrame) - self.tooltipMinimumEdgeInsets.right;
-        }
-        
-        // check top edge
-        if (CGRectGetMinY(tooltipFrame) < self.tooltipMinimumEdgeInsets.top) {
-            tooltipFrame.origin.y = self.tooltipMinimumEdgeInsets.top;
-        }
-        // check bottom edge
-        else if (CGRectGetMaxY(tooltipFrame) > CGRectGetHeight(self.view.bounds) - self.tooltipMinimumEdgeInsets.bottom) {
-            tooltipFrame.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(tooltipFrame) - self.tooltipMinimumEdgeInsets.bottom;
-            
-            if (CGRectIntersectsRect(tooltipFrame, attachmentViewFrame)) {
-                tooltipFrame.origin.y = CGRectGetMinY(attachmentViewFrame) - CGRectGetHeight(tooltipFrame);
+        void(^setupAccessibilityAttributes)(BOOL) = ^(BOOL isAccessibilityElement){
+            @strongify(self);
+            if (isAccessibilityElement) {
+                [self.gestureRecognizer setEnabled:YES];
                 
-                [self.tooltipView setArrowDirection:BBTooltipViewArrowDirectionDown];
+                [self.view setIsAccessibilityElement:YES];
+                [self.view setAccessibilityLabel:self.tooltipView.text];
             }
+            else {
+                [self.gestureRecognizer setEnabled:NO];
+                
+                [self.view setIsAccessibilityElement:NO];
+            }
+        };
+        
+        if ([self.delegate respondsToSelector:@selector(tooltipViewController:accessoryViewForTooltipAtIndex:)]) {
+            UIView<BBTooltipAccessoryView> *accessoryView = [self.delegate tooltipViewController:self accessoryViewForTooltipAtIndex:self.tooltipIndex];
+            
+            if ([accessoryView respondsToSelector:@selector(setDisplayNextTooltipBlock:)]) {
+                setupAccessibilityAttributes(NO);
+                
+                [accessoryView setDisplayNextTooltipBlock:^{
+                    @strongify(self);
+                    [self _animateToNextTooltip];
+                }];
+            }
+            else {
+                setupAccessibilityAttributes(YES);
+            }
+            
+            [self.tooltipView setAccessoryView:accessoryView];
+        }
+        else {
+            setupAccessibilityAttributes(YES);
         }
         
-        [self.tooltipView setFrame:tooltipFrame];
-        [self.tooltipView setAttachmentView:attachmentView];
+        [self.tooltipView setFrame:[self _tooltipViewFrameForTooltipIndex:self.tooltipIndex]];
+        [self.tooltipView setAttachmentView:[self.dataSource tooltipViewController:self attachmentViewForTooltipAtIndex:self.tooltipIndex]];
         
         animateInTooltipViewBlock(self.tooltipView);
         
@@ -331,60 +404,57 @@ static CGFloat const kSpringDamping = 0.5;
 
 @end
 
+NSString *const BBTooltipAttributeViewControllerClass = @"BBTooltipAttributeViewControllerClass";
+NSString *const BBTooltipAttributeAttachmentViewBounds = @"BBTooltipAttributeAttachmentViewBounds";
+NSString *const BBTooltipAttributeArrowStyle = @"BBTooltipAttributeArrowStyle";
+NSString *const BBTooltipAttributeAccessoryView = @"BBTooltipAttributeAccessoryView";
+NSString *const BBTooltipAttributePresentCompletionBlock = @"BBTooltipAttributePresentCompletionBlock";
+NSString *const BBTooltipAttributeDismissCompletionBlock = @"BBTooltipAttributeDismissCompletionBlock";
+
 @implementation UIViewController (BBTooltipViewControllerExtensions)
 
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView; {
-    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView tooltipViewControllerClass:Nil];
-}
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView; {
-    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView tooltipViewControllerClass:Nil];
-}
-
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle; {
-    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView arrowStyle:arrowStyle tooltipViewControllerClass:Nil];
-}
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle; {
-    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView arrowStyle:arrowStyle tooltipViewControllerClass:Nil];
-}
-
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    [self BB_presentTooltipViewControllerWithText:text attachmentView:attachmentView arrowStyle:BBTooltipViewArrowStyleDefault tooltipViewControllerClass:tooltipViewControllerClass];
-}
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    [self BB_presentTooltipViewControllerWithAttributedText:attributedText attachmentView:attachmentView arrowStyle:BBTooltipViewArrowStyleDefault tooltipViewControllerClass:tooltipViewControllerClass];
-}
-- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    BBTooltipViewController *viewController = [[tooltipViewControllerClass ?: [BBTooltipViewController class] alloc] init];
-    _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
+- (void)BB_presentTooltipViewControllerWithText:(NSString *)text attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes; {
+    NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
     
-    [dataSource setText:text];
-    [dataSource setAttachmentView:attachmentView];
-    [dataSource setArrowStyle:arrowStyle];
+    [mutableAttributes addEntriesFromDictionary:@{kAttributeText: text, kAttributeAttachmentView: attachmentView}];
     
-    [viewController setDataSource:dataSource];
-    [viewController setDelegate:dataSource];
-    [viewController set_BB_dataSource:dataSource];
-    
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self _BB_presentTooltipViewControllerWithAttributes:mutableAttributes];
 }
-- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView arrowStyle:(BBTooltipViewArrowStyle)arrowStyle tooltipViewControllerClass:(Class)tooltipViewControllerClass; {
-    BBTooltipViewController *viewController = [[tooltipViewControllerClass ?: [BBTooltipViewController class] alloc] init];
-    _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
+- (void)BB_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText attachmentView:(UIView *)attachmentView attributes:(NSDictionary *)attributes; {
+    NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
     
-    [dataSource setAttributedText:attributedText];
-    [dataSource setAttachmentView:attachmentView];
-    [dataSource setArrowStyle:arrowStyle];
+    [mutableAttributes addEntriesFromDictionary:@{kAttributeAttributedText: attributedText, kAttributeAttachmentView: attachmentView}];
     
-    [viewController setDataSource:dataSource];
-    [viewController setDelegate:dataSource];
-    [viewController set_BB_dataSource:dataSource];
-    
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self _BB_presentTooltipViewControllerWithAttributes:mutableAttributes];
 }
 
 @end
 
 @implementation UIViewController (BBTooltipViewControllerExtensionsPrivate)
+
+- (void)_BB_presentTooltipViewControllerWithAttributes:(NSDictionary *)attributes; {
+    NSParameterAssert(attributes[kAttributeAttachmentView]);
+    NSParameterAssert(attributes[kAttributeText] || attributes[kAttributeAttributedText]);
+    
+    _BBTooltipViewControllerDataSource *dataSource = [[_BBTooltipViewControllerDataSource alloc] init];
+    
+    [dataSource setAttributes:attributes];
+    
+    Class viewControllerClass = attributes[BBTooltipAttributeViewControllerClass] ?: [BBTooltipViewController class];
+    BBTooltipViewController *viewController = [[viewControllerClass alloc] init];
+    
+    [viewController setDataSource:dataSource];
+    [viewController setDelegate:dataSource];
+    [viewController set_BB_dataSource:dataSource];
+    
+    [self presentViewController:viewController animated:YES completion:^{
+        if (attributes[BBTooltipAttributePresentCompletionBlock]) {
+            BBTooltipPresentCompletionBlock block = attributes[BBTooltipAttributePresentCompletionBlock];
+            
+            block();
+        }
+    }];
+}
 
 static void *_BB_dataSourceKey = &_BB_dataSourceKey;
 

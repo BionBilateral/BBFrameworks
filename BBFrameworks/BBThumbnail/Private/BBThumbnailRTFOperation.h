@@ -16,6 +16,8 @@
 #import "BBThumbnailBaseOperation.h"
 #import "BBThumbnailOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBThumbnailRTFOperation is a NSObject subclass that generates thumbnails for URLs conforming to the kUTTypeRTF and kUTTypeRTFD UTIs.
  */
@@ -24,3 +26,5 @@
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size completion:(BBThumbnailOperationCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

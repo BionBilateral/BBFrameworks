@@ -15,25 +15,27 @@
 
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerViewModel.h"
-#import "BBMediaPickerAssetsGroupTableViewController.h"
 #import "BBFrameworksFunctions.h"
 #import "BBBlocks.h"
 #import "BBMediaPickerAssetViewModel.h"
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"
+#import "BBMediaPickerAssetsGroupViewController.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerViewController () <BBMediaPickerViewModelDelegate>
 @property (strong,nonatomic) BBMediaPickerViewModel *viewModel;
 
-@property (strong,nonatomic) BBMediaPickerAssetsGroupTableViewController *tableViewController;
+@property (strong,nonatomic) BBMediaPickerAssetsGroupViewController *assetsGroupViewController;
 @end
 
 @implementation BBMediaPickerViewController
 #pragma mark *** Subclass Overrides ***
 - (NSString *)title {
-    return NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_VIEW_CONTROLLER_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Photos", @"Media picker view controller title");
+    NSString *retval = NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_VIEW_CONTROLLER_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Photos", @"Media picker view controller title");
+    
+    return self.titleTransformBlock ? self.titleTransformBlock(retval) : retval;
 }
 
 - (instancetype)init {
@@ -51,12 +53,14 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self.navigationItem setRightBarButtonItems:@[self.viewModel.cancelBarButtonItem]];
+    if (self.shouldShowCancelAndDoneBarButtonItems) {
+        [self.navigationItem setRightBarButtonItems:@[self.viewModel.cancelBarButtonItem]];
+    }
     
-    [self setTableViewController:[[BBMediaPickerAssetsGroupTableViewController alloc] initWithViewModel:self.viewModel]];
-    [self addChildViewController:self.tableViewController];
-    [self.view addSubview:self.tableViewController.view];
-    [self.tableViewController didMoveToParentViewController:self];
+    [self setAssetsGroupViewController:[[BBMediaPickerAssetsGroupViewController alloc] initWithViewModel:self.viewModel]];
+    [self addChildViewController:self.assetsGroupViewController];
+    [self.view addSubview:self.assetsGroupViewController.view];
+    [self.assetsGroupViewController didMoveToParentViewController:self];
     
     @weakify(self);
     [[self.viewModel.cancelCommand.executionSignals
@@ -98,7 +102,7 @@
      }];
 }
 - (void)viewDidLayoutSubviews {
-    [self.tableViewController.view setFrame:self.view.bounds];
+    [self.assetsGroupViewController.view setFrame:self.view.bounds];
 }
 - (void)willMoveToParentViewController:(UIViewController *)parent {
     [super willMoveToParentViewController:parent];
@@ -175,6 +179,22 @@
 - (void)setAutomaticallyDismissForSingleSelection:(BOOL)automaticallyDismissForSingleSelection {
     [self.viewModel setAutomaticallyDismissForSingleSelection:automaticallyDismissForSingleSelection];
 }
+
+@dynamic titleTransformBlock;
+- (BBMediaPickerTitleTransformBlock)titleTransformBlock {
+    return self.viewModel.titleTransformBlock;
+}
+- (void)setTitleTransformBlock:(BBMediaPickerTitleTransformBlock)titleTransformBlock {
+    [self.viewModel setTitleTransformBlock:titleTransformBlock];
+}
+
+@dynamic shouldShowCancelAndDoneBarButtonItems;
+- (BOOL)shouldShowCancelAndDoneBarButtonItems {
+    return self.viewModel.shouldShowCancelAndDoneBarButtonItems;
+}
+- (void)setShouldShowCancelAndDoneBarButtonItems:(BOOL)shouldShowCancelAndDoneBarButtonItems {
+    [self.viewModel setShouldShowCancelAndDoneBarButtonItems:shouldShowCancelAndDoneBarButtonItems];
+}
 @dynamic cancelBarButtonItemTitle;
 - (NSString *)cancelBarButtonItemTitle {
     return self.viewModel.cancelBarButtonItemTitle;
@@ -196,6 +216,14 @@
 }
 - (void)setMediaFilterBlock:(BBMediaPickerMediaFilterBlock)mediaFilterBlock {
     [self.viewModel setMediaFilterBlock:mediaFilterBlock];
+}
+
+@dynamic bottomAccessoryViewClass;
+- (Class)bottomAccessoryViewClass {
+    return self.viewModel.bottomAccessoryViewClass;
+}
+- (void)setBottomAccessoryViewClass:(Class)bottomAccessoryViewClass {
+    [self.viewModel setBottomAccessoryViewClass:bottomAccessoryViewClass];
 }
 
 @end

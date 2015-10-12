@@ -25,6 +25,7 @@
 #import "TokenViewController.h"
 #import "TransitionViewController.h"
 #import "ValidationViewController.h"
+#import "KeyValueObservingViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -40,7 +41,8 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setRowClasses:@[[ViewsRowViewController class],
+    [self setRowClasses:@[[KeyValueObservingViewController class],
+                          [ViewsRowViewController class],
                           [ValidationViewController class],
                           [FormViewController class],
                           [TokenViewController class],

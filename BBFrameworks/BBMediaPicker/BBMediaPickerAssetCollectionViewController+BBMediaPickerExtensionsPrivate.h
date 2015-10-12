@@ -15,6 +15,8 @@
 
 #import "BBMediaPickerAssetCollectionViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetCollectionViewController (BBMediaPickerExtensionsPrivate)
 
 @property (readonly,copy,nonatomic) NSArray *assetViewModels;
@@ -23,6 +25,8 @@
 
 @interface UIViewController (BBMediaPickerExtensionsPrivate)
 
-- (BBMediaPickerAssetCollectionViewController *)BB_mediaPickerAssetCollectionViewController;
+- (nullable BBMediaPickerAssetCollectionViewController *)BB_mediaPickerAssetCollectionViewController;
 
 @end
+
+NS_ASSUME_NONNULL_END

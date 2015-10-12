@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSMutableArray adding various convenience methods.
  */
@@ -42,3 +44,6 @@
 - (void)BB_shuffle;
 
 @end
+
+
+NS_ASSUME_NONNULL_END

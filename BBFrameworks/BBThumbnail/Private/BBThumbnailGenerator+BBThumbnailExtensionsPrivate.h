@@ -15,9 +15,13 @@
 
 #import "BBThumbnailGenerator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBThumbnailGenerator (BBThumbnailExtensionsPrivate)
 
 @property (readonly,strong,nonatomic) NSOperationQueue *operationQueue;
 @property (readonly,strong,nonatomic) NSOperationQueue *webViewOperationQueue;
 
 @end
+
+NS_ASSUME_NONNULL_END

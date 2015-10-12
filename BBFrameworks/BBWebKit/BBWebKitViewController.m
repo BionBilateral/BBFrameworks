@@ -18,6 +18,7 @@
 #import "BBWebKitTitleView+BBWebKitExtensionsPrivate.h"
 #import "UIImage+BBKitExtensions.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <TUSafariActivity/TUSafariActivity.h>
@@ -333,52 +334,10 @@ static void *kGoForwardImageKey = &kGoForwardImageKey;
 }
 #pragma mark ** Private Methods **
 + (UIImage *)_defaultGoBackImage; {
-    CGSize const kSize = CGSizeMake(22.0, 22.0);
-    
-    UIGraphicsBeginImageContextWithOptions(kSize, NO, 0);
-    
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    
-    [path setLineCapStyle:kCGLineCapRound];
-    [path setLineJoinStyle:kCGLineJoinRound];
-    [path setLineWidth:2.0];
-    
-    [path moveToPoint:CGPointMake(kSize.width, 0)];
-    [path addLineToPoint:CGPointMake(0, floor(kSize.height * 0.5))];
-    [path addLineToPoint:CGPointMake(kSize.width, kSize.height)];
-    
-    [[UIColor blackColor] setStroke];
-    [path stroke];
-    
-    UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return retval;
+    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_back"];
 }
 + (UIImage *)_defaultGoForwardImage; {
-    CGSize const kSize = CGSizeMake(22.0, 22.0);
-    
-    UIGraphicsBeginImageContextWithOptions(kSize, NO, 0);
-    
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    
-    [path setLineCapStyle:kCGLineCapRound];
-    [path setLineJoinStyle:kCGLineJoinRound];
-    [path setLineWidth:2.0];
-    
-    [path moveToPoint:CGPointMake(0, 0)];
-    [path addLineToPoint:CGPointMake(kSize.width, floor(kSize.height * 0.5))];
-    [path addLineToPoint:CGPointMake(0, kSize.height)];
-    
-    [[UIColor blackColor] setStroke];
-    [path stroke];
-    
-    UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return retval;
+    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_forward"];
 }
 
 @end

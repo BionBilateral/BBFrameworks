@@ -18,9 +18,9 @@
 
 #import <Foundation/NSString.h>
 
-static NSInteger const BBFrameworksVersionMajor = 0;
-static NSInteger const BBFrameworksVersionMinor = 8;
-static NSInteger const BBFrameworksVersionPatch = 37;
+static NSInteger const BBFrameworksVersionMajor = 1;
+static NSInteger const BBFrameworksVersionMinor = 3;
+static NSInteger const BBFrameworksVersionPatch = 9;
 
 static NSString *const BBFrameworksResourcesBundleName = @"BBFrameworksResources.bundle";
 

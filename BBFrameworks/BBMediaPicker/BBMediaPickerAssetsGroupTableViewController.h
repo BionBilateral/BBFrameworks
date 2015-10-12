@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerViewModel;
 
 @interface BBMediaPickerAssetsGroupTableViewController : UITableViewController
@@ -22,3 +24,5 @@
 - (instancetype)initWithViewModel:(BBMediaPickerViewModel *)viewModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

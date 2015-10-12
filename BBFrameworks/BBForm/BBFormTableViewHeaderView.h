@@ -16,11 +16,15 @@
 #import <UIKit/UIKit.h>
 #import "BBFormFieldTableViewHeaderView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBFormField;
 
 @interface BBFormTableViewHeaderView : UITableViewHeaderFooterView <BBFormFieldTableViewHeaderView>
 
-@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

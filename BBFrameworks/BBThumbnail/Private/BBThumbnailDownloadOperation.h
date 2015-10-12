@@ -15,10 +15,14 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBThumbnailGenerator,BBThumbnailOperationWrapper;
 
 @interface BBThumbnailDownloadOperation : BBThumbnailAsyncOperation
 
-- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time thumbnailOperationWrapper:(BBThumbnailOperationWrapper *)thumbnailOperationWrapper thumbnailGenerator:(BBThumbnailGenerator *)thumbnailGenerator progress:(BBThumbnailOperationProgressBlock)progress completion:(BBThumbnailOperationCompletionBlock)completion;
+- (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time thumbnailOperationWrapper:(BBThumbnailOperationWrapper *)thumbnailOperationWrapper thumbnailGenerator:(BBThumbnailGenerator *)thumbnailGenerator progress:(nullable BBThumbnailOperationProgressBlock)progress completion:(BBThumbnailOperationCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

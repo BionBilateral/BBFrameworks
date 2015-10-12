@@ -21,6 +21,8 @@
 #import <AppKit/NSImage.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category providing access to NSURL resource values through convenient methods.
  */
@@ -31,13 +33,13 @@
  
  @return The associated creation date
  */
-- (NSDate *)BB_creationDate;
+- (nullable NSDate *)BB_creationDate;
 /**
  Returns the value associated with the NSURLContentModificationDateKey key.
  
  @return The associated content modification date
  */
-- (NSDate *)BB_contentModificationDate;
+- (nullable NSDate *)BB_contentModificationDate;
 /**
  Returns the value associated with the NSURLIsDirectoryKey key.
  
@@ -49,16 +51,18 @@
  
  @return The associated type identifier
  */
-- (NSString *)BB_typeIdentifier;
+- (nullable NSString *)BB_typeIdentifier;
 /**
  Returns the value associated with the NSURLEffectiveIconKey key or nil if no such value exists.
  
  @return The associated image
  */
 #if (TARGET_OS_IPHONE)
-- (UIImage *)BB_effectiveIcon;
+- (nullable UIImage *)BB_effectiveIcon;
 #else
-- (NSImage *)BB_effectiveIcon;
+- (nullable NSImage *)BB_effectiveIcon;
 #endif
 
 @end
+
+NS_ASSUME_NONNULL_END

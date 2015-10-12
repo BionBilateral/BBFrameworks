@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMoviePlayerController,BBMoviePlayerContentView;
 
 @interface BBMoviePlayerView : UIView
@@ -25,3 +27,5 @@
 - (instancetype)initWithMoviePlayerController:(BBMoviePlayerController *)moviePlayerController;
 
 @end
+
+NS_ASSUME_NONNULL_END

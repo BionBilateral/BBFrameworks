@@ -42,6 +42,16 @@ CGFloat const BBFormTableViewCellMargin = 8.0;
     return MAX(CGRectGetMaxX(self.tableViewCell.titleLabel.frame), CGRectGetMaxX(self.tableViewCell.subtitleLabel.frame));
 }
 
+- (NSLayoutYAxisAnchor *)topAnchor {
+    return nil;
+}
+- (NSLayoutYAxisAnchor *)bottomAnchor {
+    return nil;
+}
+- (NSLayoutDimension *)heightAnchor {
+    return nil;
+}
+
 - (instancetype)initWithTableViewCell:(BBFormTableViewCell *)tableViewCell; {
     if (!(self = [super init]))
         return nil;

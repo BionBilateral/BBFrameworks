@@ -16,6 +16,8 @@
 #import "BBThumbnailBaseOperation.h"
 #import "BBThumbnailOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBThumbnailPDFOperation is a NSOperation subclass that generates thumbnails for URLs conforming to the kUTTypePDF UTI.
  */
@@ -24,3 +26,5 @@
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page completion:(BBThumbnailOperationCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

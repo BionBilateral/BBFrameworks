@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSArray adding various convenience methods.
  */
@@ -55,3 +57,5 @@
 - (id)BB_objectAtRandomIndex;
 
 @end
+
+NS_ASSUME_NONNULL_END

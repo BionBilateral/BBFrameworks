@@ -17,6 +17,8 @@
 #import "BBMediaPickerDefines.h"
 #import "BBMediaPickerViewControllerDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBMediaPickerViewController is a UIViewController subclass that mirrors the media browsing functionality provided by UIImagePickerController.
  */
@@ -34,7 +36,7 @@
  
  @see BBMediaPickerViewControllerDelegate
  */
-@property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBMediaPickerViewControllerDelegate> delegate;
 
 /**
  Set and get whether the receiver allows multiple selection.
@@ -54,12 +56,28 @@
  The default is YES.
  */
 @property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
+
+/**
+ Set and get the block used to transform the title displayed in the navigation bar.
+ 
+ The default is nil.
+ 
+ @see BBMediaPickerTitleTransformBlock
+ */
+@property (copy,nonatomic,nullable) BBMediaPickerTitleTransformBlock titleTransformBlock;
+
+/**
+ Set and get whether the receiver should create and display the cancel and done bar button items. If NO, the bar button items are not displayed on the right side of the navigation bar and dismissing the client is up to the client.
+ 
+ The default is YES.
+ */
+@property (assign,nonatomic) BOOL shouldShowCancelAndDoneBarButtonItems;
 /**
  Set and get the cancel bar button item title. If nil, uses the UIBarButtonSystemItemCancel item, otherwise creates a bar button item with the provided title.
  
  The default is nil.
  */
-@property (copy,nonatomic) NSString *cancelBarButtonItemTitle;
+@property (copy,nonatomic,nullable) NSString *cancelBarButtonItemTitle;
 
 /**
  Set and get the allowed media types of the receiver.
@@ -77,7 +95,7 @@
  
  @see BBMediaPickerMediaFilterBlock
  */
-@property (copy,nonatomic) BBMediaPickerMediaFilterBlock mediaFilterBlock;
+@property (copy,nonatomic,nullable) BBMediaPickerMediaFilterBlock mediaFilterBlock;
 
 /**
  Set and get the cancel confirm block of the receiver. If non-nil, this will be invoked and the completion block value consulted before dismissing the receiver. This can be used to provide confirmation to the user before ending interaction with the receiver.
@@ -86,7 +104,14 @@
  
  @see BBMediaPickerCancelConfirmBlock
  */
-@property (copy,nonatomic) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
+@property (copy,nonatomic,nullable) BBMediaPickerCancelConfirmBlock cancelConfirmBlock;
+
+/**
+ Set and get the asset bottom accessory view class. If non-nil, an instance of this class is placed at the bottom of each view in the picker anchored to the bottom of its superview. It should implement the `sizeThatFits:` so its desired height can be determined. It will always have its width set to the width of its superview.
+ 
+ The default is Nil.
+ */
+@property (strong,nonatomic,nullable) Class bottomAccessoryViewClass;
 
 /**
  Returns the number of media objects being displayed.
@@ -107,7 +132,7 @@
  @param index The index of the media object to return
  @return The media object or nil
  */
-- (id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index;
+- (nullable id<BBMediaPickerMedia>)mediaAtIndex:(NSInteger)index;
 
 /**
  Scrolls the collection view containing media so that it is visible, centered vertically. If the media does not exist in the collection view, does nothing.
@@ -128,6 +153,8 @@
  
  @return The media picker view controller or nil
  */
-- (BBMediaPickerViewController *)BB_mediaPickerViewController;
+- (nullable BBMediaPickerViewController *)BB_mediaPickerViewController;
 
 @end
+
+NS_ASSUME_NONNULL_END

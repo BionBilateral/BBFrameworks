@@ -51,7 +51,7 @@
     
     return retval;
 }
-- (NSSet *)BB_map:(id(^)(id object))block; {
+- (NSSet *)BB_map:(id _Nullable(^)(id object))block; {
     NSParameterAssert(block);
     
     NSMutableSet *retval = [[NSMutableSet alloc] init];

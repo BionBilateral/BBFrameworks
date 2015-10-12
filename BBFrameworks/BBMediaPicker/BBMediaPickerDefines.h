@@ -19,6 +19,8 @@
 #import "BBMediaPickerMedia.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum describing the authorization status.
  */
@@ -66,6 +68,14 @@ typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
 @class BBMediaPickerViewController;
 
 /**
+ Block used to transform the title of each view within a media picker view stack. The original title is passed as a parameter of the block. The client should return the actual title they want displayed.
+ 
+ @param title The original title of the view
+ @return The transformed title of the view
+ */
+typedef NSString *_Nonnull(^BBMediaPickerTitleTransformBlock)(NSString *title);
+
+/**
  Block used to filter media that will be displayed by the media picker. The block will be invoked once for each media object.
  
  @param media The media object to display
@@ -86,5 +96,7 @@ typedef void(^BBMediaPickerCancelConfirmCompletionBlock)(BOOL confirm);
  @param completion The completion block that should be invoked with the desired behavior
  */
 typedef void(^BBMediaPickerCancelConfirmBlock)(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion);
+
+NS_ASSUME_NONNULL_END
 
 #endif

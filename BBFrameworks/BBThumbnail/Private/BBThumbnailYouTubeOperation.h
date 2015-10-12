@@ -15,6 +15,8 @@
 
 #import "BBThumbnailAsyncOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString *const BBThumbnailYouTubeOperationErrorDomain;
 
 /**
@@ -25,3 +27,5 @@ extern NSString *const BBThumbnailYouTubeOperationErrorDomain;
 - (instancetype)initWithURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size APIKey:(NSString *)APIKey completion:(BBThumbnailOperationCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

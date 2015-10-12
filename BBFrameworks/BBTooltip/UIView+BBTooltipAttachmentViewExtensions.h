@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBTooltipAttachmentView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category adding support for BBTooltipAttachmentView to UIView.
  */
@@ -27,3 +29,5 @@
 @property (readwrite,assign,nonatomic) CGRect BB_tooltipAttachmentViewBounds;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -16,8 +16,10 @@
 #import <Foundation/Foundation.h>
 #import "BBThumbnailDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^BBThumbnailOperationProgressBlock)(NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
-typedef void(^BBThumbnailOperationCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error);
+typedef void(^BBThumbnailOperationCompletionBlock)(BBThumbnailGeneratorImageClass *_Nullable image, NSError *_Nullable error);
 
 @protocol BBThumbnailOperation <NSObject>
 @required
@@ -25,3 +27,5 @@ typedef void(^BBThumbnailOperationCompletionBlock)(BBThumbnailGeneratorImageClas
 @optional
 - (BOOL)wantsWebViewOperationQueue;
 @end
+
+NS_ASSUME_NONNULL_END

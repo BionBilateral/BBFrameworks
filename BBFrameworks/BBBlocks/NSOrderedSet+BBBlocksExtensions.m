@@ -65,7 +65,7 @@
     
     return retval;
 }
-- (NSOrderedSet *)BB_map:(id(^)(id object, NSInteger index))block; {
+- (NSOrderedSet *)BB_map:(id _Nullable(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
     NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];

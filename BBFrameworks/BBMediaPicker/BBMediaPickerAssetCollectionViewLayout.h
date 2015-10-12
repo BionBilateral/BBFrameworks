@@ -15,8 +15,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetCollectionViewLayout : UICollectionViewFlowLayout
 
 @property (assign,nonatomic) NSInteger numberOfColumns;
 
 @end
+
+NS_ASSUME_NONNULL_END

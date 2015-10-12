@@ -22,6 +22,28 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface MediaPickerBottomAccessoryView : UIButton
+
+@end
+
+@implementation MediaPickerBottomAccessoryView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setBackgroundColor:BBColorRGB(0.5, 0, 0)];
+    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
+    [self setContentEdgeInsets:UIEdgeInsetsMake(16, 0, 16, 0)];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+    [self setTitle:@"End" forState:UIControlStateNormal];
+    
+    return self;
+}
+
+@end
+
 @interface MediaPickerNavigationController : UINavigationController
 
 @end
@@ -94,6 +116,12 @@
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
     BBLogObject(viewController);
 }
+
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didAddBottomAccessoryView:(__kindof UIView *)bottomAccessoryView {
+    UIButton *button = (UIButton *)bottomAccessoryView;
+    
+    [button addTarget:self action:@selector(_bottomAccessoryViewAction:) forControlEvents:UIControlEventTouchUpInside];
+}
 #pragma mark *** Private Methods ***
 #pragma mark Actions
 - (IBAction)_systemButtonAction:(id)sender {
@@ -112,6 +140,11 @@
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
     [viewController setHidesEmptyMediaGroups:YES];
+    [viewController setShouldShowCancelAndDoneBarButtonItems:NO];
+    [viewController setBottomAccessoryViewClass:[MediaPickerBottomAccessoryView class]];
+    [viewController setTitleTransformBlock:^NSString *_Nullable(NSString *title){
+        return title.uppercaseString;
+    }];
 //    [viewController setCancelBarButtonItemTitle:@"End"];
 //    [viewController setAutomaticallyDismissForSingleSelection:NO];
 //    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
@@ -129,6 +162,10 @@
 //    }];
     
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
+}
+
+- (IBAction)_bottomAccessoryViewAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

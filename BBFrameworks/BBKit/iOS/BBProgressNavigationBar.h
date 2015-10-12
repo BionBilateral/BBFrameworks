@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBProgressNavigationBar is a UINavigationBar subclass that manages a UIProgressView to display relevant progress at the bottom edge of the receiver.
  */
@@ -63,6 +65,8 @@
  
  @return The navigation bar or nil
  */
-- (BBProgressNavigationBar *)BB_progressNavigationBar;
+- (nullable BBProgressNavigationBar *)BB_progressNavigationBar;
 
 @end
+
+NS_ASSUME_NONNULL_END

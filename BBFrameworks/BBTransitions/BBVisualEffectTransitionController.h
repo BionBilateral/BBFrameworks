@@ -15,8 +15,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBVisualEffectTransitionController : UIViewController
 
 - (instancetype)initWithViewController:(UIViewController *)viewController blurEffectStyle:(UIBlurEffectStyle)blurEffectStyle;
 
 @end
+
+NS_ASSUME_NONNULL_END

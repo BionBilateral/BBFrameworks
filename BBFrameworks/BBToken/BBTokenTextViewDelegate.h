@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BBTokenCompletion;
 
 /**
@@ -22,7 +24,7 @@
  
  @param completions An array of objects conforming to BBTokenCompletion
  */
-typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
+typedef void(^BBTokenTextViewCompletionBlock)(NSArray<id<BBTokenCompletion> > *_Nullable completions);
 
 @class BBTokenTextView;
 
@@ -47,7 +49,7 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  @param editingText The current editing text
  @return The represented object for editing text
  */
-- (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForEditingText:(NSString *)editingText;
+- (nullable id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForEditingText:(NSString *)editingText;
 /**
  Return the display text for the provided represented object. If this method is not implemented or returns nil, the return value of the represented object's description method is used.
  
@@ -55,7 +57,7 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  @param representedObject The represented object
  @return The display text for the represented object
  */
-- (NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
+- (nullable NSString *)tokenTextView:(BBTokenTextView *)tokenTextView displayTextForRepresentedObject:(id)representedObject;
 
 /**
  Called when an array of represented objects are added to the receiver at the provided index.
@@ -74,6 +76,34 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  @param index The first index of the represented objects that were removed
  */
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView didRemoveRepresentedObjects:(NSArray *)representedObjects atIndex:(NSInteger)index;
+
+/**
+ Called to determine which editing commands should be displayed by the receiver. The action parameter represents the relevant command (e.g. cut:, copy:, paste:).
+ 
+ @param tokenTextView The token text view that sent the message
+ @param action The action to perform
+ @param sender The object asking to perform action
+ @return YES if the token text can perform action, NO otherwise
+ */
+- (BOOL)tokenTextView:(BBTokenTextView *)tokenTextView canPerformAction:(SEL)action withSender:(nullable id)sender;
+
+/**
+ Called when the cut: or copy: commands are chosen from the context menu. The delegate should return YES if it intends to handle the writing of the represented objects to the pasteboard. Otherwise, return NO and the token text view will write the display string for each represented object to the pasteboard.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param reprsentedObjects The array of represented objects that should be written to the pasteboard
+ @param pasteboard The pasteboard to write to
+ @return YES if the delegate handled writing to the pasteboard, NO otherwise
+ */
+- (BOOL)tokenTextView:(BBTokenTextView *)tokenTextView writeRepresentedObjects:(NSArray *)representedObjects pasteboard:(UIPasteboard *)pasteboard;
+/**
+ Called when the paste: command is chosen from the context menu. The delegate should return an array of represented objects created by reading data from pasteboard. If this method is not implemented, the token text view will read the array of strings stored on the pasteboard and create represented objects from them.
+ 
+ @param tokenTextView The token text view that sent the message
+ @param pasteboard The pasteboard to read from
+ @return An array of represented objects created by reading from pasteboard
+ */
+- (nullable NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView readFromPasteboard:(UIPasteboard *)pasteboard;
 
 /**
  Called when the receiver's delegate should display the completions table view.
@@ -112,7 +142,7 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  */
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion;
 /**
- Called when the user selects a row in the completions table view. This method should return the corresponding  represented object for the selected completion object.
+ Called when the user selects a row in the completions table view. This method should return the corresponding represented object for the selected completion object.
  
  @param tokenTextView The token text view that sent the message
  @param completion The completion that was selected
@@ -120,3 +150,5 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray *completions);
  */
 - (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForCompletion:(id<BBTokenCompletion>)completion;
 @end
+
+NS_ASSUME_NONNULL_END

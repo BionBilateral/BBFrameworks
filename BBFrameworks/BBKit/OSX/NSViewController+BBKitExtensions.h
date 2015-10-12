@@ -15,6 +15,8 @@
 
 #import <AppKit/AppKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSViewController adding various convenience methods.
  */
@@ -34,3 +36,5 @@
 - (NSViewController *)BB_viewControllerForPresenting;
 
 @end
+
+NS_ASSUME_NONNULL_END

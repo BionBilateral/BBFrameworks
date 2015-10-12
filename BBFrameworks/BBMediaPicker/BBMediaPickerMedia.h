@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BBMediaPickerMedia <NSObject>
 @required
 - (NSURL *)mediaURL;
@@ -25,3 +27,5 @@
 - (UIImage *)mediaFullScreenImage;
 - (UIImage *)mediaImage;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSSet adding block extensions.
  */
@@ -42,7 +44,7 @@
  @return The matching object or nil
  @exception NSException Thrown if block is nil
  */
-- (id)BB_find:(BOOL(^)(id object))block;
+- (nullable id)BB_find:(BOOL(^)(id object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including the return value of block in the new set.
  
@@ -50,7 +52,7 @@
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_map:(id(^)(id object))block;
+- (NSSet *)BB_map:(id _Nullable(^)(id object))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum and the object. The return value of block is passed in as sum to the next invocation of block.
  
@@ -59,7 +61,7 @@
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (id)BB_reduceWithStart:(id)start block:(id(^)(id sum, id object))block;
+- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object))block;
 /**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
@@ -102,3 +104,5 @@
 - (id)BB_minimum;
 
 @end
+
+NS_ASSUME_NONNULL_END

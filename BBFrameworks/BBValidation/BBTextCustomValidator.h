@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBTextValidator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBTextCustomValidator;
 
 /**
@@ -26,7 +28,7 @@
  @param error A pointer to an NSError object, return an error by reference if returning NO
  @return YES if the text validates, otherwise NO
  */
-typedef BOOL(^BBTextCustomValidatorBlock)(BBTextCustomValidator *validator, NSString *text, NSError **error);
+typedef BOOL(^BBTextCustomValidatorBlock)(BBTextCustomValidator *validator, NSString *_Nullable text, NSError **error);
 
 /**
  BBTextCustomValidator is a NSObject subclass that provides custom validation via its validatorBlock.
@@ -36,7 +38,7 @@ typedef BOOL(^BBTextCustomValidatorBlock)(BBTextCustomValidator *validator, NSSt
 /**
  Set and get the text validator right view of the receiver. Set this before returning from validatorBlock to have the current view displayed if returning NO from validatorBlock.
  */
-@property (strong,nonatomic) UIView *textValidatorRightView;
+@property (strong,nonatomic,nullable) UIView *textValidatorRightView;
 
 /**
  Designated Initializer.
@@ -46,4 +48,8 @@ typedef BOOL(^BBTextCustomValidatorBlock)(BBTextCustomValidator *validator, NSSt
  */
 - (instancetype)initWithValidatorBlock:(BBTextCustomValidatorBlock)validatorBlock NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)init __attribute__((unavailable("use initWithValidatorBlock: instead")));
+
 @end
+
+NS_ASSUME_NONNULL_END

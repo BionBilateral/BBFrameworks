@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class WKWebView;
 
 /**
@@ -29,31 +31,31 @@
  
  The default is [UIFont boldSystemFontOfSize:15.0].
  */
-@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the color used to display the title.
  
  The default is [UIColor blackColor].
  */
-@property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the font used to display the URL.
  
  The default is [UIFont systemFontOfSize:12.0].
  */
-@property (strong,nonatomic) UIFont *URLFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *URLFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the color used to display the URL.
  
  The default is [UIColor darkGrayColor].
  */
-@property (strong,nonatomic) UIColor *URLTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *URLTextColor UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the secure content image of the receiver.
  */
-@property (strong,nonatomic) UIImage *hasOnlySecureContentImage UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIImage *hasOnlySecureContentImage UI_APPEARANCE_SELECTOR;
 
 /**
  Designated Initializer.
@@ -63,4 +65,9 @@
  */
 - (instancetype)initWithWebKitView:(WKWebView *)webKitView NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithWebKitView: instead")));
+- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithWebKitView: instead")));
+
 @end
+
+NS_ASSUME_NONNULL_END

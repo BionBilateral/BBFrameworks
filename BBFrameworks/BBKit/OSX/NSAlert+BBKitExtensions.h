@@ -16,8 +16,21 @@
 #import <Cocoa/Cocoa.h>
 #import "NSError+BBFoundationExtensions.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ Category on NSAlert adding convenience methods related to creation from error objects.
+ */
 @interface NSAlert (BBKitExtensions)
 
+/**
+ Create and return a NSAlert instance from the provided error. This will check the specific user info keys defined in NSError+BBFoundationExtensions.h for title and message.
+ 
+ @param error The error from which to create a NSAlert instance
+ @return The NSAlert instance
+ */
 + (NSAlert *)BB_alertWithError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

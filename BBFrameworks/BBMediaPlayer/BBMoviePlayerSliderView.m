@@ -21,7 +21,7 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-static NSTimeInterval const kObserverInterval = 1.0;
+static NSTimeInterval const kObserverInterval = 0.2;
 
 @interface BBMoviePlayerSliderView ()
 @property (strong,nonatomic) UILabel *elapsedTimeLabel;

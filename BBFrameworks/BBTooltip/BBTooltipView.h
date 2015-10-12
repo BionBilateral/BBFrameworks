@@ -15,6 +15,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BBTooltipViewDefines.h"
+#import "BBTooltipAccessoryView.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Enum describing the arrow direction of the receiver.
@@ -76,28 +79,59 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
 
 /**
  Set and get the tooltip font of the receiver.
+ 
+ The default is [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1].
  */
-@property (strong,nonatomic) UIFont *tooltipFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *tooltipFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip text color of the receiver.
+ 
+ The default is [UIColor whiteColor].
  */
-@property (strong,nonatomic) UIColor *tooltipTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *tooltipTextColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip background color.
+ 
+ The default is [UIColor darkGrayColor].
  */
-@property (strong,nonatomic) UIColor *tooltipBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *tooltipBackgroundColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip edge insets.
+ 
+ The default is UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0).
  */
 @property (assign,nonatomic) UIEdgeInsets tooltipEdgeInsets UI_APPEARANCE_SELECTOR;
 /**
+ Set and get the tooltip arrow width.
+ 
+ The default is 8.0.
+ */
+@property (assign,nonatomic) CGFloat tooltipArrowWidth UI_APPEARANCE_SELECTOR;
+/**
  Set and get the tooltip arrow height.
+ 
+ The default is 8.0.
  */
 @property (assign,nonatomic) CGFloat tooltipArrowHeight UI_APPEARANCE_SELECTOR;
 /**
  Set and get the tooltip corner radius.
+ 
+ The default is 5.0.
  */
 @property (assign,nonatomic) CGFloat tooltipCornerRadius UI_APPEARANCE_SELECTOR;
+
+/**
+ Set and get the accessory view of the receiver. If non-nil, is displayed underneath the text of the tooltip with insets according to accessoryViewEdgeInsets. The view should implement `sizeThatFits:` so the receiver can determine the appropriate height for the accessory view frame.
+ 
+ The default is nil.
+ */
+@property (strong,nonatomic,nullable) UIView<BBTooltipAccessoryView> *accessoryView;
+/**
+ Set and get the edge insets for the accessory view. These are used when laying out the accessory view with respect to the left, right, and bottom edges of the receiver, as well as the bottom edge of the text.
+ 
+ The default is UIEdgeInsetsZero.
+ */
+@property (assign,nonatomic) UIEdgeInsets accessoryViewEdgeInsets UI_APPEARANCE_SELECTOR;
 
 /**
  Returns the background rect for the provided bounds.
@@ -114,5 +148,14 @@ typedef NS_ENUM(NSInteger, BBTooltipViewArrowDirection) {
  @return The arrow rect
  */
 - (CGRect)arrowRectForBounds:(CGRect)bounds attachmentView:(UIView *)attachmentView;
+/**
+ Returns the accessory view rect for provided bounds.
+ 
+ @param The bounds of the receiver
+ @return The accessory 
+ */
+- (CGRect)accessoryViewRectForBounds:(CGRect)bounds;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -14,10 +14,8 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "NSImage+BBKitExtensions.h"
-#import "BBFoundationDebugging.h"
 #import "BBKitCGImageFunctions.h"
-
-#import <Accelerate/Accelerate.h>
+#import "CIImage+BBKitExtensions.h"
 
 #if !__has_feature(objc_arc)
 #error This file requires ARC
@@ -85,52 +83,14 @@
 {
     NSParameterAssert(image);
     
-    radius = MAX(MIN(radius, 1.0), 0.0);
+    CGImageRef imageRef = BBKitCGImageCreateImageByBlurringImageWithRadius([image CGImageForProposedRect:NULL context:nil hints:nil], radius);
     
-    uint32_t boxSize = (uint32_t)(radius * 100);
-    
-    boxSize -= (boxSize % 2) + 1;
-    
-    CGImageRef inImageRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
-    
-    CGDataProviderRef inProviderRef = CGImageGetDataProvider(inImageRef);
-    CFDataRef inData = CGDataProviderCopyData(inProviderRef);
-    
-    vImage_Buffer inBuffer = {
-        .width = CGImageGetWidth(inImageRef),
-        .height = CGImageGetHeight(inImageRef),
-        .rowBytes = CGImageGetBytesPerRow(inImageRef),
-        .data = (void *)CFDataGetBytePtr(inData)
-    };
-    
-    void *buffer = malloc(inBuffer.rowBytes * inBuffer.height);
-    
-    vImage_Buffer outBuffer = {
-        .width = inBuffer.width,
-        .height = inBuffer.height,
-        .rowBytes = inBuffer.rowBytes,
-        .data = buffer
-    };
-    
-    vImage_Error error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    
-    if (error != kvImageNoError) {
-        BBLog(@"%@",@(error));
-        
-        free(buffer);
-        CFRelease(inData);
+    if (!imageRef) {
+        return nil;
     }
     
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpaceRef, CGImageGetBitmapInfo(inImageRef));
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
     
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:image.size];
-    
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpaceRef);
-    free(buffer);
-    CFRelease(inData);
     CGImageRelease(imageRef);
     
     return retval;
@@ -139,6 +99,90 @@
 - (NSImage *)BB_imageByBlurringWithRadius:(CGFloat)radius
 {
     return [self.class BB_imageByBlurringImage:self radius:radius];
+}
+
++ (NSImage *)BB_imageByAdjustingBrightnessOfImage:(NSImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta([image CGImageForProposedRect:NULL context:nil hints:nil], delta);
+    
+    if (!imageRef) {
+        return nil;
+    }
+    
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (NSImage *)BB_imageByAdjustingBrightnessBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingBrightnessOfImage:self delta:delta];
+}
+
++ (NSImage *)BB_imageByAdjustingContrastOfImage:(NSImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta([image CGImageForProposedRect:NULL context:nil hints:nil], delta);
+    
+    if (!imageRef) {
+        return nil;
+    }
+    
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (NSImage *)BB_imageByAdjustingContrastBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingContrastOfImage:self delta:delta];
+}
+
++ (NSImage *)BB_imageByAdjustingSaturationOfImage:(NSImage *)image delta:(CGFloat)delta; {
+    NSParameterAssert(image);
+    
+    // if user passed really small delta, it wont make any difference, just return the original image
+    if (fabs(delta - 1.0) < __FLT_EPSILON__) {
+        return image;
+    }
+    
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta([image CGImageForProposedRect:NULL context:nil hints:nil], delta);
+    
+    if (!imageRef) {
+        return nil;
+    }
+    
+    NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+- (NSImage *)BB_imageByAdjustingSaturationBy:(CGFloat)delta; {
+    return [self.class BB_imageByAdjustingSaturationOfImage:self delta:delta];
+}
+
++ (nullable NSImage *)BB_QRCodeImageFromData:(NSData *)data size:(NSSize)size; {
+    NSParameterAssert(data);
+    
+    CIImage *image = [CIImage BB_QRCodeImageFromData:data size:NSSizeToCGSize(size)];
+    NSCIImageRep *imageRep = [NSCIImageRep imageRepWithCIImage:image];
+    NSImage *retval = [[NSImage alloc] initWithSize:imageRep.size];
+    
+    [retval addRepresentation:imageRep];
+    
+    return retval;
 }
 
 @end
