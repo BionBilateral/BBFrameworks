@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account;
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error;
 
++ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account;
++ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account error:(NSError **)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

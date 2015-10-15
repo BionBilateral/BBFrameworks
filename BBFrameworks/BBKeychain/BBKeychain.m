@@ -96,4 +96,35 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
     return retval;
 }
 
++ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account; {
+    return [self deletePasswordForService:service account:account error:NULL];
+}
++ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account error:(NSError **)error; {
+    NSParameterAssert(service);
+    NSParameterAssert(account);
+    
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account) mutableCopy];
+    OSStatus status;
+    
+#if (TARGET_OS_IPHONE)
+    status = SecItemDelete((__bridge CFDictionaryRef)query);
+#else
+    [query setObject:@YES forKey:(__bridge id)kSecReturnRef];
+    
+    CFTypeRef result;
+    
+    status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
+    
+    if (status == errSecSuccess) {
+        status = SecKeychainItemDelete((SecKeychainItemRef)result);
+        
+        CFRelease(result);
+    }
+#endif
+    
+    BOOL retval = status == errSecSuccess;
+    
+    return retval;
+}
+
 @end

@@ -31,5 +31,14 @@
     XCTAssertTrue([BBKeychain setPassword:password forService:service account:account]);
     XCTAssertEqualObjects([BBKeychain passwordForService:service account:account], password);
 }
+- (void)testDeletePasswordForServiceAndAccount {
+    NSString *password = @"password";
+    NSString *service = [[NSUUID UUID] UUIDString];
+    NSString *account = [[NSUUID UUID] UUIDString];
+    
+    [BBKeychain setPassword:password forService:service account:account];
+    
+    XCTAssertTrue([BBKeychain deletePasswordForService:service account:account]);
+}
 
 @end
