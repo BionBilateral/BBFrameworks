@@ -30,6 +30,14 @@ Pod::Spec.new do |spec|
     subspec.source_files = "BBFrameworks/BBFoundation"
   end
   
+  spec.subspec "BBKeychain" do |subspec|
+    subspec.dependency "BBFrameworks/BBCore"
+    
+    subspec.source_files = "BBFrameworks/BBKeychain"
+    
+    subspec.frameworks = "Security"
+  end
+  
   spec.subspec "BBBlocks" do |subspec|
     subspec.dependency "BBFrameworks/BBCore"
     
