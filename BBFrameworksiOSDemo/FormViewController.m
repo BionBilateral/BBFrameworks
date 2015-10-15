@@ -43,6 +43,10 @@
 
 @implementation FormViewController
 
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationPageSheet;
+}
+
 - (NSString *)title {
     return [self.class rowClassTitle];
 }
@@ -180,13 +184,23 @@
     [self.view addSubview:self.tableViewController.view];
     [self.tableViewController didMoveToParentViewController:self];
     [self.tableViewController setDataSource:self];
+    
+    if (self.presentingViewController) {
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_doneItemAction:)];
+        
+        [self.navigationItem setRightBarButtonItems:@[doneItem]];
+    }
 }
-- (void)viewDidLayoutSubviews {
+- (void)viewWillLayoutSubviews {
     [self.tableViewController.view setFrame:self.view.bounds];
 }
 
 + (NSString *)rowClassTitle {
     return @"Forms";
+}
+
+- (IBAction)_doneItemAction:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
