@@ -83,6 +83,8 @@
 		079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 079875101BD021D5005422B2 /* BBKeychain.h */; };
 		079875171BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */; settings = {ASSET_TAGS = (); }; };
 		079875181BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */; settings = {ASSET_TAGS = (); }; };
+		0798751B1BD03923005422B2 /* Keychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = 079875191BD03923005422B2 /* Keychain.strings */; settings = {ASSET_TAGS = (); }; };
+		0798751C1BD03923005422B2 /* Keychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = 079875191BD03923005422B2 /* Keychain.strings */; settings = {ASSET_TAGS = (); }; };
 		07988C4E1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */; };
 		07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */; };
 		07AC57091BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -797,6 +799,7 @@
 		079875101BD021D5005422B2 /* BBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeychain.h; sourceTree = "<group>"; };
 		079875111BD021D5005422B2 /* BBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBKeychain.m; sourceTree = "<group>"; };
 		079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksBBKeychainTestCase.m; sourceTree = "<group>"; };
+		0798751A1BD03923005422B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Keychain.strings; sourceTree = "<group>"; };
 		07988C4C1B86451E00AA7C3C /* BBMediaPickerAssetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetViewController.h; sourceTree = "<group>"; };
 		07988C4D1B86451E00AA7C3C /* BBMediaPickerAssetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetViewController.m; sourceTree = "<group>"; };
 		07A67E8E1B87A1DA008CCB02 /* BBProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressSlider.h; path = iOS/BBProgressSlider.h; sourceTree = "<group>"; };
@@ -2279,6 +2282,7 @@
 			isa = PBXGroup;
 			children = (
 				79CE6A3E1B784F3600A0E969 /* Validation.strings */,
+				079875191BD03923005422B2 /* Keychain.strings */,
 				07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */,
 				79EA81421B3F212700D50B6B /* MediaPicker.strings */,
 				79F941631B436B3B00B385F0 /* AddressBook.strings */,
@@ -2685,6 +2689,7 @@
 				799B960A1B6997550010E1CD /* media_picker_camera_roll@2x.png in Resources */,
 				799B96101B69A2880010E1CD /* media_picker_recently_added@2x.png in Resources */,
 				0785E9101BA7325500076BFC /* web_kit_go_back@3x.png in Resources */,
+				0798751B1BD03923005422B2 /* Keychain.strings in Resources */,
 				79EA80C21B3F0C5600D50B6B /* media_player_play.png in Resources */,
 				799F9BBD1B6D85170067BAA8 /* web_kit_lock@3x.png in Resources */,
 				79EA80C01B3F0C5600D50B6B /* media_player_pause@2x.png in Resources */,
@@ -2720,6 +2725,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0798751C1BD03923005422B2 /* Keychain.strings in Resources */,
 				79B1C10D1BB67A43005A8A0D /* Foundation.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2739,7 +2745,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/* $SRCROOT/BBFrameworks/BBMediaPlayer/* $SRCROOT/BBFrameworks/$SRCROOT/BBAddressBook/* $SRCROOT/BBFrameworks/BBWebKit/* $SRCROOT/BBFrameworks/BBValidation/* $SRCROOT/BBFrameworks/BBFoundation/*";
+			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/* $SRCROOT/BBFrameworks/BBMediaPlayer/* $SRCROOT/BBFrameworks/$SRCROOT/BBAddressBook/* $SRCROOT/BBFrameworks/BBWebKit/* $SRCROOT/BBFrameworks/BBValidation/* $SRCROOT/BBFrameworks/BBFoundation/* $SRCROOT/BBFrameworks/BBKeychain/*";
 		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3193,6 +3199,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		079875191BD03923005422B2 /* Keychain.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0798751A1BD03923005422B2 /* en */,
+			);
+			name = Keychain.strings;
+			sourceTree = "<group>";
+		};
 		07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

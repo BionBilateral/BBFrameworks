@@ -14,8 +14,18 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBKeychain.h"
+#import "BBFrameworksFunctions.h"
 
 #import <Security/Security.h>
+
+NSString *const BBKeychainErrorDomain = @"com.bionbilateral.bbkeychain";
+
+NSString *const BBKeychainAccountKeyName = @"acct";
+NSString *const BBKeychainAccountKeyCreatedAt = @"cdat";
+NSString *const BBKeychainAccountKeyLabel = @"labl";
+NSString *const BBKeychainAccountKeyDescription = @"desc";
+NSString *const BBKeychainAccountKeyLastModified = @"mdat";
+NSString *const BBKeychainAccountKeyWhere = @"svce";
 
 static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *service, NSString *account) {
     NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
@@ -32,7 +42,82 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
     return [query copy];
 }
 
+static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
+    NSString *message = nil;
+    
+    switch (status) {
+#if (TARGET_OS_IPHONE)
+        case errSecUnimplemented:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_UNIMPLEMENTED", @"Keychain", BBFrameworksResourcesBundle(), @"Function or operation not implemented.", @"errSecUnimplemented");
+            break;
+        case errSecParam:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_PARAM", @"Keychain", BBFrameworksResourcesBundle(), @"One or more parameters passed to a function where not valid.", @"errSecParam");
+            break;
+        case errSecAllocate:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_ALLOCATE", @"Keychain", BBFrameworksResourcesBundle(), @"Failed to allocate memory.", @"errSecAllocate");
+            break;
+        case errSecNotAvailable:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_NOT_AVAILABLE", @"Keychain", BBFrameworksResourcesBundle(), @"No keychain is available. You may need to restart your computer.", @"errSecNotAvailable");
+            break;
+        case errSecDuplicateItem:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_DUPLICATE_ITEM", @"Keychain", BBFrameworksResourcesBundle(), @"The specified item already exists in the keychain.", @"errSecDuplicateItem");
+            break;
+        case errSecItemNotFound:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_ITEM_NOT_FOUND", @"Keychain", BBFrameworksResourcesBundle(), @"The specified item could not be found in the keychain.", @"errSecItemNotFound");
+            break;
+        case errSecInteractionNotAllowed:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_ITEM_NOT_ALLOWED", @"Keychain", BBFrameworksResourcesBundle(), @"User interaction is not allowed.", @"errSecInteractionNotAllowed");
+            break;
+        case errSecDecode:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_DECODE", @"Keychain", BBFrameworksResourcesBundle(), @"Unable to decode the provided data.", @"errSecDecode");
+            break;
+        case errSecAuthFailed:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_AUTH_FAILED", @"Keychain", BBFrameworksResourcesBundle(), @"The user name or passphrase you entered is not correct.", @"errSecAuthFailed");
+            break;
+        default:
+            message = NSLocalizedStringWithDefaultValue(@"KEYCHAIN_ERR_SEC_DEFAULT", @"Keychain", BBFrameworksResourcesBundle(), @"Refer to <Security/SecBase.h> for description", @"default keychain error");
+            break;
+#else
+        default:
+            message = (__bridge_transfer NSString *)SecCopyErrorMessageString(status, NULL);
+            break;
+#endif
+    }
+    
+    return [NSError errorWithDomain:BBKeychainErrorDomain code:status userInfo:message ? @{NSLocalizedDescriptionKey: message} : nil];
+}
+
 @implementation BBKeychain
+
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts; {
+    return [self accountsForService:nil error:NULL];
+}
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts:(NSError **)error; {
+    return [self accountsForService:nil error:error];
+}
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service; {
+    return [self accountsForService:service error:NULL];
+}
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service error:(NSError **)error; {
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, nil) mutableCopy];
+    
+    [query setObject:@YES forKey:(__bridge id)kSecReturnAttributes];
+    [query setObject:(__bridge id)kSecMatchLimitAll forKey:(__bridge id)kSecMatchLimit];
+    
+    CFTypeRef result;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
+    
+    if (status != errSecSuccess) {
+        if (error) {
+            *error = BBKeychainErrorForOSStatus(status);
+        }
+        return nil;
+    }
+    
+    NSArray *retval = (__bridge_transfer NSArray *)result;
+    
+    return retval;
+}
 
 + (nullable NSString *)passwordForService:(NSString *)service; {
     return [self passwordForService:service account:nil error:NULL];
@@ -61,6 +146,9 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
     
     if (status != errSecSuccess) {
+        if (error) {
+            *error = BBKeychainErrorForOSStatus(status);
+        }
         return nil;
     }
     
@@ -93,6 +181,10 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
     
     BOOL retval = status == errSecSuccess;
     
+    if (!retval && error) {
+        *error = BBKeychainErrorForOSStatus(status);
+    }
+    
     return retval;
 }
 
@@ -123,6 +215,10 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
 #endif
     
     BOOL retval = status == errSecSuccess;
+    
+    if (!retval && error) {
+        *error = BBKeychainErrorForOSStatus(status);
+    }
     
     return retval;
 }

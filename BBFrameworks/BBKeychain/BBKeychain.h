@@ -17,7 +17,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString *const BBKeychainErrorDomain;
+
+extern NSString *const BBKeychainAccountKeyName;
+extern NSString *const BBKeychainAccountKeyCreatedAt;
+extern NSString *const BBKeychainAccountKeyLabel;
+extern NSString *const BBKeychainAccountKeyDescription;
+extern NSString *const BBKeychainAccountKeyLastModified;
+extern NSString *const BBKeychainAccountKeyWhere;
+
 @interface BBKeychain : NSObject
+
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts;
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts:(NSError **)error;
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service;
++ (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service error:(NSError **)error;
 
 + (nullable NSString *)passwordForService:(NSString *)service;
 + (nullable NSString *)passwordForAccount:(NSString *)account;
