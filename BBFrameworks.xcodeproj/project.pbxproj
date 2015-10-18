@@ -1584,6 +1584,8 @@
 		79239D081B8021D6001AEB2E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */,
+				79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */,
 				0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */,
 				077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */,
 			);
@@ -2097,8 +2099,6 @@
 			isa = PBXGroup;
 			children = (
 				7927CF6B1B1AD2B90034288D /* BBFoundationDebugging.h */,
-				7927CF6C1B1AD2B90034288D /* BBFoundationFunctions.h */,
-				79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */,
 				7927CF6D1B1AD2B90034288D /* BBFoundationMacros.h */,
 			);
 			name = Headers;
