@@ -230,6 +230,11 @@
 		7922E89B1BD41CF200F85EDA /* BBMediaPickerAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E88F1BD41CF200F85EDA /* BBMediaPickerAssetViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7922E89C1BD41CF200F85EDA /* BBMediaPickerAssetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8911BD41CF200F85EDA /* BBMediaPickerAssetViewModel.m */; settings = {ASSET_TAGS = (); }; };
 		7922E89D1BD41CF200F85EDA /* BBMediaPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8931BD41CF200F85EDA /* BBMediaPickerViewModel.m */; settings = {ASSET_TAGS = (); }; };
+		7922E8AA1BD42D8800F85EDA /* BBMoviePlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8A01BD42D8800F85EDA /* BBMoviePlayerContentView.m */; settings = {ASSET_TAGS = (); }; };
+		7922E8AB1BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8A31BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.m */; settings = {ASSET_TAGS = (); }; };
+		7922E8AC1BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8A51BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.m */; settings = {ASSET_TAGS = (); }; };
+		7922E8AD1BD42D8800F85EDA /* BBMoviePlayerSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8A71BD42D8800F85EDA /* BBMoviePlayerSliderView.m */; settings = {ASSET_TAGS = (); }; };
+		7922E8AE1BD42D8800F85EDA /* BBMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8A91BD42D8800F85EDA /* BBMoviePlayerView.m */; settings = {ASSET_TAGS = (); }; };
 		79239D0B1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79239D0A1B8022C1001AEB2E /* BBKitCGImageFunctions.m */; };
 		79239D0C1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79239D0A1B8022C1001AEB2E /* BBKitCGImageFunctions.m */; };
 		792F15381B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
@@ -441,11 +446,6 @@
 		79EA80E81B3F0D2100D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7927CF971B1AD2B90034288D /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m */; };
 		79EA80F31B3F0D4B00D50B6B /* BBMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEC81B3DDAF200DBC7EC /* BBMoviePlayerViewController.m */; };
 		79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */; };
-		79EA80F51B3F0D4B00D50B6B /* BBMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */; };
-		79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */; };
-		79EA80F71B3F0D4B00D50B6B /* BBMoviePlayerEmbeddedBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */; };
-		79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */; };
-		79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFFEC41B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m */; };
 		79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */; };
 		79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */; };
 		79EA80FC1B3F0D5B00D50B6B /* BBTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B4FFC61B3647F8007B8629 /* BBTooltipViewController.m */; };
@@ -823,19 +823,11 @@
 		07B3D8EE1B6014D900FA1853 /* NSArray+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		07B3D8EF1B6014D900FA1853 /* NSArray+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BBBlocksExtensions.m"; sourceTree = "<group>"; };
 		07B3D8F31B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSArrayBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
-		07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerContentView.h; sourceTree = "<group>"; };
-		07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerContentView.m; sourceTree = "<group>"; };
 		07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerControllerDefines.h; sourceTree = "<group>"; };
-		07BFFEB11B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerEmbeddedBottomView.h; sourceTree = "<group>"; };
-		07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerEmbeddedBottomView.m; sourceTree = "<group>"; };
-		07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPlayerDefines.h; sourceTree = "<group>"; };
-		07BFFEC31B3C93EF00DBC7EC /* BBMoviePlayerSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerSliderView.h; sourceTree = "<group>"; };
-		07BFFEC41B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerSliderView.m; sourceTree = "<group>"; };
+		07BFFEBE1B3C7E9000DBC7EC /* BBMediaPlayerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPlayerDefines.h; path = Private/BBMediaPlayerDefines.h; sourceTree = "<group>"; };
 		07BFFEC71B3DDAF200DBC7EC /* BBMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerViewController.h; sourceTree = "<group>"; };
 		07BFFEC81B3DDAF200DBC7EC /* BBMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerViewController.m; sourceTree = "<group>"; };
-		07BFFECB1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerFullscreenTopView.h; sourceTree = "<group>"; };
-		07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerFullscreenTopView.m; sourceTree = "<group>"; };
-		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
+		07BFFECF1B3DE4CF00DBC7EC /* BBMoviePlayerViewController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; path = "Private/BBMoviePlayerViewController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
 		07BFFEDA1B419F1800DBC7EC /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		07C23A8D1B540DE500D3C072 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WebKit.strings; sourceTree = "<group>"; };
 		07C23A9F1B542BB200D3C072 /* TokenCompletionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCompletionTableViewCell.h; sourceTree = "<group>"; };
@@ -938,6 +930,17 @@
 		7922E8921BD41CF200F85EDA /* BBMediaPickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerViewModel.h; path = Private/BBMediaPickerViewModel.h; sourceTree = "<group>"; };
 		7922E8931BD41CF200F85EDA /* BBMediaPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerViewModel.m; path = Private/BBMediaPickerViewModel.m; sourceTree = "<group>"; };
 		7922E8941BD41CF200F85EDA /* BBMediaPickerViewModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerViewModelDelegate.h; path = Private/BBMediaPickerViewModelDelegate.h; sourceTree = "<group>"; };
+		7922E89F1BD42D8800F85EDA /* BBMoviePlayerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMoviePlayerContentView.h; path = Private/BBMoviePlayerContentView.h; sourceTree = "<group>"; };
+		7922E8A01BD42D8800F85EDA /* BBMoviePlayerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMoviePlayerContentView.m; path = Private/BBMoviePlayerContentView.m; sourceTree = "<group>"; };
+		7922E8A11BD42D8800F85EDA /* BBMoviePlayerController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BBMoviePlayerController+BBMediaPlayerPrivate.h"; path = "Private/BBMoviePlayerController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
+		7922E8A21BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMoviePlayerEmbeddedBottomView.h; path = Private/BBMoviePlayerEmbeddedBottomView.h; sourceTree = "<group>"; };
+		7922E8A31BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMoviePlayerEmbeddedBottomView.m; path = Private/BBMoviePlayerEmbeddedBottomView.m; sourceTree = "<group>"; };
+		7922E8A41BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMoviePlayerFullscreenTopView.h; path = Private/BBMoviePlayerFullscreenTopView.h; sourceTree = "<group>"; };
+		7922E8A51BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMoviePlayerFullscreenTopView.m; path = Private/BBMoviePlayerFullscreenTopView.m; sourceTree = "<group>"; };
+		7922E8A61BD42D8800F85EDA /* BBMoviePlayerSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMoviePlayerSliderView.h; path = Private/BBMoviePlayerSliderView.h; sourceTree = "<group>"; };
+		7922E8A71BD42D8800F85EDA /* BBMoviePlayerSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMoviePlayerSliderView.m; path = Private/BBMoviePlayerSliderView.m; sourceTree = "<group>"; };
+		7922E8A81BD42D8800F85EDA /* BBMoviePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMoviePlayerView.h; path = Private/BBMoviePlayerView.h; sourceTree = "<group>"; };
+		7922E8A91BD42D8800F85EDA /* BBMoviePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMoviePlayerView.m; path = Private/BBMoviePlayerView.m; sourceTree = "<group>"; };
 		79239D0A1B8022C1001AEB2E /* BBKitCGImageFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBKitCGImageFunctions.m; sourceTree = "<group>"; };
 		7927CF5E1B1AD2B90034288D /* BBCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCoreData.h; sourceTree = "<group>"; };
 		7927CF5F1B1AD2B90034288D /* BBDefaultManagedObjectEntityMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBDefaultManagedObjectEntityMapping.h; path = Private/BBDefaultManagedObjectEntityMapping.h; sourceTree = "<group>"; };
@@ -1155,9 +1158,6 @@
 		79C27EB11B3B9A8300C4AC28 /* ThumbnailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailsViewController.xib; sourceTree = "<group>"; };
 		79C27EB41B3B9C4400C4AC28 /* ThumbnailItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailItemViewController.h; sourceTree = "<group>"; };
 		79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailItemViewController.m; sourceTree = "<group>"; };
-		79C27EB81B3BB0CB00C4AC28 /* BBMoviePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMoviePlayerView.h; sourceTree = "<group>"; };
-		79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMoviePlayerView.m; sourceTree = "<group>"; };
-		79C27EBC1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBMoviePlayerController+BBMediaPlayerPrivate.h"; sourceTree = "<group>"; };
 		79C27EC11B3BB8A100C4AC28 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
 		79C27EC41B3BBA6000C4AC28 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
@@ -1807,17 +1807,17 @@
 				07BFFEAF1B3C6A3700DBC7EC /* BBMoviePlayerControllerDefines.h */,
 				79B4FFFA1B39094E007B8629 /* BBMoviePlayerController.h */,
 				79B4FFFB1B39094E007B8629 /* BBMoviePlayerController.m */,
-				79C27EBC1B3BB3B800C4AC28 /* BBMoviePlayerController+BBMediaPlayerPrivate.h */,
-				79C27EB81B3BB0CB00C4AC28 /* BBMoviePlayerView.h */,
-				79C27EB91B3BB0CB00C4AC28 /* BBMoviePlayerView.m */,
-				07BFFEAB1B3C652000DBC7EC /* BBMoviePlayerContentView.h */,
-				07BFFEAC1B3C652000DBC7EC /* BBMoviePlayerContentView.m */,
-				07BFFEB11B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.h */,
-				07BFFEB21B3C6D1D00DBC7EC /* BBMoviePlayerEmbeddedBottomView.m */,
-				07BFFECB1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.h */,
-				07BFFECC1B3DE37300DBC7EC /* BBMoviePlayerFullscreenTopView.m */,
-				07BFFEC31B3C93EF00DBC7EC /* BBMoviePlayerSliderView.h */,
-				07BFFEC41B3C93EF00DBC7EC /* BBMoviePlayerSliderView.m */,
+				7922E89F1BD42D8800F85EDA /* BBMoviePlayerContentView.h */,
+				7922E8A01BD42D8800F85EDA /* BBMoviePlayerContentView.m */,
+				7922E8A11BD42D8800F85EDA /* BBMoviePlayerController+BBMediaPlayerPrivate.h */,
+				7922E8A21BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.h */,
+				7922E8A31BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.m */,
+				7922E8A41BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.h */,
+				7922E8A51BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.m */,
+				7922E8A61BD42D8800F85EDA /* BBMoviePlayerSliderView.h */,
+				7922E8A71BD42D8800F85EDA /* BBMoviePlayerSliderView.m */,
+				7922E8A81BD42D8800F85EDA /* BBMoviePlayerView.h */,
+				7922E8A91BD42D8800F85EDA /* BBMoviePlayerView.m */,
 			);
 			path = BBMediaPlayer;
 			sourceTree = "<group>";
@@ -2939,8 +2939,10 @@
 			files = (
 				791996F71B6EB3C500FC674A /* BBThumbnailMovieOperation.m in Sources */,
 				79D5407A1B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m in Sources */,
+				7922E8AE1BD42D8800F85EDA /* BBMoviePlayerView.m in Sources */,
 				791996EA1B6EB3C500FC674A /* BBThumbnailBaseOperation.m in Sources */,
 				07B3D90D1B60373B00FA1853 /* BBFormStepperTableViewCell.m in Sources */,
+				7922E8AC1BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				0750D6431B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.m in Sources */,
 				7922E8961BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m in Sources */,
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
@@ -2949,7 +2951,7 @@
 				792F15381B76A7160034A09A /* BBFrameworks.m in Sources */,
 				7922E8981BD41CF200F85EDA /* BBMediaPickerAssetsGroupTableViewController.m in Sources */,
 				79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
-				79EA80F71B3F0D4B00D50B6B /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
+				7922E8AA1BD42D8800F85EDA /* BBMoviePlayerContentView.m in Sources */,
 				79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */,
 				07AEC8461B6BE68500013470 /* BBTextPhoneNumberValidator.m in Sources */,
 				79EA80C91B3F0CCD00D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
@@ -2969,11 +2971,8 @@
 				79EA80D71B3F0CF300D50B6B /* UIImage+BBKitExtensions.m in Sources */,
 				07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */,
 				79EA80C61B3F0CCD00D50B6B /* NSArray+BBFoundationExtensions.m in Sources */,
-				79EA80F51B3F0D4B00D50B6B /* BBMoviePlayerView.m in Sources */,
 				79EA80D21B3F0CE400D50B6B /* BBGradientView.m in Sources */,
-				79EA80F61B3F0D4B00D50B6B /* BBMoviePlayerContentView.m in Sources */,
 				79BE2BAF1B657EF900ADE997 /* BBNextPreviousInputAccessoryView.m in Sources */,
-				79EA80F81B3F0D4B00D50B6B /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				07B3D9081B60373B00FA1853 /* BBFormTextTableViewCell.m in Sources */,
 				079875131BD021D5005422B2 /* BBKeychain.m in Sources */,
 				799C0C691B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
@@ -2987,6 +2986,7 @@
 				7922E8951BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewController.m in Sources */,
 				791997061B6EB3C500FC674A /* BBThumbnailVimeoOperation.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
+				7922E8AB1BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
 				07291E9D1BC5ACEA00CE7EE9 /* NSData+BBKitExtensions.m in Sources */,
 				799C0C7D1B61B95B00A3888A /* BBAddressBookTableViewModel.m in Sources */,
 				07AEC8481B6BE68500013470 /* BBValidationTextFieldWarningView.m in Sources */,
@@ -3001,6 +3001,7 @@
 				0750D6541B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m in Sources */,
 				79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */,
 				79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */,
+				7922E8AD1BD42D8800F85EDA /* BBMoviePlayerSliderView.m in Sources */,
 				791996FA1B6EB3C500FC674A /* BBThumbnailOperationWrapper.m in Sources */,
 				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79EF41231BCC6E4D0018D711 /* BBProgressNavigationBar.m in Sources */,
@@ -3028,7 +3029,6 @@
 				791996F11B6EB3C500FC674A /* BBThumbnailHTMLOperation.m in Sources */,
 				07B3D9051B60373B00FA1853 /* BBFormTableViewHeaderView.m in Sources */,
 				79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */,
-				79EA80F91B3F0D4B00D50B6B /* BBMoviePlayerSliderView.m in Sources */,
 				790DE0861B51B01B0029C004 /* BBDatePickerButton.m in Sources */,
 				799C0C7B1B61B95B00A3888A /* BBAddressBookPersonTableViewCell.m in Sources */,
 				7922E89D1BD41CF200F85EDA /* BBMediaPickerViewModel.m in Sources */,
