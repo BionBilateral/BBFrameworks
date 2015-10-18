@@ -150,7 +150,7 @@ Pod::Spec.new do |spec|
     subspec.ios.source_files = "BBFrameworks/BBWebKit", "BBFrameworks/BBWebKit/Private"
     subspec.osx.source_files = "BBFrameworks/BBWebKit/BBWebKit.h"
     
-    subspec.ios.private_source_files = "BBFrameworks/BBWebKit/Private/*.h"
+    subspec.ios.private_header_files = "BBFrameworks/BBWebKit/Private/*.h"
     
     subspec.ios.frameworks = "WebKit"
   end
