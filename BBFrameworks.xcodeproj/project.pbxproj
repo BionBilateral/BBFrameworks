@@ -2508,6 +2508,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79EA812C1B3F1E9500D50B6B /* Build configuration list for PBXNativeTarget "BBFrameworksOSX" */;
 			buildPhases = (
+				7922E89E1BD41F6100F85EDA /* genstrings */,
 				79EA81171B3F1E9500D50B6B /* Sources */,
 				79EA81181B3F1E9500D50B6B /* Frameworks */,
 				79EA81191B3F1E9500D50B6B /* Headers */,
@@ -2745,7 +2746,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "genstrings -o $SRCROOT/BBFrameworksResources/en.lproj $SRCROOT/BBFrameworks/BBMediaPicker/* $SRCROOT/BBFrameworks/BBMediaPlayer/* $SRCROOT/BBFrameworks/$SRCROOT/BBAddressBook/* $SRCROOT/BBFrameworks/BBWebKit/* $SRCROOT/BBFrameworks/BBValidation/* $SRCROOT/BBFrameworks/BBFoundation/* $SRCROOT/BBFrameworks/BBKeychain/*";
+			shellScript = scripts/./genstrings.sh;
 		};
 		0C00C66BFF957DC91DA0BDDC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2821,6 +2822,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		7922E89E1BD41F6100F85EDA /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/./genstrings.sh;
 		};
 		C5680BD583642012346BF863 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
