@@ -55,7 +55,9 @@ Pod::Spec.new do |spec|
   spec.subspec "BBCoreData" do |subspec|
     subspec.dependency "BBFrameworks/BBFoundation"
     
-    subspec.source_files = "BBFrameworks/BBCoreData"
+    subspec.source_files = "BBFrameworks/BBCoreData", "BBFrameworks/BBCoreData/Private"
+    
+    subspec.private_header_files = "BBFrameworks/BBCoreData/Private/*.h"
     
     subspec.ios.frameworks = "CoreData", "UIKit"
     subspec.osx.frameworks = "CoreData", "AppKit"
