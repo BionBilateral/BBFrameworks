@@ -117,8 +117,10 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "BBFrameworks/BBKit"
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     
-    subspec.ios.source_files = "BBFrameworks/BBMediaPicker"
+    subspec.ios.source_files = "BBFrameworks/BBMediaPicker", "BBFrameworks/BBMediaPicker/Private"
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
+    
+    subspec.ios.private_header_files = "BBFrameworks/BBMediaPicker/Private/*.h"
     
     subspec.ios.frameworks = "AssetsLibrary"
   end
