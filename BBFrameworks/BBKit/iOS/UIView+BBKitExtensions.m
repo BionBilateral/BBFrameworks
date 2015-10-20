@@ -18,6 +18,35 @@
 
 @implementation UIView (BBKitExtensions)
 
+@dynamic BB_frameMinimumX;
+- (CGFloat)BB_frameMinimumX {
+    return CGRectGetMinX(self.frame);
+}
+- (void)setBB_frameMinimumX:(CGFloat)frameMinimumX {
+    [self setFrame:CGRectMake(frameMinimumX, CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+}
+@dynamic BB_frameMaximumX;
+- (CGFloat)BB_frameMaximumX {
+    return CGRectGetMaxX(self.frame);
+}
+- (void)setBB_frameMaximumX:(CGFloat)frameMaximumX {
+    [self setFrame:CGRectMake(frameMaximumX - CGRectGetWidth(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+}
+@dynamic BB_frameMinimumY;
+- (CGFloat)BB_frameMinimumY {
+    return CGRectGetMinY(self.frame);
+}
+- (void)setBB_frameMinimumY:(CGFloat)frameMinimumY {
+    [self setFrame:CGRectMake(CGRectGetMinX(self.frame), frameMinimumY, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+}
+@dynamic BB_frameMaximumY;
+- (CGFloat)BB_frameMaximumY {
+    return CGRectGetMaxY(self.frame);
+}
+- (void)setBB_frameMaximumY:(CGFloat)frameMaximumY {
+    [self setFrame:CGRectMake(CGRectGetMinX(self.frame), frameMaximumY - CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+}
+
 - (NSArray *)BB_recursiveSubviews; {
     NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
     

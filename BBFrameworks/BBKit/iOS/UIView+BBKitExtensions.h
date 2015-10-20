@@ -23,6 +23,23 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (BBKitExtensions)
 
 /**
+ Set and get the minimum X member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMinimumX;
+/**
+ Set and get the maximum X member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMaximumX;
+/**
+ Set and get the minimum Y member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMinimumY;
+/**
+ Set and get the maximum Y member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMaximumY;
+
+/**
  Creates and returns an NSArray containing all the receiver's subviews recursively.
  
  For each subview of the receiver, the subview is adding to the returned array, followed by the array of the subview's recursive subviews.
