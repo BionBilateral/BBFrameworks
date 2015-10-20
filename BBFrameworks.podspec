@@ -103,7 +103,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBReactiveThumbnail" do |subspec|
-    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.dependency "ReactiveCocoa", "~> 2.5"
     
     subspec.dependency "BBFrameworks/BBThumbnail"
     
@@ -111,8 +111,8 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPicker" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
+    subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
     
     subspec.ios.dependency "BBFrameworks/BBKit"
     subspec.ios.dependency "BBFrameworks/BBBlocks"
@@ -126,8 +126,8 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
+    subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
     
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     subspec.ios.dependency "BBFrameworks/BBKit"
@@ -141,7 +141,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBWebKit" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
     subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
     
@@ -156,7 +156,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBTooltip" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
     
     subspec.ios.dependency "BBFrameworks/BBKit"
     
