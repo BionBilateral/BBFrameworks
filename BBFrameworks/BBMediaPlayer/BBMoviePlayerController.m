@@ -24,8 +24,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-static int32_t const kPreferredTimeScale = 1;
-
 @interface BBMoviePlayerController ()
 @property (strong,nonatomic) BBMoviePlayerView *moviePlayerView;
 
@@ -106,7 +104,7 @@ static int32_t const kPreferredTimeScale = 1;
         __block NSInteger total = intervals.count;
         
         [imageGenerator generateCGImagesAsynchronouslyForTimes:[intervals BB_map:^id(NSNumber *obj, NSInteger idx) {
-            return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
+            return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, NSEC_PER_SEC)];
         }] completionHandler:^(CMTime requestedTime, CGImageRef image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError *error) {
             if (result == AVAssetImageGeneratorFailed) {
                 [subscriber sendError:error];
@@ -147,7 +145,7 @@ static int32_t const kPreferredTimeScale = 1;
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         id retval = [self.player addBoundaryTimeObserverForTimes:[intervals BB_map:^id(NSNumber *obj, NSInteger idx) {
-            return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, kPreferredTimeScale)];
+            return [NSValue valueWithCMTime:CMTimeMakeWithSeconds(obj.doubleValue, NSEC_PER_SEC)];
         }] queue:NULL usingBlock:^{
             @strongify(self);
             [subscriber sendNext:self];
@@ -205,7 +203,7 @@ static int32_t const kPreferredTimeScale = 1;
 - (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
     [self willChangeValueForKey:@keypath(self,currentPlaybackTime)];
     
-    [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, kPreferredTimeScale) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
+    [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
     
     [self didChangeValueForKey:@keypath(self,currentPlaybackTime)];
 }
