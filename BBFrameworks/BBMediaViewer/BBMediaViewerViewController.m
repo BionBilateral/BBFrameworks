@@ -64,11 +64,8 @@ static NSTimeInterval const kAnimationDuration = 0.33;
     return self.tabBarController ? YES : NO;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-    return UIStatusBarAnimationFade;
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (instancetype)init {
