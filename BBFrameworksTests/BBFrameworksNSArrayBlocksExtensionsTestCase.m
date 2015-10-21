@@ -23,6 +23,17 @@
 
 @implementation BBFrameworksNSArrayBlocksExtensionsTestCase
 
+- (void)testEach {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@2,@3,@4];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    [begin BB_each:^(NSNumber *object, NSInteger index) {
+        [temp addObject:@(object.integerValue + 1)];
+    }];
+    
+    XCTAssertEqualObjects(temp, end);
+}
 - (void)testFilter {
     NSArray *begin = @[@1,@2,@3,@4];
     NSArray *end = @[@2,@4];
@@ -89,6 +100,85 @@
     XCTAssertFalse([begin BB_all:^BOOL(NSNumber *object, NSInteger index) {
         return object.integerValue % 2 == 0;
     }]);
+}
+- (void)testTake {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@1,@2];
+    
+    XCTAssertEqualObjects([begin BB_take:2], end);
+    
+    end = @[@1,@2,@3];
+    
+    XCTAssertEqualObjects([begin BB_take:begin.count], end);
+    
+    XCTAssertEqualObjects([begin BB_take:begin.count + 1], begin);
+}
+- (void)testDrop {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@1,@2];
+    
+    XCTAssertEqualObjects([begin BB_drop:1], end);
+    
+    end = @[];
+    
+    XCTAssertEqualObjects([begin BB_drop:begin.count], end);
+    
+    XCTAssertEqualObjects([begin BB_drop:begin.count + 1], end);
+}
+- (void)testZip {
+    NSArray *first = @[@1,@2];
+    NSArray *second = @[@3,@4];
+    NSArray *end = @[@[@1,@3],@[@2,@4]];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+    
+    second = @[@3,@4,@5];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+}
+- (void)testSum {
+    NSArray *begin = @[@1,@2,@3];
+    NSNumber *end = @6;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = @[@1.0,@2.0,@3.0];
+    end = @6.0;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = @[[NSDecimalNumber decimalNumberWithString:@"1"],[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"]];
+    end = [NSDecimalNumber decimalNumberWithString:@"6"];
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+}
+- (void)testProduct {
+    NSArray *begin = @[@2,@3,@4];
+    NSNumber *end = @24;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = @[@2.0,@3.0,@4.0];
+    end = @24.0;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = @[[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"],[NSDecimalNumber decimalNumberWithString:@"4"]];
+    end = [NSDecimalNumber decimalNumberWithString:@"24"];
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+}
+- (void)testMaximum {
+    NSArray *begin = @[@1,@3,@2];
+    NSNumber *end = @3;
+    
+    XCTAssertEqualObjects([begin BB_maximum], end);
+}
+- (void)testMinimum {
+    NSArray *begin = @[@1,@-1,@2];
+    NSNumber *end = @-1;
+    
+    XCTAssertEqualObjects([begin BB_minimum], end);
 }
 
 @end

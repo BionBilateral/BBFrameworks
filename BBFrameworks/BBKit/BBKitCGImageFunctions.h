@@ -17,10 +17,6 @@
 #define __BB_FRAMEWORKS_KIT_CGIMAGE_FUNCTIONS__
 
 #import <CoreGraphics/CGImage.h>
-#import "BBFoundationDebugging.h"
-
-#import <Accelerate/Accelerate.h>
-#import <AVFoundation/AVFoundation.h>
 
 /**
  Returns whether _imageRef_ has an alpha component.
@@ -28,77 +24,63 @@
  @param imageRef The CGImage to inspect
  @return YES if _imageRef_ has alpha, otherwise NO
  */
-static inline BOOL BBKitCGImageHasAlpha(CGImageRef imageRef) {
-    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
-    
-    return (alphaInfo == kCGImageAlphaFirst ||
-            alphaInfo == kCGImageAlphaLast ||
-            alphaInfo == kCGImageAlphaPremultipliedFirst ||
-            alphaInfo == kCGImageAlphaPremultipliedLast);
-}
+extern bool BBKitCGImageHasAlpha(CGImageRef imageRef);
 
 /**
- Creates a new CGImage by resizing _imageRef_ to _size_ while maintaining the aspect ratio of _imageRef_.
+ Calls `BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio()`, passing _imageRef_, _size_, and true respectively. The caller is responsible for releasing the returned CGImage.
  
- The returned CGImage follows the create rule and must be released by the caller. See https://developer.apple.com/library/ios/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html for more information.
+ @param imageRef The CGImage to resize
+ @param size The desired size of the resulting thumbnail image
+ @return The thumbnail image
+ @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
+ */
+extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size);
+/**
+ Creates a new CGImage by resizing _imageRef_ to _size_ and optionally maintaining the aspect ratio of imageRef. The caller is responsible for releasing the returned CGImage.
  
  @param imageRef The CGImage to use in thumbnail creation
  @param size That target size of the thumbnail
+ @param maintainAspectRatio Whether to maintain the aspect ratio of the resulting thumbnail image
  @return The CGImage thumbnail
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
-static inline CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size) {
-    NSCParameterAssert(imageRef);
-    NSCParameterAssert(!CGSizeEqualToSize(size, CGSizeZero));
-    
-    CGSize destSize = AVMakeRectWithAspectRatioInsideRect(CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), CGRectMake(0, 0, size.width, size.height)).size;
-    CGImageRef sourceImageRef = imageRef;
-    CFDataRef sourceDataRef = CGDataProviderCopyData(CGImageGetDataProvider(sourceImageRef));
-    vImage_Buffer source = {
-        .data = (void *)CFDataGetBytePtr(sourceDataRef),
-        .height = CGImageGetHeight(sourceImageRef),
-        .width = CGImageGetWidth(sourceImageRef),
-        .rowBytes = CGImageGetBytesPerRow(sourceImageRef)
-    };
-    vImage_Buffer destination;
-    vImage_Error error = vImageBuffer_Init(&destination, (vImagePixelCount)destSize.height, (vImagePixelCount)destSize.width, (uint32_t)CGImageGetBitsPerPixel(sourceImageRef), kvImageNoFlags);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CFRelease(sourceDataRef);
-        return NULL;
-    }
-    
-    error = vImageScale_ARGB8888(&source, &destination, NULL, kvImageHighQualityResampling|kvImageEdgeExtend);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CFRelease(sourceDataRef);
-        return NULL;
-    }
-    
-    CFRelease(sourceDataRef);
-    
-    vImage_CGImageFormat format = {
-        .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(sourceImageRef),
-        .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(sourceImageRef),
-        .colorSpace = NULL,
-        .bitmapInfo = CGImageGetBitmapInfo(sourceImageRef),
-        .version = 0,
-        .decode = NULL,
-        .renderingIntent = kCGRenderingIntentDefault
-    };
-    CGImageRef destImageRef = vImageCreateCGImageFromBuffer(&destination, &format, NULL, NULL, kvImageNoFlags, &error);
-    
-    free(destination.data);
-    
-    if (error != kvImageNoError) {
-        BBLogObject(@(error));
-        CGImageRelease(destImageRef);
-        return NULL;
-    }
-    
-    return destImageRef;
-}
+extern CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio);
+
+/**
+ Creates a new CGImage by blurring the provided imageRef using a box filter with radius. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage to blur
+ @param radius The radius of the box filter to produce the blur
+ @return The blurred CGImage
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef, CGFloat radius);
+/**
+ Creates a new CGImage by adjusting the brightness of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose brightness to adjust
+ @param delta The amount to adjust brightness by
+ @return The image with its brightness adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+/**
+ Creates a new CGImage by adjusting the contrast of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose contrast to adjust
+ @param delta The amount to adjust contrast by
+ @return The image with its contrast adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+/**
+ Creates a new CGImage by adjusting the saturation of the provided imageRef by delta. The delta parameter should be greater than or less than 1.0. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose saturation to adjust
+ @param delta The amount to adjust saturation by
+ @return The image with its saturation adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta);
 
 #endif

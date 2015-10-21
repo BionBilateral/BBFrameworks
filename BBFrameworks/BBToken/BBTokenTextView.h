@@ -16,6 +16,8 @@
 #import "BBTextView.h"
 #import "BBTokenTextViewDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBTokenTextView is a UITextView subclass that acts like NSTokenField on OSX.
  */
@@ -26,27 +28,27 @@
  
  @see BBTokenTextViewDelegate
  */
-@property (weak,nonatomic) id<BBTokenTextViewDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBTokenTextViewDelegate> delegate;
 
 /**
  Set and get the represented objects of the receiver.
  
  These can either be NSString objects or custom model objects. If custom model objects are provided, the delegate should implement `tokenTextView:representedObjectForEditingText:` and `tokenTextView:displayTextForRepresentedObject:`.
  */
-@property (copy,nonatomic) NSArray *representedObjects;
+@property (copy,nonatomic,nullable) NSArray *representedObjects;
 
 /**
  Set and get the character set used to delimit tokens.
  
  The default is [NSCharacterSet characterSetWithCharactersInString:@","].
  */
-@property (copy,nonatomic) NSCharacterSet *tokenizingCharacterSet;
+@property (copy,nonatomic,null_resettable) NSCharacterSet *tokenizingCharacterSet;
 /**
  Set and get the NSTextAttachment class used to draw tokens.
  
  The default is BBTokenTextAttachment.
  */
-@property (copy,nonatomic) NSString *tokenTextAttachmentClassName UI_APPEARANCE_SELECTOR;
+@property (copy,nonatomic,null_resettable) NSString *tokenTextAttachmentClassName UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the completion delay of the receiver.
@@ -59,19 +61,21 @@
  
  The default is BBTokenCompletionDefaultTableViewCell.
  */
-@property (copy,nonatomic) NSString *completionTableViewCellClassName UI_APPEARANCE_SELECTOR;
+@property (copy,nonatomic,null_resettable) NSString *completionTableViewCellClassName UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get the typing font of the receiver. Set this instead of the font of the receiver.
  
  The default is [UIFont systemFontOfSize:14.0].
  */
-@property (strong,nonatomic) UIFont *typingFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *typingFont UI_APPEARANCE_SELECTOR;
 /**
  Set and get the typing text color of the receiver. Set this instead of the text color of the receiver.
  
  The default is [UIColor blackColor].
  */
-@property (strong,nonatomic) UIColor *typingTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *typingTextColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

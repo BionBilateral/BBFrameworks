@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "FormTableViewFooterView.h"
+#import "FormViewController.h"
 
 #import <BBFrameworks/BBWebKit.h>
 #import <BBFrameworks/BBKit.h>
@@ -61,7 +62,12 @@
 @synthesize formField=_formField;
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
-    [[UIViewController BB_viewControllerForPresenting] BB_presentWebKitViewControllerForURL:URL];
+    FormViewController *formController = [[FormViewController alloc] init];
+    UIViewController *viewController = [[UINavigationController alloc] initWithRootViewController:formController];
+    
+    [viewController setModalPresentationStyle:formController.modalPresentationStyle];
+    
+    [[UIViewController BB_viewControllerForPresenting] presentViewController:viewController animated:YES completion:nil];
     return NO;
 }
 

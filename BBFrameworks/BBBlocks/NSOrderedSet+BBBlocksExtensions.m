@@ -17,6 +17,13 @@
 
 @implementation NSOrderedSet (BBBlocksExtensions)
 
+- (void)BB_each:(void(^)(id object, NSInteger idx))block; {
+    NSParameterAssert(block);
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        block(obj,idx);
+    }];
+}
 - (NSOrderedSet *)BB_filter:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
@@ -58,7 +65,7 @@
     
     return retval;
 }
-- (NSOrderedSet *)BB_map:(id(^)(id object, NSInteger index))block; {
+- (NSOrderedSet *)BB_map:(id _Nullable(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
     NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
@@ -107,6 +114,101 @@
     }];
     
     return retval;
+}
+- (NSOrderedSet *)BB_take:(NSInteger)count; {
+    if (count > self.count) {
+        return self;
+    }
+    else {
+        return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, count)]]];
+    }
+}
+- (NSOrderedSet *)BB_drop:(NSInteger)count; {
+    if (count > self.count) {
+        return [NSOrderedSet orderedSet];
+    }
+    else {
+        return [NSOrderedSet orderedSetWithArray:[self objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.count - count)]]];
+    }
+}
+- (NSOrderedSet *)BB_zip:(NSOrderedSet *)orderedSet; {
+    NSParameterAssert(orderedSet);
+    
+    NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (idx < orderedSet.count) {
+            [retval addObject:[NSOrderedSet orderedSetWithArray:@[obj,orderedSet[idx]]]];
+        }
+    }];
+    
+    return retval;
+}
+- (id)BB_sum; {
+    if (self.count > 0) {
+        NSNumber *first = self.firstObject;
+        
+        if ([first isKindOfClass:[NSDecimalNumber class]]) {
+            return [self BB_reduceWithStart:[NSDecimalNumber zero] block:^id(NSDecimalNumber *sum, NSDecimalNumber *object, NSInteger index) {
+                return [sum decimalNumberByAdding:object];
+            }];
+        }
+        else {
+            NSString *type = [NSString stringWithUTF8String:first.objCType];
+            
+            if ([type isEqualToString:@"d"] ||
+                [type isEqualToString:@"f"]) {
+                
+                return [self BB_reduceWithStart:@0.0 block:^id(NSNumber *sum, NSNumber *object, NSInteger index) {
+                    return @(sum.doubleValue + object.doubleValue);
+                }];
+            }
+            else {
+                return [self BB_reduceWithStart:@0 block:^id(NSNumber *sum, NSNumber *object, NSInteger index) {
+                    return @(sum.integerValue + object.integerValue);
+                }];
+            }
+        }
+    }
+    return @0;
+}
+- (id)BB_product; {
+    if (self.count > 0) {
+        NSNumber *first = self.firstObject;
+        
+        if ([first isKindOfClass:[NSDecimalNumber class]]) {
+            return [self BB_reduceWithStart:[NSDecimalNumber one] block:^id(NSDecimalNumber *sum, NSDecimalNumber *object, NSInteger index) {
+                return [sum decimalNumberByMultiplyingBy:object];
+            }];
+        }
+        else {
+            NSString *type = [NSString stringWithUTF8String:first.objCType];
+            
+            if ([type isEqualToString:@"d"] ||
+                [type isEqualToString:@"f"]) {
+                
+                return [self BB_reduceWithStart:@1.0 block:^id(NSNumber *sum, NSNumber *object, NSInteger index) {
+                    return @(sum.doubleValue * object.doubleValue);
+                }];
+            }
+            else {
+                return [self BB_reduceWithStart:@1 block:^id(NSNumber *sum, NSNumber *object, NSInteger index) {
+                    return @(sum.integerValue * object.integerValue);
+                }];
+            }
+        }
+    }
+    return @0;
+}
+- (id)BB_maximum; {
+    return [self BB_reduceWithStart:self.firstObject block:^id(id sum, id object, NSInteger index) {
+        return [object compare:sum] == NSOrderedDescending ? object : sum;
+    }];
+}
+- (id)BB_minimum; {
+    return [self BB_reduceWithStart:self.firstObject block:^id(id sum, id object, NSInteger index) {
+        return [object compare:sum] == NSOrderedAscending ? object : sum;
+    }];
 }
 
 @end

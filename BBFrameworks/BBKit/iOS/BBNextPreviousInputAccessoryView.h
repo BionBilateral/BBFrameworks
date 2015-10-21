@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Notification posted when the previous bar button item is tapped.
  */
@@ -47,3 +49,5 @@ extern NSString *const BBNextPreviousInputAccessoryViewNotificationDone;
 + (instancetype)nextPreviousInputAccessoryViewWithResponder:(UIResponder *)responder;
 
 @end
+
+NS_ASSUME_NONNULL_END

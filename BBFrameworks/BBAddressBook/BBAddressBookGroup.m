@@ -24,6 +24,7 @@
 @end
 
 @implementation BBAddressBookGroup
+
 #pragma mark *** Public Methods ***
 - (instancetype)initWithGroup:(ABRecordRef)group {
     if (!(self = [super init]))

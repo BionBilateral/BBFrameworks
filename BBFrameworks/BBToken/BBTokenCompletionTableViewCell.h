@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBTokenCompletion.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BBTokenCompletionTableViewCell <NSObject>
 @required
 /**
@@ -30,3 +32,5 @@
  */
 + (CGFloat)rowHeight;
 @end
+
+NS_ASSUME_NONNULL_END

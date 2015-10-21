@@ -21,6 +21,8 @@
 #import <AppKit/AppKit.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Options mask describing the border options of the receiver.
  */
@@ -103,9 +105,9 @@ typedef NS_OPTIONS(NSInteger, BBViewBorderOptions) {
  The default is [UIColor blackColor]/[NSColor blackColor].
  */
 #if (TARGET_OS_IPHONE)
-@property (strong,nonatomic) UIColor *borderColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *borderColor UI_APPEARANCE_SELECTOR;
 #else
-@property (strong,nonatomic) NSColor *borderColor;
+@property (strong,nonatomic,null_resettable) NSColor *borderColor;
 #endif
 
 /**
@@ -114,7 +116,7 @@ typedef NS_OPTIONS(NSInteger, BBViewBorderOptions) {
  Equivalent to backgroundColor on UIView.
  */
 #if (!TARGET_OS_IPHONE)
-@property (strong,nonatomic) NSColor *backgroundColor;
+@property (strong,nonatomic,nullable) NSColor *backgroundColor;
 #endif
 
 #if (TARGET_OS_IPHONE)
@@ -125,3 +127,5 @@ typedef NS_OPTIONS(NSInteger, BBViewBorderOptions) {
 #endif
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBThumbnailOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBThumbnailOperationWrapper is a NSObject subclass that wraps the specialized NSOperation subclasses vended by BBThumbnailGenerator.
  */
@@ -24,6 +26,8 @@
 /**
  Set and get the NSOperation subclass owned by the receiver.
  */
-@property (strong) NSOperation<BBThumbnailOperation> *operation;
+@property (strong,nullable) NSOperation<BBThumbnailOperation> *operation;
 
 @end
+
+NS_ASSUME_NONNULL_END

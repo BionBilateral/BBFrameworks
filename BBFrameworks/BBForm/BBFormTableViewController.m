@@ -28,6 +28,7 @@
 #import "BBNextPreviousInputAccessoryView.h"
 #import "BBBlocks.h"
 #import "NSArray+BBFoundationExtensions.h"
+#import "BBFoundationDebugging.h"
 
 @interface BBFormTableViewController ()
 @property (copy,nonatomic) NSArray *formFields;
@@ -370,11 +371,16 @@
     }
 }
 - (void)_keyboardNotification:(NSNotification *)note {
+    // if we are embedded in a navigation controller with another view controller in between, let the superclass handle moving the keyboard
+    if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
+        return;
+    }
+    
     NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     if ([note.name isEqualToString:UIKeyboardWillShowNotification]) {
-        CGRect keyboardFrame = [self.tableView convertRect:[self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil] fromView:nil];
+        CGRect keyboardFrame = [self.tableView.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromWindow:nil];
         
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             [UIView setAnimationCurve:curve];

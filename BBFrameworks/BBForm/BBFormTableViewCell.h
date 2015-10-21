@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBFormFieldTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern CGFloat const BBFormTableViewCellMargin;
 
 @class BBFormField;
@@ -24,11 +26,13 @@ extern CGFloat const BBFormTableViewCellMargin;
 
 @property (readonly,nonatomic) id<UILayoutSupport> rightLayoutGuide;
 
-@property (strong,nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIFont *subtitleFont UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *subtitleTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *subtitleFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *subtitleTextColor UI_APPEARANCE_SELECTOR;
 
 - (void)layoutSubviews NS_REQUIRES_SUPER;
 
 @end
+
+NS_ASSUME_NONNULL_END

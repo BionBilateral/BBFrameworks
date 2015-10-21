@@ -16,6 +16,7 @@
 #ifndef __BB_FRAMEWORKS_CORE_DATA__
 #define __BB_FRAMEWORKS_CORE_DATA__
 
+#import "NSFetchRequest+BBCoreDataExtensions.h"
 #import "NSManagedObjectContext+BBCoreDataExtensions.h"
 
 #import "BBManagedObjectEntityMapping.h"

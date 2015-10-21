@@ -17,7 +17,32 @@
 
 #import <BBFrameworks/BBTooltip.h>
 
-@interface TooltipsRowViewController () <BBTooltipViewControllerDataSource>
+@interface TooltipButton : UIButton <BBTooltipAccessoryView>
+
+@end
+
+@implementation TooltipButton
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setAccessibilityHint:@"Dismisses the tooltip"];
+    
+    [self addTarget:self action:@selector(_tooltipButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return self;
+}
+
+@synthesize displayNextTooltipBlock=_displayNextTooltipBlock;
+
+- (IBAction)_tooltipButtonAction:(id)sender {
+    self.displayNextTooltipBlock();
+}
+
+@end
+
+@interface TooltipsRowViewController () <BBTooltipViewControllerDataSource,BBTooltipViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *button;
 @property (weak,nonatomic) IBOutlet UILabel *label1;
 @property (weak,nonatomic) IBOutlet UILabel *label2;
@@ -33,6 +58,9 @@
         [[BBTooltipView appearance] setTooltipFont:[UIFont boldSystemFontOfSize:12.0]];
         [[BBTooltipView appearance] setTooltipTextColor:[UIColor whiteColor]];
         [[BBTooltipView appearance] setTooltipBackgroundColor:[UIColor blueColor]];
+        [[BBTooltipView appearance] setTooltipCornerRadius:0.0];
+        [[BBTooltipView appearance] setTooltipArrowWidth:20.0];
+        [[BBTooltipView appearance] setTooltipArrowHeight:10.0];
     }
 }
 
@@ -61,10 +89,22 @@
     return self.tooltipDicts[index][@"view"];
 }
 
+- (UIView<BBTooltipAccessoryView> *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index {
+    TooltipButton *retval = [[TooltipButton alloc] initWithFrame:CGRectZero];
+    
+    [retval setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [retval setTitle:@"OK" forState:UIControlStateNormal];
+    [retval.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+    [retval setContentEdgeInsets:UIEdgeInsetsMake(8.0, 0, 8.0, 0)];
+    
+    return retval;
+}
+
 - (IBAction)_buttonAction:(id)sender {
     BBTooltipViewController *viewController = [[BBTooltipViewController alloc] init];
     
     [viewController setDataSource:self];
+    [viewController setDelegate:self];
     
     [self presentViewController:viewController animated:YES completion:nil];
 }

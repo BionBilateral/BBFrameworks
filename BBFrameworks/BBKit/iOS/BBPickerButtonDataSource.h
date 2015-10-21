@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBPickerButton;
 
 /**
@@ -51,7 +53,7 @@
  @param component The component
  @return The title for row and component
  */
-- (NSString *)pickerButton:(BBPickerButton *)pickerButton titleForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (nullable NSString *)pickerButton:(BBPickerButton *)pickerButton titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 /**
  Return the attributed title for the provided row and component.
  
@@ -62,5 +64,7 @@
  @param component The component
  @return The attributed title for row and component
  */
-- (NSAttributedString *)pickerButton:(BBPickerButton *)pickerButton attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (nullable NSAttributedString *)pickerButton:(BBPickerButton *)pickerButton attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component;
 @end
+
+NS_ASSUME_NONNULL_END

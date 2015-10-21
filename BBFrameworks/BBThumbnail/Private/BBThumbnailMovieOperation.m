@@ -16,6 +16,8 @@
 #import "BBThumbnailMovieOperation.h"
 #import "BBKitCGImageFunctions.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 static int32_t const kPreferredTimeScale = 1;
 
 @interface BBThumbnailMovieOperation ()

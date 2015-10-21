@@ -81,11 +81,14 @@
 
 - (void)_BBTokenTextViewInit;
 
+- (void)_resetTapGestureRecognizer;
+
 - (void)_showCompletionsTableView;
 - (void)_hideCompletionsTableViewAndSelectCompletion:(id<BBTokenCompletion>)completion;
 
 - (NSRange)_completionRangeForRange:(NSRange)range;
-- (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index;
+- (NSInteger)_indexOfTokenTextAttachmentInRange:(NSRange)range textAttachment:(id<BBTokenTextAttachment> *)textAttachment;
+- (NSArray *)_copyTokenTextAttachmentsInRange:(NSRange)range;
 
 + (NSCharacterSet *)_defaultTokenizingCharacterSet;
 + (NSTimeInterval)_defaultCompletionDelay;
@@ -113,12 +116,123 @@
     
     return self;
 }
-// disable cut:, copy:, and paste: for now, need to investigate how to duplicate Mail.app interactions using text attachments
+
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (action == @selector(selectAll:)) {
-        return YES;
+    if ([self.delegate respondsToSelector:@selector(tokenTextView:canPerformAction:withSender:)]) {
+        return [self.delegate tokenTextView:self canPerformAction:action withSender:sender];
     }
-    return NO;
+    return [super canPerformAction:action withSender:sender];
+}
+
+- (void)cut:(id)sender {
+    NSRange range = self.selectedRange;
+    NSArray *representedObjects = [self _copyTokenTextAttachmentsInRange:range];
+    
+    [self.textStorage deleteCharactersInRange:range];
+    
+    [self setSelectedRange:NSMakeRange(range.location, 0)];
+    
+    [self textViewDidChangeSelection:self];
+    
+    if ([self.delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
+        [self.delegate textViewDidChangeSelection:self];
+    }
+    
+    [self textViewDidChange:self];
+    
+    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+        [self.delegate textViewDidChange:self];
+    }
+    
+    if (representedObjects.count > 0) {
+        if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
+            NSInteger index = [self _indexOfTokenTextAttachmentInRange:range textAttachment:NULL];
+            
+            [self.delegate tokenTextView:self didRemoveRepresentedObjects:representedObjects atIndex:index];
+        }
+    }
+}
+- (void)copy:(id)sender {
+    [self _copyTokenTextAttachmentsInRange:self.selectedRange];
+}
+- (void)paste:(id)sender {
+    NSArray *representedObjects;
+    NSInteger index = [self _indexOfTokenTextAttachmentInRange:self.selectedRange textAttachment:NULL];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    
+    if ([self.delegate respondsToSelector:@selector(tokenTextView:readFromPasteboard:)]) {
+        representedObjects = [self.delegate tokenTextView:self readFromPasteboard:pasteboard];
+    }
+    else {
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        NSMutableCharacterSet *characterSet = [self.tokenizingCharacterSet mutableCopy];
+        
+        [characterSet formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
+        
+        for (NSString *string in pasteboard.strings) {
+            for (NSString *subString in [string componentsSeparatedByCharactersInSet:characterSet]) {
+                NSString *tokenText = [subString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                id representedObject = tokenText;
+                
+                if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectForEditingText:)]) {
+                    representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:tokenText];
+                }
+                
+                [temp addObject:representedObject];
+            }
+        }
+        
+        if (temp.count > 0) {
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
+                representedObjects = [self.delegate tokenTextView:self shouldAddRepresentedObjects:temp atIndex:index];
+            }
+        }
+    }
+    
+    if (representedObjects.count > 0) {
+        NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
+        
+        // loop through each represented object and ask the delegate for the display text for each one
+        for (id obj in representedObjects) {
+            NSString *displayText = [obj description];
+            
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:displayTextForRepresentedObject:)]) {
+                displayText = [self.delegate tokenTextView:self displayTextForRepresentedObject:obj];
+            }
+            
+            [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:obj text:displayText tokenTextView:self]]];
+        }
+        
+        NSMutableArray *deletedRepresentedObjects = [[NSMutableArray alloc] init];
+        
+        if (self.selectedRange.length > 0) {
+            [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:self.selectedRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment *_Nullable value, NSRange range, BOOL * _Nonnull stop) {
+                if (value.representedObject) {
+                    [deletedRepresentedObjects addObject:value.representedObject];
+                }
+            }];
+        }
+        
+        NSRange newSelectedRange = NSMakeRange(self.selectedRange.location + temp.length, 0);
+        
+        // replace all characters in token range with the text attachments
+        [self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:temp];
+        
+        [self setSelectedRange:newSelectedRange];
+        
+        // hide the completion table view if it was visible
+        [self _hideCompletionsTableViewAndSelectCompletion:nil];
+        
+        if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
+            [self.delegate tokenTextView:self didAddRepresentedObjects:representedObjects atIndex:index];
+        }
+        
+        if (deletedRepresentedObjects.count > 0) {
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
+                [self.delegate tokenTextView:self didRemoveRepresentedObjects:deletedRepresentedObjects atIndex:MAX(0, index - 1)];
+            }
+        }
+    }
 }
 
 @dynamic delegate;
@@ -130,7 +244,8 @@
 }
 #pragma mark NSTextStorageDelegate
 - (void)textStorage:(NSTextStorage *)textStorage didProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta {
-    [textStorage addAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor} range:NSMakeRange(0, textStorage.length)];
+    // fix up our attributes so that everything, including the attachments, use our desired font and text color
+    [textStorage addAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor} range:editedRange];
 }
 #pragma mark UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -155,8 +270,7 @@
             // initial array of represented objects to insert
             NSArray *representedObjects = @[representedObject];
             // index to insert the objects at
-            NSInteger index;
-            [self _tokenTextAttachmentForRange:range index:&index];
+            NSInteger index = [self _indexOfTokenTextAttachmentInRange:range textAttachment:NULL];
             
             // if the delegate responds to tokenTextView:shouldAddRepresentedObjects:atIndex use its return value for the represented objects to insert
             if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
@@ -208,6 +322,14 @@
             
             [self.textStorage deleteCharactersInRange:range];
             
+            [self setSelectedRange:NSMakeRange(range.location, 0)];
+            
+            [self textViewDidChangeSelection:self];
+            
+            if ([self.delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
+                [self.delegate textViewDidChangeSelection:self];
+            }
+            
             [self textViewDidChange:self];
             
             if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
@@ -217,8 +339,7 @@
             // if there are text attachments, call tokenTextView:didRemoveRepresentedObjects:atIndex: if its implemented
             if (representedObjects.count > 0) {
                 if ([self.delegate respondsToSelector:@selector(tokenTextView:didRemoveRepresentedObjects:atIndex:)]) {
-                    NSInteger index;
-                    [self _tokenTextAttachmentForRange:range index:&index];
+                    NSInteger index = [self _indexOfTokenTextAttachmentInRange:range textAttachment:NULL];
                     
                     [self.delegate tokenTextView:self didRemoveRepresentedObjects:representedObjects atIndex:index];
                 }
@@ -253,6 +374,9 @@
 #pragma mark UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.text.length > 0;
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return [otherGestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]];
 }
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -302,6 +426,10 @@
     }
     
     [self.textStorage replaceCharactersInRange:NSMakeRange(0, self.textStorage.length) withAttributedString:temp];
+    
+    if (self.selectedRange.length == 0) {
+        [self setSelectedRange:NSMakeRange(self.text.length, 0)];
+    }
 }
 
 - (void)setTokenizingCharacterSet:(NSCharacterSet *)tokenizingCharacterSet {
@@ -341,12 +469,15 @@
     
     [self setInternalDelegate:[[_BBTokenTextViewInternalDelegate alloc] init]];
     [self setDelegate:nil];
-    
+
+    [self _resetTapGestureRecognizer];
+}
+
+- (void)_resetTapGestureRecognizer; {
     [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)]];
     [self.tapGestureRecognizer setNumberOfTapsRequired:1];
     [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
     [self.tapGestureRecognizer setDelegate:self];
-    [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)_showCompletionsTableView; {
@@ -372,9 +503,7 @@
     if ([self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:completion:)] ||
         [self.delegate respondsToSelector:@selector(tokenTextView:completionsForSubstring:indexOfRepresentedObject:)]) {
         
-        NSInteger index;
-        [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
-        
+        NSInteger index = [self _indexOfTokenTextAttachmentInRange:self.selectedRange textAttachment:NULL];
         NSRange range = [self _completionRangeForRange:self.selectedRange];
         
         // prefer the async completions delegate method
@@ -403,8 +532,7 @@
             }
             
             NSArray *representedObjects = @[representedObject];
-            NSInteger index;
-            [self _tokenTextAttachmentForRange:self.selectedRange index:&index];
+            NSInteger index = [self _indexOfTokenTextAttachmentInRange:self.selectedRange textAttachment:NULL];
             
             // if the delegate responds to tokenTextView:shouldAddRepresentedObjects:atIndex use its return value for the represented objects to insert
             if ([self.delegate respondsToSelector:@selector(tokenTextView:shouldAddRepresentedObjects:atIndex:)]) {
@@ -462,21 +590,67 @@
     
     return retval;
 }
-- (BBTokenDefaultTextAttachment *)_tokenTextAttachmentForRange:(NSRange)range index:(NSInteger *)index; {
+- (NSInteger)_indexOfTokenTextAttachmentInRange:(NSRange)range textAttachment:(id<BBTokenTextAttachment> *)textAttachment; {
     // if we don't have any text, the attachment is nil, otherwise search for an attachment clamped to the passed in range.location and the end of our text - 1
-    BBTokenDefaultTextAttachment *retval = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+    BBTokenDefaultTextAttachment *attachment = self.text.length == 0 ? nil : [self.attributedText attribute:NSAttachmentAttributeName atIndex:MIN(range.location, self.attributedText.length - 1) effectiveRange:NULL];
+    NSArray *representedObjects = self.representedObjects;
+    NSInteger retval = [representedObjects indexOfObject:attachment.representedObject];
     
-    if (index) {
-        NSInteger outIndex = [self.representedObjects indexOfObject:retval.representedObject];
-        
-        if (outIndex == NSNotFound) {
-            outIndex = self.representedObjects.count;
-        }
-        
-        *index = outIndex;
+    if (retval == NSNotFound) {
+        retval = representedObjects.count;
+    }
+    
+    if (textAttachment) {
+        *textAttachment = attachment;
     }
     
     return retval;
+}
+- (NSArray *)_copyTokenTextAttachmentsInRange:(NSRange)range; {
+    NSMutableArray *representedObjects = [[NSMutableArray alloc] init];
+    NSMutableIndexSet *rangeAsIndexSet = [[NSMutableIndexSet alloc] initWithIndexesInRange:range];
+    
+    // enumerate text attachments in the range to be deleted and add their represented object to the array
+    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:0 usingBlock:^(BBTokenDefaultTextAttachment *value, NSRange range, BOOL *stop) {
+        if (value) {
+            [representedObjects addObject:value.representedObject];
+            
+            // remove the range of the attachment from the entire selected range
+            [rangeAsIndexSet removeIndexesInRange:range];
+        }
+    }];
+    
+    // if there is any plain text left selected, count will be > 0, create represented objects for left over text
+    if (rangeAsIndexSet.count > 0) {
+        [rangeAsIndexSet enumerateRangesUsingBlock:^(NSRange range, BOOL * _Nonnull stop) {
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectForEditingText:)]) {
+                [representedObjects addObject:[self.delegate tokenTextView:self representedObjectForEditingText:[self.textStorage.string substringWithRange:range]]];
+            }
+        }];
+    }
+    
+    if (representedObjects.count > 0) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        BOOL retval = NO;
+        
+        if ([self.delegate respondsToSelector:@selector(tokenTextView:writeRepresentedObjects:pasteboard:)]) {
+            retval = [self.delegate tokenTextView:self writeRepresentedObjects:representedObjects pasteboard:pasteboard];
+        }
+        
+        if (!retval) {
+            NSMutableArray *strings = [[NSMutableArray alloc] init];
+            
+            for (id representedObject in representedObjects) {
+                if ([self.delegate respondsToSelector:@selector(tokenTextView:displayTextForRepresentedObject:)]) {
+                    [strings addObject:[self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject]];
+                }
+            }
+            
+            [pasteboard setStrings:strings];
+        }
+    }
+    
+    return representedObjects;
 }
 
 + (NSCharacterSet *)_defaultTokenizingCharacterSet; {
@@ -508,7 +682,24 @@
 - (void)setCompletions:(NSArray *)completions {
     _completions = completions;
     
+    if (_completions.count == 0 &&
+        _tableView != nil) {
+        
+        [self _hideCompletionsTableViewAndSelectCompletion:nil];
+    }
+    
     [self.tableView reloadData];
+}
+- (void)setTapGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer {
+    if (_tapGestureRecognizer) {
+        [self removeGestureRecognizer:_tapGestureRecognizer];
+    }
+    
+    _tapGestureRecognizer = tapGestureRecognizer;
+    
+    if (_tapGestureRecognizer) {
+        [self addGestureRecognizer:_tapGestureRecognizer];
+    }
 }
 - (void)setSelectedTextAttachmentRanges:(NSIndexSet *)selectedTextAttachmentRanges {
     // force a display of the old selected token ranges
@@ -533,7 +724,7 @@
     
     // ask the layout manager for character index corresponding to the tapped location
     NSInteger index = [self.layoutManager characterIndexForPoint:location inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:NULL];
-    
+
     // if the index is within our text
     if (index < self.text.length) {
         // get the effective range for the token at index
@@ -560,6 +751,8 @@
             }
         }
     }
+    
+    [self _resetTapGestureRecognizer];
 }
 
 @end

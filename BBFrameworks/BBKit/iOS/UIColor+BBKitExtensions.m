@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "UIColor+BBKitExtensions.h"
+#import "BBFoundationMacros.h"
 
 @implementation UIColor (BBKitExtensions)
 
@@ -57,6 +58,32 @@
     retval = [UIColor colorWithRed:(CGFloat)red/0xff green:(CGFloat)green/0xff blue:(CGFloat)blue/0xff alpha:1.0];
     
     return retval;
+}
+
++ (UIColor *)BB_colorByAdjustingBrightnessOfColor:(UIColor *)color delta:(CGFloat)delta; {
+    CGFloat hue, saturation, brightness, alpha;
+    
+    if ([color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha]) {
+        brightness += delta - 1.0;
+        brightness = BBBoundedValue(brightness, 0.0, 1.0);
+        
+        return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    }
+    
+    CGFloat white;
+    
+    if ([color getWhite:&white alpha:&alpha]) {
+        white += delta - 1.0;
+        white = BBBoundedValue(white, 0.0, 1.0);
+        
+        return [UIColor colorWithWhite:white alpha:alpha];
+    }
+    
+    return nil;
+}
+
+- (UIColor *)BB_colorByAdjustingBrightnessBy:(CGFloat)delta; {
+    return [self.class BB_colorByAdjustingBrightnessOfColor:self delta:delta];
 }
 
 @end

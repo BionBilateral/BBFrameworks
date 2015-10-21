@@ -16,6 +16,8 @@
 #import "BBThumbnailBaseOperation.h"
 #import "BBThumbnailOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBThumbnailAsyncOperation is a NSOperation subclass that serves as the base class for operations that need to manage their own threading.
  */
@@ -31,6 +33,8 @@
 
 @property (strong) NSURLSessionTask *task;
 
-- (void)finishOperationWithImage:(BBThumbnailGeneratorImageClass *)image error:(NSError *)error;
+- (void)finishOperationWithImage:(nullable BBThumbnailGeneratorImageClass *)image error:(nullable NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -17,6 +17,13 @@
 
 @implementation NSSet (BBBlocksExtensions)
 
+- (void)BB_each:(void(^)(id object))block; {
+    NSParameterAssert(block);
+    
+    [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        block(obj);
+    }];
+}
 - (NSSet *)BB_filter:(BOOL(^)(id object))block; {
     NSParameterAssert(block);
     
@@ -44,7 +51,7 @@
     
     return retval;
 }
-- (NSSet *)BB_map:(id(^)(id object))block; {
+- (NSSet *)BB_map:(id _Nullable(^)(id object))block; {
     NSParameterAssert(block);
     
     NSMutableSet *retval = [[NSMutableSet alloc] init];
@@ -93,6 +100,72 @@
     }];
     
     return retval;
+}
+- (id)BB_sum; {
+    if (self.count > 0) {
+        NSNumber *first = self.anyObject;
+        
+        if ([first isKindOfClass:[NSDecimalNumber class]]) {
+            return [self BB_reduceWithStart:[NSDecimalNumber zero] block:^id(NSDecimalNumber *sum, NSDecimalNumber *object) {
+                return [sum decimalNumberByAdding:object];
+            }];
+        }
+        else {
+            NSString *type = [NSString stringWithUTF8String:first.objCType];
+            
+            if ([type isEqualToString:@"d"] ||
+                [type isEqualToString:@"f"]) {
+                
+                return [self BB_reduceWithStart:@0.0 block:^id(NSNumber *sum, NSNumber *object) {
+                    return @(sum.doubleValue + object.doubleValue);
+                }];
+            }
+            else {
+                return [self BB_reduceWithStart:@0 block:^id(NSNumber *sum, NSNumber *object) {
+                    return @(sum.integerValue + object.integerValue);
+                }];
+            }
+        }
+    }
+    return @0;
+}
+- (id)BB_product; {
+    if (self.count > 0) {
+        NSNumber *first = self.anyObject;
+        
+        if ([first isKindOfClass:[NSDecimalNumber class]]) {
+            return [self BB_reduceWithStart:[NSDecimalNumber one] block:^id(NSDecimalNumber *sum, NSDecimalNumber *object) {
+                return [sum decimalNumberByMultiplyingBy:object];
+            }];
+        }
+        else {
+            NSString *type = [NSString stringWithUTF8String:first.objCType];
+            
+            if ([type isEqualToString:@"d"] ||
+                [type isEqualToString:@"f"]) {
+                
+                return [self BB_reduceWithStart:@1.0 block:^id(NSNumber *sum, NSNumber *object) {
+                    return @(sum.doubleValue * object.doubleValue);
+                }];
+            }
+            else {
+                return [self BB_reduceWithStart:@1 block:^id(NSNumber *sum, NSNumber *object) {
+                    return @(sum.integerValue * object.integerValue);
+                }];
+            }
+        }
+    }
+    return @0;
+}
+- (id)BB_maximum; {
+    return [self BB_reduceWithStart:self.anyObject block:^id(id sum, id object) {
+        return [object compare:sum] == NSOrderedDescending ? object : sum;
+    }];
+}
+- (id)BB_minimum; {
+    return [self BB_reduceWithStart:self.anyObject block:^id(id sum, id object) {
+        return [object compare:sum] == NSOrderedAscending ? object : sum;
+    }];
 }
 
 @end

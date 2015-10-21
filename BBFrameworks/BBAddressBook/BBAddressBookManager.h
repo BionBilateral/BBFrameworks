@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/ABAddressBook.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum describing the authorization status of the AddressBook framework.
  */
@@ -63,7 +65,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block that is invoked once authorization status has been determined
  @exception NSException Thrown if completion is nil
  */
-- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
+- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *_Nullable error))completion;
 
 /**
  Calls `[self requestPeopleWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
@@ -72,7 +74,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block to invoke once the request is complete
  @exception NSException Thrown if completion is nil
  */
-- (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion;
+- (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *_Nullable error))completion;
 /**
  Attempts to fetch BBAddressBookPerson objects for the provided record ids and invokes the completion block when the operation is complete.
  
@@ -80,7 +82,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block to invoke once the request is complete
  @exception NSException Thrown if recordIDs or completion are nil
  */
-- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion;
+- (void)requestPeopleWithRecordIDs:(NSArray<NSNumber *> *)recordIDs completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *_Nullable error))completion;
 
 /**
  Calls `[self requestGroupsWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
@@ -89,7 +91,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block to invoke once the request is complete
  @exception NSException Thrown if completion is nil
  */
-- (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion;
+- (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *_Nullable error))completion;
 /**
  Attempts to fetch BBAddressBookGroup objects for the provided record ids and invokes the completion block when the operation is complete.
  
@@ -97,7 +99,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block to invoke once the request is complete
  @exception NSException Thrown if recordIDs or completion are nil
  */
-- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *groups, NSError *error))completion;
+- (void)requestGroupsWithRecordIDs:(NSArray<NSNumber *> *)recordIDs completion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *_Nullable error))completion;
 
 /**
  Calls `[self requestAllPeopleWithSortDescriptors:completion:]`, passing nil and completion respectively.
@@ -105,7 +107,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block that is invoked when the request is complete
  @exception NSException Thrown if completion is nil
  */
-- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion;
+- (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *_Nullable error))completion;
 /**
  Requests all people in the address book sorted with the provided sort descriptors and invokes the completion block when the request is complete. The array of people in the completion block will contain BBAddressBookPerson instances. See BBAddressBookPerson.h for supported keys for sorting.
  
@@ -113,7 +115,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block to invoke when the operation is complete
  @exception NSException Thrown if completion is nil
  */
-- (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion;
+- (void)requestAllPeopleWithSortDescriptors:(nullable NSArray *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *_Nullable error))completion;
 
 /**
  Calls `[self requestAllGroupsWithSortDescriptors:completion:]`, passing nil and completion respectively.
@@ -121,7 +123,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block that is invoked when the request is complete
  @exception NSException Throw if completion is nil
  */
-- (void)requestAllGroupsWithCompletion:(void(^)(NSArray *groups, NSError *error))completion;
+- (void)requestAllGroupsWithCompletion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *_Nullable error))completion;
 /**
  Requests all groups in the address book sorted with the provided sort descriptors and invokes the completion block when the request is complete. The array of groups in the completion block will contain BBAddressBookGroup instances. See BBAddressBookGroup.h for supported keys for sorting.
  
@@ -129,6 +131,8 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block to invoke when the operation is complete
  @exception NSException Thrown if completion is nil
  */
-- (void)requestAllGroupsWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *groups, NSError *error))completion;
+- (void)requestAllGroupsWithSortDescriptors:(nullable NSArray *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *_Nullable error))completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

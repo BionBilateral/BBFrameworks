@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol for objects that map JSON keys to managed object property names.
  */
@@ -47,7 +49,7 @@
  @param context The managed object context
  @return The entity property value
  */
-- (id)entityPropertyValueForEntityPropertyKey:(NSString *)propertyKey value:(id)value entityName:(NSString *)entityName context:(NSManagedObjectContext *)context;
+- (id)entityPropertyValueForEntityPropertyKey:(NSString *)propertyKey value:(nullable id)value entityName:(NSString *)entityName context:(NSManagedObjectContext *)context;
 
 @optional
 /**
@@ -59,5 +61,7 @@
  @param context The managed object context
  @return The JSON value
  */
-- (id)JSONValueForEntityPropertyKey:(NSString *)propertyKey value:(id)value entityName:(NSString *)entityName context:(NSManagedObjectContext *)context;
+- (id)JSONValueForEntityPropertyKey:(NSString *)propertyKey value:(nullable id)value entityName:(NSString *)entityName context:(NSManagedObjectContext *)context;
 @end
+
+NS_ASSUME_NONNULL_END

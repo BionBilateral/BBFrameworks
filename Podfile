@@ -1,8 +1,8 @@
 source "https://github.com/CocoaPods/Specs.git"
 
 def common_pods
-  pod "ReactiveCocoa", "~> 2.5.0"
-  pod "ReactiveViewModel", "~> 0.3.0"
+  pod "ReactiveCocoa", "~> 2.5"
+  pod "ReactiveViewModel", "~> 0.3"
 end
 
 target :iOSDemo do

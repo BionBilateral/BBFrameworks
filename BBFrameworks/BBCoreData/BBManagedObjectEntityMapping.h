@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol for objects that map JSON keys to entity names.
  */
@@ -36,3 +38,5 @@
  */
 - (NSString *)JSONEntityNameForEntityName:(NSString *)entityName;
 @end
+
+NS_ASSUME_NONNULL_END

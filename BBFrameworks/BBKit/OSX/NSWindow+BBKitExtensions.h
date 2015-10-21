@@ -15,6 +15,8 @@
 
 #import <AppKit/AppKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSWindow adding various convenience methods.
  */
@@ -34,3 +36,5 @@
 - (NSWindow *)BB_windowForPresenting;
 
 @end
+
+NS_ASSUME_NONNULL_END

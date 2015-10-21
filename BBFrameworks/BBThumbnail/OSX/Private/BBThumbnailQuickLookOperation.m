@@ -44,6 +44,8 @@
     else {
         NSImage *retval = [[NSWorkspace sharedWorkspace] iconForFile:self.URL.path];
         
+        retval = [retval BB_imageByResizingToSize:self.size];
+        
         self.operationCompletionBlock(retval,nil);
     }
 }

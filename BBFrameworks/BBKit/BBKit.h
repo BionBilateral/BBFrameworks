@@ -21,6 +21,10 @@
 #import "BBKitColorMacros.h"
 
 #import "NSURL+BBKitExtensions.h"
+#import "CIImage+BBKitExtensions.h"
+#import "NSString+BBKitExtensions.h"
+#import "NSData+BBKitExtensions.h"
+#import "NSParagraphStyle+BBKitExtensions.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
 #import "UIView+BBKitExtensions.h"
@@ -35,6 +39,8 @@
 #import "BBNextPreviousInputAccessoryView.h"
 #import "BBTextView.h"
 #import "BBAnythingGestureRecognizer.h"
+#import "BBProgressSlider.h"
+#import "BBProgressNavigationBar.h"
 #else
 #import "NSImage+BBKitExtensions.h"
 #import "NSAlert+BBKitExtensions.h"

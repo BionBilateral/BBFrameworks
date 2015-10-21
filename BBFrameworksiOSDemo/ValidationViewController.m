@@ -16,8 +16,8 @@
 #import "ValidationViewController.h"
 
 #import <BBFrameworks/BBKit.h>
-#import <BBFrameworks/BBReactiveKit.h>
 #import <BBFrameworks/BBValidation.h>
+#import <BBFrameworks/BBFoundation.h>
 
 @interface ValidationViewController ()
 @property (weak,nonatomic) IBOutlet BBTextField *phoneNumberTextField;

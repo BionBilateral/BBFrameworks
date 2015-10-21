@@ -16,9 +16,13 @@
 #import <UIKit/UIKit.h>
 #import "BBTokenCompletionTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBTokenCompletionTableViewCell is a UITableViewCell that displays possible completions attached to a BBTokenTextView.
  */
 @interface BBTokenCompletionDefaultTableViewCell : UITableViewCell <BBTokenCompletionTableViewCell>
 
 @end
+
+NS_ASSUME_NONNULL_END

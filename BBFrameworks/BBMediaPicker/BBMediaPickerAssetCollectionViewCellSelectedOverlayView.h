@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetCollectionViewCellSelectedOverlayView : UIView
 
 /**
@@ -27,18 +29,20 @@
  
  The default is [UIColor whiteColor].
  */
-@property (strong,nonatomic) UIColor *selectedOverlayForegroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *selectedOverlayForegroundColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the selected overlay tint color. This affects the checkmark that is drawn within the selected overlay when the represented view model is selected. If nil, the tintColor of the receiver is used.
  
  The default is nil.
  */
-@property (strong,nonatomic) UIColor *selectedOverlayTintColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *selectedOverlayTintColor UI_APPEARANCE_SELECTOR;
 /**
  Set and get the selected overlay background color. This is the view that is placed over the thumbnail image when the represented view model is selected.
  
  The default is BBColorWA(1.0, 0.33).
  */
-@property (strong,nonatomic) UIColor *selectedOverlayBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *selectedOverlayBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

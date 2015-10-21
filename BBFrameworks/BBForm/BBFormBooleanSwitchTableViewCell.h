@@ -15,6 +15,10 @@
 
 #import "BBFormTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBFormBooleanSwitchTableViewCell : BBFormTableViewCell
 
 @end
+
+NS_ASSUME_NONNULL_END

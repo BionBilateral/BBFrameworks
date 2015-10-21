@@ -15,12 +15,35 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ The key used to identify the alert title.
+ */
 extern NSString *const BBErrorAlertTitleKey;
+/**
+ The key used to identify the alert message.
+ */
 extern NSString *const BBErrorAlertMessageKey;
 
+/**
+ Category on NSError adding convenience methods to get the alert title and message using the above keys.
+ */
 @interface NSError (BBFoundationExtensions)
 
+/**
+ Returns the value for the BBErrorAlertTitleKey key in the receiver's userInfo dictionary if non-nil, otherwise returns a default title.
+ 
+ @return The alert title
+ */
 - (NSString *)BB_alertTitle;
+/**
+ Returns the value for the BBErrorAlertMessageKey key in the receiver's userInfo dictionary if non-nil, then the value for the NSLocalizedDescriptionKey key, then a default title.
+ 
+ @return The alert message
+ */
 - (NSString *)BB_alertMessage;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -18,6 +18,8 @@
 #import "BBThumbnailDefines.h"
 #import "BBThumbnailOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum describing the cache type that was used to access the thumbnail.
  */
@@ -74,7 +76,7 @@ typedef void(^BBThumbnailGeneratorProgressBlock)(NSURL *URL, int64_t bytesWritte
  @param page The page of the requested thumbnail, applicable for PDF thumbnails
  @param time The time of the requested thumbnail, applicable for movie thumbnails
  */
-typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, BBThumbnailGeneratorSizeStruct size, NSInteger page, NSTimeInterval time);
+typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClass *_Nullable image, NSError *_Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL *URL, BBThumbnailGeneratorSizeStruct size, NSInteger page, NSTimeInterval time);
 
 /**
  BBThumbnailGenerator is an NSObject subclass used for generating thumbnail images from various sources.
@@ -120,21 +122,21 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  
  The default is `[NSOperationQueue mainQueue]`.
  */
-@property (strong,nonatomic) NSOperationQueue *completionQueue;
+@property (strong,nonatomic,null_resettable) NSOperationQueue *completionQueue;
 
 /**
  Set and get the YouTube API key used by the receiver when making thumbnail requests to the YouTube APIs.
  
  The default is nil. Set this value when creating the thumbnail generator with your API key.
  */
-@property (copy,nonatomic) NSString *youTubeAPIKey;
+@property (copy,nonatomic,nullable) NSString *youTubeAPIKey;
 
 /**
  Set and get the URL session configuration used when downloading files from remote thumbnail URLs.
  
  The default is [NSURLSessionConfiguration defaultSessionConfiguration].
  */
-@property (copy,nonatomic) NSURLSessionConfiguration *URLSessionConfiguration;
+@property (copy,nonatomic,null_resettable) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
  Clears the on disk cache.
@@ -216,7 +218,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param completion The completion block to invoke upon completion
  @return An object that can be used to cancel the thumbnail generation
  */
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL progress:(nullable BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, and _completion_ respectively.
  
@@ -235,7 +237,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param completion The completion block to invoke upon completion
  @return An object that can be used to cancel the thumbnail generation
  */
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size progress:(nullable BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, _page_, and _completion_ respectively.
  
@@ -256,7 +258,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param completion The completion block to invoke upon completion
  @return An object that can be used to cancel the thumbnail generation
  */
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page progress:(nullable BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
  Calls `-[generateThumbnailForURL:size:page:time:completion:]`, passing _URL_, _size_, _time_, and _completion_ respectively.
  
@@ -277,7 +279,7 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param completion The completion block to invoke upon completion
  @return An object that can be used to cancel the thumbnail generation
  */
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size time:(NSTimeInterval)time progress:(nullable BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 /**
  Calls `-[generateThumbnailForURL:size:page:time:progress:completion:]`, passing _URL_, _size_, _time_, nil, and _completion_ respectively.
  
@@ -300,6 +302,8 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
  @param completion The completion block to invoke upon completion
  @return An object that can be used to cancel the thumbnail generation
  */
-- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time progress:(BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
+- (id<BBThumbnailOperation>)generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time progress:(nullable BBThumbnailGeneratorProgressBlock)progress completion:(BBThumbnailGeneratorCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

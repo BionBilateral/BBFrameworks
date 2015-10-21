@@ -1,13 +1,13 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "0.8.36"
-  spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com"}
+  spec.version = "1.4.3"
+  spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
   spec.source = {:git => "https://github.com/BionBilateral/BBFrameworks.git", :tag => spec.version.to_s}
   spec.summary = "Repository for common iOS/OSX categories, classes, and functions."
   
-  spec.ios.deployment_target = "7.0"
+  spec.ios.deployment_target = "8.0"
   spec.osx.deployment_target = "10.10"
   
   spec.requires_arc = true
@@ -30,16 +30,34 @@ Pod::Spec.new do |spec|
     subspec.source_files = "BBFrameworks/BBFoundation"
   end
   
+  spec.subspec "BBKeychain" do |subspec|
+    subspec.dependency "BBFrameworks/BBCore"
+    
+    subspec.source_files = "BBFrameworks/BBKeychain"
+    
+    subspec.frameworks = "Security"
+  end
+  
   spec.subspec "BBBlocks" do |subspec|
     subspec.dependency "BBFrameworks/BBCore"
     
     subspec.source_files = "BBFrameworks/BBBlocks"
   end
   
+  spec.subspec "BBKeyValueObserving" do |subspec|
+    subspec.dependency "BBFrameworks/BBCore"
+    
+    subspec.source_files = "BBFrameworks/BBKeyValueObserving", "BBFrameworks/BBKeyValueObserving/Private"
+    
+    subspec.private_header_files = "BBFrameworks/BBKeyValueObserving/Private/*.h"
+  end
+  
   spec.subspec "BBCoreData" do |subspec|
     subspec.dependency "BBFrameworks/BBFoundation"
     
-    subspec.source_files = "BBFrameworks/BBCoreData"
+    subspec.source_files = "BBFrameworks/BBCoreData", "BBFrameworks/BBCoreData/Private"
+    
+    subspec.private_header_files = "BBFrameworks/BBCoreData/Private/*.h"
     
     subspec.ios.frameworks = "CoreData", "UIKit"
     subspec.osx.frameworks = "CoreData", "AppKit"
@@ -49,21 +67,13 @@ Pod::Spec.new do |spec|
     subspec.dependency "BBFrameworks/BBFoundation"
     
     subspec.source_files = "BBFrameworks/BBKit"
-    subspec.ios.source_files = "BBFrameworks/BBKit/iOS"
+    subspec.ios.source_files = "BBFrameworks/BBKit/iOS", "BBFrameworks/BBKit/iOS/Private"
     subspec.osx.source_files = "BBFrameworks/BBKit/OSX"
     
-    subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation"
+    subspec.ios.private_header_files = "BBFrameworks/BBKit/iOS/Private/*.h"
+    
+    subspec.ios.frameworks = "UIKit", "Accelerate", "AVFoundation", "CoreImage"
     subspec.osx.frameworks = "AppKit", "Accelerate", "AVFoundation"
-  end
-  
-  spec.subspec "BBReactiveKit" do |subspec|
-    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
-    
-    subspec.dependency "BBFrameworks/BBKit"
-    
-    subspec.source_files = "BBFrameworks/BBReactiveKit"
-    subspec.ios.source_files = "BBFrameworks/BBReactiveKit/iOS"
-    subspec.osx.source_files = "BBFrameworks/BBReactiveKit/OSX"
   end
   
   spec.subspec "BBAddressBook" do |subspec|
@@ -76,19 +86,7 @@ Pod::Spec.new do |spec|
     subspec.ios.frameworks = "AddressBook"
   end
   
-  spec.subspec "BBAddressBookUI" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
-    
-    subspec.dependency "BBFrameworks/BBAddressBook"
-    
-    subspec.ios.source_files = "BBFrameworks/BBAddressBookUI"
-    subspec.osx.source_files = "BBFrameworks/BBAddressBookUI/BBAddressBookUI.h"
-  end
-  
   spec.subspec "BBThumbnail" do |subspec|
-    subspec.ios.deployment_target = "8.0"
-    
     subspec.dependency "BBFrameworks/BBKit"
     
     subspec.source_files = "BBFrameworks/BBThumbnail", "BBFrameworks/BBThumbnail/Private"
@@ -105,9 +103,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBReactiveThumbnail" do |subspec|
-    subspec.ios.deployment_target = "8.0"
-    
-    subspec.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.dependency "ReactiveCocoa", "~> 2.5"
     
     subspec.dependency "BBFrameworks/BBThumbnail"
     
@@ -115,50 +111,52 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaPicker" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
+    subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
     
     subspec.ios.dependency "BBFrameworks/BBKit"
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     
-    subspec.ios.source_files = "BBFrameworks/BBMediaPicker"
+    subspec.ios.source_files = "BBFrameworks/BBMediaPicker", "BBFrameworks/BBMediaPicker/Private"
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
+    
+    subspec.ios.private_header_files = "BBFrameworks/BBMediaPicker/Private/*.h"
     
     subspec.ios.frameworks = "AssetsLibrary"
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
-    platform = :ios, "8.0"
-    
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
-    subspec.ios.dependency "ReactiveViewModel", "~> 0.3.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
+    subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
     
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     subspec.ios.dependency "BBFrameworks/BBKit"
     
-    subspec.ios.source_files = "BBFrameworks/BBMediaPlayer"
+    subspec.ios.source_files = "BBFrameworks/BBMediaPlayer", "BBFrameworks/BBMediaPlayer/Private"
     subspec.osx.source_files = "BBFrameworks/BBMediaPlayer/BBMediaPlayer.h"
+    
+    subspec.ios.private_header_files = "BBFrameworks/BBMediaPlayer/Private/*.h"
     
     subspec.ios.frameworks = "AVFoundation"
   end
   
   spec.subspec "BBWebKit" do |subspec|
-    subspec.ios.deployment_target = "8.0"
-    
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
     subspec.ios.dependency "TUSafariActivity", "~> 1.0.0"
     subspec.ios.dependency "ARChromeActivity", "~> 1.0.0"
     
-    subspec.ios.dependency "BBFrameworks/BBReactiveKit"
+    subspec.ios.dependency "BBFrameworks/BBKit"
     
-    subspec.ios.source_files = "BBFrameworks/BBWebKit"
+    subspec.ios.source_files = "BBFrameworks/BBWebKit", "BBFrameworks/BBWebKit/Private"
     subspec.osx.source_files = "BBFrameworks/BBWebKit/BBWebKit.h"
+    
+    subspec.ios.private_header_files = "BBFrameworks/BBWebKit/Private/*.h"
     
     subspec.ios.frameworks = "WebKit"
   end
   
   spec.subspec "BBTooltip" do |subspec|
-    subspec.ios.dependency "ReactiveCocoa", "~> 2.5.0"
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
     
     subspec.ios.dependency "BBFrameworks/BBKit"
     
@@ -189,5 +187,13 @@ Pod::Spec.new do |spec|
     
     subspec.ios.source_files = "BBFrameworks/BBForm"
     subspec.osx.source_files = "BBFrameworks/BBForm/BBForm.h"
+  end
+  
+  spec.subspec "BBReachability" do |subspec|
+    subspec.dependency "BBFrameworks/BBFoundation"
+    
+    subspec.source_files = "BBFrameworks/BBReachability"
+    
+    subspec.frameworks = "SystemConfiguration"
   end
 end

@@ -16,6 +16,8 @@
 #import <Cocoa/Cocoa.h>
 #import "NSError+BBFoundationExtensions.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSAlert adding convenience methods related to creation from error objects.
  */
@@ -30,3 +32,5 @@
 + (NSAlert *)BB_alertWithError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

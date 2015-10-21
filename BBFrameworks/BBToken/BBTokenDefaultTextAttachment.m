@@ -15,6 +15,8 @@
 
 #import "BBTokenDefaultTextAttachment.h"
 #import "BBTokenTextView.h"
+#import "BBFoundationGeometryFunctions.h"
+#import "BBFoundationDebugging.h"
 
 @interface BBTokenDefaultTextAttachment ()
 @property (readwrite,weak,nonatomic) BBTokenTextView *tokenTextView;
@@ -22,7 +24,7 @@
 @property (copy,nonatomic) NSString *text;
 @property (strong,nonatomic) UIImage *highlightedImage;
 
-- (void)_updateImage:(BOOL)highlighted;
+- (void)_updateImage:(BOOL)highlighted maxWidth:(CGFloat)maxWidth;
 @end
 
 @implementation BBTokenDefaultTextAttachment
@@ -32,7 +34,7 @@
 }
 - (CGRect)attachmentBoundsForTextContainer:(NSTextContainer *)textContainer proposedLineFragment:(CGRect)lineFrag glyphPosition:(CGPoint)position characterIndex:(NSUInteger)charIndex {
     CGRect retval = [super attachmentBoundsForTextContainer:textContainer proposedLineFragment:lineFrag glyphPosition:position characterIndex:charIndex];
-    
+
     retval.origin.y = ceil(self.tokenFont.descender);
     
     return retval;
@@ -56,24 +58,44 @@
     _tokenHighlightedBackgroundColor = self.tokenTextView.tintColor;
     _tokenCornerRadius = 3.0;
     
-    [self _updateImage:NO];
-    [self _updateImage:YES];
+    CGFloat maxWidth = CGRectGetWidth(tokenTextView.frame);
+    
+    [self _updateImage:NO maxWidth:maxWidth];
+    [self _updateImage:YES maxWidth:maxWidth];
     
     return self;
 }
 
-- (void)_updateImage:(BOOL)highlighted; {
+- (void)_updateImage:(BOOL)highlighted maxWidth:(CGFloat)maxWidth; {
     CGSize size = [self.text sizeWithAttributes:@{NSFontAttributeName: self.tokenFont}];
-    CGRect rect = CGRectIntegral(CGRectMake(0, 0, size.width, size.height));
     
-    rect.size.width += 6.0;
+    CGRect rect = CGRectIntegral(CGRectMake(0, 0, size.width, size.height));
+    CGFloat delta = 6.0;
+    
+    rect.size.width += delta;
+    
+    if (CGRectGetWidth(rect) > maxWidth) {
+        rect.size.width = maxWidth;
+    }
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect)), NO, 0);
     
     [highlighted ? self.tokenHighlightedBackgroundColor : self.tokenBackgroundColor setFill];
     [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 1.0) cornerRadius:self.tokenCornerRadius] fill];
     
-    [self.text drawAtPoint:CGPointMake(3.0, 0) withAttributes:@{NSFontAttributeName: self.tokenFont, NSForegroundColorAttributeName: highlighted ? self.tokenHighlightedTextColor : self.tokenTextColor}];
+    UIFont *drawFont = [UIFont fontWithName:self.tokenFont.fontName size:self.tokenFont.pointSize - 1.0];
+    CGSize drawSize = [self.text sizeWithAttributes:@{NSFontAttributeName: drawFont}];
+    
+    if (drawSize.width > CGRectGetWidth(rect)) {
+        drawSize.width = CGRectGetWidth(rect) - delta;
+    }
+    
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    
+    [style setLineBreakMode:NSLineBreakByTruncatingTail];
+    [style setAlignment:NSTextAlignmentCenter];
+    
+    [self.text drawInRect:BBCGRectCenterInRect(CGRectMake(0, 0, drawSize.width, drawSize.height), rect) withAttributes:@{NSFontAttributeName: drawFont, NSForegroundColorAttributeName: highlighted ? self.tokenHighlightedTextColor : self.tokenTextColor, NSParagraphStyleAttributeName: style}];
     
     UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
     

@@ -15,11 +15,20 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSSet adding block extensions.
  */
 @interface NSSet (BBBlocksExtensions)
 
+/**
+ Invokes block once for each object in the receiver.
+ 
+ @param block The block to invoke
+ @exception NSException Thrown if block is nil
+ */
+- (void)BB_each:(void(^)(id object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including it in the new set if block returns YES.
  
@@ -35,7 +44,7 @@
  @return The matching object or nil
  @exception NSException Thrown if block is nil
  */
-- (id)BB_find:(BOOL(^)(id object))block;
+- (nullable id)BB_find:(BOOL(^)(id object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including the return value of block in the new set.
  
@@ -43,7 +52,7 @@
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_map:(id(^)(id object))block;
+- (NSSet *)BB_map:(id _Nullable(^)(id object))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum and the object. The return value of block is passed in as sum to the next invocation of block.
  
@@ -52,7 +61,7 @@
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (id)BB_reduceWithStart:(id)start block:(id(^)(id sum, id object))block;
+- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object))block;
 /**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
@@ -69,5 +78,31 @@
  @exception NSException Throw if block is nil
  */
 - (BOOL)BB_all:(BOOL(^)(id object))block;
+/**
+ Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
+ 
+ @return The sum
+ */
+- (id)BB_sum;
+/**
+ Returns the product of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
+ 
+ @return The product
+ */
+- (id)BB_product;
+/**
+ Returns the maximum value of the objects in the receiver, which should all respond to the `compare:` method.
+ 
+ @return The maximum value
+ */
+- (id)BB_maximum;
+/**
+ Returns the minimum value of the objects in the receiver, which should all respond to the `compare`: method.
+ 
+ @return The minimum value
+ */
+- (id)BB_minimum;
 
 @end
+
+NS_ASSUME_NONNULL_END

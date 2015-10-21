@@ -16,6 +16,13 @@
 #ifndef __BB_FRAMEWORKS_FOUNDATION_MACROS__
 #define __BB_FRAMEWORKS_FOUNDATION_MACROS__
 
+#import "BBFrameworksFunctions.h"
+
 #define BBBoundedValue(value, min, max) MAX(MIN((value), (max)), (min))
+
+#define BBLocalizedStringErrorAlertDefaultTitle() NSLocalizedStringWithDefaultValue(@"ERROR_ALERT_DEFAULT_TITLE", @"Foundation", BBFrameworksResourcesBundle(), @"Error", @"default error alert title")
+#define BBLocalizedStringErrorAlertDefaultMessage() NSLocalizedStringWithDefaultValue(@"ERROR_ALERT_DEFAULT_MESSAGE", @"Foundation", BBFrameworksResourcesBundle(), @"The operation could not be completed.", @"default error alert message")
+#define BBLocalizedStringAlertDefaultSingleCancelButtonTitle() NSLocalizedStringWithDefaultValue(@"ERROR_ALERT_DEFAULT_SINGLE_CANCEL_BUTTON_TITLE", @"Foundation", BBFrameworksResourcesBundle(), @"Ok", @"default error alert single cancel button title")
+#define BBLocalizedStringAlertDefaultMultipleCancelButtonTitle() NSLocalizedStringWithDefaultValue(@"ERROR_ALERT_DEFAULT_MULTIPLE_CANCEL_BUTTON_TITLE", @"Foundation", BBFrameworksResourcesBundle(), @"Cancel", @"default error alert multiple cancel button title")
 
 #endif

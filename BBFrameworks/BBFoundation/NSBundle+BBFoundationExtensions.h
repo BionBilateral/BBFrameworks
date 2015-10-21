@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on NSBundle adding various convenience methods.
  */
@@ -52,3 +54,5 @@
 - (NSString *)BB_bundleVersion;
 
 @end
+
+NS_ASSUME_NONNULL_END

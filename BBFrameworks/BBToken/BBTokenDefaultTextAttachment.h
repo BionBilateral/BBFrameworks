@@ -16,7 +16,7 @@
 #import <UIKit/UIKit.h>
 #import "BBTokenTextAttachment.h"
 
-@class BBTokenTextView;
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  BBTokenTextAttachment is a NSTextAttachment subclass that represents a token within a BBTokenTextView.
@@ -61,3 +61,5 @@
 @property (assign,nonatomic) CGFloat tokenCornerRadius;
 
 @end
+
+NS_ASSUME_NONNULL_END

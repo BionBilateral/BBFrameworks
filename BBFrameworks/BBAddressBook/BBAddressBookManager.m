@@ -28,6 +28,7 @@ NSString *const BBAddressBookManagerNotificationNameExternalChange = @"BBAddress
 @property (assign,nonatomic) ABAddressBookRef addressBook;
 @property (strong,nonatomic) dispatch_queue_t addressBookQueue;
 
+- (void)_createAddressBookIfNecessary;
 - (void)_addressBookChanged;
 @end
 
@@ -49,11 +50,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     if (!(self = [super init]))
         return nil;
     
-    [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
-    
-    if (self.addressBook) {
-        ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
-    }
+    [self _createAddressBookIfNecessary];
     
     [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
@@ -75,6 +72,8 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
         BBDispatchMainSyncSafe(^{
             if (granted) {
+                [self _createAddressBookIfNecessary];
+                
                 completion(YES,nil);
             }
             else {
@@ -89,7 +88,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         completion(people.firstObject,error);
     }];
 }
-- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *people, NSError *error))completion; {
+- (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
     NSParameterAssert(recordIDs);
     NSParameterAssert(completion);
     
@@ -127,7 +126,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         completion(groups.firstObject,error);
     }];
 }
-- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray *groups, NSError *error))completion; {
+- (void)requestGroupsWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -162,7 +161,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray *people, NSError *error))completion; {
     [self requestAllPeopleWithSortDescriptors:nil completion:completion];
 }
-- (void)requestAllPeopleWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *people, NSError *error))completion; {
+- (void)requestAllPeopleWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -171,7 +170,19 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
                 BBStrongify(self);
-                NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+                NSArray *peopleRefs;
+                
+                if (sortDescriptors.count > 0) {
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+                }
+                else {
+                    ABRecordRef sourceRef = ABAddressBookCopyDefaultSource(self.addressBook);
+                    
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(self.addressBook, sourceRef, ABPersonGetSortOrdering());
+                    
+                    CFRelease(sourceRef);
+                }
+                
                 NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
                     return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
                 }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
@@ -195,10 +206,10 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }];
 }
 
-- (void)requestAllGroupsWithCompletion:(void(^)(NSArray *groups, NSError *error))completion; {
+- (void)requestAllGroupsWithCompletion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *error))completion; {
     [self requestAllGroupsWithSortDescriptors:nil completion:completion];
 }
-- (void)requestAllGroupsWithSortDescriptors:(NSArray *)sortDescriptors completion:(void(^)(NSArray *groups, NSError *error))completion; {
+- (void)requestAllGroupsWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookGroup *> *groups, NSError *error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -231,6 +242,15 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }];
 }
 #pragma mark *** Private Methods ***
+- (void)_createAddressBookIfNecessary; {
+    if (!self.addressBook) {
+        [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
+        
+        if (self.addressBook) {
+            ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
+        }
+    }
+}
 - (void)_addressBookChanged; {
     [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
 }

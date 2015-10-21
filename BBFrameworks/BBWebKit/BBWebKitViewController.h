@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBWebKitViewControllerDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBWebKitViewController is a UIViewController subclass that manages a WKWebView to display web content.
  */
@@ -26,14 +28,14 @@
  
  @see BBWebKitViewControllerDelegate
  */
-@property (weak,nonatomic) id<BBWebKitViewControllerDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBWebKitViewControllerDelegate> delegate;
 
 /**
  Set and get the custom title of the receiver. If this is non-nil, the receiver's title will be set to this value. Otherwise the receiver's title tracks the title of the managed WKWebView.
  
  The default is nil.
  */
-@property (copy,nonatomic) NSString *customTitle;
+@property (copy,nonatomic,nullable) NSString *customTitle;
 
 /*
  Get and set whether the navigation toolbar should be shown.
@@ -62,7 +64,7 @@
  
  @param image The new go back image
  */
-+ (void)setGoBackImage:(UIImage *)image;
++ (void)setGoBackImage:(nullable UIImage *)image;
 
 /*
  Get the current go forward image used for the corresponding toolbar item.
@@ -75,7 +77,7 @@
  
  @param image The new go forward image
  */
-+ (void)setGoForwardImage:(UIImage *)image;
++ (void)setGoForwardImage:(nullable UIImage *)image;
 
 /*
  Instructs the managed `WKWebView` instance to load _URLString_.
@@ -151,3 +153,5 @@
 - (void)BB_presentWebKitViewControllerForURLRequest:(NSURLRequest *)URLRequest navigationControllerClass:(Class)navigationControllerClass;
 
 @end
+
+NS_ASSUME_NONNULL_END

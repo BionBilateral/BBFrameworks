@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaPickerMedia.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerViewController;
 
 /**
@@ -43,11 +45,21 @@
  @param viewController The media picker view controller that sent the message
  @param media The array of media objects that were selected
  */
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media;
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia> > *)media;
 /**
  Called when the user taps the Cancel bar button item.
  
  @param viewController The media picker view controller that sent the message
  */
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
+
+/**
+ Called when the media picker creates and adds an instance of the bottom accessory view class to one of its subviews. The delegate should use this method to perform additional configuration on the bottom accessory view.
+ 
+ @param viewController The media picker view controller that sent the message
+ @param bottomAccessoryView The bottom accessory view that was added to the view hierarchy
+ */
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didAddBottomAccessoryView:(__kindof UIView *)bottomAccessoryView;
 @end
+
+NS_ASSUME_NONNULL_END

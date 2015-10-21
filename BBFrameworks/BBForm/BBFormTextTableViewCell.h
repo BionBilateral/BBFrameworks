@@ -15,11 +15,15 @@
 
 #import "BBFormTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBFormTextTableViewCell : BBFormTableViewCell
 
-@property (strong,nonatomic) UIColor *enabledTextColor UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *disabledTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *enabledTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *disabledTextColor UI_APPEARANCE_SELECTOR;
 
-@property (strong,nonatomic) UIColor *caretColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *caretColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

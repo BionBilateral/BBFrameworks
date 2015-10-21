@@ -23,6 +23,17 @@
 
 @implementation BBFrameworksNSSetBlocksExtensionsTestCase
 
+- (void)testEach {
+    NSSet *begin = [NSSet setWithArray:@[@1,@2,@3]];
+    NSSet *end = [NSSet setWithArray:@[@2,@3,@4]];
+    NSMutableSet *temp = [[NSMutableSet alloc] init];
+    
+    [begin BB_each:^(NSNumber *object) {
+        [temp addObject:@(object.integerValue + 1)];
+    }];
+    
+    XCTAssertEqualObjects(temp, end);
+}
 - (void)testFilter {
     NSSet *begin = [NSSet setWithArray:@[@1,@2,@3,@4]];
     NSSet *end = [NSSet setWithArray:@[@2,@4]];
@@ -81,6 +92,50 @@
     XCTAssertFalse([begin BB_all:^BOOL(NSNumber *object) {
         return object.integerValue % 2 == 0;
     }]);
+}
+- (void)testSum {
+    NSSet *begin = [NSSet setWithArray:@[@1,@2,@3]];
+    NSNumber *end = @6;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSSet setWithArray:@[@1.0,@2.0,@3.0]];
+    end = @6.0;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSSet setWithArray:@[[NSDecimalNumber decimalNumberWithString:@"1"],[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"6"];
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+}
+- (void)testProduct {
+    NSSet *begin = [NSSet setWithArray:@[@2,@3,@4]];
+    NSNumber *end = @24;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = [NSSet setWithArray:@[@2.0,@3.0,@4.0]];
+    end = @24.0;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = [NSSet setWithArray:@[[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"],[NSDecimalNumber decimalNumberWithString:@"4"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"24"];
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+}
+- (void)testMaximum {
+    NSSet *begin = [NSSet setWithArray:@[@1,@3,@2]];
+    NSNumber *end = @3;
+    
+    XCTAssertEqualObjects([begin BB_maximum], end);
+}
+- (void)testMinimum {
+    NSSet *begin = [NSSet setWithArray:@[@1,@-1,@2]];
+    NSNumber *end = @-1;
+    
+    XCTAssertEqualObjects([begin BB_minimum], end);
 }
 
 @end

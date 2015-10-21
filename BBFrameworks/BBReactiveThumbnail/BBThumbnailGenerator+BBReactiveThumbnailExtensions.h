@@ -15,6 +15,8 @@
 
 #import "BBThumbnailGenerator.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class RACSignal;
 
 @interface BBThumbnailGenerator (BBReactiveThumbnailExtensions)
@@ -26,3 +28,5 @@
 - (RACSignal *)BB_generateThumbnailForURL:(NSURL *)URL size:(BBThumbnailGeneratorSizeStruct)size page:(NSInteger)page time:(NSTimeInterval)time;
 
 @end
+
+NS_ASSUME_NONNULL_END

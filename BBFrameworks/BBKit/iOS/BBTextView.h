@@ -15,6 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BBTextView is a UITextView subclass that provides placeholder functionality like UITextField.
  */
@@ -23,25 +25,27 @@
 /**
  Set and get text field's placeholder text.
  */
-@property (copy,nonatomic) NSString *placeholder;
+@property (copy,nonatomic,nullable) NSString *placeholder;
 
 /**
  Set and get text field's attributed placeholder text.
  */
-@property (copy,nonatomic) NSAttributedString *attributedPlaceholder;
+@property (copy,nonatomic,nullable) NSAttributedString *attributedPlaceholder;
 
 /**
  Set and get text field's placeholder font.
  
  The default is [UIFont systemFontOfSize:17].
  */
-@property (strong,nonatomic) UIFont *placeholderFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *placeholderFont UI_APPEARANCE_SELECTOR;
 
 /**
  Set and get text field's placeholder text color.
  
  The default is [UIColor darkGrayColor].
  */
-@property (strong,nonatomic) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

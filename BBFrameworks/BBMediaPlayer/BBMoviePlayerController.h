@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBMoviePlayerControllerDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class RACSignal;
 
 /**
@@ -26,7 +28,7 @@
 /**
  Set and get the content URL of the receiver. This can be a local or remote URL.
  */
-@property (copy,nonatomic) NSURL *contentURL;
+@property (copy,nonatomic,nullable) NSURL *contentURL;
 
 /**
  Get the view used to display the movie content. This should be added to your view hiearchy.
@@ -45,9 +47,25 @@
  */
 @property (assign,nonatomic) BOOL shouldAutoplay;
 
+/**
+ Set and get the fullscreen status of the receiver.
+ */
 @property (assign,nonatomic,getter=isFullscreen) BOOL fullscreen;
+/**
+ Set and get whether the receiver is fullscreen, with optional animation.
+ 
+ @param fullscreen Whether the receiver should enter or exit fullscreen mode
+ @param animated Whether the change should be animated
+ */
 - (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
-- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated completion:(void(^)(void))completion;
+/**
+ Set and get whether the receiver is fullscreen, animated with a completion block.
+ 
+ @param fullscreen Whether the receiver should enter or exit fullscreen mode
+ @param animated Whether the change should be animated
+ @param completion The completion block to invoke when the transition completes
+ */
+- (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated completion:(nullable void(^)(void))completion;
 
 /**
  Set and get the current playback time of the current movie in seconds.
@@ -117,3 +135,5 @@
 - (RACSignal *)boundaryTimeObserverForIntervals:(NSArray *)intervals;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -17,6 +17,8 @@
 
 @class BBPickerButton;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol for BBPickerButton delegate.
  */
@@ -31,3 +33,5 @@
  */
 - (void)pickerButton:(BBPickerButton *)pickerButton didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -15,11 +15,15 @@
 
 #import "BBFormTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBFormStepperTableViewCell : BBFormTableViewCell
 
-@property (strong,nonatomic) UIFont *valueFont UI_APPEARANCE_SELECTOR;
-@property (strong,nonatomic) UIColor *valueTextColor UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIFont *valueFont UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) UIColor *valueTextColor UI_APPEARANCE_SELECTOR;
 
-@property (strong,nonatomic) NSNumberFormatter *numberFormatter UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic,null_resettable) NSNumberFormatter *numberFormatter UI_APPEARANCE_SELECTOR;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -20,22 +20,93 @@
 #import "BBFormFieldTableViewHeaderView.h"
 #import "BBFormFieldTableViewFooterView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ BBFormTableViewController is a UITableViewController subclass that manages settings style table view.
+ */
 @interface BBFormTableViewController : UITableViewController
 
+/**
+ Set and get the data source of the receiver.
+ 
+ @see BBFormTableViewControllerDataSource
+ */
 @property (weak,nonatomic) id<BBFormTableViewControllerDataSource> dataSource;
 
+/**
+ Register a table view header class that conforms to BBFormFieldTableViewHeaderView.
+ 
+ The default is BBFormTableViewHeaderView.
+ 
+ @param tableViewHeaderClass The table view header class to register
+ */
 - (void)registerTableViewHeaderClass:(Class<BBFormFieldTableViewHeaderView>)tableViewHeaderClass;
+/**
+ Register a table view footer class that conforms to BBFormFieldTableViewFooterView.
+ 
+ The default is BBFormTableViewFooterView.
+ 
+ @param tableViewFooterClass The table view footer class to register
+ */
 - (void)registerTableViewFooterClass:(Class<BBFormFieldTableViewFooterView>)tableViewFooterClass;
+/**
+ Register a table view cell class for form field type.
+ 
+ @param cellClass The table view cell class to register
+ @param formFieldType The form field type for which to register
+ */
 - (void)registerCellClass:(Class<BBFormFieldTableViewCell>)cellClass forFormFieldType:(BBFormFieldType)formFieldType;
 
+/**
+ Return the table view header view for form field.
+ 
+ @param formField The form field for which to return a table view header class
+ @return The table view header class
+ */
 - (Class<BBFormFieldTableViewHeaderView>)tableViewHeaderClassForFormField:(BBFormField *)formField;
+
+/**
+ Return the table view footer view for form field.
+ 
+ @param formField The form field for which to return a table view footer class
+ @return The table view footer class
+ */
 - (Class<BBFormFieldTableViewFooterView>)tableViewFooterClassForFormField:(BBFormField *)formField;
+/**
+ Return the table view cell class for form field.
+ 
+ @param formField The form field for which to return a table view cell class
+ @return The table view cell class
+ */
 - (Class<BBFormFieldTableViewCell>)tableViewCellClassForFormField:(BBFormField *)formField;
 
-- (BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath;
+/**
+ Return the form field for the provided index path.
+ 
+ @param indexPath The index path for which to return a form field
+ @return The form field for index path
+ */
+- (nullable BBFormField *)formFieldForIndexPath:(NSIndexPath *)indexPath;
+/**
+ Return the index path for the provided form field.
+ 
+ @param formField The form field for which to return a index path
+ @param The index path for form field
+ */
 - (NSIndexPath *)indexPathForFormField:(BBFormField *)formField;
 
+/**
+ Reload the table view managed by the receiver.
+ */
 - (void)reloadData;
-- (void)reloadRowsForFormFields:(NSArray *)formFields;
+/**
+ Reload the rows represented by the array of form fields.
+ 
+ @param formFields An array of BBFormField objects
+ */
+- (void)reloadRowsForFormFields:(NSArray<BBFormField *> *)formFields;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,6 +23,17 @@
 
 @implementation BBFrameworksNSOrderedSetBlocksExtensionsTestCase
 
+- (void)testEach {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@2,@3,@4]];
+    NSMutableOrderedSet *temp = [[NSMutableOrderedSet alloc] init];
+    
+    [begin BB_each:^(NSNumber *object, NSInteger index) {
+        [temp addObject:@(object.integerValue + 1)];
+    }];
+    
+    XCTAssertEqualObjects(temp, end);
+}
 - (void)testFilter {
     NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3,@4]];
     NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@2,@4]];
@@ -89,6 +100,85 @@
     XCTAssertFalse([begin BB_all:^BOOL(NSNumber *object, NSInteger index) {
         return object.integerValue % 2 == 0;
     }]);
+}
+- (void)testTake {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@1,@2]];
+    
+    XCTAssertEqualObjects([begin BB_take:2], end);
+    
+    end = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    
+    XCTAssertEqualObjects([begin BB_take:begin.count], end);
+    
+    XCTAssertEqualObjects([begin BB_take:begin.count + 1], begin);
+}
+- (void)testDrop {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@1,@2]];
+    
+    XCTAssertEqualObjects([begin BB_drop:1], end);
+    
+    end = [NSOrderedSet orderedSet];
+    
+    XCTAssertEqualObjects([begin BB_drop:begin.count], end);
+    
+    XCTAssertEqualObjects([begin BB_drop:begin.count + 1], end);
+}
+- (void)testZip {
+    NSOrderedSet *first = [NSOrderedSet orderedSetWithArray:@[@1,@2]];
+    NSOrderedSet *second = [NSOrderedSet orderedSetWithArray:@[@3,@4]];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[[NSOrderedSet orderedSetWithArray:@[@1,@3]],[NSOrderedSet orderedSetWithArray:@[@2,@4]]]];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+    
+    second = [NSOrderedSet orderedSetWithArray:@[@3,@4,@5]];
+    
+    XCTAssertEqualObjects([first BB_zip:second], end);
+}
+- (void)testSum {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    NSNumber *end = @6;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[@1.0,@2.0,@3.0]];
+    end = @6.0;
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[[NSDecimalNumber decimalNumberWithString:@"1"],[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"6"];
+    
+    XCTAssertEqualObjects([begin BB_sum], end);
+}
+- (void)testProduct {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@2,@3,@4]];
+    NSNumber *end = @24;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[@2.0,@3.0,@4.0]];
+    end = @24.0;
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[[NSDecimalNumber decimalNumberWithString:@"2"],[NSDecimalNumber decimalNumberWithString:@"3"],[NSDecimalNumber decimalNumberWithString:@"4"]]];
+    end = [NSDecimalNumber decimalNumberWithString:@"24"];
+    
+    XCTAssertEqualObjects([begin BB_product], end);
+}
+- (void)testMaximum {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@3,@2]];
+    NSNumber *end = @3;
+    
+    XCTAssertEqualObjects([begin BB_maximum], end);
+}
+- (void)testMinimum {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@-1,@2]];
+    NSNumber *end = @-1;
+    
+    XCTAssertEqualObjects([begin BB_minimum], end);
 }
 
 @end

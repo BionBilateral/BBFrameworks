@@ -15,9 +15,19 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBFormTableViewController;
 
+/**
+ Protocol describing the data source for a BBFormTableViewController.
+ */
 @protocol BBFormTableViewControllerDataSource <NSObject>
 @required
-- (NSArray *)formFieldDictionaries;
+/**
+ Return an array of dictionaries containing key/value pairs defined in BBFormField.
+ */
+- (nullable NSArray<NSDictionary<NSString *, id> *> *)formFieldDictionaries;
 @end
+
+NS_ASSUME_NONNULL_END

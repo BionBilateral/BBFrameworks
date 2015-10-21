@@ -63,25 +63,7 @@
     return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonSuffixProperty);
 }
 - (NSString *)fullName {
-    NSMutableArray *components = [[NSMutableArray alloc] init];
-    
-    if (self.prefix) {
-        [components addObject:self.prefix];
-    }
-    if (self.firstName) {
-        [components addObject:self.firstName];
-    }
-    if (self.middleName) {
-        [components addObject:self.middleName];
-    }
-    if (self.lastName) {
-        [components addObject:self.lastName];
-    }
-    if (self.suffix) {
-        [components addObject:self.suffix];
-    }
-    
-    return [components componentsJoinedByString:@" "];
+    return (__bridge_transfer NSString *)ABRecordCopyCompositeName(self.person);
 }
 - (NSString *)nickname {
     return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonNicknameProperty);

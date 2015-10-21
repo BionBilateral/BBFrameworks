@@ -15,10 +15,29 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Category on UIView adding various convenience methods.
  */
 @interface UIView (BBKitExtensions)
+
+/**
+ Set and get the minimum X member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMinimumX;
+/**
+ Set and get the maximum X member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMaximumX;
+/**
+ Set and get the minimum Y member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMinimumY;
+/**
+ Set and get the maximum Y member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameMaximumY;
 
 /**
  Creates and returns an NSArray containing all the receiver's subviews recursively.
@@ -27,6 +46,24 @@
  
  @return The array of recursive subviews
  */
-- (NSArray *)BB_recursiveSubviews;
+- (NSArray<__kindof UIView *> *)BB_recursiveSubviews;
+
+/**
+ Calls `[self BB_snapshotImageFromRect:afterScreenUpdates:]`, passing self.bounds and afterScreenUpdates respectively.
+ 
+ @param afterScreenUpdates Whether the snapshot should contain recent changes
+ @return The snapshot image
+ */
+- (UIImage *)BB_snapshotImageAfterScreenUpdates:(BOOL)afterScreenUpdates;
+/**
+ Creates and returns a snapshot image of the receiver using `drawViewHierarchyInRect:afterScreenUpdates`.
+ 
+ @param rect The rect from which to create the snapshot image, should be in the receiver's coordinate system
+ @param afterScreenUpdates Whether the snapshot should contain recent changes
+ @return The snapshot image
+ */
+- (UIImage *)BB_snapshotImageFromRect:(CGRect)rect afterScreenUpdates:(BOOL)afterScreenUpdates;
 
 @end
+
+NS_ASSUME_NONNULL_END
