@@ -52,6 +52,15 @@
     if (!self.isBeingPresented &&
         !self.isBeingDismissed) {
         
+        [self.viewModel pause];
+    }
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    if (!self.isBeingPresented &&
+        !self.isBeingDismissed) {
+        
         [self.viewModel stop];
     }
 }
