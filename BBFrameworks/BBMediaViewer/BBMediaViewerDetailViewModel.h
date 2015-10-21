@@ -68,4 +68,6 @@ extern float const BBMediaViewerDetailViewModelMoviePausePlaybackRate;
 
 - (void)seekToTimeInterval:(NSTimeInterval)timeInterval;
 
+- (instancetype)init __attribute__((unavailable("use initWithMedia:index: instead")));
+
 @end
