@@ -260,7 +260,7 @@ static CGFloat const kMarginX = 24.0;
          timeObserverBlock(self.viewModel.player.currentTime);
      }];
     
-    [self setTimeObserver:[self.viewModel.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, 1) queue:NULL usingBlock:^(CMTime time) {
+    [self setTimeObserver:[self.viewModel.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.2, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
         timeObserverBlock(time);
     }]];
     
