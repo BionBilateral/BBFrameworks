@@ -608,13 +608,26 @@
 }
 - (NSArray *)_copyTokenTextAttachmentsInRange:(NSRange)range; {
     NSMutableArray *representedObjects = [[NSMutableArray alloc] init];
+    NSMutableIndexSet *rangeAsIndexSet = [[NSMutableIndexSet alloc] initWithIndexesInRange:range];
     
     // enumerate text attachments in the range to be deleted and add their represented object to the array
-    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(BBTokenDefaultTextAttachment *value, NSRange range, BOOL *stop) {
+    [self.textStorage enumerateAttribute:NSAttachmentAttributeName inRange:range options:0 usingBlock:^(BBTokenDefaultTextAttachment *value, NSRange range, BOOL *stop) {
         if (value) {
             [representedObjects addObject:value.representedObject];
+            
+            // remove the range of the attachment from the entire selected range
+            [rangeAsIndexSet removeIndexesInRange:range];
         }
     }];
+    
+    // if there is any plain text left selected, count will be > 0, create represented objects for left over text
+    if (rangeAsIndexSet.count > 0) {
+        [rangeAsIndexSet enumerateRangesUsingBlock:^(NSRange range, BOOL * _Nonnull stop) {
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectForEditingText:)]) {
+                [representedObjects addObject:[self.delegate tokenTextView:self representedObjectForEditingText:[self.textStorage.string substringWithRange:range]]];
+            }
+        }];
+    }
     
     if (representedObjects.count > 0) {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
