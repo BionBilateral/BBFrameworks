@@ -152,6 +152,11 @@
 - (void)setBadge:(NSString *)badge {
     _badge = badge;
     
+#if (TARGET_OS_IPHONE)
+    [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
     [self invalidateIntrinsicContentSize];
 }
 
