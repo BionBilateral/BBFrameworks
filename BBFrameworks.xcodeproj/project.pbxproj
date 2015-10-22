@@ -252,6 +252,8 @@
 		7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9D71B1ADE65009B1CE9 /* Images.xcassets */; };
 		7989DD511B345A2D0001F7C3 /* MediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989DD501B345A2D0001F7C3 /* MediaPickerViewController.m */; };
 		7989DD531B345A3E0001F7C3 /* MediaPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7989DD521B345A3E0001F7C3 /* MediaPickerViewController.xib */; };
+		798C46461BD950200027811C /* BBLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C46451BD950200027811C /* BBLabel.m */; settings = {ASSET_TAGS = (); }; };
+		798C46471BD950380027811C /* BBLabel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 798C46441BD950200027811C /* BBLabel.h */; };
 		799B96091B6997550010E1CD /* media_picker_camera_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B96061B6997550010E1CD /* media_picker_camera_roll.png */; };
 		799B960A1B6997550010E1CD /* media_picker_camera_roll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */; };
 		799B960B1B6997550010E1CD /* media_picker_camera_roll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */; };
@@ -596,6 +598,7 @@
 				07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */,
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
+				798C46471BD950380027811C /* BBLabel.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				07AC570C1BC6BCFD00EC9056 /* NSParagraphStyle+BBKitExtensions.h in CopyFiles */,
 				07E312C31BB32CA400C71468 /* NSObject+BBKeyValueObservingExtensions.h in CopyFiles */,
@@ -1010,6 +1013,8 @@
 		7989DD4F1B345A2D0001F7C3 /* MediaPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPickerViewController.h; sourceTree = "<group>"; };
 		7989DD501B345A2D0001F7C3 /* MediaPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPickerViewController.m; sourceTree = "<group>"; };
 		7989DD521B345A3E0001F7C3 /* MediaPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaPickerViewController.xib; sourceTree = "<group>"; };
+		798C46441BD950200027811C /* BBLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBLabel.h; path = iOS/BBLabel.h; sourceTree = "<group>"; };
+		798C46451BD950200027811C /* BBLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBLabel.m; path = iOS/BBLabel.m; sourceTree = "<group>"; };
 		799B96061B6997550010E1CD /* media_picker_camera_roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media_picker_camera_roll.png; sourceTree = "<group>"; };
 		799B96071B6997550010E1CD /* media_picker_camera_roll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_camera_roll@2x.png"; sourceTree = "<group>"; };
 		799B96081B6997550010E1CD /* media_picker_camera_roll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media_picker_camera_roll@3x.png"; sourceTree = "<group>"; };
@@ -2147,6 +2152,8 @@
 				79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */,
 				79EA82C31B3F945700D50B6B /* BBView.h */,
 				79EA82C41B3F945700D50B6B /* BBView.m */,
+				798C46441BD950200027811C /* BBLabel.h */,
+				798C46451BD950200027811C /* BBLabel.m */,
 				07CE80281B4EDBC100F5729E /* BBTextField.h */,
 				07CE80291B4EDBC100F5729E /* BBTextField.m */,
 				07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */,
@@ -3069,6 +3076,7 @@
 				791996FA1B6EB3C500FC674A /* BBThumbnailOperationWrapper.m in Sources */,
 				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79EF41231BCC6E4D0018D711 /* BBProgressNavigationBar.m in Sources */,
+				798C46461BD950200027811C /* BBLabel.m in Sources */,
 				07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */,
 				07AEC8451B6BE68500013470 /* BBTextLinkValidator.m in Sources */,
 				7922E89A1BD41CF200F85EDA /* BBMediaPickerAssetsGroupViewModel.m in Sources */,

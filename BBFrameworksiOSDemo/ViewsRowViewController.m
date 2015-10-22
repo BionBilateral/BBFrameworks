@@ -25,6 +25,7 @@
 @property (strong,nonatomic) BBTextView *textView;
 @property (readonly,nonatomic) BBView *backgroundView;
 @property (strong,nonatomic) BBGradientView *gradientView;
+@property (strong,nonatomic) BBLabel *label;
 @end
 
 @implementation ViewsRowViewController
@@ -76,6 +77,13 @@
     [self setGradientView:[[BBGradientView alloc] initWithFrame:CGRectZero]];
     [self.gradientView setColors:@[BBColorRandomRGB(),BBColorRandomRGB()]];
     [self.view addSubview:self.gradientView];
+    
+    [self setLabel:[[BBLabel alloc] initWithFrame:CGRectZero]];
+    [self.label setEdgeInsets:UIEdgeInsetsMake(4.0, 8.0, 4.0, 8.0)];
+    [self.label setTextColor:[UIColor whiteColor]];
+    [self.label setBackgroundColor:[UIColor blackColor]];
+    [self.label setText:@"Label"];
+    [self.view addSubview:self.label];
 }
 - (void)viewDidLayoutSubviews {
     CGSize badgeViewSize = [self.badgeView sizeThatFits:CGSizeZero];
@@ -85,6 +93,7 @@
     [self.badgeView setFrame:CGRectMake(CGRectGetMaxX(self.tintImageView.frame) + 8.0, [self.topLayoutGuide length] + 8.0, badgeViewSize.width, badgeViewSize.height)];
     [self.textView setFrame:CGRectMake(8.0, CGRectGetMaxY(self.blurImageView.frame) + 8.0, 150, 150.0)];
     [self.gradientView setFrame:CGRectMake(CGRectGetMaxX(self.textView.frame) + 8.0, CGRectGetMinY(self.textView.frame), 100, CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.textView.frame) - 16.0)];
+    [self.label setFrame:CGRectMake(CGRectGetMaxX(self.gradientView.frame) + 8.0, CGRectGetMinY(self.gradientView.frame), [self.label sizeThatFits:CGSizeZero].width, [self.label sizeThatFits:CGSizeZero].height)];
 }
 - (void)viewWillLayoutSubviews {
     [self.backgroundView setBorderEdgeInsets:UIEdgeInsetsMake([self.topLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth, [self.bottomLayoutGuide length] + self.backgroundView.borderWidth, self.backgroundView.borderWidth)];
