@@ -45,6 +45,7 @@
 #else
 #import "NSImage+BBKitExtensions.h"
 #import "NSAlert+BBKitExtensions.h"
+#import "NSView+BBKitExtensions.h"
 #import "NSViewController+BBKitExtensions.h"
 #import "NSWindow+BBKitExtensions.h"
 #endif
