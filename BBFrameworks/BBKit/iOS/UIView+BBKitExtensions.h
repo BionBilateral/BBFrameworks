@@ -38,6 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
  Set and get the maximum Y member of the receiver's frame.
  */
 @property (assign,nonatomic) CGFloat BB_frameMaximumY;
+/**
+ Set and get the width member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameWidth;
+/**
+ Set and get the height member of the receiver's frame.
+ */
+@property (assign,nonatomic) CGFloat BB_frameHeight;
 
 /**
  Creates and returns an NSArray containing all the receiver's subviews recursively.

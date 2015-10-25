@@ -46,6 +46,20 @@
 - (void)setBB_frameMaximumY:(CGFloat)frameMaximumY {
     [self setFrame:CGRectMake(CGRectGetMinX(self.frame), frameMaximumY - CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
 }
+@dynamic BB_frameWidth;
+- (CGFloat)BB_frameWidth {
+    return CGRectGetWidth(self.frame);
+}
+- (void)setBB_frameWidth:(CGFloat)BB_frameWidth {
+    [self setFrame:CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), BB_frameWidth, CGRectGetHeight(self.frame))];
+}
+@dynamic BB_frameHeight;
+- (CGFloat)BB_frameHeight {
+    return CGRectGetHeight(self.frame);
+}
+- (void)setBB_frameHeight:(CGFloat)BB_frameHeight {
+    [self setFrame:CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), BB_frameHeight)];
+}
 
 - (NSArray *)BB_recursiveSubviews; {
     NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
