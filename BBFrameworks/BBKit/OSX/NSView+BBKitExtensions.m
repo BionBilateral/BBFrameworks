@@ -36,24 +36,14 @@
     return NSMinY(self.frame);
 }
 - (void)setBB_frameMinimumY:(CGFloat)BB_frameMinimumY {
-    if (self.isFlipped) {
-        [self setFrame:NSMakeRect(NSMinX(self.frame), BB_frameMinimumY, NSWidth(self.frame), NSHeight(self.frame))];
-    }
-    else {
-        [self setFrame:NSMakeRect(NSMinX(self.frame), BB_frameMinimumY - NSHeight(self.frame), NSWidth(self.frame), NSHeight(self.frame))];
-    }
+    [self setFrame:NSMakeRect(NSMinX(self.frame), BB_frameMinimumY, NSWidth(self.frame), NSHeight(self.frame))];
 }
 @dynamic BB_frameMaximumY;
 - (CGFloat)BB_frameMaximumY {
     return NSMaxY(self.frame);
 }
 - (void)setBB_frameMaximumY:(CGFloat)BB_frameMaximumY {
-    if (self.isFlipped) {
-        [self setFrame:NSMakeRect(NSMinX(self.frame), BB_frameMaximumY, NSWidth(self.frame), NSHeight(self.frame))];
-    }
-    else {
-        [self setFrame:NSMakeRect(NSMinX(self.frame), BB_frameMaximumY - NSHeight(self.frame), NSWidth(self.frame), NSHeight(self.frame))];
-    }
+    [self setFrame:NSMakeRect(NSMinX(self.frame), BB_frameMaximumY - NSHeight(self.frame), NSWidth(self.frame), NSHeight(self.frame))];
 }
 @dynamic BB_frameWidth;
 - (CGFloat)BB_frameWidth {
