@@ -32,6 +32,7 @@
 #import "UIFont+BBKitExtensions.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "UIAlertController+BBKitExtensions.h"
+#import "UIDevice+BBKitExtensions.h"
 
 #import "BBLabel.h"
 #import "BBTextField.h"

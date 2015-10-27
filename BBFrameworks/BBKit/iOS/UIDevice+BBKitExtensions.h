@@ -17,4 +17,13 @@
 
 @interface UIDevice (BBKitExtensions)
 
+/**
+ Returns the hardware machine name for the current device.
+ */
++ (NSString *)BB_hardwareMachineName;
+/**
+ Returns the hardware model name for the current device.
+ */
++ (NSString *)BB_hardwareModelName;
+
 @end

@@ -15,6 +15,37 @@
 
 #import "UIDevice+BBKitExtensions.h"
 
+#import <sys/sysctl.h>
+
+@interface UIDevice (BBKitExtensionsPrivate)
++ (NSString *)_BB_sysInfoForName:(const char *)name;
+@end
+
 @implementation UIDevice (BBKitExtensions)
+
++ (NSString *)BB_hardwareMachineName; {
+    return [self _BB_sysInfoForName:"hw.machine"];
+}
++ (NSString *)BB_hardwareModelName; {
+    return [self _BB_sysInfoForName:"hw.model"];
+}
+
+@end
+
+@implementation UIDevice (BBKitExtensionsPrivate)
+
++ (NSString *)_BB_sysInfoForName:(const char *)name; {
+    size_t size;
+    sysctlbyname(name, NULL, &size, NULL, 0);
+    
+    char *retval = malloc(size);
+    sysctlbyname(name, retval, &size, NULL, 0);
+    
+    NSString *results = [NSString stringWithCString:retval encoding: NSUTF8StringEncoding];
+    
+    free(retval);
+    
+    return results;
+}
 
 @end
