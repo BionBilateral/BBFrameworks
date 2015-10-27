@@ -28,6 +28,7 @@
 		0750D6581B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750D6571B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m */; };
 		0750D6591B6ABE8D002F2C1A /* BBMediaPickerAssetCollectionView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0750D6561B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.h */; };
 		0750D65A1B6AC237002F2C1A /* BBMediaPickerAssetCollectionFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */; };
+		075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		075CECB01BC5A3C3000731BC /* CIImage+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; };
 		075CECB31BC5A731000731BC /* NSString+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		075CECB41BC5A731000731BC /* NSString+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075CECB21BC5A731000731BC /* NSString+BBKitExtensions.m */; settings = {ASSET_TAGS = (); }; };
@@ -752,6 +753,8 @@
 		0750D6531B6ABBD8002F2C1A /* BBMediaPickerAssetsGroupTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetsGroupTableView.m; sourceTree = "<group>"; };
 		0750D6561B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionView.h; sourceTree = "<group>"; };
 		0750D6571B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionView.m; sourceTree = "<group>"; };
+		075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+BBKitExtensions.h"; path = "iOS/UIDevice+BBKitExtensions.h"; sourceTree = "<group>"; };
+		075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BBKitExtensions.m"; path = "iOS/UIDevice+BBKitExtensions.m"; sourceTree = "<group>"; };
 		075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBKitExtensions.h"; sourceTree = "<group>"; };
 		075CECB21BC5A731000731BC /* NSString+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBKitExtensions.m"; sourceTree = "<group>"; };
 		07605AB41B67D72B00333678 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
@@ -2203,6 +2206,8 @@
 				79B4FFAF1B364384007B8629 /* UIFont+BBKitExtensions.m */,
 				79B4FFB01B364384007B8629 /* UIImage+BBKitExtensions.h */,
 				79B4FFB11B364384007B8629 /* UIImage+BBKitExtensions.m */,
+				075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */,
+				075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */,
 				07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */,
 				07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */,
 				075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */,
@@ -3093,6 +3098,7 @@
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
 				07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
+				075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
 				07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */,
