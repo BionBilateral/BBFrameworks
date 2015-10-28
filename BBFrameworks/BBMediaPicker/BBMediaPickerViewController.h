@@ -20,6 +20,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ Completion block that is invoked when authorization status is requested.
+ 
+ @param success YES if the user granted access to their media, otherwise NO
+ @param error If the user denied access to their media and more information is available, this will be non-nil
+ */
+typedef void(^BBMediaPickerAuthorizationCompletionBlock)(BOOL success, NSError *_Nullable error);
+
+/**
  BBMediaPickerViewController is a UIViewController subclass that mirrors the media browsing functionality provided by UIImagePickerController.
  */
 @interface BBMediaPickerViewController : UIViewController
@@ -30,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
  @see BBMediaPickerAuthorizationStatus
  */
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
+/**
+ Requests access to the user's media and invokes the completion handler with the result. If the user has denied access and more information is available, error will be non-nil.
+ 
+ @param completion The completion block that is invoked once the authorization status is determined
+ */
++ (void)requestAuthorizationWithCompletion:(nullable BBMediaPickerAuthorizationCompletionBlock)completion;
 
 /**
  Set and get the delegate of the receiver.

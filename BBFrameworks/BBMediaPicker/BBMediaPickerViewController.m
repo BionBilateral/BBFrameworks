@@ -21,6 +21,7 @@
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.h"
 #import "BBMediaPickerAssetsGroupViewController.h"
+#import "BBFoundationFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -128,6 +129,25 @@
 #pragma mark *** Public Methods ***
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return [BBMediaPickerViewModel authorizationStatus];
+}
++ (void)requestAuthorizationWithCompletion:(BBMediaPickerAuthorizationCompletionBlock)completion {
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    [library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        *stop = YES;
+        
+        if (completion) {
+            BBDispatchMainSyncSafe(^{
+                completion(YES,nil);
+            });
+        }
+    } failureBlock:^(NSError *error) {
+        if (completion) {
+            BBDispatchMainSyncSafe(^{
+                completion(NO,error);
+            });
+        }
+    }];
 }
 
 - (NSInteger)countOfMedia; {
