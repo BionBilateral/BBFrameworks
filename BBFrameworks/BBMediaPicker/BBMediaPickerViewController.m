@@ -132,20 +132,29 @@
 }
 + (void)requestAuthorizationWithCompletion:(BBMediaPickerAuthorizationCompletionBlock)completion {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    __block BOOL hasInvokedCompletionBlock = NO;
     
     [library enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         *stop = YES;
         
-        if (completion) {
-            BBDispatchMainSyncSafe(^{
-                completion(YES,nil);
-            });
+        if (!hasInvokedCompletionBlock) {
+            hasInvokedCompletionBlock = YES;
+            
+            if (completion) {
+                BBDispatchMainSyncSafe(^{
+                    completion(YES,nil);
+                });
+            }
         }
     } failureBlock:^(NSError *error) {
-        if (completion) {
-            BBDispatchMainSyncSafe(^{
-                completion(NO,error);
-            });
+        if (!hasInvokedCompletionBlock) {
+            hasInvokedCompletionBlock = YES;
+            
+            if (completion) {
+                BBDispatchMainSyncSafe(^{
+                    completion(NO,error);
+                });
+            }
         }
     }];
 }
