@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
 @property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
 @property (assign,nonatomic) BOOL shouldShowCancelAndDoneBarButtonItems;
-@property (copy,nonatomic,nullable) NSString *cancelBarButtonItemTitle;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
@@ -48,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,strong,nonatomic) RACCommand *cancelCommand;
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
-@property (readonly,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
+@property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (readonly,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (strong,nonatomic,nullable) Class bottomAccessoryViewClass;

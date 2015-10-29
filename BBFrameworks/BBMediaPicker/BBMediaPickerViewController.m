@@ -224,12 +224,12 @@
 - (void)setShouldShowCancelAndDoneBarButtonItems:(BOOL)shouldShowCancelAndDoneBarButtonItems {
     [self.viewModel setShouldShowCancelAndDoneBarButtonItems:shouldShowCancelAndDoneBarButtonItems];
 }
-@dynamic cancelBarButtonItemTitle;
-- (NSString *)cancelBarButtonItemTitle {
-    return self.viewModel.cancelBarButtonItemTitle;
+@dynamic cancelBarButtonItem;
+- (UIBarButtonItem *)cancelBarButtonItem {
+    return self.viewModel.cancelBarButtonItem;
 }
-- (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
-    [self.viewModel setCancelBarButtonItemTitle:cancelBarButtonItemTitle];
+- (void)setCancelBarButtonItem:(UIBarButtonItem *)cancelBarButtonItem {
+    [self.viewModel setCancelBarButtonItem:cancelBarButtonItem];
 }
 
 @dynamic mediaTypes;

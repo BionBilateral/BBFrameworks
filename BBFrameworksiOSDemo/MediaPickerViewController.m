@@ -138,10 +138,8 @@
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
     [viewController setDelegate:self];
-    [viewController setAllowsMultipleSelection:YES];
+    [viewController setAllowsMultipleSelection:NO];
     [viewController setHidesEmptyMediaGroups:YES];
-    [viewController setShouldShowCancelAndDoneBarButtonItems:NO];
-    [viewController setBottomAccessoryViewClass:[MediaPickerBottomAccessoryView class]];
     [viewController setTitleTransformBlock:^NSString *_Nullable(NSString *title){
         return title.uppercaseString;
     }];

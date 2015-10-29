@@ -87,11 +87,9 @@ typedef void(^BBMediaPickerAuthorizationCompletionBlock)(BOOL success, NSError *
  */
 @property (assign,nonatomic) BOOL shouldShowCancelAndDoneBarButtonItems;
 /**
- Set and get the cancel bar button item title. If nil, uses the UIBarButtonSystemItemCancel item, otherwise creates a bar button item with the provided title.
- 
- The default is nil.
+ Set and get the custom cancel bar button item displayed in the top right of the receiver's navigation bar. The standard system cancel is used by default.
  */
-@property (copy,nonatomic,nullable) NSString *cancelBarButtonItemTitle;
+@property (strong,nonatomic,null_resettable) UIBarButtonItem *cancelBarButtonItem;
 
 /**
  Set and get the allowed media types of the receiver.

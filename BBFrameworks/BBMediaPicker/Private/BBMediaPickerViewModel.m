@@ -32,7 +32,6 @@
 @property (readwrite,copy,nonatomic) NSOrderedSet *selectedAssetViewModels;
 @property (readwrite,strong,nonatomic) RACCommand *cancelCommand;
 @property (readwrite,strong,nonatomic) RACCommand *doneCommand;
-@property (readwrite,strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (readwrite,strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 
 @property (readwrite,weak,nonatomic) BBMediaPickerViewController *mediaPickerViewController;
@@ -176,8 +175,6 @@
         return [RACSignal return:self];
     }]];
     
-    [self setCancelBarButtonItemTitle:nil];
-    
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self.doneBarButtonItem setRac_command:self.doneCommand];
     
@@ -291,17 +288,17 @@
     }];
 }
 #pragma mark Properties
-- (void)setCancelBarButtonItemTitle:(NSString *)cancelBarButtonItemTitle {
-    _cancelBarButtonItemTitle = cancelBarButtonItemTitle;
-    
-    if (_cancelBarButtonItemTitle) {
-        [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:_cancelBarButtonItemTitle style:UIBarButtonItemStylePlain target:nil action:NULL]];
-    }
-    else {
+@synthesize cancelBarButtonItem=_cancelBarButtonItem;
+- (UIBarButtonItem *)cancelBarButtonItem {
+    if (!_cancelBarButtonItem) {
         [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
     }
+    return _cancelBarButtonItem;
+}
+- (void)setCancelBarButtonItem:(UIBarButtonItem *)cancelBarButtonItem {
+    _cancelBarButtonItem = cancelBarButtonItem;
     
-    [self.cancelBarButtonItem setRac_command:self.cancelCommand];
+    [_cancelBarButtonItem setRac_command:self.cancelCommand];
 }
 #pragma mark *** Private Methods ***
 - (void)_refreshAssetsGroupViewModels; {
