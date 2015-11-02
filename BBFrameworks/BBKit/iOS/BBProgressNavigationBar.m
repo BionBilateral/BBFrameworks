@@ -48,13 +48,6 @@ static NSString *const kProgressKeyPath = @"progress";
 - (void)didAddSubview:(UIView *)subview {
     [self bringSubviewToFront:self.progressView];
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CGFloat const kProgressViewContainerFrameHeight = [self.progressView sizeThatFits:CGSizeZero].height;
-    
-    [self.progressView setFrame:CGRectMake(0, CGRectGetHeight(self.bounds) - kProgressViewContainerFrameHeight, CGRectGetWidth(self.bounds), kProgressViewContainerFrameHeight)];
-}
 #pragma mark ** Public Methods **
 #pragma mark Properties
 @dynamic progressHidden;
@@ -102,6 +95,9 @@ static NSString *const kProgressKeyPath = @"progress";
     [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
     [self.progressView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.progressView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.progressView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view]|" options:0 metrics:nil views:@{@"view": self.progressView}]];
 }
 
 @end

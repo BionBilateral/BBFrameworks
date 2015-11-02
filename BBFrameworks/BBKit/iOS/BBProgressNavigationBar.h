@@ -51,7 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
 
 - (void)didAddSubview:(UIView *)subview NS_REQUIRES_SUPER;
-- (void)layoutSubviews NS_REQUIRES_SUPER;
 
 @end
 
