@@ -42,6 +42,14 @@
         return object.integerValue % 2 == 0;
     }], end);
 }
+- (void)testReject {
+    NSSet *begin = [NSSet setWithArray:@[@1,@2,@3,@4]];
+    NSSet *end = [NSSet setWithArray:@[@1,@3]];
+    
+    XCTAssertEqualObjects([begin BB_reject:^BOOL(NSNumber *object) {
+        return object.integerValue % 2 == 0;
+    }], end);
+}
 - (void)testFind {
     NSSet *begin = [NSSet setWithArray:@[@1,@2,@3]];
     NSNumber *end = @2;

@@ -42,6 +42,14 @@
         return object.integerValue % 2 == 0;
     }], end);
 }
+- (void)testReject {
+    NSArray *begin = @[@1,@2,@3,@4];
+    NSArray *end = @[@1,@3];
+    
+    XCTAssertEqualObjects([begin BB_reject:^BOOL(NSNumber *object, NSInteger index) {
+        return object.integerValue % 2 == 0;
+    }], end);
+}
 - (void)testFind {
     NSArray *begin = @[@1,@2,@3];
     NSNumber *end = @2;
