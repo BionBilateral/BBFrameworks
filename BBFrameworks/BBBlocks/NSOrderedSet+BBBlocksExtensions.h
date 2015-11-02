@@ -30,13 +30,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)BB_each:(void(^)(id object, NSInteger idx))block;
 /**
- Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including it in the new array if block returns YES.
+ Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including it in the new ordered set if block returns YES.
  
  @param block The block to invoke for each object in the receiver
  @return The new array
  @exception NSException Thrown if block is nil
  */
 - (NSOrderedSet *)BB_filter:(BOOL(^)(id object, NSInteger index))block;
+/**
+ Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including it in the new ordered set if block returns NO.
+ 
+ @param block The block to invoke for each object in the receiver
+ @return The new array
+ @exception NSException Thrown if block is nil
+ */
+- (NSOrderedSet *)BB_reject:(BOOL(^)(id object, NSInteger index))block;
 /**
  Return the first object in the receiver for which block returns YES, or nil if block returns NO for all objects in the receiver.
  
@@ -54,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSArray *)BB_findWithIndex:(BOOL(^)(id object, NSInteger index))block;
 /**
- Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including the return value of block in the new array.
+ Create and return a new ordered set by enumerating the receiver, invoking block for each object, and including the return value of block in the new ordered set.
  
  @param block The block to invoke for each object in the receiver
  @return The new array
@@ -93,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSOrderedSet *)BB_take:(NSInteger)count;
 /**
- Returns a new ordered set created by taking the remaining objects after dropping count objects from the receiver. If count > self.count, returns an empty array.
+ Returns a new ordered set created by taking the remaining objects after dropping count objects from the receiver. If count > self.count, returns an empty ordered set.
  
  @param count The number of objects to drop from the end of the receiver
  @return The new ordered set

@@ -38,6 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSSet *)BB_filter:(BOOL(^)(id object))block;
 /**
+ Create and return a new set by enumerating the receiver, invoking block for each object, and including it in the new set if block returns NO.
+ 
+ @param block The block to invoke for each object in the receiver
+ @return The new set
+ @exception NSException Thrown if block is nil
+ */
+- (NSSet *)BB_reject:(BOOL(^)(id object))block;
+/**
  Return the first object in the receiver for which block returns YES, otherwise return nil.
  
  @param block The block to invoke for each object in the receiver

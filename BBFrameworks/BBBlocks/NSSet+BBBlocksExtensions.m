@@ -37,6 +37,19 @@
     
     return [retval copy];
 }
+- (NSSet *)BB_reject:(BOOL(^)(id object))block; {
+    NSParameterAssert(block);
+    
+    NSMutableSet *retval = [[NSMutableSet alloc] init];
+    
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if (!block(obj)) {
+            [retval addObject:obj];
+        }
+    }];
+    
+    return [retval copy];
+}
 - (id)BB_find:(BOOL(^)(id object))block; {
     NSParameterAssert(block);
     

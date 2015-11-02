@@ -37,6 +37,19 @@
     
     return [retval copy];
 }
+- (NSOrderedSet *)BB_reject:(BOOL(^)(id object, NSInteger index))block; {
+    NSParameterAssert(block);
+    
+    NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
+    
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (!block(obj,idx)) {
+            [retval addObject:obj];
+        }
+    }];
+    
+    return [retval copy];
+}
 - (id)BB_find:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
@@ -142,7 +155,7 @@
         }
     }];
     
-    return retval;
+    return [retval copy];
 }
 - (id)BB_sum; {
     if (self.count > 0) {

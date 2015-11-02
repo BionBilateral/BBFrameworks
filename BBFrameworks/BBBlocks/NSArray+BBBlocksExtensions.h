@@ -38,6 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSArray *)BB_filter:(BOOL(^)(id object, NSInteger index))block;
 /**
+ Create and return a new array by enumerating the receiver, invoking block for each object, and including it in the new array if block returns NO.
+ 
+ @param block The block to invoke for each object in the receiver
+ @return The new array
+ @exception NSException Thrown if block is nil
+ */
+- (NSArray *)BB_reject:(BOOL(^)(id object, NSInteger index))block;
+/**
  Return the first object in the receiver for which block returns YES, or nil if block returns NO for all objects in the receiver.
  
  @param block The block to invoke for each object in the receiver
