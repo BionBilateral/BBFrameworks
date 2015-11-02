@@ -155,7 +155,7 @@
         }
     }];
     
-    return retval;
+    return [retval copy];
 }
 - (id)BB_sum; {
     if (self.count > 0) {
