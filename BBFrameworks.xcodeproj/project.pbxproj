@@ -28,7 +28,7 @@
 		0750D6581B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750D6571B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.m */; };
 		0750D6591B6ABE8D002F2C1A /* BBMediaPickerAssetCollectionView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0750D6561B6ABE82002F2C1A /* BBMediaPickerAssetCollectionView.h */; };
 		0750D65A1B6AC237002F2C1A /* BBMediaPickerAssetCollectionFooterView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */; };
-		075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */; };
 		075BCA9A1BDFE55300E9743C /* UIDevice+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */; };
 		075CECB01BC5A3C3000731BC /* CIImage+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; };
 		075CECB31BC5A731000731BC /* NSString+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -161,6 +161,9 @@
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
 		07E3E50D1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
+		07FF892E1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.h */; };
+		07FF892F1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m */; };
+		07FF89301BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m */; };
 		302CAC170B819222FB454F0D /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
 		333C22DB928F35128440B561 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
 		6A5002654D135C3673230DC0 /* libPods-iOSDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */; };
@@ -862,6 +865,8 @@
 		07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueObservingViewController.xib; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
+		07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBBlockExtensions.h"; sourceTree = "<group>"; };
+		07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBBlockExtensions.m"; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -1446,6 +1451,8 @@
 				799C0C671B607D8A00A3888A /* NSSet+BBBlocksExtensions.m */,
 				077656641B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h */,
 				077656651B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.m */,
+				07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.h */,
+				07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m */,
 			);
 			path = BBBlocks;
 			sourceTree = "<group>";
@@ -2390,6 +2397,7 @@
 				79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */,
 				077656661B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h in Headers */,
 				79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */,
+				07FF892E1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.h in Headers */,
 				07B26DE51BB4451D00CB7BAD /* BBKeyValueObservingDefines.h in Headers */,
 				79EA82C51B3F945700D50B6B /* BBView.h in Headers */,
 				0776565F1B617C24000DD318 /* BBFoundationGeometryFunctions.h in Headers */,
@@ -3142,6 +3150,7 @@
 				79EA80CD1B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA80CF1B3F0CDB00D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				791997001B6EB3C500FC674A /* BBThumbnailRTFOperation.m in Sources */,
+				07FF892F1BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m in Sources */,
 				07B3D90B1B60373B00FA1853 /* BBFormPickerTableViewCell.m in Sources */,
 				07B3D90F1B60373B00FA1853 /* BBFormSegmentedTableViewCell.m in Sources */,
 				79EA80D81B3F0CF300D50B6B /* UIView+BBKitExtensions.m in Sources */,
@@ -3185,6 +3194,7 @@
 				791996F81B6EB3C500FC674A /* BBThumbnailMovieOperation.m in Sources */,
 				791996FB1B6EB3C500FC674A /* BBThumbnailOperationWrapper.m in Sources */,
 				791996E81B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */,
+				07FF89301BE95A8000D5BA27 /* NSDictionary+BBBlockExtensions.m in Sources */,
 				79EA81821B3F22D200D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				07291E9E1BC5ACEA00CE7EE9 /* NSData+BBKitExtensions.m in Sources */,
 				79EA817D1B3F22C300D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
