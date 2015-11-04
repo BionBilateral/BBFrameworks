@@ -109,6 +109,19 @@
         return object.integerValue % 2 == 0;
     }]);
 }
+- (void)testNone {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@3,@5,@7]];
+    
+    XCTAssertTrue([begin BB_none:^BOOL(NSNumber *object, NSInteger index) {
+        return object.integerValue % 2 == 0;
+    }]);
+    
+    begin = [NSOrderedSet orderedSetWithArray:@[@3,@5,@6]];
+    
+    XCTAssertFalse([begin BB_none:^BOOL(NSNumber *object, NSInteger index) {
+        return object.integerValue % 2 == 0;
+    }]);
+}
 - (void)testTake {
     NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
     NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@1,@2]];
