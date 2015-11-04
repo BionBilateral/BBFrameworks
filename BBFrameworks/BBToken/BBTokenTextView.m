@@ -588,6 +588,11 @@
         }
     }
     
+    // if the receiver has no text, leaving the NSNotFound will throw an exception when trying to replace with a completion
+    if (retval.location == NSNotFound) {
+        retval.location = 0;
+    }
+    
     return retval;
 }
 - (NSInteger)_indexOfTokenTextAttachmentInRange:(NSRange)range textAttachment:(id<BBTokenTextAttachment> *)textAttachment; {
