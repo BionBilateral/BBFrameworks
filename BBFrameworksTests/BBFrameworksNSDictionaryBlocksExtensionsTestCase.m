@@ -108,6 +108,19 @@
         return key.integerValue % 2 == 0;
     }]);
 }
+- (void)testNone {
+    NSDictionary *begin = @{@3: @"two", @5: @"four", @7: @"six"};
+    
+    XCTAssertTrue([begin BB_none:^BOOL(NSNumber *_Nonnull key, id  _Nonnull value) {
+        return key.integerValue % 2 == 0;
+    }]);
+    
+    begin = @{@3: @"two", @5: @"four", @6: @"five"};
+    
+    XCTAssertFalse([begin BB_none:^BOOL(NSNumber *_Nonnull key, id  _Nonnull value) {
+        return key.integerValue % 2 == 0;
+    }]);
+}
 - (void)testSumOfKeys {
     NSDictionary *begin = @{@1: @"one", @2: @"two", @3: @"three"};
     NSNumber *end = @6;
