@@ -17,8 +17,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormDatePickerTableViewCell is the default cell used by date picker type form fields.
+ */
 @interface BBFormDatePickerTableViewCell : BBFormTableViewCell
 
+/**
+ Set and get the date picker text color used by the receiver. This is the title color of the BBDatePickerButton.
+ 
+ The default is [UIColor blueColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *datePickerTextColor UI_APPEARANCE_SELECTOR;
 
 @end
