@@ -128,6 +128,20 @@
     
     return retval;
 }
+- (BOOL)BB_none:(BOOL(^)(id object, NSInteger index))block; {
+    NSParameterAssert(block);
+    
+    __block BOOL retval = YES;
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (block(obj,idx)) {
+            retval = NO;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+}
 - (NSArray *)BB_take:(NSInteger)count; {
     if (count > self.count) {
         return self;
