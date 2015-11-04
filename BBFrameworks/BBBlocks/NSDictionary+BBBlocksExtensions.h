@@ -95,6 +95,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)BB_all:(BOOL(^)(id key, id value))block;
 /**
+ Returns YES if block returns NO for all key/value pairs in the receiver, otherwise NO.
+ 
+ @param block The block to invoke for every key/value pair
+ @return YES if block returns NO for all key/value pairs, otherwise NO
+ @exception NSException Thrown if block is nil
+ */
+- (BOOL)BB_none:(BOOL(^)(id key, id value))block;
+/**
  Returns the result of `[self.allKeys BB_sum]`.
  
  @return The sum of all keys in the receiver

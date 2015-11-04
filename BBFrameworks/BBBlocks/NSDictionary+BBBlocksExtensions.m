@@ -129,6 +129,20 @@
     
     return retval;
 }
+- (BOOL)BB_none:(BOOL(^)(id key, id value))block; {
+    NSParameterAssert(block);
+    
+    __block BOOL retval = YES;
+    
+    [self enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if (block(key,obj)) {
+            retval = NO;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+}
 - (id)BB_sumOfKeys {
     return [self.allKeys BB_sum];
 }
