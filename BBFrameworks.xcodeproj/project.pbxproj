@@ -161,6 +161,9 @@
 		07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */; };
 		07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
 		07E3E50D1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */; };
+		07ED7E5B1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */; };
+		07ED7E5C1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */; };
+		07ED7E5D1BEA6B0F004D1697 /* NSDictionary+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */; };
 		07FF892E1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */; };
 		07FF892F1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m */; };
 		07FF89301BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m */; };
@@ -606,6 +609,7 @@
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
 				798C46471BD950380027811C /* BBLabel.h in CopyFiles */,
+				07ED7E5D1BEA6B0F004D1697 /* NSDictionary+BBBlocksExtensions.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,
 				07AC570C1BC6BCFD00EC9056 /* NSParagraphStyle+BBKitExtensions.h in CopyFiles */,
 				07E312C31BB32CA400C71468 /* NSObject+BBKeyValueObservingExtensions.h in CopyFiles */,
@@ -865,6 +869,7 @@
 		07E312CA1BB332B300C71468 /* KeyValueObservingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueObservingViewController.xib; sourceTree = "<group>"; };
 		07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSnakeCaseToLlamaCaseValueTransformerTestCase.m; sourceTree = "<group>"; };
 		07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSURLFoundationExtensionsTestCase.m; sourceTree = "<group>"; };
+		07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSDictionaryBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
 		07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBBlocksExtensions.m"; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1510,6 +1515,7 @@
 				07B3D8F31B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m */,
 				799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */,
 				0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */,
+				07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */,
 				07B104DB1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m */,
 				079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */,
 				79052AFF1B1AF3270097B7AF /* Supporting Files */,
@@ -3168,6 +3174,7 @@
 				07E3E50C1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */,
 				79EA80FF1B3F0D6D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
 				799C0C6C1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */,
+				07ED7E5B1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m in Sources */,
 				079875171BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m in Sources */,
 				07B104DC1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m in Sources */,
 				79F941841B44E36600B385F0 /* Test.xcdatamodeld in Sources */,
@@ -3258,6 +3265,7 @@
 				07E3E50D1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m in Sources */,
 				79EA81981B3F251D00D50B6B /* BBFrameworksNSArrayFoundationExtensionsTestCase.m in Sources */,
 				799C0C6F1B60973D00A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m in Sources */,
+				07ED7E5C1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m in Sources */,
 				079875181BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m in Sources */,
 				07B104DD1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m in Sources */,
 				79F941851B44E36900B385F0 /* Test.xcdatamodeld in Sources */,

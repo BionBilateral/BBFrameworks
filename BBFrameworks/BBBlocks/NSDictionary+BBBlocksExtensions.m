@@ -129,16 +129,28 @@
     
     return retval;
 }
-- (id)BB_sum; {
+- (id)BB_sumOfKeys {
+    return [self.allKeys BB_sum];
+}
+- (id)BB_sumOfValues; {
     return [self.allValues BB_sum];
 }
-- (id)BB_product; {
+- (id)BB_productOfKeys {
+    return [self.allKeys BB_product];
+}
+- (id)BB_productOfValues; {
     return [self.allValues BB_product];
 }
-- (id)BB_maximum; {
+- (id)BB_maximumKey {
+    return [self.allKeys BB_maximum];
+}
+- (id)BB_maximumValue; {
     return [self.allValues BB_maximum];
 }
-- (id)BB_minimum; {
+- (id)BB_minimumKey {
+    return [self.allKeys BB_minimum];
+}
+- (id)BB_minimumValue; {
     return [self.allValues BB_minimum];
 }
 

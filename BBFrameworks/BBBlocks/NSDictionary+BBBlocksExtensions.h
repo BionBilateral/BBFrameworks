@@ -95,29 +95,53 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)BB_all:(BOOL(^)(id key, id value))block;
 /**
+ Returns the result of `[self.allKeys BB_sum]`.
+ 
+ @return The sum of all keys in the receiver
+ */
+- (id)BB_sumOfKeys;
+/**
  Returns the result of `[self.allValues BB_sum]`.
  
  @return The sum of all values in the receiver
  */
-- (id)BB_sum;
+- (id)BB_sumOfValues;
+/**
+ Returns the result of `[self.allKeys BB_product]`.
+ 
+ @return The product of all keys in the receiver
+ */
+- (id)BB_productOfKeys;
 /**
  Returns the result of `[self.allValues BB_product]`.
  
  @return The product of all values in the receiver
  */
-- (id)BB_product;
+- (id)BB_productOfValues;
+/**
+ Returns the result of `[self.allKeys BB_maximum]`.
+ 
+ @return The maximum of all keys in the receiver
+ */
+- (id)BB_maximumKey;
 /**
  Returns the result of `[self.allValues BB_maximum]`.
  
  @return The maximum of all values in the receiver
  */
-- (id)BB_maximum;
+- (id)BB_maximumValue;
+/**
+ Returns the result of `[self.allKeys BB_minimum]`.
+ 
+ @return The minimum of all keys in the receiver
+ */
+- (id)BB_minimumKey;
 /**
  Returns the result of `[self.allValues BB_minimum]`.
  
  @return The minimum of all values in the receiver
  */
-- (id)BB_minimum;
+- (id)BB_minimumValue;
 
 @end
 
