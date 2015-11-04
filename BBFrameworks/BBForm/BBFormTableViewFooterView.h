@@ -20,9 +20,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBFormField;
 
+/**
+ BBFormTableViewFooterView is the default section footer used by BBFormTableViewController.
+ */
 @interface BBFormTableViewFooterView : UITableViewHeaderFooterView <BBFormFieldTableViewFooterView>
 
+/**
+ Set and get the title font used by the receiver.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the title text color used by the receiver.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
 
 @end
