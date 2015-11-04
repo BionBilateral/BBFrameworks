@@ -19,8 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBFormField;
 
+/**
+ Protocol describing a view used as the section header in a form.
+ */
 @protocol BBFormFieldTableViewHeaderView <NSObject>
 @required
+/**
+ Set and get the form field object associated with the receiver.
+ */
 @property (strong,nonatomic,nullable) BBFormField *formField;
 @end
 
