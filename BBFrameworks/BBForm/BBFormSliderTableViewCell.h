@@ -17,6 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormSliderTableViewCell is the default cell used for slider type form fields.
+ */
 @interface BBFormSliderTableViewCell : BBFormTableViewCell
 
 @end
