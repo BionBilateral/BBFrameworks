@@ -82,10 +82,18 @@ NS_ASSUME_NONNULL_BEGIN
  Return YES if block returns YES for all objects in the receiver, otherwise NO.
  
  @param block The block to invoke for each object in the receiver
- @return YES if block returns YEs for all objects, otherwise NO
+ @return YES if block returns YES for all objects, otherwise NO
  @exception NSException Throw if block is nil
  */
 - (BOOL)BB_all:(BOOL(^)(id object))block;
+/**
+ Return YES if block returns NO for all objects in the receiver, otherwise NO.
+ 
+ @param block The block to invoke for each object in the receiver
+ @return YES if block returns NO for all objects, otherwise NO
+ @exception NSException Throw if block is nil
+ */
+- (BOOL)BB_none:(BOOL(^)(id object))block;
 /**
  Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
  

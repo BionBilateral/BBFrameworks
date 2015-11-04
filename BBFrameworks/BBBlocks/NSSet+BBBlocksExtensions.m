@@ -114,6 +114,20 @@
     
     return retval;
 }
+- (BOOL)BB_none:(BOOL(^)(id object))block; {
+    NSParameterAssert(block);
+    
+    __block BOOL retval = YES;
+    
+    [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        if (block(obj)) {
+            retval = NO;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+}
 - (id)BB_sum; {
     if (self.count > 0) {
         NSNumber *first = self.anyObject;
