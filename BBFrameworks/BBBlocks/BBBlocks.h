@@ -19,5 +19,6 @@
 #import "NSArray+BBBlocksExtensions.h"
 #import "NSSet+BBBlocksExtensions.h"
 #import "NSOrderedSet+BBBlocksExtensions.h"
+#import "NSDictionary+BBBlocksExtensions.h"
 
 #endif

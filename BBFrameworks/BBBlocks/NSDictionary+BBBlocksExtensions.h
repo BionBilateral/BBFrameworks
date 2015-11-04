@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Category on NSDictionary adding block extensions.
  */
-@interface NSDictionary (BBBlockExtensions)
+@interface NSDictionary (BBBlocksExtensions)
 
 /**
  Invokes block once for each key/value pair in the receiver.
