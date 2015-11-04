@@ -17,11 +17,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormStepperTableViewCell is the default cell used for stepper type form fields.
+ */
 @interface BBFormStepperTableViewCell : BBFormTableViewCell
 
+/**
+ Set and get the value font used by the receiver.
+ 
+ The default is [UIFont systemFontOfSize:17.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *valueFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the value text color used by the receiver.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *valueTextColor UI_APPEARANCE_SELECTOR;
 
+/**
+ Set and get the number formatter used to display the value of the receiver.
+ 
+ The default is a NSNumberFormatter instance with its numberStyle set to NSNumberFormatterDecimalStyle.
+ */
 @property (strong,nonatomic,null_resettable) NSNumberFormatter *numberFormatter UI_APPEARANCE_SELECTOR;
 
 @end
