@@ -30,6 +30,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)BB_reversedArray;
 
 /**
+ Creates and returns an array by appending the objects from array onto the receiver.
+ 
+ @return The appended array
+ */
+- (NSArray *)BB_append:(NSArray *)array;
+
+/**
  Creates and returns an NSArray with the receiver's objects.
  
  @return The NSSet created from the receiver

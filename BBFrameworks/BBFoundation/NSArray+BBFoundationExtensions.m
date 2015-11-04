@@ -22,6 +22,10 @@
     return [self reverseObjectEnumerator].allObjects;
 }
 
+- (NSArray *)BB_append:(NSArray *)array; {
+    return [self arrayByAddingObjectsFromArray:array];
+}
+
 - (NSSet *)BB_set; {
     return [NSSet setWithArray:self];
 }
