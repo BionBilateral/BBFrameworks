@@ -17,11 +17,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormTextTableViewCell is the default cell used for text entry.
+ */
 @interface BBFormTextTableViewCell : BBFormTableViewCell
 
+/**
+ Set and get the enabled text color used by the receiver.
+ 
+ The default is [UIColor blueColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *enabledTextColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the disabled text color used by the receiver.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *disabledTextColor UI_APPEARANCE_SELECTOR;
 
+/**
+ Set and get the caret color used by the receiver.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *caretColor UI_APPEARANCE_SELECTOR;
 
 @end
