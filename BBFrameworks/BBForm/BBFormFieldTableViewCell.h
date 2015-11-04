@@ -19,8 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBFormField;
 
+/**
+ Protocol describing a table view cell used to represent a single form field.
+ */
 @protocol BBFormFieldTableViewCell <NSObject>
 @required
+/**
+ Set and get the form field associated with the receiver.
+ */
 @property (strong,nonatomic,nullable) BBFormField *formField;
 @end
 
