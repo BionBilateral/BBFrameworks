@@ -101,6 +101,19 @@
         return object.integerValue % 2 == 0;
     }]);
 }
+- (void)testNone {
+    NSSet *begin = [NSSet setWithArray:@[@3,@5,@7]];
+    
+    XCTAssertTrue([begin BB_none:^BOOL(NSNumber *object) {
+        return object.integerValue % 2 == 0;
+    }]);
+    
+    begin = [NSSet setWithArray:@[@3,@5,@6]];
+    
+    XCTAssertFalse([begin BB_none:^BOOL(NSNumber *object) {
+        return object.integerValue % 2 == 0;
+    }]);
+}
 - (void)testSum {
     NSSet *begin = [NSSet setWithArray:@[@1,@2,@3]];
     NSNumber *end = @6;
