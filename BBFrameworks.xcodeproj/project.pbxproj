@@ -164,7 +164,7 @@
 		07ED7E5B1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */; };
 		07ED7E5C1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */; };
 		07ED7E5D1BEA6B0F004D1697 /* NSDictionary+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */; };
-		07FF892E1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */; };
+		07FF892E1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07FF892F1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m */; };
 		07FF89301BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m */; };
 		302CAC170B819222FB454F0D /* libPods-OSXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */; };
