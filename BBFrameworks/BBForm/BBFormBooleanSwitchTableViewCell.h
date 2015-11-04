@@ -17,6 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormBooleanSwitchTableViewCell is default cell used for boolean type form fields.
+ */
 @interface BBFormBooleanSwitchTableViewCell : BBFormTableViewCell
 
 @end
