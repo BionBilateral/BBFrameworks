@@ -17,6 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormSegmentedTableViewCell is the default cell used for segmented type form fields.
+ */
 @interface BBFormSegmentedTableViewCell : BBFormTableViewCell
 
 @end
