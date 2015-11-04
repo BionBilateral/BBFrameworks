@@ -150,13 +150,43 @@
         return [self subarrayWithRange:NSMakeRange(0, count)];
     }
 }
+- (NSArray *)BB_takeWhile:(BOOL(^)(id object, NSInteger index))block; {
+    NSParameterAssert(block);
+    
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (!block(obj,idx)) {
+            *stop = YES;
+            return;
+        }
+        
+        [retval addObject:obj];
+    }];
+    
+    return [retval copy];
+}
 - (NSArray *)BB_drop:(NSInteger)count; {
     if (count > self.count) {
         return @[];
     }
     else {
-        return [self subarrayWithRange:NSMakeRange(0, self.count - count)];
+        return [self subarrayWithRange:NSMakeRange(count, self.count - count)];
     }
+}
+- (NSArray *)BB_dropWhile:(BOOL(^)(id object, NSInteger index))block; {
+    NSParameterAssert(block);
+    
+    __block NSInteger drop = 0;
+    
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (!block(obj,idx)) {
+            drop = idx;
+            *stop = YES;
+        }
+    }];
+    
+    return [self BB_drop:drop];
 }
 - (NSArray *)BB_zip:(NSArray *)array; {
     NSParameterAssert(array);

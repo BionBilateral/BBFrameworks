@@ -109,12 +109,28 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSArray *)BB_take:(NSInteger)count;
 /**
- Returns a new array created by taking the remaining objects after dropping count objects from the end of the receiver. If count > self.count, returns an empty array.
+ Returns the largest prefix of the receiver for which block returns YES. Returns the current prefix after block returns NO for a single object.
  
- @param count The number of objects to drop from the end of the receiver
- @return The new array
+ @param block The block to invoke for each object in the receiver
+ @return The prefix array
+ @exception NSException Thrown if block is nil
+ */
+- (NSArray *)BB_takeWhile:(BOOL(^)(id object, NSInteger index))block;
+/**
+ Returns a new array created by taking the remaining objects after dropping count objects from the beginning of the receiver. If count > self.count, returns an empty array.
+ 
+ @param count The number of objects to drop from the beginning of the receiver
+ @return The suffix array
  */
 - (NSArray *)BB_drop:(NSInteger)count;
+/**
+ Returns the remainder of the receiver after block returns NO for an object in the receiver. If block returns YES for all objects in the receiver, returns an empty array.
+ 
+ @param block The block to invoke for each object in the receiver
+ @return The suffix array
+ @exception NSException Thrown if block is nil
+ */
+- (NSArray *)BB_dropWhile:(BOOL(^)(id object, NSInteger index))block;
 /**
  Returns a new array created by taking pairs of objects from the receiver and array. If either array has more objects than the other, the extra objects are not included in the return value.
  
