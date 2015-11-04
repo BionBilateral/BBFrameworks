@@ -22,13 +22,39 @@ extern CGFloat const BBFormTableViewCellMargin;
 
 @class BBFormField;
 
+/**
+ BBFormTableViewCell is the base class from which all other default table view cells inherit from. Each cell represents a single BBFormField object within a BBFormTableViewController.
+ */
 @interface BBFormTableViewCell : UITableViewCell <BBFormFieldTableViewCell>
 
+/**
+ Get the right layout guide of the receiver, which can be used when laying out subviews.
+ */
 @property (readonly,nonatomic) id<UILayoutSupport> rightLayoutGuide;
 
+/**
+ Set and get the title font used by the receiver.
+ 
+ The default is [UIFont systemFontOfSize:17.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the title text color used by the receiver.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the subtitle font used by the receiver.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *subtitleFont UI_APPEARANCE_SELECTOR;
+/**
+ Set and get the subtitle text color used by the receiver.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *subtitleTextColor UI_APPEARANCE_SELECTOR;
 
 - (void)layoutSubviews NS_REQUIRES_SUPER;
