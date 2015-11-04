@@ -134,9 +134,23 @@
     
     XCTAssertEqualObjects([begin BB_take:begin.count + 1], begin);
 }
-- (void)testDrop {
+- (void)testTakeWhile {
     NSArray *begin = @[@1,@2,@3];
     NSArray *end = @[@1,@2];
+    
+    XCTAssertEqualObjects([begin BB_takeWhile:^BOOL(NSNumber *_Nonnull object, NSInteger index) {
+        return object.integerValue < [begin.lastObject integerValue];
+    }], end);
+    
+    end = @[@1,@2,@3];
+    
+    XCTAssertEqualObjects([begin BB_takeWhile:^BOOL(NSNumber * _Nonnull object, NSInteger index) {
+        return object.integerValue < [begin.lastObject integerValue] + 1;
+    }], end);
+}
+- (void)testDrop {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@2,@3];
     
     XCTAssertEqualObjects([begin BB_drop:1], end);
     
@@ -145,6 +159,20 @@
     XCTAssertEqualObjects([begin BB_drop:begin.count], end);
     
     XCTAssertEqualObjects([begin BB_drop:begin.count + 1], end);
+}
+- (void)testDropWhile {
+    NSArray *begin = @[@1,@2,@3];
+    NSArray *end = @[@2,@3];
+    
+    XCTAssertEqualObjects([begin BB_dropWhile:^BOOL(NSNumber * _Nonnull object, NSInteger index) {
+        return object.integerValue < 2;
+    }], end);
+    
+    end = @[];
+    
+    XCTAssertEqualObjects([begin BB_dropWhile:^BOOL(NSNumber *_Nonnull object, NSInteger index) {
+        return object.integerValue < [begin.lastObject integerValue] + 1;
+    }], end);
 }
 - (void)testZip {
     NSArray *first = @[@1,@2];
