@@ -17,6 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormBooleanCheckmarkTableViewCell is the default cell used for boolean checkmark type form fields.
+ */
 @interface BBFormBooleanCheckmarkTableViewCell : BBFormTableViewCell
 
 @end
