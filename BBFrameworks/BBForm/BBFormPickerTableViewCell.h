@@ -17,8 +17,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBFormPickerTableViewCell is the default cell used for picker type form fields.
+ */
 @interface BBFormPickerTableViewCell : BBFormTableViewCell
 
+/**
+ Set and get the picker text color used by the receiver. This is the color of the BBPickerButton title used to pick values.
+ 
+ The default is [UIColor blueColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *pickerTextColor UI_APPEARANCE_SELECTOR;
 
 @end
