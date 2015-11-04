@@ -30,6 +30,14 @@
     XCTAssertEqualObjects([begin BB_reversedArray], end);
 }
 
+- (void)testAppend {
+    NSArray *first = @[@1,@2,@3];
+    NSArray *second = @[@3,@2,@1];
+    NSArray *end = @[@1,@2,@3,@3,@2,@1];
+    
+    XCTAssertEqualObjects([first BB_append:second], end);
+}
+
 - (void)testSet {
     NSArray *array = @[@1,@2,@3];
     NSSet *set = [NSSet setWithArray:array];
