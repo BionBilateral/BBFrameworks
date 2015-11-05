@@ -758,6 +758,7 @@
 		072966391BEBDD0B0018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Validation.strings; sourceTree = "<group>"; };
 		0729663A1BEBDD620018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
 		0729663B1BEBDDBE0018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Keychain.strings; sourceTree = "<group>"; };
+		0729663C1BEBDEA40018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AddressBook.strings; sourceTree = "<group>"; };
 		072B1D9D1BB4715700D06525 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		072BCF3E1BAB12010054CB60 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionFooterView.h; sourceTree = "<group>"; };
@@ -3380,6 +3381,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				79F941641B436B3B00B385F0 /* en */,
+				0729663C1BEBDEA40018FB7E /* es */,
 			);
 			name = AddressBook.strings;
 			sourceTree = "<group>";
