@@ -18,6 +18,12 @@
 
 #import <Foundation/NSThread.h>
 
+/**
+ Executes the provided block on the main thread synchronously. If the caller is already on the main thread, immediately executes the block, otherwise uses dispatch_sync.
+ 
+ @param block The block the execute
+ @exception NSException Thrown if block is nil
+ */
 extern void BBDispatchMainSyncSafe(void (^block)(void));
 
 #endif

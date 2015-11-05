@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 
 void BBDispatchMainSyncSafe(void (^block)(void)) {
+    NSCParameterAssert(block);
+    
     if ([NSThread isMainThread]) {
         block();
     }
