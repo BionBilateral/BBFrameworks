@@ -95,25 +95,29 @@ static CGFloat const kSubviewMarginHalf = 4.0;
     [super setSelected:selected];
     
     [self.selectedOverlayView setAlpha:selected ? 1.0 : 0.0];
-    
-//    if ([self.selectedOverlayView respondsToSelector:@selector(setHighlighted:)]) {
-//        [(id)self.selectedOverlayView setHighlighted:selected];
-//    }
 }
 #pragma mark *** Public Methods ***
 - (void)setSelectedOverlayViewClassName:(NSString *)selectedOverlayViewClassName {
     _selectedOverlayViewClassName = [selectedOverlayViewClassName ?: [self.class _defaultSelectedOverlayViewClassName] copy];
     
     if (![self.selectedOverlayView isKindOfClass:NSClassFromString(_selectedOverlayViewClassName)]) {
-        [self.selectedOverlayView removeFromSuperview];
-        
         [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
-        [self.contentView addSubview:self.selectedOverlayView];
     }
 }
 #pragma mark *** Private Methods ***
 + (NSString *)_defaultSelectedOverlayViewClassName {
     return NSStringFromClass([BBMediaPickerAssetCollectionViewCellSelectedOverlayView class]);
+}
+#pragma mark Properties
+- (void)setSelectedOverlayView:(UIView *)selectedOverlayView {
+    [_selectedOverlayView removeFromSuperview];
+    
+    _selectedOverlayView = selectedOverlayView;
+    
+    if (_selectedOverlayView) {
+        [_selectedOverlayView setAlpha:self.isSelected ? 1.0 : 0.0];
+        [self.contentView addSubview:_selectedOverlayView];
+    }
 }
 
 @end
