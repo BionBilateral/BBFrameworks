@@ -72,8 +72,14 @@
 }
 - (UIImage *)mediaImage {
     ALAssetRepresentation *rep = self.asset.defaultRepresentation;
+    UIImageOrientation orientation = UIImageOrientationUp;
+    NSNumber *orientationValue = [self.asset valueForProperty:ALAssetPropertyOrientation];
     
-    return [UIImage imageWithCGImage:rep.fullResolutionImage scale:rep.scale orientation:(UIImageOrientation)rep.orientation];
+    if (orientationValue != nil) {
+        orientation = orientationValue.integerValue;
+    }
+    
+    return [UIImage imageWithCGImage:rep.fullResolutionImage scale:rep.scale orientation:orientation];
 }
 #pragma mark *** Public Methods ***
 - (instancetype)initWithAsset:(ALAsset *)asset; {
