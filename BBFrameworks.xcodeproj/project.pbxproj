@@ -760,6 +760,13 @@
 		0729663B1BEBDDBE0018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Keychain.strings; sourceTree = "<group>"; };
 		0729663C1BEBDEA40018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AddressBook.strings; sourceTree = "<group>"; };
 		0729663D1BEBDEC90018FB7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WebKit.strings; sourceTree = "<group>"; };
+		0729663E1BEBE0F10018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Validation.strings; sourceTree = "<group>"; };
+		0729663F1BEBE0F10018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Keychain.strings; sourceTree = "<group>"; };
+		072966401BEBE0F10018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MediaPlayer.strings; sourceTree = "<group>"; };
+		072966411BEBE0F10018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MediaPicker.strings; sourceTree = "<group>"; };
+		072966421BEBE0F10018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AddressBook.strings; sourceTree = "<group>"; };
+		072966431BEBE0F10018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/WebKit.strings; sourceTree = "<group>"; };
+		072966441BEBE0F20018FB7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Foundation.strings; sourceTree = "<group>"; };
 		072B1D9D1BB4715700D06525 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		072BCF3E1BAB12010054CB60 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		0750D6411B6A8EDC002F2C1A /* BBMediaPickerAssetCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionFooterView.h; sourceTree = "<group>"; };
@@ -2649,6 +2656,7 @@
 				en,
 				Base,
 				es,
+				ja,
 			);
 			mainGroup = 796B00E61B1ACBEC0087D3FD;
 			productRefGroup = 79C0009F1B1ACC7C004C9A6E /* Products */;
@@ -3330,6 +3338,7 @@
 			children = (
 				0798751A1BD03923005422B2 /* en */,
 				0729663B1BEBDDBE0018FB7E /* es */,
+				0729663F1BEBE0F10018FB7E /* ja */,
 			);
 			name = Keychain.strings;
 			sourceTree = "<group>";
@@ -3339,6 +3348,7 @@
 			children = (
 				07BFFEDA1B419F1800DBC7EC /* en */,
 				0729663A1BEBDD620018FB7E /* es */,
+				072966401BEBE0F10018FB7E /* ja */,
 			);
 			name = MediaPlayer.strings;
 			sourceTree = "<group>";
@@ -3348,6 +3358,7 @@
 			children = (
 				07C23A8D1B540DE500D3C072 /* en */,
 				0729663D1BEBDEC90018FB7E /* es */,
+				072966431BEBE0F10018FB7E /* ja */,
 			);
 			name = WebKit.strings;
 			sourceTree = "<group>";
@@ -3357,6 +3368,7 @@
 			children = (
 				79B1C10B1BB67A43005A8A0D /* en */,
 				793E185A1BC5CA6E00D4CCFA /* es */,
+				072966441BEBE0F20018FB7E /* ja */,
 			);
 			name = Foundation.strings;
 			sourceTree = "<group>";
@@ -3366,6 +3378,7 @@
 			children = (
 				79CE6A3F1B784F3600A0E969 /* en */,
 				072966391BEBDD0B0018FB7E /* es */,
+				0729663E1BEBE0F10018FB7E /* ja */,
 			);
 			name = Validation.strings;
 			sourceTree = "<group>";
@@ -3375,6 +3388,7 @@
 			children = (
 				79EA81431B3F212700D50B6B /* en */,
 				0750D6441B6A94C0002F2C1A /* es */,
+				072966411BEBE0F10018FB7E /* ja */,
 			);
 			name = MediaPicker.strings;
 			sourceTree = "<group>";
@@ -3384,6 +3398,7 @@
 			children = (
 				79F941641B436B3B00B385F0 /* en */,
 				0729663C1BEBDEA40018FB7E /* es */,
+				072966421BEBE0F10018FB7E /* ja */,
 			);
 			name = AddressBook.strings;
 			sourceTree = "<group>";
