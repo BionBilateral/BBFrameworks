@@ -41,7 +41,7 @@
     char *retval = malloc(size);
     sysctlbyname(name, retval, &size, NULL, 0);
     
-    NSString *results = [NSString stringWithCString:retval encoding: NSUTF8StringEncoding];
+    NSString *results = [NSString stringWithCString:retval encoding:NSUTF8StringEncoding];
     
     free(retval);
     
