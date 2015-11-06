@@ -64,12 +64,6 @@ typedef void(^BBMediaPickerAuthorizationCompletionBlock)(BOOL success, NSError *
  The default is NO.
  */
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
-/**
- Set and get whether the receiver should automatically dismiss itself when the user selects media in single selection mode.
- 
- The default is YES.
- */
-@property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
 
 /**
  Set and get the block used to transform the title displayed in the navigation bar.

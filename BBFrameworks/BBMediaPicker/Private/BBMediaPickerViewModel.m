@@ -49,7 +49,6 @@
     
     [self setMediaPickerViewController:viewController];
     
-    _automaticallyDismissForSingleSelection = YES;
     _shouldShowCancelAndDoneBarButtonItems = YES;
     _mediaTypes = BBMediaPickerMediaTypesAll;
     
@@ -177,20 +176,6 @@
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self.doneBarButtonItem setRac_command:self.doneCommand];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self, automaticallyDismissForSingleSelection),
-                                 RACObserve(self, allowsMultipleSelection),
-                                 RACObserve(self, selectedAssetViewModels)] reduce:^id(NSNumber *dismiss,NSNumber *flag, NSOrderedSet *value){
-                                     return @(dismiss.boolValue && !flag.boolValue && value.count > 0);
-                                 }]
-      ignore:@NO]
-     subscribeNext:^(id _) {
-         @strongify(self);
-         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             @strongify(self);
-             [self.doneCommand execute:nil];
-         });
-     }];
     
     RAC(self,selectedAssetString) = [RACObserve(self, selectedAssetViewModels)
                                      map:^id(NSOrderedSet *value) {

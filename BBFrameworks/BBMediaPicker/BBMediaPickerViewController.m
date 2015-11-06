@@ -70,12 +70,9 @@
          @strongify(self);
          void(^completionBlock)(void) = ^{
              @strongify(self);
-             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-                 @strongify(self);
-                 if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
-                     [self.delegate mediaPickerViewControllerDidCancel:self];
-                 }
-             }];
+             if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
+                 [self.delegate mediaPickerViewControllerDidCancel:self];
+             }
          };
          
          if (self.cancelConfirmBlock) {
@@ -94,12 +91,9 @@
      concat]
      subscribeNext:^(id _) {
          @strongify(self);
-         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-             @strongify(self);
-             if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didFinishPickingMedia:)]) {
-                 [self.delegate mediaPickerViewController:self didFinishPickingMedia:self.viewModel.selectedAssetViewModels.array];
-             }
-         }];
+         if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didFinishPickingMedia:)]) {
+             [self.delegate mediaPickerViewController:self didFinishPickingMedia:self.viewModel.selectedAssetViewModels.array];
+         }
      }];
 }
 - (void)viewDidLayoutSubviews {
@@ -200,13 +194,6 @@
 }
 - (void)setHidesEmptyMediaGroups:(BOOL)hidesEmptyMediaGroups {
     [self.viewModel setHidesEmptyMediaGroups:hidesEmptyMediaGroups];
-}
-@dynamic automaticallyDismissForSingleSelection;
-- (BOOL)automaticallyDismissForSingleSelection {
-    return self.viewModel.automaticallyDismissForSingleSelection;
-}
-- (void)setAutomaticallyDismissForSingleSelection:(BOOL)automaticallyDismissForSingleSelection {
-    [self.viewModel setAutomaticallyDismissForSingleSelection:automaticallyDismissForSingleSelection];
 }
 
 @dynamic titleTransformBlock;

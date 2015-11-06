@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 @property (assign,nonatomic) BOOL hidesEmptyMediaGroups;
-@property (assign,nonatomic) BOOL automaticallyDismissForSingleSelection;
 @property (assign,nonatomic) BOOL shouldShowCancelAndDoneBarButtonItems;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
