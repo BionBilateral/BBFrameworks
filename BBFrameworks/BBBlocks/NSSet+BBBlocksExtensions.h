@@ -71,6 +71,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object))block;
 /**
+ Return a new set which is the result of unioning all the objects in the receiver, which should be sets.
+ 
+ @return The flattened set
+ @exception NSException Thrown if the receiver contains any non-set objects
+ */
+- (NSSet *)BB_flatten;
+/**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
  @param block The block to invoke for each object in the receiver

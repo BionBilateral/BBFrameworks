@@ -86,6 +86,12 @@
     
     return retval;
 }
+- (NSSet *)BB_flatten; {
+    return [[self BB_reduceWithStart:[[NSMutableSet alloc] init] block:^id _Nonnull(NSMutableSet * _Nullable sum, NSSet * _Nonnull object) {
+        [sum unionSet:object];
+        return sum;
+    }] copy];
+}
 - (BOOL)BB_any:(BOOL(^)(id object))block; {
     NSParameterAssert(block);
     
