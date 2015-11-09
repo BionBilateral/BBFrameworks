@@ -1487,6 +1487,64 @@
 			path = BBForm;
 			sourceTree = "<group>";
 		};
+		07D1D1D91BF112C1001AD2A1 /* BBBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				07B3D8F31B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m */,
+				799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */,
+				0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */,
+				07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */,
+			);
+			name = BBBlocks;
+			sourceTree = "<group>";
+		};
+		07D1D1DA1BF112CA001AD2A1 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				07D1D1DB1BF112D9001AD2A1 /* BBCoreData */,
+				07D1D1DC1BF112ED001AD2A1 /* BBFoundation */,
+				07D1D1D91BF112C1001AD2A1 /* BBBlocks */,
+				07D1D1DD1BF112F7001AD2A1 /* BBKit */,
+				07D1D1DE1BF112FC001AD2A1 /* BBKeychain */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		07D1D1DB1BF112D9001AD2A1 /* BBCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */,
+			);
+			name = BBCoreData;
+			sourceTree = "<group>";
+		};
+		07D1D1DC1BF112ED001AD2A1 /* BBFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */,
+				79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */,
+				07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */,
+				07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */,
+			);
+			name = BBFoundation;
+			sourceTree = "<group>";
+		};
+		07D1D1DD1BF112F7001AD2A1 /* BBKit */ = {
+			isa = PBXGroup;
+			children = (
+				07B104DB1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m */,
+			);
+			name = BBKit;
+			sourceTree = "<group>";
+		};
+		07D1D1DE1BF112FC001AD2A1 /* BBKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */,
+			);
+			name = BBKeychain;
+			sourceTree = "<group>";
+		};
 		07E312BD1BB32B8600C71468 /* BBKeyValueObserving */ = {
 			isa = PBXGroup;
 			children = (
@@ -1519,17 +1577,7 @@
 		79052AFE1B1AF3270097B7AF /* BBFrameworksTests */ = {
 			isa = PBXGroup;
 			children = (
-				79052B191B1AF4010097B7AF /* BBFrameworksCoreDataImportTests.m */,
-				79052B1A1B1AF4010097B7AF /* BBFrameworksNSArrayFoundationExtensionsTestCase.m */,
-				79052B1B1B1AF4010097B7AF /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m */,
-				07E3E5081B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m */,
-				07E3E50B1B459B4800925416 /* BBFrameworksNSURLFoundationExtensionsTestCase.m */,
-				07B3D8F31B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m */,
-				799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */,
-				0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */,
-				07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */,
-				07B104DB1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m */,
-				079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */,
+				07D1D1DA1BF112CA001AD2A1 /* Tests */,
 				79052AFF1B1AF3270097B7AF /* Supporting Files */,
 			);
 			path = BBFrameworksTests;
