@@ -34,7 +34,7 @@
     CGSize destSize = BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(image.CGImage, size, true);
     CGAffineTransform transform = [image BB_imageTransformForDestinationSize:destSize];
     CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(image.CGImage, size, transform, true);
-    UIImage *retval = [UIImage imageWithCGImage:imageRef];
+    UIImage *retval = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
     
     CGImageRelease(imageRef);
     
