@@ -78,6 +78,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object, NSInteger index))block;
 /**
+ Return a new array that is a result of flattening the objects in the receiver, which should all be arrays.
+ 
+ @return The flattened array
+ @exception NSException Thrown if the receiver contains non-array objects
+ */
+- (NSArray *)BB_flatten;
+/**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
  @param block The block to invoke for each object in the receiver

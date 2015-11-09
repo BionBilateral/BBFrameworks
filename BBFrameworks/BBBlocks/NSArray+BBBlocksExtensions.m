@@ -100,6 +100,12 @@
     
     return retval;
 }
+- (NSArray *)BB_flatten; {
+    return [[self BB_reduceWithStart:[[NSMutableArray alloc] init] block:^id _Nonnull(NSMutableArray * _Nullable sum, NSArray * _Nonnull object, NSInteger index) {
+        [sum addObjectsFromArray:object];
+        return sum;
+    }] copy];
+}
 - (BOOL)BB_any:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
