@@ -83,6 +83,12 @@
         return sum;
     }], end);
 }
+- (void)testFlatten {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithObjects:[NSOrderedSet orderedSetWithObject:@1],[NSOrderedSet orderedSetWithObject:@2],[NSOrderedSet orderedSetWithObject:@3], nil];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@1,@2,@3]];
+    
+    XCTAssertEqualObjects([begin BB_flatten], end);
+}
 - (void)testAny {
     NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@3,@2]];
     
