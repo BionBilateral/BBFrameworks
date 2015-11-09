@@ -89,6 +89,14 @@
     
     XCTAssertEqualObjects([begin BB_flatten], end);
 }
+- (void)testFlattenMap {
+    NSArray *begin = @[@[@1],@[@2],@[@3]];
+    NSArray *end = @[@2,@3,@4];
+    
+    XCTAssertEqualObjects([begin BB_flattenMap:^id _Nullable(NSNumber * _Nonnull object, NSInteger index) {
+        return @(object.integerValue + 1);
+    }], end);
+}
 - (void)testAny {
     NSArray *begin = @[@1,@3,@2];
     
