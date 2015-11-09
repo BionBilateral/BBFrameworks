@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,copy,nonatomic) BBKeyValueObservingBlock block;
 
 - (instancetype)initWithObserver:(nullable id)observer target:(id)target keyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options block:(BBKeyValueObservingBlock)block NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)init __attribute__((unavailable("use initWithObserver:target:keyPaths:options:block: instead")));
 
 @end
