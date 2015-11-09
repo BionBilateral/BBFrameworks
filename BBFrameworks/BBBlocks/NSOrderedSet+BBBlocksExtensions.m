@@ -100,6 +100,12 @@
     
     return retval;
 }
+- (NSOrderedSet *)BB_flatten; {
+    return [[self BB_reduceWithStart:[[NSMutableOrderedSet alloc] init] block:^id _Nonnull(NSMutableOrderedSet * _Nullable sum, NSOrderedSet * _Nonnull object, NSInteger index) {
+        [sum addObjectsFromArray:object.array];
+        return sum;
+    }] copy];
+}
 - (BOOL)BB_any:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
