@@ -86,6 +86,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSDictionary *)BB_flatten;
 /**
+ Returns the result of calling `[[self BB_flatten] BB_map:block]`.
+ 
+ @param block The block to map over the flattened dictionary returned by BB_flatten
+ @return The flattened mapped dictionary
+ @exception NSException Thrown if block is nil
+ */
+- (NSDictionary *)BB_flattenMap:(id _Nullable(^)(id key, id value))block;
+/**
  Returns YES if block returns YES for any key/value pair in the receiver, otherwise NO.
  
  @param block The block to invoke for every key/value pair
