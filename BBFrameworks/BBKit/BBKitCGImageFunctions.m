@@ -29,14 +29,23 @@ bool BBKitCGImageHasAlpha(CGImageRef imageRef) {
             alphaInfo == kCGImageAlphaPremultipliedLast);
 }
 
+CGSize BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio) {
+    CGSize destSize = maintainAspectRatio ? AVMakeRectWithAspectRatioInsideRect(CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), CGRectMake(0, 0, size.width, size.height)).size : size;
+    
+    return destSize;
+}
+
 CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size) {
     return BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(imageRef, size, true);
 }
 CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio) {
+    return BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(imageRef, size, CGAffineTransformIdentity, maintainAspectRatio);
+}
+extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio) {
     NSCParameterAssert(imageRef);
     NSCParameterAssert(!CGSizeEqualToSize(size, CGSizeZero));
     
-    CGSize destSize = maintainAspectRatio ? AVMakeRectWithAspectRatioInsideRect(CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), CGRectMake(0, 0, size.width, size.height)).size : CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
+    CGSize destSize = BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(imageRef, size, maintainAspectRatio);
     CGImageRef sourceImageRef = imageRef;
     CFDataRef sourceDataRef = CGDataProviderCopyData(CGImageGetDataProvider(sourceImageRef));
     vImage_Buffer source = {
@@ -81,6 +90,22 @@ CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef 
         BBLogObject(@(error));
         CGImageRelease(destImageRef);
         return NULL;
+    }
+    
+    if (!CGAffineTransformIsIdentity(transform)) {
+        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
+        
+        CGContextConcatCTM(contextRef, transform);
+        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+        
+        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
+        
+        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
+        
+        CGContextRelease(contextRef);
+        CGImageRelease(destImageRef);
+        
+        destImageRef = temp;
     }
     
     return destImageRef;

@@ -23,6 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (BBKitExtensionsPrivate)
 
 /**
+ Returns the correct transform to apply to an image for the provided destination size.
+ 
+ @param destinationSize The destination size of the image
+ @return The affine transform to apply to the image
+ */
+- (CGAffineTransform)BB_imageTransformForDestinationSize:(CGSize)destinationSize;
+
+/**
  Returns an image named _imageName_ from the resources bundle.
  
  @param imageName The name of the image

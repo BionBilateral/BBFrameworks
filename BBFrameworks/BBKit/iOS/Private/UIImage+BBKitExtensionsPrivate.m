@@ -18,6 +18,47 @@
 
 @implementation UIImage (BBKitExtensionsPrivate)
 
+- (CGAffineTransform)BB_imageTransformForDestinationSize:(CGSize)destinationSize; {
+    CGAffineTransform retval = CGAffineTransformIdentity;
+    
+    switch (self.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            retval = CGAffineTransformTranslate(retval, destinationSize.width, destinationSize.height);
+            retval = CGAffineTransformRotate(retval, M_PI);
+            break;
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            retval = CGAffineTransformTranslate(retval, destinationSize.width, 0);
+            retval = CGAffineTransformRotate(retval, M_PI_2);
+            break;
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            retval = CGAffineTransformTranslate(retval, 0, destinationSize.height);
+            retval = CGAffineTransformRotate(retval, -M_PI_2);
+            break;
+        default:
+            break;
+    }
+    
+    switch (self.imageOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            retval = CGAffineTransformTranslate(retval, destinationSize.width, 0);
+            retval = CGAffineTransformScale(retval, -1, 1);
+            break;
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            retval = CGAffineTransformTranslate(retval, destinationSize.height, 0);
+            retval = CGAffineTransformScale(retval, -1, 1);
+            break;
+        default:
+            break;
+    }
+    
+    return retval;
+}
+
 + (UIImage *)BB_imageInResourcesBundleNamed:(NSString *)imageName; {
     return [UIImage imageNamed:[@[BBFrameworksResourcesBundleName,imageName] componentsJoinedByString:@"/"]];
 }

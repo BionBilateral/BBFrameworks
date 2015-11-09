@@ -17,6 +17,7 @@
 #define __BB_FRAMEWORKS_KIT_CGIMAGE_FUNCTIONS__
 
 #import <CoreGraphics/CGImage.h>
+#import <CoreGraphics/CGAffineTransform.h>
 
 /**
  Returns whether _imageRef_ has an alpha component.
@@ -25,6 +26,16 @@
  @return YES if _imageRef_ has alpha, otherwise NO
  */
 extern bool BBKitCGImageHasAlpha(CGImageRef imageRef);
+
+/**
+ Returns the thumbnail size for a given size, optionally maintaining the aspect ratio.
+ 
+ @param imageRef The image ref to resize
+ @param size The size to resize to
+ @param maintainAspectRatio Whether to maintain the aspect ratio of the resulting size
+ @return The destination size of the thumbnail
+ */
+extern CGSize BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio);
 
 /**
  Calls `BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio()`, passing _imageRef_, _size_, and true respectively. The caller is responsible for releasing the returned CGImage.
@@ -45,6 +56,8 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSiz
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
 extern CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio);
+
+extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio);
 
 /**
  Creates a new CGImage by blurring the provided imageRef using a box filter with radius. The caller is responsible for releasing the returned CGImage.

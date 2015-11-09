@@ -16,10 +16,13 @@
 #import "UIImage+BBKitExtensions.h"
 #import "BBKitCGImageFunctions.h"
 #import "CIImage+BBKitExtensions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 #if !__has_feature(objc_arc)
 #error This file requires ARC
 #endif
+
+
 
 @implementation UIImage (BBKitExtensions)
 
@@ -28,7 +31,9 @@
 }
 
 + (UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size; {
-    CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSize(image.CGImage, size);
+    CGSize destSize = BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(image.CGImage, size, true);
+    CGAffineTransform transform = [image BB_imageTransformForDestinationSize:destSize];
+    CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(image.CGImage, size, transform, true);
     UIImage *retval = [UIImage imageWithCGImage:imageRef];
     
     CGImageRelease(imageRef);
