@@ -88,6 +88,16 @@ extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGIm
  */
 extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGImageRef imageRef, CGFloat delta);
 /**
+ Creates a new CGImage by adjusting the brightness of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose brightness to adjust
+ @param delta The amount to adjust brightness by
+ @param transform The transform to apply to the resulting image
+ @return The image with its brightness adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
+/**
  Creates a new CGImage by adjusting the contrast of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
  
  @param imageRef The CGImage whose contrast to adjust
@@ -96,6 +106,7 @@ extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGI
  @exception NSException Thrown if _imageRef_ is NULL
  */
 extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
 /**
  Creates a new CGImage by adjusting the saturation of the provided imageRef by delta. The delta parameter should be greater than or less than 1.0. The caller is responsible for releasing the returned CGImage.
  
