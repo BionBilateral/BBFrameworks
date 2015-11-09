@@ -92,6 +92,9 @@
         return sum;
     }] copy];
 }
+- (NSSet *)BB_flattenMap:(id _Nullable(^)(id object))block; {
+    return [[self BB_flatten] BB_map:block];
+}
 - (BOOL)BB_any:(BOOL(^)(id object))block; {
     NSParameterAssert(block);
     
