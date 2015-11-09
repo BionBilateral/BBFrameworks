@@ -81,6 +81,14 @@
     
     XCTAssertEqualObjects([begin BB_flatten], end);
 }
+- (void)testFlattenMap {
+    NSSet *begin = [NSSet setWithObjects:[NSSet setWithObject:@1],[NSSet setWithObject:@2],[NSSet setWithObject:@3], nil];
+    NSSet *end = [NSSet setWithArray:@[@2,@3,@4]];
+    
+    XCTAssertEqualObjects([begin BB_flattenMap:^id _Nullable(NSNumber * _Nonnull object) {
+        return @(object.integerValue + 1);
+    }], end);
+}
 - (void)testAny {
     NSSet *begin = [NSSet setWithArray:@[@1,@3,@2]];
     
