@@ -146,6 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return An initialized instance of the receiver
  */
 - (instancetype)initWithPerson:(ABRecordRef)person NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)init __attribute__((unavailable("use initWithPerson: instead")));
 
 @end
