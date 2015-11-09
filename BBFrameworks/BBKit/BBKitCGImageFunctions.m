@@ -271,6 +271,9 @@ CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTransform(C
 }
 
 CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef imageRef, CGFloat delta) {
+    return BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(imageRef, delta, CGAffineTransformIdentity);
+}
+CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform) {
     NSCParameterAssert(imageRef);
     
     // assume -1.0 to 1.0 range for delta, clamp actual value to -255 to 255
@@ -332,12 +335,28 @@ CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef i
     vDSP_vclip(floatData, 1, &minimum, &maximum, floatData, 1, numberOfPixels);
     vDSP_vfixu8(floatData, 1, data + 3, 4, numberOfPixels);
     
-    CGImageRef retval = CGBitmapContextCreateImage(context);
+    CGImageRef destImageRef = CGBitmapContextCreateImage(context);
     
     CGContextRelease(context);
     free(floatData);
     
-    return retval;
+    if (!CGAffineTransformIsIdentity(transform)) {
+        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
+        
+        CGContextConcatCTM(contextRef, transform);
+        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+        
+        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
+        
+        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
+        
+        CGContextRelease(contextRef);
+        CGImageRelease(destImageRef);
+        
+        destImageRef = temp;
+    }
+    
+    return destImageRef;
 }
 
 CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta) {
