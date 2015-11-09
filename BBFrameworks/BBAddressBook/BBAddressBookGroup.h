@@ -51,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return An initialized instance of the receiver
  */
 - (instancetype)initWithGroup:(ABRecordRef)group NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)init __attribute__((unavailable("use initWithGroup: instead")));
 
 /**
