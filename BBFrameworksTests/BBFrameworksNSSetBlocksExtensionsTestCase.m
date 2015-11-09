@@ -75,6 +75,12 @@
         return sum;
     }], end);
 }
+- (void)testFlatten {
+    NSSet *begin = [NSSet setWithObjects:[NSSet setWithObject:@1],[NSSet setWithObject:@2],[NSSet setWithObject:@3], nil];
+    NSSet *end = [NSSet setWithArray:@[@1,@2,@3]];
+    
+    XCTAssertEqualObjects([begin BB_flatten], end);
+}
 - (void)testAny {
     NSSet *begin = [NSSet setWithArray:@[@1,@3,@2]];
     
