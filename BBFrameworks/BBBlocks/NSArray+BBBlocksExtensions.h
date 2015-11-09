@@ -85,6 +85,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSArray *)BB_flatten;
 /**
+ Returns the result of calling `[[self BB_flatten] BB_map:block]`.
+ 
+ @param block The block to map over the flattened array returned by BB_flatten
+ @return The flattened mapped array
+ @exception NSException Thrown if block is nil
+ */
+- (NSArray *)BB_flattenMap:(id _Nullable(^)(id object, NSInteger index))block;
+/**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
  @param block The block to invoke for each object in the receiver
