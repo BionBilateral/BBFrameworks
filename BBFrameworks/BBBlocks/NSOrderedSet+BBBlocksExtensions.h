@@ -85,6 +85,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSOrderedSet *)BB_flatten;
 /**
+ Returns the result of calling `[[self BB_flatten] BB_map:block]`.
+ 
+ @param block The block to map over the flattened ordered set returned by BB_flatten
+ @return The flattened mapped ordered set
+ @exception NSException Thrown if block is nil
+ */
+- (NSOrderedSet *)BB_flattenMap:(id _Nullable(^)(id object, NSInteger index))block;
+/**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
  @param block The block to invoke for each object in the receiver

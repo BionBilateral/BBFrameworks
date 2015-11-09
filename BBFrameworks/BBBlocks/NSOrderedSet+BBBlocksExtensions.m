@@ -106,6 +106,9 @@
         return sum;
     }] copy];
 }
+- (NSOrderedSet *)BB_flattenMap:(id _Nullable(^)(id object, NSInteger index))block; {
+    return [[self BB_flatten] BB_map:block];
+}
 - (BOOL)BB_any:(BOOL(^)(id object, NSInteger index))block; {
     NSParameterAssert(block);
     
