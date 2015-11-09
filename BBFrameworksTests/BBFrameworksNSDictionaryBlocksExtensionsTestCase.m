@@ -88,6 +88,14 @@
     
     XCTAssertEqualObjects([begin BB_flatten], end);
 }
+- (void)testFlattenMap {
+    NSDictionary *begin = @{@1: @{@1: @"one"}, @2: @{@2: @"two"}, @3: @{@3: @"three"}};
+    NSDictionary *end = @{@1: @"ONE", @2: @"TWO", @3: @"THREE"};
+    
+    XCTAssertEqualObjects([begin BB_flattenMap:^id _Nullable(id  _Nonnull key, NSString * _Nonnull value) {
+        return value.uppercaseString;
+    }], end);
+}
 - (void)testAny {
     NSDictionary *begin = @{@1: @"one", @2: @"two", @3: @"three"};
     
