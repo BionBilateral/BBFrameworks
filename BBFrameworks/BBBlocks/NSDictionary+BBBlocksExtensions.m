@@ -101,6 +101,12 @@
     
     return retval;
 }
+- (NSDictionary *)BB_flatten; {
+    return [[self BB_reduceWithStart:[[NSMutableDictionary alloc] init] block:^id _Nullable(NSMutableDictionary * _Nullable sum, id _Nonnull key, NSDictionary * _Nonnull value) {
+        [sum addEntriesFromDictionary:value];
+        return sum;
+    }] copy];
+}
 - (BOOL)BB_any:(BOOL(^)(id key, id value))block; {
     NSParameterAssert(block);
     

@@ -79,6 +79,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)BB_reduceWithStart:(nullable id)start block:(id _Nullable(^)(id _Nullable sum, id key, id value))block;
 /**
+ Return a new dictionary which is the result of flattening all the values of the receiver, which should be dictionaries, into a single dictionary.
+ 
+ @return The flattened dictionary
+ @exception NSException Thrown if the receiver contains any non-dictionary objects
+ */
+- (NSDictionary *)BB_flatten;
+/**
  Returns YES if block returns YES for any key/value pair in the receiver, otherwise NO.
  
  @param block The block to invoke for every key/value pair
