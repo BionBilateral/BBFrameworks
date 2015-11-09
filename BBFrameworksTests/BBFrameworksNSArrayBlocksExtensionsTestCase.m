@@ -83,6 +83,12 @@
         return sum;
     }], end);
 }
+- (void)testFlatten {
+    NSArray *begin = @[@[@1],@[@2],@[@3]];
+    NSArray *end = @[@1,@2,@3];
+    
+    XCTAssertEqualObjects([begin BB_flatten], end);
+}
 - (void)testAny {
     NSArray *begin = @[@1,@3,@2];
     
