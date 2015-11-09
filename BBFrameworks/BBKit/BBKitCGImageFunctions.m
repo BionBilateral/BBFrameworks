@@ -20,6 +20,22 @@
 #import <Accelerate/Accelerate.h>
 #import <AVFoundation/AVFoundation.h>
 
+static CGImageRef BBKitCGImageCreateByApplyingTransform(CGImageRef imageRef, CGAffineTransform transform) {
+    CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef), CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), CGImageGetColorSpace(imageRef), CGImageGetBitmapInfo(imageRef));
+    
+    CGContextConcatCTM(contextRef, transform);
+    CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+    
+    CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), imageRef);
+    
+    CGImageRef retval = CGBitmapContextCreateImage(contextRef);
+    
+    CGContextRelease(contextRef);
+    CGImageRelease(imageRef);
+    
+    return retval;
+}
+
 bool BBKitCGImageHasAlpha(CGImageRef imageRef) {
     CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
     
@@ -93,19 +109,7 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectR
     }
     
     if (!CGAffineTransformIsIdentity(transform)) {
-        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
-        
-        CGContextConcatCTM(contextRef, transform);
-        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-        
-        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
-        
-        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
-        
-        CGContextRelease(contextRef);
-        CGImageRelease(destImageRef);
-        
-        destImageRef = temp;
+        destImageRef = BBKitCGImageCreateByApplyingTransform(destImageRef, transform);
     }
     
     return destImageRef;
@@ -174,19 +178,7 @@ CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGImageRef 
     }
     
     if (!CGAffineTransformIsIdentity(transform)) {
-        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
-        
-        CGContextConcatCTM(contextRef, transform);
-        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-        
-        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
-        
-        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
-        
-        CGContextRelease(contextRef);
-        CGImageRelease(destImageRef);
-        
-        destImageRef = temp;
+        destImageRef = BBKitCGImageCreateByApplyingTransform(destImageRef, transform);
     }
     
     return destImageRef;
@@ -252,19 +244,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTransform(C
     free(floatData);
     
     if (!CGAffineTransformIsIdentity(transform)) {
-        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
-        
-        CGContextConcatCTM(contextRef, transform);
-        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-        
-        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
-        
-        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
-        
-        CGContextRelease(contextRef);
-        CGImageRelease(destImageRef);
-        
-        destImageRef = temp;
+        destImageRef = BBKitCGImageCreateByApplyingTransform(destImageRef, transform);
     }
     
     return destImageRef;
@@ -341,19 +321,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGI
     free(floatData);
     
     if (!CGAffineTransformIsIdentity(transform)) {
-        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
-        
-        CGContextConcatCTM(contextRef, transform);
-        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-        
-        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
-        
-        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
-        
-        CGContextRelease(contextRef);
-        CGImageRelease(destImageRef);
-        
-        destImageRef = temp;
+        destImageRef = BBKitCGImageCreateByApplyingTransform(destImageRef, transform);
     }
     
     return destImageRef;
@@ -432,19 +400,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(C
     }
     
     if (!CGAffineTransformIsIdentity(transform)) {
-        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
-        
-        CGContextConcatCTM(contextRef, transform);
-        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-        
-        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
-        
-        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
-        
-        CGContextRelease(contextRef);
-        CGImageRelease(destImageRef);
-        
-        destImageRef = temp;
+        destImageRef = BBKitCGImageCreateByApplyingTransform(destImageRef, transform);
     }
     
     return destImageRef;
