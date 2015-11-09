@@ -82,6 +82,12 @@
         return @(sum.integerValue + key.integerValue);
     }], end);
 }
+- (void)testFlatten {
+    NSDictionary *begin = @{@1: @{@1: @"one"}, @2: @{@2: @"two"}, @3: @{@3: @"three"}};
+    NSDictionary *end = @{@1: @"one", @2: @"two", @3: @"three"};
+    
+    XCTAssertEqualObjects([begin BB_flatten], end);
+}
 - (void)testAny {
     NSDictionary *begin = @{@1: @"one", @2: @"two", @3: @"three"};
     
