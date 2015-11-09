@@ -89,6 +89,14 @@
     
     XCTAssertEqualObjects([begin BB_flatten], end);
 }
+- (void)testFlattenMap {
+    NSOrderedSet *begin = [NSOrderedSet orderedSetWithObjects:[NSOrderedSet orderedSetWithObject:@1],[NSOrderedSet orderedSetWithObject:@2],[NSOrderedSet orderedSetWithObject:@3], nil];
+    NSOrderedSet *end = [NSOrderedSet orderedSetWithArray:@[@2,@3,@4]];
+    
+    XCTAssertEqualObjects([begin BB_flattenMap:^id _Nullable(NSNumber * _Nonnull object, NSInteger index) {
+        return @(object.integerValue + 1);
+    }], end);
+}
 - (void)testAny {
     NSOrderedSet *begin = [NSOrderedSet orderedSetWithArray:@[@1,@3,@2]];
     
