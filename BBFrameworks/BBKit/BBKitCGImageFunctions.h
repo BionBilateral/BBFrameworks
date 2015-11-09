@@ -69,6 +69,16 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectR
  */
 extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef, CGFloat radius);
 /**
+ Creates a new CGImage by blurring the provided imageRef using a box filter with radius, optionally applying the provided transform to the resulting image. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage to blur
+ @param radius The radius of the box filter to produce the blur
+ @param transform The transform to apply to the resulting image
+ @return The blurred CGImage
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGImageRef imageRef, CGFloat radius, CGAffineTransform transform);
+/**
  Creates a new CGImage by adjusting the brightness of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
  
  @param imageRef The CGImage whose brightness to adjust

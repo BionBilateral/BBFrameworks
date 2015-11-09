@@ -112,6 +112,9 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectR
 }
 
 CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef, CGFloat radius) {
+    return BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(imageRef, radius, CGAffineTransformIdentity);
+}
+CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGImageRef imageRef, CGFloat radius, CGAffineTransform transform) {
     NSCParameterAssert(imageRef);
     
     radius = BBBoundedValue(radius, 0.0, 1.0);
@@ -168,6 +171,22 @@ CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef,
         BBLogObject(@(error));
         CGImageRelease(destImageRef);
         return NULL;
+    }
+    
+    if (!CGAffineTransformIsIdentity(transform)) {
+        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
+        
+        CGContextConcatCTM(contextRef, transform);
+        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+        
+        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
+        
+        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
+        
+        CGContextRelease(contextRef);
+        CGImageRelease(destImageRef);
+        
+        destImageRef = temp;
     }
     
     return destImageRef;
