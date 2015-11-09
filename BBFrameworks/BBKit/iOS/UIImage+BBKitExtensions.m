@@ -95,7 +95,8 @@
 {
     NSParameterAssert(image);
     
-    CGImageRef imageRef = BBKitCGImageCreateImageByBlurringImageWithRadius(image.CGImage, radius);
+    CGAffineTransform transform = [image BB_imageTransformForDestinationSize:image.size];
+    CGImageRef imageRef = BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(image.CGImage, radius, transform);
     
     if (!imageRef) {
         return nil;
@@ -119,7 +120,8 @@
         return image;
     }
     
-    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(image.CGImage, delta);
+    CGAffineTransform transform = [image BB_imageTransformForDestinationSize:image.size];
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTransform(image.CGImage, delta, transform);
     
     if (!imageRef) {
         return nil;
@@ -143,7 +145,8 @@
         return image;
     }
     
-    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(image.CGImage, delta);
+    CGAffineTransform transform = [image BB_imageTransformForDestinationSize:image.size];
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(image.CGImage, delta, transform);
     
     if (!imageRef) {
         return nil;
@@ -167,7 +170,8 @@
         return image;
     }
     
-    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(image.CGImage, delta);
+    CGAffineTransform transform = [image BB_imageTransformForDestinationSize:image.size];
+    CGImageRef imageRef = BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(image.CGImage, delta, transform);
     
     if (!imageRef) {
         return nil;
