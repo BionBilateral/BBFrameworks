@@ -360,6 +360,9 @@ CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGI
 }
 
 CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta) {
+    return BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(imageRef, delta, CGAffineTransformIdentity);
+}
+CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform) {
     NSCParameterAssert(imageRef);
     
     // http://www.w3.org/TR/filter-effects-1/#elementdef-fecolormatrix
@@ -426,6 +429,22 @@ CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef
         BBLogObject(@(error));
         CGImageRelease(destImageRef);
         return nil;
+    }
+    
+    if (!CGAffineTransformIsIdentity(transform)) {
+        CGContextRef contextRef = CGBitmapContextCreate(NULL, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef), CGImageGetBitsPerComponent(destImageRef), CGImageGetBytesPerRow(destImageRef), CGImageGetColorSpace(destImageRef), CGImageGetBitmapInfo(destImageRef));
+        
+        CGContextConcatCTM(contextRef, transform);
+        CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+        
+        CGContextDrawImage(contextRef, CGRectMake(0, 0, CGImageGetWidth(destImageRef), CGImageGetHeight(destImageRef)), destImageRef);
+        
+        CGImageRef temp = CGBitmapContextCreateImage(contextRef);
+        
+        CGContextRelease(contextRef);
+        CGImageRelease(destImageRef);
+        
+        destImageRef = temp;
     }
     
     return destImageRef;
