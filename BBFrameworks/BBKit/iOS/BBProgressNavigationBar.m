@@ -94,6 +94,7 @@ static NSString *const kProgressKeyPath = @"progress";
 - (void)_BBProgressNavigationBarInit; {
     [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
     [self.progressView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.progressView setAlpha:0.0];
     [self addSubview:self.progressView];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.progressView}]];
