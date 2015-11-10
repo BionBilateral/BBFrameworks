@@ -277,6 +277,11 @@
           }]];
     }
 }
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[self.navigationController BB_progressNavigationBar] setProgressHidden:YES animated:animated];
+}
 #pragma mark WKNavigationDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     void(^completionBlock)(BOOL) = ^(BOOL allow) {
