@@ -293,6 +293,11 @@
     
     [[self.navigationController BB_progressNavigationBar] setProgressHidden:YES animated:animated];
 }
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[self.navigationController BB_progressNavigationBar] setProgress:0.0];
+}
 #pragma mark WKNavigationDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     void(^completionBlock)(BOOL) = ^(BOOL allow) {
