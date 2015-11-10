@@ -37,6 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (copy,nonatomic,nullable) NSString *customTitle;
 
+/**
+ Set and get whether the receiver should show the standard system share bar button item.
+ 
+ The default is YES.
+ */
+@property (assign,nonatomic) BOOL showShareBarButtonItem;
+
 /*
  Get and set whether the navigation toolbar should be shown.
  

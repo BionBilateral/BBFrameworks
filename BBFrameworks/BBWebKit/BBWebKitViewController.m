@@ -58,6 +58,7 @@
         return nil;
     
     _showNavigationToolbar = YES;
+    _showShareBarButtonItem = YES;
     
     return self;
 }
@@ -99,7 +100,9 @@
              [[self.navigationController BB_progressNavigationBar] setProgress:value.doubleValue animated:YES];
          }];
         
-        [self.navigationItem setRightBarButtonItems:@[shareItem]];
+        if (self.showShareBarButtonItem) {
+            [self.navigationItem setRightBarButtonItems:@[shareItem]];
+        }
     }
     else {
         UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -117,7 +120,12 @@
              }
          }];
         
-        [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView],shareItem]];
+        if (self.showShareBarButtonItem) {
+            [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView],shareItem]];
+        }
+        else {
+            [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView]]];
+        }
         
         [self setActivityIndicatorView:activityIndicatorView];
     }
