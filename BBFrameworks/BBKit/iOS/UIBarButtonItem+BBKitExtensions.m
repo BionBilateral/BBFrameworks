@@ -21,9 +21,25 @@
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
 }
 + (UIBarButtonItem *)BB_fixedSpaceBarButtonItemWithWidth:(CGFloat)width; {
-    UIBarButtonItem *retval = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [retval setWidth:width];
+    [button setUserInteractionEnabled:NO];
+    [button setImage:({
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, 1), NO, 0);
+        
+        [[UIColor clearColor] setFill];
+        UIRectFill(CGRectMake(0, 0, width, 1));
+        
+        UIImage *retval = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        retval;
+    }) forState:UIControlStateNormal];
+    
+    [button sizeToFit];
+    
+    UIBarButtonItem *retval = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     return retval;
 }
