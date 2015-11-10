@@ -103,6 +103,9 @@
         if (self.showShareBarButtonItem) {
             [self.navigationItem setRightBarButtonItems:@[shareItem]];
         }
+        else {
+            [self.navigationItem setRightBarButtonItems:@[[UIBarButtonItem BB_fixedSpaceBarButtonItemWithWidth:44.0]]];
+        }
     }
     else {
         UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
