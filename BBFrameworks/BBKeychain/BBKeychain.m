@@ -258,9 +258,9 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
 }
 
 + (BOOL)deleteAllItems; {
-    return [self deleteAllItems:NULL];
+    return [self deleteAllItemsAndReturnError:NULL];
 }
-+ (BOOL)deleteAllItems:(NSError **)error; {
++ (BOOL)deleteAllItemsAndReturnError:(NSError * _Nullable __autoreleasing *)error {
     NSArray<NSNumber *> *keychainSecurityClasses = @[@(BBKeychainSecurityClassKey),
                                                      @(BBKeychainSecurityClassInternetPassword),
                                                      @(BBKeychainSecurityClassIdentity),
