@@ -27,6 +27,7 @@ NSString *const BBKeychainAccountKeyDescription = @"desc";
 NSString *const BBKeychainAccountKeyLastModified = @"mdat";
 NSString *const BBKeychainAccountKeyWhere = @"svce";
 
+#if (TARGET_OS_IPHONE)
 static NSString *BBKeychainSecClassForKeychainSecurityClass(BBKeychainSecurityClass keychainSecurityClass) {
     switch (keychainSecurityClass) {
         case BBKeychainSecurityClassCertificate:
@@ -43,6 +44,7 @@ static NSString *BBKeychainSecClassForKeychainSecurityClass(BBKeychainSecurityCl
             return nil;
     }
 }
+#endif
 
 static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *service, NSString *account) {
     NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
@@ -240,6 +242,7 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return retval;
 }
 
+#if (TARGET_OS_IPHONE)
 + (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
     return [self deleteAllItemsForKeychainSecurityClass:keychainSecurityClass error:NULL];
 }
@@ -275,5 +278,6 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     
     return YES;
 }
+#endif
 
 @end

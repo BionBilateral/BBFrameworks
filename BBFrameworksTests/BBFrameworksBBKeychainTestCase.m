@@ -40,6 +40,7 @@
     XCTAssertTrue([BBKeychain deletePasswordForService:service account:account]);
     XCTAssertNil([BBKeychain passwordForService:service account:account]);
 }
+#if (TARGET_OS_IPHONE)
 - (void)testDeleteAllItemsForKeychainSecurityClass {
     NSString *password = [[NSUUID UUID] UUIDString];
     NSString *service = [[NSUUID UUID] UUIDString];
@@ -60,5 +61,6 @@
     XCTAssertTrue([BBKeychain deleteAllItems]);
     XCTAssertNil([BBKeychain passwordForService:service account:account]);
 }
+#endif
 
 @end
