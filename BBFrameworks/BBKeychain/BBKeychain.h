@@ -18,6 +18,32 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ Enum describing kechain security classes.
+ */
+typedef NS_ENUM(NSInteger, BBKeychainSecurityClass) {
+    /**
+     Security class for generic passwords.
+     */
+    BBKeychainSecurityClassGenericPassword,
+    /**
+     Security class for internet passwords.
+     */
+    BBKeychainSecurityClassInternetPassword,
+    /**
+     Security class for certificates.
+     */
+    BBKeychainSecurityClassCertificate,
+    /**
+     Security class for keys.
+     */
+    BBKeychainSecurityClassKey,
+    /**
+     Security class for identities.
+     */
+    BBKeychainSecurityClassIdentity
+};
+
+/**
  Error domain for errors returned by BBKeychain methods.
  */
 extern NSString *const BBKeychainErrorDomain;
@@ -166,6 +192,36 @@ extern NSString *const BBKeychainAccountKeyWhere;
  @return YES if the password was deleted, otherwise NO
  */
 + (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account error:(NSError **)error;
+
+/**
+ Calls `[self deleteAllItemsForKeychainSecurityClass:error:]`, passing keychainSecurityClass and NULL respectively.
+ 
+ @param keychainSecurityClass The keychain security class for which to delete keychain items
+ @return YES if all items were deleted, otherwise NO
+ */
++ (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass;
+/**
+ Attempts to delete all items in the keychain for the provided security class, returning a boolean to indicate success or failure.
+ 
+ @param keychainSecurityClass The keychain security class for which to delete keychain items
+ @param error If the call fails, an error providing information about the reason for failure
+ @return YES if all items were deleted, otherwise NO
+ */
++ (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
+
+/**
+ Calls `[self deleteAllItemsAndReturnError:]`, passing NULL.
+ 
+ @return YES if all items for every security class were deleted, otherwise NO
+ */
++ (BOOL)deleteAllItems;
+/**
+ Calls `[self deleteAllItemsForKeychainSecurityClass:error:]` for each security class available. Returns YES if all calls are successful, otherwise returns NO.
+ 
+ @param error If the call fails, an error providing information about the reason for failure
+ @return YES if all items for every security class were deleted, otherwise NO
+ */
++ (BOOL)deleteAllItemsAndReturnError:(NSError **)error;
 
 @end
 

@@ -27,6 +27,23 @@ NSString *const BBKeychainAccountKeyDescription = @"desc";
 NSString *const BBKeychainAccountKeyLastModified = @"mdat";
 NSString *const BBKeychainAccountKeyWhere = @"svce";
 
+static NSString *BBKeychainSecClassForKeychainSecurityClass(BBKeychainSecurityClass keychainSecurityClass) {
+    switch (keychainSecurityClass) {
+        case BBKeychainSecurityClassCertificate:
+            return (__bridge NSString *)kSecClassCertificate;
+        case BBKeychainSecurityClassGenericPassword:
+            return (__bridge NSString *)kSecClassGenericPassword;
+        case BBKeychainSecurityClassIdentity:
+            return (__bridge NSString *)kSecClassIdentity;
+        case BBKeychainSecurityClassInternetPassword:
+            return (__bridge NSString *)kSecClassInternetPassword;
+        case BBKeychainSecurityClassKey:
+            return (__bridge NSString *)kSecClassKey;
+        default:
+            return nil;
+    }
+}
+
 static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *service, NSString *account) {
     NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
     
@@ -221,6 +238,42 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     }
     
     return retval;
+}
+
++ (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
+    return [self deleteAllItemsForKeychainSecurityClass:keychainSecurityClass error:NULL];
+}
++ (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
+    NSDictionary *query = @{(__bridge id)kSecClass: BBKeychainSecClassForKeychainSecurityClass(keychainSecurityClass)};
+    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
+    
+    if (status != errSecSuccess) {
+        if (error) {
+            *error = BBKeychainErrorForOSStatus(status);
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
++ (BOOL)deleteAllItems; {
+    return [self deleteAllItems:NULL];
+}
++ (BOOL)deleteAllItems:(NSError **)error; {
+    NSArray<NSNumber *> *keychainSecurityClasses = @[@(BBKeychainSecurityClassKey),
+                                                     @(BBKeychainSecurityClassInternetPassword),
+                                                     @(BBKeychainSecurityClassIdentity),
+                                                     @(BBKeychainSecurityClassGenericPassword),
+                                                     @(BBKeychainSecurityClassCertificate)];
+    
+    for (NSNumber *value in keychainSecurityClasses) {
+        if (![self deleteAllItemsForKeychainSecurityClass:value.integerValue error:error]) {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end
