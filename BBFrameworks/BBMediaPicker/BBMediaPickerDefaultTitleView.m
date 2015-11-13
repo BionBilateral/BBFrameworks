@@ -22,6 +22,21 @@
 
 @implementation BBMediaPickerDefaultTitleView
 
+@dynamic title;
+- (NSString *)title {
+    return self.titleLabel.text;
+}
+- (void)setTitle:(NSString *)title {
+    [self.titleLabel setText:title];
+}
+@dynamic subtitle;
+- (NSString *)subtitle {
+    return self.subtitleLabel.text;
+}
+- (void)setSubtitle:(NSString *)subtitle {
+    [self.subtitleLabel setText:subtitle];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -54,21 +69,6 @@
 - (void)layoutSubviews {
     [self.titleLabel setFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), [self.titleLabel sizeThatFits:CGSizeZero].height)];
     [self.subtitleLabel setFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - CGRectGetMaxY(self.titleLabel.frame))];
-}
-
-@dynamic title;
-- (NSString *)title {
-    return self.titleLabel.text;
-}
-- (void)setTitle:(NSString *)title {
-    [self.titleLabel setText:title];
-}
-@dynamic subtitle;
-- (NSString *)subtitle {
-    return self.subtitleLabel.text;
-}
-- (void)setSubtitle:(NSString *)subtitle {
-    [self.subtitleLabel setText:subtitle];
 }
 
 @end

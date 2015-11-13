@@ -23,8 +23,6 @@
 @property (strong,nonatomic) BBMediaPickerModel *model;
 
 @property (assign,nonatomic) BOOL hasRequestedPhotosAccess;
-
-@property (strong,nonatomic) BBMediaPickerDefaultTitleView *titleView;
 @end
 
 @implementation BBMediaPickerViewController
@@ -45,6 +43,8 @@
         }
     }];
     
+    [self setTitleView:[[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero]];
+    
     return self;
 }
 
@@ -55,11 +55,12 @@
     
     [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
     
-    [self setTitleView:[[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero]];
-    [self.titleView setSubtitle:@"Tap here to change album"];
-    [self.navigationItem setTitleView:self.titleView];
-    
     BBWeakify(self);
+    [self BB_addObserverForKeyPath:@"titleView" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        [self.navigationItem setTitleView:self.titleView];
+    }];
+    
     [self.model BB_addObserverForKeyPath:@"title" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.titleView setTitle:self.model.title];
@@ -78,10 +79,14 @@
     }
 }
 
+- (void)setTitleView:(__kindof UIView<BBMediaPickerTitleView> *)titleView {
+    _titleView = titleView ?: [[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero];
+}
+
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return [BBMediaPickerModel authorizationStatus];
 }
-+ (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion; {
++ (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion; {
     [BBMediaPickerModel requestAuthorizationWithCompletion:completion];
 }
 
