@@ -20,7 +20,7 @@
 
 static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificationAuthorizationStatusDidChange";
 
-@interface BBMediaPickerModel ()
+@interface BBMediaPickerModel () <PHPhotoLibraryChangeObserver>
 @property (readwrite,copy,nonatomic) NSString *title;
 
 - (void)_updateTitle;
@@ -28,18 +28,28 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 @implementation BBMediaPickerModel
 
+- (void)dealloc {
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
+    
+    [self _updateTitle];
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
     
-    [self _updateTitle];
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
     
     return self;
+}
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+    
 }
 
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {

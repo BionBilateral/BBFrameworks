@@ -18,12 +18,12 @@
 
 @interface BBMediaPickerModel : NSObject
 
+@property (readonly,copy,nonatomic) NSString *title;
+
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
-
-@property (readonly,copy,nonatomic) NSString *title;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
