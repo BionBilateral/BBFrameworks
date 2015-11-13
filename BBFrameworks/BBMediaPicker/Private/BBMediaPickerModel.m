@@ -18,8 +18,12 @@
 
 #import <Photos/Photos.h>
 
+static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificationAuthorizationStatusDidChange";
+
 @interface BBMediaPickerModel ()
 @property (readwrite,copy,nonatomic) NSString *title;
+
+- (void)_updateTitle;
 @end
 
 @implementation BBMediaPickerModel
@@ -31,7 +35,9 @@
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
     
-    [self setTitle:@"Requesting Access…"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
+    
+    [self _updateTitle];
     
     return self;
 }
@@ -62,8 +68,29 @@
             if (completion) {
                 completion((BBMediaPickerAuthorizationStatus)status);
             }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAuthorizationStatusDidChange object:self];
         });
     }];
+}
+
+- (void)_updateTitle; {
+    switch ([self.class authorizationStatus]) {
+        case BBMediaPickerAuthorizationStatusAuthorized:
+            [self setTitle:@"Authorized"];
+            break;
+        case BBMediaPickerAuthorizationStatusDenied:
+            [self setTitle:@"Denied"];
+            break;
+        case BBMediaPickerAuthorizationStatusNotDetermined:
+            [self setTitle:@"Requesting Authorization"];
+            break;
+        case BBMediaPickerAuthorizationStatusRestricted:
+            [self setTitle:@"Restricted"];
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)_doneBarButtonItemAction:(id)sender {
@@ -75,6 +102,10 @@
     if (self.cancelBarButtonItemActionBlock) {
         self.cancelBarButtonItemActionBlock();
     }
+}
+
+- (void)_authorizationStatusDidChange:(NSNotification *)note {
+    [self _updateTitle];
 }
 
 @end
