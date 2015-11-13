@@ -16,6 +16,10 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerTitleView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerDefaultTitleView : UIView <BBMediaPickerTitleView>
 
 @end
+
+NS_ASSUME_NONNULL_END
