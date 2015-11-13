@@ -15,6 +15,7 @@
 
 #import "BBMediaPickerModel.h"
 #import "BBFoundationFunctions.h"
+#import "BBFoundationDebugging.h"
 
 #import <Photos/Photos.h>
 
@@ -23,7 +24,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @interface BBMediaPickerModel () <PHPhotoLibraryChangeObserver>
 @property (readwrite,copy,nonatomic) NSString *title;
 
+@property (readwrite,copy,nonatomic,nullable) NSArray<PHAssetCollection *> *assetCollections;
+
 - (void)_updateTitle;
+- (void)_reloadAssetCollections;
 @end
 
 @implementation BBMediaPickerModel
@@ -37,6 +41,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return nil;
     
     [self _updateTitle];
+    [self _reloadAssetCollections];
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
@@ -66,6 +71,14 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (_cancelBarButtonItem) {
         [_cancelBarButtonItem setTarget:self];
         [_cancelBarButtonItem setAction:@selector(_cancelBarButtonItemAction:)];
+    }
+}
+
+- (void)setSelectedAssetCollection:(PHAssetCollection *)selectedAssetCollection {
+    _selectedAssetCollection = selectedAssetCollection;
+    
+    if (_selectedAssetCollection) {
+        [self setTitle:_selectedAssetCollection.localizedTitle];
     }
 }
 
@@ -102,6 +115,36 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
             break;
     }
 }
+- (void)_reloadAssetCollections {
+    if ([self.class authorizationStatus] != BBMediaPickerAuthorizationStatusAuthorized) {
+        return;
+    }
+    
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    [[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil] enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [retval addObject:obj];
+    }];
+    
+    [[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAny options:nil] enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [retval addObject:obj];
+    }];
+    
+    [[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeMoment subtype:PHAssetCollectionSubtypeAny options:nil] enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [retval addObject:obj];
+    }];
+    
+    [self setAssetCollections:retval];
+    
+    if (!self.selectedAssetCollection) {
+        for (PHAssetCollection *collection in self.assetCollections) {
+            if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+                [self setSelectedAssetCollection:collection];
+                break;
+            }
+        }
+    }
+}
 
 - (IBAction)_doneBarButtonItemAction:(id)sender {
     if (self.doneBarButtonItemActionBlock) {
@@ -116,6 +159,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 - (void)_authorizationStatusDidChange:(NSNotification *)note {
     [self _updateTitle];
+    [self _reloadAssetCollections];
 }
 
 @end
