@@ -22,28 +22,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface MediaPickerBottomAccessoryView : UIButton
-
-@end
-
-@implementation MediaPickerBottomAccessoryView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (!(self = [super initWithFrame:frame]))
-        return nil;
-    
-    [self setBackgroundColor:BBColorRGB(0.5, 0, 0)];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
-    [self setContentEdgeInsets:UIEdgeInsetsMake(16, 0, 16, 0)];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
-    [self setTitle:@"End" forState:UIControlStateNormal];
-    
-    return self;
-}
-
-@end
-
 @interface MediaPickerNavigationController : UINavigationController
 
 @end
@@ -64,7 +42,7 @@
 
 @end
 
-@interface MediaPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBMediaPickerViewControllerDelegate>
+@interface MediaPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 @end
@@ -73,17 +51,7 @@
 #pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
-        [[BBMediaPickerAssetsGroupTableView appearance] setContentBackgroundColor:[UIColor blackColor]];
         
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setContentBackgroundColor:BBColorW(0.1)];
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setSelectedContentBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameTextColor:[UIColor whiteColor]];
-        
-        [[BBMediaPickerAssetCollectionView appearance] setContentBackgroundColor:[UIColor blackColor]];
-        
-        [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
-        
-        [[BBMediaPickerAssetCollectionViewCellSelectedOverlayView appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.5)];
     }
 }
 
@@ -104,24 +72,7 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark BBMediaPickerViewControllerDelegate
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media {
-    BBLogObject(media);
-}
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media {
-    BBLogObject(media);
-}
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
-    BBLogObject(media);
-}
-- (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
-    BBLogObject(viewController);
-}
 
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didAddBottomAccessoryView:(__kindof UIView *)bottomAccessoryView {
-    UIButton *button = (UIButton *)bottomAccessoryView;
-    
-    [button addTarget:self action:@selector(_bottomAccessoryViewAction:) forControlEvents:UIControlEventTouchUpInside];
-}
 #pragma mark *** Private Methods ***
 #pragma mark Actions
 - (IBAction)_systemButtonAction:(id)sender {
@@ -137,30 +88,7 @@
 - (IBAction)_customButtonAction:(id)sender {
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
     
-    [viewController setDelegate:self];
-    [viewController setAllowsMultipleSelection:YES];
-    [viewController setHidesEmptyMediaGroups:YES];
-//    [viewController setCancelBarButtonItemTitle:@"End"];
-//    [viewController setAutomaticallyDismissForSingleSelection:NO];
-//    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
-//    [viewController setCancelConfirmBlock:^(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion){
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm End" message:@"Are you sure you want to end?" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            completion(NO);
-//        }]];
-//        [alertController addAction:[UIAlertAction actionWithTitle:@"End" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//            completion(YES);
-//        }]];
-//        
-//        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
-//    }];
-    
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
-}
-
-- (IBAction)_bottomAccessoryViewAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
