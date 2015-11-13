@@ -16,7 +16,7 @@
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerModel.h"
 #import "BBFrameworksMacros.h"
-#import "BBMediaPickerTitleView.h"
+#import "BBMediaPickerDefaultTitleView.h"
 #import "BBKeyValueObserving.h"
 
 @interface BBMediaPickerViewController ()
@@ -24,7 +24,7 @@
 
 @property (assign,nonatomic) BOOL hasRequestedPhotosAccess;
 
-@property (strong,nonatomic) BBMediaPickerTitleView *titleView;
+@property (strong,nonatomic) BBMediaPickerDefaultTitleView *titleView;
 @end
 
 @implementation BBMediaPickerViewController
@@ -55,7 +55,7 @@
     
     [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
     
-    [self setTitleView:[[BBMediaPickerTitleView alloc] initWithFrame:CGRectZero]];
+    [self setTitleView:[[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero]];
     [self.titleView setSubtitle:@"Tap here to change album"];
     [self.navigationItem setTitleView:self.titleView];
     

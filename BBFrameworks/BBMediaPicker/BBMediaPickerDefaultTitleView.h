@@ -15,7 +15,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BBMediaPickerTitleView : UIView
+@interface BBMediaPickerDefaultTitleView : UIView
 
 @property (copy,nonatomic) NSString *title;
 @property (copy,nonatomic) NSString *subtitle;
