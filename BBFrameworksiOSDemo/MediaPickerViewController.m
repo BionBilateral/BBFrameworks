@@ -30,14 +30,8 @@
 
 + (void)initialize {
     if (self == [MediaPickerNavigationController class]) {
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:BBColorW(0.1)];
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        
     }
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
 }
 
 @end

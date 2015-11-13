@@ -23,6 +23,8 @@
 		072B1DA21BB4739000D06525 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B1D9D1BB4715700D06525 /* Accelerate.framework */; };
 		072D609A1BF6683E006894CD /* BBMediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D60991BF6683E006894CD /* BBMediaPickerViewController.m */; };
 		072D609D1BF66872006894CD /* BBMediaPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D609C1BF66872006894CD /* BBMediaPickerModel.m */; };
+		072D609F1BF670F4006894CD /* BBMediaPickerDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072D609E1BF668A7006894CD /* BBMediaPickerDefines.h */; };
+		072D60A01BF670F8006894CD /* BBMediaPickerViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072D60981BF6683E006894CD /* BBMediaPickerViewController.h */; };
 		075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */; };
 		075BCA9A1BDFE55300E9743C /* UIDevice+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */; };
 		075CECB01BC5A3C3000731BC /* CIImage+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; };
@@ -584,7 +586,9 @@
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */,
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
+				072D609F1BF670F4006894CD /* BBMediaPickerDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
+				072D60A01BF670F8006894CD /* BBMediaPickerViewController.h in CopyFiles */,
 				798C46471BD950380027811C /* BBLabel.h in CopyFiles */,
 				07ED7E5D1BEA6B0F004D1697 /* NSDictionary+BBBlocksExtensions.h in CopyFiles */,
 				07CE80451B50610E00F5729E /* BBForm.h in CopyFiles */,

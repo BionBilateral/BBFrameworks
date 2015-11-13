@@ -15,6 +15,7 @@
 
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerModel.h"
+#import "BBFrameworksMacros.h"
 
 @interface BBMediaPickerViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -29,10 +30,27 @@
         return nil;
     
     [self setModel:[[BBMediaPickerModel alloc] init]];
+    BBWeakify(self);
+    [self.model setCancelBarButtonItemActionBlock:^{
+        BBStrongify(self);
+        if (self.presentingViewController) {
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            [self.navigationController popToViewController:self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1] animated:YES];
+        }
+    }];
     
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
