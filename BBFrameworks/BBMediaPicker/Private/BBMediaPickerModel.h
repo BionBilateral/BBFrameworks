@@ -23,13 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly,copy,nonatomic) NSString *title;
 
+@property (readonly,copy,nonatomic,nullable) NSArray<PHAssetCollection *> *assetCollections;
+@property (strong,nonatomic,nullable) PHAssetCollection *selectedAssetCollection;
+
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
-
-@property (readonly,copy,nonatomic,nullable) NSArray<PHAssetCollection *> *assetCollections;
-@property (strong,nonatomic,nullable) PHAssetCollection *selectedAssetCollection;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
