@@ -27,6 +27,10 @@
 		072D60A01BF670F8006894CD /* BBMediaPickerViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072D60981BF6683E006894CD /* BBMediaPickerViewController.h */; };
 		072D60A31BF67448006894CD /* BBMediaPickerDefaultTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D60A21BF67448006894CD /* BBMediaPickerDefaultTitleView.m */; };
 		072D60A41BF67461006894CD /* BBMediaPickerDefaultTitleView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072D60A11BF67448006894CD /* BBMediaPickerDefaultTitleView.h */; };
+		072D60A91BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D60A81BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.m */; };
+		072D60AC1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D60AB1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.m */; };
+		072D60AF1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072D60AE1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.m */; };
+		072D60B11BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072D60B01BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib */; };
 		075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */; };
 		075BCA9A1BDFE55300E9743C /* UIDevice+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */; };
 		075CECB01BC5A3C3000731BC /* CIImage+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; };
@@ -752,6 +756,13 @@
 		072D60A11BF67448006894CD /* BBMediaPickerDefaultTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerDefaultTitleView.h; sourceTree = "<group>"; };
 		072D60A21BF67448006894CD /* BBMediaPickerDefaultTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerDefaultTitleView.m; sourceTree = "<group>"; };
 		072D60A51BF67A0F006894CD /* BBMediaPickerTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerTitleView.h; sourceTree = "<group>"; };
+		072D60A71BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerAssetCollectionsViewController.h; path = Private/BBMediaPickerAssetCollectionsViewController.h; sourceTree = "<group>"; };
+		072D60A81BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerAssetCollectionsViewController.m; path = Private/BBMediaPickerAssetCollectionsViewController.m; sourceTree = "<group>"; };
+		072D60AA1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerAssetCollectionsTableViewController.h; path = Private/BBMediaPickerAssetCollectionsTableViewController.h; sourceTree = "<group>"; };
+		072D60AB1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerAssetCollectionsTableViewController.m; path = Private/BBMediaPickerAssetCollectionsTableViewController.m; sourceTree = "<group>"; };
+		072D60AD1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerAssetCollectionTableViewCell.h; sourceTree = "<group>"; };
+		072D60AE1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerAssetCollectionTableViewCell.m; sourceTree = "<group>"; };
+		072D60B01BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBMediaPickerAssetCollectionTableViewCell.xib; path = BBFrameworksResources/BBMediaPickerAssetCollectionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		0750D6441B6A94C0002F2C1A /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPicker.strings; sourceTree = "<group>"; };
 		075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+BBKitExtensions.h"; path = "iOS/UIDevice+BBKitExtensions.h"; sourceTree = "<group>"; };
 		075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BBKitExtensions.m"; path = "iOS/UIDevice+BBKitExtensions.m"; sourceTree = "<group>"; };
@@ -1284,6 +1295,20 @@
 			path = BBAddressBook;
 			sourceTree = "<group>";
 		};
+		072D60A61BF68DFE006894CD /* Asset Collections */ = {
+			isa = PBXGroup;
+			children = (
+				072D60A71BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.h */,
+				072D60A81BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.m */,
+				072D60AA1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.h */,
+				072D60AB1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.m */,
+				072D60AD1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.h */,
+				072D60AE1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.m */,
+				072D60B01BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib */,
+			);
+			name = "Asset Collections";
+			sourceTree = "<group>";
+		};
 		0750D6451B6A9640002F2C1A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1749,6 +1774,7 @@
 				072D60A51BF67A0F006894CD /* BBMediaPickerTitleView.h */,
 				072D60A11BF67448006894CD /* BBMediaPickerDefaultTitleView.h */,
 				072D60A21BF67448006894CD /* BBMediaPickerDefaultTitleView.m */,
+				072D60A61BF68DFE006894CD /* Asset Collections */,
 			);
 			path = BBMediaPicker;
 			sourceTree = "<group>";
@@ -2681,6 +2707,7 @@
 				799F9BBC1B6D85170067BAA8 /* web_kit_lock@2x.png in Resources */,
 				79EA80BF1B3F0C5600D50B6B /* media_player_pause.png in Resources */,
 				79BE2BBC1B65831A00ADE997 /* kit_previous@3x.png in Resources */,
+				072D60B11BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib in Resources */,
 				79BE2BB91B65831A00ADE997 /* kit_next@3x.png in Resources */,
 				07AEC85D1B6BEE9F00013470 /* BBAddressBookPersonTableViewCell.xib in Resources */,
 				799B961D1B69C3450010E1CD /* media_picker_type_video@2x.png in Resources */,
@@ -3009,6 +3036,7 @@
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
 				792F15381B76A7160034A09A /* BBFrameworks.m in Sources */,
 				79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
+				072D60AC1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.m in Sources */,
 				7922E8AA1BD42D8800F85EDA /* BBMoviePlayerContentView.m in Sources */,
 				79EA80FB1B3F0D5300D50B6B /* BBWebKitTitleView.m in Sources */,
 				07AEC8461B6BE68500013470 /* BBTextPhoneNumberValidator.m in Sources */,
@@ -3060,6 +3088,7 @@
 				791996FA1B6EB3C500FC674A /* BBThumbnailOperationWrapper.m in Sources */,
 				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79EF41231BCC6E4D0018D711 /* BBProgressNavigationBar.m in Sources */,
+				072D60AF1BF69012006894CD /* BBMediaPickerAssetCollectionTableViewCell.m in Sources */,
 				798C46461BD950200027811C /* BBLabel.m in Sources */,
 				07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */,
 				07AEC8451B6BE68500013470 /* BBTextLinkValidator.m in Sources */,
@@ -3076,6 +3105,7 @@
 				07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
 				075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */,
+				072D60A91BF68E2B006894CD /* BBMediaPickerAssetCollectionsViewController.m in Sources */,
 				79EA80CA1B3F0CCD00D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
 				07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */,

@@ -18,6 +18,7 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerDefaultTitleView.h"
 #import "BBKeyValueObserving.h"
+#import "BBMediaPickerAssetCollectionsViewController.h"
 
 @interface BBMediaPickerViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -64,6 +65,7 @@
     [self.model BB_addObserverForKeyPath:@"title" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.titleView setTitle:self.model.title];
+        [self.titleView setSubtitle:@"Tap to change album"];
         [self.titleView sizeToFit];
     }];
 }
