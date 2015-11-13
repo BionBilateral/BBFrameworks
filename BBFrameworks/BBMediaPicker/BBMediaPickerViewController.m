@@ -83,6 +83,15 @@
 
 - (void)setTitleView:(__kindof UIView<BBMediaPickerTitleView> *)titleView {
     _titleView = titleView ?: [[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero];
+    
+    if (_titleView) {
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)];
+        
+        [tapGestureRecognizer setNumberOfTapsRequired:1];
+        [tapGestureRecognizer setNumberOfTouchesRequired:1];
+        
+        [_titleView addGestureRecognizer:tapGestureRecognizer];
+    }
 }
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
@@ -90,6 +99,10 @@
 }
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion; {
     [BBMediaPickerModel requestAuthorizationWithCompletion:completion];
+}
+
+- (IBAction)_tapGestureRecognizerAction:(id)sender {
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerAssetCollectionsViewController alloc] initWithModel:self.model]] animated:YES completion:nil];
 }
 
 @end
