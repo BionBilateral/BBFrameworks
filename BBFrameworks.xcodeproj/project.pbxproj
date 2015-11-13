@@ -1736,10 +1736,10 @@
 			children = (
 				07605ABB1B69551800333678 /* BBMediaPicker.h */,
 				072D609E1BF668A7006894CD /* BBMediaPickerDefines.h */,
-				072D60981BF6683E006894CD /* BBMediaPickerViewController.h */,
-				072D60991BF6683E006894CD /* BBMediaPickerViewController.m */,
 				072D609B1BF66872006894CD /* BBMediaPickerModel.h */,
 				072D609C1BF66872006894CD /* BBMediaPickerModel.m */,
+				072D60981BF6683E006894CD /* BBMediaPickerViewController.h */,
+				072D60991BF6683E006894CD /* BBMediaPickerViewController.m */,
 			);
 			path = BBMediaPicker;
 			sourceTree = "<group>";

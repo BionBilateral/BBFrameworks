@@ -57,6 +57,8 @@
     if ([self.class authorizationStatus] != BBMediaPickerAuthorizationStatusAuthorized &&
         !self.hasRequestedPhotosAccess) {
         
+        [self setHasRequestedPhotosAccess:YES];
+        
         [self.class requestAuthorizationWithCompletion:nil];
     }
 }
