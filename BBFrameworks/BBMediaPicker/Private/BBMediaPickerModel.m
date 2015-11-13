@@ -20,6 +20,33 @@
 
 @implementation BBMediaPickerModel
 
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
+    [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    
+    return self;
+}
+
+- (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
+    _doneBarButtonItem = doneBarButtonItem;
+    
+    if (_doneBarButtonItem) {
+        [_doneBarButtonItem setTarget:self];
+        [_doneBarButtonItem setAction:@selector(_doneBarButtonItemAction:)];
+    }
+}
+- (void)setCancelBarButtonItem:(UIBarButtonItem *)cancelBarButtonItem {
+    _cancelBarButtonItem = cancelBarButtonItem;
+    
+    if (_cancelBarButtonItem) {
+        [_cancelBarButtonItem setTarget:self];
+        [_cancelBarButtonItem setAction:@selector(_cancelBarButtonItemAction:)];
+    }
+}
+
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return (BBMediaPickerAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
 }
@@ -31,6 +58,17 @@
             }
         });
     }];
+}
+
+- (IBAction)_doneBarButtonItemAction:(id)sender {
+    if (self.doneBarButtonItemActionBlock) {
+        self.doneBarButtonItemActionBlock();
+    }
+}
+- (IBAction)_cancelBarButtonItemAction:(id)sender {
+    if (self.cancelBarButtonItemActionBlock) {
+        self.cancelBarButtonItemActionBlock();
+    }
 }
 
 @end
