@@ -16,11 +16,15 @@
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaPickerTitleView.h"
+#import "BBKeyValueObserving.h"
 
 @interface BBMediaPickerViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
 
 @property (assign,nonatomic) BOOL hasRequestedPhotosAccess;
+
+@property (strong,nonatomic) BBMediaPickerTitleView *titleView;
 @end
 
 @implementation BBMediaPickerViewController
@@ -50,6 +54,17 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
+    
+    [self setTitleView:[[BBMediaPickerTitleView alloc] initWithFrame:CGRectZero]];
+    [self.titleView setSubtitle:@"Tap here to change album"];
+    [self.navigationItem setTitleView:self.titleView];
+    
+    BBWeakify(self);
+    [self.model BB_addObserverForKeyPath:@"title" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        [self.titleView setTitle:self.model.title];
+        [self.titleView sizeToFit];
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

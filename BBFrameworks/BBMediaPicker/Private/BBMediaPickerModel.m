@@ -18,6 +18,10 @@
 
 #import <Photos/Photos.h>
 
+@interface BBMediaPickerModel ()
+@property (readwrite,copy,nonatomic) NSString *title;
+@end
+
 @implementation BBMediaPickerModel
 
 - (instancetype)init {
@@ -26,6 +30,8 @@
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    
+    [self setTitle:@"Requesting Access…"];
     
     return self;
 }
