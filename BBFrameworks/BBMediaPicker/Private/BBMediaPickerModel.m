@@ -24,11 +24,11 @@
     return (BBMediaPickerAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
 }
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion; {
-    NSParameterAssert(completion);
-    
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         BBDispatchMainSyncSafe(^{
-            completion((BBMediaPickerAuthorizationStatus)status);
+            if (completion) {
+                completion((BBMediaPickerAuthorizationStatus)status);
+            }
         });
     }];
 }

@@ -18,6 +18,8 @@
 
 @interface BBMediaPickerViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
+
+@property (assign,nonatomic) BOOL hasRequestedPhotosAccess;
 @end
 
 @implementation BBMediaPickerViewController
@@ -29,6 +31,16 @@
     [self setModel:[[BBMediaPickerModel alloc] init]];
     
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if ([self.class authorizationStatus] != BBMediaPickerAuthorizationStatusAuthorized &&
+        !self.hasRequestedPhotosAccess) {
+        
+        [self.class requestAuthorizationWithCompletion:nil];
+    }
 }
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
