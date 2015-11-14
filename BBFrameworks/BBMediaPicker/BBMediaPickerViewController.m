@@ -92,6 +92,14 @@
     }
 }
 
+@dynamic allowsMultipleSelection;
+- (BOOL)allowsMultipleSelection {
+    return self.model.allowsMultipleSelection;
+}
+- (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
+    [self.model setAllowsMultipleSelection:allowsMultipleSelection];
+}
+
 @dynamic hidesEmptyAssetCollections;
 - (BOOL)hidesEmptyAssetCollections {
     return self.model.hidesEmptyAssetCollections;

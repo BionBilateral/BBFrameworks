@@ -32,7 +32,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @end
 
 @implementation BBMediaPickerModel
-
+#pragma mark *** Subclass Overrides ***
 - (void)dealloc {
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
@@ -55,11 +55,26 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     return self;
 }
-
+#pragma mark PHPhotoLibraryChangeObserver
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
     
 }
-
+#pragma mark *** Public Methods ***
++ (BBMediaPickerAuthorizationStatus)authorizationStatus; {
+    return (BBMediaPickerAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+}
++ (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion; {
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        BBDispatchMainSyncSafe(^{
+            if (completion) {
+                completion((BBMediaPickerAuthorizationStatus)status);
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAuthorizationStatusDidChange object:self];
+        });
+    }];
+}
+#pragma mark Properties
 - (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
     if (_hidesEmptyAssetCollections == hidesEmptyAssetCollections) {
         return;
@@ -92,22 +107,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self _updateTitle];
 }
-
-+ (BBMediaPickerAuthorizationStatus)authorizationStatus; {
-    return (BBMediaPickerAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
-}
-+ (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion; {
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        BBDispatchMainSyncSafe(^{
-            if (completion) {
-                completion((BBMediaPickerAuthorizationStatus)status);
-            }
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAuthorizationStatusDidChange object:self];
-        });
-    }];
-}
-
+#pragma mark *** Private Methods ***
 - (void)_updateTitle; {
     if (self.selectedAssetCollectionModel) {
         [self setTitle:self.selectedAssetCollectionModel.title];
@@ -171,7 +171,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         }
     }
 }
-
+#pragma mark Actions
 - (IBAction)_doneBarButtonItemAction:(id)sender {
     if (self.doneBarButtonItemActionBlock) {
         self.doneBarButtonItemActionBlock();
@@ -182,7 +182,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         self.cancelBarButtonItemActionBlock();
     }
 }
-
+#pragma mark Notifications
 - (void)_authorizationStatusDidChange:(NSNotification *)note {
     [self _updateTitle];
     [self _reloadAssetCollections];

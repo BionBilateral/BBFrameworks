@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerViewController : UIViewController
 
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
 @property (strong,nonatomic,null_resettable) UIView<BBMediaPickerTitleView> *titleView;

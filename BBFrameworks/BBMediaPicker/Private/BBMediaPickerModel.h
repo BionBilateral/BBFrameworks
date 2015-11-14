@@ -22,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerModel : NSObject
 
++ (BBMediaPickerAuthorizationStatus)authorizationStatus;
++ (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
+
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
@@ -33,9 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
-
-+ (BBMediaPickerAuthorizationStatus)authorizationStatus;
-+ (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
 
 @end
 
