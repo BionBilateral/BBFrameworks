@@ -20,6 +20,8 @@
 #import "BBKeyValueObserving.h"
 #import "BBMediaPickerAssetCollectionsViewController.h"
 #import "BBMediaPickerAssetsViewController.h"
+#import "BBMediaPickerAssetModel.h"
+#import "BBBlocks.h"
 
 @interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -48,7 +50,7 @@
     [self.model setDoneBarButtonItemActionBlock:^{
         BBStrongify(self);
         if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didFinishPickingMedia:)]) {
-            [self.delegate mediaPickerViewController:self didFinishPickingMedia:self.model.selectedAssetModels.array];
+            [self.delegate mediaPickerViewController:self didFinishPickingMedia:self.model.selectedAssetModels];
         }
     }];
     

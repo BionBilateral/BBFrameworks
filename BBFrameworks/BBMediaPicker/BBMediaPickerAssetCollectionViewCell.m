@@ -50,8 +50,18 @@
     [self.selectedOverlayView setAlpha:selected ? 1.0 : 0.0];
 }
 
+- (void)reloadSelectedOverlayView; {
+    if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
+        [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];
+    }
+}
+
 - (void)setModel:(BBMediaPickerAssetModel *)model {
     _model = model;
+    
+    if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
+        [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];
+    }
     
     BBWeakify(self);
     [_model requestThumbnailImageOfSize:self.thumbnailImageView.frame.size completion:^(UIImage *thumbnailImage) {

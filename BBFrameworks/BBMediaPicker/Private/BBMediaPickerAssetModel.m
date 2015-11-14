@@ -14,22 +14,27 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerAssetModel.h"
+#import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerModel.h"
+#import "BBFoundationDebugging.h"
 
 #import <Photos/Photos.h>
 
 @interface BBMediaPickerAssetModel ()
 @property (readwrite,strong,nonatomic) PHAsset *asset;
+@property (readwrite,weak,nonatomic) BBMediaPickerAssetCollectionModel *assetCollectionModel;
 
 @property (assign,nonatomic) PHImageRequestID imageRequestID;
 @end
 
 @implementation BBMediaPickerAssetModel
 
-- (instancetype)initWithAsset:(PHAsset *)asset; {
+- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(BBMediaPickerAssetCollectionModel *)assetCollectionModel; {
     if (!(self = [super init]))
         return nil;
     
     [self setAsset:asset];
+    [self setAssetCollectionModel:assetCollectionModel];
     
     return self;
 }
@@ -53,6 +58,16 @@
     if (self.imageRequestID != PHInvalidImageRequestID) {
         [[PHCachingImageManager defaultManager] cancelImageRequest:self.imageRequestID];
     }
+}
+
+- (NSString *)identifier {
+    return self.asset.localIdentifier;
+}
+- (NSUInteger)selectedIndex {
+    if ([self.assetCollectionModel.model.selectedAssetIdentifiers containsObject:self.identifier]) {
+        return [self.assetCollectionModel.model.selectedAssetIdentifiers indexOfObject:self.identifier];
+    }
+    return NSNotFound;
 }
 
 @end

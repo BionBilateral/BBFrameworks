@@ -14,20 +14,25 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerModel.h"
+#import "BBMediaPickerAssetModel.h"
+
 #import <Photos/Photos.h>
 
 @interface BBMediaPickerAssetCollectionModel ()
 @property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
+@property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
 @property (strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
 @end
 
 @implementation BBMediaPickerAssetCollectionModel
 
-- (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection; {
+- (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection model:(BBMediaPickerModel *)model; {
     if (!(self = [super init]))
         return nil;
     
     [self setAssetCollection:assetCollection];
+    [self setModel:model];
     
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     
@@ -46,7 +51,7 @@
     return self.fetchResult.count;
 }
 - (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index {
-    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index]];
+    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index] assetCollectionModel:self];
 }
 
 @end

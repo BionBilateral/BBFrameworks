@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly,strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
 
+- (void)reloadSelectedOverlayView;
+
 @end
 
 NS_ASSUME_NONNULL_END

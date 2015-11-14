@@ -17,11 +17,19 @@
 #import <Photos/PHAsset.h>
 #import "BBMediaPickerMedia.h"
 
+@class BBMediaPickerAssetCollectionModel;
+
 @interface BBMediaPickerAssetModel : NSObject <BBMediaPickerMedia>
 
 @property (readonly,strong,nonatomic) PHAsset *asset;
 
-- (instancetype)initWithAsset:(PHAsset *)asset;
+@property (readonly,weak,nonatomic) BBMediaPickerAssetCollectionModel *assetCollectionModel;
+
+@property (readonly,nonatomic) NSString *identifier;
+
+@property (readonly,nonatomic) NSUInteger selectedIndex;
+
+- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(BBMediaPickerAssetCollectionModel *)assetCollectionModel;
 
 - (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
 - (void)cancelAllThumbnailRequests;

@@ -34,14 +34,15 @@
     
     [self setBadgeView:[[BBBadgeView alloc] initWithFrame:CGRectZero]];
     [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.badgeView setBadgeFont:[UIFont boldSystemFontOfSize:12.0]];
     [self.badgeView setBadgeBackgroundColor:backgroundColor];
     [self.badgeView setBadgeForegroundColor:foregroundColor];
     [self.badgeView setBadgeHighlightedBackgroundColor:backgroundColor];
     [self.badgeView setBadgeHighlightedForegroundColor:foregroundColor];
     [self addSubview:self.badgeView];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-margin-|" options:0 metrics:@{@"margin": @4.0} views:@{@"view": self.badgeView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[view]" options:0 metrics:@{@"margin": @4.0} views:@{@"view": self.badgeView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-margin-|" options:0 metrics:@{@"margin": @6.0} views:@{@"view": self.badgeView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[view]" options:0 metrics:@{@"margin": @6.0} views:@{@"view": self.badgeView}]];
     
     return self;
 }
@@ -50,7 +51,7 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     _selectedIndex = selectedIndex;
     
-    [self.badgeView setBadge:@(selectedIndex).stringValue];
+    [self.badgeView setBadge:selectedIndex == NSNotFound ? @"" : @(selectedIndex + 1).stringValue];
 }
 
 @end

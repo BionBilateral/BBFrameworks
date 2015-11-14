@@ -17,6 +17,8 @@
 #import "BBFoundationFunctions.h"
 #import "BBFoundationDebugging.h"
 #import "BBBlocks.h"
+#import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerAssetModel.h"
 
 #import <Photos/Photos.h>
 
@@ -26,7 +28,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @property (readwrite,copy,nonatomic) NSString *title;
 
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
-@property (readwrite,copy,nonatomic) NSOrderedSet<BBMediaPickerAssetModel *> *selectedAssetModels;
+@property (readwrite,copy,nonatomic) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
@@ -77,20 +79,20 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
-    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetModels];
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers];
     
-    [temp addObject:assetModel];
+    [temp addObject:assetModel.identifier];
     
-    [self setSelectedAssetModels:temp];
+    [self setSelectedAssetIdentifiers:temp];
     
     [self.delegate mediaPickerModel:self didSelectMedia:assetModel];
 }
 - (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
-    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetModels];
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers];
     
-    [temp removeObject:assetModel];
+    [temp removeObject:assetModel.identifier];
     
-    [self setSelectedAssetModels:temp];
+    [self setSelectedAssetIdentifiers:temp];
     
     [self.delegate mediaPickerModel:self didDeselectMedia:assetModel];
 }
@@ -127,14 +129,29 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self _updateTitle];
 }
-- (void)setSelectedAssetModels:(NSOrderedSet<BBMediaPickerAssetModel *> *)selectedAssetModels {
-    _selectedAssetModels = selectedAssetModels;
+- (void)setSelectedAssetIdentifiers:(NSOrderedSet<NSString *> *)selectedAssetIdentifiers {
+    _selectedAssetIdentifiers = selectedAssetIdentifiers;
     
     if (!self.allowsMultipleSelection &&
-        _selectedAssetModels.count > 0) {
+        _selectedAssetIdentifiers.count > 0) {
         
         [self _doneBarButtonItemAction:self.doneBarButtonItem];
     }
+}
+- (NSArray<BBMediaPickerAssetModel *> *)selectedAssetModels {
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    
+    [options setWantsIncrementalChangeDetails:NO];
+    
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    [[PHAsset fetchAssetsWithLocalIdentifiers:self.selectedAssetIdentifiers.array options:options] enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [retval addObject:obj];
+    }];
+    
+    return [retval BB_map:^id _Nullable(PHAsset * _Nonnull object, NSInteger index) {
+        return [[BBMediaPickerAssetModel alloc] initWithAsset:object assetCollectionModel:nil];
+    }];
 }
 #pragma mark *** Private Methods ***
 - (void)_updateTitle; {
@@ -180,7 +197,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }];
     
     [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
-        return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object];
+        return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
     }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
         return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
     }]];

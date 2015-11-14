@@ -16,10 +16,11 @@
 #import <UIKit/UIKit.h>
 #import <Photos/PHCollection.h>
 #import "BBMediaPickerDefines.h"
-#import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModelDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel;
 
 @interface BBMediaPickerModel : NSObject
 
@@ -38,7 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
-@property (readonly,copy,nonatomic) NSOrderedSet<BBMediaPickerAssetModel *> *selectedAssetModels;
+@property (readonly,copy,nonatomic) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
+@property (readonly,nonatomic) NSArray<BBMediaPickerAssetModel *> *selectedAssetModels;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;

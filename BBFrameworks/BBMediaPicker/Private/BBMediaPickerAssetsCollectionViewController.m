@@ -19,6 +19,8 @@
 #import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBFrameworksFunctions.h"
 #import "BBMediaPickerAssetCollectionViewLayout.h"
+#import "BBMediaPickerAssetModel.h"
+#import "BBMediaPickerAssetCollectionModel.h"
 
 @interface BBMediaPickerAssetsCollectionViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -38,6 +40,15 @@
         BBStrongify(self);
         [self.collectionView reloadData];
     }];
+    
+    [self.model BB_addObserverForKeyPath:@"selectedAssetIdentifiers" options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        for (BBMediaPickerAssetCollectionViewCell *cell in self.collectionView.visibleCells) {
+            if (cell.isSelected) {
+                [cell reloadSelectedOverlayView];
+            }
+        }
+    }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -52,10 +63,14 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.model selectAssetModel:[self.model.selectedAssetCollectionModel assetModelAtIndex:indexPath.item]];
+    BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    [self.model selectAssetModel:cell.model];
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.model deselectAssetModel:[self.model.selectedAssetCollectionModel assetModelAtIndex:indexPath.item]];
+    BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    [self.model deselectAssetModel:cell.model];
 }
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model {
