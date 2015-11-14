@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetCollectionModel.m
+//  BBMediaPickerAssetCollectionViewLayout.m
 //  BBFrameworks
 //
 //  Created by William Towe on 11/13/15.
@@ -13,40 +13,42 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaPickerAssetCollectionModel.h"
-#import <Photos/Photos.h>
+#import "BBMediaPickerAssetCollectionViewLayout.h"
 
-@interface BBMediaPickerAssetCollectionModel ()
-@property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
-@property (strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
-@end
+@implementation BBMediaPickerAssetCollectionViewLayout
 
-@implementation BBMediaPickerAssetCollectionModel
-
-- (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection; {
+#pragma mark *** Subclass Overrides ***
+- (instancetype)init {
     if (!(self = [super init]))
         return nil;
     
-    [self setAssetCollection:assetCollection];
+    _numberOfColumns = 4;
     
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    
-    [options setWantsIncrementalChangeDetails:NO];
-    
-    [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
+    [self setSectionInset:UIEdgeInsetsMake(8.0, 0, 8.0, 0)];
+    [self setMinimumInteritemSpacing:2.0];
+    [self setMinimumLineSpacing:2.0];
     
     return self;
 }
 
-- (NSString *)title {
-    return self.assetCollection.localizedTitle;
+- (void)prepareLayout {
+    [super prepareLayout];
+    
+    CGFloat availableWidth = CGRectGetWidth(self.collectionView.bounds) - self.sectionInset.left - self.sectionInset.right - (self.minimumInteritemSpacing * (self.numberOfColumns - 1));
+    CGFloat itemWidth = floor(availableWidth / (CGFloat)self.numberOfColumns);
+    
+    [self setItemSize:CGSizeMake(itemWidth, itemWidth)];
 }
-
-- (NSUInteger)countOfAssetModels {
-    return self.fetchResult.count;
-}
-- (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index {
-    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index]];
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+- (void)setNumberOfColumns:(NSInteger)numberOfColumns {
+    if (_numberOfColumns == numberOfColumns) {
+        return;
+    }
+    
+    _numberOfColumns = numberOfColumns;
+    
+    [self invalidateLayout];
 }
 
 @end

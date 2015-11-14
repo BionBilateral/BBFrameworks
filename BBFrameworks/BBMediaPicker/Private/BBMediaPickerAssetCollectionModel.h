@@ -15,12 +15,16 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/PHCollection.h>
+#import "BBMediaPickerAssetModel.h"
 
 @interface BBMediaPickerAssetCollectionModel : NSObject
 
 @property (readonly,strong,nonatomic) PHAssetCollection *assetCollection;
 
 @property (readonly,nonatomic) NSString *title;
+
+@property (readonly,nonatomic) NSUInteger countOfAssetModels;
+- (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index;
 
 - (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection;
 

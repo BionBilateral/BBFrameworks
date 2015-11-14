@@ -19,9 +19,11 @@
 #import "BBMediaPickerDefaultTitleView.h"
 #import "BBKeyValueObserving.h"
 #import "BBMediaPickerAssetCollectionsViewController.h"
+#import "BBMediaPickerAssetsViewController.h"
 
 @interface BBMediaPickerViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
+@property (strong,nonatomic) BBMediaPickerAssetsViewController *assetsViewController;
 
 @property (assign,nonatomic) BOOL hasRequestedPhotosAccess;
 @end
@@ -33,6 +35,7 @@
         return nil;
     
     [self setModel:[[BBMediaPickerModel alloc] init]];
+    
     BBWeakify(self);
     [self.model setCancelBarButtonItemActionBlock:^{
         BBStrongify(self);
@@ -56,6 +59,11 @@
     
     [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
     
+    [self setAssetsViewController:[[BBMediaPickerAssetsViewController alloc] initWithModel:self.model]];
+    [self addChildViewController:self.assetsViewController];
+    [self.view addSubview:self.assetsViewController.view];
+    [self.assetsViewController didMoveToParentViewController:self];
+    
     BBWeakify(self);
     [self BB_addObserverForKeyPath:@"titleView" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
@@ -69,6 +77,9 @@
         [self.titleView sizeToFit];
     }];
 }
+- (void)viewDidLayoutSubviews {
+    [self.assetsViewController.view setFrame:self.view.bounds];
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -81,7 +92,7 @@
     }
 }
 
-- (void)setTitleView:(__kindof UIView<BBMediaPickerTitleView> *)titleView {
+- (void)setTitleView:(UIView<BBMediaPickerTitleView> *)titleView {
     _titleView = titleView ?: [[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero];
     
     if (_titleView) {

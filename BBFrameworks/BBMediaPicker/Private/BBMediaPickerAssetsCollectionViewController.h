@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetCollectionModel.m
+//  BBMediaPickerAssetsCollectionViewController.h
 //  BBFrameworks
 //
 //  Created by William Towe on 11/13/15.
@@ -13,40 +13,11 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaPickerAssetCollectionModel.h"
-#import <Photos/Photos.h>
+#import <UIKit/UIKit.h>
+#import "BBMediaPickerModel.h"
 
-@interface BBMediaPickerAssetCollectionModel ()
-@property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
-@property (strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
-@end
+@interface BBMediaPickerAssetsCollectionViewController : UICollectionViewController
 
-@implementation BBMediaPickerAssetCollectionModel
-
-- (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection; {
-    if (!(self = [super init]))
-        return nil;
-    
-    [self setAssetCollection:assetCollection];
-    
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    
-    [options setWantsIncrementalChangeDetails:NO];
-    
-    [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
-    
-    return self;
-}
-
-- (NSString *)title {
-    return self.assetCollection.localizedTitle;
-}
-
-- (NSUInteger)countOfAssetModels {
-    return self.fetchResult.count;
-}
-- (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index {
-    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index]];
-}
+- (instancetype)initWithModel:(BBMediaPickerModel *)model;
 
 @end

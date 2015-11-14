@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerAssetCollectionModel.m
+//  BBMediaPickerAssetModel.m
 //  BBFrameworks
 //
 //  Created by William Towe on 11/13/15.
@@ -13,40 +13,46 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerAssetModel.h"
+
 #import <Photos/Photos.h>
 
-@interface BBMediaPickerAssetCollectionModel ()
-@property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
-@property (strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
+@interface BBMediaPickerAssetModel ()
+@property (readwrite,strong,nonatomic) PHAsset *asset;
+
+@property (assign,nonatomic) PHImageRequestID imageRequestID;
 @end
 
-@implementation BBMediaPickerAssetCollectionModel
+@implementation BBMediaPickerAssetModel
 
-- (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection; {
+- (instancetype)initWithAsset:(PHAsset *)asset; {
     if (!(self = [super init]))
         return nil;
     
-    [self setAssetCollection:assetCollection];
-    
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    
-    [options setWantsIncrementalChangeDetails:NO];
-    
-    [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
+    [self setAsset:asset];
     
     return self;
 }
 
-- (NSString *)title {
-    return self.assetCollection.localizedTitle;
+- (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion; {
+    NSParameterAssert(completion);
+    
+    [self cancelAllThumbnailRequests];
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    
+    [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
+    [options setResizeMode:PHImageRequestOptionsResizeModeFast];
+    [options setNetworkAccessAllowed:YES];
+    
+    _imageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:self.asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        completion(result);
+    }];
 }
-
-- (NSUInteger)countOfAssetModels {
-    return self.fetchResult.count;
-}
-- (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index {
-    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index]];
+- (void)cancelAllThumbnailRequests; {
+    if (self.imageRequestID != PHInvalidImageRequestID) {
+        [[PHCachingImageManager defaultManager] cancelImageRequest:self.imageRequestID];
+    }
 }
 
 @end
