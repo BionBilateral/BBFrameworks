@@ -196,6 +196,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
+    // sort all collections by title
+    [retval sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:YES selector:@selector(localizedStandardCompare:)]]];
+    
     [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
     }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
