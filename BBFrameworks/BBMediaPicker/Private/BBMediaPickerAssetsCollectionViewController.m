@@ -43,7 +43,9 @@
     
     [self.model BB_addObserverForKeyPath:@"selectedAssetIdentifiers" options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
-        for (BBMediaPickerAssetCollectionViewCell *cell in self.collectionView.visibleCells) {
+        for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+            BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+            
             if (cell.isSelected) {
                 [cell reloadSelectedOverlayView];
             }
