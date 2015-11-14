@@ -138,7 +138,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
-    [self setAssetCollectionModels:[retval BB_map:^id _Nullable(id  _Nonnull object, NSInteger index) {
+    [self setAssetCollectionModels:[[retval BB_filter:^BOOL(PHAssetCollection * _Nonnull object, NSInteger index) {
+        return object.localizedTitle.length > 0;
+    }] BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object];
     }]];
     
