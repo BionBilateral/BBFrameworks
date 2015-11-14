@@ -47,6 +47,16 @@
         }
     }];
     
+    [self.model setDoneBarButtonItemActionBlock:^{
+        BBStrongify(self);
+        if (self.presentingViewController) {
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            [self.navigationController popToViewController:self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1] animated:YES];
+        }
+    }];
+    
     [self setTitleView:[[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero]];
     
     return self;
@@ -56,8 +66,6 @@
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-    [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
     
     [self setAssetsViewController:[[BBMediaPickerAssetsViewController alloc] initWithModel:self.model]];
     [self addChildViewController:self.assetsViewController];
@@ -75,6 +83,16 @@
         [self.titleView setTitle:self.model.title];
         [self.titleView setSubtitle:@"Tap to change album"];
         [self.titleView sizeToFit];
+    }];
+    
+    [self.model BB_addObserverForKeyPath:@"allowsMultipleSelection" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        if (self.model.allowsMultipleSelection) {
+            [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
+        }
+        else {
+            [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
+        }
     }];
 }
 - (void)viewDidLayoutSubviews {

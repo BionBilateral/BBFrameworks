@@ -30,6 +30,7 @@
     [super viewDidLoad];
     
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setAllowsMultipleSelection:YES];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     BBWeakify(self);
@@ -51,7 +52,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self.model selectAssetModel:[self.model.selectedAssetCollectionModel assetModelAtIndex:indexPath.item]];
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.model deselectAssetModel:[self.model.selectedAssetCollectionModel assetModelAtIndex:indexPath.item]];
 }
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model {

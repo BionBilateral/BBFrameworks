@@ -26,6 +26,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @property (readwrite,copy,nonatomic) NSString *title;
 
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
+@property (readwrite,copy,nonatomic) NSOrderedSet<BBMediaPickerAssetModel *> *selectedAssetModels;
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
@@ -74,6 +75,21 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         });
     }];
 }
+
+- (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetModels];
+    
+    [temp addObject:assetModel];
+    
+    [self setSelectedAssetModels:temp];
+}
+- (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
+    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetModels];
+    
+    [temp removeObject:assetModel];
+    
+    [self setSelectedAssetModels:temp];
+}
 #pragma mark Properties
 - (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
     if (_hidesEmptyAssetCollections == hidesEmptyAssetCollections) {
@@ -106,6 +122,15 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     _selectedAssetCollectionModel = selectedAssetCollectionModel;
     
     [self _updateTitle];
+}
+- (void)setSelectedAssetModels:(NSOrderedSet<BBMediaPickerAssetModel *> *)selectedAssetModels {
+    _selectedAssetModels = selectedAssetModels;
+    
+    if (!self.allowsMultipleSelection &&
+        _selectedAssetModels.count > 0) {
+        
+        [self _doneBarButtonItemAction:self.doneBarButtonItem];
+    }
 }
 #pragma mark *** Private Methods ***
 - (void)_updateTitle; {
