@@ -92,6 +92,14 @@
     }
 }
 
+@dynamic hidesEmptyAssetCollections;
+- (BOOL)hidesEmptyAssetCollections {
+    return self.model.hidesEmptyAssetCollections;
+}
+- (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
+    [self.model setHidesEmptyAssetCollections:hidesEmptyAssetCollections];
+}
+
 - (void)setTitleView:(UIView<BBMediaPickerTitleView> *)titleView {
     _titleView = titleView ?: [[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero];
     

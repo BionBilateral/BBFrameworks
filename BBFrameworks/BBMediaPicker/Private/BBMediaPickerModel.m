@@ -41,6 +41,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (!(self = [super init]))
         return nil;
     
+    _hidesEmptyAssetCollections = YES;
+    
     [self _updateTitle];
     [self _reloadAssetCollections];
     
@@ -56,6 +58,16 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
     
+}
+
+- (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
+    if (_hidesEmptyAssetCollections == hidesEmptyAssetCollections) {
+        return;
+    }
+    
+    _hidesEmptyAssetCollections = hidesEmptyAssetCollections;
+    
+    [self _reloadAssetCollections];
 }
 
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
@@ -124,7 +136,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return;
     }
     
-    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    NSMutableArray<PHAssetCollection *> *retval = [[NSMutableArray alloc] init];
     
     [[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil] enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [retval addObject:obj];
@@ -138,12 +150,18 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
-    [self setAssetCollectionModels:[[retval BB_filter:^BOOL(PHAssetCollection * _Nonnull object, NSInteger index) {
-        return object.localizedTitle.length > 0;
-    }] BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
+    [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object];
+    }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
+        return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
     }]];
     
+    // try to select previously selected asset collection model
+    if (self.selectedAssetCollectionModel) {
+        
+    }
+    
+    // select camera roll by default
     if (!self.selectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *collection in self.assetCollectionModels) {
             if (collection.assetCollection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {

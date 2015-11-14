@@ -22,15 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerModel : NSObject
 
-@property (readonly,copy,nonatomic) NSString *title;
-
-@property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
-@property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
+@property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
+
+@property (readonly,copy,nonatomic) NSString *title;
+
+@property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
+@property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
