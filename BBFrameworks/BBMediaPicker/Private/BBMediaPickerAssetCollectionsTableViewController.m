@@ -48,8 +48,20 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    BBMediaPickerAssetCollectionModel *model = self.model.assetCollectionModels[indexPath.row];
     
+    if ([model isEqual:self.model.selectedAssetCollectionModel]) {
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.model setSelectedAssetCollectionModel:self.model.assetCollectionModels[indexPath.row]];
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model {

@@ -21,6 +21,12 @@
 
 @implementation BBMediaPickerAssetCollectionTableViewCell
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    [self setAccessoryType:selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+}
+
 - (void)setModel:(BBMediaPickerAssetCollectionModel *)model {
     _model = model;
     
