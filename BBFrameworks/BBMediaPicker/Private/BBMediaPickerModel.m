@@ -199,6 +199,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     // sort all collections by title
     [retval sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:YES selector:@selector(localizedStandardCompare:)]]];
     
+    BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
+    
     [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
     }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
@@ -206,8 +208,14 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }]];
     
     // try to select previously selected asset collection model
-    if (self.selectedAssetCollectionModel) {
-        
+    if (oldSelectedAssetCollectionModel) {
+        for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
+            if (model.assetCollection.assetCollectionType == oldSelectedAssetCollectionModel.assetCollection.assetCollectionType &&
+                model.assetCollection.assetCollectionSubtype == oldSelectedAssetCollectionModel.assetCollection.assetCollectionSubtype) {
+                [self setSelectedAssetCollectionModel:model];
+                break;
+            }
+        }
     }
     
     // select camera roll by default
