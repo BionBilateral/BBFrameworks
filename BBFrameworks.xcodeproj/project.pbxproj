@@ -1012,6 +1012,9 @@
 		797B97621BF6E53300B94F8D /* BBMediaPickerAssetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBMediaPickerAssetCollectionViewCell.xib; path = BBFrameworksResources/BBMediaPickerAssetCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		797B97641BF6EA5600B94F8D /* BBMediaPickerAssetCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerAssetCollectionViewLayout.h; path = Private/BBMediaPickerAssetCollectionViewLayout.h; sourceTree = "<group>"; };
 		797B97651BF6EA5600B94F8D /* BBMediaPickerAssetCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerAssetCollectionViewLayout.m; path = Private/BBMediaPickerAssetCollectionViewLayout.m; sourceTree = "<group>"; };
+		797B97671BF6F7C900B94F8D /* BBMediaPickerMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerMedia.h; sourceTree = "<group>"; };
+		797B97681BF6F7E300B94F8D /* BBMediaPickerViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewControllerDelegate.h; sourceTree = "<group>"; };
+		797B97691BF6FA6300B94F8D /* BBMediaPickerModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerModelDelegate.h; path = Private/BBMediaPickerModelDelegate.h; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1806,9 +1809,12 @@
 			isa = PBXGroup;
 			children = (
 				07605ABB1B69551800333678 /* BBMediaPicker.h */,
+				797B97671BF6F7C900B94F8D /* BBMediaPickerMedia.h */,
 				072D609E1BF668A7006894CD /* BBMediaPickerDefines.h */,
+				797B97691BF6FA6300B94F8D /* BBMediaPickerModelDelegate.h */,
 				072D609B1BF66872006894CD /* BBMediaPickerModel.h */,
 				072D609C1BF66872006894CD /* BBMediaPickerModel.m */,
+				797B97681BF6F7E300B94F8D /* BBMediaPickerViewControllerDelegate.h */,
 				072D60981BF6683E006894CD /* BBMediaPickerViewController.h */,
 				072D60991BF6683E006894CD /* BBMediaPickerViewController.m */,
 				072D60A51BF67A0F006894CD /* BBMediaPickerTitleView.h */,

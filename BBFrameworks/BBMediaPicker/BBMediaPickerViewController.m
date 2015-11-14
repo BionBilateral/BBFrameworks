@@ -21,7 +21,7 @@
 #import "BBMediaPickerAssetCollectionsViewController.h"
 #import "BBMediaPickerAssetsViewController.h"
 
-@interface BBMediaPickerViewController ()
+@interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
 @property (strong,nonatomic) BBMediaPickerAssetsViewController *assetsViewController;
 
@@ -35,25 +35,20 @@
         return nil;
     
     [self setModel:[[BBMediaPickerModel alloc] init]];
+    [self.model setDelegate:self];
     
     BBWeakify(self);
     [self.model setCancelBarButtonItemActionBlock:^{
         BBStrongify(self);
-        if (self.presentingViewController) {
-            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        }
-        else {
-            [self.navigationController popToViewController:self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1] animated:YES];
+        if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
+            [self.delegate mediaPickerViewControllerDidCancel:self];
         }
     }];
     
     [self.model setDoneBarButtonItemActionBlock:^{
         BBStrongify(self);
-        if (self.presentingViewController) {
-            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        }
-        else {
-            [self.navigationController popToViewController:self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1] animated:YES];
+        if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didFinishPickingMedia:)]) {
+            [self.delegate mediaPickerViewController:self didFinishPickingMedia:self.model.selectedAssetModels.array];
         }
     }];
     
@@ -107,6 +102,17 @@
         [self setHasRequestedPhotosAccess:YES];
         
         [self.class requestAuthorizationWithCompletion:nil];
+    }
+}
+
+- (void)mediaPickerModel:(BBMediaPickerModel *)model didSelectMedia:(id<BBMediaPickerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didSelectMedia:)]) {
+        [self.delegate mediaPickerViewController:self didSelectMedia:media];
+    }
+}
+- (void)mediaPickerModel:(BBMediaPickerModel *)model didDeselectMedia:(id<BBMediaPickerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
+        [self.delegate mediaPickerViewController:self didDeselectMedia:media];
     }
 }
 

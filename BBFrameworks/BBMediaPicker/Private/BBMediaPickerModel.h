@@ -17,10 +17,13 @@
 #import <Photos/PHCollection.h>
 #import "BBMediaPickerDefines.h"
 #import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerModelDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerModel : NSObject
+
+@property (weak,nonatomic) id<BBMediaPickerModelDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 

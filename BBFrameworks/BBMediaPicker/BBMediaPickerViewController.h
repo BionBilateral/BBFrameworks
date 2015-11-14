@@ -16,10 +16,13 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerDefines.h"
 #import "BBMediaPickerTitleView.h"
+#import "BBMediaPickerViewControllerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerViewController : UIViewController
+
+@property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 

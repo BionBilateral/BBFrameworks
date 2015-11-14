@@ -36,7 +36,7 @@
 
 @end
 
-@interface MediaPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface MediaPickerViewController () <BBMediaPickerViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 @end
@@ -66,7 +66,20 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark BBMediaPickerViewControllerDelegate
-
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media {
+    BBLogObject(media);
+}
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media {
+    BBLogObject(media);
+}
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia>> *)media {
+    BBLogObject(media);
+    
+    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
+    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark *** Private Methods ***
 #pragma mark Actions
 - (IBAction)_systemButtonAction:(id)sender {
@@ -81,6 +94,8 @@
 }
 - (IBAction)_customButtonAction:(id)sender {
     BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
+    
+    [viewController setDelegate:self];
     
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }

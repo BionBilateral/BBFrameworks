@@ -82,6 +82,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [temp addObject:assetModel];
     
     [self setSelectedAssetModels:temp];
+    
+    [self.delegate mediaPickerModel:self didSelectMedia:assetModel];
 }
 - (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
     NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetModels];
@@ -89,6 +91,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [temp removeObject:assetModel];
     
     [self setSelectedAssetModels:temp];
+    
+    [self.delegate mediaPickerModel:self didDeselectMedia:assetModel];
 }
 #pragma mark Properties
 - (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
