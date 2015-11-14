@@ -32,7 +32,7 @@
     [self.view addSubview:self.tableViewController.view];
     [self.tableViewController didMoveToParentViewController:self];
     
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelItemAction:)];
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_cancelItemAction:)];
     
     [self.navigationItem setRightBarButtonItems:@[cancelItem]];
 }

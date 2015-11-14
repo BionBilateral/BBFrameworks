@@ -21,10 +21,10 @@
 
 @implementation BBMediaPickerAssetCollectionTableViewCell
 
-- (void)setAssetCollection:(PHAssetCollection *)assetCollection {
-    _assetCollection = assetCollection;
+- (void)setModel:(BBMediaPickerAssetCollectionModel *)model {
+    _model = model;
     
-    [self.titleLabel setText:_assetCollection.localizedTitle];
+    [self.titleLabel setText:_model.title];
 }
 
 @end

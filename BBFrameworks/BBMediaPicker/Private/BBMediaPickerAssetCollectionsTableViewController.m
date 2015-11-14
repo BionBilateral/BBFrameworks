@@ -38,12 +38,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.model.assetCollections.count;
+    return self.model.assetCollectionModels.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaPickerAssetCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class]) forIndexPath:indexPath];
     
-    [cell setAssetCollection:self.model.assetCollections[indexPath.row]];
+    [cell setModel:self.model.assetCollectionModels[indexPath.row]];
     
     return cell;
 }

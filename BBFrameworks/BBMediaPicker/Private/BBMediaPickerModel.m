@@ -16,6 +16,7 @@
 #import "BBMediaPickerModel.h"
 #import "BBFoundationFunctions.h"
 #import "BBFoundationDebugging.h"
+#import "BBBlocks.h"
 
 #import <Photos/Photos.h>
 
@@ -24,7 +25,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @interface BBMediaPickerModel () <PHPhotoLibraryChangeObserver>
 @property (readwrite,copy,nonatomic) NSString *title;
 
-@property (readwrite,copy,nonatomic,nullable) NSArray<PHAssetCollection *> *assetCollections;
+@property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
@@ -74,12 +75,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }
 }
 
-- (void)setSelectedAssetCollection:(PHAssetCollection *)selectedAssetCollection {
-    _selectedAssetCollection = selectedAssetCollection;
+- (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
+    _selectedAssetCollectionModel = selectedAssetCollectionModel;
     
-    if (_selectedAssetCollection) {
-        [self setTitle:_selectedAssetCollection.localizedTitle];
-    }
+    [self _updateTitle];
 }
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
@@ -98,6 +97,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 
 - (void)_updateTitle; {
+    if (self.selectedAssetCollectionModel) {
+        [self setTitle:self.selectedAssetCollectionModel.title];
+        return;
+    }
+    
     switch ([self.class authorizationStatus]) {
         case BBMediaPickerAuthorizationStatusAuthorized:
             [self setTitle:@"Authorized"];
@@ -134,12 +138,14 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
-    [self setAssetCollections:retval];
+    [self setAssetCollectionModels:[retval BB_map:^id _Nullable(id  _Nonnull object, NSInteger index) {
+        return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object];
+    }]];
     
-    if (!self.selectedAssetCollection) {
-        for (PHAssetCollection *collection in self.assetCollections) {
-            if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
-                [self setSelectedAssetCollection:collection];
+    if (!self.selectedAssetCollectionModel) {
+        for (BBMediaPickerAssetCollectionModel *collection in self.assetCollectionModels) {
+            if (collection.assetCollection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+                [self setSelectedAssetCollectionModel:collection];
                 break;
             }
         }
