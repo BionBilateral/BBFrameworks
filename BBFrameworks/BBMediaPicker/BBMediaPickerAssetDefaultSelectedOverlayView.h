@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetCollectionViewCell.h
+//  BBMediaPickerAssetDefaultSelectedOverlayView.h
 //  BBFrameworks
 //
-//  Created by William Towe on 11/13/15.
+//  Created by William Towe on 11/14/15.
 //  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,18 +16,6 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerAssetSelectedOverlayView.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class BBMediaPickerAssetModel;
-
-@interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
-
-@property (strong,nonatomic) BBMediaPickerAssetModel *model;
-
-@property (copy,nonatomic,null_resettable) NSString *selectedOverlayViewClassName UI_APPEARANCE_SELECTOR;
-
-@property (readonly,strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
+@interface BBMediaPickerAssetDefaultSelectedOverlayView : UIView <BBMediaPickerAssetSelectedOverlayView>
 
 @end
-
-NS_ASSUME_NONNULL_END

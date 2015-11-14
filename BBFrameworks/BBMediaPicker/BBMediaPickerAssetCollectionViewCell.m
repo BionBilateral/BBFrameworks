@@ -16,19 +16,38 @@
 #import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 
 #import <Photos/Photos.h>
 
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
+
+@property (readwrite,strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
+
++ (NSString *)_defaultSelectedOverlayViewClassName;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    _selectedOverlayViewClassName = [self.class _defaultSelectedOverlayViewClassName];
+    
+    [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
+}
 
 - (void)prepareForReuse {
     [super prepareForReuse];
     
     [_model cancelAllThumbnailRequests];
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    [self.selectedOverlayView setAlpha:selected ? 1.0 : 0.0];
 }
 
 - (void)setModel:(BBMediaPickerAssetModel *)model {
@@ -39,6 +58,29 @@
         BBStrongify(self);
         [self.thumbnailImageView setImage:thumbnailImage];
     }];
+}
+
+- (void)setSelectedOverlayViewClassName:(NSString *)selectedOverlayViewClassName {
+    _selectedOverlayViewClassName = selectedOverlayViewClassName ?: [self.class _defaultSelectedOverlayViewClassName];
+    
+    [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
+}
+
+- (void)setSelectedOverlayView:(UIView<BBMediaPickerAssetSelectedOverlayView> *)selectedOverlayView {
+    [_selectedOverlayView removeFromSuperview];
+    
+    _selectedOverlayView = selectedOverlayView;
+    
+    [_selectedOverlayView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_selectedOverlayView setAlpha:self.isSelected ? 1.0 : 0.0];
+    [self.contentView addSubview:_selectedOverlayView];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _selectedOverlayView}]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _selectedOverlayView}]];
+}
+
++ (NSString *)_defaultSelectedOverlayViewClassName {
+    return NSStringFromClass([BBMediaPickerAssetDefaultSelectedOverlayView class]);
 }
 
 @end
