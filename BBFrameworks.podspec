@@ -16,6 +16,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec "BBCore" do |subspec|
     subspec.source_files = "BBFrameworks"
+    subspec.private_header_files = "BBFrameworks/Private/*.h"
     
     subspec.frameworks = "Foundation"
     
