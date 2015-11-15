@@ -17,7 +17,7 @@
 #define __BB_FRAMEWORKS_MACROS_PRIVATE__
 
 /**
- Everything taken verbaitim https://github.com/jspahrsummers/libextobjc taking care to rename all the symbols so it won't conflict with other clients that use that library or other libraries that rely on it internally (e.g. ReactiveCocoa).
+ Everything taken verbaitim from https://github.com/jspahrsummers/libextobjc taking care to rename all the symbols so they won't conflict with other clients that use that library or other libraries that rely on it internally (e.g. ReactiveCocoa).
  */
 
 /**
