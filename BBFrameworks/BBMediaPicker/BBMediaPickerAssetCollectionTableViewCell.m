@@ -16,11 +16,13 @@
 #import "BBMediaPickerAssetCollectionTableViewCell.h"
 #import "BBMediaPickerAssetCollectionThumbnailView.h"
 #import "BBFrameworksMacros.h"
+#import "UIImage+BBKitExtensions.h"
 
 @interface BBMediaPickerAssetCollectionTableViewCell ()
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView1;
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView2;
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView3;
+@property (weak,nonatomic) IBOutlet UIImageView *typeImageView;
 @property (weak,nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak,nonatomic) IBOutlet UILabel *subtitleLabel;
 @end
@@ -44,6 +46,7 @@
     
     [self.titleLabel setText:_model.title];
     [self.subtitleLabel setText:_model.subtitle];
+    [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:[UIColor whiteColor]]];
     
     BBWeakify(self);
     [_model requestFirstThumbnailImageOfSize:self.thumbnailView1.frame.size completion:^(UIImage *thumbnailImage) {

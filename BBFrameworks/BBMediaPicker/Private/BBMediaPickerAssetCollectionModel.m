@@ -16,6 +16,7 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModel.h"
 #import "BBMediaPickerAssetModel.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 #import <Photos/Photos.h>
 
@@ -51,6 +52,15 @@
 }
 - (NSString *)subtitle {
     return [NSNumberFormatter localizedStringFromNumber:@(self.fetchResult.count) numberStyle:NSNumberFormatterDecimalStyle];
+}
+- (UIImage *)typeImage {
+    switch (self.assetCollection.assetCollectionSubtype) {
+        case PHAssetCollectionSubtypeSmartAlbumVideos:
+        case PHAssetCollectionSubtypeSmartAlbumSlomoVideos:
+            return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
+        default:
+            return nil;
+    }
 }
 
 - (NSUInteger)countOfAssetModels {

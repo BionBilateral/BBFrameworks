@@ -71,6 +71,10 @@
                             <constraint firstAttribute="bottom" secondItem="sLm-ej-GdU" secondAttribute="bottom" id="flX-8Q-jZI"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="22" placeholderIntrinsicHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rkt-Go-M57">
+                        <rect key="frame" x="12" y="25" width="22" height="22"/>
+                        <animations/>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -79,10 +83,12 @@
                     <constraint firstItem="7me-BZ-tqy" firstAttribute="centerX" secondItem="WwT-wg-LPh" secondAttribute="centerX" id="Oxm-wP-epb"/>
                     <constraint firstItem="WwT-wg-LPh" firstAttribute="leading" secondItem="fpT-2B-h60" secondAttribute="leading" constant="8" id="Qoo-XY-wpb"/>
                     <constraint firstItem="1F4-M0-uAs" firstAttribute="bottom" secondItem="7me-BZ-tqy" secondAttribute="bottom" constant="-5" id="UE0-tn-Uc5"/>
+                    <constraint firstItem="rkt-Go-M57" firstAttribute="bottom" secondItem="WwT-wg-LPh" secondAttribute="bottom" constant="-4" id="YEA-PU-iTD"/>
                     <constraint firstItem="WwT-wg-LPh" firstAttribute="centerY" secondItem="fpT-2B-h60" secondAttribute="centerY" id="cCW-Rh-jCO"/>
                     <constraint firstItem="7me-BZ-tqy" firstAttribute="leading" secondItem="WwT-wg-LPh" secondAttribute="leading" constant="1" id="hAg-gG-CcU"/>
                     <constraint firstAttribute="trailing" secondItem="kDx-y4-Wgf" secondAttribute="trailing" constant="8" id="t3E-cJ-ElL"/>
                     <constraint firstItem="1F4-M0-uAs" firstAttribute="centerX" secondItem="WwT-wg-LPh" secondAttribute="centerX" id="wAd-n0-oCs"/>
+                    <constraint firstItem="rkt-Go-M57" firstAttribute="leading" secondItem="WwT-wg-LPh" secondAttribute="leading" constant="4" id="xl7-Kg-Iji"/>
                     <constraint firstItem="7me-BZ-tqy" firstAttribute="bottom" secondItem="WwT-wg-LPh" secondAttribute="bottom" constant="-5" id="yqx-C5-4a0"/>
                 </constraints>
                 <variation key="default">
@@ -98,6 +104,7 @@
                 <outlet property="thumbnailView2" destination="7me-BZ-tqy" id="nEU-wi-vNN"/>
                 <outlet property="thumbnailView3" destination="1F4-M0-uAs" id="eiZ-oJ-0EM"/>
                 <outlet property="titleLabel" destination="qyv-jK-REH" id="e8z-qf-Ne1"/>
+                <outlet property="typeImageView" destination="rkt-Go-M57" id="7Pr-hN-pbV"/>
             </connections>
             <point key="canvasLocation" x="356" y="422"/>
         </tableViewCell>
