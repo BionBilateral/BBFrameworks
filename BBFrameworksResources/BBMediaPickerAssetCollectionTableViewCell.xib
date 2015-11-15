@@ -14,6 +14,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyv-jK-REH">
+                        <rect key="frame" x="60" y="19" width="252" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1F4-M0-uAs" customClass="BBMediaPickerAssetCollectionThumbnailView">
+                        <rect key="frame" x="11" y="3" width="38" height="38"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="38" id="EB1-Tc-ijS"/>
+                            <constraint firstAttribute="width" constant="38" id="m4b-Fg-CBR"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7me-BZ-tqy" customClass="BBMediaPickerAssetCollectionThumbnailView">
+                        <rect key="frame" x="10" y="5" width="41" height="41"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="41" id="U4c-dx-pOI"/>
+                            <constraint firstAttribute="height" constant="41" id="lQ1-df-y7g"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwT-wg-LPh" customClass="BBMediaPickerAssetCollectionThumbnailView">
                         <rect key="frame" x="8" y="7" width="44" height="44"/>
                         <animations/>
@@ -23,26 +48,31 @@
                             <constraint firstAttribute="width" constant="44" id="jyt-3t-TGu"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyv-jK-REH">
-                        <rect key="frame" x="60" y="19" width="252" height="21"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <animations/>
                 <constraints>
                     <constraint firstItem="qyv-jK-REH" firstAttribute="leading" secondItem="WwT-wg-LPh" secondAttribute="trailing" constant="8" id="2i1-Zv-mdM"/>
                     <constraint firstItem="qyv-jK-REH" firstAttribute="centerY" secondItem="fpT-2B-h60" secondAttribute="centerY" id="ALj-2H-C9q"/>
+                    <constraint firstItem="7me-BZ-tqy" firstAttribute="centerX" secondItem="WwT-wg-LPh" secondAttribute="centerX" id="Oxm-wP-epb"/>
                     <constraint firstItem="WwT-wg-LPh" firstAttribute="leading" secondItem="fpT-2B-h60" secondAttribute="leading" constant="8" id="Qoo-XY-wpb"/>
+                    <constraint firstItem="1F4-M0-uAs" firstAttribute="bottom" secondItem="7me-BZ-tqy" secondAttribute="bottom" constant="-5" id="UE0-tn-Uc5"/>
                     <constraint firstItem="WwT-wg-LPh" firstAttribute="centerY" secondItem="fpT-2B-h60" secondAttribute="centerY" id="cCW-Rh-jCO"/>
+                    <constraint firstItem="7me-BZ-tqy" firstAttribute="leading" secondItem="WwT-wg-LPh" secondAttribute="leading" constant="1" id="hAg-gG-CcU"/>
                     <constraint firstAttribute="trailing" secondItem="qyv-jK-REH" secondAttribute="trailing" constant="8" id="obr-Ty-Upg"/>
+                    <constraint firstItem="1F4-M0-uAs" firstAttribute="centerX" secondItem="WwT-wg-LPh" secondAttribute="centerX" id="wAd-n0-oCs"/>
+                    <constraint firstItem="7me-BZ-tqy" firstAttribute="bottom" secondItem="WwT-wg-LPh" secondAttribute="bottom" constant="-5" id="yqx-C5-4a0"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="hAg-gG-CcU"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>
                 <outlet property="thumbnailView1" destination="WwT-wg-LPh" id="GrD-3K-awQ"/>
+                <outlet property="thumbnailView2" destination="7me-BZ-tqy" id="nEU-wi-vNN"/>
+                <outlet property="thumbnailView3" destination="1F4-M0-uAs" id="eiZ-oJ-0EM"/>
                 <outlet property="titleLabel" destination="qyv-jK-REH" id="e8z-qf-Ne1"/>
             </connections>
             <point key="canvasLocation" x="356" y="422"/>

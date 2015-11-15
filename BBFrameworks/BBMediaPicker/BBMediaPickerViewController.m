@@ -75,14 +75,14 @@
         [self.navigationItem setTitleView:self.titleView];
     }];
     
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model.title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.titleView setTitle:self.model.title];
         [self.titleView setSubtitle:@"Tap to change album"];
         [self.titleView sizeToFit];
     }];
     
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model.allowsMultipleSelection) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,allowsMultipleSelection) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         if (self.model.allowsMultipleSelection) {
             [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];

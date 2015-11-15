@@ -20,4 +20,6 @@
 
 @property (strong,nonatomic) BBMediaPickerAssetCollectionModel *model;
 
++ (CGFloat)rowHeight;
+
 @end

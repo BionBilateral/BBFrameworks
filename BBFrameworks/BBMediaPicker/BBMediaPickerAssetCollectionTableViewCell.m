@@ -48,6 +48,20 @@
         BBStrongify(self);
         [self.thumbnailView1.thumbnailImageView setImage:thumbnailImage];
     }];
+    
+    [_model requestSecondThumbnailImageOfSize:self.thumbnailView2.frame.size completion:^(UIImage *thumbnailImage) {
+        BBStrongify(self);
+        [self.thumbnailView2.thumbnailImageView setImage:thumbnailImage];
+    }];
+    
+    [_model requestThirdThumbnailImageOfSize:self.thumbnailView3.frame.size completion:^(UIImage *thumbnailImage) {
+        BBStrongify(self);
+        [self.thumbnailView3.thumbnailImageView setImage:thumbnailImage];
+    }];
+}
+
++ (CGFloat)rowHeight; {
+    return 60.0;
 }
 
 @end
