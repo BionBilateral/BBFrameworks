@@ -28,6 +28,7 @@
 @property (readonly,nonatomic) NSString *identifier;
 
 @property (readonly,nonatomic) UIImage *typeImage;
+@property (readonly,nonatomic) NSString *formattedDuration;
 @property (readonly,nonatomic) NSUInteger selectedIndex;
 
 - (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(BBMediaPickerAssetCollectionModel *)assetCollectionModel;

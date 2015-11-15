@@ -72,6 +72,26 @@
             return nil;
     }
 }
+- (NSString *)formattedDuration {
+    if (self.asset.mediaType == PHAssetMediaTypeVideo) {
+        NSTimeInterval duration = self.asset.duration;
+        NSDate *date = [NSDate dateWithTimeIntervalSinceNow:duration];
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSinceNow:duration] options:0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        if (comps.hour > 0) {
+            [dateFormatter setDateFormat:@"H:mm:ss"];
+        }
+        else {
+            [dateFormatter setDateFormat:@"m:ss"];
+        }
+        
+        date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+        
+        return [dateFormatter stringFromDate:date];
+    }
+    return nil;
+}
 - (NSUInteger)selectedIndex {
     if ([self.assetCollectionModel.model.selectedAssetIdentifiers containsObject:self.identifier]) {
         return [self.assetCollectionModel.model.selectedAssetIdentifiers indexOfObject:self.identifier];

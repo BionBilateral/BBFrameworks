@@ -22,13 +22,22 @@
                         <rect key="frame" x="4" y="102" width="22" height="22"/>
                         <animations/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="169-ba-CtT">
+                        <rect key="frame" x="93" y="109" width="31" height="15"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="169-ba-CtT" secondAttribute="bottom" constant="4" id="Bmc-yS-5wf"/>
                 <constraint firstAttribute="bottom" secondItem="wdJ-e5-7H8" secondAttribute="bottom" constant="4" id="HhL-ML-wrO"/>
+                <constraint firstAttribute="trailing" secondItem="169-ba-CtT" secondAttribute="trailing" constant="4" id="QmZ-25-uWw"/>
                 <constraint firstItem="hjf-b9-qpk" firstAttribute="top" secondItem="9Q8-fA-i6K" secondAttribute="top" id="Rqm-W6-QAd"/>
                 <constraint firstItem="wdJ-e5-7H8" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" constant="4" id="VAb-GY-dsF"/>
                 <constraint firstAttribute="bottom" secondItem="hjf-b9-qpk" secondAttribute="bottom" id="W1w-NU-h74"/>
@@ -36,6 +45,7 @@
                 <constraint firstItem="hjf-b9-qpk" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" id="erc-af-aEq"/>
             </constraints>
             <connections>
+                <outlet property="durationLabel" destination="169-ba-CtT" id="aCY-Rh-SYa"/>
                 <outlet property="thumbnailImageView" destination="hjf-b9-qpk" id="YLo-Ou-TtR"/>
                 <outlet property="typeImageView" destination="wdJ-e5-7H8" id="iOa-79-LLE"/>
             </connections>

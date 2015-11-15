@@ -24,6 +24,7 @@
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
 @property (weak,nonatomic) IBOutlet UIImageView *typeImageView;
+@property (weak,nonatomic) IBOutlet UILabel *durationLabel;
 
 @property (readwrite,strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
 
@@ -62,6 +63,7 @@
     _model = model;
     
     [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:[UIColor whiteColor]]];
+    [self.durationLabel setText:_model.formattedDuration];
     
     if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
         [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];
