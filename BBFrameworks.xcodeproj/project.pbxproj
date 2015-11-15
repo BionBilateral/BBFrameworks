@@ -240,6 +240,7 @@
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
+		797A72381BF814C40091E069 /* BBFrameworksMacrosPrivate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 797A72371BF814B60091E069 /* BBFrameworksMacrosPrivate.h */; };
 		797B97541BF6CCAD00B94F8D /* BBMediaPickerAssetCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B97531BF6CCAD00B94F8D /* BBMediaPickerAssetCollectionModel.m */; };
 		797B97581BF6D16500B94F8D /* BBMediaPickerAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B97571BF6D16500B94F8D /* BBMediaPickerAssetsViewController.m */; };
 		797B975B1BF6D1EE00B94F8D /* BBMediaPickerAssetsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797B975A1BF6D1EE00B94F8D /* BBMediaPickerAssetsCollectionViewController.m */; };
@@ -600,6 +601,7 @@
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */,
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
+				797A72381BF814C40091E069 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
 				072D609F1BF670F4006894CD /* BBMediaPickerDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
 				072D60A41BF67461006894CD /* BBMediaPickerDefaultTitleView.h in CopyFiles */,
@@ -1000,6 +1002,7 @@
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
+		797A72371BF814B60091E069 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBFrameworksMacrosPrivate.h; path = Private/BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
 		797B97521BF6CCAD00B94F8D /* BBMediaPickerAssetCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerAssetCollectionModel.h; path = Private/BBMediaPickerAssetCollectionModel.h; sourceTree = "<group>"; };
 		797B97531BF6CCAD00B94F8D /* BBMediaPickerAssetCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerAssetCollectionModel.m; path = Private/BBMediaPickerAssetCollectionModel.m; sourceTree = "<group>"; };
 		797B97561BF6D16500B94F8D /* BBMediaPickerAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerAssetsViewController.h; path = Private/BBMediaPickerAssetsViewController.h; sourceTree = "<group>"; };
@@ -2375,6 +2378,7 @@
 			children = (
 				79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */,
 				799C0C701B61B4C100A3888A /* BBFrameworksMacros.h */,
+				797A72371BF814B60091E069 /* BBFrameworksMacrosPrivate.h */,
 				79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */,
 			);
 			name = Headers;
