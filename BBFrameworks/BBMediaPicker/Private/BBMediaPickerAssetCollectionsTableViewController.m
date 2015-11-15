@@ -31,7 +31,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class])];
     
     BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@"assetCollections" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,assetCollectionModels) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.tableView reloadData];
     }];

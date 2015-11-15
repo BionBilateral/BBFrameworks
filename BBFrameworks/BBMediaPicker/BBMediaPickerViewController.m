@@ -70,19 +70,19 @@
     [self.assetsViewController didMoveToParentViewController:self];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@"titleView" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self BB_addObserverForKeyPath:@BBKeypath(self.titleView) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.navigationItem setTitleView:self.titleView];
     }];
     
-    [self.model BB_addObserverForKeyPath:@"title" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model.title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.titleView setTitle:self.model.title];
         [self.titleView setSubtitle:@"Tap to change album"];
         [self.titleView sizeToFit];
     }];
     
-    [self.model BB_addObserverForKeyPath:@"allowsMultipleSelection" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model.allowsMultipleSelection) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         if (self.model.allowsMultipleSelection) {
             [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];

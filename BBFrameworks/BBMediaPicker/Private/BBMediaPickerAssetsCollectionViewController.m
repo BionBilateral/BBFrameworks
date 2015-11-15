@@ -36,12 +36,12 @@
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@"selectedAssetCollectionModel" options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model.selectedAssetCollectionModel) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.collectionView reloadData];
     }];
     
-    [self.model BB_addObserverForKeyPath:@"selectedAssetIdentifiers" options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model.selectedAssetIdentifiers) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
             BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
