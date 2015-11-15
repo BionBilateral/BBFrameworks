@@ -49,6 +49,9 @@
 - (NSString *)title {
     return self.assetCollection.localizedTitle;
 }
+- (NSString *)subtitle {
+    return [NSNumberFormatter localizedStringFromNumber:@(self.fetchResult.count) numberStyle:NSNumberFormatterDecimalStyle];
+}
 
 - (NSUInteger)countOfAssetModels {
     return self.fetchResult.count;

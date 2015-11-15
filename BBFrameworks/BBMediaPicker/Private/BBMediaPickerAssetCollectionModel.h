@@ -25,6 +25,7 @@
 @property (readonly,weak,nonatomic) BBMediaPickerModel *model;
 
 @property (readonly,nonatomic) NSString *title;
+@property (readonly,nonatomic) NSString *subtitle;
 
 @property (readonly,nonatomic) NSUInteger countOfAssetModels;
 - (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index;

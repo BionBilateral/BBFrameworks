@@ -22,6 +22,7 @@
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView2;
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView3;
 @property (weak,nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak,nonatomic) IBOutlet UILabel *subtitleLabel;
 @end
 
 @implementation BBMediaPickerAssetCollectionTableViewCell
@@ -42,6 +43,7 @@
     _model = model;
     
     [self.titleLabel setText:_model.title];
+    [self.subtitleLabel setText:_model.subtitle];
     
     BBWeakify(self);
     [_model requestFirstThumbnailImageOfSize:self.thumbnailView1.frame.size completion:^(UIImage *thumbnailImage) {
