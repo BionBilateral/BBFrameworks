@@ -17,6 +17,7 @@
 
 #import <BBFrameworks/BBKeyValueObserving.h>
 #import <BBFrameworks/BBFoundationDebugging.h>
+#import <BBFrameworks/BBFrameworksMacros.h>
 
 @interface Model : NSObject
 @property (copy,nonatomic) NSString *text;
@@ -54,7 +55,7 @@
     
     [self.textField addTarget:self action:@selector(_textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     
-    [self BB_addObserverForKeyPath:@"model.text" options:NSKeyValueObservingOptionInitial block:^(NSString *key, id object, NSDictionary *change) {
+    [self BB_addObserverForKeyPath:@BBKeypath(self,model.text) options:NSKeyValueObservingOptionInitial block:^(NSString *key, id object, NSDictionary *change) {
         NSLog(@"%@ %@ %@ %@",key,object,change,[object valueForKeyPath:key]);
     }];
 }

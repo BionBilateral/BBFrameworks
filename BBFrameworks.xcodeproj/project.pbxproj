@@ -255,6 +255,7 @@
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
+		796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */; };
 		7989C9D11B1ADE65009B1CE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D01B1ADE65009B1CE9 /* AppDelegate.m */; };
 		7989C9D31B1ADE65009B1CE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7989C9D21B1ADE65009B1CE9 /* main.m */; };
 		7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7989C9D71B1ADE65009B1CE9 /* Images.xcassets */; };
@@ -605,6 +606,7 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
+				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
 				07E312C61BB32D0400C71468 /* BBKeyValueObserving.h in CopyFiles */,
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
@@ -1033,6 +1035,7 @@
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
+		796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BBFrameworksMacrosPrivate.h; path = Private/BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2392,6 +2395,7 @@
 			children = (
 				79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */,
 				799C0C701B61B4C100A3888A /* BBFrameworksMacros.h */,
+				796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */,
 				79EA81091B3F144400D50B6B /* BBFrameworksFunctions.h */,
 			);
 			name = Headers;
