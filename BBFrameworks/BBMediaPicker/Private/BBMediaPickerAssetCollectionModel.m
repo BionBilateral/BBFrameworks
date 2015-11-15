@@ -23,6 +23,9 @@
 @property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
 @property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
 @property (strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
+@property (assign,nonatomic) PHImageRequestID firstImageRequestID, secondImageRequestID, thirdImageRequestID;
+
+- (void)_cancelThumbnailImageRequestWithImageRequestID:(PHImageRequestID)imageRequestID;
 @end
 
 @implementation BBMediaPickerAssetCollectionModel
@@ -52,6 +55,90 @@
 }
 - (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index {
     return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index] assetCollectionModel:self];
+}
+
+- (void)requestFirstThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion; {
+    NSParameterAssert(completion);
+    
+    if (self.fetchResult.count == 0) {
+        completion(nil);
+        return;
+    }
+    
+    [self _cancelThumbnailImageRequestWithImageRequestID:self.firstImageRequestID];
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    
+    [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
+    [options setResizeMode:PHImageRequestOptionsResizeModeFast];
+    [options setNetworkAccessAllowed:YES];
+    
+    PHAsset *asset = self.fetchResult.firstObject;
+    
+    _firstImageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        completion(result);
+    }];
+}
+- (void)requestSecondThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion; {
+    NSParameterAssert(completion);
+    
+    if (self.fetchResult.count <= 1) {
+        completion(nil);
+        return;
+    }
+    
+    [self _cancelThumbnailImageRequestWithImageRequestID:self.secondImageRequestID];
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    
+    [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
+    [options setResizeMode:PHImageRequestOptionsResizeModeFast];
+    [options setNetworkAccessAllowed:YES];
+    
+    PHAsset *asset = [self.fetchResult objectAtIndex:1];
+    
+    _secondImageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        completion(result);
+    }];
+}
+- (void)requestThirdThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion; {
+    NSParameterAssert(completion);
+    
+    if (self.fetchResult.count <= 2) {
+        completion(nil);
+        return;
+    }
+    
+    [self _cancelThumbnailImageRequestWithImageRequestID:self.thirdImageRequestID];
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    
+    [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
+    [options setResizeMode:PHImageRequestOptionsResizeModeFast];
+    [options setNetworkAccessAllowed:YES];
+    
+    PHAsset *asset = [self.fetchResult objectAtIndex:2];
+    
+    _thirdImageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        completion(result);
+    }];
+}
+- (void)cancelAllThumbnailRequests; {
+    [self _cancelThumbnailImageRequestWithImageRequestID:self.firstImageRequestID];
+    [self _cancelThumbnailImageRequestWithImageRequestID:self.secondImageRequestID];
+    [self _cancelThumbnailImageRequestWithImageRequestID:self.thirdImageRequestID];
+    
+    _firstImageRequestID = PHInvalidImageRequestID;
+    _secondImageRequestID = PHInvalidImageRequestID;
+    _thirdImageRequestID = PHInvalidImageRequestID;
+}
+
+- (void)_cancelThumbnailImageRequestWithImageRequestID:(PHImageRequestID)imageRequestID; {
+    if (imageRequestID == PHInvalidImageRequestID) {
+        return;
+    }
+    
+    [[PHCachingImageManager defaultManager] cancelImageRequest:imageRequestID];
 }
 
 @end
