@@ -16,6 +16,8 @@
 #ifndef __BB_FRAMEWORKS_MACROS__
 #define __BB_FRAMEWORKS_MACROS__
 
+#import "BBFrameworksMacrosPrivate.h"
+
 /**
  Macro to create a weakly referenced variable of type var.
  
@@ -40,5 +42,18 @@ _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Wshadow\"") \
 __strong typeof(var) var = BBWeak_##var; \
 _Pragma("clang diagnostic pop")
+
+/**
+ Given a real object receiver and key path, returns the string concatentation of all arguments except the first. If the keypath is invalid, it will be flagged at compile time.
+ 
+     NSString *string = ...;
+     NSString *keypath = @BBKeypath(string.lowercaseString); // @"lowercaseString"
+ 
+     keypath = @BBKeypath(NSObject, version); // @"version"
+ 
+     keypath = @BBKeypath(NSString.new, lowercaseString); // @"lowercaseString"
+ */
+#define BBKeypath(...) \
+BBmetamacro_if_eq(1, BBmetamacro_argcount(__VA_ARGS__))(BBkeypath1(__VA_ARGS__))(BBkeypath2(__VA_ARGS__))
 
 #endif
