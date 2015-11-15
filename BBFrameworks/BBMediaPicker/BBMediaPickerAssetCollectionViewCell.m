@@ -17,11 +17,13 @@
 #import "BBMediaPickerAssetModel.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
+#import "UIImage+BBKitExtensions.h"
 
 #import <Photos/Photos.h>
 
 @interface BBMediaPickerAssetCollectionViewCell ()
 @property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak,nonatomic) IBOutlet UIImageView *typeImageView;
 
 @property (readwrite,strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
 
@@ -58,6 +60,8 @@
 
 - (void)setModel:(BBMediaPickerAssetModel *)model {
     _model = model;
+    
+    [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:[UIColor whiteColor]]];
     
     if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
         [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];

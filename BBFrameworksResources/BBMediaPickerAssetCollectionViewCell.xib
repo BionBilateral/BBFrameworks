@@ -18,19 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         <animations/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="22" placeholderIntrinsicHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-e5-7H8">
+                        <rect key="frame" x="4" y="102" width="22" height="22"/>
+                        <animations/>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="wdJ-e5-7H8" secondAttribute="bottom" constant="4" id="HhL-ML-wrO"/>
                 <constraint firstItem="hjf-b9-qpk" firstAttribute="top" secondItem="9Q8-fA-i6K" secondAttribute="top" id="Rqm-W6-QAd"/>
+                <constraint firstItem="wdJ-e5-7H8" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" constant="4" id="VAb-GY-dsF"/>
                 <constraint firstAttribute="bottom" secondItem="hjf-b9-qpk" secondAttribute="bottom" id="W1w-NU-h74"/>
                 <constraint firstAttribute="trailing" secondItem="hjf-b9-qpk" secondAttribute="trailing" id="der-7T-Cnp"/>
                 <constraint firstItem="hjf-b9-qpk" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" id="erc-af-aEq"/>
             </constraints>
             <connections>
                 <outlet property="thumbnailImageView" destination="hjf-b9-qpk" id="YLo-Ou-TtR"/>
+                <outlet property="typeImageView" destination="wdJ-e5-7H8" id="iOa-79-LLE"/>
             </connections>
             <point key="canvasLocation" x="394" y="455"/>
         </collectionViewCell>

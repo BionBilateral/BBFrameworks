@@ -17,6 +17,7 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModel.h"
 #import "BBFoundationDebugging.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 #import <Photos/Photos.h>
 
@@ -62,6 +63,14 @@
 
 - (NSString *)identifier {
     return self.asset.localIdentifier;
+}
+- (UIImage *)typeImage {
+    switch (self.asset.mediaType) {
+        case PHAssetMediaTypeVideo:
+            return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
+        default:
+            return nil;
+    }
 }
 - (NSUInteger)selectedIndex {
     if ([self.assetCollectionModel.model.selectedAssetIdentifiers containsObject:self.identifier]) {
