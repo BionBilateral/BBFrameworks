@@ -19,6 +19,7 @@
 #import "UIImage+BBKitExtensions.h"
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerModel.h"
+#import "BBKeyValueObserving.h"
 
 @interface BBMediaPickerAssetCollectionTableViewCell ()
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView1;
@@ -30,6 +31,18 @@
 @end
 
 @implementation BBMediaPickerAssetCollectionTableViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    [self BB_addObserverForKeyPath:@BBKeypath(self,model.model.theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        if (!self.model.model) {
+            return;
+        }
+        
+        [self setBackgroundColor:self.model.model.theme.assetCollectionCellBackgroundColor];
+    }];
+}
 
 - (void)prepareForReuse {
     [super prepareForReuse];
@@ -45,8 +58,6 @@
 
 - (void)setModel:(BBMediaPickerAssetCollectionModel *)model {
     _model = model;
-    
-    [self setBackgroundColor:_model.model.theme.assetCollectionCellBackgroundColor];
     
     [self.titleLabel setText:_model.title];
     [self.subtitleLabel setText:_model.subtitle];
