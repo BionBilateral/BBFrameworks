@@ -30,7 +30,8 @@
 
 + (void)initialize {
     if (self == [MediaPickerNavigationController class]) {
-        
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:[UIColor darkGrayColor]];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
     }
 }
 
@@ -45,7 +46,10 @@
 #pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setTitleColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+        
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor darkGrayColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleColor:[UIColor whiteColor]];
