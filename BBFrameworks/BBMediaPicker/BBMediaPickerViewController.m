@@ -84,7 +84,7 @@
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.titleView setTitle:self.model.title];
-        [self.titleView setSubtitle:@"Tap to change album"];
+        [self.titleView setSubtitle:@"Tap to change album ▼"];
         [self.titleView sizeToFit];
     }];
     
