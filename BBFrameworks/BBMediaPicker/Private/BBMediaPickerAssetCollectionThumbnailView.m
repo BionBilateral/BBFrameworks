@@ -39,7 +39,7 @@
     [self addSubview:self.thumbnailImageView];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+    [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         if (!self.theme) {
             return;

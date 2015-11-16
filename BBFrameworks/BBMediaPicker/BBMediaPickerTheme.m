@@ -16,6 +16,11 @@
 #import "BBMediaPickerTheme.h"
 
 @interface BBMediaPickerTheme ()
++ (UIFont *)_defaultTitleFont;
++ (UIColor *)_defaultTitleColor;
++ (UIFont *)_defaultSubtitleFont;
++ (UIColor *)_defaultSubtitleColor;
+
 + (UIColor *)_defaultAssetCollectionBackgroundColor;
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor;
 + (UIFont *)_defaultAssetCollectionCellTitleFont;
@@ -29,6 +34,11 @@
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
+    
+    _titleFont = [self.class _defaultTitleFont];
+    _titleColor = [self.class _defaultTitleColor];
+    _subtitleFont = [self.class _defaultSubtitleFont];
+    _subtitleColor = [self.class _defaultSubtitleColor];
     
     _assetCollectionBackgroundColor = [self.class _defaultAssetCollectionBackgroundColor];
     _assetCollectionCellBackgroundColor = [self.class _defaultAssetCollectionCellBackgroundColor];
@@ -49,6 +59,19 @@
     return kRetval;
 }
 
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont ?: [self.class _defaultTitleFont];
+}
+- (void)setTitleColor:(UIColor *)titleColor {
+    _titleColor = titleColor ?: [self.class _defaultTitleColor];
+}
+- (void)setSubtitleFont:(UIFont *)subtitleFont {
+    _subtitleFont = subtitleFont ?: [self.class _defaultSubtitleFont];
+}
+- (void)setSubtitleColor:(UIColor *)subtitleColor {
+    _subtitleColor = subtitleColor ?: [self.class _defaultSubtitleColor];
+}
+
 - (void)setAssetCollectionBackgroundColor:(UIColor *)assetCollectionBackgroundColor {
     _assetCollectionBackgroundColor = assetCollectionBackgroundColor ?: [self.class _defaultAssetCollectionBackgroundColor];
 }
@@ -66,6 +89,19 @@
 }
 - (void)setAssetCollectionCellSubtitleColor:(UIColor *)assetCollectionCellSubtitleColor {
     _assetCollectionCellSubtitleColor = assetCollectionCellSubtitleColor ?: [self.class _defaultAssetCollectionCellSubtitleColor];
+}
+
++ (UIFont *)_defaultTitleFont; {
+    return [UIFont boldSystemFontOfSize:17.0];
+}
++ (UIColor *)_defaultTitleColor; {
+    return [UIColor blackColor];
+}
++ (UIFont *)_defaultSubtitleFont; {
+    return [UIFont systemFontOfSize:12.0];
+}
++ (UIColor *)_defaultSubtitleColor; {
+    return [UIColor darkGrayColor];
 }
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {

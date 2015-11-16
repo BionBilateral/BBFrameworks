@@ -14,6 +14,9 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerDefaultTitleView.h"
+#import "BBMediaPickerTheme.h"
+#import "BBKeyValueObserving.h"
+#import "BBFrameworksMacros.h"
 
 @interface BBMediaPickerDefaultTitleView ()
 @property (strong,nonatomic) UILabel *titleLabel;
@@ -36,6 +39,7 @@
 - (void)setSubtitle:(NSString *)subtitle {
     [self.subtitleLabel setText:subtitle];
 }
+@synthesize theme=_theme;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
@@ -44,14 +48,30 @@
     [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+    [self.titleLabel setFont:[BBMediaPickerTheme defaultTheme].titleFont];
+    [self.titleLabel setTextColor:[BBMediaPickerTheme defaultTheme].titleColor];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:self.titleLabel];
     
     [self setSubtitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.subtitleLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [self.subtitleLabel setFont:[BBMediaPickerTheme defaultTheme].subtitleFont];
+    [self.subtitleLabel setTextColor:[BBMediaPickerTheme defaultTheme].subtitleColor];
     [self.subtitleLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:self.subtitleLabel];
+    
+    BBWeakify(self);
+    [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        if (!self.theme) {
+            return;
+        }
+        
+        [self.titleLabel setFont:self.theme.titleFont];
+        [self.titleLabel setTextColor:self.theme.titleColor];
+        
+        [self.subtitleLabel setFont:self.theme.subtitleFont];
+        [self.subtitleLabel setTextColor:self.theme.subtitleColor];
+    }];
     
     return self;
 }

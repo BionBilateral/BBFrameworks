@@ -76,6 +76,11 @@
         [self.navigationItem setTitleView:self.titleView];
     }];
     
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        [self.titleView setTheme:self.theme];
+        [self.titleView sizeToFit];
+    }];
+    
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.titleView setTitle:self.model.title];

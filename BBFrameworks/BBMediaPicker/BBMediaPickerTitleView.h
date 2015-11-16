@@ -17,11 +17,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BBMediaPickerTheme;
+
 @protocol BBMediaPickerTitleView <NSObject>
 @required
 @property (copy,nonatomic,nullable) NSString *title;
 @optional
 @property (copy,nonatomic,nullable) NSString *subtitle;
+@property (strong,nonatomic,nullable) BBMediaPickerTheme *theme;
 @end
 
 NS_ASSUME_NONNULL_END
