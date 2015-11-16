@@ -45,7 +45,7 @@
 #pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
-        
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
     }
 }
 

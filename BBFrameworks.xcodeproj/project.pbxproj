@@ -76,6 +76,7 @@
 		0798751B1BD03923005422B2 /* Keychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = 079875191BD03923005422B2 /* Keychain.strings */; };
 		0798751C1BD03923005422B2 /* Keychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = 079875191BD03923005422B2 /* Keychain.strings */; };
 		07A19B011BFA38EF00B53022 /* BBMediaPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A19B001BFA38EF00B53022 /* BBMediaPickerTheme.m */; };
+		07A19B021BFA3E4C00B53022 /* BBMediaPickerTheme.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07A19AFF1BFA38EF00B53022 /* BBMediaPickerTheme.h */; };
 		07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */; };
 		07AC57091BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AC57081BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m */; };
@@ -606,6 +607,7 @@
 				797A72381BF814C40091E069 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
 				072D609F1BF670F4006894CD /* BBMediaPickerDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
+				07A19B021BFA3E4C00B53022 /* BBMediaPickerTheme.h in CopyFiles */,
 				072D60A41BF67461006894CD /* BBMediaPickerDefaultTitleView.h in CopyFiles */,
 				072D60A01BF670F8006894CD /* BBMediaPickerViewController.h in CopyFiles */,
 				798C46471BD950380027811C /* BBLabel.h in CopyFiles */,

@@ -21,6 +21,7 @@
 #if (TARGET_OS_IPHONE)
 #import "BBMediaPickerViewController.h"
 #import "BBMediaPickerTitleView.h"
+#import "BBMediaPickerTheme.h"
 #endif
 
 #endif
