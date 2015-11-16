@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellBackgroundColor;
 @property (strong,nonatomic,null_resettable) UIFont *assetCollectionCellTitleFont;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellTitleColor;
+@property (strong,nonatomic,null_resettable) UIFont *assetCollectionCellSubtitleFont;
 
 + (instancetype)defaultTheme;
 
