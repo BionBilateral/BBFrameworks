@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBMediaPickerTheme : NSObject
 
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionBackgroundColor;
+@property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellBackgroundColor;
 
 + (instancetype)defaultTheme;
 

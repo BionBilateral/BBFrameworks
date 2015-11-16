@@ -17,6 +17,8 @@
 #import "BBMediaPickerAssetCollectionThumbnailView.h"
 #import "BBFrameworksMacros.h"
 #import "UIImage+BBKitExtensions.h"
+#import "BBMediaPickerTheme.h"
+#import "BBMediaPickerModel.h"
 
 @interface BBMediaPickerAssetCollectionTableViewCell ()
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView1;
@@ -43,6 +45,8 @@
 
 - (void)setModel:(BBMediaPickerAssetCollectionModel *)model {
     _model = model;
+    
+    [self setBackgroundColor:_model.model.theme.assetCollectionCellBackgroundColor];
     
     [self.titleLabel setText:_model.title];
     [self.subtitleLabel setText:_model.subtitle];

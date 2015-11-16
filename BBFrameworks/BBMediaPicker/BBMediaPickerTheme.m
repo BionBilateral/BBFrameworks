@@ -17,6 +17,7 @@
 
 @interface BBMediaPickerTheme ()
 + (UIColor *)_defaultAssetCollectionBackgroundColor;
++ (UIColor *)_defaultAssetCollectionCellBackgroundColor;
 @end
 
 @implementation BBMediaPickerTheme
@@ -26,6 +27,7 @@
         return nil;
     
     _assetCollectionBackgroundColor = [self.class _defaultAssetCollectionBackgroundColor];
+    _assetCollectionCellBackgroundColor = [self.class _defaultAssetCollectionCellBackgroundColor];
     
     return self;
 }
@@ -42,8 +44,14 @@
 - (void)setAssetCollectionBackgroundColor:(UIColor *)assetCollectionBackgroundColor {
     _assetCollectionBackgroundColor = assetCollectionBackgroundColor ?: [self.class _defaultAssetCollectionBackgroundColor];
 }
+- (void)setAssetCollectionCellBackgroundColor:(UIColor *)assetCollectionCellBackgroundColor {
+    _assetCollectionCellBackgroundColor = assetCollectionCellBackgroundColor ?: [self.class _defaultAssetCollectionCellBackgroundColor];
+}
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
+    return [UIColor whiteColor];
+}
++ (UIColor *)_defaultAssetCollectionCellBackgroundColor {
     return [UIColor whiteColor];
 }
 

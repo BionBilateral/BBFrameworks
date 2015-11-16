@@ -46,6 +46,7 @@
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
     }
 }
 
