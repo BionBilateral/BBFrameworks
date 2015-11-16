@@ -52,6 +52,8 @@
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleFont:[UIFont italicSystemFontOfSize:12.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellCheckmarkColor:[UIColor whiteColor]];
+        
+        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor darkGrayColor]];
     }
 }
 

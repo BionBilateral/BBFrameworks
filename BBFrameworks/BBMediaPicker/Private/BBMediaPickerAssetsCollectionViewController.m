@@ -21,6 +21,7 @@
 #import "BBMediaPickerAssetCollectionViewLayout.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerTheme.h"
 
 @interface BBMediaPickerAssetsCollectionViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -50,6 +51,11 @@
                 [cell reloadSelectedOverlayView];
             }
         }
+    }];
+    
+    [self BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        [self.collectionView setBackgroundColor:self.model.theme.assetBackgroundColor];
     }];
 }
 
