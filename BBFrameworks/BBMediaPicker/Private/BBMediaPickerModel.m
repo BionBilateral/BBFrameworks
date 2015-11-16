@@ -19,6 +19,7 @@
 #import "BBBlocks.h"
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerAssetModel.h"
+#import "BBMediaPickerTheme.h"
 
 #import <Photos/Photos.h>
 
@@ -45,6 +46,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return nil;
     
     _hidesEmptyAssetCollections = YES;
+    
+    _theme = [BBMediaPickerTheme defaultTheme];
     
     [self _updateTitle];
     [self _reloadAssetCollections];
@@ -122,6 +125,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [_cancelBarButtonItem setTarget:self];
         [_cancelBarButtonItem setAction:@selector(_cancelBarButtonItemAction:)];
     }
+}
+
+- (void)setTheme:(BBMediaPickerTheme *)theme {
+    _theme = theme ?: [BBMediaPickerTheme defaultTheme];
 }
 
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {

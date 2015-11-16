@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel;
+@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel,BBMediaPickerTheme;
 
 @interface BBMediaPickerModel : NSObject
 
@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
+
+@property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
 @property (readonly,copy,nonatomic) NSString *title;
 

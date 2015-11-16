@@ -75,6 +75,7 @@
 		079875181BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */; };
 		0798751B1BD03923005422B2 /* Keychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = 079875191BD03923005422B2 /* Keychain.strings */; };
 		0798751C1BD03923005422B2 /* Keychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = 079875191BD03923005422B2 /* Keychain.strings */; };
+		07A19B011BFA38EF00B53022 /* BBMediaPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A19B001BFA38EF00B53022 /* BBMediaPickerTheme.m */; };
 		07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */; };
 		07AC57091BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AC57071BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AC57081BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m */; };
@@ -804,6 +805,8 @@
 		079875111BD021D5005422B2 /* BBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBKeychain.m; sourceTree = "<group>"; };
 		079875161BD02A5E005422B2 /* BBFrameworksBBKeychainTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksBBKeychainTestCase.m; sourceTree = "<group>"; };
 		0798751A1BD03923005422B2 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Keychain.strings; sourceTree = "<group>"; };
+		07A19AFF1BFA38EF00B53022 /* BBMediaPickerTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerTheme.h; sourceTree = "<group>"; };
+		07A19B001BFA38EF00B53022 /* BBMediaPickerTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerTheme.m; sourceTree = "<group>"; };
 		07A67E8E1B87A1DA008CCB02 /* BBProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressSlider.h; path = iOS/BBProgressSlider.h; sourceTree = "<group>"; };
 		07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressSlider.m; path = iOS/BBProgressSlider.m; sourceTree = "<group>"; };
 		07A67E941B87BBB1008CCB02 /* BBTooltipAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAccessoryView.h; sourceTree = "<group>"; };
@@ -1829,6 +1832,8 @@
 				797B97691BF6FA6300B94F8D /* BBMediaPickerModelDelegate.h */,
 				072D609B1BF66872006894CD /* BBMediaPickerModel.h */,
 				072D609C1BF66872006894CD /* BBMediaPickerModel.m */,
+				07A19AFF1BFA38EF00B53022 /* BBMediaPickerTheme.h */,
+				07A19B001BFA38EF00B53022 /* BBMediaPickerTheme.m */,
 				797B97681BF6F7E300B94F8D /* BBMediaPickerViewControllerDelegate.h */,
 				072D60981BF6683E006894CD /* BBMediaPickerViewController.h */,
 				072D60991BF6683E006894CD /* BBMediaPickerViewController.m */,
@@ -3183,6 +3188,7 @@
 				79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */,
 				791996F11B6EB3C500FC674A /* BBThumbnailHTMLOperation.m in Sources */,
 				072D60A31BF67448006894CD /* BBMediaPickerDefaultTitleView.m in Sources */,
+				07A19B011BFA38EF00B53022 /* BBMediaPickerTheme.m in Sources */,
 				07B3D9051B60373B00FA1853 /* BBFormTableViewHeaderView.m in Sources */,
 				79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */,
 				790DE0861B51B01B0029C004 /* BBDatePickerButton.m in Sources */,

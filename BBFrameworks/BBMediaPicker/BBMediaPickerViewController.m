@@ -22,6 +22,7 @@
 #import "BBMediaPickerAssetsViewController.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBBlocks.h"
+#import "BBMediaPickerTheme.h"
 
 @interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -31,7 +32,7 @@
 @end
 
 @implementation BBMediaPickerViewController
-
+#pragma mark *** Subclass Overrides ***
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -106,7 +107,7 @@
         [self.class requestAuthorizationWithCompletion:nil];
     }
 }
-
+#pragma mark BBMediaPickerModelDelegate
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didSelectMedia:(id<BBMediaPickerMedia>)media {
     if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didSelectMedia:)]) {
         [self.delegate mediaPickerViewController:self didSelectMedia:media];
@@ -117,7 +118,14 @@
         [self.delegate mediaPickerViewController:self didDeselectMedia:media];
     }
 }
-
+#pragma mark *** Public Methods ***
++ (BBMediaPickerAuthorizationStatus)authorizationStatus; {
+    return [BBMediaPickerModel authorizationStatus];
+}
++ (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion; {
+    [BBMediaPickerModel requestAuthorizationWithCompletion:completion];
+}
+#pragma mark Properties
 @dynamic allowsMultipleSelection;
 - (BOOL)allowsMultipleSelection {
     return self.model.allowsMultipleSelection;
@@ -147,13 +155,15 @@
     }
 }
 
-+ (BBMediaPickerAuthorizationStatus)authorizationStatus; {
-    return [BBMediaPickerModel authorizationStatus];
+@dynamic theme;
+- (BBMediaPickerTheme *)theme {
+    return self.model.theme;
 }
-+ (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion; {
-    [BBMediaPickerModel requestAuthorizationWithCompletion:completion];
+- (void)setTheme:(BBMediaPickerTheme *)theme {
+    [self.model setTheme:theme];
 }
-
+#pragma mark *** Private Methods ***
+#pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerAssetCollectionsViewController alloc] initWithModel:self.model]] animated:YES completion:nil];
 }
