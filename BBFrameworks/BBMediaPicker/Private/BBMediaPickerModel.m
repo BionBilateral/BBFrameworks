@@ -29,7 +29,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @property (readwrite,copy,nonatomic) NSString *title;
 
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
-@property (readwrite,copy,nonatomic) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
+@property (readwrite,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
@@ -134,9 +134,24 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
     _selectedAssetCollectionModel = selectedAssetCollectionModel;
     
+    [self setSelectedAssetIdentifiers:nil];
     [self _updateTitle];
 }
 - (void)setSelectedAssetIdentifiers:(NSOrderedSet<NSString *> *)selectedAssetIdentifiers {
+    // deselect everything and we currently have a selection, call did deselect for each asset
+    if (selectedAssetIdentifiers == nil &&
+        _selectedAssetIdentifiers.count > 0) {
+        for (NSString *identifier in _selectedAssetIdentifiers) {
+            PHFetchOptions *options = [[PHFetchOptions alloc] init];
+            
+            [options setWantsIncrementalChangeDetails:NO];
+            
+            PHAsset *asset = [PHAsset fetchAssetsWithLocalIdentifiers:@[identifier] options:options].firstObject;
+            
+            [self.delegate mediaPickerModel:self didDeselectMedia:[[BBMediaPickerAssetModel alloc] initWithAsset:asset assetCollectionModel:nil]];
+        }
+    }
+    
     _selectedAssetIdentifiers = selectedAssetIdentifiers;
     
     if (!self.allowsMultipleSelection &&
