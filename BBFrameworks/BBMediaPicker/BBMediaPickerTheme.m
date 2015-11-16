@@ -21,6 +21,7 @@
 + (UIFont *)_defaultAssetCollectionCellTitleFont;
 + (UIColor *)_defaultAssetCollectionCellTitleColor;
 + (UIFont *)_defaultAssetCollectionCellSubtitleFont;
++ (UIColor *)_defaultAssetCollectionCellSubtitleColor;
 @end
 
 @implementation BBMediaPickerTheme
@@ -34,6 +35,7 @@
     _assetCollectionCellTitleFont = [self.class _defaultAssetCollectionCellTitleFont];
     _assetCollectionCellTitleColor = [self.class _defaultAssetCollectionCellTitleColor];
     _assetCollectionCellSubtitleFont = [self.class _defaultAssetCollectionCellSubtitleFont];
+    _assetCollectionCellSubtitleColor = [self.class _defaultAssetCollectionCellSubtitleColor];
     
     return self;
 }
@@ -62,6 +64,9 @@
 - (void)setAssetCollectionCellSubtitleFont:(UIFont *)assetCollectionCellSubtitleFont {
     _assetCollectionCellSubtitleFont = assetCollectionCellSubtitleFont ?: [self.class _defaultAssetCollectionCellSubtitleFont];
 }
+- (void)setAssetCollectionCellSubtitleColor:(UIColor *)assetCollectionCellSubtitleColor {
+    _assetCollectionCellSubtitleColor = assetCollectionCellSubtitleColor ?: [self.class _defaultAssetCollectionCellSubtitleColor];
+}
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
     return [UIColor whiteColor];
@@ -77,6 +82,9 @@
 }
 + (UIFont *)_defaultAssetCollectionCellSubtitleFont {
     return [UIFont systemFontOfSize:12.0];
+}
++ (UIColor *)_defaultAssetCollectionCellSubtitleColor {
+    return [UIColor blackColor];
 }
 
 @end

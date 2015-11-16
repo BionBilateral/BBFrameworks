@@ -46,6 +46,7 @@
         [self.titleLabel setTextColor:self.model.model.theme.assetCollectionCellTitleColor];
         
         [self.subtitleLabel setFont:self.model.model.theme.assetCollectionCellSubtitleFont];
+        [self.subtitleLabel setTextColor:self.model.model.theme.assetCollectionCellSubtitleColor];
     }];
 }
 
