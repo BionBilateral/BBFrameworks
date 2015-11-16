@@ -18,6 +18,7 @@
 #import "BBFrameworksFunctions.h"
 #import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaPickerTheme.h"
 
 @interface BBMediaPickerAssetCollectionsTableViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -35,6 +36,11 @@
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,assetCollectionModels) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.tableView reloadData];
+    }];
+    
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        [self.tableView setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
     }];
 }
 

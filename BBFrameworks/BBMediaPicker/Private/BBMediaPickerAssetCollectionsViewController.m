@@ -15,6 +15,9 @@
 
 #import "BBMediaPickerAssetCollectionsViewController.h"
 #import "BBMediaPickerAssetCollectionsTableViewController.h"
+#import "BBKeyValueObserving.h"
+#import "BBFrameworksMacros.h"
+#import "BBMediaPickerTheme.h"
 
 @interface BBMediaPickerAssetCollectionsViewController ()
 @property (strong,nonatomic) BBMediaPickerAssetCollectionsTableViewController *tableViewController;
@@ -35,6 +38,12 @@
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_cancelItemAction:)];
     
     [self.navigationItem setRightBarButtonItems:@[cancelItem]];
+    
+    BBWeakify(self);
+    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        [self.view setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
+    }];
 }
 - (void)viewDidLayoutSubviews {
     [self.tableViewController.view setFrame:self.view.bounds];
