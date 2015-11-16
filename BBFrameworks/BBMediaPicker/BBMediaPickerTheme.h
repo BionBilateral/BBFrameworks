@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellTitleColor;
 @property (strong,nonatomic,null_resettable) UIFont *assetCollectionCellSubtitleFont;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellSubtitleColor;
+@property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
 
 + (instancetype)defaultTheme;
 

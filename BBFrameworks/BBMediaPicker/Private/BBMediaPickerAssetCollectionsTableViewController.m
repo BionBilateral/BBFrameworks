@@ -41,6 +41,7 @@
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.tableView setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
+        [self.tableView setTintColor:self.model.theme.assetCollectionCellCheckmarkColor];
     }];
 }
 
