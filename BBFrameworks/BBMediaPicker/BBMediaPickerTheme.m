@@ -18,6 +18,7 @@
 @interface BBMediaPickerTheme ()
 + (UIColor *)_defaultAssetCollectionBackgroundColor;
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor;
++ (UIFont *)_defaultAssetCollectionCellTitleFont;
 @end
 
 @implementation BBMediaPickerTheme
@@ -28,6 +29,7 @@
     
     _assetCollectionBackgroundColor = [self.class _defaultAssetCollectionBackgroundColor];
     _assetCollectionCellBackgroundColor = [self.class _defaultAssetCollectionCellBackgroundColor];
+    _assetCollectionCellTitleFont = [self.class _defaultAssetCollectionCellTitleFont];
     
     return self;
 }
@@ -47,12 +49,18 @@
 - (void)setAssetCollectionCellBackgroundColor:(UIColor *)assetCollectionCellBackgroundColor {
     _assetCollectionCellBackgroundColor = assetCollectionCellBackgroundColor ?: [self.class _defaultAssetCollectionCellBackgroundColor];
 }
+- (void)setAssetCollectionCellTitleFont:(UIFont *)assetCollectionCellTitleFont {
+    _assetCollectionCellTitleFont = assetCollectionCellTitleFont ?: [self.class _defaultAssetCollectionCellTitleFont];
+}
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
     return [UIColor whiteColor];
 }
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor {
     return [UIColor whiteColor];
+}
++ (UIFont *)_defaultAssetCollectionCellTitleFont {
+    return [UIFont systemFontOfSize:17.0];
 }
 
 @end

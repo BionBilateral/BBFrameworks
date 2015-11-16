@@ -41,6 +41,8 @@
         }
         
         [self setBackgroundColor:self.model.model.theme.assetCollectionCellBackgroundColor];
+        
+        [self.titleLabel setFont:self.model.model.theme.assetCollectionCellTitleFont];
     }];
 }
 
