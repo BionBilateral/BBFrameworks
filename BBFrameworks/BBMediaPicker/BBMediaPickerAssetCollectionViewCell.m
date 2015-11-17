@@ -22,6 +22,8 @@
 #import "BBKeyValueObserving.h"
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModel.h"
+#import "BBGradientView.h"
+#import "BBKitColorMacros.h"
 
 #import <Photos/Photos.h>
 
@@ -29,6 +31,7 @@
 @property (weak,nonatomic) IBOutlet UIImageView *thumbnailImageView;
 @property (weak,nonatomic) IBOutlet UIImageView *typeImageView;
 @property (weak,nonatomic) IBOutlet UILabel *durationLabel;
+@property (weak,nonatomic) IBOutlet BBGradientView *gradientView;
 
 @property (strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
 @end
@@ -37,6 +40,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    [self.gradientView setColors:@[BBColorWA(0.0, 0.5),BBColorWA(0.0, 0.75)]];
     
     BBWeakify(self);
     [self BB_addObserverForKeyPath:@BBKeypath(self,model.assetCollectionModel.model.theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
@@ -70,6 +75,7 @@
     
     [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:_model.assetCollectionModel.model.theme.assetForegroundColor]];
     [self.durationLabel setText:_model.formattedDuration];
+    [self.gradientView setAlpha:self.typeImageView.image != nil || self.durationLabel.text.length > 0 ? 1.0 : 0.0];
     
     if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
         [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];

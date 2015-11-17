@@ -18,36 +18,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         <animations/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="22" placeholderIntrinsicHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-e5-7H8">
-                        <rect key="frame" x="4" y="102" width="22" height="22"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-wf-Wpd" customClass="BBGradientView">
+                        <rect key="frame" x="0.0" y="96" width="128" height="32"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="ty2-BY-Uno">
+                                <rect key="frame" x="4" y="4" width="24" height="24"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sG-iw-NXj">
+                                <rect key="frame" x="93" y="4" width="31" height="24"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="169-ba-CtT">
-                        <rect key="frame" x="93" y="109" width="31" height="15"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ty2-BY-Uno" firstAttribute="leading" secondItem="W2i-wf-Wpd" secondAttribute="leading" constant="4" id="4iY-zB-Gku"/>
+                            <constraint firstItem="2sG-iw-NXj" firstAttribute="top" secondItem="W2i-wf-Wpd" secondAttribute="top" constant="4" id="VgJ-lk-Rl6"/>
+                            <constraint firstAttribute="trailing" secondItem="2sG-iw-NXj" secondAttribute="trailing" constant="4" id="b4g-3v-Nfd"/>
+                            <constraint firstAttribute="bottom" secondItem="2sG-iw-NXj" secondAttribute="bottom" constant="4" id="c1M-GP-7Hy"/>
+                            <constraint firstItem="ty2-BY-Uno" firstAttribute="top" secondItem="W2i-wf-Wpd" secondAttribute="top" constant="4" id="lbe-hk-zrm"/>
+                            <constraint firstAttribute="bottom" secondItem="ty2-BY-Uno" secondAttribute="bottom" constant="4" id="oN0-pn-Hir"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="169-ba-CtT" secondAttribute="bottom" constant="4" id="Bmc-yS-5wf"/>
-                <constraint firstAttribute="bottom" secondItem="wdJ-e5-7H8" secondAttribute="bottom" constant="4" id="HhL-ML-wrO"/>
-                <constraint firstAttribute="trailing" secondItem="169-ba-CtT" secondAttribute="trailing" constant="4" id="QmZ-25-uWw"/>
+                <constraint firstAttribute="trailing" secondItem="W2i-wf-Wpd" secondAttribute="trailing" id="CBH-TR-hri"/>
                 <constraint firstItem="hjf-b9-qpk" firstAttribute="top" secondItem="9Q8-fA-i6K" secondAttribute="top" id="Rqm-W6-QAd"/>
-                <constraint firstItem="wdJ-e5-7H8" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" constant="4" id="VAb-GY-dsF"/>
                 <constraint firstAttribute="bottom" secondItem="hjf-b9-qpk" secondAttribute="bottom" id="W1w-NU-h74"/>
                 <constraint firstAttribute="trailing" secondItem="hjf-b9-qpk" secondAttribute="trailing" id="der-7T-Cnp"/>
                 <constraint firstItem="hjf-b9-qpk" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" id="erc-af-aEq"/>
+                <constraint firstAttribute="bottom" secondItem="W2i-wf-Wpd" secondAttribute="bottom" id="oGp-Vu-MS9"/>
+                <constraint firstItem="W2i-wf-Wpd" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" id="ujf-BK-Ffn"/>
             </constraints>
             <connections>
-                <outlet property="durationLabel" destination="169-ba-CtT" id="aCY-Rh-SYa"/>
                 <outlet property="thumbnailImageView" destination="hjf-b9-qpk" id="YLo-Ou-TtR"/>
-                <outlet property="typeImageView" destination="wdJ-e5-7H8" id="iOa-79-LLE"/>
             </connections>
             <point key="canvasLocation" x="394" y="455"/>
         </collectionViewCell>
