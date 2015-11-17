@@ -41,11 +41,9 @@
     BBWeakify(self);
     [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
-        if (!self.theme) {
-            return;
-        }
+        BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
         
-        [self setBorderColor:self.theme.assetCollectionCellBackgroundColor];
+        [self setBorderColor:theme.assetCollectionCellBackgroundColor];
     }];
     
     return self;

@@ -15,6 +15,7 @@
 
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
+#import "BBKitColorMacros.h"
 
 @interface BBMediaPickerTheme ()
 + (UIFont *)_defaultTitleFont;
@@ -31,6 +32,7 @@
 
 + (UIColor *)_defaultAssetBackgroundColor;
 + (Class)_defaultAssetSelectedOverlayViewClass;
++ (UIColor *)_defaultAssetSelectedOverlayViewTintColor;
 @end
 
 @implementation BBMediaPickerTheme
@@ -53,6 +55,7 @@
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
+    _assetSelectedOverlayViewTintColor = [self.class _defaultAssetSelectedOverlayViewTintColor];
     
     return self;
 }
@@ -104,6 +107,9 @@
 - (void)setAssetSelectedOverlayViewClass:(Class)assetSelectedOverlayViewClass {
     _assetSelectedOverlayViewClass = assetSelectedOverlayViewClass ?: [self.class _defaultAssetSelectedOverlayViewClass];
 }
+- (void)setAssetSelectedOverlayViewTintColor:(UIColor *)assetSelectedOverlayViewTintColor {
+    _assetSelectedOverlayViewTintColor = assetSelectedOverlayViewTintColor ?: [self.class _defaultAssetSelectedOverlayViewTintColor];
+}
 
 + (UIFont *)_defaultTitleFont; {
     return [UIFont boldSystemFontOfSize:17.0];
@@ -142,6 +148,9 @@
 }
 + (Class)_defaultAssetSelectedOverlayViewClass; {
     return [BBMediaPickerAssetDefaultSelectedOverlayView class];
+}
++ (UIColor *)_defaultAssetSelectedOverlayViewTintColor; {
+    return BBColorRGB(0.0, 122.0/255.0, 1.0);
 }
 
 @end

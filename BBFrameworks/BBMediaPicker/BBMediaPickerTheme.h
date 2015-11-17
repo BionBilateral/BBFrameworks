@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
 @property (strong,nonatomic,null_resettable) Class assetSelectedOverlayViewClass;
+@property (strong,nonatomic,null_resettable) UIColor *assetSelectedOverlayViewTintColor;
 
 + (instancetype)defaultTheme;
 

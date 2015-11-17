@@ -16,6 +16,8 @@
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 #import "BBBadgeView.h"
 #import "BBMediaPickerTheme.h"
+#import "BBKeyValueObserving.h"
+#import "BBFrameworksMacros.h"
 
 @interface BBMediaPickerAssetDefaultSelectedOverlayView ()
 @property (strong,nonatomic) BBBadgeView *badgeView;
@@ -45,6 +47,16 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-margin-|" options:0 metrics:@{@"margin": @6.0} views:@{@"view": self.badgeView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[view]" options:0 metrics:@{@"margin": @6.0} views:@{@"view": self.badgeView}]];
     
+    BBWeakify(self);
+    [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
+        
+        [self.layer setBorderColor:theme.assetSelectedOverlayViewTintColor.CGColor];
+        [self.badgeView setBadgeBackgroundColor:theme.assetSelectedOverlayViewTintColor];
+        [self.badgeView setBadgeHighlightedBackgroundColor:theme.assetSelectedOverlayViewTintColor];
+    }];
+    
     return self;
 }
 
@@ -52,7 +64,7 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     _selectedIndex = selectedIndex;
     
-    [self.badgeView setBadge:selectedIndex == NSNotFound ? @"" : @(selectedIndex + 1).stringValue];
+    [self.badgeView setBadge:selectedIndex == NSNotFound ? nil : @(selectedIndex + 1).stringValue];
 }
 @synthesize theme=_theme;
 
