@@ -31,6 +31,8 @@
 @property (readonly,nonatomic) NSUInteger countOfAssetModels;
 - (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index;
 
+- (NSUInteger)indexOfAssetModel:(BBMediaPickerAssetModel *)assetModel;
+
 - (void)requestFirstThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
 - (void)requestSecondThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
 - (void)requestThirdThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;

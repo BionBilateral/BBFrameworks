@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
 
+- (NSUInteger)countOfMedia;
+- (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+
 @end
 
 NS_ASSUME_NONNULL_END

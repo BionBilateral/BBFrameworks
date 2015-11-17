@@ -23,6 +23,7 @@
 #import "BBMediaPickerAssetModel.h"
 #import "BBBlocks.h"
 #import "BBMediaPickerTheme.h"
+#import "BBMediaPickerAssetCollectionModel.h"
 
 @interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -153,6 +154,16 @@
 }
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion; {
     [BBMediaPickerModel requestAuthorizationWithCompletion:completion];
+}
+
+- (NSUInteger)countOfMedia; {
+    return self.model.selectedAssetCollectionModel.countOfAssetModels;
+}
+- (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media; {
+    return [self.model.selectedAssetCollectionModel indexOfAssetModel:[[BBMediaPickerAssetModel alloc] initWithAsset:[media mediaAsset] assetCollectionModel:nil]];
+}
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
+    
 }
 #pragma mark Properties
 @dynamic allowsMultipleSelection;

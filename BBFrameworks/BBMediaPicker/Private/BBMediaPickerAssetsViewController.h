@@ -20,4 +20,6 @@
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model;
 
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+
 @end

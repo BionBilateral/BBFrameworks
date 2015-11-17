@@ -30,6 +30,10 @@
 
 @implementation BBMediaPickerAssetModel
 
+- (PHAsset *)mediaAsset {
+    return self.asset;
+}
+
 - (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(BBMediaPickerAssetCollectionModel *)assetCollectionModel; {
     if (!(self = [super init]))
         return nil;

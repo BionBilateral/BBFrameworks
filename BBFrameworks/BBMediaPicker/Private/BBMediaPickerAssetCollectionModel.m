@@ -87,6 +87,10 @@
     return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index] assetCollectionModel:self];
 }
 
+- (NSUInteger)indexOfAssetModel:(BBMediaPickerAssetModel *)assetModel {
+    return [self.fetchResult indexOfObject:assetModel.asset];
+}
+
 - (void)requestFirstThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion; {
     NSParameterAssert(completion);
     

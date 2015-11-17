@@ -40,6 +40,11 @@
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,selectedAssetCollectionModel) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         [self.collectionView reloadData];
+        
+        // scroll to the last item
+        if (self.model.selectedAssetCollectionModel.countOfAssetModels > 0) {
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+        }
     }];
     
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,selectedAssetIdentifiers) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
@@ -99,6 +104,16 @@
     [self setModel:model];
     
     return self;
+}
+
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
+    NSUInteger index = [self.model.selectedAssetCollectionModel indexOfAssetModel:[[BBMediaPickerAssetModel alloc] initWithAsset:[media mediaAsset] assetCollectionModel:nil]];
+    
+    if (index == NSNotFound) {
+        return;
+    }
+    
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
 }
 
 @end

@@ -54,4 +54,8 @@
     return self;
 }
 
+- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
+    [self.collectionViewController scrollMediaToVisible:media];
+}
+
 @end
