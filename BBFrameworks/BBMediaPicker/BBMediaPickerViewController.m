@@ -186,6 +186,14 @@
 - (void)setTheme:(BBMediaPickerTheme *)theme {
     [self.model setTheme:theme];
 }
+
+@dynamic mediaTypes;
+- (BBMediaPickerMediaTypes)mediaTypes {
+    return self.model.mediaTypes;
+}
+- (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
+    [self.model setMediaTypes:mediaTypes];
+}
 #pragma mark *** Private Methods ***
 #pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {

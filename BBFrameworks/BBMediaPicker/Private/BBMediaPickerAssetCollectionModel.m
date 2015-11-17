@@ -17,6 +17,7 @@
 #import "BBMediaPickerModel.h"
 #import "BBMediaPickerAssetModel.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBFrameworksMacros.h"
 
 #import <Photos/Photos.h>
 
@@ -39,7 +40,23 @@
     [self setModel:model];
     
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
     
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesUnknown) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeUnknown)]];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesImage) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeImage)]];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesVideo) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeVideo)]];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesAudio) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeAudio)]];
+    }
+    
+    [options setPredicate:[NSCompoundPredicate orPredicateWithSubpredicates:predicates]];
+    [options setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(PHAsset.new,creationDate) ascending:NO]]];
     [options setWantsIncrementalChangeDetails:NO];
     
     [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];

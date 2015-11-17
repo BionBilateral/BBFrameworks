@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
+@property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
+
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
 

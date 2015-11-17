@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
+@property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
+
 @property (readonly,copy,nonatomic) NSString *title;
 
 @property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;

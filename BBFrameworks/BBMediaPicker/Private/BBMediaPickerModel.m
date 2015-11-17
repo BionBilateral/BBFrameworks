@@ -49,6 +49,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     _theme = [BBMediaPickerTheme defaultTheme];
     
+    _mediaTypes = BBMediaPickerMediaTypesAll;
+    
     [self _updateTitle];
     [self _reloadAssetCollections];
     
@@ -135,6 +137,12 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 - (void)setTheme:(BBMediaPickerTheme *)theme {
     _theme = theme ?: [BBMediaPickerTheme defaultTheme];
+}
+
+- (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
+    _mediaTypes = mediaTypes;
+    
+    [self _reloadAssetCollections];
 }
 
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
