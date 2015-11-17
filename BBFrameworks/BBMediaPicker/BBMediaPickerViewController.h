@@ -15,7 +15,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerDefines.h"
-#import "BBMediaPickerTitleView.h"
 #import "BBMediaPickerViewControllerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -26,13 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
 
-@property (assign,nonatomic) BOOL allowsMultipleSelection;
-
-@property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
-
-@property (strong,nonatomic,null_resettable) UIView<BBMediaPickerTitleView> *titleView;
-
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
+
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+@property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 

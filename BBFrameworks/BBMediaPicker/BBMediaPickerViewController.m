@@ -27,12 +27,23 @@
 @interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
 @property (strong,nonatomic) BBMediaPickerAssetsViewController *assetsViewController;
+@property (strong,nonatomic) UIView<BBMediaPickerTitleView> *titleView;
 
 @property (assign,nonatomic) BOOL hasRequestedPhotosAccess;
+
+- (void)_updateTitleViewProperties;
+- (void)_updateTitleViewTitleAndSubtitle;
 @end
 
 @implementation BBMediaPickerViewController
 #pragma mark *** Subclass Overrides ***
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
+    if ([key isEqualToString:@BBKeypath(BBMediaPickerViewController.new,titleView)]) {
+        return NO;
+    }
+    return [super automaticallyNotifiesObserversForKey:key];
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -71,21 +82,15 @@
     [self.assetsViewController didMoveToParentViewController:self];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@BBKeypath(self.titleView) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.navigationItem setTitleView:self.titleView];
-    }];
-    
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        [self.titleView setTheme:self.theme];
-        [self.titleView sizeToFit];
+        [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
+        
+        [self _updateTitleViewProperties];
     }];
     
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
-        [self.titleView setTitle:self.model.title];
-        [self.titleView setSubtitle:@"Tap to change album ▼"];
-        [self.titleView sizeToFit];
+        [self _updateTitleViewTitleAndSubtitle];
     }];
     
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,allowsMultipleSelection) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
@@ -157,7 +162,6 @@
 - (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
     [self.model setAllowsMultipleSelection:allowsMultipleSelection];
 }
-
 @dynamic hidesEmptyAssetCollections;
 - (BOOL)hidesEmptyAssetCollections {
     return self.model.hidesEmptyAssetCollections;
@@ -167,15 +171,20 @@
 }
 
 - (void)setTitleView:(UIView<BBMediaPickerTitleView> *)titleView {
-    _titleView = titleView ?: [[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero];
+    if ([_titleView isKindOfClass:self.model.theme.titleViewClass]) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@BBKeypath(BBMediaPickerViewController.new,titleView)];
+    
+    _titleView = titleView;
+    
+    [self didChangeValueForKey:@BBKeypath(BBMediaPickerViewController.new,titleView)];
     
     if (_titleView) {
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)];
+        [self _updateTitleViewProperties];
         
-        [tapGestureRecognizer setNumberOfTapsRequired:1];
-        [tapGestureRecognizer setNumberOfTouchesRequired:1];
-        
-        [_titleView addGestureRecognizer:tapGestureRecognizer];
+        [self.navigationItem setTitleView:_titleView];
     }
 }
 
@@ -195,6 +204,33 @@
     [self.model setMediaTypes:mediaTypes];
 }
 #pragma mark *** Private Methods ***
+- (void)_updateTitleViewProperties; {
+    for (UIGestureRecognizer *gr in self.titleView.gestureRecognizers) {
+        [self.titleView removeGestureRecognizer:gr];
+    }
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)];
+    
+    [tapGestureRecognizer setNumberOfTapsRequired:1];
+    [tapGestureRecognizer setNumberOfTouchesRequired:1];
+    
+    [self.titleView addGestureRecognizer:tapGestureRecognizer];
+    
+    if ([self.titleView respondsToSelector:@selector(setTheme:)]) {
+        [self.titleView setTheme:self.model.theme];
+    }
+    
+    [self _updateTitleViewTitleAndSubtitle];
+}
+- (void)_updateTitleViewTitleAndSubtitle {
+    [self.titleView setTitle:self.model.title];
+    
+    if ([self.titleView respondsToSelector:@selector(setSubtitle:)]) {
+        [self.titleView setSubtitle:self.model.subtitle];
+    }
+    
+    [self.titleView sizeToFit];
+}
 #pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerAssetCollectionsViewController alloc] initWithModel:self.model]] animated:YES completion:nil];

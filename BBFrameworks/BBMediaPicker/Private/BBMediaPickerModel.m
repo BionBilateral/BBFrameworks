@@ -145,6 +145,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [self _reloadAssetCollections];
 }
 
+- (NSString *)subtitle {
+    return @"Tap to change album ▼";
+}
+
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
     _selectedAssetCollectionModel = selectedAssetCollectionModel;
     

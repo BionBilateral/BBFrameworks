@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIColor *titleColor;
 @property (strong,nonatomic,null_resettable) UIFont *subtitleFont;
 @property (strong,nonatomic,null_resettable) UIColor *subtitleColor;
+@property (strong,nonatomic,null_resettable) Class titleViewClass;
 
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionBackgroundColor;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellBackgroundColor;

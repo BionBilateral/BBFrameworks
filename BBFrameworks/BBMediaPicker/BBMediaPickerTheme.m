@@ -16,12 +16,14 @@
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 #import "BBKitColorMacros.h"
+#import "BBMediaPickerDefaultTitleView.h"
 
 @interface BBMediaPickerTheme ()
 + (UIFont *)_defaultTitleFont;
 + (UIColor *)_defaultTitleColor;
 + (UIFont *)_defaultSubtitleFont;
 + (UIColor *)_defaultSubtitleColor;
++ (Class)_defaultTitleViewClass;
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor;
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor;
@@ -45,6 +47,7 @@
     _titleColor = [self.class _defaultTitleColor];
     _subtitleFont = [self.class _defaultSubtitleFont];
     _subtitleColor = [self.class _defaultSubtitleColor];
+    _titleViewClass = [self.class _defaultTitleViewClass];
     
     _assetCollectionBackgroundColor = [self.class _defaultAssetCollectionBackgroundColor];
     _assetCollectionCellBackgroundColor = [self.class _defaultAssetCollectionCellBackgroundColor];
@@ -80,6 +83,9 @@
 }
 - (void)setSubtitleColor:(UIColor *)subtitleColor {
     _subtitleColor = subtitleColor ?: [self.class _defaultSubtitleColor];
+}
+- (void)setTitleViewClass:(Class)titleViewClass {
+    _titleViewClass = titleViewClass ?: [self.class _defaultTitleViewClass];
 }
 
 - (void)setAssetCollectionBackgroundColor:(UIColor *)assetCollectionBackgroundColor {
@@ -122,6 +128,9 @@
 }
 + (UIColor *)_defaultSubtitleColor; {
     return [UIColor darkGrayColor];
+}
++ (Class)_defaultTitleViewClass; {
+    return [BBMediaPickerDefaultTitleView class];
 }
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
