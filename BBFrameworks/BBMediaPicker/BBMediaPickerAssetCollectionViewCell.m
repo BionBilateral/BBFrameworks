@@ -18,6 +18,10 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 #import "UIImage+BBKitExtensions.h"
+#import "BBMediaPickerTheme.h"
+#import "BBKeyValueObserving.h"
+#import "BBMediaPickerAssetCollectionModel.h"
+#import "BBMediaPickerModel.h"
 
 #import <Photos/Photos.h>
 
@@ -36,9 +40,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    _selectedOverlayViewClassName = [self.class _defaultSelectedOverlayViewClassName];
-    
-    [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
+    BBWeakify(self);
+    [self BB_addObserverForKeyPath:@BBKeypath(self,model.assetCollectionModel.model.theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
+        BBStrongify(self);
+        BBMediaPickerTheme *theme = self.model.assetCollectionModel.model.theme ?: [BBMediaPickerTheme defaultTheme];
+        
+        [self setSelectedOverlayView:[[theme.assetSelectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+    }];
 }
 
 - (void)prepareForReuse {
@@ -76,13 +84,11 @@
     }];
 }
 
-- (void)setSelectedOverlayViewClassName:(NSString *)selectedOverlayViewClassName {
-    _selectedOverlayViewClassName = selectedOverlayViewClassName ?: [self.class _defaultSelectedOverlayViewClassName];
-    
-    [self setSelectedOverlayView:[[NSClassFromString(_selectedOverlayViewClassName) alloc] initWithFrame:CGRectZero]];
-}
-
 - (void)setSelectedOverlayView:(UIView<BBMediaPickerAssetSelectedOverlayView> *)selectedOverlayView {
+    if ([selectedOverlayView isKindOfClass:[_selectedOverlayView class]]) {
+        return;
+    }
+    
     [_selectedOverlayView removeFromSuperview];
     
     _selectedOverlayView = selectedOverlayView;

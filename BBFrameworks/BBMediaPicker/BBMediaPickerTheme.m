@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerTheme.h"
+#import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 
 @interface BBMediaPickerTheme ()
 + (UIFont *)_defaultTitleFont;
@@ -29,6 +30,7 @@
 + (UIColor *)_defaultAssetCollectionCellSubtitleColor;
 
 + (UIColor *)_defaultAssetBackgroundColor;
++ (Class)_defaultAssetSelectedOverlayViewClass;
 @end
 
 @implementation BBMediaPickerTheme
@@ -50,6 +52,7 @@
     _assetCollectionCellSubtitleColor = [self.class _defaultAssetCollectionCellSubtitleColor];
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
+    _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
     
     return self;
 }
@@ -98,6 +101,9 @@
 - (void)setAssetBackgroundColor:(UIColor *)assetBackgroundColor {
     _assetBackgroundColor = assetBackgroundColor ?: [self.class _defaultAssetBackgroundColor];
 }
+- (void)setAssetSelectedOverlayViewClass:(Class)assetSelectedOverlayViewClass {
+    _assetSelectedOverlayViewClass = assetSelectedOverlayViewClass ?: [self.class _defaultAssetSelectedOverlayViewClass];
+}
 
 + (UIFont *)_defaultTitleFont; {
     return [UIFont boldSystemFontOfSize:17.0];
@@ -133,6 +139,9 @@
 
 + (UIColor *)_defaultAssetBackgroundColor {
     return [UIColor whiteColor];
+}
++ (Class)_defaultAssetSelectedOverlayViewClass; {
+    return [BBMediaPickerAssetDefaultSelectedOverlayView class];
 }
 
 @end

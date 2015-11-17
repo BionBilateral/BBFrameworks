@@ -15,6 +15,7 @@
 
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 #import "BBBadgeView.h"
+#import "BBMediaPickerTheme.h"
 
 @interface BBMediaPickerAssetDefaultSelectedOverlayView ()
 @property (strong,nonatomic) BBBadgeView *badgeView;
@@ -53,5 +54,6 @@
     
     [self.badgeView setBadge:selectedIndex == NSNotFound ? @"" : @(selectedIndex + 1).stringValue];
 }
+@synthesize theme=_theme;
 
 @end

@@ -15,7 +15,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class BBMediaPickerTheme;
+
 @protocol BBMediaPickerAssetSelectedOverlayView <NSObject>
 @optional
 @property (assign,nonatomic) NSUInteger selectedIndex;
+@property (strong,nonatomic) BBMediaPickerTheme *theme;
 @end

@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
 
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
+@property (strong,nonatomic,null_resettable) Class assetSelectedOverlayViewClass;
 
 + (instancetype)defaultTheme;
 

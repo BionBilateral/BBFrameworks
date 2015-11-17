@@ -36,17 +36,15 @@
     [super awakeFromNib];
     
     [self BB_addObserverForKeyPath:@BBKeypath(self,model.model.theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        if (!self.model.model) {
-            return;
-        }
+        BBMediaPickerTheme *theme = self.model.model.theme ?: [BBMediaPickerTheme defaultTheme];
         
-        [self setBackgroundColor:self.model.model.theme.assetCollectionCellBackgroundColor];
+        [self setBackgroundColor:theme.assetCollectionCellBackgroundColor];
         
-        [self.titleLabel setFont:self.model.model.theme.assetCollectionCellTitleFont];
-        [self.titleLabel setTextColor:self.model.model.theme.assetCollectionCellTitleColor];
+        [self.titleLabel setFont:theme.assetCollectionCellTitleFont];
+        [self.titleLabel setTextColor:theme.assetCollectionCellTitleColor];
         
-        [self.subtitleLabel setFont:self.model.model.theme.assetCollectionCellSubtitleFont];
-        [self.subtitleLabel setTextColor:self.model.model.theme.assetCollectionCellSubtitleColor];
+        [self.subtitleLabel setFont:theme.assetCollectionCellSubtitleFont];
+        [self.subtitleLabel setTextColor:theme.assetCollectionCellSubtitleColor];
     }];
 }
 
