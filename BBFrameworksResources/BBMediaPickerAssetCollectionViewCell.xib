@@ -34,7 +34,6 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ty2-BY-Uno" firstAttribute="leading" secondItem="W2i-wf-Wpd" secondAttribute="leading" constant="4" id="4iY-zB-Gku"/>
                             <constraint firstItem="2sG-iw-NXj" firstAttribute="top" secondItem="W2i-wf-Wpd" secondAttribute="top" constant="4" id="VgJ-lk-Rl6"/>
@@ -59,7 +58,10 @@
                 <constraint firstItem="W2i-wf-Wpd" firstAttribute="leading" secondItem="9Q8-fA-i6K" secondAttribute="leading" id="ujf-BK-Ffn"/>
             </constraints>
             <connections>
+                <outlet property="durationLabel" destination="2sG-iw-NXj" id="fCp-qX-Qbb"/>
+                <outlet property="gradientView" destination="W2i-wf-Wpd" id="mBq-4a-Bq2"/>
                 <outlet property="thumbnailImageView" destination="hjf-b9-qpk" id="YLo-Ou-TtR"/>
+                <outlet property="typeImageView" destination="ty2-BY-Uno" id="61o-ez-9Tk"/>
             </connections>
             <point key="canvasLocation" x="394" y="455"/>
         </collectionViewCell>
