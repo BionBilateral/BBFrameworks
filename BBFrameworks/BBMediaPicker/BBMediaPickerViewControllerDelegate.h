@@ -20,8 +20,12 @@
 
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
+- (BOOL)mediaPickerViewController:(BBMediaPickerViewController *)viewController shouldSelectMedia:(id<BBMediaPickerMedia>)media;
+- (BOOL)mediaPickerViewController:(BBMediaPickerViewController *)viewController shouldDeselectMedia:(id<BBMediaPickerMedia>)media;
+
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media;
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media;
+
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia> > *)media;
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end

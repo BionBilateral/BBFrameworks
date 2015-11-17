@@ -113,6 +113,25 @@
     }
 }
 #pragma mark BBMediaPickerModelDelegate
+- (BOOL)mediaPickerModel:(BBMediaPickerModel *)model shouldSelectMedia:(id<BBMediaPickerMedia>)media {
+    BOOL retval = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:shouldSelectMedia:)]) {
+        retval = [self.delegate mediaPickerViewController:self shouldSelectMedia:media];
+    }
+    
+    return retval;
+}
+- (BOOL)mediaPickerModel:(BBMediaPickerModel *)model shouldDeselectMedia:(id<BBMediaPickerMedia>)media {
+    BOOL retval = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:shouldDeselectMedia:)]) {
+        retval = [self.delegate mediaPickerViewController:self shouldDeselectMedia:media];
+    }
+    
+    return retval;
+}
+
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didSelectMedia:(id<BBMediaPickerMedia>)media {
     if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didSelectMedia:)]) {
         [self.delegate mediaPickerViewController:self didSelectMedia:media];

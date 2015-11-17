@@ -20,6 +20,9 @@
 
 @protocol BBMediaPickerModelDelegate <NSObject>
 @required
+- (BOOL)mediaPickerModel:(BBMediaPickerModel *)model shouldSelectMedia:(id<BBMediaPickerMedia>)media;
+- (BOOL)mediaPickerModel:(BBMediaPickerModel *)model shouldDeselectMedia:(id<BBMediaPickerMedia>)media;
+
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didSelectMedia:(id<BBMediaPickerMedia>)media;
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didDeselectMedia:(id<BBMediaPickerMedia>)media;
 @end

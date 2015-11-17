@@ -81,6 +81,12 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }];
 }
 
+- (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
+    return [self.delegate mediaPickerModel:self shouldSelectMedia:assetModel];
+}
+- (BOOL)shouldDeselectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
+    return [self.delegate mediaPickerModel:self shouldDeselectMedia:assetModel];
+}
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
     NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers];
     

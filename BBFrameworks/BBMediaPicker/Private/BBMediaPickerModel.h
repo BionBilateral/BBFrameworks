@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
 
+- (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel;
+- (BOOL)shouldDeselectAssetModel:(BBMediaPickerAssetModel *)assetModel;
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel;
 - (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel;
 
