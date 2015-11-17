@@ -124,6 +124,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (_doneBarButtonItem) {
         [_doneBarButtonItem setTarget:self];
         [_doneBarButtonItem setAction:@selector(_doneBarButtonItemAction:)];
+        [_doneBarButtonItem setEnabled:self.selectedAssetIdentifiers.count > 0];
     }
 }
 - (void)setCancelBarButtonItem:(UIBarButtonItem *)cancelBarButtonItem {
@@ -171,6 +172,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }
     
     _selectedAssetIdentifiers = selectedAssetIdentifiers;
+    
+    [self.doneBarButtonItem setEnabled:_selectedAssetIdentifiers.count > 0];
     
     if (!self.allowsMultipleSelection &&
         _selectedAssetIdentifiers.count > 0) {
