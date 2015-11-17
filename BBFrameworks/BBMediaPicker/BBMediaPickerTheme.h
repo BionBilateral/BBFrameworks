@@ -32,10 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIFont *assetCollectionCellSubtitleFont;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellSubtitleColor;
 @property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
+@property (strong,nonatomic,null_resettable) UIColor *assetCollectionForegroundColor;
 
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
 @property (strong,nonatomic,null_resettable) Class assetSelectedOverlayViewClass;
 @property (strong,nonatomic,null_resettable) UIColor *assetSelectedOverlayViewTintColor;
+@property (strong,nonatomic,null_resettable) UIImage *assetTypeVideoImage;
+@property (strong,nonatomic,null_resettable) UIColor *assetForegroundColor;
 
 + (instancetype)defaultTheme;
 

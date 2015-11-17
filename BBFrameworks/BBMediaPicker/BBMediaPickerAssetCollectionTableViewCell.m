@@ -65,7 +65,7 @@
     
     [self.titleLabel setText:_model.title];
     [self.subtitleLabel setText:_model.subtitle];
-    [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:[UIColor whiteColor]]];
+    [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:_model.model.theme.assetCollectionForegroundColor]];
     
     BBWeakify(self);
     [_model requestFirstThumbnailImageOfSize:self.thumbnailView1.frame.size completion:^(UIImage *thumbnailImage) {

@@ -30,9 +30,7 @@
 @property (weak,nonatomic) IBOutlet UIImageView *typeImageView;
 @property (weak,nonatomic) IBOutlet UILabel *durationLabel;
 
-@property (readwrite,strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
-
-+ (NSString *)_defaultSelectedOverlayViewClassName;
+@property (strong,nonatomic) UIView<BBMediaPickerAssetSelectedOverlayView> *selectedOverlayView;
 @end
 
 @implementation BBMediaPickerAssetCollectionViewCell
@@ -70,7 +68,7 @@
 - (void)setModel:(BBMediaPickerAssetModel *)model {
     _model = model;
     
-    [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:[UIColor whiteColor]]];
+    [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:_model.assetCollectionModel.model.theme.assetForegroundColor]];
     [self.durationLabel setText:_model.formattedDuration];
     
     if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
@@ -99,10 +97,6 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _selectedOverlayView}]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _selectedOverlayView}]];
-}
-
-+ (NSString *)_defaultSelectedOverlayViewClassName {
-    return NSStringFromClass([BBMediaPickerAssetDefaultSelectedOverlayView class]);
 }
 
 @end

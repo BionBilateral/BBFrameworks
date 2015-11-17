@@ -16,8 +16,8 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModel.h"
 #import "BBMediaPickerAssetModel.h"
-#import "UIImage+BBKitExtensionsPrivate.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaPickerTheme.h"
 
 #import <Photos/Photos.h>
 
@@ -74,7 +74,7 @@
     switch (self.assetCollection.assetCollectionSubtype) {
         case PHAssetCollectionSubtypeSmartAlbumVideos:
         case PHAssetCollectionSubtypeSmartAlbumSlomoVideos:
-            return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
+            return self.model.theme.assetTypeVideoImage;
         default:
             return nil;
     }

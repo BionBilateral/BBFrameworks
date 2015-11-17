@@ -17,7 +17,7 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModel.h"
 #import "BBFoundationDebugging.h"
-#import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBMediaPickerTheme.h"
 
 #import <Photos/Photos.h>
 
@@ -67,7 +67,7 @@
 - (UIImage *)typeImage {
     switch (self.asset.mediaType) {
         case PHAssetMediaTypeVideo:
-            return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
+            return self.assetCollectionModel.model.theme.assetTypeVideoImage;
         default:
             return nil;
     }

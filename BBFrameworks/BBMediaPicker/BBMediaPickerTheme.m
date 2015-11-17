@@ -17,6 +17,7 @@
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 #import "BBKitColorMacros.h"
 #import "BBMediaPickerDefaultTitleView.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 @interface BBMediaPickerTheme ()
 + (UIFont *)_defaultTitleFont;
@@ -31,10 +32,13 @@
 + (UIColor *)_defaultAssetCollectionCellTitleColor;
 + (UIFont *)_defaultAssetCollectionCellSubtitleFont;
 + (UIColor *)_defaultAssetCollectionCellSubtitleColor;
++ (UIColor *)_defaultAssetCollectionForegroundColor;
 
 + (UIColor *)_defaultAssetBackgroundColor;
 + (Class)_defaultAssetSelectedOverlayViewClass;
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor;
++ (UIImage *)_defaultAssetTypeVideoImage;
++ (UIColor *)_defaultAssetForegroundColor;
 @end
 
 @implementation BBMediaPickerTheme
@@ -48,6 +52,7 @@
     _subtitleFont = [self.class _defaultSubtitleFont];
     _subtitleColor = [self.class _defaultSubtitleColor];
     _titleViewClass = [self.class _defaultTitleViewClass];
+    _assetCollectionForegroundColor = [self.class _defaultAssetCollectionForegroundColor];
     
     _assetCollectionBackgroundColor = [self.class _defaultAssetCollectionBackgroundColor];
     _assetCollectionCellBackgroundColor = [self.class _defaultAssetCollectionCellBackgroundColor];
@@ -59,6 +64,8 @@
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
     _assetSelectedOverlayViewTintColor = [self.class _defaultAssetSelectedOverlayViewTintColor];
+    _assetTypeVideoImage = [self.class _defaultAssetTypeVideoImage];
+    _assetForegroundColor = [self.class _defaultAssetForegroundColor];
     
     return self;
 }
@@ -106,6 +113,9 @@
 - (void)setAssetCollectionCellSubtitleColor:(UIColor *)assetCollectionCellSubtitleColor {
     _assetCollectionCellSubtitleColor = assetCollectionCellSubtitleColor ?: [self.class _defaultAssetCollectionCellSubtitleColor];
 }
+- (void)setAssetCollectionForegroundColor:(UIColor *)assetCollectionForegroundColor {
+    _assetCollectionForegroundColor = assetCollectionForegroundColor ?: [self.class _defaultAssetCollectionForegroundColor];
+}
 
 - (void)setAssetBackgroundColor:(UIColor *)assetBackgroundColor {
     _assetBackgroundColor = assetBackgroundColor ?: [self.class _defaultAssetBackgroundColor];
@@ -115,6 +125,12 @@
 }
 - (void)setAssetSelectedOverlayViewTintColor:(UIColor *)assetSelectedOverlayViewTintColor {
     _assetSelectedOverlayViewTintColor = assetSelectedOverlayViewTintColor ?: [self.class _defaultAssetSelectedOverlayViewTintColor];
+}
+- (void)setAssetTypeVideoImage:(UIImage *)assetTypeVideoImage {
+    _assetTypeVideoImage = assetTypeVideoImage ?: [self.class _defaultAssetTypeVideoImage];
+}
+- (void)setAssetForegroundColor:(UIColor *)assetForegroundColor {
+    _assetForegroundColor = assetForegroundColor ?: [self.class _defaultAssetForegroundColor];
 }
 
 + (UIFont *)_defaultTitleFont; {
@@ -151,6 +167,9 @@
 + (UIColor *)_defaultAssetCollectionCellSubtitleColor {
     return [UIColor blackColor];
 }
++ (UIColor *)_defaultAssetCollectionForegroundColor; {
+    return [UIColor whiteColor];
+}
 
 + (UIColor *)_defaultAssetBackgroundColor {
     return [UIColor whiteColor];
@@ -160,6 +179,12 @@
 }
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor; {
     return BBColorRGB(0.0, 122.0/255.0, 1.0);
+}
++ (UIImage *)_defaultAssetTypeVideoImage; {
+    return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
+}
++ (UIColor *)_defaultAssetForegroundColor; {
+    return [UIColor whiteColor];
 }
 
 @end
