@@ -162,7 +162,7 @@
     return [self.model.selectedAssetCollectionModel indexOfAssetModel:[[BBMediaPickerAssetModel alloc] initWithAsset:[media mediaAsset] assetCollectionModel:nil]];
 }
 - (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
-    
+    [self.assetsViewController scrollMediaToVisible:media];
 }
 #pragma mark Properties
 @dynamic theme;
