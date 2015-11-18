@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Category on NSSet adding block extensions.
  */
-@interface NSSet (BBBlocksExtensions)
+@interface NSSet<__covariant ObjectType> (BBBlocksExtensions)
 
 /**
  Invokes block once for each object in the receiver.
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param block The block to invoke
  @exception NSException Thrown if block is nil
  */
-- (void)BB_each:(void(^)(id object))block;
+- (void)BB_each:(void(^)(ObjectType object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including it in the new set if block returns YES.
  
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_filter:(BOOL(^)(id object))block;
+- (NSSet<ObjectType> *)BB_filter:(BOOL(^)(ObjectType object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including it in the new set if block returns NO.
  
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_reject:(BOOL(^)(id object))block;
+- (NSSet<ObjectType> *)BB_reject:(BOOL(^)(ObjectType object))block;
 /**
  Return the first object in the receiver for which block returns YES, otherwise return nil.
  
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The matching object or nil
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_find:(BOOL(^)(id object))block;
+- (nullable ObjectType)BB_find:(BOOL(^)(ObjectType object))block;
 /**
  Create and return a new set by enumerating the receiver, invoking block for each object, and including the return value of block in the new set.
  
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_map:(id _Nullable(^)(id object))block;
+- (NSSet<ObjectType> *)BB_map:(id _Nullable(^)(ObjectType object))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum and the object. The return value of block is passed in as sum to the next invocation of block.
  
@@ -69,14 +69,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object))block;
+- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, ObjectType object))block;
 /**
  Return a new set which is the result of unioning all the objects in the receiver, which should be sets.
  
  @return The flattened set
  @exception NSException Thrown if the receiver contains any non-set objects
  */
-- (NSSet *)BB_flatten;
+- (NSSet<ObjectType> *)BB_flatten;
 /**
  Returns the result of calling `[[self BB_flatten] BB_map:block]`.
  
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if block returns YES for any object, otherwise NO
  @exception NSException Thrown if block is nil
  */
-- (BOOL)BB_any:(BOOL(^)(id object))block;
+- (BOOL)BB_any:(BOOL(^)(ObjectType object))block;
 /**
  Return YES if block returns YES for all objects in the receiver, otherwise NO.
  
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if block returns YES for all objects, otherwise NO
  @exception NSException Throw if block is nil
  */
-- (BOOL)BB_all:(BOOL(^)(id object))block;
+- (BOOL)BB_all:(BOOL(^)(ObjectType object))block;
 /**
  Return YES if block returns NO for all objects in the receiver, otherwise NO.
  
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if block returns NO for all objects, otherwise NO
  @exception NSException Throw if block is nil
  */
-- (BOOL)BB_none:(BOOL(^)(id object))block;
+- (BOOL)BB_none:(BOOL(^)(ObjectType object))block;
 /**
  Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
  
