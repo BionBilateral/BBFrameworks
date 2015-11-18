@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
+@property (strong,nonatomic) UIBarButtonItem *filterBarButtonItem;
+@property (copy,nonatomic) void(^filterBarButtonItemActionBlock)(void);
 
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 

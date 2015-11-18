@@ -56,6 +56,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    [self setFilterBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:nil action:NULL]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
     
@@ -133,6 +134,14 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (_cancelBarButtonItem) {
         [_cancelBarButtonItem setTarget:self];
         [_cancelBarButtonItem setAction:@selector(_cancelBarButtonItemAction:)];
+    }
+}
+- (void)setFilterBarButtonItem:(UIBarButtonItem *)filterBarButtonItem {
+    _filterBarButtonItem = filterBarButtonItem;
+    
+    if (_filterBarButtonItem) {
+        [_filterBarButtonItem setTarget:self];
+        [_filterBarButtonItem setAction:@selector(_filterBarButtonItemAction:)];
     }
 }
 
@@ -294,6 +303,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 - (IBAction)_cancelBarButtonItemAction:(id)sender {
     if (self.cancelBarButtonItemActionBlock) {
         self.cancelBarButtonItemActionBlock();
+    }
+}
+- (IBAction)_filterBarButtonItemAction:(id)sender {
+    if (self.filterBarButtonItemActionBlock) {
+        self.filterBarButtonItemActionBlock();
     }
 }
 #pragma mark Notifications

@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerAssetCollectionsViewController.m
+//  BBMediaPickerFilterViewController.m
 //  BBFrameworks
 //
-//  Created by William Towe on 11/13/15.
+//  Created by William Towe on 11/18/15.
 //  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,47 +13,30 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaPickerAssetCollectionsViewController.h"
-#import "BBMediaPickerAssetCollectionsTableViewController.h"
-#import "BBKeyValueObserving.h"
-#import "BBFrameworksMacros.h"
-#import "BBMediaPickerTheme.h"
+#import "BBMediaPickerFilterViewController.h"
+#import "BBMediaPickerModel.h"
 
-@interface BBMediaPickerAssetCollectionsViewController ()
-@property (strong,nonatomic) BBMediaPickerAssetCollectionsTableViewController *tableViewController;
-
+@interface BBMediaPickerFilterViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
 @end
 
-@implementation BBMediaPickerAssetCollectionsViewController
+@implementation BBMediaPickerFilterViewController
 
 - (NSString *)title {
-    return @"Album";
+    return @"Filter";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTableViewController:[[BBMediaPickerAssetCollectionsTableViewController alloc] initWithModel:self.model]];
-    [self addChildViewController:self.tableViewController];
-    [self.view addSubview:self.tableViewController.view];
-    [self.tableViewController didMoveToParentViewController:self];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_cancelItemAction:)];
+    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_doneBarButtonItemAction:)];
     
-    [self.navigationItem setRightBarButtonItems:@[cancelItem]];
-    
-    BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.view setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
-    }];
-}
-- (void)viewDidLayoutSubviews {
-    [self.tableViewController.view setFrame:self.view.bounds];
+    [self.navigationItem setRightBarButtonItems:@[doneItem]];
 }
 
-- (instancetype)initWithModel:(BBMediaPickerModel *)model {
+- (instancetype)initWithModel:(BBMediaPickerModel *)model; {
     if (!(self = [super init]))
         return nil;
     
@@ -62,7 +45,7 @@
     return self;
 }
 
-- (IBAction)_cancelItemAction:(id)sender {
+- (IBAction)_doneBarButtonItemAction:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
