@@ -60,14 +60,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return An array where the first object is an object in the receiver and second object is the index of the object in the receiver, or nil
  @exception NSException Thrown if block is nil
  */
-- (nullable NSArray<ObjectType> *)BB_findWithIndex:(BOOL(^)(ObjectType object, NSInteger index))block;
+- (nullable NSArray *)BB_findWithIndex:(BOOL(^)(ObjectType object, NSInteger index))block;
 /**
  Create and return a new array by enumerating the receiver, invoking block for each object, and including the return value of block in the new array.
  
  @param block The block to invoke for each object in the receiver
  @return The new array
  */
-- (NSArray<ObjectType> *)BB_map:(id _Nullable(^)(ObjectType object, NSInteger index))block;
+- (NSArray *)BB_map:(id _Nullable(^)(ObjectType object, NSInteger index))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum, the object, and the index of object in the receiver. The return value of block is passed in as sum to the next invocation of block.
  

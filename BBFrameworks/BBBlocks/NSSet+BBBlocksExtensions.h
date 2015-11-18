@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new set
  @exception NSException Thrown if block is nil
  */
-- (NSSet<ObjectType> *)BB_map:(id _Nullable(^)(ObjectType object))block;
+- (NSSet *)BB_map:(id _Nullable(^)(ObjectType object))block;
 /**
  Return a new object that is the result of enumerating the receiver and invoking block, passing the current sum and the object. The return value of block is passed in as sum to the next invocation of block.
  

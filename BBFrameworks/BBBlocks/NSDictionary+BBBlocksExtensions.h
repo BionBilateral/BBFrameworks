@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Category on NSDictionary adding block extensions.
  */
-@interface NSDictionary (BBBlocksExtensions)
+@interface NSDictionary<__covariant KeyType, __covariant ObjectType> (BBBlocksExtensions)
 
 /**
  Invokes block once for each key/value pair in the receiver.
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param block The block to invoke for each key/value pair
  @exception NSException Thrown if block is nil
  */
-- (void)BB_each:(void(^)(id key, id value))block;
+- (void)BB_each:(void(^)(KeyType key, ObjectType value))block;
 /**
  Create and return a new dictionary by enumerating the receiver, invoking block for each key/value pair, and including it in the new dictionary if block returns YES.
  
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new dictionary
  @exception NSException Thrown if block is nil
  */
-- (NSDictionary *)BB_filter:(BOOL(^)(id key, id value))block;
+- (NSDictionary<KeyType, ObjectType> *)BB_filter:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Create and return a new dictionary by enumerating the receiver, invoking block for each key/value pair, and including it in the new dictionary if block returns NO.
  
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new dictionary
  @exception NSException Thrown if block is nil
  */
-- (NSDictionary *)BB_reject:(BOOL(^)(id key, id value))block;
+- (NSDictionary<KeyType, ObjectType> *)BB_reject:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Return the value member of the first key/value pair in the receiver for which block returns YES, or nil if block returns NO for all key/value pairs.
  
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The value member of the matching key/value pair
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_find:(BOOL(^)(id key, id value))block;
+- (nullable id)BB_find:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Return a dictionary containing the first key/value pair in the receiver for which block returns YES, or nil if block returns NO for all key/value pairs.
  
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The dictionary containing the matching key/value pair, or nil
  @exception NSException Thrown if block is nil
  */
-- (nullable NSDictionary *)BB_findWithKey:(BOOL(^)(id key, id value))block;
+- (nullable NSDictionary<KeyType, ObjectType> *)BB_findWithKey:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Create and return a new dictionary containing all keys from the receiver mapped to new values that block returns. If block returns nil for a key/value pair, [NSNull null] is used as the value in the new dictionary.
  
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The dictionary containing new key/value pairs
  @exception NSException Thrown if block is nil
  */
-- (NSDictionary *)BB_map:(id _Nullable(^)(id key, id value))block;
+- (NSDictionary *)BB_map:(id _Nullable(^)(KeyType key, ObjectType value))block;
 /**
  Return a new object that is the result of invoking block for each key/value pair in the receiver, passing the current sum, the key, and value. The return value of one invocation is passed as the sum argument to the next invocation.
  
@@ -77,14 +77,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_reduceWithStart:(nullable id)start block:(id _Nullable(^)(id _Nullable sum, id key, id value))block;
+- (nullable id)BB_reduceWithStart:(nullable id)start block:(id _Nullable(^)(id _Nullable sum, KeyType key, ObjectType value))block;
 /**
  Return a new dictionary which is the result of flattening all the values of the receiver, which should be dictionaries, into a single dictionary.
  
  @return The flattened dictionary
  @exception NSException Thrown if the receiver contains any non-dictionary objects
  */
-- (NSDictionary *)BB_flatten;
+- (NSDictionary<KeyType, ObjectType> *)BB_flatten;
 /**
  Returns the result of calling `[[self BB_flatten] BB_map:block]`.
  
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened mapped dictionary
  @exception NSException Thrown if block is nil
  */
-- (NSDictionary *)BB_flattenMap:(id _Nullable(^)(id key, id value))block;
+- (NSDictionary *)BB_flattenMap:(id _Nullable(^)(KeyType key, ObjectType value))block;
 /**
  Returns YES if block returns YES for any key/value pair in the receiver, otherwise NO.
  
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if block returns YES once, otherwise NO
  @exception NSException Thrown if block is nil
  */
-- (BOOL)BB_any:(BOOL(^)(id key, id value))block;
+- (BOOL)BB_any:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Returns YES if block returns YES for all key/value pairs in the receiver, otherwise NO.
  
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if block returns YES for all key/value pairs, otherwise NO
  @exception NSException Thrown if block is nil
  */
-- (BOOL)BB_all:(BOOL(^)(id key, id value))block;
+- (BOOL)BB_all:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Returns YES if block returns NO for all key/value pairs in the receiver, otherwise NO.
  
@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if block returns NO for all key/value pairs, otherwise NO
  @exception NSException Thrown if block is nil
  */
-- (BOOL)BB_none:(BOOL(^)(id key, id value))block;
+- (BOOL)BB_none:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Returns the result of `[self.allKeys BB_sum]`.
  
