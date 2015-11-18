@@ -279,6 +279,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
             }
         }
     }
+    
+    // if still no selection, select the first asset collection
+    if (!self.selectedAssetCollectionModel) {
+        [self setSelectedAssetCollectionModel:self.assetCollectionModels.firstObject];
+    }
 }
 #pragma mark Actions
 - (IBAction)_doneBarButtonItemAction:(id)sender {
