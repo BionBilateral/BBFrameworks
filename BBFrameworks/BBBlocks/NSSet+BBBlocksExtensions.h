@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Category on NSSet adding block extensions.
  */
-@interface NSSet<__covariant ObjectType> (BBBlocksExtensions)
+@interface NSSet<ObjectType> (BBBlocksExtensions)
 
 /**
  Invokes block once for each object in the receiver.

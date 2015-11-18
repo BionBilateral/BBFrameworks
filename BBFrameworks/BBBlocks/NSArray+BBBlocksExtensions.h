@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Category on NSArray adding block extensions.
  */
-@interface NSArray<__covariant ObjectType> (BBBlocksExtensions)
+@interface NSArray<ObjectType> (BBBlocksExtensions)
 
 /**
  Invokes block once for each object in the receiver.

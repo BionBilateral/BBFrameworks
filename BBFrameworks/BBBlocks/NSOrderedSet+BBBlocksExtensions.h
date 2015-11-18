@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Category on NSOrderedSet adding block extensions.
  */
-@interface NSOrderedSet<__covariant ObjectType> (BBBlocksExtensions)
+@interface NSOrderedSet<ObjectType> (BBBlocksExtensions)
 
 /**
  Invokes block once for each object in the receiver.
