@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The value member of the matching key/value pair
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_find:(BOOL(^)(KeyType key, ObjectType value))block;
+- (nullable ObjectType)BB_find:(BOOL(^)(KeyType key, ObjectType value))block;
 /**
  Return a dictionary containing the first key/value pair in the receiver for which block returns YES, or nil if block returns NO for all key/value pairs.
  
