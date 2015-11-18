@@ -166,6 +166,14 @@
     
 }
 #pragma mark Properties
+@dynamic theme;
+- (BBMediaPickerTheme *)theme {
+    return self.model.theme;
+}
+- (void)setTheme:(BBMediaPickerTheme *)theme {
+    [self.model setTheme:theme];
+}
+
 @dynamic allowsMultipleSelection;
 - (BOOL)allowsMultipleSelection {
     return self.model.allowsMultipleSelection;
@@ -181,32 +189,6 @@
     [self.model setHidesEmptyAssetCollections:hidesEmptyAssetCollections];
 }
 
-- (void)setTitleView:(UIView<BBMediaPickerTitleView> *)titleView {
-    if ([_titleView isKindOfClass:self.model.theme.titleViewClass]) {
-        return;
-    }
-    
-    [self willChangeValueForKey:@BBKeypath(BBMediaPickerViewController.new,titleView)];
-    
-    _titleView = titleView;
-    
-    [self didChangeValueForKey:@BBKeypath(BBMediaPickerViewController.new,titleView)];
-    
-    if (_titleView) {
-        [self _updateTitleViewProperties];
-        
-        [self.navigationItem setTitleView:_titleView];
-    }
-}
-
-@dynamic theme;
-- (BBMediaPickerTheme *)theme {
-    return self.model.theme;
-}
-- (void)setTheme:(BBMediaPickerTheme *)theme {
-    [self.model setTheme:theme];
-}
-
 @dynamic mediaTypes;
 - (BBMediaPickerMediaTypes)mediaTypes {
     return self.model.mediaTypes;
@@ -214,6 +196,15 @@
 - (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
     [self.model setMediaTypes:mediaTypes];
 }
+
+@dynamic initiallySelectedAssetCollectionSubtype;
+- (BBMediaPickerAssetCollectionSubtype)initiallySelectedAssetCollectionSubtype {
+    return self.model.initiallySelectedAssetCollectionSubtype;
+}
+- (void)setInitiallySelectedAssetCollectionSubtype:(BBMediaPickerAssetCollectionSubtype)initiallySelectedAssetCollectionSubtype {
+    [self.model setInitiallySelectedAssetCollectionSubtype:initiallySelectedAssetCollectionSubtype];
+}
+
 #pragma mark *** Private Methods ***
 - (void)_updateTitleViewProperties; {
     for (UIGestureRecognizer *gr in self.titleView.gestureRecognizers) {
@@ -241,6 +232,24 @@
     }
     
     [self.titleView sizeToFit];
+}
+#pragma mark Properties
+- (void)setTitleView:(UIView<BBMediaPickerTitleView> *)titleView {
+    if ([_titleView isKindOfClass:self.model.theme.titleViewClass]) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@BBKeypath(BBMediaPickerViewController.new,titleView)];
+    
+    _titleView = titleView;
+    
+    [self didChangeValueForKey:@BBKeypath(BBMediaPickerViewController.new,titleView)];
+    
+    if (_titleView) {
+        [self _updateTitleViewProperties];
+        
+        [self.navigationItem setTitleView:_titleView];
+    }
 }
 #pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {

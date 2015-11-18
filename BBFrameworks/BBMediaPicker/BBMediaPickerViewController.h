@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
+@property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
+
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
 

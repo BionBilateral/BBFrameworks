@@ -64,6 +64,9 @@
     return self;
 }
 
+- (BBMediaPickerAssetCollectionSubtype)subtype {
+    return (BBMediaPickerAssetCollectionSubtype)self.assetCollection.assetCollectionSubtype;
+}
 - (NSString *)title {
     return self.assetCollection.localizedTitle;
 }

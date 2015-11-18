@@ -45,11 +45,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (!(self = [super init]))
         return nil;
     
-    _hidesEmptyAssetCollections = YES;
-    
     _theme = [BBMediaPickerTheme defaultTheme];
     
+    _hidesEmptyAssetCollections = YES;
     _mediaTypes = BBMediaPickerMediaTypesAll;
+    _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary;
     
     [self _updateTitle];
     [self _reloadAssetCollections];
@@ -142,6 +142,16 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 - (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
     _mediaTypes = mediaTypes;
+    
+    [self _reloadAssetCollections];
+}
+
+- (void)setInitiallySelectedAssetCollectionSubtype:(BBMediaPickerAssetCollectionSubtype)initiallySelectedAssetCollectionSubtype {
+    if (_initiallySelectedAssetCollectionSubtype == initiallySelectedAssetCollectionSubtype) {
+        return;
+    }
+    
+    _initiallySelectedAssetCollectionSubtype = initiallySelectedAssetCollectionSubtype;
     
     [self _reloadAssetCollections];
 }
@@ -239,7 +249,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
-    // sort all collections by title
+    // sort asset collections by title
     [retval sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:YES selector:@selector(localizedStandardCompare:)]]];
     
     BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
@@ -253,8 +263,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     // try to select previously selected asset collection model
     if (oldSelectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
-            if (model.assetCollection.assetCollectionType == oldSelectedAssetCollectionModel.assetCollection.assetCollectionType &&
-                model.assetCollection.assetCollectionSubtype == oldSelectedAssetCollectionModel.assetCollection.assetCollectionSubtype) {
+            if (model.subtype == oldSelectedAssetCollectionModel.subtype) {
                 [self setSelectedAssetCollectionModel:model];
                 break;
             }
@@ -264,7 +273,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     // select camera roll by default
     if (!self.selectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *collection in self.assetCollectionModels) {
-            if (collection.assetCollection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+            if (collection.subtype == self.initiallySelectedAssetCollectionSubtype) {
                 [self setSelectedAssetCollectionModel:collection];
                 break;
             }

@@ -15,6 +15,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Photos/PHCollection.h>
+#import "BBMediaPickerDefines.h"
 
 @class BBMediaPickerModel,BBMediaPickerAssetModel;
 
@@ -24,6 +25,7 @@
 
 @property (readonly,weak,nonatomic) BBMediaPickerModel *model;
 
+@property (readonly,nonatomic) BBMediaPickerAssetCollectionSubtype subtype;
 @property (readonly,nonatomic) NSString *title;
 @property (readonly,nonatomic) NSString *subtitle;
 @property (readonly,nonatomic) UIImage *typeImage;

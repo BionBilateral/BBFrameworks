@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
+@property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
+
 @property (readonly,copy,nonatomic) NSString *title;
 @property (readonly,nonatomic) NSString *subtitle;
 
