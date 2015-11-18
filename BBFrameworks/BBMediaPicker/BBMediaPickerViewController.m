@@ -67,8 +67,6 @@
         }
     }];
     
-    [self setTitleView:[[BBMediaPickerDefaultTitleView alloc] initWithFrame:CGRectZero]];
-    
     return self;
 }
 
@@ -97,6 +95,7 @@
     [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,allowsMultipleSelection) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
         BBStrongify(self);
         if (self.model.allowsMultipleSelection) {
+            [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
             [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
         }
         else {
