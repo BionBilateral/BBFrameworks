@@ -20,6 +20,7 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerTheme.h"
+#import "BBMediaPickerFilterModel.h"
 
 #import <Photos/Photos.h>
 
@@ -30,6 +31,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (readwrite,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
+@property (readwrite,copy,nonatomic) NSArray<BBMediaPickerFilterModel *> *filterModels;
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
@@ -53,6 +55,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self _updateTitle];
     [self _reloadAssetCollections];
+    
+    [self setFilterModels:[@[@(BBMediaPickerAssetMediaTypeUnknown),@(BBMediaPickerAssetMediaTypeImage),@(BBMediaPickerAssetMediaTypeVideo),@(BBMediaPickerAssetMediaTypeAudio)] BB_map:^id _Nullable(NSNumber * _Nonnull object, NSInteger index) {
+        return [[BBMediaPickerFilterModel alloc] initWithType:object.integerValue];
+    }]];
     
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];

@@ -59,4 +59,11 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
     BBMediaPickerAssetCollectionSubtypeSmartAlbumScreenshots NS_AVAILABLE_IOS(9_0) = PHAssetCollectionSubtypeSmartAlbumScreenshots
 };
 
+typedef NS_ENUM(NSInteger, BBMediaPickerAssetMediaType) {
+    BBMediaPickerAssetMediaTypeUnknown = PHAssetMediaTypeUnknown,
+    BBMediaPickerAssetMediaTypeImage = PHAssetMediaTypeImage,
+    BBMediaPickerAssetMediaTypeVideo = PHAssetMediaTypeVideo,
+    BBMediaPickerAssetMediaTypeAudio = PHAssetMediaTypeAudio
+};
+
 #endif /* BBMediaPickerDefines_h */

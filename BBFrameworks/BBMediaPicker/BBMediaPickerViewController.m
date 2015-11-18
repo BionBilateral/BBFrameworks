@@ -70,7 +70,7 @@
     
     [self.model setFilterBarButtonItemActionBlock:^{
         BBStrongify(self);
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerFilterViewController alloc] init]] animated:YES completion:nil];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerFilterViewController alloc] initWithModel:self.model]] animated:YES completion:nil];
     }];
     
     return self;

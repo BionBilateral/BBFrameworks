@@ -15,6 +15,9 @@
 
 #import "BBMediaPickerFilterTableViewController.h"
 #import "BBMediaPickerModel.h"
+#import "BBMediaPickerFilterModel.h"
+#import "BBMediaPickerFilterTableViewCell.h"
+#import "BBFrameworksFunctions.h"
 
 @interface BBMediaPickerFilterTableViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -26,7 +29,22 @@
     [super viewDidLoad];
     
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setRowHeight:[BBMediaPickerFilterTableViewCell rowHeight]];
+    [self.tableView setAllowsMultipleSelection:YES];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerFilterTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerFilterTableViewCell class])];
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.model.filterModels.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BBMediaPickerFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([BBMediaPickerFilterTableViewCell class]) forIndexPath:indexPath];
+    
+    [cell setModel:self.model.filterModels[indexPath.row]];
+    
+    return cell;
+}
+
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model; {
     if (!(self = [super init]))

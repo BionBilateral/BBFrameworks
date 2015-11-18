@@ -68,6 +68,9 @@
 - (NSString *)identifier {
     return self.asset.localIdentifier;
 }
+- (BBMediaPickerAssetMediaType)mediaType {
+    return (BBMediaPickerAssetMediaType)self.asset.mediaType;
+}
 - (UIImage *)typeImage {
     switch (self.asset.mediaType) {
         case PHAssetMediaTypeVideo:

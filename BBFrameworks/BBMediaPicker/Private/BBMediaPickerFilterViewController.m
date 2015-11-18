@@ -15,8 +15,11 @@
 
 #import "BBMediaPickerFilterViewController.h"
 #import "BBMediaPickerModel.h"
+#import "BBMediaPickerFilterTableViewController.h"
 
 @interface BBMediaPickerFilterViewController ()
+@property (strong,nonatomic) BBMediaPickerFilterTableViewController *tableViewController;
+
 @property (strong,nonatomic) BBMediaPickerModel *model;
 @end
 
@@ -29,11 +32,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setTableViewController:[[BBMediaPickerFilterTableViewController alloc] initWithModel:self.model]];
+    [self addChildViewController:self.tableViewController];
+    [self.view addSubview:self.tableViewController.view];
+    [self.tableViewController didMoveToParentViewController:self];
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_doneBarButtonItemAction:)];
     
     [self.navigationItem setRightBarButtonItems:@[doneItem]];
+    
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelBarButtonItemAction:)];
+    
+    [self.navigationItem setLeftBarButtonItems:@[cancelItem]];
+}
+- (void)viewDidLayoutSubviews {
+    [self.tableViewController.view setFrame:self.view.bounds];
 }
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model; {
@@ -46,6 +61,9 @@
 }
 
 - (IBAction)_doneBarButtonItemAction:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)_cancelBarButtonItemAction:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

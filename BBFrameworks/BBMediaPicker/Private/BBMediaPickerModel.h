@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel,BBMediaPickerTheme;
+@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel,BBMediaPickerTheme,BBMediaPickerFilterModel;
 
 @interface BBMediaPickerModel : NSObject
 
@@ -50,6 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
 @property (readonly,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
 @property (readonly,nonatomic) NSArray<BBMediaPickerAssetModel *> *selectedAssetModels;
+
+@property (readonly,copy,nonatomic) NSArray<BBMediaPickerFilterModel *> *filterModels;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
