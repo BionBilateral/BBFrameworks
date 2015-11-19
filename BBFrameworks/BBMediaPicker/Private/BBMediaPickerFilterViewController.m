@@ -17,7 +17,6 @@
 #import "BBMediaPickerModel.h"
 #import "BBMediaPickerFilterTableViewController.h"
 #import "BBMediaPickerFilterModel.h"
-#import "BBBlocks.h"
 #import "NSArray+BBFoundationExtensions.h"
 
 @interface BBMediaPickerFilterViewController () <BBMediaPickerFilterTableViewControllerDelegate>
@@ -90,6 +89,8 @@
 }
 
 - (IBAction)_doneBarButtonItemAction:(id)sender {
+    [self.model setSelectedFilterModels:self.selectedFilterModels];
+    
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)_cancelBarButtonItemAction:(id)sender {

@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic) NSArray<BBMediaPickerAssetModel *> *selectedAssetModels;
 
 @property (readonly,copy,nonatomic) NSArray<BBMediaPickerFilterModel *> *filterModels;
-@property (readonly,nonatomic) NSSet<BBMediaPickerFilterModel *> *selectedFilterModels;
+@property (copy,nonatomic) NSSet<BBMediaPickerFilterModel *> *selectedFilterModels;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;

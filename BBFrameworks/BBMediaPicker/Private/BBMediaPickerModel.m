@@ -61,9 +61,24 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return [[BBMediaPickerFilterModel alloc] initWithType:object.integerValue];
     }]];
     
+    _selectedFilterModels = [[self.filterModels BB_filter:^BOOL(BBMediaPickerFilterModel * _Nonnull object, NSInteger index) {
+        switch (object.type) {
+            case BBMediaPickerAssetMediaTypeAudio:
+                return self.mediaTypes & BBMediaPickerMediaTypesAudio;
+            case BBMediaPickerAssetMediaTypeImage:
+                return self.mediaTypes & BBMediaPickerMediaTypesImage;
+            case BBMediaPickerAssetMediaTypeUnknown:
+                return self.mediaTypes & BBMediaPickerMediaTypesUnknown;
+            case BBMediaPickerAssetMediaTypeVideo:
+                return self.mediaTypes & BBMediaPickerMediaTypesVideo;
+            default:
+                return NO;
+        }
+    }] BB_set];
+    
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
-    [self setFilterBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:nil action:NULL]];
+    [self setFilterBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:nil action:NULL]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
     
@@ -223,21 +238,31 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }];
 }
 
-- (NSSet<BBMediaPickerFilterModel *> *)selectedFilterModels {
-    return [[self.filterModels BB_filter:^BOOL(BBMediaPickerFilterModel * _Nonnull object, NSInteger index) {
+- (void)setSelectedFilterModels:(NSSet<BBMediaPickerFilterModel *> *)selectedFilterModels {
+    _selectedFilterModels = [selectedFilterModels copy];
+    
+    [self setMediaTypes:[[_selectedFilterModels BB_reduceWithStart:@0 block:^id _Nonnull(NSNumber * _Nullable sum, BBMediaPickerFilterModel * _Nonnull object) {
+        BBMediaPickerMediaTypes mediaTypes = sum.integerValue;
+        
         switch (object.type) {
-            case BBMediaPickerAssetMediaTypeAudio:
-                return self.mediaTypes & BBMediaPickerMediaTypesAudio;
-            case BBMediaPickerAssetMediaTypeImage:
-                return self.mediaTypes & BBMediaPickerMediaTypesImage;
-            case BBMediaPickerAssetMediaTypeUnknown:
-                return self.mediaTypes & BBMediaPickerMediaTypesUnknown;
             case BBMediaPickerAssetMediaTypeVideo:
-                return self.mediaTypes & BBMediaPickerMediaTypesVideo;
+                mediaTypes |= BBMediaPickerMediaTypesVideo;
+                break;
+            case BBMediaPickerAssetMediaTypeAudio:
+                mediaTypes |= BBMediaPickerMediaTypesAudio;
+                break;
+            case BBMediaPickerAssetMediaTypeImage:
+                mediaTypes |= BBMediaPickerMediaTypesImage;
+                break;
+            case BBMediaPickerAssetMediaTypeUnknown:
+                mediaTypes |= BBMediaPickerMediaTypesUnknown;
+                break;
             default:
-                return NO;
+                break;
         }
-    }] BB_set];
+        
+        return @(mediaTypes);
+    }] integerValue]];
 }
 #pragma mark *** Private Methods ***
 - (void)_updateTitle; {
@@ -287,12 +312,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
     
-    [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
+    [self setAssetCollectionModels:[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
-    }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
-        return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
     }]];
-    
+    BBLogObject(_assetCollectionModels);
     // try to select previously selected asset collection model
     if (oldSelectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
