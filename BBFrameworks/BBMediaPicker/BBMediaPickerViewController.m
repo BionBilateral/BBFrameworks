@@ -24,7 +24,6 @@
 #import "BBBlocks.h"
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerAssetCollectionModel.h"
-#import "BBMediaPickerFilterViewController.h"
 
 @interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -68,11 +67,6 @@
         }
     }];
     
-    [self.model setFilterBarButtonItemActionBlock:^{
-        BBStrongify(self);
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerFilterViewController alloc] initWithModel:self.model]] animated:YES completion:nil];
-    }];
-    
     return self;
 }
 
@@ -102,10 +96,10 @@
         BBStrongify(self);
         if (self.model.allowsMultipleSelection) {
             [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
-            [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem,self.model.filterBarButtonItem]];
+            [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
         }
         else {
-            [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem,self.model.filterBarButtonItem]];
+            [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
         }
     }];
 }

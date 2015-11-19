@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel,BBMediaPickerTheme,BBMediaPickerFilterModel;
+@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel,BBMediaPickerTheme;
 
 @interface BBMediaPickerModel : NSObject
 
@@ -34,8 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
 @property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
-@property (strong,nonatomic) UIBarButtonItem *filterBarButtonItem;
-@property (copy,nonatomic) void(^filterBarButtonItemActionBlock)(void);
 
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
@@ -50,9 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
 @property (readonly,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
 @property (readonly,nonatomic) NSArray<BBMediaPickerAssetModel *> *selectedAssetModels;
-
-@property (readonly,copy,nonatomic) NSArray<BBMediaPickerFilterModel *> *filterModels;
-@property (copy,nonatomic) NSSet<BBMediaPickerFilterModel *> *selectedFilterModels;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;

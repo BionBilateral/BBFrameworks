@@ -20,8 +20,6 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerTheme.h"
-#import "BBMediaPickerFilterModel.h"
-#import "NSArray+BBFoundationExtensions.h"
 
 #import <Photos/Photos.h>
 
@@ -32,7 +30,6 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (readwrite,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
-@property (readwrite,copy,nonatomic) NSArray<BBMediaPickerFilterModel *> *filterModels;
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
@@ -57,28 +54,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [self _updateTitle];
     [self _reloadAssetCollections];
     
-    [self setFilterModels:[@[@(BBMediaPickerAssetMediaTypeUnknown),@(BBMediaPickerAssetMediaTypeImage),@(BBMediaPickerAssetMediaTypeVideo),@(BBMediaPickerAssetMediaTypeAudio)] BB_map:^id _Nullable(NSNumber * _Nonnull object, NSInteger index) {
-        return [[BBMediaPickerFilterModel alloc] initWithType:object.integerValue];
-    }]];
-    
-    _selectedFilterModels = [[self.filterModels BB_filter:^BOOL(BBMediaPickerFilterModel * _Nonnull object, NSInteger index) {
-        switch (object.type) {
-            case BBMediaPickerAssetMediaTypeAudio:
-                return self.mediaTypes & BBMediaPickerMediaTypesAudio;
-            case BBMediaPickerAssetMediaTypeImage:
-                return self.mediaTypes & BBMediaPickerMediaTypesImage;
-            case BBMediaPickerAssetMediaTypeUnknown:
-                return self.mediaTypes & BBMediaPickerMediaTypesUnknown;
-            case BBMediaPickerAssetMediaTypeVideo:
-                return self.mediaTypes & BBMediaPickerMediaTypesVideo;
-            default:
-                return NO;
-        }
-    }] BB_set];
-    
     [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
-    [self setFilterBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:nil action:NULL]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
     
@@ -158,14 +135,6 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [_cancelBarButtonItem setAction:@selector(_cancelBarButtonItemAction:)];
     }
 }
-- (void)setFilterBarButtonItem:(UIBarButtonItem *)filterBarButtonItem {
-    _filterBarButtonItem = filterBarButtonItem;
-    
-    if (_filterBarButtonItem) {
-        [_filterBarButtonItem setTarget:self];
-        [_filterBarButtonItem setAction:@selector(_filterBarButtonItemAction:)];
-    }
-}
 
 - (void)setTheme:(BBMediaPickerTheme *)theme {
     _theme = theme ?: [BBMediaPickerTheme defaultTheme];
@@ -236,33 +205,6 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     return [retval BB_map:^id _Nullable(PHAsset * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetModel alloc] initWithAsset:object assetCollectionModel:nil];
     }];
-}
-
-- (void)setSelectedFilterModels:(NSSet<BBMediaPickerFilterModel *> *)selectedFilterModels {
-    _selectedFilterModels = [selectedFilterModels copy];
-    
-    [self setMediaTypes:[[_selectedFilterModels BB_reduceWithStart:@0 block:^id _Nonnull(NSNumber * _Nullable sum, BBMediaPickerFilterModel * _Nonnull object) {
-        BBMediaPickerMediaTypes mediaTypes = sum.integerValue;
-        
-        switch (object.type) {
-            case BBMediaPickerAssetMediaTypeVideo:
-                mediaTypes |= BBMediaPickerMediaTypesVideo;
-                break;
-            case BBMediaPickerAssetMediaTypeAudio:
-                mediaTypes |= BBMediaPickerMediaTypesAudio;
-                break;
-            case BBMediaPickerAssetMediaTypeImage:
-                mediaTypes |= BBMediaPickerMediaTypesImage;
-                break;
-            case BBMediaPickerAssetMediaTypeUnknown:
-                mediaTypes |= BBMediaPickerMediaTypesUnknown;
-                break;
-            default:
-                break;
-        }
-        
-        return @(mediaTypes);
-    }] integerValue]];
 }
 #pragma mark *** Private Methods ***
 - (void)_updateTitle; {
@@ -352,11 +294,6 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 - (IBAction)_cancelBarButtonItemAction:(id)sender {
     if (self.cancelBarButtonItemActionBlock) {
         self.cancelBarButtonItemActionBlock();
-    }
-}
-- (IBAction)_filterBarButtonItemAction:(id)sender {
-    if (self.filterBarButtonItemActionBlock) {
-        self.filterBarButtonItemActionBlock();
     }
 }
 #pragma mark Notifications
