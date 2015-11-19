@@ -312,10 +312,12 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
     
-    [self setAssetCollectionModels:[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
+    [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
+    }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
+        return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
     }]];
-    BBLogObject(_assetCollectionModels);
+
     // try to select previously selected asset collection model
     if (oldSelectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
