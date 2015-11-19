@@ -30,7 +30,7 @@
 
 + (void)initialize {
     if (self == [MediaPickerNavigationController class]) {
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:[UIColor darkGrayColor]];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:[UIColor blackColor]];
         [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
     }
 }
@@ -49,15 +49,15 @@
         [[BBMediaPickerTheme defaultTheme] setTitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
         
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor blackColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleFont:[UIFont italicSystemFontOfSize:12.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellCheckmarkColor:[UIColor whiteColor]];
         
-        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor darkGrayColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor blackColor]];
     }
 }
 
