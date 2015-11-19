@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The result of the reduction
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, ObjectType object))block;
+- (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, id object))block;
 /**
  Return a new set which is the result of unioning all the objects in the receiver, which should be sets.
  
