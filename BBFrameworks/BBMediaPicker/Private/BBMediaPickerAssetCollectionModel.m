@@ -176,7 +176,7 @@
     }
     
     [options setPredicate:[NSCompoundPredicate orPredicateWithSubpredicates:predicates]];
-    [options setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(PHAsset.new,creationDate) ascending:NO]]];
+    [options setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(PHAsset.new,creationDate) ascending:YES]]];
     
     [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
 }
