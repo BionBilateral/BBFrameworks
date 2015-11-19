@@ -24,7 +24,7 @@
 @interface BBMediaPickerAssetCollectionModel ()
 @property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
 @property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
-@property (strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
+@property (readwrite,strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
 @property (assign,nonatomic) PHImageRequestID firstImageRequestID, secondImageRequestID, thirdImageRequestID;
 
 - (void)_cancelThumbnailImageRequestWithImageRequestID:(PHImageRequestID)imageRequestID;
@@ -39,27 +39,7 @@
     [self setAssetCollection:assetCollection];
     [self setModel:model];
     
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    NSMutableArray *predicates = [[NSMutableArray alloc] init];
-    
-    if (self.model.mediaTypes & BBMediaPickerMediaTypesUnknown) {
-        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeUnknown)]];
-    }
-    if (self.model.mediaTypes & BBMediaPickerMediaTypesImage) {
-        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeImage)]];
-    }
-    if (self.model.mediaTypes & BBMediaPickerMediaTypesVideo) {
-        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeVideo)]];
-    }
-    if (self.model.mediaTypes & BBMediaPickerMediaTypesAudio) {
-        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeAudio)]];
-    }
-    
-    [options setPredicate:[NSCompoundPredicate orPredicateWithSubpredicates:predicates]];
-    [options setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(PHAsset.new,creationDate) ascending:NO]]];
-    [options setWantsIncrementalChangeDetails:NO];
-    
-    [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
+    [self reloadFetchResult];
     
     return self;
 }
@@ -176,6 +156,37 @@
     }
     
     [[PHCachingImageManager defaultManager] cancelImageRequest:imageRequestID];
+}
+
+- (void)reloadFetchResult; {
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesUnknown) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeUnknown)]];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesImage) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeImage)]];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesVideo) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeVideo)]];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesAudio) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"%K == %@",@BBKeypath(PHAsset.new,mediaType),@(PHAssetMediaTypeAudio)]];
+    }
+    
+    [options setPredicate:[NSCompoundPredicate orPredicateWithSubpredicates:predicates]];
+    [options setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(PHAsset.new,creationDate) ascending:NO]]];
+    
+    [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
+}
+
+- (void)setFetchResult:(PHFetchResult<PHAsset *> *)fetchResult {
+    [self willChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
+    
+    _fetchResult = fetchResult;
+    
+    [self didChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
 }
 
 @end

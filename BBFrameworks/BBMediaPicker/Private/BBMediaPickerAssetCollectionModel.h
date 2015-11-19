@@ -15,6 +15,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Photos/PHCollection.h>
+#import <Photos/PHFetchResult.h>
 #import "BBMediaPickerDefines.h"
 
 @class BBMediaPickerModel,BBMediaPickerAssetModel;
@@ -22,6 +23,7 @@
 @interface BBMediaPickerAssetCollectionModel : NSObject
 
 @property (readonly,strong,nonatomic) PHAssetCollection *assetCollection;
+@property (readonly,strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
 
 @property (readonly,weak,nonatomic) BBMediaPickerModel *model;
 
@@ -39,6 +41,8 @@
 - (void)requestSecondThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
 - (void)requestThirdThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
 - (void)cancelAllThumbnailRequests;
+
+- (void)reloadFetchResult;
 
 - (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection model:(BBMediaPickerModel *)model;
 

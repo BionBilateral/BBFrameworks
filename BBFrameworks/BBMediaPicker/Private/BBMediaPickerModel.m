@@ -65,7 +65,21 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 #pragma mark PHPhotoLibraryChangeObserver
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
-    
+    for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
+        PHFetchResultChangeDetails *details = [changeInstance changeDetailsForFetchResult:model.fetchResult];
+        
+        if (!details) {
+            continue;
+        }
+        
+        if (details.hasIncrementalChanges &&
+            (details.removedIndexes.count > 0 || details.insertedIndexes.count > 0 || details.changedIndexes.count > 0)) {
+            [model reloadFetchResult];
+        }
+        else if (details.fetchResultAfterChanges) {
+            [model reloadFetchResult];
+        }
+    }
 }
 #pragma mark *** Public Methods ***
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {

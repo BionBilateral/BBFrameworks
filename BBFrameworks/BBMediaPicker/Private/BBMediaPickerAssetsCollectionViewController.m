@@ -39,7 +39,7 @@
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     BBWeakify(self);
-    [[RACObserve(self.model, selectedAssetCollectionModel)
+    [[RACObserve(self.model, selectedAssetCollectionModel.countOfAssetModels)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
