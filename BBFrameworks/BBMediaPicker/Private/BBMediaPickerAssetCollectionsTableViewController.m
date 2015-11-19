@@ -16,9 +16,10 @@
 #import "BBMediaPickerAssetCollectionsTableViewController.h"
 #import "BBMediaPickerAssetCollectionTableViewCell.h"
 #import "BBFrameworksFunctions.h"
-#import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerTheme.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetCollectionsTableViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -33,16 +34,20 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class])];
     
     BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,assetCollectionModels) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.tableView reloadData];
-    }];
+    [[RACObserve(self.model, assetCollectionModels)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.tableView reloadData];
+     }];
     
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.tableView setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
-        [self.tableView setTintColor:self.model.theme.assetCollectionCellCheckmarkColor];
-    }];
+    [[RACObserve(self.model, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.tableView setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
+         [self.tableView setTintColor:self.model.theme.assetCollectionCellCheckmarkColor];
+     }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

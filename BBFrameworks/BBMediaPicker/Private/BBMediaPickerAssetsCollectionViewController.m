@@ -14,7 +14,6 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerAssetsCollectionViewController.h"
-#import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerAssetCollectionViewCell.h"
 #import "BBFrameworksFunctions.h"
@@ -22,6 +21,9 @@
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerTheme.h"
+#import "BBMediaPickerModel.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetsCollectionViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -32,36 +34,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self setClearsSelectionOnViewWillAppear:NO];
     [self.collectionView setAllowsMultipleSelection:YES];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,selectedAssetCollectionModel) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.collectionView reloadData];
-        
-        // scroll to the last item
-        if (self.model.selectedAssetCollectionModel.countOfAssetModels > 0) {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
-        }
-    }];
+    [[RACObserve(self.model, selectedAssetCollectionModel)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.collectionView reloadData];
+         
+         // scroll to the last item
+         if (self.model.selectedAssetCollectionModel.countOfAssetModels > 0) {
+             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+         }
+     }];
     
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,selectedAssetIdentifiers) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
-            BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-            
-            if (cell.isSelected) {
-                [cell reloadSelectedOverlayView];
-            }
-        }
-    }];
+    [[RACObserve(self.model, selectedAssetIdentifiers)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+             BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+             
+             if (cell.isSelected) {
+                 [cell reloadSelectedOverlayView];
+             }
+         }
+     }];
     
-    [self BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.collectionView setBackgroundColor:self.model.theme.assetBackgroundColor];
-    }];
+    [[RACObserve(self.model, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [(UICollectionView *)self.collectionView setBackgroundColor:self.model.theme.assetBackgroundColor];
+     }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

@@ -17,13 +17,14 @@
 #import "BBMediaPickerModel.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerDefaultTitleView.h"
-#import "BBKeyValueObserving.h"
 #import "BBMediaPickerAssetCollectionsViewController.h"
 #import "BBMediaPickerAssetsViewController.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBBlocks.h"
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerAssetCollectionModel.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerViewController () <BBMediaPickerModelDelegate>
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -81,27 +82,29 @@
     [self.assetsViewController didMoveToParentViewController:self];
     
     BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
-        
-        [self _updateTitleViewProperties];
-    }];
+    [[RACObserve(self.model, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
+         
+         [self _updateTitleViewProperties];
+     }];
     
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,title) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self _updateTitleViewTitleAndSubtitle];
-    }];
+    [[RACObserve(self.model, title)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self _updateTitleViewTitleAndSubtitle];
+     }];
     
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,allowsMultipleSelection) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        if (self.model.allowsMultipleSelection) {
-            [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
-            [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
-        }
-        else {
-            [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
-        }
-    }];
+    if (self.model.allowsMultipleSelection) {
+        [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
+        [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
+    }
+    else {
+        [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
+    }
 }
 - (void)viewDidLayoutSubviews {
     [self.assetsViewController.view setFrame:self.view.bounds];

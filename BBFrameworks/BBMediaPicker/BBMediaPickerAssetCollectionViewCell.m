@@ -25,6 +25,8 @@
 #import "BBGradientView.h"
 #import "BBKitColorMacros.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import <Photos/Photos.h>
 
 @interface BBMediaPickerAssetCollectionViewCell ()
@@ -44,12 +46,14 @@
     [self.gradientView setColors:@[BBColorWA(0.0, 0.5),BBColorWA(0.0, 0.75)]];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@BBKeypath(self,model.assetCollectionModel.model.theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        BBMediaPickerTheme *theme = self.model.assetCollectionModel.model.theme ?: [BBMediaPickerTheme defaultTheme];
-        
-        [self setSelectedOverlayView:[[theme.assetSelectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
-    }];
+    [[RACObserve(self, model.assetCollectionModel.model.theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         BBMediaPickerTheme *theme = self.model.assetCollectionModel.model.theme ?: [BBMediaPickerTheme defaultTheme];
+         
+         [self setSelectedOverlayView:[[theme.assetSelectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+     }];
 }
 
 - (void)prepareForReuse {

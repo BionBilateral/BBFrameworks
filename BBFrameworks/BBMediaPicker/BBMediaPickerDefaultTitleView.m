@@ -15,8 +15,9 @@
 
 #import "BBMediaPickerDefaultTitleView.h"
 #import "BBMediaPickerTheme.h"
-#import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerDefaultTitleView ()
 @property (strong,nonatomic) UILabel *titleLabel;
@@ -60,18 +61,18 @@
     [self addSubview:self.subtitleLabel];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        if (!self.theme) {
-            return;
-        }
-        
-        [self.titleLabel setFont:self.theme.titleFont];
-        [self.titleLabel setTextColor:self.theme.titleColor];
-        
-        [self.subtitleLabel setFont:self.theme.subtitleFont];
-        [self.subtitleLabel setTextColor:self.theme.subtitleColor];
-    }];
+    [[RACObserve(self, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
+         
+         [self.titleLabel setFont:theme.titleFont];
+         [self.titleLabel setTextColor:theme.titleColor];
+         
+         [self.subtitleLabel setFont:theme.subtitleFont];
+         [self.subtitleLabel setTextColor:theme.subtitleColor];
+     }];
     
     return self;
 }

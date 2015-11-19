@@ -15,8 +15,9 @@
 
 #import "BBMediaPickerAssetCollectionThumbnailView.h"
 #import "BBMediaPickerTheme.h"
-#import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetCollectionThumbnailView ()
 @property (readwrite,strong,nonatomic) UIImageView *thumbnailImageView;
@@ -39,12 +40,14 @@
     [self addSubview:self.thumbnailImageView];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@BBKeypath(self,theme) options:0 block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
-        
-        [self setBorderColor:theme.assetCollectionCellBackgroundColor];
-    }];
+    [[RACObserve(self, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
+         
+         [self setBorderColor:theme.assetCollectionCellBackgroundColor];
+     }];
     
     return self;
 }

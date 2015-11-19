@@ -16,8 +16,9 @@
 #import "BBMediaPickerAssetsViewController.h"
 #import "BBMediaPickerAssetsCollectionViewController.h"
 #import "BBMediaPickerTheme.h"
-#import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetsViewController ()
 @property (strong,nonatomic) BBMediaPickerAssetsCollectionViewController *collectionViewController;
@@ -36,10 +37,12 @@
     [self.collectionViewController didMoveToParentViewController:self];
     
     BBWeakify(self);
-    [self BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.view setBackgroundColor:self.model.theme.assetBackgroundColor];
-    }];
+    [[RACObserve(self.model, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.view setBackgroundColor:self.model.theme.assetBackgroundColor];
+     }];
 }
 - (void)viewDidLayoutSubviews {
     [self.collectionViewController.view setFrame:self.view.bounds];

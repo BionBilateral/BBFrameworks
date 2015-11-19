@@ -15,9 +15,10 @@
 
 #import "BBMediaPickerAssetCollectionsViewController.h"
 #import "BBMediaPickerAssetCollectionsTableViewController.h"
-#import "BBKeyValueObserving.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerTheme.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetCollectionsViewController ()
 @property (strong,nonatomic) BBMediaPickerAssetCollectionsTableViewController *tableViewController;
@@ -44,10 +45,12 @@
     [self.navigationItem setRightBarButtonItems:@[cancelItem]];
     
     BBWeakify(self);
-    [self.model BB_addObserverForKeyPath:@BBKeypath(self.model,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBStrongify(self);
-        [self.view setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
-    }];
+    [[RACObserve(self.model, theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.view setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
+     }];
 }
 - (void)viewDidLayoutSubviews {
     [self.tableViewController.view setFrame:self.view.bounds];

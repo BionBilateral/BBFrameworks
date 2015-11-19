@@ -15,11 +15,12 @@
 
 #import "BBMediaPickerAssetCollectionTableViewCell.h"
 #import "BBMediaPickerAssetCollectionThumbnailView.h"
-#import "BBFrameworksMacros.h"
 #import "UIImage+BBKitExtensions.h"
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerModel.h"
-#import "BBKeyValueObserving.h"
+#import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaPickerAssetCollectionTableViewCell ()
 @property (weak,nonatomic) IBOutlet BBMediaPickerAssetCollectionThumbnailView *thumbnailView1;
@@ -35,17 +36,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self BB_addObserverForKeyPath:@BBKeypath(self,model.model.theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull key, id  _Nonnull object, NSDictionary * _Nonnull change) {
-        BBMediaPickerTheme *theme = self.model.model.theme ?: [BBMediaPickerTheme defaultTheme];
-        
-        [self setBackgroundColor:theme.assetCollectionCellBackgroundColor];
-        
-        [self.titleLabel setFont:theme.assetCollectionCellTitleFont];
-        [self.titleLabel setTextColor:theme.assetCollectionCellTitleColor];
-        
-        [self.subtitleLabel setFont:theme.assetCollectionCellSubtitleFont];
-        [self.subtitleLabel setTextColor:theme.assetCollectionCellSubtitleColor];
-    }];
+    BBWeakify(self);
+    [[RACObserve(self, model.model.theme)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         BBMediaPickerTheme *theme = self.model.model.theme ?: [BBMediaPickerTheme defaultTheme];
+         
+         [self setBackgroundColor:theme.assetCollectionCellBackgroundColor];
+         
+         [self.titleLabel setFont:theme.assetCollectionCellTitleFont];
+         [self.titleLabel setTextColor:theme.assetCollectionCellTitleColor];
+         
+         [self.subtitleLabel setFont:theme.assetCollectionCellSubtitleFont];
+         [self.subtitleLabel setTextColor:theme.assetCollectionCellSubtitleColor];
+     }];
 }
 
 - (void)prepareForReuse {
