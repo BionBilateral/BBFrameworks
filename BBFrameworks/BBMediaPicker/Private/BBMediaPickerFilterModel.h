@@ -18,6 +18,7 @@
 
 @interface BBMediaPickerFilterModel : NSObject
 
+@property (readonly,assign,nonatomic) BBMediaPickerAssetMediaType type;
 @property (readonly,nonatomic) NSString *title;
 
 - (instancetype)initWithType:(BBMediaPickerAssetMediaType)type;

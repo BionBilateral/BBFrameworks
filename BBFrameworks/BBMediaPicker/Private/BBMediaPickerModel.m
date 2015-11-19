@@ -21,6 +21,7 @@
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerFilterModel.h"
+#import "NSArray+BBFoundationExtensions.h"
 
 #import <Photos/Photos.h>
 
@@ -220,6 +221,23 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     return [retval BB_map:^id _Nullable(PHAsset * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetModel alloc] initWithAsset:object assetCollectionModel:nil];
     }];
+}
+
+- (NSSet<BBMediaPickerFilterModel *> *)selectedFilterModels {
+    return [[self.filterModels BB_filter:^BOOL(BBMediaPickerFilterModel * _Nonnull object, NSInteger index) {
+        switch (object.type) {
+            case BBMediaPickerAssetMediaTypeAudio:
+                return self.mediaTypes & BBMediaPickerMediaTypesAudio;
+            case BBMediaPickerAssetMediaTypeImage:
+                return self.mediaTypes & BBMediaPickerMediaTypesImage;
+            case BBMediaPickerAssetMediaTypeUnknown:
+                return self.mediaTypes & BBMediaPickerMediaTypesUnknown;
+            case BBMediaPickerAssetMediaTypeVideo:
+                return self.mediaTypes & BBMediaPickerMediaTypesVideo;
+            default:
+                return NO;
+        }
+    }] BB_set];
 }
 #pragma mark *** Private Methods ***
 - (void)_updateTitle; {

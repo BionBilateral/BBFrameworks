@@ -18,6 +18,7 @@
 #import "BBMediaPickerFilterModel.h"
 #import "BBMediaPickerFilterTableViewCell.h"
 #import "BBFrameworksFunctions.h"
+#import "BBBlocks.h"
 
 @interface BBMediaPickerFilterTableViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
@@ -32,6 +33,16 @@
     [self.tableView setRowHeight:[BBMediaPickerFilterTableViewCell rowHeight]];
     [self.tableView setAllowsMultipleSelection:YES];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerFilterTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerFilterTableViewCell class])];
+    
+    for (BBMediaPickerFilterModel *filterModel in self.model.selectedFilterModels) {
+        NSUInteger index = [self.model.filterModels indexOfObject:filterModel];
+        
+        if (index == NSNotFound) {
+            continue;
+        }
+        
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -43,6 +54,13 @@
     [cell setModel:self.model.filterModels[indexPath.row]];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate mediaPickerFilterTableViewController:self didSelectFilterModel:self.model.filterModels[indexPath.row]];
+}
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate mediaPickerFilterTableViewController:self didDeselectFilterModel:self.model.filterModels[indexPath.row]];
 }
 
 

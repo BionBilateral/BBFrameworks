@@ -28,10 +28,10 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAuthorizationStatus) {
 };
 
 typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
-    BBMediaPickerMediaTypesUnknown = 0,
-    BBMediaPickerMediaTypesImage = 1 << 0,
-    BBMediaPickerMediaTypesVideo = 1 << 1,
-    BBMediaPickerMediaTypesAudio = 1 << 2,
+    BBMediaPickerMediaTypesUnknown = 1 << 0,
+    BBMediaPickerMediaTypesImage = 1 << 1,
+    BBMediaPickerMediaTypesVideo = 1 << 2,
+    BBMediaPickerMediaTypesAudio = 1 << 3,
     BBMediaPickerMediaTypesAll = BBMediaPickerMediaTypesUnknown | BBMediaPickerMediaTypesImage | BBMediaPickerMediaTypesVideo | BBMediaPickerMediaTypesAudio
 };
 

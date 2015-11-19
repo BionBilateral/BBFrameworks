@@ -788,6 +788,7 @@
 		0753B1641BFD24B3001266B5 /* BBMediaPickerFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerFilterModel.h; path = Private/BBMediaPickerFilterModel.h; sourceTree = "<group>"; };
 		0753B1651BFD24B3001266B5 /* BBMediaPickerFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerFilterModel.m; path = Private/BBMediaPickerFilterModel.m; sourceTree = "<group>"; };
 		0753B1671BFD305B001266B5 /* BBMediaPickerFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBMediaPickerFilterTableViewCell.xib; path = BBFrameworksResources/BBMediaPickerFilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		0753B1691BFD3830001266B5 /* BBMediaPickerFilterTableViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerFilterTableViewControllerDelegate.h; path = Private/BBMediaPickerFilterTableViewControllerDelegate.h; sourceTree = "<group>"; };
 		075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+BBKitExtensions.h"; path = "iOS/UIDevice+BBKitExtensions.h"; sourceTree = "<group>"; };
 		075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BBKitExtensions.m"; path = "iOS/UIDevice+BBKitExtensions.m"; sourceTree = "<group>"; };
 		075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBKitExtensions.h"; sourceTree = "<group>"; };
@@ -1832,6 +1833,7 @@
 				0753B1651BFD24B3001266B5 /* BBMediaPickerFilterModel.m */,
 				798DCE661BFCF9B400B8F712 /* BBMediaPickerFilterViewController.h */,
 				798DCE671BFCF9B400B8F712 /* BBMediaPickerFilterViewController.m */,
+				0753B1691BFD3830001266B5 /* BBMediaPickerFilterTableViewControllerDelegate.h */,
 				798DCE691BFCFA1A00B8F712 /* BBMediaPickerFilterTableViewController.h */,
 				798DCE6A1BFCFA1A00B8F712 /* BBMediaPickerFilterTableViewController.m */,
 				0753B1611BFD2495001266B5 /* BBMediaPickerFilterTableViewCell.h */,

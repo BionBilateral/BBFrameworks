@@ -16,11 +16,17 @@
 #import "BBMediaPickerFilterViewController.h"
 #import "BBMediaPickerModel.h"
 #import "BBMediaPickerFilterTableViewController.h"
+#import "BBMediaPickerFilterModel.h"
+#import "BBBlocks.h"
+#import "NSArray+BBFoundationExtensions.h"
 
-@interface BBMediaPickerFilterViewController ()
+@interface BBMediaPickerFilterViewController () <BBMediaPickerFilterTableViewControllerDelegate>
 @property (strong,nonatomic) BBMediaPickerFilterTableViewController *tableViewController;
 
 @property (strong,nonatomic) BBMediaPickerModel *model;
+@property (copy,nonatomic) NSSet<BBMediaPickerFilterModel *> *selectedFilterModels;
+
+@property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 @end
 
 @implementation BBMediaPickerFilterViewController
@@ -33,15 +39,16 @@
     [super viewDidLoad];
     
     [self setTableViewController:[[BBMediaPickerFilterTableViewController alloc] initWithModel:self.model]];
+    [self.tableViewController setDelegate:self];
     [self addChildViewController:self.tableViewController];
     [self.view addSubview:self.tableViewController.view];
     [self.tableViewController didMoveToParentViewController:self];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_doneBarButtonItemAction:)];
-    
-    [self.navigationItem setRightBarButtonItems:@[doneItem]];
+    [self setDoneBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_doneBarButtonItemAction:)]];
+    [self.doneBarButtonItem setEnabled:NO];
+    [self.navigationItem setRightBarButtonItems:@[self.doneBarButtonItem]];
     
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelBarButtonItemAction:)];
     
@@ -51,13 +58,35 @@
     [self.tableViewController.view setFrame:self.view.bounds];
 }
 
+- (void)mediaPickerFilterTableViewController:(BBMediaPickerFilterTableViewController *)mpftvc didSelectFilterModel:(BBMediaPickerFilterModel *)filterModel {
+    NSMutableSet *temp = [NSMutableSet setWithSet:self.selectedFilterModels];
+    
+    [temp addObject:filterModel];
+    
+    [self setSelectedFilterModels:temp];
+}
+- (void)mediaPickerFilterTableViewController:(BBMediaPickerFilterTableViewController *)mpftvc didDeselectFilterModel:(BBMediaPickerFilterModel *)filterModel {
+    NSMutableSet *temp = [NSMutableSet setWithSet:self.selectedFilterModels];
+    
+    [temp removeObject:filterModel];
+    
+    [self setSelectedFilterModels:temp];
+}
+
 - (instancetype)initWithModel:(BBMediaPickerModel *)model; {
     if (!(self = [super init]))
         return nil;
     
     [self setModel:model];
+    [self setSelectedFilterModels:self.model.selectedFilterModels];
     
     return self;
+}
+
+- (void)setSelectedFilterModels:(NSSet<BBMediaPickerFilterModel *> *)selectedFilterModels {
+    _selectedFilterModels = [selectedFilterModels copy];
+    
+    [self.doneBarButtonItem setEnabled:![self.model.selectedFilterModels isEqual:_selectedFilterModels]];
 }
 
 - (IBAction)_doneBarButtonItemAction:(id)sender {
