@@ -169,6 +169,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self _reloadAssetCollections];
 }
+- (void)setAllowedAssetCollectionSubtypes:(NSSet<NSNumber *> *)allowedAssetCollectionSubtypes {
+    _allowedAssetCollectionSubtypes = [allowedAssetCollectionSubtypes copy];
+    
+    [self _reloadAssetCollections];
+}
 
 - (NSString *)subtitle {
     return @"Tap to change album ▼";
@@ -268,10 +273,12 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
     
-    [self setAssetCollectionModels:[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
+    [self setAssetCollectionModels:[[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
     }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
         return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
+    }] BB_filter:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
+        return self.allowedAssetCollectionSubtypes == nil || [self.allowedAssetCollectionSubtypes containsObject:@(object.subtype)];
     }]];
 
     // try to select previously selected asset collection model

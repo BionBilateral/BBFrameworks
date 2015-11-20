@@ -206,7 +206,13 @@
 - (void)setInitiallySelectedAssetCollectionSubtype:(BBMediaPickerAssetCollectionSubtype)initiallySelectedAssetCollectionSubtype {
     [self.model setInitiallySelectedAssetCollectionSubtype:initiallySelectedAssetCollectionSubtype];
 }
-
+@dynamic allowedAssetCollectionSubtypes;
+- (NSSet<NSNumber *> *)allowedAssetCollectionSubtypes {
+    return self.model.allowedAssetCollectionSubtypes;
+}
+- (void)setAllowedAssetCollectionSubtypes:(NSSet<NSNumber *> *)allowedAssetCollectionSubtypes {
+    [self.model setAllowedAssetCollectionSubtypes:allowedAssetCollectionSubtypes];
+}
 #pragma mark *** Private Methods ***
 - (void)_updateTitleViewProperties; {
     for (UIGestureRecognizer *gr in self.titleView.gestureRecognizers) {
