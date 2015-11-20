@@ -57,7 +57,7 @@
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellCheckmarkColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionPopoverBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionSeparatorColor:[UIColor clearColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionSeparatorColor:[UIColor whiteColor]];
         
         [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor darkGrayColor]];
     }
