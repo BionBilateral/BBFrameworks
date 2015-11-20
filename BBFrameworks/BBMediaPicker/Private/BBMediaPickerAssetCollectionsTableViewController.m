@@ -35,13 +35,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class])];
     
     BBWeakify(self);
-    [[RACObserve(self.model, assetCollectionModels)
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         BBStrongify(self);
-         [self.tableView reloadData];
-     }];
-    
     [[RACObserve(self.model, theme)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {

@@ -64,6 +64,15 @@
     [self.contentView setFrame:[self _backgroundRectForBounds:self.bounds]];
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize retval = CGSizeMake(size.width, 0);
+    
+    retval.height += self.popoverArrowHeight;
+    retval.height += [self.contentView sizeThatFits:CGSizeMake(retval.width, CGFLOAT_MAX)].height;
+    
+    return retval;
+}
+
 - (void)setTheme:(BBMediaPickerTheme *)theme {
     _theme = theme;
     
