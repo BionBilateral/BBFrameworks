@@ -17,16 +17,31 @@
 #import "BBMediaPickerAssetCollectionsTableViewController.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerTheme.h"
+#import "BBFoundationDebugging.h"
+#import "BBMediaPickerAssetCollectionPopoverView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaPickerAssetCollectionsViewController ()
+@interface BBMediaPickerAssetCollectionsViewController () <UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning,UIGestureRecognizerDelegate>
+@property (strong,nonatomic) UIView *backgroundView;
+@property (strong,nonatomic) BBMediaPickerAssetCollectionPopoverView *popoverView;
 @property (strong,nonatomic) BBMediaPickerAssetCollectionsTableViewController *tableViewController;
 
 @property (strong,nonatomic) BBMediaPickerModel *model;
+
+@property (assign,nonatomic) BOOL didAnimatePresentingTransition;
+@property (weak,nonatomic) UINavigationController *sourceNavigationController;
 @end
 
 @implementation BBMediaPickerAssetCollectionsViewController
+
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationOverFullScreen;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 - (NSString *)title {
     return @"Album";
@@ -35,25 +50,99 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
+    [self setBackgroundView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.backgroundView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.backgroundView];
+    
+    [self setPopoverView:[[BBMediaPickerAssetCollectionPopoverView alloc] initWithFrame:CGRectZero]];
+    [self.popoverView setTheme:self.model.theme];
+    [self.view addSubview:self.popoverView];
+    
     [self setTableViewController:[[BBMediaPickerAssetCollectionsTableViewController alloc] initWithModel:self.model]];
     [self addChildViewController:self.tableViewController];
-    [self.view addSubview:self.tableViewController.view];
+    [self.popoverView setContentView:self.tableViewController.view];
     [self.tableViewController didMoveToParentViewController:self];
     
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_cancelItemAction:)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapGestureRecognizerAction:)];
     
-    [self.navigationItem setRightBarButtonItems:@[cancelItem]];
+    [tapGestureRecognizer setNumberOfTapsRequired:1];
+    [tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [tapGestureRecognizer setDelegate:self];
     
-    BBWeakify(self);
-    [[RACObserve(self.model, theme)
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         BBStrongify(self);
-         [self.view setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
-     }];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 - (void)viewDidLayoutSubviews {
-    [self.tableViewController.view setFrame:self.view.bounds];
+    [self.backgroundView setFrame:self.view.bounds];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    [self setSourceNavigationController:source.navigationController];
+    return self;
+}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self;
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+    return 0.33;
+}
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+//    UIView *fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
+    UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
+    UIView *containerView = [transitionContext containerView];
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    CGFloat damping = 0.5;
+    
+    // presenting
+    if ([toView isEqual:self.view]) {
+        [containerView addSubview:toView];
+        
+        [toView setFrame:containerView.bounds];
+        
+        CGFloat availableHeight = CGRectGetHeight(toView.bounds) - CGRectGetHeight(self.sourceNavigationController.navigationBar.frame) - [self.topLayoutGuide length];
+        CGFloat popoverHeight = ceil(availableHeight * 0.66);
+        CGFloat popoverY = CGRectGetHeight(self.sourceNavigationController.navigationBar.frame) + [self.topLayoutGuide length];
+        CGRect popoverRect = CGRectMake(0, popoverY, CGRectGetWidth(toView.bounds), popoverHeight);
+        
+        [self.popoverView setFrame:popoverRect];
+        [self.popoverView setAlpha:0.0];
+        [self.popoverView setTransform:CGAffineTransformMakeScale(0.25, 0.25)];
+        
+        if ([transitionContext isAnimated]) {
+            [self setDidAnimatePresentingTransition:YES];
+            
+            [UIView animateKeyframesWithDuration:duration delay:0 options:0 animations:^{
+                [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1.0 animations:^{
+                    [self.backgroundView setBackgroundColor:[self.model.theme.assetCollectionBackgroundColor colorWithAlphaComponent:0.33]];
+                }];
+                [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:damping initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    [self.popoverView setTransform:CGAffineTransformIdentity];
+                    [self.popoverView setAlpha:1.0];
+                } completion:nil];
+            } completion:^(BOOL finished) {
+                [transitionContext completeTransition:YES];
+            }];
+        }
+        else {
+            [transitionContext completeTransition:YES];
+        }
+    }
+    // dismissing
+    else {
+        if ([transitionContext isAnimated]) {
+            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [self.backgroundView setBackgroundColor:[UIColor clearColor]];
+                [self.popoverView setAlpha:0.0];
+            } completion:^(BOOL finished) {
+                [transitionContext completeTransition:YES];
+            }];
+        }
+        else {
+            [transitionContext completeTransition:YES];
+        }
+    }
 }
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model {
@@ -61,12 +150,13 @@
         return nil;
     
     [self setModel:model];
+    [self setTransitioningDelegate:self];
     
     return self;
 }
 
-- (IBAction)_cancelItemAction:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)_tapGestureRecognizerAction:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:self.didAnimatePresentingTransition completion:nil];
 }
 
 @end

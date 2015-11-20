@@ -34,6 +34,7 @@
 + (UIColor *)_defaultAssetCollectionCellSubtitleColor;
 + (UIColor *)_defaultAssetCollectionForegroundColor;
 + (UIColor *)_defaultAssetCollectionSeparatorColor;
++ (UIColor *)_defaultAssetCollectionPopoverBackgroundColor;
 
 + (UIColor *)_defaultAssetBackgroundColor;
 + (Class)_defaultAssetSelectedOverlayViewClass;
@@ -63,6 +64,10 @@
     _assetCollectionCellSubtitleFont = [self.class _defaultAssetCollectionCellSubtitleFont];
     _assetCollectionCellSubtitleColor = [self.class _defaultAssetCollectionCellSubtitleColor];
     _assetCollectionSeparatorColor = [self.class _defaultAssetCollectionSeparatorColor];
+    _assetCollectionPopoverBackgroundColor = [self.class _defaultAssetCollectionPopoverBackgroundColor];
+    _assetCollectionPopoverArrowWidth = 8.0;
+    _assetCollectionPopoverArrowHeight = 8.0;
+    _assetCollectionPopoverCornerRadius = 5.0;
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
@@ -123,6 +128,9 @@
 - (void)setAssetCollectionSeparatorColor:(UIColor *)assetCollectionSeparatorColor {
     _assetCollectionSeparatorColor = assetCollectionSeparatorColor ?: [self.class _defaultAssetCollectionSeparatorColor];
 }
+- (void)setAssetCollectionPopoverBackgroundColor:(UIColor *)assetCollectionPopoverBackgroundColor {
+    _assetCollectionPopoverBackgroundColor = assetCollectionPopoverBackgroundColor ?: [self.class _defaultAssetCollectionPopoverBackgroundColor];
+}
 
 - (void)setAssetBackgroundColor:(UIColor *)assetBackgroundColor {
     _assetBackgroundColor = assetBackgroundColor ?: [self.class _defaultAssetBackgroundColor];
@@ -182,6 +190,9 @@
 }
 + (UIColor *)_defaultAssetCollectionSeparatorColor; {
     return [UIColor blackColor];
+}
++ (UIColor *)_defaultAssetCollectionPopoverBackgroundColor; {
+    return [UIColor darkGrayColor];
 }
 
 + (UIColor *)_defaultAssetBackgroundColor {

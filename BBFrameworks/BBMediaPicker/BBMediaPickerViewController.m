@@ -261,7 +261,7 @@
 }
 #pragma mark Actions
 - (IBAction)_tapGestureRecognizerAction:(id)sender {
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[BBMediaPickerAssetCollectionsViewController alloc] initWithModel:self.model]] animated:YES completion:nil];
+    [self presentViewController:[[BBMediaPickerAssetCollectionsViewController alloc] initWithModel:self.model] animated:YES completion:nil];
 }
 
 @end

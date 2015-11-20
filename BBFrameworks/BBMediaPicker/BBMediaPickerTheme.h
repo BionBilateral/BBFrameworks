@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionForegroundColor;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionSeparatorColor;
+@property (strong,nonatomic,null_resettable) UIColor *assetCollectionPopoverBackgroundColor;
+@property (assign,nonatomic) CGFloat assetCollectionPopoverArrowWidth;
+@property (assign,nonatomic) CGFloat assetCollectionPopoverArrowHeight;
+@property (assign,nonatomic) CGFloat assetCollectionPopoverCornerRadius;
 
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
 @property (strong,nonatomic,null_resettable) Class assetSelectedOverlayViewClass;
