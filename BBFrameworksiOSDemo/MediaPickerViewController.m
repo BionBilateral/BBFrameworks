@@ -50,14 +50,16 @@
         [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
         
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleFont:[UIFont italicSystemFontOfSize:12.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellCheckmarkColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionPopoverBackgroundColor:[UIColor darkGrayColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionSeparatorColor:[UIColor clearColor]];
         
-        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor darkGrayColor]];
     }
 }
 

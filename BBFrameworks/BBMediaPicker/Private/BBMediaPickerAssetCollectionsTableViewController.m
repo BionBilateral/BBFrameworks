@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setRowHeight:[BBMediaPickerAssetCollectionTableViewCell rowHeight]];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class])];
     
@@ -45,7 +46,6 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
-         [self.tableView setBackgroundColor:self.model.theme.assetCollectionPopoverBackgroundColor];
          [self.tableView setTintColor:self.model.theme.assetCollectionCellCheckmarkColor];
          [self.tableView setSeparatorColor:self.model.theme.assetCollectionSeparatorColor];
      }];

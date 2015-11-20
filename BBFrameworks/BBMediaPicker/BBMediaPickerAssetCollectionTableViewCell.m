@@ -36,14 +36,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self setBackgroundColor:[UIColor clearColor]];
+    
     BBWeakify(self);
     [[RACObserve(self, model.model.theme)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
          BBMediaPickerTheme *theme = self.model.model.theme ?: [BBMediaPickerTheme defaultTheme];
-         
-         [self setBackgroundColor:theme.assetCollectionCellBackgroundColor];
          
          [self.titleLabel setFont:theme.assetCollectionCellTitleFont];
          [self.titleLabel setTextColor:theme.assetCollectionCellTitleColor];

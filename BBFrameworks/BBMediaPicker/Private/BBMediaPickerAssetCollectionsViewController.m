@@ -86,7 +86,7 @@
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.33;
+    return 0.5;
 }
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
 //    UIView *fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
