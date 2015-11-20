@@ -110,9 +110,9 @@
         [toView setFrame:containerView.bounds];
         
         CGFloat availableHeight = CGRectGetHeight(toView.bounds) - CGRectGetHeight(self.sourceNavigationController.navigationBar.frame) - [self.topLayoutGuide length];
-        CGFloat maximumPopoverHeight = ceil(availableHeight * 0.5);
+        CGFloat maximumPopoverHeight = ceil(availableHeight * 0.66);
         CGFloat popoverY = CGRectGetHeight(self.sourceNavigationController.navigationBar.frame) + [self.topLayoutGuide length];
-        CGRect popoverRect = CGRectMake(0, popoverY, CGRectGetWidth(toView.bounds), [self.popoverView sizeThatFits:CGSizeMake(CGRectGetWidth(toView.bounds), maximumPopoverHeight)].height);
+        CGRect popoverRect = CGRectMake(0, popoverY, CGRectGetWidth(toView.bounds), MIN([self.popoverView sizeThatFits:CGSizeMake(CGRectGetWidth(toView.bounds), maximumPopoverHeight)].height, maximumPopoverHeight));
         
         [self.popoverView setFrame:popoverRect];
         [self.popoverView setAlpha:0.0];
