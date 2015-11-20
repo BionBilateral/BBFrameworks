@@ -73,17 +73,17 @@
     [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:_model.model.theme.assetCollectionForegroundColor]];
     
     BBWeakify(self);
-    [_model requestFirstThumbnailImageOfSize:self.thumbnailView1.frame.size completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:self.thumbnailView1.thumbnailImageView.frame.size thumbnailIndex:0 completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailView1.thumbnailImageView setImage:thumbnailImage];
     }];
     
-    [_model requestSecondThumbnailImageOfSize:self.thumbnailView2.frame.size completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:self.thumbnailView2.thumbnailImageView.frame.size thumbnailIndex:1 completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailView2.thumbnailImageView setImage:thumbnailImage];
     }];
     
-    [_model requestThirdThumbnailImageOfSize:self.thumbnailView3.frame.size completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:self.thumbnailView3.thumbnailImageView.frame.size thumbnailIndex:2 completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailView3.thumbnailImageView setImage:thumbnailImage];
     }];

@@ -37,9 +37,7 @@
 
 - (NSUInteger)indexOfAssetModel:(BBMediaPickerAssetModel *)assetModel;
 
-- (void)requestFirstThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
-- (void)requestSecondThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
-- (void)requestThirdThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
+- (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage *thumbnailImage))completion;
 - (void)cancelAllThumbnailRequests;
 
 - (void)reloadFetchResult;
