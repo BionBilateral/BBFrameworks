@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0710EC7A1BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0710EC791BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.m */; };
 		07148CAE1BC59BC300539136 /* CIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
 		07148CB01BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
@@ -742,6 +743,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0710EC781BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+BBMediaPickerExtensions.h"; sourceTree = "<group>"; };
+		0710EC791BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+BBMediaPickerExtensions.m"; sourceTree = "<group>"; };
 		07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
 		07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
 		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
@@ -1834,6 +1837,8 @@
 			isa = PBXGroup;
 			children = (
 				07605ABB1B69551800333678 /* BBMediaPicker.h */,
+				0710EC781BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.h */,
+				0710EC791BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.m */,
 				797B97671BF6F7C900B94F8D /* BBMediaPickerMedia.h */,
 				072D609E1BF668A7006894CD /* BBMediaPickerDefines.h */,
 				797B97691BF6FA6300B94F8D /* BBMediaPickerModelDelegate.h */,
@@ -3111,6 +3116,7 @@
 				07B3D90D1B60373B00FA1853 /* BBFormStepperTableViewCell.m in Sources */,
 				7922E8AC1BD42D8800F85EDA /* BBMoviePlayerFullscreenTopView.m in Sources */,
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
+				0710EC7A1BFFAC2000A000B1 /* PHAsset+BBMediaPickerExtensions.m in Sources */,
 				792F15381B76A7160034A09A /* BBFrameworks.m in Sources */,
 				79EA80CE1B3F0CDB00D50B6B /* BBDefaultManagedObjectEntityMapping.m in Sources */,
 				072D60AC1BF68F22006894CD /* BBMediaPickerAssetCollectionsTableViewController.m in Sources */,
