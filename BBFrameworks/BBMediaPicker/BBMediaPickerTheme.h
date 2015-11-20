@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIColor *assetSelectedOverlayViewTintColor;
 @property (strong,nonatomic,null_resettable) UIImage *assetTypeVideoImage;
 @property (strong,nonatomic,null_resettable) UIColor *assetForegroundColor;
+@property (strong,nonatomic,null_resettable) UIFont *assetDurationFont;
 
 + (instancetype)defaultTheme;
 

@@ -39,6 +39,7 @@
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor;
 + (UIImage *)_defaultAssetTypeVideoImage;
 + (UIColor *)_defaultAssetForegroundColor;
++ (UIFont *)_defaultAssetDurationFont;
 @end
 
 @implementation BBMediaPickerTheme
@@ -66,6 +67,7 @@
     _assetSelectedOverlayViewTintColor = [self.class _defaultAssetSelectedOverlayViewTintColor];
     _assetTypeVideoImage = [self.class _defaultAssetTypeVideoImage];
     _assetForegroundColor = [self.class _defaultAssetForegroundColor];
+    _assetDurationFont = [self.class _defaultAssetDurationFont];
     
     return self;
 }
@@ -132,6 +134,9 @@
 - (void)setAssetForegroundColor:(UIColor *)assetForegroundColor {
     _assetForegroundColor = assetForegroundColor ?: [self.class _defaultAssetForegroundColor];
 }
+- (void)setAssetDurationFont:(UIFont *)assetDurationFont {
+    _assetDurationFont = assetDurationFont ?: [self.class _defaultAssetDurationFont];
+}
 
 + (UIFont *)_defaultTitleFont; {
     return [UIFont boldSystemFontOfSize:17.0];
@@ -185,6 +190,9 @@
 }
 + (UIColor *)_defaultAssetForegroundColor; {
     return [UIColor whiteColor];
+}
++ (UIFont *)_defaultAssetDurationFont; {
+    return [UIFont systemFontOfSize:12.0];
 }
 
 @end

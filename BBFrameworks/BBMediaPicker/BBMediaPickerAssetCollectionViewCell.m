@@ -53,6 +53,9 @@
          BBMediaPickerTheme *theme = self.model.assetCollectionModel.model.theme ?: [BBMediaPickerTheme defaultTheme];
          
          [self setSelectedOverlayView:[[theme.assetSelectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+         
+         [self.durationLabel setFont:theme.assetDurationFont];
+         [self.durationLabel setTextColor:theme.assetForegroundColor];
      }];
 }
 
