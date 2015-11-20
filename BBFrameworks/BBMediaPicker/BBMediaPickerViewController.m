@@ -46,6 +46,10 @@
     return [super automaticallyNotifiesObserversForKey:key];
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;

@@ -43,6 +43,10 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
 - (NSString *)title {
     return @"Album";
 }
