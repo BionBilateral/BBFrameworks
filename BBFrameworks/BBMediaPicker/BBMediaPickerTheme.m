@@ -33,6 +33,7 @@
 + (UIFont *)_defaultAssetCollectionCellSubtitleFont;
 + (UIColor *)_defaultAssetCollectionCellSubtitleColor;
 + (UIColor *)_defaultAssetCollectionForegroundColor;
++ (UIColor *)_defaultAssetCollectionSeparatorColor;
 
 + (UIColor *)_defaultAssetBackgroundColor;
 + (Class)_defaultAssetSelectedOverlayViewClass;
@@ -61,6 +62,7 @@
     _assetCollectionCellTitleColor = [self.class _defaultAssetCollectionCellTitleColor];
     _assetCollectionCellSubtitleFont = [self.class _defaultAssetCollectionCellSubtitleFont];
     _assetCollectionCellSubtitleColor = [self.class _defaultAssetCollectionCellSubtitleColor];
+    _assetCollectionSeparatorColor = [self.class _defaultAssetCollectionSeparatorColor];
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
@@ -118,6 +120,9 @@
 - (void)setAssetCollectionForegroundColor:(UIColor *)assetCollectionForegroundColor {
     _assetCollectionForegroundColor = assetCollectionForegroundColor ?: [self.class _defaultAssetCollectionForegroundColor];
 }
+- (void)setAssetCollectionSeparatorColor:(UIColor *)assetCollectionSeparatorColor {
+    _assetCollectionSeparatorColor = assetCollectionSeparatorColor ?: [self.class _defaultAssetCollectionSeparatorColor];
+}
 
 - (void)setAssetBackgroundColor:(UIColor *)assetBackgroundColor {
     _assetBackgroundColor = assetBackgroundColor ?: [self.class _defaultAssetBackgroundColor];
@@ -174,6 +179,9 @@
 }
 + (UIColor *)_defaultAssetCollectionForegroundColor; {
     return [UIColor whiteColor];
+}
++ (UIColor *)_defaultAssetCollectionSeparatorColor; {
+    return [UIColor blackColor];
 }
 
 + (UIColor *)_defaultAssetBackgroundColor {
