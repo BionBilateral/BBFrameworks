@@ -77,6 +77,10 @@
     [self.backgroundView setFrame:self.view.bounds];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return !CGRectContainsPoint(self.popoverView.bounds, [touch locationInView:self.popoverView]);
+}
+
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     [self setSourceNavigationController:source.navigationController];
     return self;
@@ -132,7 +136,7 @@
     // dismissing
     else {
         if ([transitionContext isAnimated]) {
-            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:duration/2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 [self.backgroundView setBackgroundColor:[UIColor clearColor]];
                 [self.popoverView setAlpha:0.0];
             } completion:^(BOOL finished) {
