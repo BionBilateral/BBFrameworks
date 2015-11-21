@@ -406,6 +406,7 @@
 		79CDC71D1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC71C1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m */; };
 		79CDC7201C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC71F1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m */; };
 		79CDC7221C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CDC7211C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib */; };
+		79CDC7261C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC7251C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.m */; };
 		79CE6A401B784F3600A0E969 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79CE6A3E1B784F3600A0E969 /* Validation.strings */; };
 		79D5407A1B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */; };
 		79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540791B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m */; };
@@ -1296,6 +1297,8 @@
 		79CDC71F1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerPDFThumbnailCollectionViewCell.m; sourceTree = "<group>"; };
 		79CDC7211C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBMediaViewerPDFThumbnailCollectionViewCell.xib; path = BBFrameworksResources/BBMediaViewerPDFThumbnailCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		79CDC7231C0125730032AACF /* BBMediaViewerPDFThumbnailContainerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerPDFThumbnailContainerViewDelegate.h; sourceTree = "<group>"; };
+		79CDC7241C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerPDFPageIndicatorView.h; sourceTree = "<group>"; };
+		79CDC7251C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerPDFPageIndicatorView.m; sourceTree = "<group>"; };
 		79CE6A3F1B784F3600A0E969 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79D540761B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+BBKitExtensions.h"; path = "iOS/UIAlertController+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+BBKitExtensions.m"; path = "iOS/UIAlertController+BBKitExtensions.m"; sourceTree = "<group>"; };
@@ -1459,6 +1462,8 @@
 				07264CB61BD819DE00DF4FDB /* NSURL+BBMediaViewerMediaExtensions.m */,
 				79CDC70C1C0104FA0032AACF /* BBMediaViewerPDFViewController.h */,
 				79CDC70D1C0104FA0032AACF /* BBMediaViewerPDFViewController.m */,
+				79CDC7241C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.h */,
+				79CDC7251C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.m */,
 				79CDC70F1C0107080032AACF /* BBMediaViewerPDFPageViewController.h */,
 				79CDC7101C0107080032AACF /* BBMediaViewerPDFPageViewController.m */,
 				79CDC7181C01118A0032AACF /* BBMediaViewerPDFScrollView.h */,
@@ -3258,6 +3263,7 @@
 				07264CC21BD819DE00DF4FDB /* BBMediaViewerViewController.m in Sources */,
 				7922E8961BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewController+BBMediaPickerExtensionsPrivate.m in Sources */,
 				07264CBE1BD819DE00DF4FDB /* BBMediaViewerMovieViewController.m in Sources */,
+				79CDC7261C012AE50032AACF /* BBMediaViewerPDFPageIndicatorView.m in Sources */,
 				79EA80DC1B3F0D1B00D50B6B /* BBThumbnailGenerator.m in Sources */,
 				7922E89B1BD41CF200F85EDA /* BBMediaPickerAssetViewController.m in Sources */,
 				07605ABE1B69556E00333678 /* BBMediaPickerViewController.m in Sources */,

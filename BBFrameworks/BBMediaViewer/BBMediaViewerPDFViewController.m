@@ -17,14 +17,17 @@
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerPDFPageViewController.h"
 #import "BBMediaViewerPDFThumbnailContainerView.h"
+#import "BBMediaViewerPDFPageIndicatorView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerPDFViewController () <BBMediaViewerPDFThumbnailContainerViewDelegate,UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 @property (strong,nonatomic) BBMediaViewerPDFThumbnailContainerView *PDFThumbnailContainerView;
+@property (strong,nonatomic) BBMediaViewerPDFPageIndicatorView *pageIndicatorView;
 
 - (void)_updateSelectedPageNumber;
+- (void)_fadeOutPageIndicatorView;
 @end
 
 @implementation BBMediaViewerPDFViewController
@@ -39,6 +42,9 @@
     [self.pageViewController setDataSource:self];
     [self.pageViewController setDelegate:self];
     
+    [self setPageIndicatorView:[[BBMediaViewerPDFPageIndicatorView alloc] initWithFrame:CGRectZero]];
+    [self.view addSubview:self.pageIndicatorView];
+    
     [self setPDFThumbnailContainerView:[[BBMediaViewerPDFThumbnailContainerView alloc] initWithViewModel:self.viewModel]];
     [self.PDFThumbnailContainerView setDelegate:self];
     
@@ -49,6 +55,13 @@
         @strongify(self);
         [self _updateSelectedPageNumber];
     }];
+}
+- (void)viewWillLayoutSubviews {
+    [self.pageViewController.view setFrame:self.view.bounds];
+    
+    CGSize size = [self.pageIndicatorView sizeThatFits:CGSizeZero];
+    
+    [self.pageIndicatorView setFrame:CGRectMake(8.0, [self.topLayoutGuide length] + 44.0 + 8.0, size.width, size.height)];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -84,6 +97,11 @@
     return [[BBMediaViewerPDFPageViewController alloc] initWithPDFPageRef:[self.viewModel PDFPageRefForPageNumber:pageNumber] pageNumber:pageNumber];
 }
 
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.pageIndicatorView setAlpha:1.0];
+    } completion:nil];
+}
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
     [self _updateSelectedPageNumber];
 }
@@ -100,6 +118,16 @@
     size_t pageNumber = [(BBMediaViewerPDFPageViewController *)self.pageViewController.viewControllers.firstObject pageNumber];
     
     [self.PDFThumbnailContainerView updateSelectedPage:pageNumber];
+    
+    [self.pageIndicatorView setCurrentPage:pageNumber];
+    [self.pageIndicatorView setNumberOfPages:self.viewModel.numberOfPDFPages];
+    
+    [self _fadeOutPageIndicatorView];
+}
+- (void)_fadeOutPageIndicatorView; {
+    [UIView animateWithDuration:0.25 delay:1.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [self.pageIndicatorView setAlpha:0.0];
+    } completion:nil];
 }
 
 @end
