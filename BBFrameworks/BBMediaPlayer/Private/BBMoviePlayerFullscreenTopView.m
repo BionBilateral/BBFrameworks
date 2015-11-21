@@ -16,6 +16,8 @@
 #import "BBMoviePlayerFullscreenTopView.h"
 #import "BBMoviePlayerController.h"
 #import "BBMediaPlayerDefines.h"
+#import "UIImage+BBKitExtensions.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -44,8 +46,8 @@
     
     [self setFullscreenButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.fullscreenButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.fullscreenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.fullscreenButton setTitle:@"Fullscreen" forState:UIControlStateNormal];
+    [self.fullscreenButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_maximize"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
+    [self.fullscreenButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_minimize"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateSelected];
     [self.blurVisualEffectView.contentView addSubview:self.fullscreenButton];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.blurVisualEffectView}]];
@@ -55,6 +57,9 @@
     [self.blurVisualEffectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.fullscreenButton}]];
     
     @weakify(self);
+    RAC(self.fullscreenButton,selected) = [RACObserve(self.moviePlayerController, fullscreen)
+                                           deliverOn:[RACScheduler mainThreadScheduler]];
+    
     [self.fullscreenButton setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
         return [RACSignal return:self];
