@@ -139,6 +139,11 @@ typedef void(^BBThumbnailGeneratorCompletionBlock)(BBThumbnailGeneratorImageClas
 @property (copy,nonatomic,null_resettable) NSURLSessionConfiguration *URLSessionConfiguration;
 
 /**
+ Returns the default singleton instance.
+ */
++ (instancetype)defaultGenerator;
+
+/**
  Clears the on disk cache.
  */
 - (void)clearFileCache;

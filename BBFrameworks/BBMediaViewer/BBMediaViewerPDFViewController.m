@@ -16,9 +16,15 @@
 #import "BBMediaViewerPDFViewController.h"
 #import "BBMediaViewerDetailViewModel.h"
 #import "BBMediaViewerPDFPageViewController.h"
+#import "BBMediaViewerPDFThumbnailContainerView.h"
 
-@interface BBMediaViewerPDFViewController () <UIPageViewControllerDataSource>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+@interface BBMediaViewerPDFViewController () <BBMediaViewerPDFThumbnailContainerViewDelegate,UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
+@property (strong,nonatomic) BBMediaViewerPDFThumbnailContainerView *PDFThumbnailContainerView;
+
+- (void)_updateSelectedPageNumber;
 @end
 
 @implementation BBMediaViewerPDFViewController
@@ -31,8 +37,32 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     [self.pageViewController setDataSource:self];
+    [self.pageViewController setDelegate:self];
     
-    [self.pageViewController setViewControllers:@[[[BBMediaViewerPDFPageViewController alloc] initWithPDFPageRef:[self.viewModel PDFPageRefForPageNumber:1] pageNumber:1]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self setPDFThumbnailContainerView:[[BBMediaViewerPDFThumbnailContainerView alloc] initWithViewModel:self.viewModel]];
+    [self.PDFThumbnailContainerView setDelegate:self];
+    
+    [self setBottomContentView:self.PDFThumbnailContainerView];
+    
+    @weakify(self);
+    [self.pageViewController setViewControllers:@[[[BBMediaViewerPDFPageViewController alloc] initWithPDFPageRef:[self.viewModel PDFPageRefForPageNumber:1] pageNumber:1]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
+        @strongify(self);
+        [self _updateSelectedPageNumber];
+    }];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    if (!self.isBeingPresented &&
+        !self.isBeingDismissed) {
+        
+        // reset to first page
+        @weakify(self);
+        [self.pageViewController setViewControllers:@[[[BBMediaViewerPDFPageViewController alloc] initWithPDFPageRef:[self.viewModel PDFPageRefForPageNumber:1] pageNumber:1]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
+            @strongify(self);
+            [self _updateSelectedPageNumber];
+        }];
+    }
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -52,6 +82,24 @@
     }
     
     return [[BBMediaViewerPDFPageViewController alloc] initWithPDFPageRef:[self.viewModel PDFPageRefForPageNumber:pageNumber] pageNumber:pageNumber];
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    [self _updateSelectedPageNumber];
+}
+
+- (void)PDFThumbnailContainerView:(BBMediaViewerPDFThumbnailContainerView *)view didSelectPage:(size_t)page {
+    @weakify(self);
+    [self.pageViewController setViewControllers:@[[[BBMediaViewerPDFPageViewController alloc] initWithPDFPageRef:[self.viewModel PDFPageRefForPageNumber:page] pageNumber:page]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
+        @strongify(self);
+        [self _updateSelectedPageNumber];
+    }];
+}
+
+- (void)_updateSelectedPageNumber; {
+    size_t pageNumber = [(BBMediaViewerPDFPageViewController *)self.pageViewController.viewControllers.firstObject pageNumber];
+    
+    [self.PDFThumbnailContainerView updateSelectedPage:pageNumber];
 }
 
 @end

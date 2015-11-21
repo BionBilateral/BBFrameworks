@@ -403,6 +403,9 @@
 		79CDC7141C0108670032AACF /* BBMediaViewerPDFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC7131C0108670032AACF /* BBMediaViewerPDFPageView.m */; };
 		79CDC7171C0109330032AACF /* BBMediaViewerPDFPageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC7161C0109330032AACF /* BBMediaViewerPDFPageLayer.m */; };
 		79CDC71A1C01118A0032AACF /* BBMediaViewerPDFScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC7191C01118A0032AACF /* BBMediaViewerPDFScrollView.m */; };
+		79CDC71D1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC71C1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m */; };
+		79CDC7201C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CDC71F1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m */; };
+		79CDC7221C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CDC7211C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib */; };
 		79CE6A401B784F3600A0E969 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79CE6A3E1B784F3600A0E969 /* Validation.strings */; };
 		79D5407A1B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */; };
 		79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D540791B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m */; };
@@ -1287,6 +1290,12 @@
 		79CDC7161C0109330032AACF /* BBMediaViewerPDFPageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerPDFPageLayer.m; sourceTree = "<group>"; };
 		79CDC7181C01118A0032AACF /* BBMediaViewerPDFScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerPDFScrollView.h; sourceTree = "<group>"; };
 		79CDC7191C01118A0032AACF /* BBMediaViewerPDFScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerPDFScrollView.m; sourceTree = "<group>"; };
+		79CDC71B1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerPDFThumbnailContainerView.h; sourceTree = "<group>"; };
+		79CDC71C1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerPDFThumbnailContainerView.m; sourceTree = "<group>"; };
+		79CDC71E1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerPDFThumbnailCollectionViewCell.h; sourceTree = "<group>"; };
+		79CDC71F1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaViewerPDFThumbnailCollectionViewCell.m; sourceTree = "<group>"; };
+		79CDC7211C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BBMediaViewerPDFThumbnailCollectionViewCell.xib; path = BBFrameworksResources/BBMediaViewerPDFThumbnailCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		79CDC7231C0125730032AACF /* BBMediaViewerPDFThumbnailContainerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerPDFThumbnailContainerViewDelegate.h; sourceTree = "<group>"; };
 		79CE6A3F1B784F3600A0E969 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79D540761B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+BBKitExtensions.h"; path = "iOS/UIAlertController+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D540771B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+BBKitExtensions.m"; path = "iOS/UIAlertController+BBKitExtensions.m"; sourceTree = "<group>"; };
@@ -1458,6 +1467,12 @@
 				79CDC7131C0108670032AACF /* BBMediaViewerPDFPageView.m */,
 				79CDC7151C0109330032AACF /* BBMediaViewerPDFPageLayer.h */,
 				79CDC7161C0109330032AACF /* BBMediaViewerPDFPageLayer.m */,
+				79CDC7231C0125730032AACF /* BBMediaViewerPDFThumbnailContainerViewDelegate.h */,
+				79CDC71B1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.h */,
+				79CDC71C1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m */,
+				79CDC71E1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.h */,
+				79CDC71F1C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m */,
+				79CDC7211C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib */,
 			);
 			path = BBMediaViewer;
 			sourceTree = "<group>";
@@ -2937,6 +2952,7 @@
 				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
 				799B960B1B6997550010E1CD /* media_picker_camera_roll@3x.png in Resources */,
 				79CDC7091C0100030032AACF /* media_viewer_share.png in Resources */,
+				79CDC7221C011FBE0032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.xib in Resources */,
 				0785E90F1BA7325500076BFC /* web_kit_go_back@2x.png in Resources */,
 				0785E9111BA7325500076BFC /* web_kit_go_forward.png in Resources */,
 				07B7B8C41BD81CAE006C033B /* media_viewer_fast_forward@2x.png in Resources */,
@@ -3330,6 +3346,7 @@
 				790DE0931B53005A0029C004 /* BBTokenCompletionDefaultTableViewCell.m in Sources */,
 				07AC570A1BC6BC7800EC9056 /* NSParagraphStyle+BBKitExtensions.m in Sources */,
 				7922E89C1BD41CF200F85EDA /* BBMediaPickerAssetViewModel.m in Sources */,
+				79CDC71D1C011C4E0032AACF /* BBMediaViewerPDFThumbnailContainerView.m in Sources */,
 				79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */,
 				791996F11B6EB3C500FC674A /* BBThumbnailHTMLOperation.m in Sources */,
 				79CDC70E1C0104FA0032AACF /* BBMediaViewerPDFViewController.m in Sources */,
@@ -3362,6 +3379,7 @@
 				799C0C261B5876E300A3888A /* BBFormTableViewController.m in Sources */,
 				79EA80CB1B3F0CCD00D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
 				07AEC8471B6BE68500013470 /* BBValidationTextFieldErrorView.m in Sources */,
+				79CDC7201C011D320032AACF /* BBMediaViewerPDFThumbnailCollectionViewCell.m in Sources */,
 				79EA80CD1B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				07264CBA1BD819DE00DF4FDB /* BBMediaViewerImageScrollView.m in Sources */,
 				79EA80CF1B3F0CDB00D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
