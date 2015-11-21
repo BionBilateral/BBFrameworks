@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.4.28"
+  spec.version = "1.5.0"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -124,6 +124,19 @@ Pod::Spec.new do |spec|
     subspec.ios.private_header_files = "BBFrameworks/BBMediaPicker/Private/*.h"
     
     subspec.ios.frameworks = "AssetsLibrary"
+  end
+  
+  spec.subspec "BBMediaViewer" do |subspec|
+    subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
+    subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
+    
+    subspec.ios.dependency "BBFrameworks/BBKit"
+    subspec.ios.dependency "BBFrameworks/BBThumbnail"
+    
+    subspec.ios.source_files = "BBFrameworks/BBMediaViewer", "BBFrameworks/BBMediaViewer/Private"
+    subspec.osx.source_files = "BBFrameworks/BBMediaViewer/BBMediaViewer.h"
+    
+    subspec.ios.private_header_files = "BBFrameworks/BBMediaViewer/Private/*.h"
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
