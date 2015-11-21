@@ -22,7 +22,8 @@ typedef NS_ENUM(NSInteger, BBMediaViewerDetailViewModelType) {
     BBMediaViewerDetailViewModelTypeNone,
     BBMediaViewerDetailViewModelTypeImage,
     BBMediaViewerDetailViewModelTypeMovie,
-    BBMediaViewerDetailViewModelTypePlainText
+    BBMediaViewerDetailViewModelTypePlainText,
+    BBMediaViewerDetailViewModelTypePDF
 };
 
 extern float const BBMediaViewerDetailViewModelMovieFastForwardPlaybackRate;
@@ -50,6 +51,10 @@ extern float const BBMediaViewerDetailViewModelMoviePausePlaybackRate;
 @property (readonly,nonatomic) UIImage *placeholderImage;
 
 @property (readonly,copy,nonatomic) NSString *text;
+
+@property (readonly,assign,nonatomic) CGPDFDocumentRef PDFDocumentRef;
+@property (readonly,nonatomic) size_t numberOfPDFPages;
+- (CGPDFPageRef)PDFPageRefForPageNumber:(size_t)pageNumber;
 
 @property (readonly,strong,nonatomic) AVPlayer *player;
 @property (readonly,nonatomic) NSTimeInterval duration;

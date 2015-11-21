@@ -33,6 +33,8 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
 
 @property (readwrite,copy,nonatomic) NSString *text;
 
+@property (readwrite,assign,nonatomic) CGPDFDocumentRef PDFDocumentRef;
+
 @property (readwrite,strong,nonatomic) AVPlayer *player;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
@@ -46,6 +48,10 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
 
 @implementation BBMediaViewerDetailViewModel
 
+- (void)dealloc {
+    CGPDFDocumentRelease(_PDFDocumentRef);
+}
+
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media index:(NSInteger)index {
     if (!(self = [super init]))
         return nil;
@@ -55,7 +61,10 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
     [self setMedia:media];
     [self setIndex:index];
     
-    if (self.type == BBMediaViewerDetailViewModelTypeMovie) {
+    if (self.type == BBMediaViewerDetailViewModelTypePDF) {
+        [self setPDFDocumentRef:CGPDFDocumentCreateWithURL((__bridge CFURLRef)self.URL)];
+    }
+    else if (self.type == BBMediaViewerDetailViewModelTypeMovie) {
         @weakify(self);
         [self setPlayPauseCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(UIButton *input) {
             @strongify(self);
@@ -202,6 +211,16 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
     [self.player seekToTime:CMTimeMakeWithSeconds(timeInterval, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
 }
 
+- (CGPDFPageRef)PDFPageRefForPageNumber:(size_t)pageNumber; {
+    if (self.numberOfPDFPages == 0 ||
+        pageNumber > self.numberOfPDFPages) {
+        
+        return NULL;
+    }
+    
+    return CGPDFDocumentGetPage(self.PDFDocumentRef, pageNumber);
+}
+
 - (BBMediaViewerDetailViewModelType)type {
     NSString *UTI = self.UTI;
     
@@ -213,6 +232,9 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
         return BBMediaViewerDetailViewModelTypePlainText;
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
+        return BBMediaViewerDetailViewModelTypePDF;
     }
     return BBMediaViewerDetailViewModelTypeNone;
 }
@@ -257,6 +279,10 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
         _text = [NSString stringWithContentsOfURL:self.URL encoding:NSUTF8StringEncoding error:NULL];
     }
     return _text;
+}
+
+- (size_t)numberOfPDFPages {
+    return CGPDFDocumentGetNumberOfPages(self.PDFDocumentRef);
 }
 
 - (AVPlayer *)player {

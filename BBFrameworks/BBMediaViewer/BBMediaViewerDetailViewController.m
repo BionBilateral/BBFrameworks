@@ -19,6 +19,7 @@
 #import "BBMediaViewerPlaceholderViewController.h"
 #import "BBMediaViewerMovieViewController.h"
 #import "BBMediaViewerTextViewController.h"
+#import "BBMediaViewerPDFViewController.h"
 
 @interface BBMediaViewerDetailViewController ()
 @property (readwrite,strong,nonatomic) BBMediaViewerDetailViewModel *viewModel;
@@ -35,6 +36,8 @@
                 return [[BBMediaViewerMovieViewController alloc] initWithViewModel:viewModel];
             case BBMediaViewerDetailViewModelTypePlainText:
                 return [[BBMediaViewerTextViewController alloc] initWithViewModel:viewModel];
+            case BBMediaViewerDetailViewModelTypePDF:
+                return [[BBMediaViewerPDFViewController alloc] initWithViewModel:viewModel];
             case BBMediaViewerDetailViewModelTypeNone:
             default:
                 return [[BBMediaViewerPlaceholderViewController alloc] initWithViewModel:viewModel];
