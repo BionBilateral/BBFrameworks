@@ -256,6 +256,8 @@ float const BBMediaViewerDetailViewModelMoviePausePlaybackRate = 0.0;
             return self.URL;
         case BBMediaViewerDetailViewModelTypePlainText:
             return self.text;
+        case BBMediaViewerDetailViewModelTypePDF:
+            return self.URL;
         default:
             return nil;
     }
