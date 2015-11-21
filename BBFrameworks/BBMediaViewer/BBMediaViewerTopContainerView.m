@@ -71,8 +71,7 @@ static CGFloat const kMarginX = 16.0;
     [self addSubview:self.closeButton];
     
     [self setActionButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    [self.actionButton setTitleColor:self.renderColor forState:UIControlStateNormal];
-    [self.actionButton setTitle:@"Action" forState:UIControlStateNormal];
+    [self.actionButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_share"] BB_imageByRenderingWithColor:self.renderColor] forState:UIControlStateNormal];
     [self.actionButton setRac_command:self.viewModel.actionCommand];
     [self.actionButton sizeToFit];
     [self addSubview:self.actionButton];
