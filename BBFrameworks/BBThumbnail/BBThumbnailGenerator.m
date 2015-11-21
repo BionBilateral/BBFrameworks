@@ -124,6 +124,15 @@ static NSTimeInterval const kDefaultTime = 1.0;
     BBLog(@"%@ %@",cache.name,obj);
 }
 #pragma mark *** Public Methods ***
++ (instancetype)defaultGenerator; {
+    static BBThumbnailGenerator *kRetval;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kRetval = [[BBThumbnailGenerator alloc] init];
+    });
+    return kRetval;
+}
+
 - (void)clearFileCache; {
     NSError *outError;
     if ([[NSFileManager defaultManager] removeItemAtURL:self.fileCacheDirectoryURL error:&outError]) {
