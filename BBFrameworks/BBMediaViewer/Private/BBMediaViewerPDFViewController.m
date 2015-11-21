@@ -125,7 +125,7 @@
     [self _fadeOutPageIndicatorView];
 }
 - (void)_fadeOutPageIndicatorView; {
-    [UIView animateWithDuration:0.25 delay:1.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:0.25 delay:2.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         [self.pageIndicatorView setAlpha:0.0];
     } completion:nil];
 }
