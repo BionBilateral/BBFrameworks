@@ -130,6 +130,7 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
     
+    subspec.ios.dependency "BBFrameworks/BBBlocks"
     subspec.ios.dependency "BBFrameworks/BBKit"
     subspec.ios.dependency "BBFrameworks/BBThumbnail"
     
