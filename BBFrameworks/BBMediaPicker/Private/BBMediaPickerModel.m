@@ -33,6 +33,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
+- (void)_updateThemeDependentProperties;
 @end
 
 @implementation BBMediaPickerModel
@@ -53,9 +54,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self _updateTitle];
     [self _reloadAssetCollections];
-    
-    [self setDoneBarButtonItem:_theme.doneBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
-    [self setCancelBarButtonItem:_theme.cancelBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    [self _updateThemeDependentProperties];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
     
@@ -152,6 +151,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 - (void)setTheme:(BBMediaPickerTheme *)theme {
     _theme = theme ?: [BBMediaPickerTheme defaultTheme];
+    
+    [self _updateThemeDependentProperties];
 }
 
 - (void)setMediaTypes:(BBMediaPickerMediaTypes)mediaTypes {
@@ -305,6 +306,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (!self.selectedAssetCollectionModel) {
         [self setSelectedAssetCollectionModel:self.assetCollectionModels.firstObject];
     }
+}
+- (void)_updateThemeDependentProperties; {
+    [self setDoneBarButtonItem:_theme.doneBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
+    [self setCancelBarButtonItem:_theme.cancelBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
 }
 #pragma mark Actions
 - (IBAction)_doneBarButtonItemAction:(id)sender {
