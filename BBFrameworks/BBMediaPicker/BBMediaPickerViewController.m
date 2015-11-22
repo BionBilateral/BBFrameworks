@@ -78,8 +78,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     [self setAssetsViewController:[[BBMediaPickerAssetsViewController alloc] initWithModel:self.model]];
     [self addChildViewController:self.assetsViewController];
     [self.view addSubview:self.assetsViewController.view];
@@ -90,6 +88,8 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
+         [self.view setBackgroundColor:self.model.theme.assetBackgroundColor];
+         
          [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
          
          [self _updateTitleViewProperties];
@@ -102,16 +102,70 @@
          [self _updateTitleViewTitleAndSubtitle];
      }];
     
-    if (self.model.allowsMultipleSelection) {
+    // if both cancel bottom accessory control and done bottom accessory control are non-nil, ignore all bar button items
+    if (self.model.cancelBottomAccessoryControl &&
+        self.model.doneBottomAccessoryControl) {
+        
+        [self.view addSubview:self.model.cancelBottomAccessoryControl];
+        [self.view addSubview:self.model.doneBottomAccessoryControl];
+    }
+    // if done bottom accessory control is non-nil, move cancel bar button item to right hand side, ignore done bar button item
+    else if (self.model.doneBottomAccessoryControl) {
+        [self.view addSubview:self.model.doneBottomAccessoryControl];
+        
+        [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
+    }
+    // if cancel bottom accessory control is non-nil, keep done bar button item to right hand side, ignore cancel bar button item
+    else if (self.model.cancelBottomAccessoryControl) {
+        [self.view addSubview:self.model.cancelBottomAccessoryControl];
+        
+        [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
+    }
+    // if multiple selection is allowed, move cancel bar button item to left hand side, put done bar button item on right hand side
+    else if (self.model.allowsMultipleSelection) {
         [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
         [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
     }
+    // otherwise put cancel bar button item on right hand side
     else {
         [self.navigationItem setRightBarButtonItems:@[self.model.cancelBarButtonItem]];
     }
 }
 - (void)viewDidLayoutSubviews {
-    [self.assetsViewController.view setFrame:self.view.bounds];
+    // if both cancel bottom acceesory control and done bottom accessory control are non-nil stack them vertically, cancel on the bottom
+    if (self.model.cancelBottomAccessoryControl &&
+        self.model.doneBottomAccessoryControl) {
+        
+        CGFloat cancelHeight = [self.model.cancelBottomAccessoryControl sizeThatFits:CGSizeZero].height;
+        
+        [self.model.cancelBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - cancelHeight, CGRectGetWidth(self.view.bounds), cancelHeight)];
+        
+        CGFloat doneHeight = [self.model.doneBottomAccessoryControl sizeThatFits:CGSizeZero].height;
+        
+        [self.model.doneBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetMinY(self.model.cancelBottomAccessoryControl.frame) - doneHeight, CGRectGetWidth(self.view.bounds), doneHeight)];
+        
+        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.model.doneBottomAccessoryControl.frame))];
+    }
+    // if cancel bottom accessory control is non-nil, place at bottom of view
+    else if (self.model.cancelBottomAccessoryControl) {
+        CGFloat cancelHeight = [self.model.cancelBottomAccessoryControl sizeThatFits:CGSizeZero].height;
+        
+        [self.model.cancelBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - cancelHeight, CGRectGetWidth(self.view.bounds), cancelHeight)];
+        
+        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.model.cancelBottomAccessoryControl.frame))];
+    }
+    // if done bottom accessory control is non-nil, place at bottom of view
+    else if (self.model.doneBottomAccessoryControl) {
+        CGFloat doneHeight = [self.model.doneBottomAccessoryControl sizeThatFits:CGSizeZero].height;
+        
+        [self.model.doneBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - doneHeight, CGRectGetWidth(self.view.bounds), doneHeight)];
+        
+        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.model.doneBottomAccessoryControl.frame))];
+    }
+    // otherwise assets vc takes up entire view
+    else {
+        [self.assetsViewController.view setFrame:self.view.bounds];
+    }
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) Class titleViewClass;
 @property (strong,nonatomic,nullable) UIBarButtonItem *cancelBarButtonItem;
 @property (strong,nonatomic,nullable) UIBarButtonItem *doneBarButtonItem;
+@property (strong,nonatomic,nullable) Class cancelBottomAccessoryViewClass;
+@property (strong,nonatomic,nullable) Class doneBottomAccessoryViewClass;
 
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionBackgroundColor;
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellBackgroundColor;

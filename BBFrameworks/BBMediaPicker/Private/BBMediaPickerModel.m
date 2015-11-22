@@ -31,6 +31,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (readwrite,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
 
+@property (readwrite,strong,nonatomic,nullable) UIControl *cancelBottomAccessoryControl;
+@property (readwrite,strong,nonatomic,nullable) UIControl *doneBottomAccessoryControl;
+
 - (void)_updateTitle;
 - (void)_reloadAssetCollections;
 - (void)_updateThemeDependentProperties;
@@ -149,6 +152,27 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }
 }
 
+- (void)setCancelBottomAccessoryControl:(UIControl *)cancelBottomAccessoryControl {
+    [_cancelBottomAccessoryControl removeFromSuperview];
+    
+    _cancelBottomAccessoryControl = cancelBottomAccessoryControl;
+    
+    if (_cancelBottomAccessoryControl) {
+        [_cancelBottomAccessoryControl addTarget:self action:@selector(_cancelBarButtonItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+- (void)setDoneBottomAccessoryControl:(UIControl *)doneBottomAccessoryControl {
+    [_doneBottomAccessoryControl removeFromSuperview];
+    
+    _doneBottomAccessoryControl = doneBottomAccessoryControl;
+    
+    if (_doneBottomAccessoryControl) {
+        [_doneBottomAccessoryControl setEnabled:self.selectedAssetIdentifiers.count > 0];
+        
+        [_doneBottomAccessoryControl addTarget:self action:@selector(_doneBarButtonItemAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
 - (void)setTheme:(BBMediaPickerTheme *)theme {
     _theme = theme ?: [BBMediaPickerTheme defaultTheme];
     
@@ -203,7 +227,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     _selectedAssetIdentifiers = selectedAssetIdentifiers;
     
-    [self.doneBarButtonItem setEnabled:_selectedAssetIdentifiers.count > 0];
+    BOOL enabled = _selectedAssetIdentifiers.count > 0;
+    
+    [self.doneBarButtonItem setEnabled:enabled];
+    [self.doneBottomAccessoryControl setEnabled:enabled];
     
     if (!self.allowsMultipleSelection &&
         _selectedAssetIdentifiers.count > 0) {
@@ -310,6 +337,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 - (void)_updateThemeDependentProperties; {
     [self setDoneBarButtonItem:_theme.doneBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:_theme.cancelBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
+    [self setCancelBottomAccessoryControl:_theme.cancelBottomAccessoryViewClass ? [[_theme.cancelBottomAccessoryViewClass alloc] initWithFrame:CGRectZero] : nil];
+    [self setDoneBottomAccessoryControl:_theme.doneBottomAccessoryViewClass ? [[_theme.doneBottomAccessoryViewClass alloc] initWithFrame:CGRectZero] : nil];
 }
 #pragma mark Actions
 - (IBAction)_doneBarButtonItemAction:(id)sender {
