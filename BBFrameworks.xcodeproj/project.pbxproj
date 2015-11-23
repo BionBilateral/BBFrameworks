@@ -606,6 +606,7 @@
 		79ECB9251C02AE8D00BA132F /* media_viewer_slow_reverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79344C481C0132A800BBA726 /* media_viewer_slow_reverse@2x.png */; };
 		79ECB9261C02AE8D00BA132F /* media_viewer_slow_reverse@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79344C491C0132A800BBA726 /* media_viewer_slow_reverse@3x.png */; };
 		79EF41231BCC6E4D0018D711 /* BBProgressNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EF41221BCC6E4D0018D711 /* BBProgressNavigationBar.m */; };
+		79F3EEF11C03A01E00A4F0E1 /* BBFrameworksMacrosPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */; };
 		79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941511B435AA300B385F0 /* AddressBookViewController.m */; };
 		79F941571B435D3400B385F0 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F941561B435D3400B385F0 /* AddressBookViewController.xib */; };
@@ -1192,7 +1193,7 @@
 		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
-		796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BBFrameworksMacrosPrivate.h; path = Private/BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
+		796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
 		7989C9CB1B1ADE65009B1CE9 /* BBFrameworksOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBFrameworksOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7989C9CE1B1ADE65009B1CE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7989C9CF1B1ADE65009B1CE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2764,6 +2765,7 @@
 				79EA81461B3F21F100D50B6B /* BBFrameworks.h in Headers */,
 				79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */,
 				799F9B9D1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.h in Headers */,
+				79F3EEF11C03A01E00A4F0E1 /* BBFrameworksMacrosPrivate.h in Headers */,
 				799F9BA11B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.h in Headers */,
 				791997051B6EB3C500FC674A /* BBThumbnailVimeoOperation.h in Headers */,
 				791996E61B6EB3C500FC674A /* BBThumbnailAsyncOperation.h in Headers */,
