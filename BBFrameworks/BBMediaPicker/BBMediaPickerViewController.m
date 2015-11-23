@@ -144,7 +144,7 @@
         
         [self.model.doneBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetMinY(self.model.cancelBottomAccessoryControl.frame) - doneHeight, CGRectGetWidth(self.view.bounds), doneHeight)];
         
-        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.model.doneBottomAccessoryControl.frame))];
+        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetMinY(self.model.doneBottomAccessoryControl.frame))];
     }
     // if cancel bottom accessory control is non-nil, place at bottom of view
     else if (self.model.cancelBottomAccessoryControl) {
@@ -152,7 +152,7 @@
         
         [self.model.cancelBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - cancelHeight, CGRectGetWidth(self.view.bounds), cancelHeight)];
         
-        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.model.cancelBottomAccessoryControl.frame))];
+        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetMinY(self.model.cancelBottomAccessoryControl.frame))];
     }
     // if done bottom accessory control is non-nil, place at bottom of view
     else if (self.model.doneBottomAccessoryControl) {
@@ -160,7 +160,7 @@
         
         [self.model.doneBottomAccessoryControl setFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds) - doneHeight, CGRectGetWidth(self.view.bounds), doneHeight)];
         
-        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMinY(self.model.doneBottomAccessoryControl.frame))];
+        [self.assetsViewController.view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetMinY(self.model.doneBottomAccessoryControl.frame))];
     }
     // otherwise assets vc takes up entire view
     else {
