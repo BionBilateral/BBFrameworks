@@ -117,6 +117,8 @@
     [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
+    BBLog();
+    
     [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark *** Private Methods ***
