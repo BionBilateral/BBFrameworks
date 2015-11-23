@@ -76,7 +76,7 @@
     return [self.fetchResult indexOfObject:assetModel.asset];
 }
 
-- (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage *thumbnailImage))completion; {
+- (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage * _Nullable  thumbnailImage))completion; {
     NSParameterAssert(completion);
     
     if (self.fetchResult.count <= thumbnailIndex) {

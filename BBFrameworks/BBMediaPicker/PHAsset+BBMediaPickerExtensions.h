@@ -16,12 +16,16 @@
 #import <Photos/PHAsset.h>
 #import <AVFoundation/AVAsset.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PHAsset (BBMediaPickerExtensions)
 
-- (NSData *)BB_imageData;
-- (void)BB_requestImageDataWithCompletion:(void(^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation))completion;
+- (nullable NSData *)BB_imageData;
+- (void)BB_requestImageDataWithCompletion:(void(^)(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation))completion;
 
-- (AVAsset *)BB_videoAsset;
-- (void)BB_requestVideoAssetWithCompletion:(void(^)(AVAsset *videoAsset))completion;
+- (nullable AVAsset *)BB_videoAsset;
+- (void)BB_requestVideoAssetWithCompletion:(void(^)(AVAsset * _Nullable videoAsset))completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

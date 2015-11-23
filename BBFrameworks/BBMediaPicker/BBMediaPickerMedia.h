@@ -16,7 +16,11 @@
 #import <Foundation/Foundation.h>
 #import <Photos/PHAsset.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BBMediaPickerMedia <NSObject>
 @required
 - (PHAsset *)mediaAsset;
 @end
+
+NS_ASSUME_NONNULL_END

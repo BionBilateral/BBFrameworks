@@ -23,7 +23,7 @@
 
 @interface BBMediaPickerAssetModel ()
 @property (readwrite,strong,nonatomic) PHAsset *asset;
-@property (readwrite,weak,nonatomic) BBMediaPickerAssetCollectionModel *assetCollectionModel;
+@property (readwrite,weak,nonatomic,nullable) BBMediaPickerAssetCollectionModel *assetCollectionModel;
 
 @property (assign,nonatomic) PHImageRequestID imageRequestID;
 @end
@@ -34,7 +34,7 @@
     return self.asset;
 }
 
-- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(BBMediaPickerAssetCollectionModel *)assetCollectionModel; {
+- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel; {
     if (!(self = [super init]))
         return nil;
     
@@ -44,7 +44,7 @@
     return self;
 }
 
-- (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion; {
+- (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage * _Nullable thumbnailImage))completion; {
     NSParameterAssert(completion);
     
     [self cancelAllThumbnailRequests];
@@ -80,7 +80,7 @@
     }
 }
 - (NSString *)formattedDuration {
-    if (self.asset.mediaType == PHAssetMediaTypeVideo) {
+    if (self.mediaType == BBMediaPickerAssetMediaTypeVideo) {
         NSTimeInterval duration = self.asset.duration;
         NSDate *date = [NSDate dateWithTimeIntervalSinceNow:duration];
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date] toDate:[NSDate dateWithTimeIntervalSinceNow:duration] options:0];

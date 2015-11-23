@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaPickerMedia.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerViewController;
 
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
@@ -29,3 +31,5 @@
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia> > *)media;
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end
+
+NS_ASSUME_NONNULL_END

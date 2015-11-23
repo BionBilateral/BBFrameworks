@@ -16,6 +16,8 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetsViewController : UIViewController
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model;
@@ -23,3 +25,5 @@
 - (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
 
 @end
+
+NS_ASSUME_NONNULL_END

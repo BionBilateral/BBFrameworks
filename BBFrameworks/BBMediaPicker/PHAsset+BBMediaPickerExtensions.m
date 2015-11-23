@@ -19,7 +19,7 @@
 
 @implementation PHAsset (BBMediaPickerExtensions)
 
-- (NSData *)BB_imageData; {
+- (nullable NSData *)BB_imageData; {
     __block NSData *retval = nil;
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
@@ -32,7 +32,7 @@
     
     return retval;
 }
-- (void)BB_requestImageDataWithCompletion:(void(^)(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation))completion; {
+- (void)BB_requestImageDataWithCompletion:(void(^)(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation))completion; {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     
     [options setDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
@@ -43,7 +43,7 @@
     }];
 }
 
-- (AVAsset *)BB_videoAsset; {
+- (nullable AVAsset *)BB_videoAsset; {
     __block AVAsset *retval = nil;
     
     PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
@@ -62,7 +62,7 @@
     
     return retval;
 }
-- (void)BB_requestVideoAssetWithCompletion:(void(^)(AVAsset *videoAsset))completion; {
+- (void)BB_requestVideoAssetWithCompletion:(void(^)(AVAsset * _Nullable videoAsset))completion; {
     PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
     
     [options setDeliveryMode:PHVideoRequestOptionsDeliveryModeHighQualityFormat];

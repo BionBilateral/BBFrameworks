@@ -18,13 +18,15 @@
 #import "BBMediaPickerMedia.h"
 #import "BBMediaPickerDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerAssetCollectionModel;
 
 @interface BBMediaPickerAssetModel : NSObject <BBMediaPickerMedia>
 
 @property (readonly,strong,nonatomic) PHAsset *asset;
 
-@property (readonly,weak,nonatomic) BBMediaPickerAssetCollectionModel *assetCollectionModel;
+@property (readonly,weak,nonatomic,nullable) BBMediaPickerAssetCollectionModel *assetCollectionModel;
 
 @property (readonly,nonatomic) NSString *identifier;
 @property (readonly,nonatomic) BBMediaPickerAssetMediaType mediaType;
@@ -33,9 +35,11 @@
 @property (readonly,nonatomic) NSString *formattedDuration;
 @property (readonly,nonatomic) NSUInteger selectedIndex;
 
-- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(BBMediaPickerAssetCollectionModel *)assetCollectionModel;
+- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel;
 
-- (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage *thumbnailImage))completion;
+- (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage * _Nullable thumbnailImage))completion;
 - (void)cancelAllThumbnailRequests;
 
 @end
+
+NS_ASSUME_NONNULL_END

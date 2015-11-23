@@ -16,10 +16,14 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerAssetCollectionModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetCollectionTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) BBMediaPickerAssetCollectionModel *model;
+@property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *model;
 
 + (CGFloat)rowHeight;
 
 @end
+
+NS_ASSUME_NONNULL_END

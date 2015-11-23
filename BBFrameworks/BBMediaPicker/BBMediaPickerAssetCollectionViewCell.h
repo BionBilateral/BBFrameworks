@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerAssetCollectionViewCell : UICollectionViewCell
 
-@property (strong,nonatomic) BBMediaPickerAssetModel *model;
+@property (strong,nonatomic,nullable) BBMediaPickerAssetModel *model;
 
 - (void)reloadSelectedOverlayView;
 

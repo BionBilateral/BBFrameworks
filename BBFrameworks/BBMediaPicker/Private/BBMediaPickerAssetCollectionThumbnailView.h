@@ -15,12 +15,16 @@
 
 #import "BBView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerTheme;
 
 @interface BBMediaPickerAssetCollectionThumbnailView : BBView
 
 @property (readonly,strong,nonatomic) UIImageView *thumbnailImageView;
 
-@property (strong,nonatomic) BBMediaPickerTheme *theme;
+@property (strong,nonatomic,nullable) BBMediaPickerTheme *theme;
 
 @end
+
+NS_ASSUME_NONNULL_END

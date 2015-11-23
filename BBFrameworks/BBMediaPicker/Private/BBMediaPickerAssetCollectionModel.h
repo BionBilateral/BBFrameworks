@@ -18,6 +18,8 @@
 #import <Photos/PHFetchResult.h>
 #import "BBMediaPickerDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerModel,BBMediaPickerAssetModel;
 
 @interface BBMediaPickerAssetCollectionModel : NSObject
@@ -37,7 +39,7 @@
 
 - (NSUInteger)indexOfAssetModel:(BBMediaPickerAssetModel *)assetModel;
 
-- (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage *thumbnailImage))completion;
+- (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage * _Nullable thumbnailImage))completion;
 - (void)cancelAllThumbnailRequests;
 
 - (void)reloadFetchResult;
@@ -45,3 +47,5 @@
 - (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection model:(BBMediaPickerModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

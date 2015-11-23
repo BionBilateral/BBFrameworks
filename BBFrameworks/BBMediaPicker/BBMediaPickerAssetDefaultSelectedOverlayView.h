@@ -16,6 +16,10 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerAssetSelectedOverlayView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetDefaultSelectedOverlayView : UIView <BBMediaPickerAssetSelectedOverlayView>
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaPickerMedia.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerModel;
 
 @protocol BBMediaPickerModelDelegate <NSObject>
@@ -26,3 +28,5 @@
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didSelectMedia:(id<BBMediaPickerMedia>)media;
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didDeselectMedia:(id<BBMediaPickerMedia>)media;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -16,8 +16,12 @@
 #import <UIKit/UIKit.h>
 #import "BBMediaPickerModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBMediaPickerAssetCollectionsViewController : UIViewController
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

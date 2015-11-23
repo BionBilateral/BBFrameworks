@@ -15,12 +15,16 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaPickerTheme;
 
 @interface BBMediaPickerAssetCollectionPopoverView : UIView
 
-@property (strong,nonatomic) BBMediaPickerTheme *theme;
+@property (strong,nonatomic,nullable) BBMediaPickerTheme *theme;
 
-@property (strong,nonatomic) UIView *contentView;
+@property (strong,nonatomic,nullable) UIView *contentView;
 
 @end
+
+NS_ASSUME_NONNULL_END

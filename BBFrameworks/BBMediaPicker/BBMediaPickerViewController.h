@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerViewController : UIViewController
 
-@property (weak,nonatomic) id<BBMediaPickerViewControllerDelegate> delegate;
+@property (weak,nonatomic,nullable) id<BBMediaPickerViewControllerDelegate> delegate;
 
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
 @property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
-@property (copy,nonatomic) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
+@property (copy,nonatomic,nullable) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
