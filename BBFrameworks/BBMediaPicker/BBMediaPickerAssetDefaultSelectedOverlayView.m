@@ -14,14 +14,15 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
-#import "BBBadgeView.h"
 #import "BBMediaPickerTheme.h"
 #import "BBFrameworksMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+static CGFloat const kWidthAndHeight = 2.0;
+
 @interface BBMediaPickerAssetDefaultSelectedOverlayView ()
-@property (strong,nonatomic) BBBadgeView *badgeView;
+@property (strong,nonatomic) UILabel *badgeLabel;
 @end
 
 @implementation BBMediaPickerAssetDefaultSelectedOverlayView
@@ -30,44 +31,64 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    UIColor *backgroundColor = [UIColor blueColor];
-    UIColor *foregroundColor = [UIColor whiteColor];
-    
-    [self.layer setBorderColor:backgroundColor.CGColor];
-    [self.layer setBorderWidth:2.0];
-    
-    [self setBadgeView:[[BBBadgeView alloc] initWithFrame:CGRectZero]];
-    [self.badgeView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.badgeView setBadgeFont:[UIFont boldSystemFontOfSize:12.0]];
-    [self.badgeView setBadgeBackgroundColor:backgroundColor];
-    [self.badgeView setBadgeForegroundColor:foregroundColor];
-    [self.badgeView setBadgeHighlightedBackgroundColor:backgroundColor];
-    [self.badgeView setBadgeHighlightedForegroundColor:foregroundColor];
-    [self addSubview:self.badgeView];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-margin-|" options:0 metrics:@{@"margin": @6.0} views:@{@"view": self.badgeView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[view]" options:0 metrics:@{@"margin": @6.0} views:@{@"view": self.badgeView}]];
+    [self setBadgeLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.badgeLabel setFont:[UIFont boldSystemFontOfSize:12.0]];
+    [self.badgeLabel setTextColor:[UIColor whiteColor]];
+    [self addSubview:self.badgeLabel];
     
     BBWeakify(self);
     [[RACObserve(self, theme)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
-         BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
-         
-         [self.layer setBorderColor:theme.assetSelectedOverlayViewTintColor.CGColor];
-         [self.badgeView setBadgeBackgroundColor:theme.assetSelectedOverlayViewTintColor];
-         [self.badgeView setBadgeHighlightedBackgroundColor:theme.assetSelectedOverlayViewTintColor];
+         [self setNeedsDisplay];
      }];
     
     return self;
 }
 
+- (BOOL)isOpaque {
+    return NO;
+}
+
+- (void)drawRect:(CGRect)rect {
+    BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
+    
+    [[theme assetSelectedOverlayViewTintColor] setFill];
+    
+    UIRectFill(CGRectMake(0, 0, CGRectGetWidth(self.bounds), kWidthAndHeight));
+    UIRectFill(CGRectMake(CGRectGetWidth(self.bounds) - kWidthAndHeight, 0, kWidthAndHeight, CGRectGetHeight(self.bounds)));
+    UIRectFill(CGRectMake(0, CGRectGetHeight(self.bounds) - kWidthAndHeight, CGRectGetWidth(self.bounds), kWidthAndHeight));
+    UIRectFill(CGRectMake(0, 0, kWidthAndHeight, CGRectGetHeight(self.bounds)));
+    
+    CGSize badgeLabelSize = [self.badgeLabel sizeThatFits:CGSizeZero];
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 3), 0)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), 0)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), (badgeLabelSize.height * 2))];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 3), 0)];
+    [path fill];
+}
+
+- (void)layoutSubviews {
+    CGSize badgeLabelSize = [self.badgeLabel sizeThatFits:CGSizeZero];
+    
+    [self.badgeLabel setFrame:CGRectMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight, badgeLabelSize.width, badgeLabelSize.height)];
+}
+
 @synthesize selectedIndex=_selectedIndex;
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    if (_selectedIndex == selectedIndex) {
+        return;
+    }
+    
     _selectedIndex = selectedIndex;
     
-    [self.badgeView setBadge:selectedIndex == NSNotFound ? nil : @(selectedIndex + 1).stringValue];
+    [self.badgeLabel setText:[NSNumberFormatter localizedStringFromNumber:@(_selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle]];
+    
+    [self setNeedsDisplay];
+    [self setNeedsLayout];
 }
 @synthesize theme=_theme;
 
