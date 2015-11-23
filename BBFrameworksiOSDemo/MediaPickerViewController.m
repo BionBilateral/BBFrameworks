@@ -22,6 +22,30 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface MediaPickerDoneButton : UIButton
+
+@end
+
+@implementation MediaPickerDoneButton
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setBackgroundColor:[UIColor blackColor]];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+    [self setTitle:@"Next" forState:UIControlStateNormal];
+    
+    return self;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    return CGSizeMake(UIViewNoIntrinsicMetric, 44.0);
+}
+
+@end
+
 @interface MediaPickerNavigationController : UINavigationController
 
 @end
@@ -48,6 +72,7 @@
     if (self == [MediaPickerViewController class]) {
         [[BBMediaPickerTheme defaultTheme] setTitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+        [[BBMediaPickerTheme defaultTheme] setDoneBottomAccessoryViewClass:[MediaPickerDoneButton class]];
         
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
