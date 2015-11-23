@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
 
 @property (readonly,copy,nonatomic) NSString *title;
-@property (readonly,nonatomic) NSString *subtitle;
+@property (readonly,copy,nonatomic) NSString *subtitle;
 
 @property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;

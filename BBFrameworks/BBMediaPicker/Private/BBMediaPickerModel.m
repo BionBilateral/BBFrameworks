@@ -27,6 +27,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 @interface BBMediaPickerModel () <PHPhotoLibraryChangeObserver>
 @property (readwrite,copy,nonatomic) NSString *title;
+@property (readwrite,copy,nonatomic) NSString *subtitle;
 
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (readwrite,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
@@ -35,6 +36,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @property (readwrite,strong,nonatomic,nullable) UIControl *doneBottomAccessoryControl;
 
 - (void)_updateTitle;
+- (void)_updateSubtitle;
 - (void)_reloadAssetCollections;
 - (void)_updateThemeDependentProperties;
 @end
@@ -56,6 +58,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary;
     
     [self _updateTitle];
+    [self _updateSubtitle];
     [self _reloadAssetCollections];
     [self _updateThemeDependentProperties];
     
@@ -200,15 +203,12 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [self _reloadAssetCollections];
 }
 
-- (NSString *)subtitle {
-    return @"Tap to change album ▼";
-}
-
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
     _selectedAssetCollectionModel = selectedAssetCollectionModel;
     
     [self setSelectedAssetIdentifiers:nil];
     [self _updateTitle];
+    [self _updateSubtitle];
 }
 - (void)setSelectedAssetIdentifiers:(NSOrderedSet<NSString *> *)selectedAssetIdentifiers {
     // deselect everything and we currently have a selection, call did deselect for each asset
@@ -276,6 +276,14 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         default:
             break;
     }
+}
+- (void)_updateSubtitle; {
+    if (self.selectedAssetCollectionModel) {
+        [self setSubtitle:@"Tap to change album ▼"];
+        return;
+    }
+    
+    [self setSubtitle:@""];
 }
 - (void)_reloadAssetCollections {
     if ([self.class authorizationStatus] != BBMediaPickerAuthorizationStatusAuthorized) {
@@ -354,6 +362,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 #pragma mark Notifications
 - (void)_authorizationStatusDidChange:(NSNotification *)note {
     [self _updateTitle];
+    [self _updateSubtitle];
     [self _reloadAssetCollections];
 }
 
