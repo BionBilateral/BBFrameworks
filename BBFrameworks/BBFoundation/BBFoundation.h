@@ -30,6 +30,7 @@
 #import "NSBundle+BBFoundationExtensions.h"
 #import "NSURL+BBFoundationExtensions.h"
 #import "NSError+BBFoundationExtensions.h"
+#import "NSObject+BBFoundationExtensions.h"
 
 #import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 
