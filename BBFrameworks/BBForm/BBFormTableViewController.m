@@ -37,6 +37,8 @@
 @property (strong,nonatomic) Class<BBFormFieldTableViewFooterView> tableViewFooterClass;
 @property (strong,nonatomic) NSMutableDictionary *formFieldTypesToCellClasses;
 
+- (void)_BBFormTableViewControllerInit;
+
 - (UITableViewHeaderFooterView<BBFormFieldTableViewHeaderView> *)_tableViewHeaderViewForFormField:(BBFormField *)formField;
 - (UITableViewHeaderFooterView<BBFormFieldTableViewFooterView> *)_tableViewFooterViewForFormField:(BBFormField *)formField;
 @end
@@ -51,7 +53,15 @@
     if (!(self = [super initWithStyle:UITableViewStyleGrouped]))
         return nil;
     
-    _formFieldTypesToCellClasses = [[NSMutableDictionary alloc] init];
+    [self _BBFormTableViewControllerInit];
+    
+    return self;
+}
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    if (!(self = [super initWithStyle:style]))
+        return nil;
+    
+    [self _BBFormTableViewControllerInit];
     
     return self;
 }
@@ -261,6 +271,10 @@
     }
 }
 #pragma mark *** Private Methods ***
+- (void)_BBFormTableViewControllerInit; {
+    _formFieldTypesToCellClasses = [[NSMutableDictionary alloc] init];
+}
+
 - (UITableViewHeaderFooterView<BBFormFieldTableViewHeaderView> *)_tableViewHeaderViewForFormField:(BBFormField *)formField; {
     Class viewClass = [self tableViewHeaderClassForFormField:formField];
     
