@@ -22,7 +22,7 @@
 static CGFloat const kWidthAndHeight = 2.0;
 
 @interface BBMediaPickerAssetDefaultSelectedOverlayView ()
-@property (strong,nonatomic) UILabel *badgeLabel;
+
 @end
 
 @implementation BBMediaPickerAssetDefaultSelectedOverlayView
@@ -30,11 +30,6 @@ static CGFloat const kWidthAndHeight = 2.0;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
-    
-    [self setBadgeLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
-    [self.badgeLabel setFont:[UIFont boldSystemFontOfSize:12.0]];
-    [self.badgeLabel setTextColor:[UIColor whiteColor]];
-    [self addSubview:self.badgeLabel];
     
     BBWeakify(self);
     [[RACObserve(self, theme)
@@ -52,6 +47,10 @@ static CGFloat const kWidthAndHeight = 2.0;
 }
 
 - (void)drawRect:(CGRect)rect {
+    if (self.selectedIndex == NSNotFound) {
+        return;
+    }
+    
     BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
     
     [[theme assetSelectedOverlayViewTintColor] setFill];
@@ -61,7 +60,8 @@ static CGFloat const kWidthAndHeight = 2.0;
     UIRectFill(CGRectMake(0, CGRectGetHeight(self.bounds) - kWidthAndHeight, CGRectGetWidth(self.bounds), kWidthAndHeight));
     UIRectFill(CGRectMake(0, 0, kWidthAndHeight, CGRectGetHeight(self.bounds)));
     
-    CGSize badgeLabelSize = [self.badgeLabel sizeThatFits:CGSizeZero];
+    NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    CGSize badgeLabelSize = [badge size];
     UIBezierPath *path = [UIBezierPath bezierPath];
     
     [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 3), 0)];
@@ -69,12 +69,8 @@ static CGFloat const kWidthAndHeight = 2.0;
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), (badgeLabelSize.height * 2))];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 3), 0)];
     [path fill];
-}
-
-- (void)layoutSubviews {
-    CGSize badgeLabelSize = [self.badgeLabel sizeThatFits:CGSizeZero];
     
-    [self.badgeLabel setFrame:CGRectMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight, badgeLabelSize.width, badgeLabelSize.height)];
+    [badge drawAtPoint:CGPointMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight)];
 }
 
 @synthesize selectedIndex=_selectedIndex;
@@ -85,10 +81,7 @@ static CGFloat const kWidthAndHeight = 2.0;
     
     _selectedIndex = selectedIndex;
     
-    [self.badgeLabel setText:[NSNumberFormatter localizedStringFromNumber:@(_selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle]];
-    
     [self setNeedsDisplay];
-    [self setNeedsLayout];
 }
 @synthesize theme=_theme;
 
