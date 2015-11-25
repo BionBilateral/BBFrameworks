@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new ordered set
  @exception NSException Thrown if orderedSet is nil
  */
-- (NSOrderedSet *)BB_zip:(NSOrderedSet *)orderedSet;
+- (NSOrderedSet<NSOrderedSet *> *)BB_zip:(NSOrderedSet *)orderedSet;
 /**
  Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
  

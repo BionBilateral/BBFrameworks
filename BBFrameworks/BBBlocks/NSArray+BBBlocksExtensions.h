@@ -155,7 +155,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new array
  @exception NSException Thrown if array is nil
  */
-- (NSArray *)BB_zip:(NSArray *)array;
+- (NSArray<NSArray *> *)BB_zip:(NSArray *)array;
 /**
  Returns the sum of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
  
