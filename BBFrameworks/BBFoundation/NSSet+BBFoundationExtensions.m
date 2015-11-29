@@ -17,4 +17,11 @@
 
 @implementation NSSet (BBFoundationExtensions)
 
+- (NSArray *)BB_array; {
+    return self.allObjects;
+}
+- (NSMutableArray *)BB_mutableArray; {
+    return [self.allObjects mutableCopy];
+}
+
 @end

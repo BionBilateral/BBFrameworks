@@ -18,16 +18,16 @@
 
 @implementation NSDictionary (BBFoundationExtensions)
 
-- (NSArray<KeyType> *)BB_keyArray; {
+- (NSArray *)BB_keyArray; {
     return self.allKeys;
 }
-- (NSArray<ObjectType> *)BB_valueArray; {
+- (NSArray *)BB_valueArray; {
     return self.allValues;
 }
-- (NSSet<KeyType> *)BB_keySet; {
+- (NSSet *)BB_keySet; {
     return [self.allKeys BB_set];
 }
-- (NSSet<ObjectType> *)BB_valueSet; {
+- (NSSet *)BB_valueSet; {
     return [self.allValues BB_set];
 }
 
