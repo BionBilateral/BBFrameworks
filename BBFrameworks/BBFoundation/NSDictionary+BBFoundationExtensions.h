@@ -1,9 +1,9 @@
 //
-//  NSArray+BBFoundationExtensions.h
+//  NSDictionary+BBFoundationExtensions.h
 //  BBFrameworks
 //
-//  Created by William Towe on 5/15/15.
-//  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
+//  Created by William Towe on 11/28/15.
+//  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -18,50 +18,34 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Category on NSArray adding various convenience methods.
+ Category on NSDictionary adding various convenience methods.
  */
-@interface NSArray<ObjectType> (BBFoundationExtensions)
+@interface NSDictionary<KeyType, ObjectType> (BBFoundationExtensions)
 
 /**
- Creates and returns an NSArray with the receiver's objects in reverse order.
+ Returns an array containing all the keys in the receiver.
  
- @return The reversed array
+ @return The array containing keys
  */
-- (NSArray<ObjectType> *)BB_reversedArray;
-
+- (NSArray<KeyType> *)BB_keyArray;
 /**
- Creates and returns an array by appending the objects from array onto the receiver.
+ Returns an array containing all the values in the receiver.
  
- @return The appended array
+ @return The array containing values
  */
-- (NSArray *)BB_append:(NSArray *)array;
-
+- (NSArray<ObjectType> *)BB_valueArray;
 /**
- Creates and returns an NSArray with the receiver's objects.
+ Returns a set containing all the keys in the receiver.
  
- @return The NSSet created from the receiver
+ @return The set containing keys
  */
-- (NSSet<ObjectType> *)BB_set;
+- (NSSet<KeyType> *)BB_keySet;
 /**
- Creates and returns an NSMutableSet with the receiver's objects.
+ Returns a set containing all the values in the receiver.
  
- @return The NSMutableSet created from the receiver
+ @return The set containing values
  */
-- (NSMutableSet<ObjectType> *)BB_mutableSet;
-
-/**
- Creates and returns a shuffled copy of the receiver.
- 
- @return The shuffled NSArray
- */
-- (NSArray<ObjectType> *)BB_shuffledArray;
-
-/**
- Returns the object at a random index in the receiver.
- 
- @return The random object
- */
-- (ObjectType)BB_objectAtRandomIndex;
+- (NSSet<ObjectType> *)BB_valueSet;
 
 @end
 

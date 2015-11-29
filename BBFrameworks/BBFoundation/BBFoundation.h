@@ -31,6 +31,8 @@
 #import "NSURL+BBFoundationExtensions.h"
 #import "NSError+BBFoundationExtensions.h"
 #import "NSObject+BBFoundationExtensions.h"
+#import "NSSet+BBFoundationExtensions.h"
+#import "NSDictionary+BBFoundationExtensions.h"
 
 #import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 

@@ -1,9 +1,9 @@
 //
-//  NSArray+BBFoundationExtensions.h
+//  NSSet+BBFoundationExtensions.h
 //  BBFrameworks
 //
-//  Created by William Towe on 5/15/15.
-//  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
+//  Created by William Towe on 11/28/15.
+//  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -18,50 +18,22 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Category on NSArray adding various convenience methods.
+ Category on NSSet adding various convenience methods.
  */
-@interface NSArray<ObjectType> (BBFoundationExtensions)
+@interface NSSet<ObjectType> (BBFoundationExtensions)
 
 /**
- Creates and returns an NSArray with the receiver's objects in reverse order.
+ Returns an array containing the receiver's objects.
  
- @return The reversed array
+ @return The array
  */
-- (NSArray<ObjectType> *)BB_reversedArray;
-
+- (NSArray<ObjectType> *)BB_array;
 /**
- Creates and returns an array by appending the objects from array onto the receiver.
+ Returns a mutable array containing the receiver's objects.
  
- @return The appended array
+ @return The mutable array
  */
-- (NSArray *)BB_append:(NSArray *)array;
-
-/**
- Creates and returns an NSArray with the receiver's objects.
- 
- @return The NSSet created from the receiver
- */
-- (NSSet<ObjectType> *)BB_set;
-/**
- Creates and returns an NSMutableSet with the receiver's objects.
- 
- @return The NSMutableSet created from the receiver
- */
-- (NSMutableSet<ObjectType> *)BB_mutableSet;
-
-/**
- Creates and returns a shuffled copy of the receiver.
- 
- @return The shuffled NSArray
- */
-- (NSArray<ObjectType> *)BB_shuffledArray;
-
-/**
- Returns the object at a random index in the receiver.
- 
- @return The random object
- */
-- (ObjectType)BB_objectAtRandomIndex;
+- (NSMutableArray<ObjectType> *)BB_mutableArray;
 
 @end
 
