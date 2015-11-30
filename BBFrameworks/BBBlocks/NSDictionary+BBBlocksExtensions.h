@@ -79,6 +79,24 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)BB_reduceWithStart:(nullable id)start block:(id _Nullable(^)(id _Nullable sum, KeyType key, ObjectType value))block;
 /**
+ Calls `[self BB_reduceWithStart:block:]`, passing @(start) and a modified block respectively.
+ 
+ @param start The starting float value for the reduction
+ @param block The float specific block to invoke for each key/value pair
+ @return The final float value
+ @exception NSException Thrown if block is nil
+ */
+- (CGFloat)BB_reduceFloatWithStart:(CGFloat)start block:(CGFloat(^)(CGFloat sum, KeyType key, ObjectType value))block;
+/**
+ Calls `[self BB_reduceWithStart:block:]`, passing @(start) and a modified block respectively.
+ 
+ @param start The starting integer value for the reduction
+ @param block The integer specific block to invoke for each key/value pair
+ @return The final integer value
+ @exception NSException Thrown if block is nil
+ */
+- (NSInteger)BB_reduceIntegerWithStart:(NSInteger)start block:(NSInteger(^)(NSInteger sum, KeyType key, ObjectType value))block;
+/**
  Return a new dictionary which is the result of flattening all the values of the receiver, which should be dictionaries, into a single dictionary.
  
  @return The flattened dictionary

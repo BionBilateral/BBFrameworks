@@ -101,6 +101,16 @@
     
     return retval;
 }
+- (CGFloat)BB_reduceFloatWithStart:(CGFloat)start block:(CGFloat(^)(CGFloat sum, id key, id value))block; {
+    return [[self BB_reduceWithStart:@(start) block:^id _Nullable(NSNumber * _Nullable sum, id  _Nonnull key, id  _Nonnull value) {
+        return @(block(sum.floatValue,key,value));
+    }] floatValue];
+}
+- (NSInteger)BB_reduceIntegerWithStart:(NSInteger)start block:(NSInteger(^)(NSInteger sum, id key, id value))block; {
+    return [[self BB_reduceWithStart:@(start) block:^id _Nullable(NSNumber * _Nullable sum, id  _Nonnull key, id  _Nonnull value) {
+        return @(block(sum.integerValue,key,value));
+    }] integerValue];
+}
 - (NSDictionary *)BB_flatten; {
     return [[self BB_reduceWithStart:[[NSMutableDictionary alloc] init] block:^id _Nullable(NSMutableDictionary * _Nullable sum, id _Nonnull key, NSDictionary * _Nonnull value) {
         [sum addEntriesFromDictionary:value];
