@@ -100,6 +100,16 @@
     
     return retval;
 }
+- (CGFloat)BB_reduceFloatWithStart:(CGFloat)start block:(CGFloat(^)(CGFloat sum, id _Nonnull object, NSInteger index))block; {
+    return [[self BB_reduceWithStart:@(start) block:^id _Nonnull(NSNumber * _Nullable sum, id  _Nonnull object, NSInteger index) {
+        return @(block(sum.floatValue,object,index));
+    }] floatValue];
+}
+- (NSInteger)BB_reduceIntegerWithStart:(NSInteger)start block:(NSInteger(^)(NSInteger sum, id _Nonnull object, NSInteger index))block; {
+    return [[self BB_reduceWithStart:@(start) block:^id _Nonnull(NSNumber * _Nullable sum, id  _Nonnull object, NSInteger index) {
+        return @(block(sum.integerValue,object,index));
+    }] integerValue];
+}
 - (NSOrderedSet *)BB_flatten; {
     return [[self BB_reduceWithStart:[[NSMutableOrderedSet alloc] init] block:^id _Nonnull(NSMutableOrderedSet * _Nullable sum, NSOrderedSet * _Nonnull object, NSInteger index) {
         [sum addObjectsFromArray:object.array];

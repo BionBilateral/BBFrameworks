@@ -78,6 +78,24 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, ObjectType object, NSInteger index))block;
 /**
+ Calls `[self BB_reduceWithStart:block:]`, passing @(start) and a modified block argument respectively.
+ 
+ @param start The starting float value for the reduction
+ @block The float specific block to use during the reduction
+ @return The final float value
+ @exception NSException Thrown if block is nil
+ */
+- (CGFloat)BB_reduceFloatWithStart:(CGFloat)start block:(CGFloat(^)(CGFloat sum, ObjectType object, NSInteger index))block;
+/**
+ Calls `[self BB_reduceWithStart:block:]`, passing @(start) and a modified block argument respectively.
+ 
+ @param start The starting integer value for the reduction
+ @block The integer specific block to use during the reduction
+ @return The final integer value
+ @exception NSException Thrown if block is nil
+ */
+- (NSInteger)BB_reduceIntegerWithStart:(NSInteger)start block:(NSInteger(^)(NSInteger sum, ObjectType object, NSInteger index))block;
+/**
  Return a new ordered set that is a result of flattening the objects in the receiver, which should all be ordered sets.
  
  @return The flattened ordered set
