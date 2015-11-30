@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CGBase.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -77,6 +78,24 @@ NS_ASSUME_NONNULL_BEGIN
  @exception NSException Thrown if block is nil
  */
 - (nullable id)BB_reduceWithStart:(nullable id)start block:(id(^)(id _Nullable sum, ObjectType object, NSInteger index))block;
+/**
+ Calls `[self BB_reduceWithStart:block:]`, passing @(start) and a modified block argument respectively.
+ 
+ @param start The starting float value for the reduction
+ @block The float specific block to use during the reduction
+ @return The final float value
+ @exception NSException Thrown if block is nil
+ */
+- (CGFloat)BB_reduceFloatWithStart:(CGFloat)start block:(CGFloat(^)(CGFloat sum, ObjectType object, NSInteger index))block;
+/**
+ Calls `[self BB_reduceWithStart:block:]`, passing @(start) and a modified block argument respectively.
+ 
+ @param start The starting integer value for the reduction
+ @block The integer specific block to use during the reduction
+ @return The final integer value
+ @exception NSException Thrown if block is nil
+ */
+- (NSInteger)BB_reduceIntegerWithStart:(NSInteger)start block:(NSInteger(^)(NSInteger sum, ObjectType object, NSInteger index))block;
 /**
  Return a new array that is a result of flattening the objects in the receiver, which should all be arrays.
  
