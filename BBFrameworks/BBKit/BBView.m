@@ -199,7 +199,10 @@
 _borderColor = borderColor ?: [self.class _defaultBorderColor];
         
 #if (TARGET_OS_IPHONE)
-    [self setNeedsDisplay];
+    [self.topBorderView setBackgroundColor:_borderColor];
+    [self.leftBorderView setBackgroundColor:_borderColor];
+    [self.bottomBorderView setBackgroundColor:_borderColor];
+    [self.rightBorderView setBackgroundColor:_borderColor];
 #else
     [self setNeedsDisplay:YES];
 #endif
