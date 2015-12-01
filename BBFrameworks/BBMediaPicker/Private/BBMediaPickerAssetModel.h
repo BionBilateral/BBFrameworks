@@ -14,9 +14,14 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
-#import <Photos/PHAsset.h>
 #import "BBMediaPickerMedia.h"
 #import "BBMediaPickerDefines.h"
+
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+#import <Photos/PHAsset.h>
+#else
+#import <AssetsLibrary/ALAsset.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,7 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaPickerAssetModel : NSObject <BBMediaPickerMedia>
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 @property (readonly,strong,nonatomic) PHAsset *asset;
+#else
+@property (readonly,strong,nonatomic) ALAsset *asset;
+#endif
 
 @property (readonly,weak,nonatomic,nullable) BBMediaPickerAssetCollectionModel *assetCollectionModel;
 
@@ -32,10 +41,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic) BBMediaPickerAssetMediaType mediaType;
 
 @property (readonly,nonatomic) UIImage *typeImage;
+@property (readonly,nonatomic) NSTimeInterval duration;
 @property (readonly,nonatomic) NSString *formattedDuration;
 @property (readonly,nonatomic) NSUInteger selectedIndex;
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel;
+#else
+- (instancetype)initWithAsset:(ALAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel;
+#endif
 
 - (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage * _Nullable thumbnailImage))completion;
 - (void)cancelAllThumbnailRequests;
