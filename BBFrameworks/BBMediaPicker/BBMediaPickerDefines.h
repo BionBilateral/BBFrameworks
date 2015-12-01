@@ -17,24 +17,48 @@
 #define __BB_MEDIA_PICKER_DEFINES__
 
 #import <Foundation/Foundation.h>
+
+// if this is defined and true, use the Photos framework to access the user's media, otherwise fall back to the AssetsLibrary framework
+#ifndef BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK
+#define BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK 1
+#endif
+
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/PHPhotoLibrary.h>
 #import <Photos/PhotosTypes.h>
+#else
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#endif
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 typedef NS_ENUM(NSInteger, BBMediaPickerAuthorizationStatus) {
     BBMediaPickerAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
     BBMediaPickerAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
     BBMediaPickerAuthorizationStatusDenied = PHAuthorizationStatusDenied,
     BBMediaPickerAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
 };
+#else
+typedef NS_ENUM(NSInteger, BBMediaPickerAuthorizationStatus) {
+    BBMediaPickerAuthorizationStatusNotDetermined = ALAuthorizationStatusNotDetermined,
+    BBMediaPickerAuthorizationStatusRestricted = ALAuthorizationStatusRestricted,
+    BBMediaPickerAuthorizationStatusDenied = ALAuthorizationStatusDenied,
+    BBMediaPickerAuthorizationStatusAuthorized = ALAuthorizationStatusAuthorized
+};
+#endif
 
 typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
     BBMediaPickerMediaTypesUnknown = 1 << 0,
     BBMediaPickerMediaTypesImage = 1 << 1,
     BBMediaPickerMediaTypesVideo = 1 << 2,
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     BBMediaPickerMediaTypesAudio = 1 << 3,
     BBMediaPickerMediaTypesAll = BBMediaPickerMediaTypesUnknown | BBMediaPickerMediaTypesImage | BBMediaPickerMediaTypesVideo | BBMediaPickerMediaTypesAudio
+#else
+    BBMediaPickerMediaTypesAll = BBMediaPickerMediaTypesUnknown | BBMediaPickerMediaTypesImage | BBMediaPickerMediaTypesVideo
+#endif
 };
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
     BBMediaPickerAssetCollectionSubtypeAlbumRegular = PHAssetCollectionSubtypeAlbumRegular,
     BBMediaPickerAssetCollectionSubtypeAlbumSyncedEvent = PHAssetCollectionSubtypeAlbumSyncedEvent,
@@ -58,12 +82,21 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
     BBMediaPickerAssetCollectionSubtypeSmartAlbumSelfPortraits NS_AVAILABLE_IOS(9_0) = PHAssetCollectionSubtypeSmartAlbumSelfPortraits,
     BBMediaPickerAssetCollectionSubtypeSmartAlbumScreenshots NS_AVAILABLE_IOS(9_0) = PHAssetCollectionSubtypeSmartAlbumScreenshots
 };
+#endif
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 typedef NS_ENUM(NSInteger, BBMediaPickerAssetMediaType) {
     BBMediaPickerAssetMediaTypeUnknown = PHAssetMediaTypeUnknown,
     BBMediaPickerAssetMediaTypeImage = PHAssetMediaTypeImage,
     BBMediaPickerAssetMediaTypeVideo = PHAssetMediaTypeVideo,
     BBMediaPickerAssetMediaTypeAudio = PHAssetMediaTypeAudio
 };
+#else
+typedef NS_ENUM(NSInteger, BBMediaPickerAssetMediaType) {
+    BBMediaPickerAssetMediaTypeUnknown,
+    BBMediaPickerAssetMediaTypeImage,
+    BBMediaPickerAssetMediaTypeVideo
+};
+#endif
 
 #endif /* BBMediaPickerDefines_h */
