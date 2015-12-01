@@ -82,6 +82,15 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
     BBMediaPickerAssetCollectionSubtypeSmartAlbumSelfPortraits NS_AVAILABLE_IOS(9_0) = PHAssetCollectionSubtypeSmartAlbumSelfPortraits,
     BBMediaPickerAssetCollectionSubtypeSmartAlbumScreenshots NS_AVAILABLE_IOS(9_0) = PHAssetCollectionSubtypeSmartAlbumScreenshots
 };
+#else
+typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
+    BBMediaPickerAssetCollectionSubtypeLibrary,
+    BBMediaPickerAssetCollectionSubtypeAlbum,
+    BBMediaPickerAssetCollectionSubtypeEvent,
+    BBMediaPickerAssetCollectionSubtypeFaces,
+    BBMediaPickerAssetCollectionSubtypeSavedPhotos,
+    BBMediaPickerAssetCollectionSubtypePhotoStream
+};
 #endif
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
