@@ -19,27 +19,41 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerTheme.h"
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
+#else
+#import <AssetsLibrary/AssetsLibrary.h>
+#endif
 
 @interface BBMediaPickerAssetCollectionModel ()
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 @property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
-@property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
 @property (readwrite,strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
 @property (assign,nonatomic) PHImageRequestID firstImageRequestID, secondImageRequestID, thirdImageRequestID;
 @property (strong,nonatomic) NSMutableDictionary *thumbnailIndexesToImageRequestIDs;
+#else
+@property (readwrite,strong,nonatomic) ALAssetsGroup *assetCollection;
+#endif
+@property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
 
 - (void)_cancelThumbnailImageRequestAtIndex:(NSUInteger)thumbnailIndex;
 @end
 
 @implementation BBMediaPickerAssetCollectionModel
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection model:(BBMediaPickerModel *)model; {
+#else
+- (instancetype)initWithAssetCollection:(ALAssetsGroup *)assetCollection model:(BBMediaPickerModel *)model; {
+#endif
     if (!(self = [super init]))
         return nil;
     
     [self setAssetCollection:assetCollection];
     [self setModel:model];
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [self setThumbnailIndexesToImageRequestIDs:[[NSMutableDictionary alloc] init]];
+#endif
     
     [self reloadFetchResult];
     
@@ -47,15 +61,24 @@
 }
 
 - (BBMediaPickerAssetCollectionSubtype)subtype {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return (BBMediaPickerAssetCollectionSubtype)self.assetCollection.assetCollectionSubtype;
+#else
+    return (BBMediaPickerAssetCollectionSubtype)[[self.assetCollection valueForProperty:ALAssetsGroupPropertyType] integerValue];
+#endif
 }
 - (NSString *)title {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return self.assetCollection.localizedTitle;
+#else
+    return [self.assetCollection valueForProperty:ALAssetsGroupPropertyName];
+#endif
 }
 - (NSString *)subtitle {
-    return [NSNumberFormatter localizedStringFromNumber:@(self.fetchResult.count) numberStyle:NSNumberFormatterDecimalStyle];
+    return [NSNumberFormatter localizedStringFromNumber:@(self.countOfAssetModels) numberStyle:NSNumberFormatterDecimalStyle];
 }
 - (UIImage *)typeImage {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     switch (self.assetCollection.assetCollectionSubtype) {
         case PHAssetCollectionSubtypeSmartAlbumVideos:
         case PHAssetCollectionSubtypeSmartAlbumSlomoVideos:
@@ -63,29 +86,56 @@
         default:
             return nil;
     }
+#else
+    return nil;
+#endif
 }
 
 - (NSUInteger)countOfAssetModels {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return self.fetchResult.count;
+#else
+    return [self.assetCollection numberOfAssets];
+#endif
 }
 - (BBMediaPickerAssetModel *)assetModelAtIndex:(NSUInteger)index {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index] assetCollectionModel:self];
+#else
+    return nil;
+#endif
 }
 
 - (NSUInteger)indexOfAssetModel:(BBMediaPickerAssetModel *)assetModel {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return [self.fetchResult indexOfObject:assetModel.asset];
+#else
+    __block NSInteger retval = NSNotFound;
+    
+    [self.assetCollection enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        NSURL *assetURL = [result valueForProperty:ALAssetPropertyAssetURL];
+        
+        if ([assetURL.absoluteString isEqualToString:assetModel.identifier]) {
+            retval = index;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+#endif
 }
 
 - (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage * _Nullable  thumbnailImage))completion; {
     NSParameterAssert(completion);
     
-    if (self.fetchResult.count <= thumbnailIndex) {
+    if (self.countOfAssetModels <= thumbnailIndex) {
         completion(nil);
         return;
     }
     
     [self _cancelThumbnailImageRequestAtIndex:thumbnailIndex];
     
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     
     [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
@@ -98,14 +148,22 @@
     }];
     
     [self.thumbnailIndexesToImageRequestIDs setObject:@(imageRequestID) forKey:@(thumbnailIndex)];
+#else
+    
+#endif
 }
 - (void)cancelAllThumbnailRequests; {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     for (NSNumber *thumbnailIndex in self.thumbnailIndexesToImageRequestIDs.allKeys) {
         [self _cancelThumbnailImageRequestAtIndex:thumbnailIndex.unsignedIntegerValue];
     }
+#else
+    
+#endif
 }
 
 - (void)_cancelThumbnailImageRequestAtIndex:(NSUInteger)thumbnailIndex; {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     PHImageRequestID imageRequestID = [self.thumbnailIndexesToImageRequestIDs[@(thumbnailIndex)] intValue];
     
     if (imageRequestID == PHInvalidImageRequestID) {
@@ -115,6 +173,9 @@
     [self.thumbnailIndexesToImageRequestIDs removeObjectForKey:@(thumbnailIndex)];
     
     [[PHCachingImageManager defaultManager] cancelImageRequest:imageRequestID];
+#else
+    
+#endif
 }
 
 - (void)reloadFetchResult; {
@@ -144,6 +205,7 @@
 #endif
 }
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)setFetchResult:(PHFetchResult<PHAsset *> *)fetchResult {
     [self willChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
     
@@ -151,5 +213,6 @@
     
     [self didChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
 }
+#endif
 
 @end

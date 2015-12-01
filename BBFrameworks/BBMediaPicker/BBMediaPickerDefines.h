@@ -84,12 +84,12 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
 };
 #else
 typedef NS_ENUM(NSInteger, BBMediaPickerAssetCollectionSubtype) {
-    BBMediaPickerAssetCollectionSubtypeLibrary,
-    BBMediaPickerAssetCollectionSubtypeAlbum,
-    BBMediaPickerAssetCollectionSubtypeEvent,
-    BBMediaPickerAssetCollectionSubtypeFaces,
-    BBMediaPickerAssetCollectionSubtypeSavedPhotos,
-    BBMediaPickerAssetCollectionSubtypePhotoStream
+    BBMediaPickerAssetCollectionSubtypeLibrary = ALAssetsGroupLibrary,
+    BBMediaPickerAssetCollectionSubtypeAlbum = ALAssetsGroupAlbum,
+    BBMediaPickerAssetCollectionSubtypeEvent = ALAssetsGroupEvent,
+    BBMediaPickerAssetCollectionSubtypeFaces = ALAssetsGroupFaces,
+    BBMediaPickerAssetCollectionSubtypeSavedPhotos = ALAssetsGroupSavedPhotos,
+    BBMediaPickerAssetCollectionSubtypePhotoStream = ALAssetsGroupPhotoStream
 };
 #endif
 
