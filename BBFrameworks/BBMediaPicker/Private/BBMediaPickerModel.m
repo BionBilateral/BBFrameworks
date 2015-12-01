@@ -373,7 +373,17 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return self.allowedAssetCollectionSubtypes == nil || [self.allowedAssetCollectionSubtypes containsObject:@(object.subtype)];
     }]];
 #else
+    NSMutableArray<ALAssetsGroup *> *retval = [[NSMutableArray alloc] init];
     
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+    
+    [self setAssetCollectionModels:[retval BB_map:^id _Nullable(ALAssetsGroup * _Nonnull object, NSInteger index) {
+        return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
+    }]];
 #endif
     
     // try to select previously selected asset collection model
