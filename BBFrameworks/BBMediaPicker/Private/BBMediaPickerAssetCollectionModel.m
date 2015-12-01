@@ -118,6 +118,7 @@
 }
 
 - (void)reloadFetchResult; {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     NSMutableArray *predicates = [[NSMutableArray alloc] init];
     
@@ -138,6 +139,9 @@
     [options setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(PHAsset.new,creationDate) ascending:YES]]];
     
     [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
+#else
+    
+#endif
 }
 
 - (void)setFetchResult:(PHFetchResult<PHAsset *> *)fetchResult {

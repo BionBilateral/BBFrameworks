@@ -20,15 +20,27 @@
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerTheme.h"
+#import "BBFrameworksMacros.h"
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
+#else
+#import <AssetsLibrary/AssetsLibrary.h>
+#endif
 
 static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificationAuthorizationStatusDidChange";
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 @interface BBMediaPickerModel () <PHPhotoLibraryChangeObserver>
+#else
+@interface BBMediaPickerModel ()
+#endif
 @property (readwrite,copy,nonatomic) NSString *title;
 @property (readwrite,copy,nonatomic) NSString *subtitle;
 
+#if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+@property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
+#endif
 @property (readwrite,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
 @property (readwrite,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
 
@@ -44,7 +56,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @implementation BBMediaPickerModel
 #pragma mark *** Subclass Overrides ***
 - (void)dealloc {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+#else
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+#endif
 }
 
 - (instancetype)init {
@@ -55,7 +71,13 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     _hidesEmptyAssetCollections = YES;
     _mediaTypes = BBMediaPickerMediaTypesAll;
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary;
+#else
+    _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeLibrary;
+    
+    _assetsLibrary = [[ALAssetsLibrary alloc] init];
+#endif
     
     [self _updateTitle];
     [self _updateSubtitle];
@@ -63,12 +85,18 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [self _updateThemeDependentProperties];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_authorizationStatusDidChange:) name:kNotificationAuthorizationStatusDidChange object:nil];
-    
+
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+#else
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_assetsLibraryDidChange:) name:ALAssetsLibraryChangedNotification object:_assetsLibrary];
+#endif
     
     return self;
 }
 #pragma mark PHPhotoLibraryChangeObserver
+
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
     for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
         PHFetchResultChangeDetails *details = [changeInstance changeDetailsForFetchResult:model.fetchResult];
@@ -86,20 +114,42 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         }
     }
 }
+#endif
+
 #pragma mark *** Public Methods ***
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return (BBMediaPickerAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+#else
+    return (BBMediaPickerAuthorizationStatus)[ALAssetsLibrary authorizationStatus];
+#endif
 }
 + (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion; {
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+    void(^completionBlock)(void) = ^{
         BBDispatchMainSyncSafe(^{
             if (completion) {
-                completion((BBMediaPickerAuthorizationStatus)status);
+                completion([self authorizationStatus]);
             }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAuthorizationStatusDidChange object:self];
         });
+    };
+    
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        completionBlock();
     }];
+#else
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    
+    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupLibrary usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (!group) {
+            completionBlock();
+        }
+    } failureBlock:^(NSError *error) {
+        completionBlock();
+    }];
+#endif
 }
 
 - (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
@@ -215,6 +265,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     if (selectedAssetIdentifiers == nil &&
         _selectedAssetIdentifiers.count > 0) {
         for (NSString *identifier in _selectedAssetIdentifiers) {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
             PHFetchOptions *options = [[PHFetchOptions alloc] init];
             
             [options setWantsIncrementalChangeDetails:NO];
@@ -222,6 +273,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
             PHAsset *asset = [PHAsset fetchAssetsWithLocalIdentifiers:@[identifier] options:options].firstObject;
             
             [self.delegate mediaPickerModel:self didDeselectMedia:[[BBMediaPickerAssetModel alloc] initWithAsset:asset assetCollectionModel:nil]];
+#else
+            BBLogObject(identifier);
+#endif
         }
     }
     
@@ -239,6 +293,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }
 }
 - (NSArray<BBMediaPickerAssetModel *> *)selectedAssetModels {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
     
     [options setWantsIncrementalChangeDetails:NO];
@@ -252,6 +307,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     return [retval BB_map:^id _Nullable(PHAsset * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetModel alloc] initWithAsset:object assetCollectionModel:nil];
     }];
+#else
+    return @[];
+#endif
 }
 #pragma mark *** Private Methods ***
 - (void)_updateTitle; {
@@ -290,6 +348,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return;
     }
     
+    BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
+    
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     NSMutableArray<PHAssetCollection *> *retval = [[NSMutableArray alloc] init];
     
     [[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil] enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -304,11 +365,6 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
-    // sort asset collections by title
-    [retval sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"localizedTitle" ascending:YES selector:@selector(localizedStandardCompare:)]]];
-    
-    BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
-    
     [self setAssetCollectionModels:[[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
     }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
@@ -316,7 +372,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     }] BB_filter:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
         return self.allowedAssetCollectionSubtypes == nil || [self.allowedAssetCollectionSubtypes containsObject:@(object.subtype)];
     }]];
-
+#else
+    
+#endif
+    
     // try to select previously selected asset collection model
     if (oldSelectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
@@ -348,6 +407,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [self setCancelBottomAccessoryControl:_theme.cancelBottomAccessoryViewClass ? [[_theme.cancelBottomAccessoryViewClass alloc] initWithFrame:CGRectZero] : nil];
     [self setDoneBottomAccessoryControl:_theme.doneBottomAccessoryViewClass ? [[_theme.doneBottomAccessoryViewClass alloc] initWithFrame:CGRectZero] : nil];
 }
+#pragma mark Properties
+- (void)setAssetCollectionModels:(NSArray<BBMediaPickerAssetCollectionModel *> *)assetCollectionModels {
+    _assetCollectionModels = [assetCollectionModels sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@BBKeypath(BBMediaPickerAssetCollectionModel.new,title) ascending:YES selector:@selector(localizedStandardCompare:)]]];
+}
 #pragma mark Actions
 - (IBAction)_doneBarButtonItemAction:(id)sender {
     if (self.doneBarButtonItemActionBlock) {
@@ -365,5 +428,10 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     [self _updateSubtitle];
     [self _reloadAssetCollections];
 }
+#if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+- (void)_assetsLibraryDidChange:(NSNotification *)note {
+    
+}
+#endif
 
 @end
