@@ -203,6 +203,9 @@
     if (self.model.mediaTypes & BBMediaPickerMediaTypesVideo) {
         filter = [ALAssetsFilter allVideos];
     }
+    if (self.model.mediaTypes == BBMediaPickerMediaTypesAll) {
+        filter = [ALAssetsFilter allAssets];
+    }
     
     [self willChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
     
