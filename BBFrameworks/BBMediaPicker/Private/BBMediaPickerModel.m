@@ -164,7 +164,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     return [self.delegate mediaPickerModel:self shouldDeselectMedia:assetModel];
 }
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
-    NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers];
+    NSMutableOrderedSet *temp = self.allowsMultipleSelection ? [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers] : [[NSMutableOrderedSet alloc] init];
     
     [temp addObject:assetModel.identifier];
     
