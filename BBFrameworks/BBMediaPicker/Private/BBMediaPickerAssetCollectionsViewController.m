@@ -47,10 +47,6 @@
     return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
-- (NSString *)title {
-    return @"Album";
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

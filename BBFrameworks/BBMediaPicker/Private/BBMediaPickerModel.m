@@ -21,6 +21,7 @@
 #import "BBMediaPickerAssetModel.h"
 #import "BBMediaPickerTheme.h"
 #import "BBFrameworksMacros.h"
+#import "BBFrameworksFunctions.h"
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
@@ -37,7 +38,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 @interface BBMediaPickerModel ()
 #endif
 @property (readwrite,copy,nonatomic) NSString *title;
-@property (readwrite,copy,nonatomic) NSString *subtitle;
+@property (readwrite,copy,nonatomic,nullable) NSString *subtitle;
 
 #if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 @property (strong,nonatomic) ALAssetsLibrary *assetsLibrary;
@@ -325,16 +326,16 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     switch ([self.class authorizationStatus]) {
         case BBMediaPickerAuthorizationStatusAuthorized:
-            [self setTitle:@"Authorized"];
+            [self setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_AUTHORIZED_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Authorized", @"media picker authorized title")];
             break;
         case BBMediaPickerAuthorizationStatusDenied:
-            [self setTitle:@"Denied"];
+            [self setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_DENIED_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Denied", @"media picker denied title")];
             break;
         case BBMediaPickerAuthorizationStatusNotDetermined:
-            [self setTitle:@"Requesting Authorization"];
+            [self setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_REQUESTING_AUTHORIZATION_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Requesting Authorization", @"media picker requesting authorization title")];
             break;
         case BBMediaPickerAuthorizationStatusRestricted:
-            [self setTitle:@"Restricted"];
+            [self setTitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_RESTRICTED_TITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Restricted", @"media picker restricted title")];
             break;
         default:
             break;
@@ -342,11 +343,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 - (void)_updateSubtitle; {
     if (self.selectedAssetCollectionModel) {
-        [self setSubtitle:@"Tap to change album ▼"];
+        [self setSubtitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_DEFAULT_SUBTITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Tap to change album ▼", @"media picker default subtitle")];
         return;
     }
     
-    [self setSubtitle:@""];
+    [self setSubtitle:nil];
 }
 - (void)_reloadAssetCollections {
     if ([self.class authorizationStatus] != BBMediaPickerAuthorizationStatusAuthorized) {
