@@ -19,11 +19,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaPickerTheme;
 
+/**
+ BBMediaPickerTitleView is a protocol describing an instance of the class used to display the title and subtitle text in the navigation bar of the media picker.
+ */
 @protocol BBMediaPickerTitleView <NSObject>
 @required
+/**
+ Set and get the title of the title view, which will be the title of the selected asset collection.
+ */
 @property (copy,nonatomic,nullable) NSString *title;
 @optional
+/**
+ Set and get the subtitle of the title view.
+ */
 @property (copy,nonatomic,nullable) NSString *subtitle;
+/**
+ Set and get the theme of the title view.
+ */
 @property (strong,nonatomic,nullable) BBMediaPickerTheme *theme;
 @end
 
