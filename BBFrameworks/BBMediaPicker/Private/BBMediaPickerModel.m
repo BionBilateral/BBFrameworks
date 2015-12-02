@@ -275,7 +275,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
             
             [self.delegate mediaPickerModel:self didDeselectMedia:[[BBMediaPickerAssetModel alloc] initWithAsset:asset assetCollectionModel:nil]];
 #else
-            BBLogObject(identifier);
+            ALAsset *asset = [self.assetsLibrary BB_assetForIdentifier:identifier];
+            
+            [self.delegate mediaPickerModel:self didDeselectMedia:[[BBMediaPickerAssetModel alloc] initWithAsset:asset assetCollectionModel:nil]];
 #endif
         }
     }
@@ -457,7 +459,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 #if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)_assetsLibraryDidChange:(NSNotification *)note {
-    
+    [self _reloadAssetCollections];
 }
 #endif
 
