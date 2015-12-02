@@ -20,15 +20,55 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaPickerViewController;
 
+/**
+ BBMediaPickerViewControllerDelegate is a protocol describing the delegate methods supported by an instance of BBMediaPickerViewController.
+ */
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
+/**
+ Returns whether the media should be selected.
+ 
+ @param viewController The media picker that sent the message
+ @param media The media that is about to be selected
+ @return YES if the media should be selected, otherwise NO
+ */
 - (BOOL)mediaPickerViewController:(BBMediaPickerViewController *)viewController shouldSelectMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Returns whether the media should be deselected.
+ 
+ @param viewController The media picker that sent the message
+ @param media The media that is about to be deselected
+ @return YES if the media should be deselected, otherwise NO
+ */
 - (BOOL)mediaPickerViewController:(BBMediaPickerViewController *)viewController shouldDeselectMedia:(id<BBMediaPickerMedia>)media;
 
+/**
+ Informs the delegate that a single media was selected.
+ 
+ @param viewController The media picker that sent the message
+ @param media The media that was selected
+ */
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Informs the delegate that a single media was deselected.
+ 
+ @param viewController The media picker that sent the message
+ @param media The media that was deselected
+ */
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media;
 
+/**
+ Informs the delegate that the user either selected a single media in the single selection mode, or selected multiple media in multiple selection mode and tapped the done bar button item. The delegate is responsible for dismissing the media picker.
+ 
+ @param viewController The media picker that sent the message
+ @param media The array of media objects
+ */
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia> > *)media;
+/**
+ Informs the delegate that the user cancelled interaction with the media picker by tapping the cancel bar button item. The delegate is responsible for dismissing the media picker.
+ 
+ @param viewController The media picker that sent the message
+ */
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end
 
