@@ -18,16 +18,33 @@
 
 @implementation ALAssetsGroup (BBMediaPickerExtensions)
 
-- (NSArray<ALAsset *> *)BB_assets; {
-    NSMutableArray *retval = [[NSMutableArray alloc] init];
+- (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index; {
+    if ([self numberOfAssets] <= index) {
+        return nil;
+    }
     
-    [self enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+    __block ALAsset *retval = nil;
+    
+    [self enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:index] options:0 usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
-            [retval addObject:result];
+            retval = result;
+            *stop = YES;
         }
     }];
     
-    return [retval copy];
+    return retval;
+}
+- (NSUInteger)BB_indexOfAsset:(ALAsset *)asset; {
+    __block NSInteger retval = NSNotFound;
+    
+    [self enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if ([[result BB_identifier] isEqualToString:[asset BB_identifier]]) {
+            retval = index;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
 }
 
 @end

@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ALAssetsGroup (BBMediaPickerExtensions)
 
-- (NSArray<ALAsset *> *)BB_assets;
+- (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index;
+- (NSUInteger)BB_indexOfAsset:(ALAsset *)asset;
 
 @end
 
