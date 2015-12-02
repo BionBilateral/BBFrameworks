@@ -52,6 +52,9 @@
     if (!(self = [super init]))
         return nil;
     
+    NSParameterAssert(assetCollection);
+    NSParameterAssert(model);
+    
     [self setAssetCollection:assetCollection];
     [self setModel:model];
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
