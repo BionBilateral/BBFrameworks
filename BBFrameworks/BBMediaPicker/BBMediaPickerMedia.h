@@ -24,8 +24,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBMediaPickerMedia is a protocol describing model items vended by the media picker classes. Depending on the version of the library used, the model objects either wrap a PHAsset or ALAsset.
+ */
 @protocol BBMediaPickerMedia <NSObject>
 @required
+/**
+ The underlying asset wrapped by the model object.
+ */
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (PHAsset *)mediaAsset;
 #else
