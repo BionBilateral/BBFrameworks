@@ -103,7 +103,17 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return (BBMediaPickerAssetMediaType)self.asset.mediaType;
 #else
-    return (BBMediaPickerAssetMediaType)[[self.asset valueForProperty:ALAssetPropertyType] integerValue];
+    NSString *type = [self.asset valueForProperty:ALAssetPropertyType];
+    
+    if ([type isEqualToString:ALAssetTypePhoto]) {
+        return BBMediaPickerAssetMediaTypeImage;
+    }
+    else if ([type isEqualToString:ALAssetTypeVideo]) {
+        return BBMediaPickerAssetMediaTypeVideo;
+    }
+    else {
+        return BBMediaPickerAssetMediaTypeUnknown;
+    }
 #endif
 }
 - (UIImage *)typeImage {
