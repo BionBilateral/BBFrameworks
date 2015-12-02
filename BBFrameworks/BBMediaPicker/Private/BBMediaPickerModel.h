@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerViewController.h
+//  BBMediaPickerModel.h
 //  BBFrameworks
 //
 //  Created by William Towe on 11/13/15.
@@ -14,33 +14,52 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
+#import <Photos/PHCollection.h>
 #import "BBMediaPickerDefines.h"
-#import "BBMediaPickerViewControllerDelegate.h"
+#import "BBMediaPickerModelDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaPickerTheme;
+@class BBMediaPickerAssetCollectionModel,BBMediaPickerAssetModel,BBMediaPickerTheme;
 
-@interface BBMediaPickerViewController : UIViewController
+@interface BBMediaPickerModel : NSObject
 
-@property (weak,nonatomic,nullable) id<BBMediaPickerViewControllerDelegate> delegate;
-
-@property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
+@property (weak,nonatomic) id<BBMediaPickerModelDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
+
+@property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
+@property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
+@property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;
+@property (copy,nonatomic) void(^cancelBarButtonItemActionBlock)(void);
+
+@property (readonly,strong,nonatomic,nullable) UIControl *cancelBottomAccessoryControl;
+@property (readonly,strong,nonatomic,nullable) UIControl *doneBottomAccessoryControl;
+
+@property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
 @property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
-@property (copy,nonatomic,nullable) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
+@property (copy,nonatomic) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
+
+@property (readonly,copy,nonatomic) NSString *title;
+@property (readonly,copy,nonatomic) NSString *subtitle;
+
+@property (readonly,copy,nonatomic,nullable) NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels;
+@property (strong,nonatomic,nullable) BBMediaPickerAssetCollectionModel *selectedAssetCollectionModel;
+@property (readonly,copy,nonatomic,nullable) NSOrderedSet<NSString *> *selectedAssetIdentifiers;
+@property (readonly,nonatomic) NSArray<BBMediaPickerAssetModel *> *selectedAssetModels;
 
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
-+ (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
++ (void)requestAuthorizationWithCompletion:(void(^)(BBMediaPickerAuthorizationStatus status))completion;
 
-- (NSUInteger)countOfMedia;
-- (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
-- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+- (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel;
+- (BOOL)shouldDeselectAssetModel:(BBMediaPickerAssetModel *)assetModel;
+- (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel;
+- (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel;
 
 @end
 

@@ -20,12 +20,8 @@
 
 #if (TARGET_OS_IPHONE)
 #import "BBMediaPickerViewController.h"
-#import "BBMediaPickerAssetsGroupTableView.h"
-#import "BBMediaPickerAssetsGroupTableViewCell.h"
-#import "BBMediaPickerAssetCollectionView.h"
-#import "BBMediaPickerAssetCollectionFooterView.h"
-#import "BBMediaPickerAssetCollectionViewCell.h"
-#import "BBMediaPickerAssetCollectionViewCellSelectedOverlayView.h"
+#import "BBMediaPickerTitleView.h"
+#import "BBMediaPickerTheme.h"
 #endif
 
 #endif

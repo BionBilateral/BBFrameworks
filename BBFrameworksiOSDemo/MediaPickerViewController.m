@@ -22,24 +22,26 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface MediaPickerBottomAccessoryView : UIButton
+@interface MediaPickerDoneButton : UIButton
 
 @end
 
-@implementation MediaPickerBottomAccessoryView
+@implementation MediaPickerDoneButton
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self setBackgroundColor:BBColorRGB(0.5, 0, 0)];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:22]];
-    [self setContentEdgeInsets:UIEdgeInsetsMake(16, 0, 16, 0)];
+    [self setBackgroundColor:[UIColor blackColor]];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
-    [self setTitle:@"End" forState:UIControlStateNormal];
+    [self setTitle:@"Next" forState:UIControlStateNormal];
     
     return self;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    return CGSizeMake(UIViewNoIntrinsicMetric, 44.0);
 }
 
 @end
@@ -52,19 +54,14 @@
 
 + (void)initialize {
     if (self == [MediaPickerNavigationController class]) {
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:BBColorW(0.1)];
+        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:[UIColor blackColor]];
         [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     }
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
 }
 
 @end
 
-@interface MediaPickerViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,BBMediaPickerViewControllerDelegate>
+@interface MediaPickerViewController () <BBMediaPickerViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
 @end
@@ -73,17 +70,21 @@
 #pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
-        [[BBMediaPickerAssetsGroupTableView appearance] setContentBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setTitleColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+        [[BBMediaPickerTheme defaultTheme] setDoneBottomAccessoryViewClass:[MediaPickerDoneButton class]];
         
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setContentBackgroundColor:BBColorW(0.1)];
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setSelectedContentBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerAssetsGroupTableViewCell appearance] setNameTextColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleFont:[UIFont boldSystemFontOfSize:17.0]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleFont:[UIFont italicSystemFontOfSize:12.0]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellCheckmarkColor:[UIColor whiteColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionPopoverBackgroundColor:[UIColor darkGrayColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionSeparatorColor:[UIColor whiteColor]];
         
-        [[BBMediaPickerAssetCollectionView appearance] setContentBackgroundColor:[UIColor blackColor]];
-        
-        [[BBMediaPickerAssetCollectionFooterView appearance] setTitleTextColor:[UIColor whiteColor]];
-        
-        [[BBMediaPickerAssetCollectionViewCellSelectedOverlayView appearance] setSelectedOverlayBackgroundColor:BBColorWA(0.0, 0.5)];
+        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor darkGrayColor]];
     }
 }
 
@@ -110,17 +111,15 @@
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media {
     BBLogObject(media);
 }
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray *)media {
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia>> *)media {
     BBLogObject(media);
+    
+    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
-    BBLogObject(viewController);
-}
-
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didAddBottomAccessoryView:(__kindof UIView *)bottomAccessoryView {
-    UIButton *button = (UIButton *)bottomAccessoryView;
+    BBLog();
     
-    [button addTarget:self action:@selector(_bottomAccessoryViewAction:) forControlEvents:UIControlEventTouchUpInside];
+    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark *** Private Methods ***
 #pragma mark Actions
@@ -139,28 +138,8 @@
     
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
-    [viewController setHidesEmptyMediaGroups:YES];
-//    [viewController setCancelBarButtonItemTitle:@"End"];
-//    [viewController setAutomaticallyDismissForSingleSelection:NO];
-//    [viewController setMediaTypes:BBMediaPickerMediaTypesVideo];
-//    [viewController setCancelConfirmBlock:^(BBMediaPickerViewController *viewController, BBMediaPickerCancelConfirmCompletionBlock completion){
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm End" message:@"Are you sure you want to end?" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            completion(NO);
-//        }]];
-//        [alertController addAction:[UIAlertAction actionWithTitle:@"End" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//            completion(YES);
-//        }]];
-//        
-//        [[UIViewController BB_viewControllerForPresenting] presentViewController:alertController animated:YES completion:nil];
-//    }];
     
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
-}
-
-- (IBAction)_bottomAccessoryViewAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

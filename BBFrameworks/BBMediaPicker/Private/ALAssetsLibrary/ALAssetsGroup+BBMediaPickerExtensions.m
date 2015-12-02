@@ -1,8 +1,8 @@
 //
-//  BBMediaPickerViewControllerDelegate.h
+//  ALAssetsGroup+BBMediaPickerExtensions.m
 //  BBFrameworks
 //
-//  Created by William Towe on 11/14/15.
+//  Created by William Towe on 12/1/15.
 //  Copyright © 2015 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,23 +13,38 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
-#import "BBMediaPickerMedia.h"
+#import "ALAssetsGroup+BBMediaPickerExtensions.h"
+#import "ALAsset+BBMediaPickerExtensions.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation ALAssetsGroup (BBMediaPickerExtensions)
 
-@class BBMediaPickerViewController;
+- (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index; {
+    if ([self numberOfAssets] <= index) {
+        return nil;
+    }
+    
+    __block ALAsset *retval = nil;
+    
+    [self enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:index] options:0 usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if (result) {
+            retval = result;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+}
+- (NSUInteger)BB_indexOfAsset:(ALAsset *)asset; {
+    __block NSInteger retval = NSNotFound;
+    
+    [self enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if ([[result BB_identifier] isEqualToString:[asset BB_identifier]]) {
+            retval = index;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
+}
 
-@protocol BBMediaPickerViewControllerDelegate <NSObject>
-@optional
-- (BOOL)mediaPickerViewController:(BBMediaPickerViewController *)viewController shouldSelectMedia:(id<BBMediaPickerMedia>)media;
-- (BOOL)mediaPickerViewController:(BBMediaPickerViewController *)viewController shouldDeselectMedia:(id<BBMediaPickerMedia>)media;
-
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didSelectMedia:(id<BBMediaPickerMedia>)media;
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didDeselectMedia:(id<BBMediaPickerMedia>)media;
-
-- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia> > *)media;
-- (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController;
 @end
-
-NS_ASSUME_NONNULL_END

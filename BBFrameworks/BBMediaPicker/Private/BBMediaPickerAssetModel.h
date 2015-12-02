@@ -1,5 +1,5 @@
 //
-//  BBMediaPickerViewController.h
+//  BBMediaPickerAssetModel.h
 //  BBFrameworks
 //
 //  Created by William Towe on 11/13/15.
@@ -14,33 +14,46 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
+#import "BBMediaPickerMedia.h"
 #import "BBMediaPickerDefines.h"
-#import "BBMediaPickerViewControllerDelegate.h"
+
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+#import <Photos/PHAsset.h>
+#else
+#import <AssetsLibrary/ALAsset.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaPickerTheme;
+@class BBMediaPickerAssetCollectionModel;
 
-@interface BBMediaPickerViewController : UIViewController
+@interface BBMediaPickerAssetModel : NSObject <BBMediaPickerMedia>
 
-@property (weak,nonatomic,nullable) id<BBMediaPickerViewControllerDelegate> delegate;
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+@property (readonly,strong,nonatomic) PHAsset *asset;
+#else
+@property (readonly,strong,nonatomic) ALAsset *asset;
+#endif
 
-@property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
+@property (readonly,weak,nonatomic,nullable) BBMediaPickerAssetCollectionModel *assetCollectionModel;
 
-@property (assign,nonatomic) BOOL allowsMultipleSelection;
-@property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
+@property (readonly,nonatomic) NSString *identifier;
+@property (readonly,nonatomic) BBMediaPickerAssetMediaType mediaType;
 
-@property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
+@property (readonly,nonatomic) UIImage *typeImage;
+@property (readonly,nonatomic) NSTimeInterval duration;
+@property (readonly,nonatomic) NSString *formattedDuration;
+@property (readonly,nonatomic) NSDate *creationDate;
+@property (readonly,nonatomic) NSUInteger selectedIndex;
 
-@property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
-@property (copy,nonatomic,nullable) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+- (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel;
+#else
+- (instancetype)initWithAsset:(ALAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel;
+#endif
 
-+ (BBMediaPickerAuthorizationStatus)authorizationStatus;
-+ (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
-
-- (NSUInteger)countOfMedia;
-- (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
-- (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+- (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage * _Nullable thumbnailImage))completion;
+- (void)cancelAllThumbnailRequests;
 
 @end
 
