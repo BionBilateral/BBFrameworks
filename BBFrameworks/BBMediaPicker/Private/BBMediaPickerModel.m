@@ -76,7 +76,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary;
 #else
-    _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeLibrary;
+    _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeSavedPhotos;
     
     _assetsLibrary = [[ALAssetsLibrary alloc] init];
 #endif

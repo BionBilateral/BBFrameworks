@@ -21,25 +21,89 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaPickerTheme;
 
+/**
+ BBMediaPickerViewController is a UIViewController subclass that provides an interface for browsing and selecting the user's media.
+ */
 @interface BBMediaPickerViewController : UIViewController
 
+/**
+ Set and get the delegate of the media picker.
+ 
+ @see BBMediaPickerViewControllerDelegate
+ */
 @property (weak,nonatomic,nullable) id<BBMediaPickerViewControllerDelegate> delegate;
 
+/**
+ Set and get the theme of the media picker.
+ 
+ The default is [BBMediaPickerTheme defaultTheme].
+ */
 @property (strong,nonatomic,null_resettable) BBMediaPickerTheme *theme;
 
+/**
+ Set and get whether the media picker allows the user to select multiple assets.
+ 
+ The default is NO.
+ */
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
+/**
+ Set and get whether the media picker hides asset collections that are empty (i.e. they contain 0 assets).
+ 
+ The default is YES.
+ */
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
+/**
+ Set and get the media types the media picker should display. For example, if set to BBMediaPickerMediaTypesImage, the user would only see available photos.
+ 
+ The default is BBMediaPickerMediaTypesAll.
+ */
 @property (assign,nonatomic) BBMediaPickerMediaTypes mediaTypes;
 
+/**
+ Set and get the initially selected asset collection subtype. If found, this asset collection will be selected when presenting the media picker.
+ 
+ The default is BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary when using the Photos framework and BBMediaPickerAssetCollectionSubtypeSavedPhotos when using the AssetsLibrary framework.
+ */
 @property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
+/**
+ Set and get the allowed asset collection subtypes. If non-nil, the displayed asset collections will be constrained to this set.
+ 
+ The default is nil.
+ */
 @property (copy,nonatomic,nullable) NSSet<NSNumber *> *allowedAssetCollectionSubtypes;
 
+/**
+ Get the current authorization status.
+ 
+ @see BBMediaPickerAuthorizationStatus
+ */
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
+/**
+ Request authorization to access the user's media and invoke the provided completion block once the authorization status is determined. The completion block is always invoked on the main thread.
+ 
+ @param completion The completion block to invoke when the operation is complete
+ */
 + (void)requestAuthorizationWithCompletion:(nullable void(^)(BBMediaPickerAuthorizationStatus status))completion;
 
+/**
+ Get the count of media for the selected asset collection.
+ 
+ @return The count of media
+ */
 - (NSUInteger)countOfMedia;
+/**
+ Get the index of the provided media within the selected asset collection. If the media cannot be found, returns NSNotFound.
+ 
+ @param media The media for which to return the index of
+ @return The index of the provided media or NSNotFound
+ */
 - (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Scrolls the provided media so it is visible within the asset collection view.
+ 
+ @param media The media to scroll to visible
+ */
 - (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
 
 @end
