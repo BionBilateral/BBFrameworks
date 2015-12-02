@@ -23,6 +23,7 @@
 #import <Photos/Photos.h>
 #else
 #import "ALAssetsGroup+BBMediaPickerExtensions.h"
+#import "ALAsset+BBMediaPickerExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #endif
 
@@ -34,6 +35,7 @@
 @property (strong,nonatomic) NSMutableDictionary *thumbnailIndexesToImageRequestIDs;
 #else
 @property (readwrite,strong,nonatomic) ALAssetsGroup *assetCollection;
+@property (copy,nonatomic) NSArray<ALAsset *> *assetCache;
 #endif
 @property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
 
@@ -108,7 +110,7 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index] assetCollectionModel:self];
 #else
-    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.assetCollection BB_assetAtIndex:index] assetCollectionModel:self];
+    return [[BBMediaPickerAssetModel alloc] initWithAsset:self.assetCache[index] assetCollectionModel:self];
 #endif
 }
 
@@ -116,7 +118,16 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return [self.fetchResult indexOfObject:assetModel.asset];
 #else
-    return [self.assetCollection BB_indexOfAsset:assetModel.asset];
+    __block NSUInteger retval = NSNotFound;
+    
+    [self.assetCache enumerateObjectsUsingBlock:^(ALAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([assetModel.identifier isEqualToString:[obj BB_identifier]]) {
+            retval = idx;
+            *stop = YES;
+        }
+    }];
+    
+    return retval;
 #endif
 }
 
@@ -144,7 +155,7 @@
     
     [self.thumbnailIndexesToImageRequestIDs setObject:@(imageRequestID) forKey:@(thumbnailIndex)];
 #else
-    ALAsset *asset = [self.assetCollection BB_assetAtIndex:thumbnailIndex];
+    ALAsset *asset = thumbnailIndex < self.countOfAssetModels ? self.assetCache[thumbnailIndex] : nil;
     UIImage *retval = asset ? [UIImage imageWithCGImage:[asset thumbnail]] : nil;
     
     completion(retval);
@@ -209,6 +220,7 @@
     
     [self willChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
     
+    [self setAssetCache:nil];
     [self.assetCollection setAssetsFilter:filter];
     
     [self didChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
@@ -222,6 +234,18 @@
     _fetchResult = fetchResult;
     
     [self didChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
+}
+#else
+- (NSArray<ALAsset *> *)assetCache {
+    if (!_assetCache) {
+        _assetCache = [[self.assetCollection BB_assets] sortedArrayUsingComparator:^NSComparisonResult(ALAsset * _Nonnull obj1, ALAsset * _Nonnull obj2) {
+            NSDate *date1 = [obj1 valueForProperty:ALAssetPropertyDate];
+            NSDate *date2 = [obj2 valueForProperty:ALAssetPropertyDate];
+            
+            return [date1 compare:date2];
+        }];
+    }
+    return _assetCache;
 }
 #endif
 

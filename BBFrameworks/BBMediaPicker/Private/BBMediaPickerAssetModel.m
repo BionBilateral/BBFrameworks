@@ -141,6 +141,13 @@
     }
     return nil;
 }
+- (NSDate *)creationDate {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+    return self.asset.creationDate;
+#else
+    return [self.asset valueForProperty:ALAssetPropertyDate];
+#endif
+}
 - (NSUInteger)selectedIndex {
     if ([self.assetCollectionModel.model.selectedAssetIdentifiers containsObject:self.identifier]) {
         return [self.assetCollectionModel.model.selectedAssetIdentifiers indexOfObject:self.identifier];

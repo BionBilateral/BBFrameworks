@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic) UIImage *typeImage;
 @property (readonly,nonatomic) NSTimeInterval duration;
 @property (readonly,nonatomic) NSString *formattedDuration;
+@property (readonly,nonatomic) NSDate *creationDate;
 @property (readonly,nonatomic) NSUInteger selectedIndex;
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
