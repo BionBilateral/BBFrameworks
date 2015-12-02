@@ -154,6 +154,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 #endif
 }
 
+- (BOOL)isAssetModelSelected:(BBMediaPickerAssetModel *)assetModel; {
+    return [self.selectedAssetIdentifiers containsObject:assetModel.identifier];
+}
 - (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
     return [self.delegate mediaPickerModel:self shouldSelectMedia:assetModel];
 }

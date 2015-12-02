@@ -83,6 +83,17 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    BBMediaPickerAssetModel *model = [(BBMediaPickerAssetCollectionViewCell *)cell model];
+    
+    if ([self.model isAssetModelSelected:model]) {
+        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    }
+    else {
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    }
+}
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
