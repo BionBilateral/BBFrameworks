@@ -19,7 +19,6 @@
 #import "BBMediaPickerAssetDefaultSelectedOverlayView.h"
 #import "UIImage+BBKitExtensions.h"
 #import "BBMediaPickerTheme.h"
-#import "BBKeyValueObserving.h"
 #import "BBMediaPickerAssetCollectionModel.h"
 #import "BBMediaPickerModel.h"
 #import "BBGradientView.h"
