@@ -30,7 +30,6 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 @property (readwrite,strong,nonatomic) PHAssetCollection *assetCollection;
 @property (readwrite,strong,nonatomic) PHFetchResult<PHAsset *> *fetchResult;
-@property (assign,nonatomic) PHImageRequestID firstImageRequestID, secondImageRequestID, thirdImageRequestID;
 @property (strong,nonatomic) NSMutableDictionary *thumbnailIndexesToImageRequestIDs;
 #else
 @property (readwrite,strong,nonatomic) ALAssetsGroup *assetCollection;
