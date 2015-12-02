@@ -142,6 +142,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionPopoverBackgroundColor;
 /**
+ Set and get the asset collection popover background edge insets, which are used when laying out the popover relative to the title view in the navigation bar.
+ 
+ The default is UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
+ */
+@property (assign,nonatomic) UIEdgeInsets assetCollectionPopoverBackgroundEdgeInsets;
+/**
  Set and get the asset collection popover arrow width, which is used when drawing the popover arrow attached to the asset collection popover view.
  
  The default is 8.0.
