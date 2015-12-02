@@ -1508,6 +1508,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070AA8951C0F5BC300279529 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7987CADA1C0E9E93000C4086 /* ALAsset+BBMediaPickerExtensions.h */,
+				7987CADB1C0E9E93000C4086 /* ALAsset+BBMediaPickerExtensions.m */,
+				7987CABD1C0E9AE6000C4086 /* BBMediaPickerAssetModel.h */,
+				7987CABE1C0E9AE6000C4086 /* BBMediaPickerAssetModel.m */,
+				7987CAC11C0E9AE6000C4086 /* BBMediaPickerAssetsViewController.h */,
+				7987CAC21C0E9AE6000C4086 /* BBMediaPickerAssetsViewController.m */,
+				7987CABF1C0E9AE6000C4086 /* BBMediaPickerAssetsCollectionViewController.h */,
+				7987CAC01C0E9AE6000C4086 /* BBMediaPickerAssetsCollectionViewController.m */,
+				7922E8861BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewLayout.h */,
+				7922E8871BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewLayout.m */,
+				7987CABB1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionViewCell.h */,
+				7987CABC1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionViewCell.m */,
+				7987CAD71C0E9BEE000C4086 /* BBMediaPickerAssetCollectionViewCell.xib */,
+				7987CAA51C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.h */,
+				7987CAA61C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m */,
+				7987CAA71C0E9ADD000C4086 /* BBMediaPickerAssetSelectedOverlayView.h */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		070AA8961C0F5BEC00279529 /* Asset Collections */ = {
+			isa = PBXGroup;
+			children = (
+				7987CADC1C0E9E93000C4086 /* ALAssetsGroup+BBMediaPickerExtensions.h */,
+				7987CADD1C0E9E93000C4086 /* ALAssetsGroup+BBMediaPickerExtensions.m */,
+				7987CAAF1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionModel.h */,
+				7987CAB01C0E9AE6000C4086 /* BBMediaPickerAssetCollectionModel.m */,
+				7987CAB51C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsViewController.h */,
+				7987CAB61C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsViewController.m */,
+				7987CAB11C0E9AE6000C4086 /* BBMediaPickerAssetCollectionPopoverView.h */,
+				7987CAB21C0E9AE6000C4086 /* BBMediaPickerAssetCollectionPopoverView.m */,
+				7987CAB31C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsTableViewController.h */,
+				7987CAB41C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsTableViewController.m */,
+				7987CAB71C0E9AE6000C4086 /* BBMediaPickerAssetCollectionTableViewCell.h */,
+				7987CAB81C0E9AE6000C4086 /* BBMediaPickerAssetCollectionTableViewCell.m */,
+				7987CAD61C0E9BEE000C4086 /* BBMediaPickerAssetCollectionTableViewCell.xib */,
+				7987CAB91C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.h */,
+				7987CABA1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.m */,
+			);
+			name = "Asset Collections";
+			sourceTree = "<group>";
+		};
 		0728FFF31B4337D600D68D05 /* BBAddressBook */ = {
 			isa = PBXGroup;
 			children = (
@@ -2117,52 +2162,23 @@
 			isa = PBXGroup;
 			children = (
 				07605ABB1B69551800333678 /* BBMediaPicker.h */,
+				7987CADE1C0E9E93000C4086 /* ALAssetsLibrary+BBMediaPickerExtensions.h */,
+				7987CADF1C0E9E93000C4086 /* ALAssetsLibrary+BBMediaPickerExtensions.m */,
+				7987CAA01C0E9A96000C4086 /* BBMediaPickerTheme.h */,
+				7987CAA11C0E9A96000C4086 /* BBMediaPickerTheme.m */,
 				799B96151B69BA5B0010E1CD /* BBMediaPickerMedia.h */,
 				07605AC91B69593700333678 /* BBMediaPickerDefines.h */,
+				7987CAC51C0E9AE6000C4086 /* BBMediaPickerModelDelegate.h */,
+				7987CAC31C0E9AE6000C4086 /* BBMediaPickerModel.h */,
+				7987CAC41C0E9AE6000C4086 /* BBMediaPickerModel.m */,
 				07605AC11B6955EA00333678 /* BBMediaPickerViewControllerDelegate.h */,
 				07605ABC1B69556E00333678 /* BBMediaPickerViewController.h */,
 				07605ABD1B69556E00333678 /* BBMediaPickerViewController.m */,
+				7987CAA21C0E9A96000C4086 /* BBMediaPickerTitleView.h */,
 				7987CA9E1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.h */,
 				7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */,
-				7987CAA01C0E9A96000C4086 /* BBMediaPickerTheme.h */,
-				7987CAA11C0E9A96000C4086 /* BBMediaPickerTheme.m */,
-				7987CAA21C0E9A96000C4086 /* BBMediaPickerTitleView.h */,
-				7922E8861BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewLayout.h */,
-				7922E8871BD41CF200F85EDA /* BBMediaPickerAssetCollectionViewLayout.m */,
-				7987CAA51C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.h */,
-				7987CAA61C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m */,
-				7987CAA71C0E9ADD000C4086 /* BBMediaPickerAssetSelectedOverlayView.h */,
-				7987CADA1C0E9E93000C4086 /* ALAsset+BBMediaPickerExtensions.h */,
-				7987CADB1C0E9E93000C4086 /* ALAsset+BBMediaPickerExtensions.m */,
-				7987CADC1C0E9E93000C4086 /* ALAssetsGroup+BBMediaPickerExtensions.h */,
-				7987CADD1C0E9E93000C4086 /* ALAssetsGroup+BBMediaPickerExtensions.m */,
-				7987CADE1C0E9E93000C4086 /* ALAssetsLibrary+BBMediaPickerExtensions.h */,
-				7987CADF1C0E9E93000C4086 /* ALAssetsLibrary+BBMediaPickerExtensions.m */,
-				7987CAAF1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionModel.h */,
-				7987CAB01C0E9AE6000C4086 /* BBMediaPickerAssetCollectionModel.m */,
-				7987CAB11C0E9AE6000C4086 /* BBMediaPickerAssetCollectionPopoverView.h */,
-				7987CAB21C0E9AE6000C4086 /* BBMediaPickerAssetCollectionPopoverView.m */,
-				7987CAB31C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsTableViewController.h */,
-				7987CAB41C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsTableViewController.m */,
-				7987CAB51C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsViewController.h */,
-				7987CAB61C0E9AE6000C4086 /* BBMediaPickerAssetCollectionsViewController.m */,
-				7987CAB71C0E9AE6000C4086 /* BBMediaPickerAssetCollectionTableViewCell.h */,
-				7987CAB81C0E9AE6000C4086 /* BBMediaPickerAssetCollectionTableViewCell.m */,
-				7987CAB91C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.h */,
-				7987CABA1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.m */,
-				7987CABB1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionViewCell.h */,
-				7987CABC1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionViewCell.m */,
-				7987CABD1C0E9AE6000C4086 /* BBMediaPickerAssetModel.h */,
-				7987CABE1C0E9AE6000C4086 /* BBMediaPickerAssetModel.m */,
-				7987CABF1C0E9AE6000C4086 /* BBMediaPickerAssetsCollectionViewController.h */,
-				7987CAC01C0E9AE6000C4086 /* BBMediaPickerAssetsCollectionViewController.m */,
-				7987CAC11C0E9AE6000C4086 /* BBMediaPickerAssetsViewController.h */,
-				7987CAC21C0E9AE6000C4086 /* BBMediaPickerAssetsViewController.m */,
-				7987CAC31C0E9AE6000C4086 /* BBMediaPickerModel.h */,
-				7987CAC41C0E9AE6000C4086 /* BBMediaPickerModel.m */,
-				7987CAC51C0E9AE6000C4086 /* BBMediaPickerModelDelegate.h */,
-				7987CAD61C0E9BEE000C4086 /* BBMediaPickerAssetCollectionTableViewCell.xib */,
-				7987CAD71C0E9BEE000C4086 /* BBMediaPickerAssetCollectionViewCell.xib */,
+				070AA8961C0F5BEC00279529 /* Asset Collections */,
+				070AA8951C0F5BC300279529 /* Assets */,
 			);
 			path = BBMediaPicker;
 			sourceTree = "<group>";
