@@ -33,6 +33,7 @@
 		072D60B11BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072D60B01BF6903E006894CD /* BBMediaPickerAssetCollectionTableViewCell.xib */; };
 		074E08261C0E701400400713 /* ALAssetsGroup+BBMediaPickerExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 074E08251C0E701400400713 /* ALAssetsGroup+BBMediaPickerExtensions.m */; };
 		074E08291C0E729A00400713 /* ALAsset+BBMediaPickerExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 074E08281C0E729A00400713 /* ALAsset+BBMediaPickerExtensions.m */; };
+		074E082C1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 074E082B1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.m */; };
 		075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */; };
 		075BCA9A1BDFE55300E9743C /* UIDevice+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */; };
 		075CECB01BC5A3C3000731BC /* CIImage+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; };
@@ -784,6 +785,8 @@
 		074E08251C0E701400400713 /* ALAssetsGroup+BBMediaPickerExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAssetsGroup+BBMediaPickerExtensions.m"; path = "Private/ALAssetsGroup+BBMediaPickerExtensions.m"; sourceTree = "<group>"; };
 		074E08271C0E729A00400713 /* ALAsset+BBMediaPickerExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ALAsset+BBMediaPickerExtensions.h"; path = "Private/ALAsset+BBMediaPickerExtensions.h"; sourceTree = "<group>"; };
 		074E08281C0E729A00400713 /* ALAsset+BBMediaPickerExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAsset+BBMediaPickerExtensions.m"; path = "Private/ALAsset+BBMediaPickerExtensions.m"; sourceTree = "<group>"; };
+		074E082A1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ALAssetsLibrary+BBMediaPickerExtensions.h"; path = "Private/ALAssetsLibrary+BBMediaPickerExtensions.h"; sourceTree = "<group>"; };
+		074E082B1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALAssetsLibrary+BBMediaPickerExtensions.m"; path = "Private/ALAssetsLibrary+BBMediaPickerExtensions.m"; sourceTree = "<group>"; };
 		0750D6441B6A94C0002F2C1A /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaPicker.strings; sourceTree = "<group>"; };
 		075BCA971BDFE19200E9743C /* UIDevice+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+BBKitExtensions.h"; path = "iOS/UIDevice+BBKitExtensions.h"; sourceTree = "<group>"; };
 		075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BBKitExtensions.m"; path = "iOS/UIDevice+BBKitExtensions.m"; sourceTree = "<group>"; };
@@ -1857,6 +1860,8 @@
 				072D60A51BF67A0F006894CD /* BBMediaPickerTitleView.h */,
 				072D60A11BF67448006894CD /* BBMediaPickerDefaultTitleView.h */,
 				072D60A21BF67448006894CD /* BBMediaPickerDefaultTitleView.m */,
+				074E082A1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.h */,
+				074E082B1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.m */,
 				072D60A61BF68DFE006894CD /* Asset Collections */,
 				797B97551BF6D14300B94F8D /* Assets */,
 			);
@@ -3237,6 +3242,7 @@
 				074E08291C0E729A00400713 /* ALAsset+BBMediaPickerExtensions.m in Sources */,
 				072D609A1BF6683E006894CD /* BBMediaPickerViewController.m in Sources */,
 				79EA80CD1B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
+				074E082C1C0E789100400713 /* ALAssetsLibrary+BBMediaPickerExtensions.m in Sources */,
 				79EA80CF1B3F0CDB00D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
 				791997001B6EB3C500FC674A /* BBThumbnailRTFOperation.m in Sources */,
 				07FF892F1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m in Sources */,

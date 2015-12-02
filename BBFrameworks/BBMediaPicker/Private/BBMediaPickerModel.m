@@ -25,6 +25,7 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
 #else
+#import "ALAssetsLibrary+BBMediaPickerExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #endif
 
@@ -308,7 +309,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return [[BBMediaPickerAssetModel alloc] initWithAsset:object assetCollectionModel:nil];
     }];
 #else
-    return @[];
+    return [self.selectedAssetIdentifiers.array BB_map:^id _Nullable(NSString * _Nonnull object, NSInteger index) {
+        return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.assetsLibrary BB_assetForIdentifier:object] assetCollectionModel:nil];
+    }];
 #endif
 }
 #pragma mark *** Private Methods ***
@@ -375,11 +378,23 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 #else
     NSMutableArray<ALAssetsGroup *> *retval = [[NSMutableArray alloc] init];
     
-    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        [retval addObject:group];
-    } failureBlock:^(NSError *error) {
-        
-    }];
+    // this is dumb, but the enumeration is performed asynchronously on the calling thread, so waiting on the semaphore on the main thread is a no go
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            if (group) {
+                [retval addObject:group];
+            }
+            else {
+                dispatch_semaphore_signal(semaphore);
+            }
+        } failureBlock:^(NSError *error) {
+            dispatch_semaphore_signal(semaphore);
+        }];
+    });
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     [self setAssetCollectionModels:[retval BB_map:^id _Nullable(ALAssetsGroup * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];

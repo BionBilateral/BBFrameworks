@@ -19,7 +19,12 @@
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerTheme.h"
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
+#else
+#import "ALAsset+BBMediaPickerExtensions.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#endif
 
 @interface BBMediaPickerAssetModel ()
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
@@ -59,9 +64,9 @@
 - (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage * _Nullable thumbnailImage))completion; {
     NSParameterAssert(completion);
     
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [self cancelAllThumbnailRequests];
     
-#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     
     [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
@@ -72,7 +77,9 @@
         completion(result);
     }];
 #else
+    UIImage *retval = [UIImage imageWithCGImage:[self.asset thumbnail]];
     
+    completion(retval);
 #endif
 }
 - (void)cancelAllThumbnailRequests; {
@@ -80,8 +87,6 @@
     if (self.imageRequestID != PHInvalidImageRequestID) {
         [[PHCachingImageManager defaultManager] cancelImageRequest:self.imageRequestID];
     }
-#else
-    
 #endif
 }
 
@@ -89,7 +94,7 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return self.asset.localIdentifier;
 #else
-    return [(NSURL *)[self.asset valueForProperty:ALAssetPropertyAssetURL] absoluteString];
+    return [self.asset BB_identifier];
 #endif
 }
 - (BBMediaPickerAssetMediaType)mediaType {
