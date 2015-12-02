@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.6.3"
+  spec.version = "1.6.4"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -132,14 +132,14 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "BBFrameworks/BBKit"
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     
-    subspec.ios.source_files = "BBFrameworks/BBMediaPicker", "BBFrameworks/BBMediaPicker/Private", "BBFrameworks/BBMediaPicker/Private/AssetsLibrary"
+    subspec.ios.source_files = "BBFrameworks/BBMediaPicker", "BBFrameworks/BBMediaPicker/Private", "BBFrameworks/BBMediaPicker/Private/ALAssetsLibrary"
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
     
-    subspec.ios.private_header_files = "BBFrameworks/BBMediaPicker/Private/*.h", "BBFrameworks/BBMediaPicker/Private/AssetsLibrary/*.h"
+    subspec.ios.private_header_files = "BBFrameworks/BBMediaPicker/Private/*.h", "BBFrameworks/BBMediaPicker/Private/ALAssetsLibrary/*.h"
     
     subspec.ios.frameworks = "AssetsLibrary"
     
-    subspec.ios.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => "$(inherited) BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK=0"}
+    subspec.ios.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => "BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK=0"}
   end
   
   spec.subspec "BBMediaViewer" do |subspec|
