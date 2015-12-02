@@ -19,9 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaPickerTheme;
 
+/**
+ BBMediaPickerAssetSelectedOverlayView is a protocol describing an instance of the class used to draw selection chrome for selected asset collection view cells.
+ */
 @protocol BBMediaPickerAssetSelectedOverlayView <NSObject>
 @optional
+/**
+ Set and get the index of the selected asset within the array of selected assets.
+ */
 @property (assign,nonatomic) NSUInteger selectedIndex;
+/**
+ Set and get the theme of the selected overlay view.
+ */
 @property (strong,nonatomic,nullable) BBMediaPickerTheme *theme;
 @end
 
