@@ -22,6 +22,7 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
 #else
+#import "ALAssetsGroup+BBMediaPickerExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #endif
 
@@ -102,7 +103,7 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.fetchResult objectAtIndex:index] assetCollectionModel:self];
 #else
-    return nil;
+    return [[BBMediaPickerAssetModel alloc] initWithAsset:[self.assetCollection BB_assetAtIndex:index] assetCollectionModel:self];
 #endif
 }
 

@@ -376,7 +376,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     NSMutableArray<ALAssetsGroup *> *retval = [[NSMutableArray alloc] init];
     
     [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        
+        [retval addObject:group];
     } failureBlock:^(NSError *error) {
         
     }];
