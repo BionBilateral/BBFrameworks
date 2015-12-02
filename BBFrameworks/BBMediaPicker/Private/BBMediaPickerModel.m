@@ -353,8 +353,6 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return;
     }
     
-    BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
-    
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     NSMutableArray<PHAssetCollection *> *retval = [[NSMutableArray alloc] init];
     
@@ -398,6 +396,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
     }];
 #endif
+    
+    BBMediaPickerAssetCollectionModel *oldSelectedAssetCollectionModel = self.selectedAssetCollectionModel;
     
     [self setAssetCollectionModels:[[assetCollectionModels BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
         return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
