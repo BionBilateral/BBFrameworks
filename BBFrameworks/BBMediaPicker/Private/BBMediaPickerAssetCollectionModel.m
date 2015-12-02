@@ -37,7 +37,9 @@
 #endif
 @property (readwrite,weak,nonatomic) BBMediaPickerModel *model;
 
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)_cancelThumbnailImageRequestAtIndex:(NSUInteger)thumbnailIndex;
+#endif
 @end
 
 @implementation BBMediaPickerAssetCollectionModel
@@ -111,18 +113,7 @@
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return [self.fetchResult indexOfObject:assetModel.asset];
 #else
-    __block NSInteger retval = NSNotFound;
-    
-    [self.assetCollection enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        NSURL *assetURL = [result valueForProperty:ALAssetPropertyAssetURL];
-        
-        if ([assetURL.absoluteString isEqualToString:assetModel.identifier]) {
-            retval = index;
-            *stop = YES;
-        }
-    }];
-    
-    return retval;
+    return [self.assetCollection BB_indexOfAsset:assetModel.asset];
 #endif
 }
 
@@ -134,9 +125,9 @@
         return;
     }
     
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [self _cancelThumbnailImageRequestAtIndex:thumbnailIndex];
     
-#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     
     [options setDeliveryMode:PHImageRequestOptionsDeliveryModeFastFormat];
@@ -150,7 +141,10 @@
     
     [self.thumbnailIndexesToImageRequestIDs setObject:@(imageRequestID) forKey:@(thumbnailIndex)];
 #else
+    ALAsset *asset = [self.assetCollection BB_assetAtIndex:thumbnailIndex];
+    UIImage *retval = asset ? [UIImage imageWithCGImage:[asset thumbnail]] : nil;
     
+    completion(retval);
 #endif
 }
 - (void)cancelAllThumbnailRequests; {
@@ -158,13 +152,11 @@
     for (NSNumber *thumbnailIndex in self.thumbnailIndexesToImageRequestIDs.allKeys) {
         [self _cancelThumbnailImageRequestAtIndex:thumbnailIndex.unsignedIntegerValue];
     }
-#else
-    
 #endif
 }
 
-- (void)_cancelThumbnailImageRequestAtIndex:(NSUInteger)thumbnailIndex; {
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+- (void)_cancelThumbnailImageRequestAtIndex:(NSUInteger)thumbnailIndex; {
     PHImageRequestID imageRequestID = [self.thumbnailIndexesToImageRequestIDs[@(thumbnailIndex)] intValue];
     
     if (imageRequestID == PHInvalidImageRequestID) {
@@ -174,10 +166,8 @@
     [self.thumbnailIndexesToImageRequestIDs removeObjectForKey:@(thumbnailIndex)];
     
     [[PHCachingImageManager defaultManager] cancelImageRequest:imageRequestID];
-#else
-    
-#endif
 }
+#endif
 
 - (void)reloadFetchResult; {
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
