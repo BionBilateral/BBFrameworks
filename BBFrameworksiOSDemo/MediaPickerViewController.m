@@ -72,7 +72,7 @@
     if (self == [MediaPickerViewController class]) {
         [[BBMediaPickerTheme defaultTheme] setTitleColor:[UIColor whiteColor]];
         [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
-        [[BBMediaPickerTheme defaultTheme] setDoneBottomAccessoryViewClass:[MediaPickerDoneButton class]];
+        [[BBMediaPickerTheme defaultTheme] setDoneBottomAccessoryControlClass:[MediaPickerDoneButton class]];
         
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];

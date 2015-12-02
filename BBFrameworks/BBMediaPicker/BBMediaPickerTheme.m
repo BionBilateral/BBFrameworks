@@ -183,13 +183,13 @@
     return [UIFont systemFontOfSize:12.0];
 }
 + (UIColor *)_defaultAssetCollectionCellSubtitleColor {
-    return [UIColor blackColor];
+    return [UIColor darkGrayColor];
 }
 + (UIColor *)_defaultAssetCollectionForegroundColor; {
     return [UIColor whiteColor];
 }
 + (UIColor *)_defaultAssetCollectionSeparatorColor; {
-    return [UIColor blackColor];
+    return [UIColor lightGrayColor];
 }
 + (UIColor *)_defaultAssetCollectionPopoverBackgroundColor; {
     return [UIColor darkGrayColor];

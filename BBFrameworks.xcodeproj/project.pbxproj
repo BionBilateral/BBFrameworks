@@ -1524,9 +1524,9 @@
 				7987CABB1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionViewCell.h */,
 				7987CABC1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionViewCell.m */,
 				7987CAD71C0E9BEE000C4086 /* BBMediaPickerAssetCollectionViewCell.xib */,
+				7987CAA71C0E9ADD000C4086 /* BBMediaPickerAssetSelectedOverlayView.h */,
 				7987CAA51C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.h */,
 				7987CAA61C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m */,
-				7987CAA71C0E9ADD000C4086 /* BBMediaPickerAssetSelectedOverlayView.h */,
 			);
 			name = Assets;
 			sourceTree = "<group>";

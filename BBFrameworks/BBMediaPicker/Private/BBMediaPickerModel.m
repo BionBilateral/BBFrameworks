@@ -434,8 +434,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 - (void)_updateThemeDependentProperties; {
     [self setDoneBarButtonItem:_theme.doneBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL]];
     [self setCancelBarButtonItem:_theme.cancelBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL]];
-    [self setCancelBottomAccessoryControl:_theme.cancelBottomAccessoryViewClass ? [[_theme.cancelBottomAccessoryViewClass alloc] initWithFrame:CGRectZero] : nil];
-    [self setDoneBottomAccessoryControl:_theme.doneBottomAccessoryViewClass ? [[_theme.doneBottomAccessoryViewClass alloc] initWithFrame:CGRectZero] : nil];
+    [self setCancelBottomAccessoryControl:_theme.cancelBottomAccessoryControlClass ? [[_theme.cancelBottomAccessoryControlClass alloc] initWithFrame:CGRectZero] : nil];
+    [self setDoneBottomAccessoryControl:_theme.doneBottomAccessoryControlClass ? [[_theme.doneBottomAccessoryControlClass alloc] initWithFrame:CGRectZero] : nil];
 }
 #pragma mark Properties
 - (void)setAssetCollectionModels:(NSArray<BBMediaPickerAssetCollectionModel *> *)assetCollectionModels {

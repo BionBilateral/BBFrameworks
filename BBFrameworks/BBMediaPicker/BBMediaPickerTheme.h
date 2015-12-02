@@ -17,39 +17,189 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBMediaPickerTheme is a NSObject allows the client to customize the appearance and behavior of the media picker classes without using the appearance proxy methods.
+ */
 @interface BBMediaPickerTheme : NSObject
 
+/**
+ Set and get the title font, which is used to display the name of the selected asset collection in the navigation bar.
+ 
+ The default is [UIFont boldSystemFontOfSize:17.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *titleFont;
+/**
+ Set and get the title color.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *titleColor;
+/**
+ Set and get the subtitle font, which is used to display descriptive text telling the user to tap in order to change the selected asset collection.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *subtitleFont;
+/**
+ Set and get the subtitle color.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *subtitleColor;
+/**
+ Set and get the title view class, which is instantiated and set as the navigation item's `titleView` property. A default class is provided, but if a custom class is set, instances must conform to the BBMediaPickerTitleView protocol.
+ 
+ @see BBMediaPickerTitleView
+ */
 @property (strong,nonatomic,null_resettable) Class titleViewClass;
+/**
+ Set and get the cancel bar button item. In single selection selection mode, the bar button item is displayed on the right hand side. In multiple selection mode, the bar button item is displayed on the left hand side. If cancelBottomAccessoryControlClass is non-nil, the bar button item is not displayed.
+ 
+ The default is the standard system cancel bar button item.
+ 
+ @see cancelBottomAccessoryControlClass
+ */
 @property (strong,nonatomic,nullable) UIBarButtonItem *cancelBarButtonItem;
+/**
+ Set and get the done bar button item. In single selection mode, the item is not displayed. In multiple selection mode, the item is displayed on the right hand side. If doneBottomAccessoryControlClass is non-nil, the bar button item is not displayed.
+ 
+ The default is the standard system done bar button item.
+ 
+ @see doneBottomAccessoryControlClass
+ */
 @property (strong,nonatomic,nullable) UIBarButtonItem *doneBarButtonItem;
-@property (strong,nonatomic,nullable) Class cancelBottomAccessoryViewClass;
-@property (strong,nonatomic,nullable) Class doneBottomAccessoryViewClass;
+/**
+ Set and get the cancel bottom accessory control class, which should be a subclass of UIControl. If non-nil, an instance of the class is displayed at the bottom of the asset grid view and the cancel bar button item is not displayed. The class should implement sizeThatFits: to provide an appropriate height.
+ 
+ The default is Nil.
+ */
+@property (strong,nonatomic,nullable) Class cancelBottomAccessoryControlClass;
+/**
+ Set and get the done bottom accessory control class, which should be a subclass of UIControl. If non-nil, an instance of the class is displayed at the bottom of the asset grid view and the done bar button item is not displayed. The class should implement sizeThatFits: to provide an appropriate height.
+ 
+ The default is Nil.
+ */
+@property (strong,nonatomic,nullable) Class doneBottomAccessoryControlClass;
 
+/**
+ Set and get the asset collection background color, which is used to tint the content overlay when presenting the asset collection popover.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionBackgroundColor;
+/**
+ Set and get the asset collection cell background color, which is used to fill the background of each cell displaying an asset collection.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellBackgroundColor;
+/**
+ Set and get the asset collection cell title font, which is used to display the name of the asset collection.
+ 
+ The default is [UIFont systemFontOfSize:17.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *assetCollectionCellTitleFont;
+/**
+ Set and get the asset collection cell title color.
+ 
+ The default is [UIColor blackColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellTitleColor;
+/**
+ Set and get the asset collection cell subtitle font, which is used to display the number of assets in the asset collection.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *assetCollectionCellSubtitleFont;
+/**
+ Set and get the asset collection cell subtitle color.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellSubtitleColor;
+/**
+ Set and get the asset collection cell checkmark color, which is displayed in the row representing the selected asset collection.
+ 
+ The default is the standard iOS tint color.
+ */
 @property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
+/**
+ Set and get the asset collection foreground color, which is used to render the various type images (e.g. image, video).
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionForegroundColor;
+/**
+ Set and get the asset collection separator color, which is used as the separator color for the asset collection table view.
+ 
+ The default is [UIColor lightGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionSeparatorColor;
+/**
+ Set and get the asset collection popover background, which is used to fill the popover view that contains the asset collection table view.
+ 
+ The default is [UIColor darkGrayColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionPopoverBackgroundColor;
+/**
+ Set and get the asset collection popover arrow width, which is used when drawing the popover arrow attached to the asset collection popover view.
+ 
+ The default is 8.0.
+ */
 @property (assign,nonatomic) CGFloat assetCollectionPopoverArrowWidth;
+/**
+ Set and get the asset collection popover arrow height.
+ 
+ The default is 8.0.
+ */
 @property (assign,nonatomic) CGFloat assetCollectionPopoverArrowHeight;
+/**
+ Set and get the asset collection popover corner radius, which determines the roundness of the popover background view.
+ 
+ The default is 5.0.
+ */
 @property (assign,nonatomic) CGFloat assetCollectionPopoverCornerRadius;
 
+/**
+ Set and get the asset background color, which is used as the background color of the asset collection view.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
+/**
+ Set and get the asset selected overlay view class, which is responsible for drawing the relevant chrome for selected assets. A default class is provided, but if a custom class is set, instances must conform to the BBMediaPickerAssetSelectedOverlayView protocol.
+ 
+ @see BBMediaPickerAssetSelectedOverlayView
+ */
 @property (strong,nonatomic,null_resettable) Class assetSelectedOverlayViewClass;
+/**
+ Set and get the assets selected overlay view tint color, which the default class uses to draw the selection chrome.
+ 
+ The default is the view tint color.
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetSelectedOverlayViewTintColor;
+/**
+ Set and get the asset type video image, which is used to badge video assets in the collection view.
+ 
+ The default is [UIImage imageNamed:@"media_picker_type_video"].
+ */
 @property (strong,nonatomic,null_resettable) UIImage *assetTypeVideoImage;
+/**
+ Set and get the asset foreground color, which is used to render the various type images.
+ 
+ The default is [UIColor whiteColor].
+ */
 @property (strong,nonatomic,null_resettable) UIColor *assetForegroundColor;
+/**
+ Set and get the asset duration font, which is used when displaying the duration of a video assets in the bottom right corner of the collection view cell.
+ 
+ The default is [UIFont systemFontOfSize:12.0].
+ */
 @property (strong,nonatomic,null_resettable) UIFont *assetDurationFont;
 
+/**
+ Get the default theme, which is initialized with the default values described above.
+ */
 + (instancetype)defaultTheme;
 
 @end
