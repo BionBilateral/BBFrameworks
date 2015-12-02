@@ -368,13 +368,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         [retval addObject:obj];
     }];
     
-    [self setAssetCollectionModels:[[[retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
+    NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels = [retval BB_map:^id _Nullable(PHAssetCollection * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
-    }] BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
-        return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
-    }] BB_filter:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
-        return self.allowedAssetCollectionSubtypes == nil || [self.allowedAssetCollectionSubtypes containsObject:@(object.subtype)];
-    }]];
+    }];
 #else
     NSMutableArray<ALAssetsGroup *> *retval = [[NSMutableArray alloc] init];
     
@@ -396,10 +392,16 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
-    [self setAssetCollectionModels:[retval BB_map:^id _Nullable(ALAssetsGroup * _Nonnull object, NSInteger index) {
+    NSArray<BBMediaPickerAssetCollectionModel *> *assetCollectionModels = [retval BB_map:^id _Nullable(ALAssetsGroup * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetCollectionModel alloc] initWithAssetCollection:object model:self];
-    }]];
+    }];
 #endif
+    
+    [self setAssetCollectionModels:[[assetCollectionModels BB_reject:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
+        return object.title.length == 0 || (self.hidesEmptyAssetCollections && object.countOfAssetModels == 0);
+    }] BB_filter:^BOOL(BBMediaPickerAssetCollectionModel * _Nonnull object, NSInteger index) {
+        return self.allowedAssetCollectionSubtypes == nil || [self.allowedAssetCollectionSubtypes containsObject:@(object.subtype)];
+    }]];
     
     // try to select previously selected asset collection model
     if (oldSelectedAssetCollectionModel) {
