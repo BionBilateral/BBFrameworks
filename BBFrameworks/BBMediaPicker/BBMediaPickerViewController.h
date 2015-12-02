@@ -100,6 +100,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
 /**
+ Get the media at the provided index within the selected asset collection. If the index is out of bounds, nil is returned.
+ 
+ @param index The index of the media to return
+ @return The media or nil
+ */
+- (id<BBMediaPickerMedia>)mediaAtIndex:(NSUInteger)index;
+/**
  Scrolls the provided media so it is visible within the asset collection view.
  
  @param media The media to scroll to visible

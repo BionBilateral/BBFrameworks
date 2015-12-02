@@ -219,6 +219,9 @@
 - (NSUInteger)countOfMedia; {
     return self.model.selectedAssetCollectionModel.countOfAssetModels;
 }
+- (id<BBMediaPickerMedia>)mediaAtIndex:(NSUInteger)index; {
+    return [self.model.selectedAssetCollectionModel assetModelAtIndex:index];
+}
 - (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media; {
     return [self.model.selectedAssetCollectionModel indexOfAssetModel:[[BBMediaPickerAssetModel alloc] initWithAsset:[media mediaAsset] assetCollectionModel:nil]];
 }
