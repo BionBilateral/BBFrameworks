@@ -195,7 +195,20 @@
     
     [self setFetchResult:[PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options]];
 #else
+    ALAssetsFilter *filter = nil;
     
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesImage) {
+        filter = [ALAssetsFilter allPhotos];
+    }
+    if (self.model.mediaTypes & BBMediaPickerMediaTypesVideo) {
+        filter = [ALAssetsFilter allVideos];
+    }
+    
+    [self willChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
+    
+    [self.assetCollection setAssetsFilter:filter];
+    
+    [self didChangeValueForKey:@BBKeypath(self,countOfAssetModels)];
 #endif
 }
 
