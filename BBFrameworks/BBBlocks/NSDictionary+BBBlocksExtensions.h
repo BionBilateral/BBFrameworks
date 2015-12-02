@@ -141,25 +141,25 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The sum of all keys in the receiver
  */
-- (id)BB_sumOfKeys;
+- (__kindof NSNumber *)BB_sumOfKeys;
 /**
  Returns the result of `[self.allValues BB_sum]`.
  
  @return The sum of all values in the receiver
  */
-- (id)BB_sumOfValues;
+- (__kindof NSNumber *)BB_sumOfValues;
 /**
  Returns the result of `[self.allKeys BB_product]`.
  
  @return The product of all keys in the receiver
  */
-- (id)BB_productOfKeys;
+- (__kindof NSNumber *)BB_productOfKeys;
 /**
  Returns the result of `[self.allValues BB_product]`.
  
  @return The product of all values in the receiver
  */
-- (id)BB_productOfValues;
+- (__kindof NSNumber *)BB_productOfValues;
 /**
  Returns the result of `[self.allKeys BB_maximum]`.
  

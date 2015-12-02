@@ -162,13 +162,13 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The sum
  */
-- (id)BB_sum;
+- (__kindof NSNumber *)BB_sum;
 /**
  Returns the product of the objects in the receiver, which should be NSNumber instances, as an NSNumber.
  
  @return The product
  */
-- (id)BB_product;
+- (__kindof NSNumber *)BB_product;
 /**
  Returns the maximum value of the objects in the receiver, which should all respond to the `compare:` method.
  
