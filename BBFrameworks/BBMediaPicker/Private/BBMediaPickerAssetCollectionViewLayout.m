@@ -25,8 +25,8 @@
     _numberOfColumns = 4;
     
     [self setSectionInset:UIEdgeInsetsMake(8.0, 0, 8.0, 0)];
-    [self setMinimumInteritemSpacing:2.0];
-    [self setMinimumLineSpacing:2.0];
+    [self setMinimumInteritemSpacing:1.0];
+    [self setMinimumLineSpacing:1.0];
     
     return self;
 }
