@@ -31,12 +31,20 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 /**
  The underlying asset wrapped by the model object.
+ 
+ @return The underlying asset
  */
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (PHAsset *)mediaAsset;
 #else
 - (ALAsset *)mediaAsset;
 #endif
+/**
+ Type media type of the underlying asset (e.g. image, video).
+ 
+ @return The asset media type
+ */
+- (BBMediaPickerAssetMediaType)mediaAssetType;
 @end
 
 NS_ASSUME_NONNULL_END
