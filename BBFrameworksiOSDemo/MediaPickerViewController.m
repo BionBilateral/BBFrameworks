@@ -74,7 +74,7 @@
         [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
         [[BBMediaPickerTheme defaultTheme] setDoneBottomAccessoryControlClass:[MediaPickerDoneButton class]];
         
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[UIColor blackColor]];
+        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleFont:[UIFont boldSystemFontOfSize:17.0]];
         [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleColor:[UIColor whiteColor]];
