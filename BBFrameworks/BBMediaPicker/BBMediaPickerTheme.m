@@ -69,7 +69,7 @@
     _assetCollectionPopoverArrowWidth = 8.0;
     _assetCollectionPopoverArrowHeight = 8.0;
     _assetCollectionPopoverCornerRadius = 5.0;
-    _assetCollectionPopoverBackgroundEdgeInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
+    _assetCollectionPopoverBackgroundEdgeInsets = UIEdgeInsetsMake(8.0, 8.0, 0.0, 8.0);
     _assetCollectionSeparatorEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 0);
     _assetCollectionCellCheckmarkColor = [self.class _defaultAssetCollectionCellCheckmarkColor];
     
@@ -172,7 +172,7 @@
 }
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
-    return [[UIColor blackColor] colorWithAlphaComponent:0.75];
+    return [[UIColor blackColor] colorWithAlphaComponent:0.5];
 }
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor {
     return [UIColor whiteColor];

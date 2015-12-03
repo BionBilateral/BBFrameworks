@@ -118,7 +118,7 @@
             [self setDidAnimatePresentingTransition:YES];
             
             [UIView animateKeyframesWithDuration:duration delay:0 options:0 animations:^{
-                [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1.0 animations:^{
+                [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.5 animations:^{
                     [self.backgroundView setBackgroundColor:self.model.theme.assetCollectionBackgroundColor];
                 }];
                 [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:damping initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
