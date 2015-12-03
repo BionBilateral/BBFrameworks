@@ -83,14 +83,13 @@
     [self.view addSubview:self.assetsViewController.view];
     [self.assetsViewController didMoveToParentViewController:self];
     
-    BBWeakify(self);
-    
     [self.view setBackgroundColor:self.model.theme.assetBackgroundColor];
     
     [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
     
     [self _updateTitleViewProperties];
     
+    BBWeakify(self);
     [[RACObserve(self.model, title)
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
