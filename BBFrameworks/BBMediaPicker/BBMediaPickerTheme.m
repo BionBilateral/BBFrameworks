@@ -83,6 +83,43 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    BBMediaPickerTheme *retval = [[[self class] alloc] init];
+    
+    [retval setTitleFont:self.titleFont];
+    [retval setTitleColor:self.titleColor];
+    [retval setSubtitleFont:self.subtitleFont];
+    [retval setSubtitleColor:self.subtitleColor];
+    [retval setTitleViewClass:self.titleViewClass];
+    [retval setCancelBarButtonItem:self.cancelBarButtonItem];
+    [retval setCancelBottomAccessoryControlClass:self.cancelBottomAccessoryControlClass];
+    [retval setDoneBarButtonItem:self.doneBarButtonItem];
+    [retval setDoneBottomAccessoryControlClass:self.doneBottomAccessoryControlClass];
+    
+    [retval setAssetCollectionBackgroundColor:self.assetCollectionBackgroundColor];
+    [retval setAssetCollectionCellBackgroundColor:self.assetCollectionCellBackgroundColor];
+    [retval setAssetCollectionCellTitleFont:self.assetCollectionCellTitleFont];
+    [retval setAssetCollectionCellTitleColor:self.assetCollectionCellTitleColor];
+    [retval setAssetCollectionCellCheckmarkColor:self.assetCollectionCellCheckmarkColor];
+    [retval setAssetCollectionForegroundColor:self.assetCollectionForegroundColor];
+    [retval setAssetCollectionSeparatorColor:self.assetCollectionSeparatorColor];
+    [retval setAssetCollectionSeparatorEdgeInsets:self.assetCollectionSeparatorEdgeInsets];
+    [retval setAssetCollectionPopoverBackgroundColor:self.assetCollectionPopoverBackgroundColor];
+    [retval setAssetCollectionPopoverBackgroundEdgeInsets:self.assetCollectionPopoverBackgroundEdgeInsets];
+    [retval setAssetCollectionPopoverCornerRadius:self.assetCollectionPopoverCornerRadius];
+    [retval setAssetCollectionPopoverArrowHeight:self.assetCollectionPopoverArrowHeight];
+    [retval setAssetCollectionPopoverArrowWidth:self.assetCollectionPopoverArrowWidth];
+    
+    [retval setAssetBackgroundColor:self.assetBackgroundColor];
+    [retval setAssetSelectedOverlayViewClass:self.assetSelectedOverlayViewClass];
+    [retval setAssetSelectedOverlayViewTintColor:self.assetSelectedOverlayViewTintColor];
+    [retval setAssetTypeVideoImage:self.assetTypeVideoImage];
+    [retval setAssetForegroundColor:self.assetForegroundColor];
+    [retval setAssetDurationFont:self.assetDurationFont];
+    
+    return retval;
+}
+
 + (instancetype)defaultTheme {
     static id kRetval;
     static dispatch_once_t onceToken;

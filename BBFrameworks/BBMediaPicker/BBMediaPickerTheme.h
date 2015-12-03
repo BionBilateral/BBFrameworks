@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  BBMediaPickerTheme is a NSObject allows the client to customize the appearance and behavior of the media picker classes without using the appearance proxy methods.
  */
-@interface BBMediaPickerTheme : NSObject
+@interface BBMediaPickerTheme : NSObject <NSCopying>
 
 /**
  Set and get the title font, which is used to display the name of the selected asset collection in the navigation bar.
