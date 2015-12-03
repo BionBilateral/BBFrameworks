@@ -204,7 +204,7 @@
     }
 }
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didDeselectMedia:(id<BBMediaPickerMedia>)media {
-    if ([self.delegate respondsToSelector:@selector(mediaPickerViewControllerDidCancel:)]) {
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didDeselectMedia:)]) {
         [self.delegate mediaPickerViewController:self didDeselectMedia:media];
     }
 }
