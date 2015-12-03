@@ -57,6 +57,13 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 @implementation BBMediaPickerModel
 #pragma mark *** Subclass Overrides ***
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
+    if ([key isEqualToString:@BBKeypath(BBMediaPickerModel.new,selectedAssetCollectionModel)]) {
+        return NO;
+    }
+    return [super automaticallyNotifiesObserversForKey:key];
+}
+
 - (void)dealloc {
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
@@ -263,7 +270,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return;
     }
     
+    [self willChangeValueForKey:@BBKeypath(self,selectedAssetCollectionModel)];
+    
     _selectedAssetCollectionModel = selectedAssetCollectionModel;
+    
+    [self didChangeValueForKey:@BBKeypath(self,selectedAssetCollectionModel)];
     
     [self setSelectedAssetIdentifiers:nil];
     [self _updateTitle];
