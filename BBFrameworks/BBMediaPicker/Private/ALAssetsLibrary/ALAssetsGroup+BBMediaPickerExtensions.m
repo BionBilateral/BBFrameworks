@@ -18,6 +18,9 @@
 
 @implementation ALAssetsGroup (BBMediaPickerExtensions)
 
+- (NSString *)BB_identifier; {
+    return [(NSURL *)[self valueForProperty:ALAssetsGroupPropertyURL] absoluteString];
+}
 - (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index; {
     if ([self numberOfAssets] <= index) {
         return nil;

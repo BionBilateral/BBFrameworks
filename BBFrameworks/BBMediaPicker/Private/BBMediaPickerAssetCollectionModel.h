@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly,weak,nonatomic) BBMediaPickerModel *model;
 
+@property (readonly,nonatomic) NSString *identifier;
 @property (readonly,nonatomic) BBMediaPickerAssetCollectionSubtype subtype;
 @property (readonly,nonatomic) NSString *title;
 @property (readonly,nonatomic) NSString *subtitle;

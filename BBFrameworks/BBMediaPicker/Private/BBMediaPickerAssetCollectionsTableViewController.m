@@ -66,8 +66,6 @@
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView setUserInteractionEnabled:YES];
-    
     [self.model setSelectedAssetCollectionModel:self.model.assetCollectionModels[indexPath.row]];
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];

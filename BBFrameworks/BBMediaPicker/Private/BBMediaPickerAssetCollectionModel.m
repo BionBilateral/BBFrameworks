@@ -65,6 +65,13 @@
     return self;
 }
 
+- (NSString *)identifier {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
+    return self.assetCollection.localIdentifier;
+#else
+    return [self.assetCollection BB_identifier];
+#endif
+}
 - (BBMediaPickerAssetCollectionSubtype)subtype {
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     return (BBMediaPickerAssetCollectionSubtype)self.assetCollection.assetCollectionSubtype;
