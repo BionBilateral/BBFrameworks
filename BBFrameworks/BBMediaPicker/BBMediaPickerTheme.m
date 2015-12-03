@@ -35,6 +35,7 @@
 + (UIColor *)_defaultAssetCollectionForegroundColor;
 + (UIColor *)_defaultAssetCollectionSeparatorColor;
 + (UIColor *)_defaultAssetCollectionPopoverBackgroundColor;
++ (UIColor *)_defaultAssetCollectionCellCheckmarkColor;
 
 + (UIColor *)_defaultAssetBackgroundColor;
 + (Class)_defaultAssetSelectedOverlayViewClass;
@@ -70,6 +71,7 @@
     _assetCollectionPopoverCornerRadius = 5.0;
     _assetCollectionPopoverBackgroundEdgeInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
     _assetCollectionSeparatorEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 0);
+    _assetCollectionCellCheckmarkColor = [self.class _defaultAssetCollectionCellCheckmarkColor];
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
@@ -170,7 +172,7 @@
 }
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
-    return [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+    return [[UIColor blackColor] colorWithAlphaComponent:0.75];
 }
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor {
     return [UIColor whiteColor];
@@ -194,7 +196,10 @@
     return [UIColor lightGrayColor];
 }
 + (UIColor *)_defaultAssetCollectionPopoverBackgroundColor; {
-    return [UIColor darkGrayColor];
+    return [UIColor whiteColor];
+}
++ (UIColor *)_defaultAssetCollectionCellCheckmarkColor; {
+    return nil;
 }
 
 + (UIColor *)_defaultAssetBackgroundColor {

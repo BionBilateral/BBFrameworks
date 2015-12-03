@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MediaPickerViewController">
             <connections>
                 <outlet property="customButton" destination="qpf-op-pby" id="twr-zx-WEg"/>
+                <outlet property="customPushButton" destination="e3V-7w-Nz9" id="38v-K5-KnE"/>
                 <outlet property="systemButton" destination="7SN-f1-XLn" id="DPI-Ip-ZGd"/>
                 <outlet property="view" destination="iN0-l3-epB" id="9xj-ox-5y4"/>
             </connections>
@@ -17,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SN-f1-XLn">
-                    <rect key="frame" x="216" y="285" width="168" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SN-f1-XLn">
+                    <rect key="frame" x="216.5" y="285" width="167" height="30"/>
                     <state key="normal" title="UIImagePickerController">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -26,20 +27,29 @@
                         <action selector="_systemButtonAction:" destination="-1" eventType="touchUpInside" id="G3R-mt-62c"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpf-op-pby">
-                    <rect key="frame" x="197" y="323" width="206" height="30"/>
-                    <state key="normal" title="BBMediaPickerViewController">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpf-op-pby">
+                    <rect key="frame" x="164" y="323" width="272" height="30"/>
+                    <state key="normal" title="BBMediaPickerViewController - Present">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="_customButtonAction:" destination="-1" eventType="touchUpInside" id="YsQ-I6-Aau"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3V-7w-Nz9">
+                    <rect key="frame" x="174" y="361" width="253" height="30"/>
+                    <state key="normal" title="BBMediaPickerViewController - Push"/>
+                    <connections>
+                        <action selector="_customPushButtonAction:" destination="-1" eventType="touchUpInside" id="pZO-RJ-prw"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="e3V-7w-Nz9" firstAttribute="top" secondItem="qpf-op-pby" secondAttribute="bottom" constant="8" id="6ep-y3-x7M"/>
                 <constraint firstAttribute="centerX" secondItem="qpf-op-pby" secondAttribute="centerX" id="7QD-RW-rg5"/>
                 <constraint firstItem="qpf-op-pby" firstAttribute="top" secondItem="7SN-f1-XLn" secondAttribute="bottom" constant="8" id="FbX-1h-kUP"/>
+                <constraint firstItem="e3V-7w-Nz9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HCb-wM-3h7"/>
                 <constraint firstAttribute="centerX" secondItem="7SN-f1-XLn" secondAttribute="centerX" id="kZA-bp-MwF"/>
                 <constraint firstAttribute="centerY" secondItem="7SN-f1-XLn" secondAttribute="centerY" id="rpz-ef-ov1"/>
             </constraints>

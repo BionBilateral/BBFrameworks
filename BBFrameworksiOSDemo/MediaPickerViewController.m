@@ -54,8 +54,7 @@
 
 + (void)initialize {
     if (self == [MediaPickerNavigationController class]) {
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setBarTintColor:[UIColor blackColor]];
-        [[UINavigationBar appearanceWhenContainedIn:[MediaPickerNavigationController class], nil] setTintColor:[UIColor whiteColor]];
+        
     }
 }
 
@@ -64,27 +63,14 @@
 @interface MediaPickerViewController () <BBMediaPickerViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
+@property (weak,nonatomic) IBOutlet UIButton *customPushButton;
 @end
 
 @implementation MediaPickerViewController
 #pragma mark *** Subclass Overrides ***
 + (void)initialize {
     if (self == [MediaPickerViewController class]) {
-        [[BBMediaPickerTheme defaultTheme] setTitleColor:[UIColor whiteColor]];
-        [[BBMediaPickerTheme defaultTheme] setSubtitleColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
-        [[BBMediaPickerTheme defaultTheme] setDoneBottomAccessoryControlClass:[MediaPickerDoneButton class]];
         
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleFont:[UIFont boldSystemFontOfSize:17.0]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellTitleColor:[UIColor whiteColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleFont:[UIFont italicSystemFontOfSize:12.0]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellSubtitleColor:[UIColor whiteColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionCellCheckmarkColor:[UIColor whiteColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionPopoverBackgroundColor:[UIColor darkGrayColor]];
-        [[BBMediaPickerTheme defaultTheme] setAssetCollectionSeparatorColor:[UIColor whiteColor]];
-        
-        [[BBMediaPickerTheme defaultTheme] setAssetBackgroundColor:[UIColor darkGrayColor]];
     }
 }
 
@@ -114,12 +100,22 @@
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia>> *)media {
     BBLogObject(media);
     
-    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if (viewController.presentingViewController) {
+        [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [viewController.navigationController popToViewController:self animated:YES];
+    }
 }
 - (void)mediaPickerViewControllerDidCancel:(BBMediaPickerViewController *)viewController {
     BBLog();
     
-    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if (viewController.presentingViewController) {
+        [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [viewController.navigationController popToViewController:self animated:YES];
+    }
 }
 #pragma mark *** Private Methods ***
 #pragma mark Actions
@@ -140,6 +136,14 @@
     [viewController setAllowsMultipleSelection:YES];
     
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
+}
+- (IBAction)_customPushButtonAction:(id)sender {
+    BBMediaPickerViewController *viewController = [[BBMediaPickerViewController alloc] init];
+    
+    [viewController setDelegate:self];
+    [viewController setAllowsMultipleSelection:YES];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

@@ -123,7 +123,11 @@
     }
     // if multiple selection is allowed, move cancel bar button item to left hand side, put done bar button item on right hand side
     else if (self.model.allowsMultipleSelection) {
-        [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
+        // only display cancel bar button item if we are being presented modally
+        if (self.presentingViewController) {
+            [self.navigationItem setLeftBarButtonItems:@[self.model.cancelBarButtonItem]];
+        }
+        
         [self.navigationItem setRightBarButtonItems:@[self.model.doneBarButtonItem]];
     }
     // otherwise put cancel bar button item on right hand side

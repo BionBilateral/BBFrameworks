@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the asset collection background color, which is used to tint the content overlay when presenting the asset collection popover.
  
- The default is [UIColor whiteColor].
+ The default is [[UIColor blackColor] colorWithAlphaComponent:0.5].
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionBackgroundColor;
 /**
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the asset collection cell title color.
  
- The default is [UIColor blackColor].
+ The default is [UIColor whiteColor].
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellTitleColor;
 /**
@@ -114,13 +114,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the asset collection cell subtitle color.
  
- The default is [UIColor darkGrayColor].
+ The default is [UIColor lightGrayColor].
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellSubtitleColor;
 /**
  Set and get the asset collection cell checkmark color, which is displayed in the row representing the selected asset collection.
  
- The default is the standard iOS tint color.
+ The default is [UIColor whiteColor].
  */
 @property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
 /**
@@ -144,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the asset collection popover background, which is used to fill the popover view that contains the asset collection table view.
  
- The default is [UIColor darkGrayColor].
+ The default is [UIColor whiteColor].
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionPopoverBackgroundColor;
 /**
