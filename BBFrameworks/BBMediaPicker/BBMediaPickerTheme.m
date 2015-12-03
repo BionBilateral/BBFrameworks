@@ -69,6 +69,7 @@
     _assetCollectionPopoverArrowHeight = 8.0;
     _assetCollectionPopoverCornerRadius = 5.0;
     _assetCollectionPopoverBackgroundEdgeInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
+    _assetCollectionSeparatorEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 0);
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];

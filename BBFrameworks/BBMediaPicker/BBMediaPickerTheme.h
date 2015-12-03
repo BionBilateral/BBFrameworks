@@ -136,6 +136,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionSeparatorColor;
 /**
+ Set and get the asset collection separator edge insets, which are used as the separator insets for the asset collection table view.
+ 
+ The default is UIEdgeInsetsMake(0, 8.0, 0, 0).
+ */
+@property (assign,nonatomic) UIEdgeInsets assetCollectionSeparatorEdgeInsets;
+/**
  Set and get the asset collection popover background, which is used to fill the popover view that contains the asset collection table view.
  
  The default is [UIColor darkGrayColor].

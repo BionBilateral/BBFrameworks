@@ -41,6 +41,7 @@
          BBStrongify(self);
          [self.tableView setTintColor:self.model.theme.assetCollectionCellCheckmarkColor];
          [self.tableView setSeparatorColor:self.model.theme.assetCollectionSeparatorColor];
+         [self.tableView setSeparatorInset:self.model.theme.assetCollectionSeparatorEdgeInsets];
      }];
 }
 
