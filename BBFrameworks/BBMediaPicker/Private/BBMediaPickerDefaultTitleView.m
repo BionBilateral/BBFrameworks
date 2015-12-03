@@ -46,7 +46,7 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.titleLabel setFont:[BBMediaPickerTheme defaultTheme].titleFont];

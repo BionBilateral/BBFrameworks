@@ -84,16 +84,12 @@
     [self.assetsViewController didMoveToParentViewController:self];
     
     BBWeakify(self);
-    [[RACObserve(self.model, theme)
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         BBStrongify(self);
-         [self.view setBackgroundColor:self.model.theme.assetBackgroundColor];
-         
-         [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
-         
-         [self _updateTitleViewProperties];
-     }];
+    
+    [self.view setBackgroundColor:self.model.theme.assetBackgroundColor];
+    
+    [self setTitleView:[[self.model.theme.titleViewClass alloc] initWithFrame:CGRectZero]];
+    
+    [self _updateTitleViewProperties];
     
     [[RACObserve(self.model, title)
      deliverOn:[RACScheduler mainThreadScheduler]]
