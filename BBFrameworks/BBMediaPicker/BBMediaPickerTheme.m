@@ -169,7 +169,7 @@
 }
 
 + (UIColor *)_defaultAssetCollectionBackgroundColor; {
-    return [UIColor whiteColor];
+    return [[UIColor whiteColor] colorWithAlphaComponent:0.5];
 }
 + (UIColor *)_defaultAssetCollectionCellBackgroundColor {
     return [UIColor whiteColor];
