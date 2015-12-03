@@ -46,6 +46,9 @@
 #endif
     return self.asset;
 }
+- (BBMediaPickerAssetMediaType)mediaAssetType {
+    return self.mediaType;
+}
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel; {
