@@ -58,7 +58,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaPickerAssetCollectionModel *model = self.model.assetCollectionModels[indexPath.row];
     
-    if ([model isEqual:self.model.selectedAssetCollectionModel]) {
+    if ([model.identifier isEqualToString:self.model.selectedAssetCollectionModel.identifier]) {
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
     else {

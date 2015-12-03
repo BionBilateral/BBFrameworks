@@ -427,7 +427,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     // try to select previously selected asset collection model
     if (oldSelectedAssetCollectionModel) {
         for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
-            if (model.subtype == oldSelectedAssetCollectionModel.subtype) {
+            if ([model.identifier isEqualToString:oldSelectedAssetCollectionModel.identifier]) {
                 [self setSelectedAssetCollectionModel:model];
                 break;
             }
