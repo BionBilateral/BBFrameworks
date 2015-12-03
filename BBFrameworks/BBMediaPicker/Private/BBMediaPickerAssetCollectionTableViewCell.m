@@ -29,6 +29,8 @@
 @property (weak,nonatomic) IBOutlet UIImageView *typeImageView;
 @property (weak,nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak,nonatomic) IBOutlet UILabel *subtitleLabel;
+
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *leftEdgeInsetLayoutConstraint;
 @end
 
 @implementation BBMediaPickerAssetCollectionTableViewCell
@@ -50,6 +52,8 @@
          
          [self.subtitleLabel setFont:theme.assetCollectionCellSubtitleFont];
          [self.subtitleLabel setTextColor:theme.assetCollectionCellSubtitleColor];
+         
+         [self.leftEdgeInsetLayoutConstraint setConstant:theme.assetCollectionSeparatorEdgeInsets.left];
      }];
 }
 
