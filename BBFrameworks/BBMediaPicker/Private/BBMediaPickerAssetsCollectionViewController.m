@@ -72,6 +72,25 @@
      }];
 }
 
+- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    switch (newCollection.userInterfaceIdiom) {
+        case UIUserInterfaceIdiomPad:
+            [(BBMediaPickerAssetCollectionViewLayout *)self.collectionViewLayout setNumberOfColumns:6];
+            break;
+        default: {
+            switch (newCollection.horizontalSizeClass) {
+                case UIUserInterfaceSizeClassRegular:
+                    [(BBMediaPickerAssetCollectionViewLayout *)self.collectionViewLayout setNumberOfColumns:5];
+                    break;
+                default:
+                    [(BBMediaPickerAssetCollectionViewLayout *)self.collectionViewLayout setNumberOfColumns:4];
+                    break;
+            }
+        }
+            break;
+    }
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.model.selectedAssetCollectionModel.countOfAssetModels;
 }
