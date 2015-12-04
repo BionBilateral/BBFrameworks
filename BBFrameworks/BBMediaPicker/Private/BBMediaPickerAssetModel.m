@@ -68,6 +68,11 @@
 
 - (void)requestThumbnailImageOfSize:(CGSize)size completion:(void(^)(UIImage * _Nullable thumbnailImage))completion; {
     NSParameterAssert(completion);
+
+    if (CGSizeEqualToSize(CGSizeZero, size)) {
+        completion(nil);
+        return;
+    }
     
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     [self cancelAllThumbnailRequests];

@@ -75,6 +75,13 @@
         [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];
     }
 }
+- (void)reloadThumbnailImage; {
+    BBWeakify(self);
+    [_model requestThumbnailImageOfSize:self.thumbnailImageView.frame.size completion:^(UIImage *thumbnailImage) {
+        BBStrongify(self);
+        [self.thumbnailImageView setImage:thumbnailImage];
+    }];
+}
 
 - (void)setModel:(BBMediaPickerAssetModel *)model {
     _model = model;
@@ -87,11 +94,7 @@
         [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];
     }
     
-    BBWeakify(self);
-    [_model requestThumbnailImageOfSize:self.thumbnailImageView.frame.size completion:^(UIImage *thumbnailImage) {
-        BBStrongify(self);
-        [self.thumbnailImageView setImage:thumbnailImage];
-    }];
+    [self reloadThumbnailImage];
 }
 
 - (void)setSelectedOverlayView:(UIView<BBMediaPickerAssetSelectedOverlayView> *)selectedOverlayView {

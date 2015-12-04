@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) BBMediaPickerAssetModel *model;
 
 - (void)reloadSelectedOverlayView;
+- (void)reloadThumbnailImage;
 
 @end
 
