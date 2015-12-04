@@ -622,6 +622,8 @@
 		79F436661C120302002546E8 /* BBTimer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79F436611C11F0CF002546E8 /* BBTimer.h */; };
 		79F4366A1C120341002546E8 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F436681C120341002546E8 /* TimerViewController.m */; };
 		79F4366B1C120341002546E8 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F436691C120341002546E8 /* TimerViewController.xib */; };
+		79F4366E1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F4366D1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.m */; };
+		79F4366F1C122EBB002546E8 /* BBNetworkActivityIndicatorManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79F4366C1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.h */; };
 		79F9414F1B4353C300B385F0 /* BBAddressBookPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */; };
 		79F941521B435AA300B385F0 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F941511B435AA300B385F0 /* AddressBookViewController.m */; };
 		79F941571B435D3400B385F0 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F941561B435D3400B385F0 /* AddressBookViewController.xib */; };
@@ -703,6 +705,7 @@
 				799D61FF1C0A9E420069B2DD /* NSDictionary+BBFoundationExtensions.h in CopyFiles */,
 				07B26DE41BB4451800CB7BAD /* BBKeyValueObservingDefines.h in CopyFiles */,
 				079875151BD021F0005422B2 /* BBKeychain.h in CopyFiles */,
+				79F4366F1C122EBB002546E8 /* BBNetworkActivityIndicatorManager.h in CopyFiles */,
 				798C46471BD950380027811C /* BBLabel.h in CopyFiles */,
 				79344C511C01333400BBA726 /* BBMediaViewerMedia.h in CopyFiles */,
 				07ED7E5D1BEA6B0F004D1697 /* NSDictionary+BBBlocksExtensions.h in CopyFiles */,
@@ -1436,6 +1439,8 @@
 		79F436671C120341002546E8 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		79F436681C120341002546E8 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		79F436691C120341002546E8 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
+		79F4366C1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBNetworkActivityIndicatorManager.h; path = iOS/BBNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		79F4366D1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBNetworkActivityIndicatorManager.m; path = iOS/BBNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		79F9414D1B4353C300B385F0 /* BBAddressBookPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookPerson.h; sourceTree = "<group>"; };
 		79F9414E1B4353C300B385F0 /* BBAddressBookPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookPerson.m; sourceTree = "<group>"; };
 		79F941501B435AA300B385F0 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
@@ -2613,6 +2618,8 @@
 				07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */,
 				79EF41211BCC6E4D0018D711 /* BBProgressNavigationBar.h */,
 				79EF41221BCC6E4D0018D711 /* BBProgressNavigationBar.m */,
+				79F4366C1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.h */,
+				79F4366D1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -3582,6 +3589,7 @@
 				791996FA1B6EB3C500FC674A /* BBThumbnailOperationWrapper.m in Sources */,
 				79EA80D01B3F0CDB00D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79EF41231BCC6E4D0018D711 /* BBProgressNavigationBar.m in Sources */,
+				79F4366E1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.m in Sources */,
 				798C46461BD950200027811C /* BBLabel.m in Sources */,
 				07A67E901B87A1DA008CCB02 /* BBProgressSlider.m in Sources */,
 				07AEC8451B6BE68500013470 /* BBTextLinkValidator.m in Sources */,
