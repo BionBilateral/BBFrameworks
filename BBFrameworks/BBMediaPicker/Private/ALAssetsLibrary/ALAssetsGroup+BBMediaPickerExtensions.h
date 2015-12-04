@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)BB_identifier;
 - (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index;
+- (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index reverse:(BOOL)reverse;
 - (NSUInteger)BB_indexOfAsset:(ALAsset *)asset;
 
 @end

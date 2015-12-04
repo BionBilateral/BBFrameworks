@@ -150,7 +150,7 @@
     
     [self.thumbnailIndexesToImageRequestIDs setObject:@(imageRequestID) forKey:@(thumbnailIndex)];
 #else
-    ALAsset *asset = [self.assetCollection BB_assetAtIndex:thumbnailIndex];
+    ALAsset *asset = [self.assetCollection BB_assetAtIndex:thumbnailIndex reverse:YES];
     UIImage *retval = asset ? [UIImage imageWithCGImage:[asset thumbnail]] : nil;
     
     completion(retval);

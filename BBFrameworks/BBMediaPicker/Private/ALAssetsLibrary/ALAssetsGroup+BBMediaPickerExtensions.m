@@ -22,13 +22,16 @@
     return [(NSURL *)[self valueForProperty:ALAssetsGroupPropertyURL] absoluteString];
 }
 - (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index; {
+    return [self BB_assetAtIndex:index reverse:NO];
+}
+- (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index reverse:(BOOL)reverse; {
     if ([self numberOfAssets] <= index) {
         return nil;
     }
     
     __block ALAsset *retval = nil;
     
-    [self enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:index] options:0 usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+    [self enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:index] options:reverse ? NSEnumerationReverse : 0 usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
             retval = result;
             *stop = YES;
