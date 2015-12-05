@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param index The index of the media to return
  @return The media or nil
  */
-- (id<BBMediaPickerMedia>)mediaAtIndex:(NSUInteger)index;
+- (nullable id<BBMediaPickerMedia>)mediaAtIndex:(NSUInteger)index;
 /**
  Scrolls the provided media so it is visible within the asset collection view.
  
