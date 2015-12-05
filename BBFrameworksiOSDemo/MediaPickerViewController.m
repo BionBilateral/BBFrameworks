@@ -142,6 +142,7 @@
     
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:NULL]];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
