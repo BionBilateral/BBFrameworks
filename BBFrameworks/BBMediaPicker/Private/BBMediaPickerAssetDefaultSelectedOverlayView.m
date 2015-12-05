@@ -64,10 +64,10 @@ static CGFloat const kWidthAndHeight = 2.0;
     CGSize badgeLabelSize = [badge size];
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 4), 0)];
+    [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), 0)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), (badgeLabelSize.height * 2))];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 4), 0)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
     [path fill];
     
     [badge drawAtPoint:CGPointMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight)];
