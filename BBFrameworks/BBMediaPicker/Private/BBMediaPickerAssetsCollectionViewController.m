@@ -59,8 +59,13 @@
          for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
              BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
              
-             if (cell.isSelected) {
-                 [cell reloadSelectedOverlayView];
+             [cell reloadSelectedOverlayView];
+             
+             if ([self.model isAssetModelSelected:cell.model]) {
+                 [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+             }
+             else {
+                 [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
              }
          }
      }];

@@ -60,22 +60,37 @@ static CGFloat const kWidthAndHeight = 2.0;
     UIRectFill(CGRectMake(0, CGRectGetHeight(self.bounds) - kWidthAndHeight, CGRectGetWidth(self.bounds), kWidthAndHeight));
     UIRectFill(CGRectMake(0, 0, kWidthAndHeight, CGRectGetHeight(self.bounds)));
     
-    NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    CGSize badgeLabelSize = [badge size];
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    
-    [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), 0)];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), (badgeLabelSize.height * 2))];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
-    [path fill];
-    
-    [badge drawAtPoint:CGPointMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight)];
+    if (self.allowsMultipleSelection) {
+        NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        CGSize badgeLabelSize = [badge size];
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        
+        [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
+        [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), 0)];
+        [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), (badgeLabelSize.height * 2))];
+        [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
+        [path fill];
+        
+        [badge drawAtPoint:CGPointMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight)];
+    }
 }
 
+@synthesize allowsMultipleSelection=_allowsMultipleSelection;
+- (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
+    if (_allowsMultipleSelection == allowsMultipleSelection) {
+        return;
+    }
+    
+    _allowsMultipleSelection = allowsMultipleSelection;
+    
+    [self setNeedsDisplay];
+}
 @synthesize selectedIndex=_selectedIndex;
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     if (_selectedIndex == selectedIndex) {
+        return;
+    }
+    else if (!self.allowsMultipleSelection) {
         return;
     }
     

@@ -71,8 +71,12 @@
 }
 
 - (void)reloadSelectedOverlayView; {
+    if ([self.selectedOverlayView respondsToSelector:@selector(setAllowsMultipleSelection:)]) {
+        [self.selectedOverlayView setAllowsMultipleSelection:self.model.assetCollectionModel.model.allowsMultipleSelection];
+    }
+    
     if ([self.selectedOverlayView respondsToSelector:@selector(setSelectedIndex:)]) {
-        [self.selectedOverlayView setSelectedIndex:_model.selectedIndex];
+        [self.selectedOverlayView setSelectedIndex:self.model.selectedIndex];
     }
 }
 - (void)reloadThumbnailImage; {
@@ -108,6 +112,11 @@
     
     [_selectedOverlayView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_selectedOverlayView setAlpha:self.isSelected ? 1.0 : 0.0];
+    
+    if ([_selectedOverlayView respondsToSelector:@selector(setAllowsMultipleSelection:)]) {
+        [_selectedOverlayView setAllowsMultipleSelection:self.model.assetCollectionModel.model.allowsMultipleSelection];
+    }
+    
     [self.contentView addSubview:_selectedOverlayView];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _selectedOverlayView}]];

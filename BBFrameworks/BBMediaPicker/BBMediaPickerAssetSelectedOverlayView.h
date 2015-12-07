@@ -25,6 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BBMediaPickerAssetSelectedOverlayView <NSObject>
 @optional
 /**
+ Set and get whether the receiver allows multiple selection.
+ */
+@property (assign,nonatomic) BOOL allowsMultipleSelection;
+/**
  Set and get the index of the selected asset within the array of selected assets.
  */
 @property (assign,nonatomic) NSUInteger selectedIndex;
