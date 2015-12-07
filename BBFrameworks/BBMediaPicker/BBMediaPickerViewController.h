@@ -47,6 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 /**
+ Set and get whether the media picker allows the user to select non-homogenous media types (e.g. images and videos).
+ 
+ The default is YES.
+ */
+@property (assign,nonatomic) BOOL allowsMixedMediaSelection;
+/**
  Set and get whether the media picker hides asset collections that are empty (i.e. they contain 0 assets).
  
  The default is YES.

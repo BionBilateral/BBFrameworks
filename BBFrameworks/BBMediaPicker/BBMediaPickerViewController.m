@@ -207,6 +207,12 @@
         [self.delegate mediaPickerViewController:self didDeselectMedia:media];
     }
 }
+
+- (void)mediaPickerModel:(BBMediaPickerModel *)model didError:(NSError *)error {
+    if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didError:)]) {
+        [self.delegate mediaPickerViewController:self didError:error];
+    }
+}
 #pragma mark *** Public Methods ***
 + (BBMediaPickerAuthorizationStatus)authorizationStatus; {
     return [BBMediaPickerModel authorizationStatus];
@@ -242,6 +248,13 @@
 }
 - (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
     [self.model setAllowsMultipleSelection:allowsMultipleSelection];
+}
+@dynamic allowsMixedMediaSelection;
+- (BOOL)allowsMixedMediaSelection {
+    return self.model.allowsMixedMediaSelection;
+}
+- (void)setAllowsMixedMediaSelection:(BOOL)allowsMixedMediaSelection {
+    [self.model setAllowsMixedMediaSelection:allowsMixedMediaSelection];
 }
 @dynamic hidesEmptyAssetCollections;
 - (BOOL)hidesEmptyAssetCollections {

@@ -22,6 +22,7 @@
 #import "BBMediaPickerTheme.h"
 #import "BBFrameworksMacros.h"
 #import "BBFrameworksFunctions.h"
+#import "BBBlocks.h"
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
@@ -29,6 +30,10 @@
 #import "ALAssetsLibrary+BBMediaPickerExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #endif
+
+NSString *const BBMediaPickerErrorDomain = @"com.bionbilateral.bbmediapicker.error";
+
+NSInteger const BBMediaPickerErrorCodeMixedMediaSelection = 1;
 
 static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificationAuthorizationStatusDidChange";
 
@@ -78,6 +83,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     _theme = [BBMediaPickerTheme defaultTheme];
     
+    _allowsMixedMediaSelection = YES;
     _hidesEmptyAssetCollections = YES;
     _mediaTypes = BBMediaPickerMediaTypesAll;
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
@@ -165,7 +171,25 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     return [self.selectedAssetIdentifiers containsObject:assetModel.identifier];
 }
 - (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
-    return [self.delegate mediaPickerModel:self shouldSelectMedia:assetModel];
+    BOOL retval = YES;
+    
+    if (self.allowsMultipleSelection &&
+        !self.allowsMixedMediaSelection) {
+        
+        NSArray<BBMediaPickerAssetModel *> *selectedAssetModels = self.selectedAssetModels;
+        
+        retval = [selectedAssetModels BB_all:^BOOL(BBMediaPickerAssetModel * _Nonnull object, NSInteger index) {
+            return object.mediaType == selectedAssetModels.firstObject.mediaType;
+        }];
+        
+        if (!retval) {
+            NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMixedMediaSelection userInfo:@{NSLocalizedDescriptionKey: NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MIXED_MEDIA_SELECTION", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than one media type.", @"media picker error code mixed media selection")}];
+            
+            [self.delegate mediaPickerModel:self didError:error];
+        }
+    }
+    
+    return retval ? [self.delegate mediaPickerModel:self shouldSelectMedia:assetModel] : NO;
 }
 - (BOOL)shouldDeselectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
     return [self.delegate mediaPickerModel:self shouldDeselectMedia:assetModel];

@@ -26,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BBMediaPickerViewControllerDelegate <NSObject>
 @optional
 /**
+ Called when the media picker produces an error related to media selection. The client can transform the error for display to the user or display it as is.
+ 
+ @param viewController The media picker that sent the message
+ @param error The error that was generated
+ */
+- (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didError:(NSError *)error;
+
+/**
  Returns whether the media should be selected.
  
  @param viewController The media picker that sent the message

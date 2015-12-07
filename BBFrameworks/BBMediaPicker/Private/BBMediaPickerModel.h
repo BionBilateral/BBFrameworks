@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak,nonatomic) id<BBMediaPickerModelDelegate> delegate;
 
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
-
+@property (assign,nonatomic) BOOL allowsMixedMediaSelection;
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
