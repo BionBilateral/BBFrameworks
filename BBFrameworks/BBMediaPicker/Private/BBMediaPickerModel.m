@@ -36,6 +36,7 @@ NSString *const BBMediaPickerErrorDomain = @"com.bionbilateral.bbmediapicker.err
 NSInteger const BBMediaPickerErrorCodeMixedMediaSelection = 1;
 NSInteger const BBMediaPickerErrorCodeMaximumSelectedMedia = 2;
 NSInteger const BBMediaPickerErrorCodeMaximumSelectedImages = 3;
+NSInteger const BBMediaPickerErrorCodeMaximumSelectedVideos = 4;
 
 static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificationAuthorizationStatusDidChange";
 
@@ -175,6 +176,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 - (BOOL)shouldSelectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
     BOOL retval = YES;
     
+    // if we allow multiple selection but do not allow mixed media selection check to make sure all selected media are of the same media type
     if (self.allowsMultipleSelection &&
         !self.allowsMixedMediaSelection) {
         
@@ -191,18 +193,19 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         }
     }
     
+    // if the asset model can still be selected and a maximum selected media limit has been set and selecting another media would put us over the limit, surface the appropriate error
     if (retval &&
-        self.maximumSelectedMedia > 0) {
+        self.maximumSelectedMedia > 0 &&
+        self.selectedAssetIdentifiers.count + 1 > self.maximumSelectedMedia) {
         
-        if (self.selectedAssetIdentifiers.count + 1 > self.maximumSelectedMedia) {
-            retval = NO;
-            
-            NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedMedia userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_MEDIA", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ media.", @"media picker error code maximum selected media"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedMedia) numberStyle:NSNumberFormatterDecimalStyle]]}];
-            
-            [self.delegate mediaPickerModel:self didError:error];
-        }
+        retval = NO;
+        
+        NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedMedia userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_MEDIA", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ media.", @"media picker error code maximum selected media"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedMedia) numberStyle:NSNumberFormatterDecimalStyle]]}];
+        
+        [self.delegate mediaPickerModel:self didError:error];
     }
     
+    // if the asset model can still be selected and a maximum selected images limit has been set and the asset model is an image and selecting it would put us over the limit, surface the appropriate error
     if (retval &&
         self.maximumSelectedImages > 0 &&
         assetModel.mediaType == BBMediaPickerAssetMediaTypeImage &&
@@ -210,7 +213,24 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         return object.mediaType == BBMediaPickerAssetMediaTypeImage ? sum + 1 : sum;
     }] + 1 > self.maximumSelectedImages) {
         
+        retval = NO;
+        
         NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedImages userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_IMAGES", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ images.", @"media picker error code maximum selected images"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedImages) numberStyle:NSNumberFormatterDecimalStyle]]}];
+        
+        [self.delegate mediaPickerModel:self didError:error];
+    }
+    
+    // if the asset model can still be selected and a maximum selected videos limit has been set and the asset model is a video and selecting it would put us over the limit, surface the appropriate error
+    if (retval &&
+        self.maximumSelectedVideos > 0 &&
+        assetModel.mediaType == BBMediaPickerAssetMediaTypeVideo &&
+        [self.selectedAssetModels BB_reduceIntegerWithStart:0 block:^NSInteger(NSInteger sum, BBMediaPickerAssetModel * _Nonnull object, NSInteger index) {
+        return object.mediaType == BBMediaPickerAssetMediaTypeVideo ? sum + 1 : sum;
+    }] + 1 > self.maximumSelectedVideos) {
+        
+        retval = NO;
+        
+        NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedVideos userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_VIDEOS", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ videos.", @"media picker error code maximum selected videos"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedVideos) numberStyle:NSNumberFormatterDecimalStyle]]}];
         
         [self.delegate mediaPickerModel:self didError:error];
     }

@@ -46,6 +46,10 @@ extern NSInteger const BBMediaPickerErrorCodeMaximumSelectedMedia;
  Error code for errors caused by the user attempting to select images beyond the maximum selected number. For example, if the maximum was set at 2 and the user attempted to select a 3rd image, an error with this code would be generated.
  */
 extern NSInteger const BBMediaPickerErrorCodeMaximumSelectedImages;
+/**
+ Error code for errors caused by the user attempting to select videos beyond the maximum selected number. For example, if the maximum was set at 1 and the user attempted to select a 2nd video, an error with this code would be generated.
+ */
+extern NSInteger const BBMediaPickerErrorCodeMaximumSelectedVideos;
 
 /**
  Enum describing the authorization status of the library.
