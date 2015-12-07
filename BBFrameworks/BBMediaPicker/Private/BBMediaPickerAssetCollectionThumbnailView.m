@@ -30,7 +30,6 @@
         return nil;
     
     [self setBackgroundColor:[UIColor clearColor]];
-    [self setBorderColor:[BBMediaPickerTheme defaultTheme].assetCollectionCellBackgroundColor];
     [self setBorderWidth:1.0];
     [self setBorderOptions:BBViewBorderOptionsTop];
     
@@ -40,13 +39,12 @@
     [self addSubview:self.thumbnailImageView];
     
     BBWeakify(self);
-    [[RACObserve(self, theme)
+    [[[RACObserve(self, theme)
+       ignore:nil]
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
-         BBMediaPickerTheme *theme = self.theme ?: [BBMediaPickerTheme defaultTheme];
-         
-         [self setBorderColor:theme.assetCollectionCellBackgroundColor];
+         [self setBorderColor:self.theme.assetCollectionCellBackgroundColor];
      }];
     
     return self;
