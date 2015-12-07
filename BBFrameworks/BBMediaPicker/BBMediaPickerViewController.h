@@ -59,6 +59,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign,nonatomic) NSUInteger maximumSelectedMedia;
 /**
+ Set and get the maximum number of selected images. A value of 0 means no limit.
+ 
+ The default is 0.
+ */
+@property (assign,nonatomic) NSUInteger maximumSelectedImages;
+/**
  Set and get whether the media picker hides asset collections that are empty (i.e. they contain 0 assets).
  
  The default is YES.

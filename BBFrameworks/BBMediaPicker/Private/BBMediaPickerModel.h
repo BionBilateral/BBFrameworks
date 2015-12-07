@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
 @property (assign,nonatomic) BOOL allowsMixedMediaSelection;
 @property (assign,nonatomic) NSUInteger maximumSelectedMedia;
+@property (assign,nonatomic) NSUInteger maximumSelectedImages;
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;

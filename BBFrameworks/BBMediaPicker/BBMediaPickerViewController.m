@@ -263,6 +263,13 @@
 - (void)setMaximumSelectedMedia:(NSUInteger)maximumSelectedMedia {
     [self.model setMaximumSelectedMedia:maximumSelectedMedia];
 }
+@dynamic maximumSelectedImages;
+- (NSUInteger)maximumSelectedImages {
+    return self.model.maximumSelectedImages;
+}
+- (void)setMaximumSelectedImages:(NSUInteger)maximumSelectedImages {
+    [self.model setMaximumSelectedImages:maximumSelectedImages];
+}
 @dynamic hidesEmptyAssetCollections;
 - (BOOL)hidesEmptyAssetCollections {
     return self.model.hidesEmptyAssetCollections;
