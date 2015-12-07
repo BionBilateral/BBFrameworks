@@ -53,6 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign,nonatomic) BOOL allowsMixedMediaSelection;
 /**
+ Set and get the maximum number of selected media. A value of 0 means no limit.
+ 
+ The default is 0.
+ */
+@property (assign,nonatomic) NSUInteger maximumSelectedMedia;
+/**
  Set and get whether the media picker hides asset collections that are empty (i.e. they contain 0 assets).
  
  The default is YES.

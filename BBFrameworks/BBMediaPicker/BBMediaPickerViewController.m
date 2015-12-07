@@ -256,6 +256,13 @@
 - (void)setAllowsMixedMediaSelection:(BOOL)allowsMixedMediaSelection {
     [self.model setAllowsMixedMediaSelection:allowsMixedMediaSelection];
 }
+@dynamic maximumSelectedMedia;
+- (NSUInteger)maximumSelectedMedia {
+    return self.model.maximumSelectedMedia;
+}
+- (void)setMaximumSelectedMedia:(NSUInteger)maximumSelectedMedia {
+    [self.model setMaximumSelectedMedia:maximumSelectedMedia];
+}
 @dynamic hidesEmptyAssetCollections;
 - (BOOL)hidesEmptyAssetCollections {
     return self.model.hidesEmptyAssetCollections;

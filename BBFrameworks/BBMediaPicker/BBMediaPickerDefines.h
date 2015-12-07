@@ -38,6 +38,10 @@ extern NSString *const BBMediaPickerErrorDomain;
  Error code for errors caused by the user attempting to select mixed media when allows multiple selection is YES. For example, if the user tried to select both an image and video, the selection would be prevented and an error with this code would be generated.
  */
 extern NSInteger const BBMediaPickerErrorCodeMixedMediaSelection;
+/**
+ Error code for errors caused by the user attempting to select media beyond the maximum selected number. For example, if the maximum was set at 3 and the user attempted to select a 4th, an error with this code would be generated.
+ */
+extern NSInteger const BBMediaPickerErrorCodeMaximumSelectedMedia;
 
 /**
  Enum describing the authorization status of the library.

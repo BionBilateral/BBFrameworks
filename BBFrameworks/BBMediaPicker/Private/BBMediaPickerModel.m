@@ -34,6 +34,7 @@
 NSString *const BBMediaPickerErrorDomain = @"com.bionbilateral.bbmediapicker.error";
 
 NSInteger const BBMediaPickerErrorCodeMixedMediaSelection = 1;
+NSInteger const BBMediaPickerErrorCodeMaximumSelectedMedia = 2;
 
 static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificationAuthorizationStatusDidChange";
 
@@ -184,6 +185,18 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         
         if (!retval) {
             NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMixedMediaSelection userInfo:@{NSLocalizedDescriptionKey: NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MIXED_MEDIA_SELECTION", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than one media type.", @"media picker error code mixed media selection")}];
+            
+            [self.delegate mediaPickerModel:self didError:error];
+        }
+    }
+    
+    if (retval &&
+        self.maximumSelectedMedia > 0) {
+        
+        if (self.selectedAssetIdentifiers.count + 1 > self.maximumSelectedMedia) {
+            retval = NO;
+            
+            NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedMedia userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_MEDIA", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ media.", @"media picker error code maximum selected media"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedMedia) numberStyle:NSNumberFormatterDecimalStyle]]}];
             
             [self.delegate mediaPickerModel:self didError:error];
         }
