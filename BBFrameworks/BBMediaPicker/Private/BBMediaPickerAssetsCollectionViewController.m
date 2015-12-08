@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
     [self setClearsSelectionOnViewWillAppear:NO];
-    [self.collectionView setAllowsMultipleSelection:YES];
+    [self.collectionView setAllowsMultipleSelection:self.model.allowsMultipleSelection];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     BBWeakify(self);
