@@ -436,7 +436,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 - (void)_updateSubtitle; {
     if (self.selectedAssetCollectionModel) {
-        [self setSubtitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_DEFAULT_SUBTITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Tap to change album ▼", @"media picker default subtitle")];
+        [self setSubtitle:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_DEFAULT_SUBTITLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"Tap to select album ▼", @"media picker default subtitle")];
         return;
     }
     
