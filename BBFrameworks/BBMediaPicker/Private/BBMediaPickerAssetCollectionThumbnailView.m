@@ -44,6 +44,7 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
+         [self.layer setBorderColor:self.theme.assetCollectionCellCheckmarkColor.CGColor];
          [self setBorderColor:self.theme.assetCollectionCellBackgroundColor];
      }];
     

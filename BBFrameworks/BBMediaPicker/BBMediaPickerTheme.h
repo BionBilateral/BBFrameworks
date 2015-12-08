@@ -80,6 +80,12 @@ NS_ASSUME_NONNULL_BEGIN
  The default is Nil.
  */
 @property (strong,nonatomic,nullable) Class doneBottomAccessoryControlClass;
+/**
+ Set and get the selection border width used to draw selection chrome for selected assets and asset collections.
+ 
+ The default is 3.0;
+ */
+@property (assign,nonatomic) CGFloat selectionBorderWidth;
 
 /**
  Set and get the asset collection background color, which is used to tint the content overlay when presenting the asset collection popover.

@@ -19,8 +19,6 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-static CGFloat const kWidthAndHeight = 2.0;
-
 @interface BBMediaPickerAssetDefaultSelectedOverlayView ()
 
 @end
@@ -55,24 +53,28 @@ static CGFloat const kWidthAndHeight = 2.0;
     
     [[theme assetSelectedOverlayViewTintColor] setFill];
     
-    UIRectFill(CGRectMake(0, 0, CGRectGetWidth(self.bounds), kWidthAndHeight));
-    UIRectFill(CGRectMake(CGRectGetWidth(self.bounds) - kWidthAndHeight, 0, kWidthAndHeight, CGRectGetHeight(self.bounds)));
-    UIRectFill(CGRectMake(0, CGRectGetHeight(self.bounds) - kWidthAndHeight, CGRectGetWidth(self.bounds), kWidthAndHeight));
-    UIRectFill(CGRectMake(0, 0, kWidthAndHeight, CGRectGetHeight(self.bounds)));
+    CGFloat widthAndHeight = theme.selectionBorderWidth;
     
-    if (self.allowsMultipleSelection) {
-        NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-        CGSize badgeLabelSize = [badge size];
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        
-        [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
-        [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), 0)];
-        [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), (badgeLabelSize.height * 2))];
-        [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - (badgeLabelSize.width * 2.5), 0)];
-        [path fill];
-        
-        [badge drawAtPoint:CGPointMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - kWidthAndHeight, kWidthAndHeight)];
+    UIRectFill(CGRectMake(0, 0, CGRectGetWidth(self.bounds), widthAndHeight));
+    UIRectFill(CGRectMake(CGRectGetWidth(self.bounds) - widthAndHeight, 0, widthAndHeight, CGRectGetHeight(self.bounds)));
+    UIRectFill(CGRectMake(0, CGRectGetHeight(self.bounds) - widthAndHeight, CGRectGetWidth(self.bounds), widthAndHeight));
+    UIRectFill(CGRectMake(0, 0, widthAndHeight, CGRectGetHeight(self.bounds)));
+    
+    if (!self.allowsMultipleSelection) {
+        return;
     }
+    
+    NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    CGSize badgeLabelSize = [badge size];
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    [path moveToPoint:CGPointMake(CGRectGetWidth(self.bounds) - widthAndHeight - (badgeLabelSize.width * 3) - widthAndHeight, widthAndHeight)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - widthAndHeight, widthAndHeight)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - widthAndHeight, widthAndHeight + (badgeLabelSize.height * 1.5) + widthAndHeight)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds) - widthAndHeight - (badgeLabelSize.width * 3) - widthAndHeight, widthAndHeight)];
+    [path fill];
+    
+    [badge drawAtPoint:CGPointMake(CGRectGetWidth(self.bounds) - badgeLabelSize.width - widthAndHeight - widthAndHeight, widthAndHeight)];
 }
 
 @synthesize allowsMultipleSelection=_allowsMultipleSelection;

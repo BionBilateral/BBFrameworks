@@ -47,6 +47,10 @@
          BBStrongify(self);
          BBMediaPickerTheme *theme = self.model.model.theme ?: [BBMediaPickerTheme defaultTheme];
          
+         [self.thumbnailView1 setTheme:theme];
+         [self.thumbnailView2 setTheme:theme];
+         [self.thumbnailView3 setTheme:theme];
+         
          [self.titleLabel setFont:theme.assetCollectionCellTitleFont];
          [self.titleLabel setTextColor:theme.assetCollectionCellTitleColor];
          
@@ -67,6 +71,7 @@
     [super setSelected:selected animated:animated];
     
     [self setAccessoryType:selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+    [self.thumbnailView1.layer setBorderWidth:selected ? self.model.model.theme.selectionBorderWidth : 0.0];
 }
 
 - (void)setModel:(BBMediaPickerAssetCollectionModel *)model {

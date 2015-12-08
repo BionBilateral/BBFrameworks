@@ -19,6 +19,8 @@
 #import "BBMediaPickerDefaultTitleView.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
 
+#define kDefaultTintColor() BBColorRGB(0.0, 122.0/255.0, 1.0)
+
 @interface BBMediaPickerTheme ()
 + (UIFont *)_defaultTitleFont;
 + (UIColor *)_defaultTitleColor;
@@ -57,6 +59,7 @@
     _subtitleColor = [self.class _defaultSubtitleColor];
     _titleViewClass = [self.class _defaultTitleViewClass];
     _assetCollectionForegroundColor = [self.class _defaultAssetCollectionForegroundColor];
+    _selectionBorderWidth = 3.0;
     
     _assetCollectionBackgroundColor = [self.class _defaultAssetCollectionBackgroundColor];
     _assetCollectionCellBackgroundColor = [self.class _defaultAssetCollectionCellBackgroundColor];
@@ -236,7 +239,7 @@
     return [UIColor whiteColor];
 }
 + (UIColor *)_defaultAssetCollectionCellCheckmarkColor; {
-    return nil;
+    return kDefaultTintColor();
 }
 
 + (UIColor *)_defaultAssetBackgroundColor {
@@ -246,7 +249,7 @@
     return [BBMediaPickerAssetDefaultSelectedOverlayView class];
 }
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor; {
-    return BBColorRGB(0.0, 122.0/255.0, 1.0);
+    return kDefaultTintColor();
 }
 + (UIImage *)_defaultAssetTypeVideoImage; {
     return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
