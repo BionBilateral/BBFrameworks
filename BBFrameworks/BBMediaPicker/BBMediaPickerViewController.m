@@ -90,7 +90,8 @@
     [self _updateTitleViewProperties];
     
     BBWeakify(self);
-    [[RACObserve(self.model, title)
+    [[[RACObserve(self.model, title)
+       skip:1]
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
