@@ -241,13 +241,18 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     return [self.delegate mediaPickerModel:self shouldDeselectMedia:assetModel];
 }
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
+    [self selectAssetModel:assetModel notifyDelegate:YES];
+}
+- (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel notifyDelegate:(BOOL)notifyDelegate; {
     NSMutableOrderedSet *temp = self.allowsMultipleSelection ? [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers] : [[NSMutableOrderedSet alloc] init];
     
     [temp addObject:assetModel.identifier];
     
     [self setSelectedAssetIdentifiers:temp];
     
-    [self.delegate mediaPickerModel:self didSelectMedia:assetModel];
+    if (notifyDelegate) {
+        [self.delegate mediaPickerModel:self didSelectMedia:assetModel];
+    }
 }
 - (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel; {
     NSMutableOrderedSet *temp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.selectedAssetIdentifiers];

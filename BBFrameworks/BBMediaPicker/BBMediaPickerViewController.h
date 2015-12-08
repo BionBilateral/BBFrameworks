@@ -136,6 +136,12 @@ NS_ASSUME_NONNULL_BEGIN
  @param media The media to scroll to visible
  */
 - (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+/**
+ Selects the provided media provided it is available in the current asset collection.
+ 
+ @param media The media to select
+ */
+- (void)selectMedia:(id<BBMediaPickerMedia>)media;
 
 @end
 

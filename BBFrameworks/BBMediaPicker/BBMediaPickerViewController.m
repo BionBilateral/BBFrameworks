@@ -234,6 +234,9 @@
 - (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media; {
     [self.assetsViewController scrollMediaToVisible:media];
 }
+- (void)selectMedia:(id<BBMediaPickerMedia>)media; {
+    [self.model selectAssetModel:[[BBMediaPickerAssetModel alloc] initWithAsset:[media mediaAsset] assetCollectionModel:nil] notifyDelegate:NO];
+}
 #pragma mark Properties
 @dynamic theme;
 - (BBMediaPickerTheme *)theme {
