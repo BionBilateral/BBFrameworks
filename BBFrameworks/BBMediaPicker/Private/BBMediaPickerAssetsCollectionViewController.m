@@ -56,7 +56,7 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
-         for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+         for (NSIndexPath *indexPath in self.collectionView.indexPathsForVisibleItems) {
              BBMediaPickerAssetCollectionViewCell *cell = (BBMediaPickerAssetCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
              
              [cell reloadSelectedOverlayView];
