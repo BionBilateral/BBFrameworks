@@ -42,6 +42,7 @@
 + (UIColor *)_defaultAssetBackgroundColor;
 + (Class)_defaultAssetSelectedOverlayViewClass;
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor;
++ (UIFont *)_defaultAssetSelectedOverlayViewSelectedIndexFont;
 + (UIImage *)_defaultAssetTypeVideoImage;
 + (UIColor *)_defaultAssetForegroundColor;
 + (UIFont *)_defaultAssetDurationFont;
@@ -79,6 +80,7 @@
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
     _assetSelectedOverlayViewTintColor = [self.class _defaultAssetSelectedOverlayViewTintColor];
+    _assetSelectedOverlayViewSelectedIndexFont = [self.class _defaultAssetSelectedOverlayViewSelectedIndexFont];
     _assetTypeVideoImage = [self.class _defaultAssetTypeVideoImage];
     _assetForegroundColor = [self.class _defaultAssetForegroundColor];
     _assetDurationFont = [self.class _defaultAssetDurationFont];
@@ -185,6 +187,9 @@
 - (void)setAssetSelectedOverlayViewTintColor:(UIColor *)assetSelectedOverlayViewTintColor {
     _assetSelectedOverlayViewTintColor = assetSelectedOverlayViewTintColor ?: [self.class _defaultAssetSelectedOverlayViewTintColor];
 }
+- (void)setAssetSelectedOverlayViewSelectedIndexFont:(UIFont *)assetSelectedOverlayViewSelectedIndexFont {
+    _assetSelectedOverlayViewSelectedIndexFont = assetSelectedOverlayViewSelectedIndexFont ?: [self.class _defaultAssetSelectedOverlayViewSelectedIndexFont];
+}
 - (void)setAssetTypeVideoImage:(UIImage *)assetTypeVideoImage {
     _assetTypeVideoImage = assetTypeVideoImage ?: [self.class _defaultAssetTypeVideoImage];
 }
@@ -250,6 +255,9 @@
 }
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor; {
     return kDefaultTintColor();
+}
++ (UIFont *)_defaultAssetSelectedOverlayViewSelectedIndexFont {
+    return [UIFont boldSystemFontOfSize:12.0];
 }
 + (UIImage *)_defaultAssetTypeVideoImage; {
     return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];

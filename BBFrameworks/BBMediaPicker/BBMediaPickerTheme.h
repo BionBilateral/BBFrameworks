@@ -197,6 +197,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetSelectedOverlayViewTintColor;
 /**
+ Set and get the assets selected overlay selected index font used to draw the index number in the top right corner of the view.
+ 
+ The default is [UIFont boldSystemFontOfSize:12.0].
+ */
+@property (strong,nonatomic,null_resettable) UIFont *assetSelectedOverlayViewSelectedIndexFont;
+/**
  Set and get the asset type video image, which is used to badge video assets in the collection view.
  
  The default is [UIImage imageNamed:@"media_picker_type_video"].

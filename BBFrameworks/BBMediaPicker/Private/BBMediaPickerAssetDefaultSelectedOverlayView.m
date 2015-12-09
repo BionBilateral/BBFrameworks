@@ -64,7 +64,7 @@
         return;
     }
     
-    NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:12.0], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    NSAttributedString *badge = [[NSAttributedString alloc] initWithString:[NSNumberFormatter localizedStringFromNumber:@(self.selectedIndex + 1) numberStyle:NSNumberFormatterDecimalStyle] attributes:@{NSFontAttributeName: theme.assetSelectedOverlayViewSelectedIndexFont, NSForegroundColorAttributeName: [UIColor whiteColor]}];
     CGSize badgeLabelSize = [badge size];
     UIBezierPath *path = [UIBezierPath bezierPath];
     
