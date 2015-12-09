@@ -126,9 +126,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the asset collection cell checkmark color, which is displayed in the row representing the selected asset collection.
  
- The default is [UIColor whiteColor].
+ The default is the default view tint color.
  */
 @property (strong,nonatomic,nullable) UIColor *assetCollectionCellCheckmarkColor;
+/**
+ Set and get the asset collection cell accessory image, which, if non-nil, is displayed in the row representing the selected asset collection.
+ 
+ The default is nil.
+ */
+@property (strong,nonatomic,nullable) UIImage *assetCollectionCellAccessoryImage;
 /**
  Set and get the asset collection foreground color, which is used to render the various type images (e.g. image, video).
  
