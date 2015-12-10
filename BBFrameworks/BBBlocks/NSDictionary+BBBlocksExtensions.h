@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened dictionary
  @exception NSException Thrown if the receiver contains any non-dictionary objects
  */
-- (NSDictionary<KeyType, ObjectType> *)BB_flatten;
+- (NSDictionary *)BB_flatten;
 /**
  Returns the result of calling `[[self BB_flatten] BB_map:block]`.
  

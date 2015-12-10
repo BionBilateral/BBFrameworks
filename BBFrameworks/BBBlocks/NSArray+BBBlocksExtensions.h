@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new array
  @exception NSException Thrown if block is nil
  */
-- (NSArray<ObjectType> *)BB_filter:(BOOL(^)(id object, NSInteger index))block;
+- (NSArray<ObjectType> *)BB_filter:(BOOL(^)(ObjectType object, NSInteger index))block;
 /**
  Create and return a new array by enumerating the receiver, invoking block for each object, and including it in the new array if block returns NO.
  
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The new array
  @exception NSException Thrown if block is nil
  */
-- (NSArray<ObjectType> *)BB_reject:(BOOL(^)(id object, NSInteger index))block;
+- (NSArray<ObjectType> *)BB_reject:(BOOL(^)(ObjectType object, NSInteger index))block;
 /**
  Return the first object in the receiver for which block returns YES, or nil if block returns NO for all objects in the receiver.
  
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened array
  @exception NSException Thrown if the receiver contains non-array objects
  */
-- (NSArray<ObjectType> *)BB_flatten;
+- (NSArray *)BB_flatten;
 /**
  Returns the result of calling `[[self BB_flatten] BB_map:block]`.
  
@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened mapped array
  @exception NSException Thrown if block is nil
  */
-- (NSArray<ObjectType> *)BB_flattenMap:(id _Nullable(^)(ObjectType object, NSInteger index))block;
+- (NSArray *)BB_flattenMap:(id _Nullable(^)(ObjectType object, NSInteger index))block;
 /**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  

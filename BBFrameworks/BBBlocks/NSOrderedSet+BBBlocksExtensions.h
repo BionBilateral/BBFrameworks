@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened ordered set
  @exception NSException Thrown if the receiver contains non-ordered set objects
  */
-- (NSOrderedSet<ObjectType> *)BB_flatten;
+- (NSOrderedSet *)BB_flatten;
 /**
  Returns the result of calling `[[self BB_flatten] BB_map:block]`.
  

@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened set
  @exception NSException Thrown if the receiver contains any non-set objects
  */
-- (NSSet<ObjectType> *)BB_flatten;
+- (NSSet *)BB_flatten;
 /**
  Returns the result of calling `[[self BB_flatten] BB_map:block]`.
  
@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The flattened mapped set
  @exception NSException Thrown if block is nil
  */
-- (NSSet *)BB_flattenMap:(id _Nullable(^)(id object))block;
+- (NSSet *)BB_flattenMap:(id _Nullable(^)(ObjectType object))block;
 /**
  Return YES if block returns YES for any object in the receiver, otherwise NO.
  
