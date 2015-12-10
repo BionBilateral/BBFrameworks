@@ -70,7 +70,14 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
-    [self setAccessoryType:selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+    if (self.model.model.theme.assetCollectionCellAccessoryImage) {
+        [self setAccessoryType:UITableViewCellAccessoryNone];
+        [self setAccessoryView:[[UIImageView alloc] initWithImage:self.model.model.theme.assetCollectionCellAccessoryImage]];
+    }
+    else {
+        [self setAccessoryType:selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+    }
+    
     [self.thumbnailView1.layer setBorderWidth:selected ? self.model.model.theme.selectionBorderWidth : 0.0];
 }
 
