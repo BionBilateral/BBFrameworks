@@ -17,6 +17,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BBTimer;
+
+/**
+ Completion block that is invoked whenever the timer fires. The timer itself is passed into the completion block.
+ 
+ @param timer The timer that was fired
+ */
+typedef void(^BBTimerCompletionBlock)(BBTimer *timer);
+
 /**
  BBTimer is a NSObject subclass that serves the same function as NSTimer, but does so using GCD. The main advantage of this approach is that BBTimer does create a retain cycle between the target and the timer as NSTimer does.
  */
@@ -55,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param queue The queue on which to send target selector, if nil, the main queue is used
  @return The initialized timer instance
  */
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval block:(dispatch_block_t)block userInfo:(nullable id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue;
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval block:(BBTimerCompletionBlock)block userInfo:(nullable id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue;
 
 /**
  Creates and returns a timer instance, but does not schedule itself. You must call `schedule` on the returned instance before it will fire.
@@ -79,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param queue The queue on which to send target selector, if nil, the main queue is used
  @return The initialized timer instance
  */
-- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval block:(dispatch_block_t)block userInfo:(id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue;
+- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval block:(BBTimerCompletionBlock)block userInfo:(id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue;
 
 - (instancetype)init __attribute__((unavailable("use initWithTimeInterval:target:selector:userInfo:repeats:queue: or initWithTimeInterval:block:userInfo:repeats:queue: instead")));
 

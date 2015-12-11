@@ -73,7 +73,7 @@
     }
     else {
         [self.timer invalidate];
-        [self setTimer:[BBTimer scheduledTimerWithTimeInterval:0.17 block:^{
+        [self setTimer:[BBTimer scheduledTimerWithTimeInterval:0.17 block:^(BBTimer *timer){
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:self.isNetworkActivityIndicatorVisible];
         } userInfo:nil repeats:NO queue:nil]];
     }

@@ -22,7 +22,7 @@
 @property (assign,nonatomic) NSTimeInterval timeInterval;
 @property (weak,nonatomic) id target;
 @property (assign,nonatomic) SEL selector;
-@property (copy,nonatomic) dispatch_block_t block;
+@property (copy,nonatomic) BBTimerCompletionBlock block;
 @property (readwrite,strong,nonatomic,nullable) id userInfo;
 @property (assign,nonatomic) BOOL repeats;
 @property (strong,nonatomic) dispatch_queue_t queue;
@@ -47,7 +47,7 @@
     
     return retval;
 }
-+ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval block:(dispatch_block_t)block userInfo:(nullable id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue; {
++ (instancetype)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval block:(BBTimerCompletionBlock)block userInfo:(nullable id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue; {
     BBTimer *retval = [[BBTimer alloc] initWithTimeInterval:timeInterval block:block userInfo:userInfo repeats:repeats queue:queue];
     
     [retval schedule];
@@ -76,7 +76,7 @@
     
     return self;
 }
-- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval block:(dispatch_block_t)block userInfo:(id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue; {
+- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval block:(BBTimerCompletionBlock)block userInfo:(id)userInfo repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue; {
     if (!(self = [super init]))
         return nil;
     
@@ -113,7 +113,7 @@
     }
     
     if (self.block) {
-        self.block();
+        self.block(self);
     }
     else {
 #pragma clang diagnostic push

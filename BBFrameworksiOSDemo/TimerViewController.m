@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     BBWeakify(self);
-    [self setTimer:[BBTimer scheduledTimerWithTimeInterval:1.0 block:^{
+    [self setTimer:[BBTimer scheduledTimerWithTimeInterval:1.0 block:^(BBTimer *timer){
         BBStrongify(self);
         [self.dateLabel setText:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle]];
     } userInfo:nil repeats:YES queue:nil]];
