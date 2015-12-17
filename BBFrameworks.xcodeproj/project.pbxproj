@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070E38CD1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 070E38CB1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		070E38CE1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E38CC1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m */; };
+		070E38CF1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E38CC1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m */; };
+		070E38D01C232C45002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 070E38CB1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h */; };
 		07148CAE1BC59BC300539136 /* CIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
 		07148CB01BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
@@ -692,6 +696,7 @@
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
+				070E38D01C232C45002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in CopyFiles */,
 				7987CAD51C0E9B85000C4086 /* BBMediaPickerTitleView.h in CopyFiles */,
 				79344C2D1C01326F00BBA726 /* BBMediaViewer.h in CopyFiles */,
 				79344C2E1C01326F00BBA726 /* BBMediaViewerViewController.h in CopyFiles */,
@@ -841,6 +846,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070E38CB1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+BBFoundationExtensions.h"; sourceTree = "<group>"; };
+		070E38CC1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIImage+BBKitExtensions.h"; sourceTree = "<group>"; };
 		07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIImage+BBKitExtensions.m"; sourceTree = "<group>"; };
 		0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBook.h; sourceTree = "<group>"; };
@@ -2585,6 +2592,8 @@
 				799D61F51C0A99D80069B2DD /* NSSet+BBFoundationExtensions.m */,
 				799D61F91C0A9AA40069B2DD /* NSDictionary+BBFoundationExtensions.h */,
 				799D61FA1C0A9AA40069B2DD /* NSDictionary+BBFoundationExtensions.m */,
+				070E38CB1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h */,
+				070E38CC1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2823,6 +2832,7 @@
 				79D17CEB1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h in Headers */,
 				792F153C1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h in Headers */,
 				791996EF1B6EB3C500FC674A /* BBThumbnailGenerator+BBThumbnailExtensionsPrivate.h in Headers */,
+				070E38CD1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in Headers */,
 				79EA81461B3F21F100D50B6B /* BBFrameworks.h in Headers */,
 				79EA81621B3F226100D50B6B /* NSImage+BBKitExtensions.h in Headers */,
 				799F9B9D1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.h in Headers */,
@@ -3536,6 +3546,7 @@
 				7987CACE1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.m in Sources */,
 				791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */,
 				7987CAD01C0E9AE6000C4086 /* BBMediaPickerAssetModel.m in Sources */,
+				070E38CE1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */,
 				7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */,
 				79344C1C1C01324700BBA726 /* BBMediaViewerImageScrollView.m in Sources */,
 				07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */,
@@ -3737,6 +3748,7 @@
 				075CECB51BC5A731000731BC /* NSString+BBKitExtensions.m in Sources */,
 				79EA81961B3F230300D50B6B /* BBThumbnailGenerator+BBReactiveThumbnailExtensions.m in Sources */,
 				799C0C6A1B607D8A00A3888A /* NSSet+BBBlocksExtensions.m in Sources */,
+				070E38CF1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */,
 				79EA817F1B3F22C300D50B6B /* NSString+BBFoundationExtensions.m in Sources */,
 				79EA81811B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataExtensions.m in Sources */,
 				79EA81831B3F22D200D50B6B /* BBDefaultManagedObjectPropertyMapping.m in Sources */,
