@@ -97,11 +97,11 @@ typedef void(^BBTimerCompletionBlock)(BBTimer *timer);
 - (instancetype)init __attribute__((unavailable("use initWithTimeInterval:target:selector:userInfo:repeats:queue: or initWithTimeInterval:block:userInfo:repeats:queue: instead")));
 
 /**
- Schedules the receiver to fire. Calling this on a timer that has already been scheduled is undefined.
+ Schedules the receiver to fire. Calling this on a timer that has already been scheduled does nothing.
  */
 - (void)schedule;
 /**
- Fires the timer synchronously on the calling queue. If called on a repeating timer, its regular schedule will not be interrupted. If called on a non-repeating timer, it will invalidate itself and firing.
+ Fires the timer synchronously on the calling queue. If called on a repeating timer, its regular schedule will not be interrupted. If called on a non-repeating timer, it will invalidate itself after firing.
  */
 - (void)fire;
 /**
