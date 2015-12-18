@@ -18,6 +18,8 @@
 
 #import <libkern/OSAtomic.h>
 
+static NSMutableSet *kNonRepeatingTimers;
+
 @interface BBTimer ()
 @property (assign,nonatomic) NSTimeInterval timeInterval;
 @property (weak,nonatomic) id target;
@@ -33,7 +35,15 @@
 @end
 
 @implementation BBTimer {
-    uint32_t hasBeenInvalidated;
+    uint32_t _hasBeenScheduled;
+    uint32_t _hasBeenInvalidated;
+}
+
++ (void)initialize {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kNonRepeatingTimers = [[NSMutableSet alloc] init];
+    });
 }
 
 - (void)dealloc {
@@ -97,18 +107,24 @@
 }
 
 - (void)schedule; {
-    [self _resetTimerProperties];
-    
-    BBWeakify(self);
-    dispatch_source_set_event_handler(self.timer, ^{
-        BBStrongify(self);
-        [self fire];
-    });
-    
-    dispatch_resume(self.timer);
+    if (!OSAtomicTestAndSet(7, &_hasBeenScheduled)) {
+        if (!self.repeats) {
+            [kNonRepeatingTimers addObject:self];
+        }
+        
+        [self _resetTimerProperties];
+        
+        BBWeakify(self);
+        dispatch_source_set_event_handler(self.timer, ^{
+            BBStrongify(self);
+            [self fire];
+        });
+        
+        dispatch_resume(self.timer);
+    }
 }
 - (void)fire; {
-    if (OSAtomicAnd32OrigBarrier(1, &hasBeenInvalidated) != 0) {
+    if (!self.isValid) {
         return;
     }
     
@@ -127,12 +143,20 @@
     }
 }
 - (void)invalidate; {
-    if (!OSAtomicTestAndSetBarrier(7, &hasBeenInvalidated)) {
+    if (!OSAtomicTestAndSet(7, &_hasBeenInvalidated)) {
         dispatch_source_t timer = self.timer;
         dispatch_async(self.queue, ^{
             dispatch_source_cancel(timer);
         });
+        
+        if (!self.repeats) {
+            [kNonRepeatingTimers removeObject:self];
+        }
     }
+}
+
+- (BOOL)isValid {
+    return OSAtomicAnd32Orig(1, &_hasBeenInvalidated) == 0;
 }
 
 @synthesize tolerance=_tolerance;

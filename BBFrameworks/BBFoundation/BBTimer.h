@@ -32,6 +32,10 @@ typedef void(^BBTimerCompletionBlock)(BBTimer *timer);
 @interface BBTimer : NSObject
 
 /**
+ Returns YES if the timer is still capable of firing or NO if the timer has been invalidated and can no longer fire.
+ */
+@property (readonly,nonatomic,getter=isValid) BOOL valid;
+/**
  Get the userInfo object passed in during creation.
  */
 @property (readonly,strong,nonatomic,nullable) id userInfo;

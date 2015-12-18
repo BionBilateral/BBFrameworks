@@ -15,7 +15,7 @@
 
 #import "TimerViewController.h"
 
-#import <BBFrameworks/BBTimer.h>
+#import <BBFrameworks/BBFoundation.h>
 #import <BBFrameworks/BBFrameworksMacros.h>
 
 @interface TimerViewController ()
@@ -38,6 +38,10 @@
         BBStrongify(self);
         [self.dateLabel setText:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle]];
     } userInfo:nil repeats:YES queue:nil]];
+    
+    [BBTimer scheduledTimerWithTimeInterval:0.5 block:^(BBTimer * _Nonnull timer) {
+        BBLog(@"This timer should only fire once and it wasn't retained.");
+    } userInfo:nil repeats:NO queue:nil];
 }
 
 + (NSString *)rowClassTitle {
