@@ -34,6 +34,7 @@
 #import "NSSet+BBFoundationExtensions.h"
 #import "NSDictionary+BBFoundationExtensions.h"
 #import "NSHTTPURLResponse+BBFoundationExtensions.h"
+#import "NSURLRequest+BBFoundationExtensions.h"
 
 #import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 #import "BBTimer.h"

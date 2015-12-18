@@ -11,9 +11,10 @@
 		070E38CE1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E38CC1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m */; };
 		070E38CF1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E38CC1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m */; };
 		070E38D01C232C45002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 070E38CB1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h */; };
-		070E38D51C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 070E38D31C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.h */; };
+		070E38D51C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 070E38D31C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		070E38D61C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E38D41C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.m */; };
 		070E38D71C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E38D41C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.m */; };
+		070E38D81C248441002233E9 /* NSURLRequest+BBFoundationExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 070E38D31C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.h */; };
 		07148CAE1BC59BC300539136 /* CIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
 		07148CB01BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
@@ -703,6 +704,7 @@
 				7987CAD51C0E9B85000C4086 /* BBMediaPickerTitleView.h in CopyFiles */,
 				79344C2D1C01326F00BBA726 /* BBMediaViewer.h in CopyFiles */,
 				79344C2E1C01326F00BBA726 /* BBMediaViewerViewController.h in CopyFiles */,
+				070E38D81C248441002233E9 /* NSURLRequest+BBFoundationExtensions.h in CopyFiles */,
 				79344C2F1C01326F00BBA726 /* BBMediaViewerViewControllerDataSource.h in CopyFiles */,
 				79344C301C01326F00BBA726 /* BBMediaViewerViewControllerDelegate.h in CopyFiles */,
 				7987CAD41C0E9B60000C4086 /* BBMediaPickerTheme.h in CopyFiles */,
