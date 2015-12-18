@@ -15,6 +15,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Enum representing the currently defined HTTP status codes. See http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for more information.
+ */
 typedef NS_ENUM(NSInteger, BBHTTPStatusCode) {
     BBHTTPStatusCodeContinue = 100,
     BBHTTPStatusCodeSwitchingProtocols = 101,
@@ -64,6 +67,11 @@ typedef NS_ENUM(NSInteger, BBHTTPStatusCode) {
 
 @interface NSHTTPURLResponse (BBFoundationExtensions)
 
+/**
+ Returns the localized description returned by `[NSHTTPURLResponse localizedStringForStatusCode]`.
+ 
+ @return The localized description
+ */
 - (NSString *)XFS_localizedStatusCodeString;
 
 @end
