@@ -29,6 +29,7 @@ NSString *const BBAddressBookManagerNotificationNameExternalChange = @"BBAddress
 @property (strong,nonatomic) dispatch_queue_t addressBookQueue;
 
 - (void)_createAddressBookIfNecessary;
+- (void)_requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion;
 - (void)_addressBookChanged;
 @end
 
@@ -50,8 +51,6 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     if (!(self = [super init]))
         return nil;
     
-    [self _createAddressBookIfNecessary];
-    
     [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
     return self;
@@ -61,26 +60,36 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     return (BBAddressBookManagerAuthorizationStatus)ABAddressBookGetAuthorizationStatus();
 }
 
-- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion; {
++ (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError * _Nullable error))completion; {
     NSParameterAssert(completion);
     
-    if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
+    if ([self authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
         completion(YES,nil);
         return;
     }
     
-    ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
-        BBDispatchMainSyncSafe(^{
-            if (granted) {
-                [self _createAddressBookIfNecessary];
-                
-                completion(YES,nil);
-            }
-            else {
-                completion(NO,(__bridge NSError *)error);
-            }
+    CFErrorRef errorRef;
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, &errorRef);
+    
+    if (addressBookRef) {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+            CFRelease(addressBookRef);
+            
+            BBDispatchMainSyncSafe(^{
+                if (granted) {
+                    completion(YES,nil);
+                }
+                else {
+                    completion(NO,(__bridge NSError *)error);
+                }
+            });
         });
-    });
+    }
+    else {
+        BBDispatchMainSyncSafe(^{
+            completion(NO,(__bridge NSError *)errorRef);
+        });
+    }
 }
 
 - (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion; {
@@ -93,7 +102,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     NSParameterAssert(completion);
     
     BBWeakify(self);
-    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+    [self _requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
         BBStrongify(self);
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
@@ -130,7 +139,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     NSParameterAssert(completion);
     
     BBWeakify(self);
-    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+    [self _requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
         BBStrongify(self);
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
@@ -165,7 +174,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     NSParameterAssert(completion);
     
     BBWeakify(self);
-    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+    [self _requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
         BBStrongify(self);
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
@@ -213,7 +222,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     NSParameterAssert(completion);
     
     BBWeakify(self);
-    [self requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
+    [self _requestAuthorizationWithCompletion:^(BOOL success, NSError *error) {
         BBStrongify(self);
         if (success) {
             dispatch_async(self.addressBookQueue, ^{
@@ -250,6 +259,31 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
         }
     }
+}
+- (void)_requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion; {
+    NSParameterAssert(completion);
+    
+    if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
+        completion(YES,nil);
+        return;
+    }
+    
+    BBWeakify(self);
+    dispatch_async(self.addressBookQueue, ^{
+        BBStrongify(self);
+        [self _createAddressBookIfNecessary];
+        
+        ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
+            BBDispatchMainSyncSafe(^{
+                if (granted) {
+                    completion(YES,nil);
+                }
+                else {
+                    completion(NO,(__bridge NSError *)error);
+                }
+            });
+        });
+    });
 }
 - (void)_addressBookChanged; {
     [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];

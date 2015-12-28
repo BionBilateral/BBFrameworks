@@ -65,7 +65,7 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @param completion The completion block that is invoked once authorization status has been determined
  @exception NSException Thrown if completion is nil
  */
-- (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *_Nullable error))completion;
++ (void)requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError * _Nullable error))completion;
 
 /**
  Calls `[self requestPeopleWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
