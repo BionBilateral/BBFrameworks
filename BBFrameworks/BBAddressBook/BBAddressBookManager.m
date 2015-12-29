@@ -96,11 +96,6 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 - (nullable BBAddressBookPerson *)fetchPersonWithRecordID:(ABRecordID)recordID; {
     return [self fetchPeopleWithRecordIDs:@[@(recordID)]].firstObject;
 }
-- (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion; {
-    [self requestPeopleWithRecordIDs:@[@(recordID)] completion:^(NSArray *people, NSError *error) {
-        completion(people.firstObject,error);
-    }];
-}
 - (nullable NSArray<BBAddressBookPerson *> *)fetchPeopleWithRecordIDs:(NSArray<NSNumber *> *)recordIDs; {
     if ([self.class authorizationStatus] != BBAddressBookManagerAuthorizationStatusAuthorized) {
         BBLog(@"called %@ with authorization status %@, returning nil",NSStringFromSelector(_cmd),@([self.class authorizationStatus]));
@@ -124,6 +119,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     });
     
     return [retval copy];
+}
+- (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion; {
+    [self requestPeopleWithRecordIDs:@[@(recordID)] completion:^(NSArray *people, NSError *error) {
+        completion(people.firstObject,error);
+    }];
 }
 - (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
     NSParameterAssert(recordIDs);
@@ -158,6 +158,33 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }];
 }
 
+- (nullable BBAddressBookGroup *)fetchGroupWithRecordID:(ABRecordID)recordID; {
+    return [self fetchGroupsWithRecordIDs:@[@(recordID)]].firstObject;
+}
+- (nullable NSArray<BBAddressBookGroup *> *)fetchGroupsWithRecordIDs:(NSArray<NSNumber *> *)recordIDs; {
+    if ([self.class authorizationStatus] != BBAddressBookManagerAuthorizationStatusAuthorized) {
+        BBLog(@"called %@ with authorization status %@, returning nil",NSStringFromSelector(_cmd),@([self.class authorizationStatus]));
+        return nil;
+    }
+    
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    BBWeakify(self);
+    dispatch_sync(self.addressBookQueue, ^{
+        BBStrongify(self);
+        [self _createAddressBookIfNecessary];
+        
+        for (NSNumber *recordID in recordIDs) {
+            ABRecordRef groupRef = ABAddressBookGetGroupWithRecordID(self.addressBook, recordID.intValue);
+            
+            if (groupRef) {
+                [retval addObject:[[BBAddressBookGroup alloc] initWithGroup:groupRef]];
+            }
+        }
+    });
+    
+    return [retval copy];
+}
 - (void)requestGroupWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookGroup *group, NSError *error))completion; {
     [self requestGroupsWithRecordIDs:@[@(recordID)] completion:^(NSArray *groups, NSError *error) {
         completion(groups.firstObject,error);

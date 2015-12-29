@@ -75,6 +75,13 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  */
 - (nullable BBAddressBookPerson *)fetchPersonWithRecordID:(ABRecordID)recordID;
 /**
+ Returns an array of BBAddressBookPerson objects for the provided recordIDs. If the user has not authorized the client returns nil.
+ 
+ @param recordIDs The array of record ids to fetch people for
+ @return The array of BBAddressBookPerson objects or nil
+ */
+- (nullable NSArray<BBAddressBookPerson *> *)fetchPeopleWithRecordIDs:(NSArray<NSNumber *> *)recordIDs;
+/**
  Calls `[self requestPeopleWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
  
  @param recordID The record id of the person
@@ -82,13 +89,6 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  @exception NSException Thrown if completion is nil
  */
 - (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson * _Nullable person, NSError *_Nullable error))completion;
-/**
- Returns an array of BBAddressBookPerson objects for the provided recordIDs. If the user has not authorized the client returns nil.
- 
- @param recordIDs The array of record ids to fetch people for
- @return The array of BBAddressBookPerson objects or nil
- */
-- (nullable NSArray<BBAddressBookPerson *> *)fetchPeopleWithRecordIDs:(NSArray<NSNumber *> *)recordIDs;
 /**
  Attempts to fetch BBAddressBookPerson objects for the provided record ids and invokes the completion block when the operation is complete.
  
@@ -98,6 +98,20 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  */
 - (void)requestPeopleWithRecordIDs:(NSArray<NSNumber *> *)recordIDs completion:(void(^)(NSArray<BBAddressBookPerson *> * _Nullable people, NSError *_Nullable error))completion;
 
+/**
+ Calls `[self fetchGroupsWithRecordIDs:]`, passing @[@(recordID)] respectively.
+ 
+ @param recordID The record id of the group to fetch
+ @return The BBAddressBookGroup object or nil
+ */
+- (nullable BBAddressBookGroup *)fetchGroupWithRecordID:(ABRecordID)recordID;
+/**
+ Returns an array of BBAddressBookGroup objects for the provided recordIDs. If the user has not authorized the client returns nil.
+ 
+ @param recordIDs The array of record ids to fetch groups for
+ @return The array of BBAddressBookGroup objects or nil
+ */
+- (nullable NSArray<BBAddressBookGroup *> *)fetchGroupsWithRecordIDs:(NSArray<NSNumber *> *)recordIDs;
 /**
  Calls `[self requestGroupsWithRecordIDs:completion:]`, passing @[@(recordID)] and completion respectively.
  
