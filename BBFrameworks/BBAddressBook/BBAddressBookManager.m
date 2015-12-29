@@ -19,6 +19,7 @@
 #import "BBBlocks.h"
 #import "BBFrameworksMacros.h"
 #import "BBAddressBookGroup.h"
+#import "BBFoundationDebugging.h"
 
 #import <AddressBook/AddressBook.h>
 
@@ -92,10 +93,37 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }
 }
 
+- (nullable BBAddressBookPerson *)fetchPersonWithRecordID:(ABRecordID)recordID; {
+    return [self fetchPeopleWithRecordIDs:@[@(recordID)]].firstObject;
+}
 - (void)requestPersonWithRecordID:(ABRecordID)recordID completion:(void(^)(BBAddressBookPerson *person, NSError *error))completion; {
     [self requestPeopleWithRecordIDs:@[@(recordID)] completion:^(NSArray *people, NSError *error) {
         completion(people.firstObject,error);
     }];
+}
+- (nullable NSArray<BBAddressBookPerson *> *)fetchPeopleWithRecordIDs:(NSArray<NSNumber *> *)recordIDs; {
+    if ([self.class authorizationStatus] != BBAddressBookManagerAuthorizationStatusAuthorized) {
+        BBLog(@"called %@ with authorization status %@, returning nil",NSStringFromSelector(_cmd),@([self.class authorizationStatus]));
+        return nil;
+    }
+    
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    
+    BBWeakify(self);
+    dispatch_sync(self.addressBookQueue, ^{
+        BBStrongify(self);
+        [self _createAddressBookIfNecessary];
+        
+        for (NSNumber *recordID in recordIDs) {
+            ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(self.addressBook, recordID.intValue);
+            
+            if (personRef) {
+                [retval addObject:[[BBAddressBookPerson alloc] initWithPerson:personRef]];
+            }
+        }
+    });
+    
+    return [retval copy];
 }
 - (void)requestPeopleWithRecordIDs:(NSArray *)recordIDs completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
     NSParameterAssert(recordIDs);

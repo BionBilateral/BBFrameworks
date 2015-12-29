@@ -30,6 +30,8 @@
     if (!(self = [super init]))
         return nil;
     
+    NSParameterAssert(group);
+    
     [self setGroup:group];
     
     return self;

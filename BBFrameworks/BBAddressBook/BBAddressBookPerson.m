@@ -27,6 +27,8 @@
     if (!(self = [super init]))
         return nil;
     
+    NSParameterAssert(person);
+    
     [self setPerson:person];
     
     return self;
