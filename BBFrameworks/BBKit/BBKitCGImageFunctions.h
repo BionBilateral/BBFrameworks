@@ -47,16 +47,25 @@ extern CGSize BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(CGImage
  */
 extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size);
 /**
- Creates a new CGImage by resizing _imageRef_ to _size_ and optionally maintaining the aspect ratio of imageRef. The caller is responsible for releasing the returned CGImage.
+ Calls `BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio()`, passing _imageRef_, _size_, _maintainAspectRatio_, and CGAffineTransformIdentity respectively.
  
  @param imageRef The CGImage to use in thumbnail creation
- @param size That target size of the thumbnail
+ @param size The target size of the thumbnail
  @param maintainAspectRatio Whether to maintain the aspect ratio of the resulting thumbnail image
  @return The CGImage thumbnail
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
 extern CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio);
-
+/**
+ Creates a new CGImage by resizing _imageRef_ to _size_ and optionally maintaining the aspect ratio of imageRef. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage to use in thumbnail creation
+ @param size That target size of the thumbnail
+ @param maintainAspectRatio Whether to maintain the aspect ratio of the resulting thumbnail image
+ @param transform The transform to apply to the resulting thumbnail
+ @return The CGImage thumbnail
+ @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
+ */
 extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio);
 
 /**
