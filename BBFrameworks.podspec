@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.6.31"
+  spec.version = "1.6.32"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -117,7 +117,7 @@ Pod::Spec.new do |spec|
     subspec.ios.dependency "BBFrameworks/BBKit"
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     
-    subspec.ios.source_files = "BBFrameworks/BBMediaPicker", "BBFrameworks/BBMediaPicker/Private"
+    subspec.ios.source_files = "BBFrameworks/BBMediaPicker","BBFrameworks/BBMediaPicker/Photos", "BBFrameworks/BBMediaPicker/Private"
     subspec.osx.source_files = "BBFrameworks/BBMediaPicker/BBMediaPicker.h"
     
     subspec.ios.private_header_files = "BBFrameworks/BBMediaPicker/Private/*.h"
