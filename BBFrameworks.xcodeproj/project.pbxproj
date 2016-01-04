@@ -279,7 +279,6 @@
 		79344C651C0136EC00BBA726 /* media_player_minimize@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79344C5F1C0136EC00BBA726 /* media_player_minimize@3x.png */; };
 		79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */; };
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
-		7953FA2F1B31C4820005E3FD /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
 		796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */; };
 		7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */; };
@@ -415,7 +414,6 @@
 		79C27EB21B3B9A8300C4AC28 /* ThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB01B3B9A8300C4AC28 /* ThumbnailsViewController.m */; };
 		79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EB11B3B9A8300C4AC28 /* ThumbnailsViewController.xib */; };
 		79C27EB61B3B9C4400C4AC28 /* ThumbnailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */; };
-		79C27EC01B3BB84E00C4AC28 /* docs in Resources */ = {isa = PBXBuildFile; fileRef = 7953FA2E1B31C4820005E3FD /* docs */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
 		79CE6A401B784F3600A0E969 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79CE6A3E1B784F3600A0E969 /* Validation.strings */; };
 		79D17CEB1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D17CE91BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1192,7 +1190,6 @@
 		793E185A1BC5CA6E00D4CCFA /* es */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Foundation.strings; sourceTree = "<group>"; };
 		79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBAnythingGestureRecognizer.h; path = iOS/BBAnythingGestureRecognizer.h; sourceTree = "<group>"; };
 		79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBAnythingGestureRecognizer.m; path = iOS/BBAnythingGestureRecognizer.m; sourceTree = "<group>"; };
-		7953FA2E1B31C4820005E3FD /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
 		796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
@@ -2517,7 +2514,6 @@
 			children = (
 				79C0011D1B1AD081004C9A6E /* Images.xcassets */,
 				79344C581C01343700BBA726 /* media */,
-				7953FA2E1B31C4820005E3FD /* docs */,
 				79C0010E1B1AD081004C9A6E /* Info.plist */,
 				79C0010F1B1AD081004C9A6E /* main.m */,
 				799F9BCD1B6DBF940067BAA8 /* APIKeys.plist */,
@@ -3122,7 +3118,6 @@
 			files = (
 				799F9BD21B6DC3C40067BAA8 /* RemoteURLs.plist in Resources */,
 				79EA81451B3F215700D50B6B /* BBFrameworksResources.bundle in Resources */,
-				79C27EC01B3BB84E00C4AC28 /* docs in Resources */,
 				79C27EA61B3B943400C4AC28 /* MainMenu.xib in Resources */,
 				79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */,
 				79C27EA21B3B8FE300C4AC28 /* RootWindowController.xib in Resources */,
@@ -3139,7 +3134,6 @@
 			files = (
 				79EA810D1B3F165500D50B6B /* BBFrameworksResources.bundle in Resources */,
 				791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */,
-				7953FA2F1B31C4820005E3FD /* docs in Resources */,
 				79BE2B6F1B64957600ADE997 /* TransitionViewController.xib in Resources */,
 				07E312CB1BB332B300C71468 /* KeyValueObservingViewController.xib in Resources */,
 				79344C591C01343700BBA726 /* media in Resources */,
