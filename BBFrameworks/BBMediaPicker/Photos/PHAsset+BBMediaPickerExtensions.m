@@ -21,7 +21,7 @@
 
 @implementation PHAsset (BBMediaPickerExtensions)
 
-- (void)BB_requestImageWithCompletion:(void(^)(UIImage *_Nullable image, NSError *_Nullable info))completion; {
+- (void)BB_requestImageWithCompletion:(void(^)(UIImage *_Nullable image, NSError *_Nullable error))completion; {
     NSParameterAssert(completion);
     
     if (self.mediaType != PHAssetMediaTypeImage) {
@@ -42,6 +42,124 @@
     [[PHImageManager defaultManager] requestImageForAsset:self targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         BBDispatchMainSyncSafe(^{
             completion(result,info[PHImageErrorKey]);
+        });
+    }];
+}
+- (void)BB_requestImageDataWithCompletion:(void(^)(NSData *_Nullable data, NSString *_Nullable dataUTI, UIImageOrientation orientation, NSError *_Nullable error))completion; {
+    NSParameterAssert(completion);
+    
+    if (self.mediaType != PHAssetMediaTypeImage) {
+        BBLog(@"called %@ with asset of type %@, returning early",NSStringFromSelector(_cmd),@(self.mediaType));
+        BBDispatchMainSyncSafe(^{
+            completion(nil,nil,0,nil);
+        });
+        return;
+    }
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    
+    [options setVersion:PHImageRequestOptionsVersionCurrent];
+    [options setResizeMode:PHImageRequestOptionsResizeModeNone];
+    [options setDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
+    [options setNetworkAccessAllowed:YES];
+    
+    [[PHImageManager defaultManager] requestImageDataForAsset:self options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+        BBDispatchMainSyncSafe(^{
+            completion(imageData,dataUTI,orientation,info[PHImageErrorKey]);
+        });
+    }];
+}
+
+- (void)BB_requestLivePhotoWithCompletion:(void(^)(PHLivePhoto *_Nullable livePhoto, NSError *_Nullable error))completion; {
+    NSParameterAssert(completion);
+    
+    if ((self.mediaSubtypes & PHAssetMediaSubtypePhotoLive) == 0) {
+        BBLog(@"called %@ with asset of subtype %@, returning early",NSStringFromSelector(_cmd),@(self.mediaSubtypes));
+        BBDispatchMainSyncSafe(^{
+            completion(nil,nil);
+        });
+        return;
+    }
+    
+    PHLivePhotoRequestOptions *options = [[PHLivePhotoRequestOptions alloc] init];
+    
+    [options setDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
+    [options setNetworkAccessAllowed:YES];
+    
+    [[PHImageManager defaultManager] requestLivePhotoForAsset:self targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:options resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
+        BBDispatchMainSyncSafe(^{
+            completion(livePhoto,info[PHImageErrorKey]);
+        });
+    }];
+}
+
+- (void)BB_requestPlayerItemWithCompletion:(void(^)(AVPlayerItem *_Nullable playerItem, NSError *_Nullable error))completion; {
+    NSParameterAssert(completion);
+    
+    if (self.mediaType != PHAssetMediaTypeVideo) {
+        BBLog(@"called %@ with asset of type %@, returning early",NSStringFromSelector(_cmd),@(self.mediaType));
+        BBDispatchMainSyncSafe(^{
+            completion(nil,nil);
+        });
+        return;
+    }
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    
+    [options setVersion:PHVideoRequestOptionsVersionCurrent];
+    [options setDeliveryMode:PHVideoRequestOptionsDeliveryModeMediumQualityFormat];
+    [options setNetworkAccessAllowed:YES];
+    
+    [[PHImageManager defaultManager] requestPlayerItemForVideo:self options:options resultHandler:^(AVPlayerItem * _Nullable playerItem, NSDictionary * _Nullable info) {
+        BBDispatchMainSyncSafe(^{
+            completion(playerItem,info[PHImageErrorKey]);
+        });
+    }];
+}
+- (void)BB_requestAssetExportSessionWithExportPreset:(NSString *)exportPreset completion:(void(^)(AVAssetExportSession *_Nullable assetExportSession, NSError *_Nullable error))completion; {
+    NSParameterAssert(exportPreset);
+    NSParameterAssert(completion);
+    
+    if (self.mediaType != PHAssetMediaTypeVideo) {
+        BBLog(@"called %@ with asset of type %@, returning early",NSStringFromSelector(_cmd),@(self.mediaType));
+        BBDispatchMainSyncSafe(^{
+            completion(nil,nil);
+        });
+        return;
+    }
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    
+    [options setVersion:PHVideoRequestOptionsVersionCurrent];
+    [options setDeliveryMode:PHVideoRequestOptionsDeliveryModeHighQualityFormat];
+    [options setNetworkAccessAllowed:YES];
+    
+    [[PHImageManager defaultManager] requestExportSessionForVideo:self options:options exportPreset:exportPreset resultHandler:^(AVAssetExportSession * _Nullable exportSession, NSDictionary * _Nullable info) {
+        BBDispatchMainSyncSafe(^{
+            completion(exportSession,info[PHImageErrorKey]);
+        });
+    }];
+}
+- (void)BB_requestAVAssetAndAudioMixWithCompletion:(void(^)(AVAsset *_Nullable asset, AVAudioMix *_Nullable audioMix, NSError *_Nullable error))completion; {
+    NSParameterAssert(completion);
+    
+    if (self.mediaType != PHAssetMediaTypeVideo) {
+        BBLog(@"called %@ with asset of type %@, returning early",NSStringFromSelector(_cmd),@(self.mediaType));
+        BBDispatchMainSyncSafe(^{
+            completion(nil,nil,nil);
+        });
+        return;
+    }
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    
+    [options setVersion:PHVideoRequestOptionsVersionCurrent];
+    [options setDeliveryMode:PHVideoRequestOptionsDeliveryModeHighQualityFormat];
+    [options setNetworkAccessAllowed:YES];
+    
+    [[PHImageManager defaultManager] requestAVAssetForVideo:self options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        BBDispatchMainSyncSafe(^{
+            completion(asset,audioMix,info[PHImageErrorKey]);
         });
     }];
 }
