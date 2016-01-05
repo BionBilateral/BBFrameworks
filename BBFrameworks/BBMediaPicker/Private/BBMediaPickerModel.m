@@ -553,7 +553,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 #if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)_assetsLibraryDidChange:(NSNotification *)note {
-    [self _reloadAssetCollections];
+    BBStrongify(self);
+    BBDispatchMainSyncSafe(^{
+        BBWeakify(self);
+        [self _reloadAssetCollections];
+    });
 }
 #endif
 
