@@ -22,7 +22,6 @@
 #import "BBMediaPickerTheme.h"
 #import "BBFrameworksMacros.h"
 #import "BBFrameworksFunctions.h"
-#import "BBBlocks.h"
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
@@ -553,9 +552,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 #if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)_assetsLibraryDidChange:(NSNotification *)note {
-    BBStrongify(self);
+    BBWeakify(self);
     BBDispatchMainSyncSafe(^{
-        BBWeakify(self);
+        BBStrongify(self);
         [self _reloadAssetCollections];
     });
 }
