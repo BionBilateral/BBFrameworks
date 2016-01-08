@@ -24,11 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBAddressBookPerson : NSObject
 
 /**
- Get the represented person of the receiver.
- */
-@property (readonly,assign,nonatomic) ABRecordRef person;
-
-/**
  Get the record id of the managed record ref.
  */
 @property (readonly,nonatomic) ABRecordID recordID;

@@ -18,7 +18,7 @@
 #import <AddressBook/AddressBook.h>
 
 @interface BBAddressBookPerson ()
-@property (readwrite,assign,nonatomic) ABRecordRef person;
+@property (assign,nonatomic) ABRecordRef person;
 @end
 
 @implementation BBAddressBookPerson
