@@ -20,7 +20,7 @@
 #import <AddressBook/AddressBook.h>
 
 @interface BBAddressBookGroup ()
-@property (readwrite,assign,nonatomic) ABRecordRef group;
+@property (assign,nonatomic) ABRecordRef group;
 @end
 
 @implementation BBAddressBookGroup

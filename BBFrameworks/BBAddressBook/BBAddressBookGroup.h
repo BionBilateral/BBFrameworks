@@ -26,11 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBAddressBookGroup : NSObject
 
 /**
- Get the represented group of the receiver.
- */
-@property (readonly,assign,nonatomic) ABRecordRef group;
-
-/**
  Get the record id of the managed record ref.
  */
 @property (readonly,nonatomic) ABRecordID recordID;

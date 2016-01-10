@@ -489,14 +489,14 @@
     
     // if our completion table view doesn't exist, create it and ask the delegate to display it
     if (!self.tableView) {
-        if ([self.delegate respondsToSelector:@selector(tokenTextView:showCompletionsTableView:)]) {
-            [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
-            [self.tableView setRowHeight:[NSClassFromString(self.completionTableViewCellClassName) respondsToSelector:@selector(rowHeight)] ? [NSClassFromString(self.completionTableViewCellClassName) rowHeight] : [BBTokenCompletionDefaultTableViewCell rowHeight]];
-            [self.tableView setDataSource:self];
-            [self.tableView setDelegate:self];
-            
-            [self.delegate tokenTextView:self showCompletionsTableView:self.tableView];
-        }
+        [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
+        [self.tableView setRowHeight:[NSClassFromString(self.completionTableViewCellClassName) respondsToSelector:@selector(rowHeight)] ? [NSClassFromString(self.completionTableViewCellClassName) rowHeight] : [BBTokenCompletionDefaultTableViewCell rowHeight]];
+        [self.tableView setDataSource:self];
+        [self.tableView setDelegate:self];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(tokenTextView:showCompletionsTableView:)]) {
+        [self.delegate tokenTextView:self showCompletionsTableView:self.tableView];
     }
     
     // if the delegate responds to either of the completion returning methods, continue
@@ -553,7 +553,7 @@
         
         [self.delegate tokenTextView:self hideCompletionsTableView:self.tableView];
         
-        [self setTableView:nil];
+        [self setCompletions:nil];
     }
 }
 
@@ -688,7 +688,7 @@
     _completions = completions;
     
     if (_completions.count == 0 &&
-        _tableView != nil) {
+        _tableView.window != nil) {
         
         [self _hideCompletionsTableViewAndSelectCompletion:nil];
     }

@@ -226,6 +226,9 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     [self requestAllPeopleWithSortDescriptors:nil completion:completion];
 }
 - (void)requestAllPeopleWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> *people, NSError *error))completion; {
+    [self requestAllPeopleWithPredicate:nil sortDescriptors:sortDescriptors completion:completion];
+}
+- (void)requestAllPeopleWithPredicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> * _Nullable people, NSError *_Nullable error))completion; {
     NSParameterAssert(completion);
     
     BBWeakify(self);
@@ -252,6 +255,10 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                 }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
                     return obj.fullName.length > 0;
                 }];
+                
+                if (predicate) {
+                    people = [people filteredArrayUsingPredicate:predicate];
+                }
                 
                 if (sortDescriptors.count > 0) {
                     people = [people sortedArrayUsingDescriptors:sortDescriptors];

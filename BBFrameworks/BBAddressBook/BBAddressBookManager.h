@@ -137,13 +137,22 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
  */
 - (void)requestAllPeopleWithCompletion:(void(^)(NSArray * _Nullable people, NSError *_Nullable error))completion;
 /**
- Requests all people in the address book sorted with the provided sort descriptors and invokes the completion block when the request is complete. The array of people in the completion block will contain BBAddressBookPerson instances. See BBAddressBookPerson.h for supported keys for sorting.
+ Calls `[self requestAllPeopleWithPredicate:sortDescriptors:completion:]`, passing nil, sortDescriptors, and completion respectively.
  
  @param sortDescriptors The array of sort descriptors to sort the return BBAddressBookPerson objects by
  @param completion The completion block to invoke when the operation is complete
  @exception NSException Thrown if completion is nil
  */
 - (void)requestAllPeopleWithSortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> * _Nullable people, NSError *_Nullable error))completion;
+/**
+ Requests all people in the address book sorted with the provided sort descriptors and invokes the completion block when the request is complete. The array of people in the completion block will contain BBAddressBookPerson instances. See BBAddressBookPerson.h for supported keys for sorting.
+ 
+ @param predicate The predicate to filter the resulting array of people with invoking completion
+ @param sortDescriptors The array of sort descriptors to sort the return BBAddressBookPerson objects by
+ @param completion The completion block to invoke when the operation is complete
+ @exception NSException Thrown if completion is nil
+ */
+- (void)requestAllPeopleWithPredicate:(nullable NSPredicate *)predicate sortDescriptors:(nullable NSArray<NSSortDescriptor *> *)sortDescriptors completion:(void(^)(NSArray<BBAddressBookPerson *> * _Nullable people, NSError *_Nullable error))completion;
 
 /**
  Calls `[self requestAllGroupsWithSortDescriptors:completion:]`, passing nil and completion respectively.
