@@ -46,36 +46,48 @@ NS_ASSUME_NONNULL_BEGIN
  The default is NO.
  */
 @property (assign,nonatomic) BOOL allowsMultipleSelection;
+
 /**
  Set and get whether the media picker allows the user to select non-homogenous media types (e.g. images and videos).
  
  The default is YES.
  */
 @property (assign,nonatomic) BOOL allowsMixedMediaSelection;
+
 /**
  Set and get the maximum number of selected media. A value of 0 means no limit.
  
  The default is 0.
  */
 @property (assign,nonatomic) NSUInteger maximumSelectedMedia;
+
 /**
  Set and get the maximum number of selected images. A value of 0 means no limit.
  
  The default is 0.
  */
 @property (assign,nonatomic) NSUInteger maximumSelectedImages;
+
 /**
  Set and get the maximum number of selected videos. A value of 0 means no limit.
  
  The default is 0.
  */
 @property (assign,nonatomic) NSUInteger maximumSelectedVideos;
+
 /**
  Set and get whether the media picker hides asset collections that are empty (i.e. they contain 0 assets).
  
  The default is YES.
  */
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
+
+/**
+ Set and get whether the media picker allows editing of selected still image (currently supports image resize/crop, other image editing features & movie editing to come later)
+ 
+ The default is NO.
+ */
+@property (assign,nonatomic) BOOL allowsEditing;
 
 /**
  Set and get the media types the media picker should display. For example, if set to BBMediaPickerMediaTypesImage, the user would only see available photos.
@@ -90,6 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  The default is BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary when using the Photos framework and BBMediaPickerAssetCollectionSubtypeSavedPhotos when using the AssetsLibrary framework.
  */
 @property (assign,nonatomic) BBMediaPickerAssetCollectionSubtype initiallySelectedAssetCollectionSubtype;
+
 /**
  Set and get the allowed asset collection subtypes. If non-nil, the displayed asset collections will be constrained to this set.
  
@@ -103,6 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  @see BBMediaPickerAuthorizationStatus
  */
 + (BBMediaPickerAuthorizationStatus)authorizationStatus;
+
 /**
  Request authorization to access the user's media and invoke the provided completion block once the authorization status is determined. The completion block is always invoked on the main thread.
  
@@ -116,6 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The count of media
  */
 - (NSUInteger)countOfMedia;
+
 /**
  Get the index of the provided media within the selected asset collection. If the media cannot be found, returns NSNotFound.
  
@@ -123,6 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The index of the provided media or NSNotFound
  */
 - (NSUInteger)indexOfMedia:(id<BBMediaPickerMedia>)media;
+
 /**
  Get the media at the provided index within the selected asset collection. If the index is out of bounds, nil is returned.
  
@@ -130,12 +146,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return The media or nil
  */
 - (nullable id<BBMediaPickerMedia>)mediaAtIndex:(NSUInteger)index;
+
 /**
  Scrolls the provided media so it is visible within the asset collection view.
  
  @param media The media to scroll to visible
  */
 - (void)scrollMediaToVisible:(id<BBMediaPickerMedia>)media;
+
 /**
  Selects the provided media provided it is available in the current asset collection.
  

@@ -199,10 +199,12 @@
 }
 
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didSelectMedia:(id<BBMediaPickerMedia>)media {
+    //TODO: check if edit is allowed, if so present crop controller
     if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didSelectMedia:)]) {
         [self.delegate mediaPickerViewController:self didSelectMedia:media];
     }
 }
+
 - (void)mediaPickerModel:(BBMediaPickerModel *)model didDeselectMedia:(id<BBMediaPickerMedia>)media {
     if ([self.delegate respondsToSelector:@selector(mediaPickerViewController:didDeselectMedia:)]) {
         [self.delegate mediaPickerViewController:self didDeselectMedia:media];
@@ -287,6 +289,14 @@
 }
 - (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
     [self.model setHidesEmptyAssetCollections:hidesEmptyAssetCollections];
+}
+
+@dynamic allowsEditing;
+- (BOOL)allowsEditing {
+    return self.model.allowsEditing;
+}
+- (void)setAllowsEditing:(BOOL)allowsEditing {
+    [self.model setAllowsEditing:allowsEditing];
 }
 
 @dynamic mediaTypes;

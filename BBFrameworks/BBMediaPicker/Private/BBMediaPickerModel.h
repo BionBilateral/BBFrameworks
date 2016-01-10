@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) NSUInteger maximumSelectedImages;
 @property (assign,nonatomic) NSUInteger maximumSelectedVideos;
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
+@property (assign,nonatomic) BOOL allowsEditing;
 
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
