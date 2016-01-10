@@ -299,6 +299,24 @@
     [self.model setAllowsEditing:allowsEditing];
 }
 
+@dynamic imageCropMaskCornerRadius;
+- (CGFloat)imageCropMaskCornerRadius {
+    return self.model.imageCropMaskCornerRadius;
+}
+
+- (void)setImageCropMaskCornerRadius:(CGFloat)imageCropMaskCornerRadius {
+    [self.model setImageCropMaskCornerRadius:imageCropMaskCornerRadius];
+}
+
+@dynamic imageCropMaskSize;
+- (CGSize)imageCropMaskSize {
+    return self.model.imageCropMaskSize;
+}
+
+- (void)setImageCropMaskSize:(CGSize)imageCropMaskSize {
+    [self.model setImageCropMaskSize:imageCropMaskSize];
+}
+
 @dynamic mediaTypes;
 - (BBMediaPickerMediaTypes)mediaTypes {
     return self.model.mediaTypes;

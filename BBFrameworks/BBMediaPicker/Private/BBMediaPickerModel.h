@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) BOOL hidesEmptyAssetCollections;
 @property (assign,nonatomic) BOOL allowsEditing;
 
+@property (assign,nonatomic) CGFloat imageCropMaskCornerRadius;
+@property (assign,nonatomic) CGSize imageCropMaskSize;
+
 @property (strong,nonatomic) UIBarButtonItem *doneBarButtonItem;
 @property (copy,nonatomic) void(^doneBarButtonItemActionBlock)(void);
 @property (strong,nonatomic) UIBarButtonItem *cancelBarButtonItem;

@@ -90,6 +90,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) BOOL allowsEditing;
 
 /**
+ Set and get the corner radius for the crop mask on the image editor view controller.
+ 
+ The default is 0.0
+ */
+@property (assign,nonatomic) CGFloat imageCropMaskCornerRadius;
+
+/**
+ Set and get the size of the crop mask in the image editor view controller.
+ 
+ The default is 320x320
+ */
+@property (assign,nonatomic) CGSize imageCropMaskSize;
+
+/**
  Set and get the media types the media picker should display. For example, if set to BBMediaPickerMediaTypesImage, the user would only see available photos.
  
  The default is BBMediaPickerMediaTypesAll.

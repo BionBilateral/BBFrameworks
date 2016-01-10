@@ -88,6 +88,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     _allowsMixedMediaSelection = YES;
     _hidesEmptyAssetCollections = YES;
     _mediaTypes = BBMediaPickerMediaTypesAll;
+    _allowsEditing = NO;
+    _imageCropMaskCornerRadius = 0.0;
+    _imageCropMaskSize = CGSizeMake(320, 320);
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     _initiallySelectedAssetCollectionSubtype = BBMediaPickerAssetCollectionSubtypeSmartAlbumUserLibrary;
 #else
