@@ -8,6 +8,11 @@
 
 #import "BBMediaEditorViewController.h"
 
+@interface BBMediaEditorViewController ()
+@property (assign,nonatomic) CGFloat cornerRadius;
+@property (assign,nonatomic) CGSize cropSize;
+@end
+
 @implementation BBMediaEditorViewController
 
 @end
