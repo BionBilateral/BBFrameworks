@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init __attribute__((unavailable("use initWithCropSize:(CGSize)size cornerRadius:(CGFloat)cornerRadius media:(id<BBMediaPickerMedia>)media instead")));
 - (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithCropSize:(CGSize)size cornerRadius:(CGFloat)cornerRadius media:(id<BBMediaPickerMedia>)media instead")));
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil __attribute__((unavailable("use initWithCropSize:(CGSize)size cornerRadius:(CGFloat)cornerRadius media:(id<BBMediaPickerMedia>)media instead")));
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil __attribute__((unavailable("use initWithCropSize:(CGSize)size cornerRadius:(CGFloat)cornerRadius media:(id<BBMediaPickerMedia>)media instead")));
 @end
 
 NS_ASSUME_NONNULL_END
