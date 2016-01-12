@@ -48,7 +48,7 @@
          
          // scroll to the last item
          if (self.model.selectedAssetCollectionModel.countOfAssetModels > 0) {
-             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
          }
      }];
     
