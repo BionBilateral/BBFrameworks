@@ -5,3 +5,4 @@ notifications:
     email:
         on_success: never
         on_failure: always
+    slack: bionbilateral:15qGYNyGWgv1ukfTDtOrVHxq
