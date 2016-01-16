@@ -9,7 +9,7 @@ Repository for common iOS/OSX categories, classes, and functions.
 
 ###Subspecs
 
-See the wiki for more detailed information on each subspec. This is an extra sentence.
+See the wiki for more detailed information on each subspec.
 
 - `BBFrameworks/BBCore`, subspec that everything else depends upon, including shared resource files
 - `BBFrameworks/BBFoundation`, contains functions, classes, and categories extending the `Foundation` framework
