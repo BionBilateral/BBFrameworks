@@ -467,6 +467,7 @@
     _typingTextColor = [self.class _defaultTypingTextColor];
     
     [self setContentInset:UIEdgeInsetsZero];
+    [self setTypingAttributes:@{NSFontAttributeName: _typingFont, NSForegroundColorAttributeName: _typingTextColor}];
     [self setTextContainerInset:UIEdgeInsetsZero];
     [self.textContainer setLineFragmentPadding:0];
     [self.textStorage setDelegate:self];
