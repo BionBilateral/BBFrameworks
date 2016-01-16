@@ -449,9 +449,13 @@
 
 - (void)setTypingFont:(UIFont *)typingFont {
     _typingFont = typingFont ?: [self.class _defaultTypingFont];
+    
+    [self setTypingAttributes:@{NSFontAttributeName: _typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
 }
 - (void)setTypingTextColor:(UIColor *)typingTextColor {
     _typingTextColor = typingTextColor ?: [self.class _defaultTypingTextColor];
+    
+    [self setTypingAttributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: _typingTextColor}];
 }
 #pragma mark *** Private Methods ***
 - (void)_BBTokenTextViewInit; {
