@@ -19,6 +19,7 @@
 #import "UIImage+BBKitExtensions.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
+#import "BBNetworkActivityIndicatorManager.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <TUSafariActivity/TUSafariActivity.h>
@@ -249,12 +250,22 @@
      subscribeNext:^(NSNumber *value) {
          @strongify(self);
          if (value.boolValue) {
-             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+             if ([BBNetworkActivityIndicatorManager sharedManager].isEnabled) {
+                 [[BBNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+             }
+             else {
+                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+             }
              
              [self setToolbarItems:stopItemArray animated:YES];
          }
          else {
-             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+             if ([BBNetworkActivityIndicatorManager sharedManager].isEnabled) {
+                 [[BBNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
+             }
+             else {
+                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+             }
              
              [self setToolbarItems:refreshItemArray animated:YES];
          }
