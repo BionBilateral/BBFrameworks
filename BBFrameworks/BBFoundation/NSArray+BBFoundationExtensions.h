@@ -50,6 +50,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableSet<ObjectType> *)BB_mutableSet;
 
 /**
+ Returns an NSOrderedSet with the receiver's objects.
+ 
+ @return The NSOrderedSet
+ */
+- (NSOrderedSet<ObjectType> *)BB_orderedSet;
+/**
+ Returns an NSMutableOrderedSet with the receiver's objects.
+ 
+ @return The NSMutableOrderedSet
+ */
+- (NSMutableOrderedSet<ObjectType> *)BB_mutableOrderedSet;
+
+/**
  Creates and returns a shuffled copy of the receiver.
  
  @return The shuffled NSArray

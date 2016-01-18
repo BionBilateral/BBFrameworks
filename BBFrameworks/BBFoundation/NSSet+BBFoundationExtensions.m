@@ -24,4 +24,11 @@
     return [self.allObjects mutableCopy];
 }
 
+- (NSOrderedSet *)BB_orderedSet {
+    return [NSOrderedSet orderedSetWithSet:self];
+}
+- (NSMutableOrderedSet *)BB_mutableOrderedSet {
+    return [NSMutableOrderedSet orderedSetWithSet:self];
+}
+
 @end

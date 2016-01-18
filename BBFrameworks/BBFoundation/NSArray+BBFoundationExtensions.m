@@ -33,6 +33,13 @@
     return [NSMutableSet setWithArray:self];
 }
 
+- (NSOrderedSet *)BB_orderedSet {
+    return [NSOrderedSet orderedSetWithArray:self];
+}
+- (NSMutableOrderedSet *)BB_mutableOrderedSet {
+    return [NSMutableOrderedSet orderedSetWithArray:self];
+}
+
 - (NSArray *)BB_shuffledArray; {
     NSMutableArray *retval = [self mutableCopy];
     

@@ -35,6 +35,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSMutableArray<ObjectType> *)BB_mutableArray;
 
+/**
+ Returns an NSOrderedSet with the receiver's objects.
+ 
+ @return The NSOrderedSet
+ */
+- (NSOrderedSet<ObjectType> *)BB_orderedSet;
+/**
+ Returns an NSMutableOrderedSet with the receiver's objects.
+ 
+ @return The NSMutableOrderedSet
+ */
+- (NSMutableOrderedSet<ObjectType> *)BB_mutableOrderedSet;
+
 @end
 
 NS_ASSUME_NONNULL_END
