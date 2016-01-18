@@ -315,7 +315,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 #pragma mark *** Private Methods ***
 - (void)_createAddressBookIfNecessary; {
-    if (!self.addressBook) {
+    if (self.addressBook == NULL) {
         [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
         
         if (self.addressBook) {
@@ -327,6 +327,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     NSParameterAssert(completion);
     
     if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
+        [self _createAddressBookIfNecessary];
         completion(YES,nil);
         return;
     }
