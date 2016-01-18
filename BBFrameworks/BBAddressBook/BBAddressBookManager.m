@@ -248,11 +248,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                     peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(self.addressBook);
                 }
                 else {
-                    ABRecordRef sourceRef = ABAddressBookCopyDefaultSource(self.addressBook);
-                    
-                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(self.addressBook, sourceRef, ABPersonGetSortOrdering());
-                    
-                    CFRelease(sourceRef);
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(self.addressBook, NULL, ABPersonGetSortOrdering());
                 }
                 
                 NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
