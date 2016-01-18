@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, BBAddressBookManagerAuthorizationStatus) {
 @class BBAddressBookPerson,BBAddressBookGroup;
 
 /**
- Notification is posted when the contents of the address book change. Discard all model objects and reques them again.
+ Notification is posted when the contents of the address book change. Clients should discard all model objects and request them again. The notification is always posted on the main thread.
  */
 extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 

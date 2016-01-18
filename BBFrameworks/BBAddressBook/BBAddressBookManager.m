@@ -21,12 +21,14 @@
 #import "BBAddressBookGroup.h"
 #import "BBFoundationDebugging.h"
 
+#import <UIKit/UIKit.h>
 #import <AddressBook/AddressBook.h>
 
 NSString *const BBAddressBookManagerNotificationNameExternalChange = @"BBAddressBookManagerNotificationNameExternalChange";
 
 @interface BBAddressBookManager ()
 @property (assign,nonatomic) ABAddressBookRef addressBook;
+@property (assign,nonatomic) ABPersonSortOrdering currentPersonSortOrdering;
 @property (strong,nonatomic) dispatch_queue_t addressBookQueue;
 
 - (void)_createAddressBookIfNecessary;
@@ -41,6 +43,8 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 @implementation BBAddressBookManager
 #pragma mark *** Subclass Overrides ***
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     if (_addressBook) {
         ABAddressBookUnregisterExternalChangeCallback(_addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
         
@@ -52,6 +56,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     if (!(self = [super init]))
         return nil;
     
+    [self setCurrentPersonSortOrdering:ABPersonGetSortOrdering()];
     [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
     
     return self;
@@ -348,7 +353,39 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     });
 }
 - (void)_addressBookChanged; {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
+    BBDispatchMainSyncSafe(^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
+    });
+}
+#pragma mark Properties
+- (void)setAddressBook:(ABAddressBookRef)addressBook {
+    if (_addressBook) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    
+    _addressBook = addressBook;
+    
+    if (_addressBook) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    }
+}
+- (void)setCurrentPersonSortOrdering:(ABPersonSortOrdering)currentPersonSortOrdering {
+    ABPersonSortOrdering oldSort = _currentPersonSortOrdering;
+    
+    _currentPersonSortOrdering = currentPersonSortOrdering;
+    
+    if (oldSort != _currentPersonSortOrdering) {
+        [self _addressBookChanged];
+    }
+}
+#pragma mark Notifications
+- (void)_applicationWillResignActive:(NSNotification *)note {
+    [self setCurrentPersonSortOrdering:ABPersonGetSortOrdering()];
+}
+- (void)_applicationDidBecomeActive:(NSNotification *)note {
+    [self setCurrentPersonSortOrdering:ABPersonGetSortOrdering()];
+    
 }
 
 @end
