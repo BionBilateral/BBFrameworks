@@ -83,7 +83,7 @@
     [highlighted ? self.tokenHighlightedBackgroundColor : self.tokenBackgroundColor setFill];
     [[UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, 2.0, 1.0) cornerRadius:self.tokenCornerRadius] fill];
     
-    UIFont *drawFont = [UIFont fontWithName:self.tokenFont.fontName size:self.tokenFont.pointSize - 1.0];
+    UIFont *drawFont = [UIFont fontWithName:self.tokenFont.fontName size:self.tokenFont.pointSize - 2.0];
     CGSize drawSize = [self.text sizeWithAttributes:@{NSFontAttributeName: drawFont}];
     
     if (drawSize.width > CGRectGetWidth(rect)) {
