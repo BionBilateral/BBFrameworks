@@ -701,12 +701,18 @@
     _completions = completions;
     
     if (_completions.count == 0 &&
-        _tableView.window != nil) {
+        self.tableView.window != nil) {
         
-        [self _hideCompletionsTableViewAndSelectCompletion:nil];
+        [self.tableView setHidden:YES];
     }
     
     [self.tableView reloadData];
+    
+    if (_completions.count > 0 &&
+        self.tableView.window != nil) {
+        
+        [self.tableView setHidden:NO];
+    }
 }
 - (void)setTapGestureRecognizer:(UITapGestureRecognizer *)tapGestureRecognizer {
     if (_tapGestureRecognizer) {
