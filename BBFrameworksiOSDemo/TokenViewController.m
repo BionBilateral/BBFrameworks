@@ -156,7 +156,7 @@
     [self setTableView:nil];
 }
 - (void)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index completion:(BBTokenTextViewCompletionBlock)completion {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSArray *retval = [[self.people BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
             return [obj.fullName.lowercaseString rangeOfString:substring.lowercaseString options:NSCaseInsensitiveSearch].length > 0;
         }] BB_map:^id(BBAddressBookPerson *obj, NSInteger idx) {

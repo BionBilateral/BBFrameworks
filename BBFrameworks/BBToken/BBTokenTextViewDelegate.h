@@ -148,7 +148,7 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray<id<BBTokenCompletion> > *_
  @param completion The completion that was selected
  @return The represented object for the selected completion
  */
-- (id)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectForCompletion:(id<BBTokenCompletion>)completion;
+- (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView representedObjectsForCompletion:(id<BBTokenCompletion>)completion;
 @end
 
 NS_ASSUME_NONNULL_END

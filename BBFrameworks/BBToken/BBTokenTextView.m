@@ -527,16 +527,15 @@
     if ([self.delegate respondsToSelector:@selector(tokenTextView:hideCompletionsTableView:)]) {
         // if we were given a completion to insert, do it
         if (completion) {
-            id representedObject;
+            NSArray *representedObjects;
             
-            if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectForCompletion:)]) {
-                representedObject = [self.delegate tokenTextView:self representedObjectForCompletion:completion];
+            if ([self.delegate respondsToSelector:@selector(tokenTextView:representedObjectsForCompletion:)]) {
+                representedObjects = [self.delegate tokenTextView:self representedObjectsForCompletion:completion];
             }
             else {
-                representedObject = [self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]];
+                representedObjects = @[[self.delegate tokenTextView:self representedObjectForEditingText:[completion tokenCompletionTitle]]];
             }
             
-            NSArray *representedObjects = @[representedObject];
             NSInteger index = [self _indexOfTokenTextAttachmentInRange:self.selectedRange textAttachment:NULL];
             
             // if the delegate responds to tokenTextView:shouldAddRepresentedObjects:atIndex use its return value for the represented objects to insert
@@ -545,10 +544,19 @@
             }
             
             if (representedObjects.count > 0) {
-                NSString *text = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
-                NSTextAttachment *attachment = [[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:representedObject text:text tokenTextView:self];
+                NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: self.typingFont, NSForegroundColorAttributeName: self.typingTextColor}];
                 
-                [self.textStorage replaceCharactersInRange:[self _completionRangeForRange:self.selectedRange] withAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+                for (id representedObject in representedObjects) {
+                    NSString *displayText = [representedObject description];
+                    
+                    if ([self.delegate respondsToSelector:@selector(tokenTextView:displayTextForRepresentedObject:)]) {
+                        displayText = [self.delegate tokenTextView:self displayTextForRepresentedObject:representedObject];
+                    }
+                    
+                    [temp appendAttributedString:[NSAttributedString attributedStringWithAttachment:[[NSClassFromString(self.tokenTextAttachmentClassName) alloc] initWithRepresentedObject:representedObject text:displayText tokenTextView:self]]];
+                }
+                
+                [self.textStorage replaceCharactersInRange:[self _completionRangeForRange:self.selectedRange] withAttributedString:temp];
                 
                 if ([self.delegate respondsToSelector:@selector(tokenTextView:didAddRepresentedObjects:atIndex:)]) {
                     [self.delegate tokenTextView:self didAddRepresentedObjects:representedObjects atIndex:index];
