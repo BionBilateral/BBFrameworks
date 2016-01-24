@@ -340,7 +340,8 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
-    if ([_selectedAssetCollectionModel.identifier isEqualToString:selectedAssetCollectionModel.identifier]) {
+    if ([_selectedAssetCollectionModel.identifier isEqualToString:selectedAssetCollectionModel.identifier] &&
+        _selectedAssetCollectionModel.countOfAssetModels == selectedAssetCollectionModel.countOfAssetModels) {
         return;
     }
     
