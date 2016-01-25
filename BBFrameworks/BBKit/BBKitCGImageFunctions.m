@@ -57,7 +57,7 @@ CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size)
 CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio) {
     return BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(imageRef, size, CGAffineTransformIdentity, maintainAspectRatio);
 }
-extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio) {
+CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio) {
     NSCParameterAssert(imageRef);
     NSCParameterAssert(!CGSizeEqualToSize(size, CGSizeZero));
     
@@ -268,7 +268,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGI
     CGColorSpaceRelease(colorSpace);
     
     if (!context) {
-        return nil;
+        return NULL;
     }
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
@@ -278,7 +278,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGI
     
     if (!data) {
         CGContextRelease(context);
-        return nil;
+        return NULL;
     }
     
     // convert the raw data to float, since we are using the accelerate flt functions
@@ -365,7 +365,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(C
     if (error != kvImageNoError) {
         BBLogObject(@(error));
         CFRelease(sourceDataRef);
-        return nil;
+        return NULL;
     }
     
     // perform the matrix multiply adjusting the saturation
@@ -374,7 +374,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(C
     if (error != kvImageNoError) {
         BBLogObject(@(error));
         CFRelease(sourceDataRef);
-        return nil;
+        return NULL;
     }
     
     CFRelease(sourceDataRef);
@@ -396,7 +396,7 @@ CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(C
     if (error != kvImageNoError) {
         BBLogObject(@(error));
         CGImageRelease(destImageRef);
-        return nil;
+        return NULL;
     }
     
     if (!CGAffineTransformIsIdentity(transform)) {

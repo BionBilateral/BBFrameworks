@@ -16,8 +16,11 @@
 #ifndef __BB_FRAMEWORKS_KIT_CGIMAGE_FUNCTIONS__
 #define __BB_FRAMEWORKS_KIT_CGIMAGE_FUNCTIONS__
 
+#import <Foundation/NSObjCRuntime.h>
 #import <CoreGraphics/CGImage.h>
 #import <CoreGraphics/CGAffineTransform.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Returns whether _imageRef_ has an alpha component.
@@ -45,7 +48,7 @@ extern CGSize BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(CGImage
  @return The thumbnail image
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
-extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size);
+extern _Nullable CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSize size);
 /**
  Calls `BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio()`, passing _imageRef_, _size_, _maintainAspectRatio_, and CGAffineTransformIdentity respectively.
  
@@ -55,7 +58,7 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSize(CGImageRef imageRef, CGSiz
  @return The CGImage thumbnail
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
-extern CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio);
+extern _Nullable CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGImageRef imageRef, CGSize size, bool maintainAspectRatio);
 /**
  Creates a new CGImage by resizing _imageRef_ to _size_ and optionally maintaining the aspect ratio of imageRef. The caller is responsible for releasing the returned CGImage.
  
@@ -66,7 +69,7 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSizeMaintainingAspectRatio(CGIm
  @return The CGImage thumbnail
  @exception NSException Thrown if _imageRef_ is NULL or _size_ is equal to CGSizeZero
  */
-extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio);
+extern _Nullable CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(CGImageRef imageRef, CGSize size, CGAffineTransform transform, bool maintainAspectRatio);
 
 /**
  Creates a new CGImage by blurring the provided imageRef using a box filter with radius. The caller is responsible for releasing the returned CGImage.
@@ -76,7 +79,7 @@ extern CGImageRef BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectR
  @return The blurred CGImage
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef, CGFloat radius);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef imageRef, CGFloat radius);
 /**
  Creates a new CGImage by blurring the provided imageRef using a box filter with radius, optionally applying the provided transform to the resulting image. The caller is responsible for releasing the returned CGImage.
  
@@ -86,7 +89,7 @@ extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadius(CGImageRef im
  @return The blurred CGImage
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGImageRef imageRef, CGFloat radius, CGAffineTransform transform);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGImageRef imageRef, CGFloat radius, CGAffineTransform transform);
 /**
  Creates a new CGImage by adjusting the brightness of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
  
@@ -95,7 +98,7 @@ extern CGImageRef BBKitCGImageCreateImageByBlurringImageWithRadiusTransform(CGIm
  @return The image with its brightness adjusted
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGImageRef imageRef, CGFloat delta);
 /**
  Creates a new CGImage by adjusting the brightness of the provided imageRef by delta, optionally applying transform to the resulting image. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
  
@@ -105,7 +108,7 @@ extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDelta(CGI
  @return The image with its brightness adjusted
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
 /**
  Creates a new CGImage by adjusting the contrast of the provided imageRef by delta. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
  
@@ -114,7 +117,7 @@ extern CGImageRef BBKitCGImageCreateImageByAdjustingBrightnessOfImageByDeltaTran
  @return The image with its contrast adjusted
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGImageRef imageRef, CGFloat delta);
 /**
  Creates a new CGImage by adjusting the contrast of the provided imageRef by delta, optionally applying transform to the resulting image. The delta parameter should be between -1.0 and 1.0. Larger values are clamped. The caller is responsible for releasing the returned CGImage.
  
@@ -124,7 +127,7 @@ extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDelta(CGIma
  @return The image with its contrast adjusted
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
 /**
  Creates a new CGImage by adjusting the saturation of the provided imageRef by delta. The delta parameter should be greater than or less than 1.0. The caller is responsible for releasing the returned CGImage.
  
@@ -133,7 +136,18 @@ extern CGImageRef BBKitCGImageCreateImageByAdjustingContrastOfImageByDeltaTransf
  @return The image with its saturation adjusted
  @exception NSException Thrown if _imageRef_ is NULL
  */
-extern CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta);
-extern CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
+extern _Nullable CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDelta(CGImageRef imageRef, CGFloat delta);
+/**
+ Creates a new CGImage by adjusting the saturation of the provided imageRef by delta. The delta parameter should be greater than or less than 1.0. The caller is responsible for releasing the returned CGImage.
+ 
+ @param imageRef The CGImage whose saturation to adjust
+ @param delta The amount to adjust saturation by
+ @param transform The affine transform to apply to the final image
+ @return The image with its saturation adjusted
+ @exception NSException Thrown if _imageRef_ is NULL
+ */
+extern _Nullable CGImageRef BBKitCGImageCreateImageByAdjustingSaturationOfImageByDeltaTransform(CGImageRef imageRef, CGFloat delta, CGAffineTransform transform);
+
+NS_ASSUME_NONNULL_END
 
 #endif
