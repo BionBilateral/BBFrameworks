@@ -18,6 +18,7 @@
 #import "BBMediaPickerAssetModel.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaPickerTheme.h"
+#import "BBKitFunctions.h"
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
@@ -144,7 +145,7 @@
     [options setNetworkAccessAllowed:YES];
     
     PHAsset *asset = [self.fetchResult objectAtIndex:thumbnailIndex];
-    PHImageRequestID imageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    PHImageRequestID imageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:BBCGSizeAdjustedForMainScreenScale(size) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         completion(result);
     }];
     
