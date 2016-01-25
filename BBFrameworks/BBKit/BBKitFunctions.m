@@ -11,6 +11,7 @@
 CGSize BBCGSizeAdjustedForMainScreenScale(CGSize size) {
     return BBCGSizeAdjustedForScreenScale(size, nil);
 }
+#if (TARGET_OS_IPHONE)
 CGSize BBCGSizeAdjustedForScreenScale(CGSize size, UIScreen * _Nullable screen) {
     if (screen == nil) {
         screen = [UIScreen mainScreen];
@@ -18,3 +19,12 @@ CGSize BBCGSizeAdjustedForScreenScale(CGSize size, UIScreen * _Nullable screen) 
     
     return CGSizeMake(size.width * screen.scale, size.height * screen.scale);
 }
+#else
+CGSize BBCGSizeAdjustedForScreenScale(CGSize size, NSScreen * _Nullable screen) {
+    if (screen == nil) {
+        screen = [NSScreen mainScreen];
+    }
+    
+    return CGSizeMake(size.width * screen.backingScaleFactor, size.height * screen.backingScaleFactor);
+}
+#endif
