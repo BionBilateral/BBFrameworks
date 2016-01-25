@@ -20,6 +20,9 @@
 
 #import "BBKitColorMacros.h"
 
+#import "BBKitFunctions.h"
+#import "BBKitCGImageFunctions.h"
+
 #import "NSURL+BBKitExtensions.h"
 #import "CIImage+BBKitExtensions.h"
 #import "NSString+BBKitExtensions.h"
