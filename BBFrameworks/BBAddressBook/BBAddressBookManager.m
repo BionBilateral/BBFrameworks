@@ -57,7 +57,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         return nil;
     
     [self setCurrentPersonSortOrdering:ABPersonGetSortOrdering()];
-    [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL)];
+    [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_CONCURRENT)];
     
     return self;
 }
