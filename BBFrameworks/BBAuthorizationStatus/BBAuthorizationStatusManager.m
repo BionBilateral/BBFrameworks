@@ -34,7 +34,6 @@
 @implementation BBAuthorizationStatusManager
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    BBLogObject(@(status));
     if ((BBLocationAuthorizationStatus)status == BBLocationAuthorizationStatusNotDetermined) {
 #if (TARGET_OS_IPHONE)
         if (self.requestedLocationAuthorizationStatus == BBLocationAuthorizationStatusAuthorizedWhenInUse) {
