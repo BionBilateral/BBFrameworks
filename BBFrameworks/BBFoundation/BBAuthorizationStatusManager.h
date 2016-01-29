@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CLLocationManager.h>
+#import <EventKit/EKTypes.h>
 #if (TARGET_OS_IPHONE)
 #import <Photos/PHPhotoLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
@@ -29,6 +30,20 @@ typedef NS_ENUM(int, BBLocationAuthorizationStatus) {
 #else
     BBLocationAuthorizationStatusAuthorized = kCLAuthorizationStatusAuthorized
 #endif
+};
+
+typedef NS_ENUM(NSInteger, BBCalendarAuthorizationStatus) {
+    BBCalendarAuthorizationStatusNotDetermined = EKAuthorizationStatusNotDetermined,
+    BBCalendarAuthorizationStatusRestricted = EKAuthorizationStatusRestricted,
+    BBCalendarAuthorizationStatusDenied = EKAuthorizationStatusDenied,
+    BBCalendarAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
+};
+
+typedef NS_ENUM(NSInteger, BBReminderAuthorizationStatus) {
+    BBReminderAuthorizationStatusNotDetermined = EKAuthorizationStatusNotDetermined,
+    BBReminderAuthorizationStatusRestricted = EKAuthorizationStatusRestricted,
+    BBReminderAuthorizationStatusDenied = EKAuthorizationStatusDenied,
+    BBReminderAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
 };
 
 #if (TARGET_OS_IPHONE)
@@ -70,6 +85,12 @@ typedef NS_OPTIONS(NSUInteger, BBMicrophoneAuthorizationStatus) {
 #endif
 @property (readonly,nonatomic) BBLocationAuthorizationStatus locationAuthorizationStatus;
 
+@property (readonly,nonatomic) BOOL hasCalendarAuthorization;
+@property (readonly,nonatomic) BBCalendarAuthorizationStatus calendarAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasReminderAuthorization;
+@property (readonly,nonatomic) BBReminderAuthorizationStatus reminderAuthorizationStatus;
+
 #if (TARGET_OS_IPHONE)
 @property (readonly,nonatomic) BOOL hasPhotoLibraryAuthorization;
 @property (readonly,nonatomic) BBPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
@@ -87,6 +108,8 @@ typedef NS_OPTIONS(NSUInteger, BBMicrophoneAuthorizationStatus) {
 + (instancetype)sharedManager;
 
 - (void)requestLocationAuthorization:(BBLocationAuthorizationStatus)authorization completion:(void(^)(BBLocationAuthorizationStatus status, NSError * _Nullable error))completion;
+- (void)requestCalendarAuthorizationWithCompletion:(void(^)(BBCalendarAuthorizationStatus status, NSError * _Nullable error))completion;
+- (void)requestReminderAuthorizationWithCompletion:(void(^)(BBReminderAuthorizationStatus status, NSError * _Nullable error))completion;
 #if (TARGET_OS_IPHONE)
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(BBPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion;
 - (void)requestCameraAuthorizationWithCompletion:(void(^)(BBCameraAuthorizationStatus status, NSError * _Nullable error))completion;

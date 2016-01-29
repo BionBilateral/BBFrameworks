@@ -11,6 +11,7 @@
 #import "BBFoundationDebugging.h"
 
 #import <CoreLocation/CoreLocation.h>
+#import <EventKit/EventKit.h>
 #if (TARGET_OS_IPHONE)
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
@@ -90,6 +91,38 @@
     
     [self setLocationManager:[[CLLocationManager alloc] init]];
     [self.locationManager setDelegate:self];
+}
+- (void)requestCalendarAuthorizationWithCompletion:(void(^)(BBCalendarAuthorizationStatus status, NSError * _Nullable error))completion; {
+    if (self.calendarAuthorizationStatus == BBCalendarAuthorizationStatusAuthorized) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.calendarAuthorizationStatus,nil);
+        });
+        return;
+    }
+    
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.calendarAuthorizationStatus,error);
+        });
+    }];
+}
+- (void)requestReminderAuthorizationWithCompletion:(void(^)(BBReminderAuthorizationStatus status, NSError * _Nullable error))completion; {
+    if (self.reminderAuthorizationStatus == BBReminderAuthorizationStatusAuthorized) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.reminderAuthorizationStatus,nil);
+        });
+        return;
+    }
+    
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.reminderAuthorizationStatus,error);
+        });
+    }];
 }
 #if (TARGET_OS_IPHONE)
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(BBPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion; {
@@ -212,6 +245,20 @@
 #endif
 - (BBLocationAuthorizationStatus)locationAuthorizationStatus {
     return (BBLocationAuthorizationStatus)[CLLocationManager authorizationStatus];
+}
+
+- (BOOL)hasCalendarAuthorization {
+    return self.calendarAuthorizationStatus == BBCalendarAuthorizationStatusAuthorized;
+}
+- (BBCalendarAuthorizationStatus)calendarAuthorizationStatus {
+    return (BBCalendarAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+}
+
+- (BOOL)hasReminderAuthorization {
+    return self.reminderAuthorizationStatus == BBReminderAuthorizationStatusAuthorized;
+}
+- (BBReminderAuthorizationStatus)reminderAuthorizationStatus {
+    return (BBReminderAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
 }
 
 @end
