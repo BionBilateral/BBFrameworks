@@ -17,7 +17,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#if (TARGET_OS_IPHONE)
 /**
  Enum describing kechain security classes.
  */
@@ -43,7 +42,6 @@ typedef NS_ENUM(NSInteger, BBKeychainSecurityClass) {
      */
     BBKeychainSecurityClassIdentity
 };
-#endif
 
 /**
  Error domain for errors returned by BBKeychain methods.
@@ -157,6 +155,8 @@ extern NSString *const BBKeychainAccountKeyWhere;
  */
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account error:(NSError **)error;
 
++ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
+
 /**
  Calls `[self setPassword:forService:account:error]`, passing password, service, account, and NULL respectively.
  
@@ -176,6 +176,8 @@ extern NSString *const BBKeychainAccountKeyWhere;
  @return YES if the password was set, otherwise NO
  */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error;
+
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
 /**
  Calls `[self deletePasswordForService:account:error:]`, passing service, account, and NULL respectively.

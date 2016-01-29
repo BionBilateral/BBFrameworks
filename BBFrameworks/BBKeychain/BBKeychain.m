@@ -27,7 +27,6 @@ NSString *const BBKeychainAccountKeyDescription = @"desc";
 NSString *const BBKeychainAccountKeyLastModified = @"mdat";
 NSString *const BBKeychainAccountKeyWhere = @"svce";
 
-#if (TARGET_OS_IPHONE)
 static NSString *BBKeychainSecClassForKeychainSecurityClass(BBKeychainSecurityClass keychainSecurityClass) {
     switch (keychainSecurityClass) {
         case BBKeychainSecurityClassCertificate:
@@ -44,12 +43,11 @@ static NSString *BBKeychainSecClassForKeychainSecurityClass(BBKeychainSecurityCl
             return nil;
     }
 }
-#endif
 
-static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *service, NSString *account) {
+static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *service, NSString *account, BBKeychainSecurityClass securityClass) {
     NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
     
-    [query setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
+    [query setObject:BBKeychainSecClassForKeychainSecurityClass(securityClass) forKey:(__bridge id)kSecClass];
     
     if (service) {
         [query setObject:service forKey:(__bridge id)kSecAttrService];
@@ -118,7 +116,7 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return [self accountsForService:service error:NULL];
 }
 + (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service error:(NSError **)error; {
-    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, nil) mutableCopy];
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, nil, BBKeychainSecurityClassGenericPassword) mutableCopy];
     
     [query setObject:@YES forKey:(__bridge id)kSecReturnAttributes];
     [query setObject:(__bridge id)kSecMatchLimitAll forKey:(__bridge id)kSecMatchLimit];
@@ -154,9 +152,12 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return [self passwordForService:service account:account error:NULL];
 }
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account error:(NSError **)error; {
+    return [self passwordForService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
+}
++ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(service || account);
     
-    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account) mutableCopy];
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, keychainSecurityClass) mutableCopy];
     
     [query setObject:@YES forKey:(__bridge id)kSecReturnData];
     [query setObject:(__bridge id)kSecMatchLimitOne forKey:(__bridge id)kSecMatchLimit];
@@ -181,11 +182,14 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return [self setPassword:password forService:service account:account error:NULL];
 }
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error; {
+    return [self setPassword:password forService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
+}
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(password);
     NSParameterAssert(service);
     NSParameterAssert(account);
     
-    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account) mutableCopy];
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, keychainSecurityClass) mutableCopy];
     
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
     
@@ -214,7 +218,7 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     NSParameterAssert(service);
     NSParameterAssert(account);
     
-    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account) mutableCopy];
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, BBKeychainSecurityClassGenericPassword) mutableCopy];
     OSStatus status;
     
 #if (TARGET_OS_IPHONE)
