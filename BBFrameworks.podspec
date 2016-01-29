@@ -227,4 +227,13 @@ Pod::Spec.new do |spec|
     
     subspec.frameworks = "SystemConfiguration"
   end
+  
+  spec.subspec "BBAuthorizationStatus" do |subspec|
+    subspec.dependency "BBFrameworks/BBFoundation"
+    
+    subspec.source_files = "BBFrameworks/BBAuthorizationStatus"
+    
+    subspec.frameworks = "CoreLocation", "EventKit"
+    subspec.ios.frameworks = "Photos", "AVFoundation", "AddressBook"
+  end
 end
