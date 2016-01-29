@@ -79,6 +79,8 @@
 }
 
 - (void)requestLocationAuthorization:(BBLocationAuthorizationStatus)authorization completion:(void(^)(BBLocationAuthorizationStatus status, NSError * _Nullable error))completion; {
+    NSParameterAssert(completion);
+    
     if (self.locationAuthorizationStatus == authorization) {
         BBDispatchMainSyncSafe(^{
             completion(self.locationAuthorizationStatus,nil);
