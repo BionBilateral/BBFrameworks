@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CLLocationManager.h>
+#if (TARGET_OS_IPHONE)
+#import <Photos/PHPhotoLibrary.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +26,15 @@ typedef NS_ENUM(int, BBLocationAuthorizationStatus) {
 #endif
 };
 
+#if (TARGET_OS_IPHONE)
+typedef NS_ENUM(NSInteger, BBPhotoLibraryAuthorizationStatus) {
+    BBPhotoLibraryAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
+    BBPhotoLibraryAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
+    BBPhotoLibraryAuthorizationStatusDenied = PHAuthorizationStatusDenied,
+    BBPhotoLibraryAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
+};
+#endif
+
 @interface BBAuthorizationStatusManager : NSObject
 
 #if (TARGET_OS_IPHONE)
@@ -33,9 +45,17 @@ typedef NS_ENUM(int, BBLocationAuthorizationStatus) {
 #endif
 @property (readonly,nonatomic) BBLocationAuthorizationStatus locationAuthorizationStatus;
 
+#if (TARGET_OS_IPHONE)
+@property (readonly,nonatomic) BOOL hasPhotoLibraryAuthorization;
+@property (readonly,nonatomic) BBPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
+#endif
+
 + (instancetype)sharedManager;
 
 - (void)requestLocationAuthorization:(BBLocationAuthorizationStatus)authorization completion:(void(^)(BBLocationAuthorizationStatus status, NSError * _Nullable error))completion;
+#if (TARGET_OS_IPHONE)
+- (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(BBPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion;
+#endif
 
 @end
 

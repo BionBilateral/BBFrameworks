@@ -11,6 +11,9 @@
 #import "BBFoundationDebugging.h"
 
 #import <CoreLocation/CoreLocation.h>
+#if (TARGET_OS_IPHONE)
+#import <Photos/Photos.h>
+#endif
 
 @interface BBAuthorizationStatusManager () <CLLocationManagerDelegate>
 @property (strong,nonatomic) CLLocationManager *locationManager;
@@ -86,6 +89,22 @@
     [self setLocationManager:[[CLLocationManager alloc] init]];
     [self.locationManager setDelegate:self];
 }
+#if (TARGET_OS_IPHONE)
+- (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(BBPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion; {
+    if (self.photoLibraryAuthorizationStatus == BBPhotoLibraryAuthorizationStatusAuthorized) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.photoLibraryAuthorizationStatus,nil);
+        });
+        return;
+    }
+    
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        BBDispatchMainSyncSafe(^{
+            completion((BBPhotoLibraryAuthorizationStatus)status,nil);
+        });
+    }];
+}
+#endif
 
 #if (TARGET_OS_IPHONE)
 - (BOOL)hasLocationAuthorizationAlways {
