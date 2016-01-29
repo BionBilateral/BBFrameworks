@@ -111,15 +111,6 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
 
 @implementation BBKeychain
 
-+ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts; {
-    return [self accountsForService:nil error:NULL];
-}
-+ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts:(NSError **)error; {
-    return [self accountsForService:nil error:error];
-}
-+ (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service; {
-    return [self accountsForService:service error:NULL];
-}
 + (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service error:(NSError **)error; {
     NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, nil, BBKeychainSecurityClassGenericPassword) mutableCopy];
     
@@ -141,26 +132,8 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return retval;
 }
 
-+ (nullable NSString *)passwordForService:(NSString *)service; {
-    return [self passwordForService:service account:nil error:NULL];
-}
-+ (nullable NSString *)passwordForAccount:(NSString *)account; {
-    return [self passwordForService:nil account:account error:NULL];
-}
-+ (nullable NSString *)passwordForService:(NSString *)service error:(NSError **)error; {
-    return [self passwordForService:service account:nil error:error];
-}
-+ (nullable NSString *)passwordForAccount:(NSString *)account error:(NSError **)error; {
-    return [self passwordForService:nil account:account error:error];
-}
-+ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account; {
-    return [self passwordForService:service account:account error:NULL];
-}
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account error:(NSError **)error; {
     return [self passwordForService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
-}
-+ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
-    return [self passwordForService:service account:account keychainSecurityClass:keychainSecurityClass error:NULL];
 }
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(service || account);
@@ -186,14 +159,8 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return retval;
 }
 
-+ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account; {
-    return [self setPassword:password forService:service account:account error:NULL];
-}
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error; {
     return [self setPassword:password forService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
-}
-+ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
-    return [self setPassword:password forService:service account:account keychainSecurityClass:keychainSecurityClass error:NULL];
 }
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(password);
@@ -222,14 +189,14 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return retval;
 }
 
-+ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account; {
-    return [self deletePasswordForService:service account:account error:NULL];
-}
 + (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account error:(NSError **)error; {
+    return [self deletePasswordForService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
+}
++ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(service);
     NSParameterAssert(account);
     
-    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, BBKeychainSecurityClassGenericPassword) mutableCopy];
+    NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, keychainSecurityClass) mutableCopy];
     OSStatus status;
     
 #if (TARGET_OS_IPHONE)
@@ -258,9 +225,6 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
 }
 
 #if (TARGET_OS_IPHONE)
-+ (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
-    return [self deleteAllItemsForKeychainSecurityClass:keychainSecurityClass error:NULL];
-}
 + (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSDictionary *query = @{(__bridge id)kSecClass: BBKeychainSecClassForKeychainSecurityClass(keychainSecurityClass)};
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
@@ -275,9 +239,6 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return YES;
 }
 
-+ (BOOL)deleteAllItems; {
-    return [self deleteAllItemsAndReturnError:NULL];
-}
 + (BOOL)deleteAllItemsAndReturnError:(NSError * _Nullable __autoreleasing *)error {
     NSArray<NSNumber *> *keychainSecurityClasses = @[@(BBKeychainSecurityClassKey),
                                                      @(BBKeychainSecurityClassInternetPassword),

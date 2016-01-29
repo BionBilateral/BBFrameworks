@@ -79,26 +79,6 @@ extern NSString *const BBKeychainAccountKeyWhere;
 @interface BBKeychain : NSObject
 
 /**
- Calls `[self accountsForService:error:]`, passing nil and NULL respectively.
- 
- @return An array of account dictionaries
- */
-+ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts;
-/**
- Calls `[self accountsForService:error:]`, passing nil and error respectively.
- 
- @param error If the call fails, an error providing information about the reason for failure
- @return An array of account dictionaries
- */
-+ (nullable NSArray<NSDictionary<NSString*, id> *> *)accounts:(NSError **)error;
-/**
- Calls `[self accountsForService:error:]`, passing service and NULL respectively.
- 
- @param service The service for which to return accounts
- @return An array of account dictionaries
- */
-+ (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service;
-/**
  Queries the keychain for a list of accounts matching the provided service, or all accounts if service is nil. The returned array contains NSDictionary objects keyed using the string constants starting with `BBKeychainAccountKey`.
  
  @param service The service for which to return accounts
@@ -108,45 +88,7 @@ extern NSString *const BBKeychainAccountKeyWhere;
 + (nullable NSArray<NSDictionary<NSString*, id> *> *)accountsForService:(nullable NSString *)service error:(NSError **)error;
 
 /**
- Calls `[self passwordForService:account:error:]`, passing service, nil, and NULL respectively.
- 
- @param service The service for which to return a password
- @return The password or nil
- */
-+ (nullable NSString *)passwordForService:(NSString *)service;
-/**
- Calls `[self passwordForService:account:error:]`, passing nil, account, and NULL respectively.
- 
- @param account The account for which to return a password
- @return The password or nil
- */
-+ (nullable NSString *)passwordForAccount:(NSString *)account;
-/**
- Calls `[self passwordForService:account:error:]`, passing service, nil, and error respectively.
- 
- @param service The service for which to return a password
- @param error If the call fails, an error providing information about the reason for failure
- @return The password or nil
- */
-+ (nullable NSString *)passwordForService:(NSString *)service error:(NSError **)error;
-/**
- Calls `[self passwordForService:account:error:]`, passing nil, account, and error respectively.
- 
- @param account The account for which to return a password
- @param error If the call fails, an error containing information about the reason for failure
- @return The password or nil
- */
-+ (nullable NSString *)passwordForAccount:(NSString *)account error:(NSError **)error;
-/**
- Calls `[self passwordForService:account:error:]`, passing service, account, and NULL respectively.
- 
- @param service The service for which to return a password
- @param account The account for which to return a password
- @return The password or nil
- */
-+ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account;
-/**
- Queries the keychain for a password matching the provided service and/or account.
+ Calls [self passwordForService:account:keychainSecurityClass:error:] passing service, account, BBKeychainSecurityClassGenericPassword, and error respectively.
  
  @param service The service for which to return a password
  @param account The account for which to return a password
@@ -154,21 +96,19 @@ extern NSString *const BBKeychainAccountKeyWhere;
  @return The password or nil
  */
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account error:(NSError **)error;
-
-+ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass;
+/**
+ Queries the keychain for a password matching the provided service and/or account.
+ 
+ @param service The service for which to return a password
+ @param account The account for which to return a password
+ @param keychainSecurityClass The security class to query for
+ @param error If the call fails, an error providing information about the reason for failure
+ @return The password or nil
+ */
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
 /**
- Calls `[self setPassword:forService:account:error]`, passing password, service, account, and NULL respectively.
- 
- @param password The password to set
- @param service The service for which to set password
- @param account The account for which to set password
- @return YES if the password was set, otherwise NO
- */
-+ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account;
-/**
- Attempts to set the provided password for the provided service and account, returning a boolean to indicate success or failure.
+ Calls [self setPassword:forService:account:keychainSecurityClass:error:] passing password, service, account, BBKeychainSecurityClassGenericPassword, and error respectively.
  
  @param password The password to set
  @param service The service for which to set password
@@ -177,20 +117,20 @@ extern NSString *const BBKeychainAccountKeyWhere;
  @return YES if the password was set, otherwise NO
  */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error;
-
-+ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass;
+/**
+ Attempts to set the provided password for the provided service and account, returning a boolean to indicate success or failure.
+ 
+ @param password The password to set
+ @param service The service for which to set password
+ @param account The account for which to set password
+ @param keychainSecurityClass The security class for which to set the password
+ @param error If the call fails, an error providing information about the reason for failure
+ @return YES if the password was set, otherwise NO
+ */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
 /**
- Calls `[self deletePasswordForService:account:error:]`, passing service, account, and NULL respectively.
- 
- @param service The service for which to delete the password
- @param account The account for which to delete the password
- @return YES if the password was deleted, otherwise NO
- */
-+ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account;
-/**
- Attempts to the delete the password for the provided service and account, returning a boolean to indicate success or failure.
+ Calls [self deletePasswordForService:account:keychainSecurityClass:error:] passing service, account, BBKeychainSecurityClassGenericPassword, and error respectively.
  
  @param service The service for which to delete the password
  @param account The account for which to delete the password
@@ -198,15 +138,18 @@ extern NSString *const BBKeychainAccountKeyWhere;
  @return YES if the password was deleted, otherwise NO
  */
 + (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account error:(NSError **)error;
+/**
+ Attempts to the delete the password for the provided service and account, returning a boolean to indicate success or failure.
+ 
+ @param service The service for which to delete the password
+ @param account The account for which to delete the password
+ @param keychainSecurityClass The keychain security class for which to delete
+ @param error If the call fails, an error providing information about the reason for failure
+ @return YES if the password was deleted, otherwise NO
+ */
++ (BOOL)deletePasswordForService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
 #if (TARGET_OS_IPHONE)
-/**
- Calls `[self deleteAllItemsForKeychainSecurityClass:error:]`, passing keychainSecurityClass and NULL respectively.
- 
- @param keychainSecurityClass The keychain security class for which to delete keychain items
- @return YES if all items were deleted, otherwise NO
- */
-+ (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass;
 /**
  Attempts to delete all items in the keychain for the provided security class, returning a boolean to indicate success or failure.
  
@@ -216,12 +159,6 @@ extern NSString *const BBKeychainAccountKeyWhere;
  */
 + (BOOL)deleteAllItemsForKeychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
-/**
- Calls `[self deleteAllItemsAndReturnError:]`, passing NULL.
- 
- @return YES if all items for every security class were deleted, otherwise NO
- */
-+ (BOOL)deleteAllItems;
 /**
  Calls `[self deleteAllItemsForKeychainSecurityClass:error:]` for each security class available. Returns YES if all calls are successful, otherwise returns NO.
  

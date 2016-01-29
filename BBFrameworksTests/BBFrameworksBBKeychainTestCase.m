@@ -28,17 +28,17 @@
     NSString *service = [[NSUUID UUID] UUIDString];
     NSString *account = [[NSUUID UUID] UUIDString];
     
-    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account]);
-    XCTAssertEqualObjects([BBKeychain passwordForService:service account:account], password);
+    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account error:NULL]);
+    XCTAssertEqualObjects([BBKeychain passwordForService:service account:account error:NULL], password);
 }
 - (void)testDeletePasswordForServiceAndAccount {
     NSString *password = [[NSUUID UUID] UUIDString];
     NSString *service = [[NSUUID UUID] UUIDString];
     NSString *account = [[NSUUID UUID] UUIDString];
     
-    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account]);
-    XCTAssertTrue([BBKeychain deletePasswordForService:service account:account]);
-    XCTAssertNil([BBKeychain passwordForService:service account:account]);
+    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account error:NULL]);
+    XCTAssertTrue([BBKeychain deletePasswordForService:service account:account error:NULL]);
+    XCTAssertNil([BBKeychain passwordForService:service account:account error:NULL]);
 }
 #if (TARGET_OS_IPHONE)
 - (void)testDeleteAllItemsForKeychainSecurityClass {
@@ -46,20 +46,20 @@
     NSString *service = [[NSUUID UUID] UUIDString];
     NSString *account = [[NSUUID UUID] UUIDString];
     
-    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account]);
-    XCTAssertEqualObjects([BBKeychain passwordForService:service account:account], password);
-    XCTAssertTrue([BBKeychain deleteAllItemsForKeychainSecurityClass:BBKeychainSecurityClassGenericPassword]);
-    XCTAssertNil([BBKeychain passwordForService:service account:account]);
+    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account error:NULL]);
+    XCTAssertEqualObjects([BBKeychain passwordForService:service account:account error:NULL], password);
+    XCTAssertTrue([BBKeychain deleteAllItemsForKeychainSecurityClass:BBKeychainSecurityClassGenericPassword error:NULL]);
+    XCTAssertNil([BBKeychain passwordForService:service account:account error:NULL]);
 }
 - (void)deleteAllItems {
     NSString *password = [[NSUUID UUID] UUIDString];
     NSString *service = [[NSUUID UUID] UUIDString];
     NSString *account = [[NSUUID UUID] UUIDString];
     
-    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account]);
-    XCTAssertEqualObjects([BBKeychain passwordForService:service account:account], password);
-    XCTAssertTrue([BBKeychain deleteAllItems]);
-    XCTAssertNil([BBKeychain passwordForService:service account:account]);
+    XCTAssertTrue([BBKeychain setPassword:password forService:service account:account error:NULL]);
+    XCTAssertEqualObjects([BBKeychain passwordForService:service account:account error:NULL], password);
+    XCTAssertTrue([BBKeychain deleteAllItemsAndReturnError:NULL]);
+    XCTAssertNil([BBKeychain passwordForService:service account:account error:NULL]);
 }
 #endif
 
