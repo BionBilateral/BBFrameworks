@@ -38,5 +38,6 @@
 
 #import "BBSnakeCaseToLlamaCaseValueTransformer.h"
 #import "BBTimer.h"
+#import "BBAuthorizationStatusManager.h"
 
 #endif

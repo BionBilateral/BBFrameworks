@@ -28,6 +28,7 @@
 #import "KeyValueObservingViewController.h"
 #import "MediaViewerViewController.h"
 #import "TimerViewController.h"
+#import "AuthorizationStatusViewController.h"
 
 @interface TableViewController ()
 @property (copy,nonatomic) NSArray *rowClasses;
@@ -43,7 +44,8 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setRowClasses:@[[TimerViewController class],
+    [self setRowClasses:@[[AuthorizationStatusViewController class],
+                          [TimerViewController class],
                           [MediaViewerViewController class],
                           [KeyValueObservingViewController class],
                           [ViewsRowViewController class],

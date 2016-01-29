@@ -285,6 +285,12 @@
 		79533B0D1B6847D6001EB32F /* BBAnythingGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */; };
 		79533B0E1B6847E4001EB32F /* BBAnythingGestureRecognizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79533B0B1B6847D6001EB32F /* BBAnythingGestureRecognizer.h */; };
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
+		7953FBC61C5AEECE0067B15E /* BBAuthorizationStatusManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7953FBC41C5AEECE0067B15E /* BBAuthorizationStatusManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7953FBC71C5AEECE0067B15E /* BBAuthorizationStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FBC51C5AEECE0067B15E /* BBAuthorizationStatusManager.m */; };
+		7953FBC81C5AEECE0067B15E /* BBAuthorizationStatusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FBC51C5AEECE0067B15E /* BBAuthorizationStatusManager.m */; };
+		7953FBC91C5AF0F00067B15E /* BBAuthorizationStatusManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7953FBC41C5AEECE0067B15E /* BBAuthorizationStatusManager.h */; };
+		7953FBCC1C5AF40B0067B15E /* AuthorizationStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FBCB1C5AF40B0067B15E /* AuthorizationStatusViewController.m */; };
+		7953FBCE1C5AF4740067B15E /* AuthorizationStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953FBCD1C5AF4740067B15E /* AuthorizationStatusViewController.xib */; };
 		796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */; };
 		7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */; };
 		7987CAA41C0E9A96000C4086 /* BBMediaPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA11C0E9A96000C4086 /* BBMediaPickerTheme.m */; };
@@ -702,6 +708,7 @@
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
+				7953FBC91C5AF0F00067B15E /* BBAuthorizationStatusManager.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
 				0730748D1C3AE258001FC8FE /* PHAsset+BBMediaPickerExtensions.h in CopyFiles */,
 				070E38D01C232C45002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in CopyFiles */,
@@ -1202,6 +1209,11 @@
 		79533B0C1B6847D6001EB32F /* BBAnythingGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBAnythingGestureRecognizer.m; path = iOS/BBAnythingGestureRecognizer.m; sourceTree = "<group>"; };
 		7953FA3D1B31FA600005E3FD /* TooltipsRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TooltipsRowViewController.h; sourceTree = "<group>"; };
 		7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TooltipsRowViewController.m; sourceTree = "<group>"; };
+		7953FBC41C5AEECE0067B15E /* BBAuthorizationStatusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAuthorizationStatusManager.h; sourceTree = "<group>"; };
+		7953FBC51C5AEECE0067B15E /* BBAuthorizationStatusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAuthorizationStatusManager.m; sourceTree = "<group>"; };
+		7953FBCA1C5AF40B0067B15E /* AuthorizationStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationStatusViewController.h; sourceTree = "<group>"; };
+		7953FBCB1C5AF40B0067B15E /* AuthorizationStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationStatusViewController.m; sourceTree = "<group>"; };
+		7953FBCD1C5AF4740067B15E /* AuthorizationStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthorizationStatusViewController.xib; sourceTree = "<group>"; };
 		796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
 		7987CA9E1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerDefaultTitleView.h; path = Private/BBMediaPickerDefaultTitleView.h; sourceTree = "<group>"; };
 		7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerDefaultTitleView.m; path = Private/BBMediaPickerDefaultTitleView.m; sourceTree = "<group>"; };
@@ -2518,6 +2530,9 @@
 				07AEC84B1B6BE6C700013470 /* ValidationViewController.h */,
 				07AEC84C1B6BE6C700013470 /* ValidationViewController.m */,
 				07AEC84D1B6BE6C700013470 /* ValidationViewController.xib */,
+				7953FBCA1C5AF40B0067B15E /* AuthorizationStatusViewController.h */,
+				7953FBCB1C5AF40B0067B15E /* AuthorizationStatusViewController.m */,
+				7953FBCD1C5AF4740067B15E /* AuthorizationStatusViewController.xib */,
 				79C0010D1B1AD081004C9A6E /* Supporting Files */,
 			);
 			path = BBFrameworksiOSDemo;
@@ -2578,6 +2593,8 @@
 				7927CF6F1B1AD2B90034288D /* BBSnakeCaseToLlamaCaseValueTransformer.m */,
 				79F436611C11F0CF002546E8 /* BBTimer.h */,
 				79F436621C11F0CF002546E8 /* BBTimer.m */,
+				7953FBC41C5AEECE0067B15E /* BBAuthorizationStatusManager.h */,
+				7953FBC51C5AEECE0067B15E /* BBAuthorizationStatusManager.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2861,6 +2878,7 @@
 				791997051B6EB3C500FC674A /* BBThumbnailVimeoOperation.h in Headers */,
 				791996E61B6EB3C500FC674A /* BBThumbnailAsyncOperation.h in Headers */,
 				79EA81571B3F222F00D50B6B /* BBManagedObjectEntityMapping.h in Headers */,
+				7953FBC61C5AEECE0067B15E /* BBAuthorizationStatusManager.h in Headers */,
 				077656661B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h in Headers */,
 				79EA81661B3F227600D50B6B /* BBThumbnailGenerator.h in Headers */,
 				07FF892E1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h in Headers */,
@@ -3153,6 +3171,7 @@
 				07E312CB1BB332B300C71468 /* KeyValueObservingViewController.xib in Resources */,
 				79344C591C01343700BBA726 /* media in Resources */,
 				79F4366B1C120341002546E8 /* TimerViewController.xib in Resources */,
+				7953FBCE1C5AF4740067B15E /* AuthorizationStatusViewController.xib in Resources */,
 				791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */,
 				799F9BD11B6DC3C40067BAA8 /* RemoteURLs.plist in Resources */,
 				7989DD531B345A3E0001F7C3 /* MediaPickerViewController.xib in Resources */,
@@ -3521,6 +3540,7 @@
 				7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */,
 				799C0C421B5B6DDA00A3888A /* DetailViewController.m in Sources */,
 				07AEC84E1B6BE6C700013470 /* ValidationViewController.m in Sources */,
+				7953FBCC1C5AF40B0067B15E /* AuthorizationStatusViewController.m in Sources */,
 				79C001131B1AD081004C9A6E /* AppDelegate.m in Sources */,
 				79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */,
 				79C001161B1AD081004C9A6E /* ViewsRowViewController.m in Sources */,
@@ -3604,6 +3624,7 @@
 				07AEC8481B6BE68500013470 /* BBValidationTextFieldWarningView.m in Sources */,
 				0730748C1C3ADDD4001FC8FE /* PHAsset+BBMediaPickerExtensions.m in Sources */,
 				075CECB41BC5A731000731BC /* NSString+BBKitExtensions.m in Sources */,
+				7953FBC71C5AEECE0067B15E /* BBAuthorizationStatusManager.m in Sources */,
 				79344C2A1C01324700BBA726 /* BBMediaViewerTextViewController.m in Sources */,
 				07E312C11BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m in Sources */,
 				791996E71B6EB3C500FC674A /* BBThumbnailAsyncOperation.m in Sources */,
@@ -3760,6 +3781,7 @@
 				79EA81841B3F22D200D50B6B /* NSManagedObjectContext+BBCoreDataImportExtensions.m in Sources */,
 				79D17CEC1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.m in Sources */,
 				79EA81791B3F22C300D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
+				7953FBC81C5AEECE0067B15E /* BBAuthorizationStatusManager.m in Sources */,
 				79EA817E1B3F22C300D50B6B /* NSMutableArray+BBFoundationExtensions.m in Sources */,
 				79D540801B4B5F0B009ECE38 /* NSAlert+BBKitExtensions.m in Sources */,
 				07148CB01BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */,
