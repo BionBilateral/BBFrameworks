@@ -96,7 +96,7 @@
 }
 #else
 - (BOOL)hasLocationAuthorization {
-    return [CLLocationManager locationServicesEnabled] && self.locationAuthorizationStatus = BBLocationAuthorizationStatusAuthorized;
+    return [CLLocationManager locationServicesEnabled] && self.locationAuthorizationStatus == BBLocationAuthorizationStatusAuthorized;
 }
 #endif
 - (BBLocationAuthorizationStatus)locationAuthorizationStatus {
