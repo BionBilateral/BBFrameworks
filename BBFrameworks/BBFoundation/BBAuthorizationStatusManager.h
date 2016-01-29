@@ -6,10 +6,15 @@
 //  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 
+#import <TargetConditionals.h>
+
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CLLocationManager.h>
 #if (TARGET_OS_IPHONE)
 #import <Photos/PHPhotoLibrary.h>
+#import <AVFoundation/AVCaptureDevice.h>
+#import <AVFoundation/AVAudioSession.h>
+#import <AddressBook/ABAddressBook.h>
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
@@ -33,6 +38,26 @@ typedef NS_ENUM(NSInteger, BBPhotoLibraryAuthorizationStatus) {
     BBPhotoLibraryAuthorizationStatusDenied = PHAuthorizationStatusDenied,
     BBPhotoLibraryAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
 };
+
+typedef NS_ENUM(NSInteger, BBCameraAuthorizationStatus) {
+    BBCameraAuthorizationStatusNotDetermined = AVAuthorizationStatusNotDetermined,
+    BBCameraAuthorizationStatusRestricted = AVAuthorizationStatusRestricted,
+    BBCameraAuthorizationStatusDenied = AVAuthorizationStatusDenied,
+    BBCameraAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
+};
+
+typedef NS_ENUM(CFIndex, BBAddressBookAuthorizationStatus) {
+    BBAddressBookAuthorizationStatusNotDetermined = kABAuthorizationStatusNotDetermined,
+    BBAddressBookAuthorizationStatusRestricted = kABAuthorizationStatusRestricted,
+    BBAddressBookAuthorizationStatusDenied = kABAuthorizationStatusDenied,
+    BBAddressBookAuthorizationStatusAuthorized = kABAuthorizationStatusAuthorized
+};
+
+typedef NS_OPTIONS(NSUInteger, BBMicrophoneAuthorizationStatus) {
+    BBMicrophoneAuthorizationStatusNotDetermined = AVAudioSessionRecordPermissionUndetermined,
+    BBMicrophoneAuthorizationStatusDenied = AVAudioSessionRecordPermissionDenied,
+    BBMicrophoneAuthorizationStatusAuthorized = AVAudioSessionRecordPermissionGranted
+};
 #endif
 
 @interface BBAuthorizationStatusManager : NSObject
@@ -48,6 +73,15 @@ typedef NS_ENUM(NSInteger, BBPhotoLibraryAuthorizationStatus) {
 #if (TARGET_OS_IPHONE)
 @property (readonly,nonatomic) BOOL hasPhotoLibraryAuthorization;
 @property (readonly,nonatomic) BBPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasCameraAuthorization;
+@property (readonly,nonatomic) BBCameraAuthorizationStatus cameraAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasAddressBookAuthorization;
+@property (readonly,nonatomic) BBAddressBookAuthorizationStatus addressBookAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasMicrophoneAuthorization;
+@property (readonly,nonatomic) BBMicrophoneAuthorizationStatus microphoneAuthorizationStatus;
 #endif
 
 + (instancetype)sharedManager;
@@ -55,6 +89,9 @@ typedef NS_ENUM(NSInteger, BBPhotoLibraryAuthorizationStatus) {
 - (void)requestLocationAuthorization:(BBLocationAuthorizationStatus)authorization completion:(void(^)(BBLocationAuthorizationStatus status, NSError * _Nullable error))completion;
 #if (TARGET_OS_IPHONE)
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(BBPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion;
+- (void)requestCameraAuthorizationWithCompletion:(void(^)(BBCameraAuthorizationStatus status, NSError * _Nullable error))completion;
+- (void)requestAddressBookAuthorizationWithCompletion:(void(^)(BBAddressBookAuthorizationStatus status, NSError * _Nullable error))completion;
+- (void)requestMicrophoneAuthorizationWithCompletion:(void(^)(BBMicrophoneAuthorizationStatus status, NSError * _Nullable error))completion;
 #endif
 
 @end

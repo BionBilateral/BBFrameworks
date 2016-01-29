@@ -13,6 +13,8 @@
 #import <CoreLocation/CoreLocation.h>
 #if (TARGET_OS_IPHONE)
 #import <Photos/Photos.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AddressBook/AddressBook.h>
 #endif
 
 @interface BBAuthorizationStatusManager () <CLLocationManagerDelegate>
@@ -101,6 +103,68 @@
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         BBDispatchMainSyncSafe(^{
             completion((BBPhotoLibraryAuthorizationStatus)status,nil);
+        });
+    }];
+}
+- (void)requestCameraAuthorizationWithCompletion:(void(^)(BBCameraAuthorizationStatus status, NSError * _Nullable error))completion; {
+    if (self.cameraAuthorizationStatus == BBCameraAuthorizationStatusAuthorized) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.cameraAuthorizationStatus,nil);
+        });
+        return;
+    }
+    
+    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.cameraAuthorizationStatus,nil);
+        });
+    }];
+}
+- (void)requestAddressBookAuthorizationWithCompletion:(void(^)(BBAddressBookAuthorizationStatus status, NSError * _Nullable error))completion; {
+    if (self.addressBookAuthorizationStatus == BBAddressBookAuthorizationStatusAuthorized) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.addressBookAuthorizationStatus,nil);
+        });
+        return;
+    }
+    
+    CFErrorRef outErrorRef;
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, &outErrorRef);
+    
+    if (addressBookRef == NULL) {
+        NSError *outError = (__bridge_transfer NSError *)outErrorRef;
+        
+        BBDispatchMainSyncSafe(^{
+            completion(self.addressBookAuthorizationStatus,outError);
+        });
+        return;
+    }
+    
+    ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+        NSError *outError = nil;
+        
+        if (error != NULL) {
+            outError = (__bridge_transfer NSError *)error;
+        }
+        
+        BBDispatchMainSyncSafe(^{
+            completion(self.addressBookAuthorizationStatus,outError);
+        });
+        
+        CFRelease(addressBookRef);
+    });
+}
+- (void)requestMicrophoneAuthorizationWithCompletion:(void(^)(BBMicrophoneAuthorizationStatus status, NSError * _Nullable error))completion; {
+    if (self.microphoneAuthorizationStatus == BBMicrophoneAuthorizationStatusAuthorized) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.microphoneAuthorizationStatus,nil);
+        });
+        return;
+    }
+    
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        BBDispatchMainSyncSafe(^{
+            completion(self.microphoneAuthorizationStatus,nil);
         });
     }];
 }
