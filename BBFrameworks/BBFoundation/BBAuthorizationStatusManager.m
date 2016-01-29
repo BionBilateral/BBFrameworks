@@ -177,6 +177,34 @@
 - (BOOL)hasLocationAuthorizationWhenInUse {
     return [CLLocationManager locationServicesEnabled] && (self.locationAuthorizationStatus == BBLocationAuthorizationStatusAuthorizedWhenInUse || self.hasLocationAuthorizationAlways);
 }
+
+- (BOOL)hasPhotoLibraryAuthorization {
+    return self.photoLibraryAuthorizationStatus == BBPhotoLibraryAuthorizationStatusAuthorized;
+}
+- (BBPhotoLibraryAuthorizationStatus)photoLibraryAuthorizationStatus {
+    return (BBPhotoLibraryAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+}
+
+- (BOOL)hasCameraAuthorization {
+    return self.cameraAuthorizationStatus == BBCameraAuthorizationStatusAuthorized;
+}
+- (BBCameraAuthorizationStatus)cameraAuthorizationStatus {
+    return (BBCameraAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+}
+
+- (BOOL)hasAddressBookAuthorization {
+    return self.addressBookAuthorizationStatus == BBAddressBookAuthorizationStatusAuthorized;
+}
+- (BBAddressBookAuthorizationStatus)addressBookAuthorizationStatus {
+    return (BBAddressBookAuthorizationStatus)ABAddressBookGetAuthorizationStatus();
+}
+
+- (BOOL)hasMicrophoneAuthorization {
+    return self.microphoneAuthorizationStatus == BBMicrophoneAuthorizationStatusAuthorized;
+}
+- (BBMicrophoneAuthorizationStatus)microphoneAuthorizationStatus {
+    return (BBMicrophoneAuthorizationStatus)[[AVAudioSession sharedInstance] recordPermission];
+}
 #else
 - (BOOL)hasLocationAuthorization {
     return [CLLocationManager locationServicesEnabled] && self.locationAuthorizationStatus == BBLocationAuthorizationStatusAuthorized;
