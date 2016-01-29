@@ -50,7 +50,12 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
     [query setObject:BBKeychainSecClassForKeychainSecurityClass(securityClass) forKey:(__bridge id)kSecClass];
     
     if (service) {
-        [query setObject:service forKey:(__bridge id)kSecAttrService];
+        if (securityClass == BBKeychainSecurityClassInternetPassword) {
+            [query setObject:service forKey:(__bridge id)kSecAttrServer];
+        }
+        else {
+            [query setObject:service forKey:(__bridge id)kSecAttrService];
+        }
     }
     if (account) {
         [query setObject:account forKey:(__bridge id)kSecAttrAccount];
