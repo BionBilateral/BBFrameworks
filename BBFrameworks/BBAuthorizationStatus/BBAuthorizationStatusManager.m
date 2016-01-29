@@ -174,7 +174,7 @@
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, &outErrorRef);
     
     if (addressBookRef == NULL) {
-        NSError *outError = (__bridge_transfer NSError *)outErrorRef;
+        NSError *outError = (__bridge NSError *)outErrorRef;
         
         BBDispatchMainSyncSafe(^{
             completion(self.addressBookAuthorizationStatus,outError);
@@ -183,11 +183,7 @@
     }
     
     ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
-        NSError *outError = nil;
-        
-        if (error != NULL) {
-            outError = (__bridge_transfer NSError *)error;
-        }
+        NSError *outError = (__bridge NSError *)error;
         
         BBDispatchMainSyncSafe(^{
             completion(self.addressBookAuthorizationStatus,outError);
