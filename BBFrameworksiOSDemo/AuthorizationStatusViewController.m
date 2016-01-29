@@ -8,6 +8,7 @@
 
 #import "AuthorizationStatusViewController.h"
 #import <BBFrameworks/BBFoundation.h>
+#import <BBFrameworks/BBAuthorizationStatus.h>
 
 @interface AuthorizationStatusViewController ()
 - (IBAction)_locationButtonAction:(id)sender;
