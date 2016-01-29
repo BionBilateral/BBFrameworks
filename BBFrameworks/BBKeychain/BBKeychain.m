@@ -154,6 +154,9 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account error:(NSError **)error; {
     return [self passwordForService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
 }
++ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
+    return [self passwordForService:service account:account keychainSecurityClass:keychainSecurityClass error:NULL];
+}
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(service || account);
     
@@ -183,6 +186,9 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
 }
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error; {
     return [self setPassword:password forService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
+}
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass; {
+    return [self setPassword:password forService:service account:account keychainSecurityClass:keychainSecurityClass error:NULL];
 }
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
     NSParameterAssert(password);

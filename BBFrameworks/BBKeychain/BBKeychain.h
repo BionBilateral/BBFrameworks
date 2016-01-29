@@ -155,6 +155,7 @@ extern NSString *const BBKeychainAccountKeyWhere;
  */
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account error:(NSError **)error;
 
++ (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass;
 + (nullable NSString *)passwordForService:(nullable NSString *)service account:(nullable NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
 /**
@@ -177,6 +178,7 @@ extern NSString *const BBKeychainAccountKeyWhere;
  */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error;
 
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass;
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
 
 /**
