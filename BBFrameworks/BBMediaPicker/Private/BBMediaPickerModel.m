@@ -115,21 +115,25 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
-    for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
-        PHFetchResultChangeDetails *details = [changeInstance changeDetailsForFetchResult:model.fetchResult];
-        
-        if (!details) {
-            continue;
+    BBWeakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BBStrongify(self);
+        for (BBMediaPickerAssetCollectionModel *model in self.assetCollectionModels) {
+            PHFetchResultChangeDetails *details = [changeInstance changeDetailsForFetchResult:model.fetchResult];
+            
+            if (!details) {
+                continue;
+            }
+            
+            if (details.hasIncrementalChanges &&
+                (details.removedIndexes.count > 0 || details.insertedIndexes.count > 0 || details.changedIndexes.count > 0)) {
+                [model reloadFetchResult];
+            }
+            else if (details.fetchResultAfterChanges) {
+                [model reloadFetchResult];
+            }
         }
-        
-        if (details.hasIncrementalChanges &&
-            (details.removedIndexes.count > 0 || details.insertedIndexes.count > 0 || details.changedIndexes.count > 0)) {
-            [model reloadFetchResult];
-        }
-        else if (details.fetchResultAfterChanges) {
-            [model reloadFetchResult];
-        }
-    }
+    });
 }
 #endif
 
@@ -340,10 +344,16 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 
 - (void)setSelectedAssetCollectionModel:(BBMediaPickerAssetCollectionModel *)selectedAssetCollectionModel {
+#if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
     if ([_selectedAssetCollectionModel.identifier isEqualToString:selectedAssetCollectionModel.identifier] &&
         _selectedAssetCollectionModel.countOfAssetModels == selectedAssetCollectionModel.countOfAssetModels) {
         return;
     }
+#else
+    if (_selectedAssetCollectionModel == selectedAssetCollectionModel) {
+        return;
+    }
+#endif
     
     [self willChangeValueForKey:@BBKeypath(self,selectedAssetCollectionModel)];
     
@@ -553,11 +563,16 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 #if (!BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (void)_assetsLibraryDidChange:(NSNotification *)note {
-    BBWeakify(self);
-    BBDispatchMainSyncSafe(^{
-        BBStrongify(self);
-        [self _reloadAssetCollections];
-    });
+    if (![NSThread isMainThread]) {
+        [self performSelector:_cmd onThread:[NSThread mainThread] withObject:note waitUntilDone:NO];
+        return;
+    }
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_delayedReloadAssetCollections) object:nil];
+    [self performSelector:@selector(_delayedReloadAssetCollections) withObject:nil afterDelay:0.2];
+}
+- (void)_delayedReloadAssetCollections; {
+    [self _reloadAssetCollections];
 }
 #endif
 
