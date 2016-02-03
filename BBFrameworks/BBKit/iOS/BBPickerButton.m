@@ -97,7 +97,7 @@
 }
 
 - (void)setSelectedComponentsJoinString:(NSString *)selectedComponentsJoinString {
-    _selectedComponentsJoinString = selectedComponentsJoinString ?: @"";
+    _selectedComponentsJoinString = selectedComponentsJoinString ?: @" ";
 }
 #pragma mark *** Private Methods ***
 - (void)_BBPickerButtonInit; {
@@ -123,15 +123,28 @@
     }
 }
 - (NSString *)_titleForSelectedRowsInPickerView; {
-    NSMutableArray *comps = [[NSMutableArray alloc] init];
-    
-    for (NSInteger i=0; i<[self _numberOfComponentsInPickerView]; i++) {
-        NSInteger row = [self selectedRowInComponent:i];
+    if ([self.delegate respondsToSelector:@selector(pickerButton:titleForSelectedRows:)]) {
+        NSMutableArray *selectedRowIndexes = [[NSMutableArray alloc] init];
         
-        [comps addObject:[self _titleForRow:row inComponent:i]];
+        for (NSInteger i=0; i<[self _numberOfComponentsInPickerView]; i++) {
+            NSInteger row = [self selectedRowInComponent:i];
+            
+            [selectedRowIndexes addObject:@(row)];
+        }
+        
+        return [self.delegate pickerButton:self titleForSelectedRows:selectedRowIndexes];
     }
-    
-    return [comps componentsJoinedByString:self.selectedComponentsJoinString];
+    else {
+        NSMutableArray *comps = [[NSMutableArray alloc] init];
+        
+        for (NSInteger i=0; i<[self _numberOfComponentsInPickerView]; i++) {
+            NSInteger row = [self selectedRowInComponent:i];
+            
+            [comps addObject:[self _titleForRow:row inComponent:i]];
+        }
+        
+        return [comps componentsJoinedByString:self.selectedComponentsJoinString];
+    }
 }
 - (NSString *)_titleForRow:(NSInteger)row inComponent:(NSInteger)component; {
     if (row == -1) {

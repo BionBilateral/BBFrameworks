@@ -25,6 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BBPickerButtonDelegate <NSObject>
 @optional
 /**
+ Called to determine the display title for the selected row indexes. The delegate is passed an array of NSNumber instances, one for each selected row in a component.
+ 
+ @param pickerButton The picker button that sent the message
+ @param selectedRows The array of selected rows
+ @return The display title for the picker button
+ */
+- (NSString *)pickerButton:(BBPickerButton *)pickerButton titleForSelectedRows:(NSArray<NSNumber *> *)selectedRows;
+/**
  Called when the managed picker view selection changes.
  
  @param pickerButton The picker button that sent the message
