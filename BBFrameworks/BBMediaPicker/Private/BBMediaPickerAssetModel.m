@@ -18,7 +18,6 @@
 #import "BBMediaPickerModel.h"
 #import "BBFoundationDebugging.h"
 #import "BBMediaPickerTheme.h"
-#import "BBKitFunctions.h"
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 #import <Photos/Photos.h>
@@ -84,7 +83,7 @@
     [options setResizeMode:PHImageRequestOptionsResizeModeFast];
     [options setNetworkAccessAllowed:YES];
     
-    _imageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:self.asset targetSize:BBCGSizeAdjustedForMainScreenScale(size) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    _imageRequestID = [[PHCachingImageManager defaultManager] requestImageForAsset:self.asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         completion(result);
     }];
 #else

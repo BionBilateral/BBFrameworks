@@ -16,7 +16,7 @@ CGSize BBCGSizeAdjustedForScreenScale(CGSize size, UIScreen * _Nullable screen) 
     if (screen == nil) {
         screen = [UIScreen mainScreen];
     }
-    
+
     return CGSizeMake(size.width * screen.scale, size.height * screen.scale);
 }
 #else

@@ -19,6 +19,7 @@
 #import "BBMediaPickerTheme.h"
 #import "BBMediaPickerModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBKitFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -89,17 +90,17 @@
     [self.typeImageView setImage:[_model.typeImage BB_imageByRenderingWithColor:_model.model.theme.assetCollectionForegroundColor]];
     
     BBWeakify(self);
-    [_model requestThumbnailImageOfSize:self.thumbnailView1.thumbnailImageView.frame.size thumbnailIndex:0 completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:BBCGSizeAdjustedForMainScreenScale(self.thumbnailView1.thumbnailImageView.frame.size) thumbnailIndex:0 completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailView1.thumbnailImageView setImage:thumbnailImage];
     }];
     
-    [_model requestThumbnailImageOfSize:self.thumbnailView2.thumbnailImageView.frame.size thumbnailIndex:1 completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:BBCGSizeAdjustedForMainScreenScale(self.thumbnailView2.thumbnailImageView.frame.size) thumbnailIndex:1 completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailView2.thumbnailImageView setImage:thumbnailImage];
     }];
     
-    [_model requestThumbnailImageOfSize:self.thumbnailView3.thumbnailImageView.frame.size thumbnailIndex:2 completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:BBCGSizeAdjustedForMainScreenScale(self.thumbnailView3.thumbnailImageView.frame.size) thumbnailIndex:2 completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailView3.thumbnailImageView setImage:thumbnailImage];
     }];

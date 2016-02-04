@@ -23,6 +23,7 @@
 #import "BBMediaPickerModel.h"
 #import "BBGradientView.h"
 #import "BBKitColorMacros.h"
+#import "BBKitFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -81,7 +82,7 @@
 }
 - (void)reloadThumbnailImage; {
     BBWeakify(self);
-    [_model requestThumbnailImageOfSize:self.thumbnailImageView.frame.size completion:^(UIImage *thumbnailImage) {
+    [_model requestThumbnailImageOfSize:BBCGSizeAdjustedForMainScreenScale(self.thumbnailImageView.frame.size) completion:^(UIImage *thumbnailImage) {
         BBStrongify(self);
         [self.thumbnailImageView setImage:thumbnailImage];
     }];
