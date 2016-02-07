@@ -41,7 +41,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
 #endif
-#import <MagicKit/MagicKit.h>
+#import <MagicKit-BionBilateral/MagicKit.h>
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
 static NSString *const kThumbnailCacheDirectoryName = @"thumbnails";

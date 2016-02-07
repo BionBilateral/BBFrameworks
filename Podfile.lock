@@ -1,6 +1,6 @@
 PODS:
   - ARChromeActivity (1.0.6)
-  - MagicKit (0.0.1)
+  - MagicKit-BionBilateral (0.0.3)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -14,23 +14,14 @@ PODS:
 
 DEPENDENCIES:
   - ARChromeActivity (~> 1.0.0)
-  - MagicKit (from `https://github.com/BionBilateral/MagicKit.git`)
+  - MagicKit-BionBilateral
   - ReactiveCocoa (~> 2.5)
   - ReactiveViewModel (~> 0.3)
   - TUSafariActivity (~> 1.0.0)
 
-EXTERNAL SOURCES:
-  MagicKit:
-    :git: https://github.com/BionBilateral/MagicKit.git
-
-CHECKOUT OPTIONS:
-  MagicKit:
-    :commit: 079ad08bdb8f3fa7be496159fa1b8de791e911c4
-    :git: https://github.com/BionBilateral/MagicKit.git
-
 SPEC CHECKSUMS:
   ARChromeActivity: 5dcf9b9f09323761f992aff3525cdd777f83609d
-  MagicKit: bee71811572a42d8b23d45bf6ab10d59be3cef96
+  MagicKit-BionBilateral: b4dfadb3c22ce3b6ccfcaf90829936fd79606b0a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546

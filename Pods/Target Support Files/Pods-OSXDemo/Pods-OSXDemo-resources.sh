@@ -58,10 +58,10 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "MagicKit/magic.mgc"
+  install_resource "MagicKit-BionBilateral/magic.mgc"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "MagicKit/magic.mgc"
+  install_resource "MagicKit-BionBilateral/magic.mgc"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

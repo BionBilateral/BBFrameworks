@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## MagicKit
+## MagicKit-BionBilateral
 
 === This project is a wrapper around libmagic. libmagic is subject to the BSD licence. Please refer to libmagic/COPYING for further information. ===
 

@@ -1,1 +1,0 @@
-../../../MagicKit/libmagic/elfclass.h
