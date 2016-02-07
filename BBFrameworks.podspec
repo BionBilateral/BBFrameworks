@@ -88,6 +88,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec "BBThumbnail" do |subspec|
     subspec.dependency "BBFrameworks/BBKit"
+    subspec.dependency "MagicKit-BionBilateral"
     
     subspec.source_files = "BBFrameworks/BBThumbnail", "BBFrameworks/BBThumbnail/Private"
     subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS", "BBFrameworks/BBThumbnail/iOS/Private"
