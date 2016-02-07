@@ -1,0 +1,1 @@
+../../../MagicKit/config.h

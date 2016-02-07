@@ -1,6 +1,7 @@
 source "https://github.com/CocoaPods/Specs.git"
 
 def common_pods
+  pod "MagicKit", :git => "https://github.com/BionBilateral/MagicKit.git"
   pod "ReactiveCocoa", "~> 2.5"
   pod "ReactiveViewModel", "~> 0.3"
 end

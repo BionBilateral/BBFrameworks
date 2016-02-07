@@ -64,6 +64,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "ARChromeActivity/ARChromeActivity/ARChromeActivity@3x.png"
   install_resource "ARChromeActivity/ARChromeActivity/ARChromeActivity@3x~ipad.png"
   install_resource "ARChromeActivity/ARChromeActivity/ARChromeActivity~ipad.png"
+  install_resource "MagicKit/magic.mgc"
   install_resource "${BUILT_PRODUCTS_DIR}/TUSafariActivity.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -73,6 +74,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "ARChromeActivity/ARChromeActivity/ARChromeActivity@3x.png"
   install_resource "ARChromeActivity/ARChromeActivity/ARChromeActivity@3x~ipad.png"
   install_resource "ARChromeActivity/ARChromeActivity/ARChromeActivity~ipad.png"
+  install_resource "MagicKit/magic.mgc"
   install_resource "${BUILT_PRODUCTS_DIR}/TUSafariActivity.bundle"
 fi
 

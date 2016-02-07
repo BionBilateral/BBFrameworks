@@ -41,6 +41,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
 #endif
+#import <MagicKit/MagicKit.h>
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
 static NSString *const kThumbnailCacheDirectoryName = @"thumbnails";
@@ -252,65 +253,105 @@ static NSTimeInterval const kDefaultTime = 1.0;
             }];
         };
         
-        if (self.isMemoryCachingEnabled) {
-            BBThumbnailGeneratorImageClass *retval = [self.memoryCache objectForKey:key];
-            
-            if (retval) {
-                cacheImageBlock(retval,nil,BBThumbnailGeneratorCacheTypeMemory);
-                return;
-            }
-        }
-        
-        if (self.isFileCachingEnabled) {
-            if ([fileCacheURL checkResourceIsReachableAndReturnError:NULL]) {
-                BBThumbnailGeneratorImageClass *retval = [[BBThumbnailGeneratorImageClass alloc] initWithContentsOfFile:fileCacheURL.path];
+        BOOL(^checkForCachedImageInMemory)(void) = ^BOOL{
+            if (self.isMemoryCachingEnabled) {
+                BBThumbnailGeneratorImageClass *retval = [self.memoryCache objectForKey:key];
                 
                 if (retval) {
-                    cacheImageBlock(retval,nil,BBThumbnailGeneratorCacheTypeFile);
-                    return;
+                    cacheImageBlock(retval,nil,BBThumbnailGeneratorCacheTypeMemory);
+                    return YES;
                 }
             }
+            return NO;
+        };
+        
+        if (checkForCachedImageInMemory()) {
+            return;
+        }
+        
+        BOOL(^checkForCachedImageOnDisk)(void) = ^BOOL{
+            if (self.isFileCachingEnabled) {
+                if ([fileCacheURL checkResourceIsReachableAndReturnError:NULL]) {
+                    BBThumbnailGeneratorImageClass *retval = [[BBThumbnailGeneratorImageClass alloc] initWithContentsOfFile:fileCacheURL.path];
+                    
+                    if (retval) {
+                        cacheImageBlock(retval,nil,BBThumbnailGeneratorCacheTypeFile);
+                        return YES;
+                    }
+                }
+            }
+            return NO;
+        };
+        
+        if (checkForCachedImageOnDisk()) {
+            return;
         }
         
         void(^operationCompletionBlock)(BBThumbnailGeneratorImageClass *image, NSError *error) = ^(BBThumbnailGeneratorImageClass *image, NSError *error){
             cacheImageBlock(image,error,BBThumbnailGeneratorCacheTypeNone);
         };
         
-        if (URL.isFileURL) {
-            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.lastPathComponent.pathExtension, NULL);
-            
+        NSOperation<BBThumbnailOperation>*(^thumbnailOperationForUTI)(NSURL *, NSString *) = ^NSOperation*(NSURL *URL, NSString *UTI){
             if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
-                [retval setOperation:[[BBThumbnailImageOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+                return [[BBThumbnailImageOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
-                [retval setOperation:[[BBThumbnailMovieOperation alloc] initWithURL:URL size:size time:time completion:operationCompletionBlock]];
+                return [[BBThumbnailMovieOperation alloc] initWithURL:URL size:size time:time completion:operationCompletionBlock];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
-                [retval setOperation:[[BBThumbnailPDFOperation alloc] initWithURL:URL size:size page:page completion:operationCompletionBlock]];
+                return [[BBThumbnailPDFOperation alloc] initWithURL:URL size:size page:page completion:operationCompletionBlock];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF) ||
                      UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD)) {
-                [retval setOperation:[[BBThumbnailRTFOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+                return [[BBThumbnailRTFOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock];
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
-                [retval setOperation:[[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+                return [[BBThumbnailTextOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock];
             }
 #if (TARGET_OS_IPHONE)
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
                      [@[@"doc",@"docx",@"xls",@"xlsx",@"ppt",@"pptx",@"csv"] containsObject:URL.lastPathComponent.pathExtension.lowercaseString]) {
-                [retval setOperation:[[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+                return [[BBThumbnailDocumentOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock];
             }
 #endif
             else {
 #if (TARGET_OS_IPHONE)
-                cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
+                return nil;
 #else
-                [retval setOperation:[[BBThumbnailQuickLookOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock]];
+                return [[BBThumbnailQuickLookOperation alloc] initWithURL:URL size:size completion:operationCompletionBlock];
 #endif
+            }
+        };
+        
+        if (URL.isFileURL) {
+            NSString *UTI;
+            
+            if (URL.pathExtension.length > 0) {
+                UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
+            }
+            else {
+                UTI = [GEMagicKit magicForFileAtURL:URL].uniformType;
+            }
+            
+            NSOperation<BBThumbnailOperation> *operation = thumbnailOperationForUTI(URL,UTI);
+            
+            if (operation == nil) {
+                cacheImageBlock(nil,nil,BBThumbnailGeneratorCacheTypeNone);
+            }
+            else {
+                [retval setOperation:operation];
             }
         }
         else {
-            if ([URL.host isEqualToString:@"www.youtube.com"] &&
+            NSURL *downloadURL = [self downloadCacheURLForURL:URL];
+            
+            if ([downloadURL checkResourceIsReachableAndReturnError:NULL]) {
+                NSString *UTI = [GEMagicKit magicForFileAtURL:downloadURL].uniformType;
+                NSOperation<BBThumbnailOperation> *operation = thumbnailOperationForUTI(downloadURL,UTI);
+                
+                [retval setOperation:operation];
+            }
+            else if ([URL.host isEqualToString:@"www.youtube.com"] &&
                 self.youTubeAPIKey.length > 0) {
                 
                 [retval setOperation:[[BBThumbnailYouTubeOperation alloc] initWithURL:URL size:size APIKey:self.youTubeAPIKey completion:operationCompletionBlock]];

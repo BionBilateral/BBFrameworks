@@ -18,8 +18,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-static int32_t const kPreferredTimeScale = 1;
-
 @interface BBThumbnailMovieOperation ()
 @property (strong,nonatomic) NSURL *URL;
 @property (assign,nonatomic) BBThumbnailGeneratorSizeStruct size;
@@ -41,7 +39,7 @@ static int32_t const kPreferredTimeScale = 1;
     [assetImageGenerator setAppliesPreferredTrackTransform:YES];
     
     NSError *outError;
-    CGImageRef imageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMakeWithSeconds(self.time, kPreferredTimeScale) actualTime:NULL error:&outError];
+    CGImageRef imageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMakeWithSeconds(self.time, NSEC_PER_SEC) actualTime:NULL error:&outError];
     
     if (!imageRef) {
         self.operationCompletionBlock(nil,outError);
