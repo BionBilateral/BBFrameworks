@@ -21,9 +21,16 @@
 /**
  Executes the provided block on the main thread synchronously. If the caller is already on the main thread, immediately executes the block, otherwise uses dispatch_sync.
  
- @param block The block the execute
+ @param block The block to execute
  @exception NSException Thrown if block is nil
  */
 extern void BBDispatchMainSyncSafe(void (^block)(void));
+/**
+ Executes the provided block on the main thread asynchronously.
+ 
+ @param block The block to execute
+ @exception NSException Thrown if block is nil
+ */
+extern void BBDispatchMainAsync(void (^block)(void));
 
 #endif

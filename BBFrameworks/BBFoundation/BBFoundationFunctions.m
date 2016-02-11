@@ -25,3 +25,9 @@ void BBDispatchMainSyncSafe(void (^block)(void)) {
         dispatch_sync(dispatch_get_main_queue(), block);
     }
 }
+
+void BBDispatchMainAsync(void (^block)(void)) {
+    NSCParameterAssert(block);
+    
+    dispatch_async(dispatch_get_main_queue(), block);
+}
