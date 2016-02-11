@@ -56,8 +56,9 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     if (!(self = [super init]))
         return nil;
     
-    [self setCurrentPersonSortOrdering:ABPersonGetSortOrdering()];
-    [self setAddressBookQueue:dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_CONCURRENT)];
+    _currentPersonSortOrdering = ABPersonGetSortOrdering();
+    _addressBookQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.%p",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL);
+    dispatch_set_target_queue(_addressBookQueue, dispatch_get_global_queue(QOS_CLASS_UTILITY, 0));
     
     return self;
 }
@@ -81,7 +82,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
             CFRelease(addressBookRef);
             
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 if (granted) {
                     completion(YES,nil);
                 }
@@ -92,7 +93,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         });
     }
     else {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(NO,(__bridge NSError *)errorRef);
         });
     }
@@ -150,13 +151,13 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                     }
                 }
                 
-                BBDispatchMainSyncSafe(^{
+                BBDispatchMainAsync(^{
                     completion([retval copy],nil);
                 });
             });
         }
         else {
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 completion(nil,error);
             });
         }
@@ -214,13 +215,13 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                     }
                 }
                 
-                BBDispatchMainSyncSafe(^{
+                BBDispatchMainAsync(^{
                     completion([retval copy],nil);
                 });
             });
         }
         else {
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 completion(nil,error);
             });
         }
@@ -265,13 +266,13 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                     people = [people sortedArrayUsingDescriptors:sortDescriptors];
                 }
                 
-                BBDispatchMainSyncSafe(^{
+                BBDispatchMainAsync(^{
                     completion(people,nil);
                 });
             });
         }
         else {
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 completion(nil,error);
             });
         }
@@ -301,13 +302,13 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                     groups = [groups sortedArrayUsingDescriptors:sortDescriptors];
                 }
                 
-                BBDispatchMainSyncSafe(^{
+                BBDispatchMainAsync(^{
                     completion(groups,nil);
                 });
             });
         }
         else {
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 completion(nil,error);
             });
         }
@@ -315,11 +316,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 #pragma mark *** Private Methods ***
 - (void)_createAddressBookIfNecessary; {
-    if (self.addressBook == NULL) {
-        [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
+    if (_addressBook == NULL) {
+        _addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
         
-        if (self.addressBook) {
-            ABAddressBookRegisterExternalChangeCallback(self.addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
+        if (_addressBook != NULL) {
+            ABAddressBookRegisterExternalChangeCallback(_addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
         }
     }
 }
@@ -327,8 +328,15 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     NSParameterAssert(completion);
     
     if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
-        [self _createAddressBookIfNecessary];
-        completion(YES,nil);
+        BBWeakify(self);
+        dispatch_async(self.addressBookQueue, ^{
+            BBStrongify(self);
+            [self _createAddressBookIfNecessary];
+            
+            BBDispatchMainAsync(^{
+                completion(YES,nil);
+            });
+        });
         return;
     }
     
@@ -338,7 +346,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         [self _createAddressBookIfNecessary];
         
         ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 if (granted) {
                     completion(YES,nil);
                 }
@@ -350,7 +358,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     });
 }
 - (void)_addressBookChanged; {
-    BBDispatchMainSyncSafe(^{
+    BBDispatchMainAsync(^{
         [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
     });
 }
