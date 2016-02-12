@@ -43,8 +43,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.gradientView setColors:@[BBColorWA(0.0, 0.5),BBColorWA(0.0, 0.75)]];
-    
     BBWeakify(self);
     [[RACObserve(self, model.assetCollectionModel.model.theme)
      deliverOn:[RACScheduler mainThreadScheduler]]
@@ -53,6 +51,8 @@
          BBMediaPickerTheme *theme = self.model.assetCollectionModel.model.theme ?: [BBMediaPickerTheme defaultTheme];
          
          [self setSelectedOverlayView:[[theme.assetSelectedOverlayViewClass alloc] initWithFrame:CGRectZero]];
+         
+         [self.gradientView setColors:theme.assetBottomGradientColors];
          
          [self.durationLabel setFont:theme.assetDurationFont];
          [self.durationLabel setTextColor:theme.assetForegroundColor];
