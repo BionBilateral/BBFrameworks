@@ -209,6 +209,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIFont *assetSelectedOverlayViewSelectedIndexFont;
 /**
+ Set and get the colors used to draw the bottom gradient view that is visible when a video asset is being displayed. The colors are drawn from top to bottom.
+ 
+ The default is @[BBColorWA(0.0, 0.5),BBColorWA(0.0, 0.75)].
+ */
+@property (copy,nonatomic,null_resettable) NSArray<UIColor *> *assetBottomGradientColors;
+/**
  Set and get the asset type video image, which is used to badge video assets in the collection view.
  
  The default is [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"].

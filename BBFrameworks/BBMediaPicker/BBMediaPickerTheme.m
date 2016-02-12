@@ -43,6 +43,7 @@
 + (Class)_defaultAssetSelectedOverlayViewClass;
 + (UIColor *)_defaultAssetSelectedOverlayViewTintColor;
 + (UIFont *)_defaultAssetSelectedOverlayViewSelectedIndexFont;
++ (NSArray<UIColor *> *)_defaultAssetBottomGradientColors;
 + (UIImage *)_defaultAssetTypeVideoImage;
 + (UIColor *)_defaultAssetForegroundColor;
 + (UIFont *)_defaultAssetDurationFont;
@@ -81,6 +82,7 @@
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
     _assetSelectedOverlayViewTintColor = [self.class _defaultAssetSelectedOverlayViewTintColor];
     _assetSelectedOverlayViewSelectedIndexFont = [self.class _defaultAssetSelectedOverlayViewSelectedIndexFont];
+    _assetBottomGradientColors = [self.class _defaultAssetBottomGradientColors];
     _assetTypeVideoImage = [self.class _defaultAssetTypeVideoImage];
     _assetForegroundColor = [self.class _defaultAssetForegroundColor];
     _assetDurationFont = [self.class _defaultAssetDurationFont];
@@ -190,6 +192,9 @@
 - (void)setAssetSelectedOverlayViewSelectedIndexFont:(UIFont *)assetSelectedOverlayViewSelectedIndexFont {
     _assetSelectedOverlayViewSelectedIndexFont = assetSelectedOverlayViewSelectedIndexFont ?: [self.class _defaultAssetSelectedOverlayViewSelectedIndexFont];
 }
+- (void)setAssetBottomGradientColors:(NSArray<UIColor *> *)assetBottomGradientColors {
+    _assetBottomGradientColors = [assetBottomGradientColors copy] ?: [self.class _defaultAssetBottomGradientColors];
+}
 - (void)setAssetTypeVideoImage:(UIImage *)assetTypeVideoImage {
     _assetTypeVideoImage = assetTypeVideoImage ?: [self.class _defaultAssetTypeVideoImage];
 }
@@ -258,6 +263,9 @@
 }
 + (UIFont *)_defaultAssetSelectedOverlayViewSelectedIndexFont {
     return [UIFont boldSystemFontOfSize:12.0];
+}
++ (NSArray<UIColor *> *)_defaultAssetBottomGradientColors {
+    return @[BBColorWA(0.0, 0.5),BBColorWA(0.0, 0.75)];
 }
 + (UIImage *)_defaultAssetTypeVideoImage; {
     return [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"];
