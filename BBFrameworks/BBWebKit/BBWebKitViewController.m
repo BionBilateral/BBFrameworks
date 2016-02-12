@@ -60,6 +60,7 @@
     
     _showNavigationToolbar = YES;
     _showShareBarButtonItem = YES;
+    _doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
     
     return self;
 }
@@ -135,7 +136,7 @@
     }
     
     if (self.presentingViewController) {
-        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
+        UIBarButtonItem *doneItem = self.doneBarButtonItem;
         
         [doneItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             return [RACSignal return:@YES];
@@ -149,7 +150,12 @@
              [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
          }];
         
-        [self.navigationItem setLeftBarButtonItems:@[doneItem]];
+        if ([self.navigationController BB_progressNavigationBar]) {
+            [self.navigationItem setRightBarButtonItems:@[doneItem]];
+        }
+        else {
+            [self.navigationItem setLeftBarButtonItems:@[doneItem]];
+        }
     }
     
     UIBarButtonItem *goBackItem = [[UIBarButtonItem alloc] initWithImage:[self.class goBackImage] style:UIBarButtonItemStylePlain target:nil action:NULL];
@@ -363,6 +369,9 @@ static void *kGoForwardImageKey = &kGoForwardImageKey;
     [self didChangeValueForKey:@keypath(self,showNavigationToolbar)];
     
     [self.navigationController setToolbarHidden:!_showNavigationToolbar animated:animated];
+}
+- (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
+    _doneBarButtonItem = doneBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
 }
 #pragma mark ** Private Methods **
 + (UIImage *)_defaultGoBackImage; {
