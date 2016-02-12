@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the asset type video image, which is used to badge video assets in the collection view.
  
- The default is [UIImage imageNamed:@"media_picker_type_video"].
+ The default is [UIImage BB_imageInResourcesBundleNamed:@"media_picker_type_video"].
  */
 @property (strong,nonatomic,null_resettable) UIImage *assetTypeVideoImage;
 /**
