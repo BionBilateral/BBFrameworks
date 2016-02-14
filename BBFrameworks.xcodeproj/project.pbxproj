@@ -446,6 +446,8 @@
 		79EA2CA51C704F740019ACF9 /* UIBezierPath+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */; };
 		79EA2CA81C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79EA2CA91C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA2CA71C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m */; };
+		79EA2CAB1C7056080019ACF9 /* BBCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA2CAA1C7055500019ACF9 /* BBCore.h */; };
+		79EA2CAC1C7056630019ACF9 /* BBCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA2CAA1C7055500019ACF9 /* BBCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
 		79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; };
 		79EA807E1B3F088B00D50B6B /* BBFoundation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; };
@@ -712,6 +714,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
+				79EA2CAB1C7056080019ACF9 /* BBCore.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
@@ -1452,6 +1455,7 @@
 		79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+BBKitExtensions.m"; path = "iOS/UIBezierPath+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBezierPath+BBKitExtensions.h"; path = "OSX/NSBezierPath+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79EA2CA71C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBezierPath+BBKitExtensions.m"; path = "OSX/NSBezierPath+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79EA2CAA1C7055500019ACF9 /* BBCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBCore.h; sourceTree = "<group>"; };
 		79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80631B3F04FE00D50B6B /* BBFrameworksTestsiOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80701B3F063500D50B6B /* BBFrameworksTestsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsiOS-Info.plist"; sourceTree = "<group>"; };
@@ -2827,6 +2831,7 @@
 		79EA81081B3F143300D50B6B /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				79EA2CAA1C7055500019ACF9 /* BBCore.h */,
 				79EA810A1B3F14E700D50B6B /* BBFrameworksConstants.h */,
 				799C0C701B61B4C100A3888A /* BBFrameworksMacros.h */,
 				796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */,
@@ -2926,6 +2931,7 @@
 				79EA81731B3F228C00D50B6B /* BBReactiveThumbnail.h in Headers */,
 				07B26DF11BB44FAE00CB7BAD /* BBKeyValueObservingToken.h in Headers */,
 				07E312C01BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h in Headers */,
+				79EA2CAC1C7056630019ACF9 /* BBCore.h in Headers */,
 				070E38D51C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.h in Headers */,
 				79EA81611B3F226100D50B6B /* NSColor+BBKitExtensions.h in Headers */,
 				791996EC1B6EB3C500FC674A /* BBThumbnailDownloadOperation.h in Headers */,
