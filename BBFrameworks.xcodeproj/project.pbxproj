@@ -442,6 +442,8 @@
 		79D540961B4B6E92009ECE38 /* BBTokenTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79D540931B4B6E8D009ECE38 /* BBTokenTextView.h */; };
 		79DD3E7C1B3345F700EF4E44 /* BaseRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */; };
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
+		79EA2CA41C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */; };
+		79EA2CA51C704F740019ACF9 /* UIBezierPath+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */; };
 		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
 		79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; };
 		79EA807E1B3F088B00D50B6B /* BBFoundation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; };
@@ -712,6 +714,7 @@
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
 				0730748D1C3AE258001FC8FE /* PHAsset+BBMediaPickerExtensions.h in CopyFiles */,
+				79EA2CA51C704F740019ACF9 /* UIBezierPath+BBKitExtensions.h in CopyFiles */,
 				07442AF91C5BE4B800E89BAE /* BBAuthorizationStatusManager.h in CopyFiles */,
 				070E38D01C232C45002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.h in CopyFiles */,
 				07442AF81C5BE4B600E89BAE /* BBAuthorizationStatus.h in CopyFiles */,
@@ -1443,6 +1446,8 @@
 		79DD3E7E1B337B6F00EF4E44 /* BBGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBGradientView.m; sourceTree = "<group>"; };
 		79E0BC141B27CEDD00892D81 /* WebViewRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewRowViewController.h; sourceTree = "<group>"; };
 		79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewRowViewController.m; sourceTree = "<group>"; };
+		79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBezierPath+BBKitExtensions.h"; path = "iOS/UIBezierPath+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+BBKitExtensions.m"; path = "iOS/UIBezierPath+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80631B3F04FE00D50B6B /* BBFrameworksTestsiOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80701B3F063500D50B6B /* BBFrameworksTestsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsiOS-Info.plist"; sourceTree = "<group>"; };
@@ -2733,6 +2738,8 @@
 				799F9B9C1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m */,
 				799F9B9F1B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.h */,
 				799F9BA01B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.m */,
+				79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */,
+				79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -3717,6 +3724,7 @@
 				792F153D1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */,
 				79EA80D91B3F0CF300D50B6B /* UIViewController+BBKitExtensions.m in Sources */,
 				79EA80D11B3F0CE400D50B6B /* BBBadgeView.m in Sources */,
+				79EA2CA41C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m in Sources */,
 				07B3D9091B60373B00FA1853 /* BBFormBooleanSwitchTableViewCell.m in Sources */,
 				799C0C261B5876E300A3888A /* BBFormTableViewController.m in Sources */,
 				79344C1A1C01324700BBA726 /* BBMediaViewerDetailViewController.m in Sources */,

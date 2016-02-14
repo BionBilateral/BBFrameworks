@@ -36,6 +36,7 @@
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "UIAlertController+BBKitExtensions.h"
 #import "UIDevice+BBKitExtensions.h"
+#import "UIBezierPath+BBKitExtensions.h"
 
 #import "BBLabel.h"
 #import "BBTextField.h"
