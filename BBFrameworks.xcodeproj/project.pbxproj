@@ -444,6 +444,8 @@
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
 		79EA2CA41C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */; };
 		79EA2CA51C704F740019ACF9 /* UIBezierPath+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */; };
+		79EA2CA81C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */; };
+		79EA2CA91C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA2CA71C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m */; };
 		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
 		79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; };
 		79EA807E1B3F088B00D50B6B /* BBFoundation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7927CF6A1B1AD2B90034288D /* BBFoundation.h */; };
@@ -1448,6 +1450,8 @@
 		79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewRowViewController.m; sourceTree = "<group>"; };
 		79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBezierPath+BBKitExtensions.h"; path = "iOS/UIBezierPath+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+BBKitExtensions.m"; path = "iOS/UIBezierPath+BBKitExtensions.m"; sourceTree = "<group>"; };
+		79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBezierPath+BBKitExtensions.h"; path = "OSX/NSBezierPath+BBKitExtensions.h"; sourceTree = "<group>"; };
+		79EA2CA71C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBezierPath+BBKitExtensions.m"; path = "OSX/NSBezierPath+BBKitExtensions.m"; sourceTree = "<group>"; };
 		79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBBFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80631B3F04FE00D50B6B /* BBFrameworksTestsiOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBFrameworksTestsiOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79EA80701B3F063500D50B6B /* BBFrameworksTestsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BBFrameworksTestsiOS-Info.plist"; sourceTree = "<group>"; };
@@ -2740,6 +2744,8 @@
 				799F9BA01B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.m */,
 				79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */,
 				79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */,
+				79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */,
+				79EA2CA71C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2859,6 +2865,7 @@
 				79EA81481B3F21FE00D50B6B /* BBFrameworksFunctions.h in Headers */,
 				791996F61B6EB3C500FC674A /* BBThumbnailMovieOperation.h in Headers */,
 				79F436631C11F0CF002546E8 /* BBTimer.h in Headers */,
+				79EA2CA81C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h in Headers */,
 				79EA815B1B3F223600D50B6B /* BBDefaultManagedObjectPropertyMapping.h in Headers */,
 				79EA814B1B3F221600D50B6B /* BBFoundationFunctions.h in Headers */,
 				79A6BB1F1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.h in Headers */,
@@ -3784,6 +3791,7 @@
 				79EA817D1B3F22C300D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
 				079875141BD021D5005422B2 /* BBKeychain.m in Sources */,
 				79239D0C1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */,
+				79EA2CA91C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m in Sources */,
 				078563B11BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m in Sources */,
 				792F153E1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m in Sources */,
 				078563B41BB461A900EEEFF5 /* NSObject+BBKeyValueObservingExtensionsPrivate.m in Sources */,
