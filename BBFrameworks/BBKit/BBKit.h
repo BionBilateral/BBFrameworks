@@ -54,6 +54,7 @@
 #import "NSView+BBKitExtensions.h"
 #import "NSViewController+BBKitExtensions.h"
 #import "NSWindow+BBKitExtensions.h"
+#import "NSBezierPath+BBKitExtensions.h"
 #endif
 
 #import "BBBadgeView.h"

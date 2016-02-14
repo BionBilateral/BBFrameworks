@@ -444,7 +444,7 @@
 		79E0BC161B27CEDD00892D81 /* WebViewRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0BC151B27CEDD00892D81 /* WebViewRowViewController.m */; };
 		79EA2CA41C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA2CA31C704F620019ACF9 /* UIBezierPath+BBKitExtensions.m */; };
 		79EA2CA51C704F740019ACF9 /* UIBezierPath+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EA2CA21C704F620019ACF9 /* UIBezierPath+BBKitExtensions.h */; };
-		79EA2CA81C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */; };
+		79EA2CA81C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79EA2CA61C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79EA2CA91C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EA2CA71C70531F0019ACF9 /* NSBezierPath+BBKitExtensions.m */; };
 		79EA80641B3F04FE00D50B6B /* libBBFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79EA80591B3F04FE00D50B6B /* libBBFrameworks.a */; };
 		79EA807D1B3F088500D50B6B /* BBFrameworks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C000D71B1ACE0E004C9A6E /* BBFrameworks.h */; };
