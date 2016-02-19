@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBMediaPickerTheme : NSObject <NSCopying>
 
 /**
+ Set and get the name of the theme. Useful for debugging.
+ */
+@property (copy,nonatomic) NSString *name;
+/**
  Set and get the title font, which is used to display the name of the selected asset collection in the navigation bar.
  
  The default is [UIFont boldSystemFontOfSize:17.0].

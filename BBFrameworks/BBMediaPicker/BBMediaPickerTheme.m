@@ -51,6 +51,10 @@
 
 @implementation BBMediaPickerTheme
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p name=\"%@\"",NSStringFromClass([self class]),self,self.name];
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -132,6 +136,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         kRetval = [[BBMediaPickerTheme alloc] init];
+        
+        [kRetval setName:@"com.bionbilateral.bbmediapicker.theme.default"];
     });
     return kRetval;
 }
