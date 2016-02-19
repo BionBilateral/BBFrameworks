@@ -83,6 +83,8 @@
     _assetCollectionCellCheckmarkColor = [self.class _defaultAssetCollectionCellCheckmarkColor];
     
     _assetBackgroundColor = [self.class _defaultAssetBackgroundColor];
+    _assetMinimumInteritemSpacing = 1.0;
+    _assetMinimumLineSpacing = 1.0;
     _assetSelectedOverlayViewClass = [self.class _defaultAssetSelectedOverlayViewClass];
     _assetSelectedOverlayViewTintColor = [self.class _defaultAssetSelectedOverlayViewTintColor];
     _assetSelectedOverlayViewSelectedIndexFont = [self.class _defaultAssetSelectedOverlayViewSelectedIndexFont];
@@ -127,6 +129,8 @@
     [retval setAssetCollectionPopoverArrowWidth:self.assetCollectionPopoverArrowWidth];
     
     [retval setAssetBackgroundColor:self.assetBackgroundColor];
+    [retval setAssetMinimumInteritemSpacing:self.assetMinimumInteritemSpacing];
+    [retval setAssetMinimumLineSpacing:self.assetMinimumLineSpacing];
     [retval setAssetSelectedOverlayViewClass:self.assetSelectedOverlayViewClass];
     [retval setAssetSelectedOverlayViewTintColor:self.assetSelectedOverlayViewTintColor];
     [retval setAssetSelectedOverlayViewSelectedIndexFont:self.assetSelectedOverlayViewSelectedIndexFont];
@@ -195,6 +199,12 @@
 
 - (void)setAssetBackgroundColor:(UIColor *)assetBackgroundColor {
     _assetBackgroundColor = assetBackgroundColor ?: [self.class _defaultAssetBackgroundColor];
+}
+- (void)setAssetMinimumInteritemSpacing:(CGFloat)assetMinimumInteritemSpacing {
+    _assetMinimumInteritemSpacing = assetMinimumInteritemSpacing < 0.0 ? 0.0 : assetMinimumInteritemSpacing;
+}
+- (void)setAssetMinimumLineSpacing:(CGFloat)assetMinimumLineSpacing {
+    _assetMinimumLineSpacing = assetMinimumLineSpacing < 0.0 ? 0.0 : assetMinimumLineSpacing;
 }
 - (void)setAssetSelectedOverlayViewClass:(Class)assetSelectedOverlayViewClass {
     _assetSelectedOverlayViewClass = assetSelectedOverlayViewClass ?: [self.class _defaultAssetSelectedOverlayViewClass];

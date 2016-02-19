@@ -123,7 +123,12 @@
 }
 
 - (instancetype)initWithModel:(BBMediaPickerModel *)model {
-    if (!(self = [super initWithCollectionViewLayout:[[BBMediaPickerAssetCollectionViewLayout alloc] init]]))
+    BBMediaPickerAssetCollectionViewLayout *layout = [[BBMediaPickerAssetCollectionViewLayout alloc] init];
+    
+    [layout setMinimumInteritemSpacing:model.theme.assetMinimumInteritemSpacing];
+    [layout setMinimumLineSpacing:model.theme.assetMinimumLineSpacing];
+    
+    if (!(self = [super initWithCollectionViewLayout:layout]))
         return nil;
     
     [self setModel:model];

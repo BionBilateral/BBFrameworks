@@ -195,6 +195,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
 /**
+ Set and get the asset minimum interitem spacing, which is used to set the minimumInteritemSpacing on the collection view layout of the collection view that displays assets.
+ 
+ The default is 1.0.
+ */
+@property (assign,nonatomic) CGFloat assetMinimumInteritemSpacing;
+/**
+ Set and get the asset minimum line spacing, which is used to set the minimumLineSpacing on the collection view layout of the collection view that displays assets.
+ 
+ The default is 1.0.
+ */
+@property (assign,nonatomic) CGFloat assetMinimumLineSpacing;
+
+/**
  Set and get the asset selected overlay view class, which is responsible for drawing the relevant chrome for selected assets. A default class is provided, but if a custom class is set, instances must conform to the BBMediaPickerAssetSelectedOverlayView protocol.
  
  @see BBMediaPickerAssetSelectedOverlayView

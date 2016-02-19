@@ -26,8 +26,6 @@
     _numberOfColumns = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 5 : 4;
     
     [self setSectionInset:UIEdgeInsetsZero];
-    [self setMinimumInteritemSpacing:1.0];
-    [self setMinimumLineSpacing:1.0];
     
     return self;
 }
