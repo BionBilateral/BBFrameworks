@@ -107,11 +107,16 @@
     [retval setDoneBarButtonItem:self.doneBarButtonItem];
     [retval setDoneBottomAccessoryControlClass:self.doneBottomAccessoryControlClass];
     
+    [retval setSelectionBorderWidth:self.selectionBorderWidth];
+    
     [retval setAssetCollectionBackgroundColor:self.assetCollectionBackgroundColor];
     [retval setAssetCollectionCellBackgroundColor:self.assetCollectionCellBackgroundColor];
     [retval setAssetCollectionCellTitleFont:self.assetCollectionCellTitleFont];
     [retval setAssetCollectionCellTitleColor:self.assetCollectionCellTitleColor];
+    [retval setAssetCollectionCellSubtitleFont:self.assetCollectionCellSubtitleFont];
+    [retval setAssetCollectionCellSubtitleColor:self.assetCollectionCellSubtitleColor];
     [retval setAssetCollectionCellCheckmarkColor:self.assetCollectionCellCheckmarkColor];
+    [retval setAssetCollectionCellAccessoryImage:self.assetCollectionCellAccessoryImage];
     [retval setAssetCollectionForegroundColor:self.assetCollectionForegroundColor];
     [retval setAssetCollectionSeparatorColor:self.assetCollectionSeparatorColor];
     [retval setAssetCollectionSeparatorEdgeInsets:self.assetCollectionSeparatorEdgeInsets];
@@ -124,6 +129,8 @@
     [retval setAssetBackgroundColor:self.assetBackgroundColor];
     [retval setAssetSelectedOverlayViewClass:self.assetSelectedOverlayViewClass];
     [retval setAssetSelectedOverlayViewTintColor:self.assetSelectedOverlayViewTintColor];
+    [retval setAssetSelectedOverlayViewSelectedIndexFont:self.assetSelectedOverlayViewSelectedIndexFont];
+    [retval setAssetBottomGradientColors:self.assetBottomGradientColors];
     [retval setAssetTypeVideoImage:self.assetTypeVideoImage];
     [retval setAssetForegroundColor:self.assetForegroundColor];
     [retval setAssetDurationFont:self.assetDurationFont];

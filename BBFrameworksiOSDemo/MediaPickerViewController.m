@@ -135,6 +135,12 @@
     [viewController setDelegate:self];
     [viewController setAllowsMultipleSelection:YES];
     
+    BBMediaPickerTheme *theme = [[BBMediaPickerTheme alloc] init];
+    
+    [theme setAssetCollectionCellSubtitleColor:[UIColor orangeColor]];
+    
+    [viewController setTheme:theme];
+    
     [self presentViewController:[[MediaPickerNavigationController alloc] initWithRootViewController:viewController] animated:YES completion:nil];
 }
 - (IBAction)_customPushButtonAction:(id)sender {
