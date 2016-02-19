@@ -71,12 +71,18 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
-    if (self.model.model.theme.assetCollectionCellAccessoryImage) {
-        [self setAccessoryType:UITableViewCellAccessoryNone];
-        [self setAccessoryView:[[UIImageView alloc] initWithImage:self.model.model.theme.assetCollectionCellAccessoryImage]];
+    if (selected) {
+        if (self.model.model.theme.assetCollectionCellAccessoryImage != nil) {
+            [self setAccessoryType:UITableViewCellAccessoryNone];
+            [self setAccessoryView:[[UIImageView alloc] initWithImage:self.model.model.theme.assetCollectionCellAccessoryImage]];
+        }
+        else {
+            [self setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
     }
     else {
-        [self setAccessoryType:selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
+        [self setAccessoryType:UITableViewCellAccessoryNone];
+        [self setAccessoryView:nil];
     }
     
     [self.thumbnailView1.layer setBorderWidth:selected ? self.model.model.theme.selectionBorderWidth : 0.0];

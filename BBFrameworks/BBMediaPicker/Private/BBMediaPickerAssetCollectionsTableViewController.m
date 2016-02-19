@@ -31,6 +31,7 @@
     [super viewDidLoad];
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setRowHeight:[BBMediaPickerAssetCollectionTableViewCell rowHeight]];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionTableViewCell class])];
     
