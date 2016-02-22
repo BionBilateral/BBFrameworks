@@ -121,12 +121,25 @@
         @strongify(self);
         [self setNeedsLayout];
     }];
-    RAC(self.secureImageView,image) = [[[RACSignal combineLatest:@[RACObserve(self, hasOnlySecureContentImage),RACObserve(self, URLTextColor)] reduce:^id(UIImage *image, UIColor *color){
-        return image && color ? [image BB_imageByRenderingWithColor:color] : nil;
-    }] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {
-        @strongify(self);
-        [self setNeedsLayout];
-    }];
+    RAC(self.secureImageView,image) =
+    [[[[RACSignal merge:@[RACObserve(self, hasOnlySecureContentImage),
+                          RACObserve(self, URLTextColor)]]
+       deliverOn:[RACScheduler mainThreadScheduler]]
+      map:^id(id _) {
+          @strongify(self);
+          if (self.hasOnlySecureContentImage &&
+              self.URLTextColor) {
+              
+              return [self.hasOnlySecureContentImage BB_imageByRenderingWithColor:self.URLTextColor];
+          }
+          else {
+              return nil;
+          }
+      }]
+     doNext:^(id _) {
+         @strongify(self);
+         [self setNeedsLayout];
+     }];
     
     return self;
 }
