@@ -103,10 +103,22 @@
          }];
         
         if (self.showShareBarButtonItem) {
-            [self.navigationItem setRightBarButtonItems:@[shareItem]];
+            if (self.presentingViewController) {
+                [self.navigationItem setLeftBarButtonItems:@[shareItem]];
+            }
+            else {
+                [self.navigationItem setRightBarButtonItems:@[shareItem]];
+            }
         }
         else {
-            [self.navigationItem setRightBarButtonItems:@[[UIBarButtonItem BB_fixedSpaceBarButtonItemWithWidth:44.0]]];
+            UIBarButtonItem *spaceItem = [UIBarButtonItem BB_fixedSpaceBarButtonItemWithWidth:32.0];
+            
+            if (self.presentingViewController) {
+                [self.navigationItem setLeftBarButtonItems:@[spaceItem]];
+            }
+            else {
+                [self.navigationItem setRightBarButtonItems:@[spaceItem]];
+            }
         }
     }
     else {
