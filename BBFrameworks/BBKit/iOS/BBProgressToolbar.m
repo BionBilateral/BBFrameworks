@@ -1,9 +1,9 @@
 //
-//  BBProgressNavigationBar.m
+//  BBProgressToolbar.m
 //  BBFrameworks
 //
-//  Created by William Towe on 6/9/15.
-//  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
+//  Created by William Towe on 2/23/16.
+//  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -13,26 +13,26 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBProgressNavigationBar.h"
+#import "BBProgressToolbar.h"
 #import "BBFrameworksMacros.h"
 
 static NSString *const kProgressHiddenKeyPath = @"progressHidden";
 static NSString *const kProgressKeyPath = @"progress";
 
-@interface BBProgressNavigationBar ()
+@interface BBProgressToolbar ()
 @property (strong,nonatomic) UIProgressView *progressView;
 
-- (void)_BBProgressNavigationBarInit;
+- (void)_BBProgressToolbarInit;
 @end
 
-@implementation BBProgressNavigationBar
+@implementation BBProgressToolbar
 
 #pragma mark ** Subclass Overrides **
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self _BBProgressNavigationBarInit];
+    [self _BBProgressToolbarInit];
     
     return self;
 }
@@ -40,13 +40,13 @@ static NSString *const kProgressKeyPath = @"progress";
     if (!(self = [super initWithCoder:aDecoder]))
         return nil;
     
-    [self _BBProgressNavigationBarInit];
+    [self _BBProgressToolbarInit];
     
     return self;
 }
 
 - (void)didAddSubview:(UIView *)subview {
-    [subview didAddSubview:subview];
+    [super didAddSubview:subview];
     
     [self bringSubviewToFront:self.progressView];
 }
@@ -93,22 +93,22 @@ static NSString *const kProgressKeyPath = @"progress";
     [self didChangeValueForKey:kProgressKeyPath];
 }
 #pragma mark ** Private Methods **
-- (void)_BBProgressNavigationBarInit; {
+- (void)_BBProgressToolbarInit; {
     [self setProgressView:[[UIProgressView alloc] initWithFrame:CGRectZero]];
     [self.progressView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.progressView setAlpha:0.0];
     [self addSubview:self.progressView];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.progressView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view]|" options:0 metrics:nil views:@{@"view": self.progressView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]" options:0 metrics:nil views:@{@"view": self.progressView}]];
 }
 
 @end
 
-@implementation UINavigationController (BBProgressNavigationBarExtensions)
+@implementation UINavigationController (BBProgressToolbarExtensions)
 
-- (BBProgressNavigationBar *)BB_progressNavigationBar; {
-    return [self.navigationBar isKindOfClass:[BBProgressNavigationBar class]] ? (BBProgressNavigationBar *)self.navigationBar : nil;
+- (BBProgressToolbar *)BB_progressToolbar; {
+    return [self.navigationBar isKindOfClass:[BBProgressToolbar class]] ? (BBProgressToolbar *)self.navigationBar : nil;
 }
 
 @end

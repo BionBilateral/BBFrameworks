@@ -428,6 +428,7 @@
 		79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EB11B3B9A8300C4AC28 /* ThumbnailsViewController.xib */; };
 		79C27EB61B3B9C4400C4AC28 /* ThumbnailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
+		79C469ED1C7D61D90089575A /* BBProgressToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C469EC1C7D61D90089575A /* BBProgressToolbar.m */; };
 		79CE6A401B784F3600A0E969 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79CE6A3E1B784F3600A0E969 /* Validation.strings */; };
 		79D17CEB1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D17CE91BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D17CEC1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D17CEA1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.m */; };
@@ -1431,6 +1432,8 @@
 		79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailItemViewController.m; sourceTree = "<group>"; };
 		79C27EC11B3BB8A100C4AC28 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
+		79C469EB1C7D61D90089575A /* BBProgressToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBProgressToolbar.h; path = iOS/BBProgressToolbar.h; sourceTree = "<group>"; };
+		79C469EC1C7D61D90089575A /* BBProgressToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBProgressToolbar.m; path = iOS/BBProgressToolbar.m; sourceTree = "<group>"; };
 		79CE6A3F1B784F3600A0E969 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Validation.strings; sourceTree = "<group>"; };
 		79D17CE91BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+BBKitExtensions.h"; path = "OSX/NSView+BBKitExtensions.h"; sourceTree = "<group>"; };
 		79D17CEA1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+BBKitExtensions.m"; path = "OSX/NSView+BBKitExtensions.m"; sourceTree = "<group>"; };
@@ -2689,6 +2692,8 @@
 				07A67E8F1B87A1DA008CCB02 /* BBProgressSlider.m */,
 				79EF41211BCC6E4D0018D711 /* BBProgressNavigationBar.h */,
 				79EF41221BCC6E4D0018D711 /* BBProgressNavigationBar.m */,
+				79C469EB1C7D61D90089575A /* BBProgressToolbar.h */,
+				79C469EC1C7D61D90089575A /* BBProgressToolbar.m */,
 				79F4366C1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.h */,
 				79F4366D1C121C4D002546E8 /* BBNetworkActivityIndicatorManager.m */,
 			);
@@ -3619,6 +3624,7 @@
 				7987CACE1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.m in Sources */,
 				791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */,
 				7987CAD01C0E9AE6000C4086 /* BBMediaPickerAssetModel.m in Sources */,
+				79C469ED1C7D61D90089575A /* BBProgressToolbar.m in Sources */,
 				070E38D61C2481D0002233E9 /* NSURLRequest+BBFoundationExtensions.m in Sources */,
 				070E38CE1C232C36002233E9 /* NSHTTPURLResponse+BBFoundationExtensions.m in Sources */,
 				7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */,
