@@ -429,6 +429,7 @@
 		79C27EB61B3B9C4400C4AC28 /* ThumbnailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
 		79C469ED1C7D61D90089575A /* BBProgressToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C469EC1C7D61D90089575A /* BBProgressToolbar.m */; };
+		79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C469EB1C7D61D90089575A /* BBProgressToolbar.h */; };
 		79CE6A401B784F3600A0E969 /* Validation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79CE6A3E1B784F3600A0E969 /* Validation.strings */; };
 		79D17CEB1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D17CE91BDD9E5C003A3BA6 /* NSView+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D17CEC1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D17CEA1BDD9E5C003A3BA6 /* NSView+BBKitExtensions.m */; };
@@ -716,6 +717,7 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79EA2CAB1C7056080019ACF9 /* BBCore.h in CopyFiles */,
+				79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,

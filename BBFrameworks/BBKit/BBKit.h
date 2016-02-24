@@ -47,6 +47,7 @@
 #import "BBAnythingGestureRecognizer.h"
 #import "BBProgressSlider.h"
 #import "BBProgressNavigationBar.h"
+#import "BBProgressToolbar.h"
 #import "BBNetworkActivityIndicatorManager.h"
 #else
 #import "NSImage+BBKitExtensions.h"
