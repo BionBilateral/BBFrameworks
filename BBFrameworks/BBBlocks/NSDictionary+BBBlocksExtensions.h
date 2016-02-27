@@ -165,25 +165,25 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The maximum of all keys in the receiver
  */
-- (id)BB_maximumKey;
+- (KeyType)BB_maximumKey;
 /**
  Returns the result of `[self.allValues BB_maximum]`.
  
  @return The maximum of all values in the receiver
  */
-- (id)BB_maximumValue;
+- (ObjectType)BB_maximumValue;
 /**
  Returns the result of `[self.allKeys BB_minimum]`.
  
  @return The minimum of all keys in the receiver
  */
-- (id)BB_minimumKey;
+- (KeyType)BB_minimumKey;
 /**
  Returns the result of `[self.allValues BB_minimum]`.
  
  @return The minimum of all values in the receiver
  */
-- (id)BB_minimumValue;
+- (ObjectType)BB_minimumValue;
 
 @end
 

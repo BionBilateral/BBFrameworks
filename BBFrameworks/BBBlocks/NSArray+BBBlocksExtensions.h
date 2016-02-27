@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The matching object or nil
  @exception NSException Thrown if block is nil
  */
-- (nullable id)BB_find:(BOOL(^)(ObjectType object, NSInteger index))block;
+- (nullable ObjectType)BB_find:(BOOL(^)(ObjectType object, NSInteger index))block;
 /**
  Return an array of the first object in the receiver along with its index for which block returns YES, or nil if block returns NO for all objects in the receiver.
  
@@ -192,13 +192,13 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The maximum value
  */
-- (id)BB_maximum;
+- (ObjectType)BB_maximum;
 /**
  Returns the minimum value of the objects in the receiver, which should all respond to the `compare`: method.
  
  @return The minimum value
  */
-- (id)BB_minimum;
+- (ObjectType)BB_minimum;
 
 @end
 
