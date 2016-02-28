@@ -1369,8 +1369,8 @@
 		79A6BB1E1BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BBFoundationExtensions.m"; sourceTree = "<group>"; };
 		79B1C10B1BB67A43005A8A0D /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Foundation.strings; sourceTree = "<group>"; };
 		79B1C10E1BB67AF1005A8A0D /* BBFoundationFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationFunctions.m; sourceTree = "<group>"; };
-		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTitleView.h; sourceTree = "<group>"; };
-		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTitleView.m; sourceTree = "<group>"; };
+		79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBWebKitTitleView.h; path = Private/BBWebKitTitleView.h; sourceTree = "<group>"; };
+		79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBWebKitTitleView.m; path = Private/BBWebKitTitleView.m; sourceTree = "<group>"; };
 		79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewController.h; sourceTree = "<group>"; };
 		79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitViewController.m; sourceTree = "<group>"; };
 		79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitViewControllerDelegate.h; sourceTree = "<group>"; };
