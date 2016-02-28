@@ -78,23 +78,6 @@
     return retval;
 }
 
-- (NSInteger)numberOfMediaInMediaViewer:(BBMediaViewerViewController *)mediaViewer {
-    return self.customURLs.count;
-}
-- (id<BBMediaViewerMedia>)mediaViewer:(BBMediaViewerViewController *)mediaViewer mediaAtIndex:(NSInteger)index {
-    return self.customURLs[index];
-}
-
-- (CGRect)mediaViewer:(BBMediaViewerViewController *)mediaViewer frameForMedia:(id<BBMediaViewerMedia>)media inSourceView:(UIView *__autoreleasing *)sourceView {
-    *sourceView = self.customButton;
-    return self.customButton.bounds;
-}
-- (UIImage *)mediaViewer:(BBMediaViewerViewController *)mediaViewer transitionImageForMedia:(id<BBMediaViewerMedia>)media contentRect:(CGRect *)contentRect {
-    UIImage *retval = [UIImage imageNamed:@"optimus_prime"];
-    *contentRect = CGRectMake(0, 0, ceil(retval.size.width * 0.5), retval.size.height);
-    return retval;
-}
-
 - (IBAction)_systemButtonAction:(id)sender {
     QLPreviewController *viewController = [[QLPreviewController alloc] init];
     

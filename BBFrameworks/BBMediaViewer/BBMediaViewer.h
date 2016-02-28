@@ -19,8 +19,7 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
-#import "NSURL+BBMediaViewerMediaExtensions.h"
-#import "UIViewController+BBMediaViewerExtensions.h"
+#import "BBMediaViewerTheme.h"
 #import "BBMediaViewerViewController.h"
 #endif
 

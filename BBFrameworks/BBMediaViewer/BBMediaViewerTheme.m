@@ -15,6 +15,38 @@
 
 #import "BBMediaViewerTheme.h"
 
+@interface BBMediaViewerTheme ()
++ (UIColor *)_defaultBackgroundColor;
+@end
+
 @implementation BBMediaViewerTheme
+
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    _backgroundColor = [self.class _defaultBackgroundColor];
+    
+    return self;
+}
+
++ (instancetype)defaultTheme; {
+    static BBMediaViewerTheme *kRetval;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kRetval = [[self alloc] init];
+        
+        [kRetval setName:@"com.bionbilateral.bbmediaviewer.theme.default"];
+    });
+    return kRetval;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    _backgroundColor = backgroundColor ?: [self.class _defaultBackgroundColor];
+}
+
++ (UIColor *)_defaultBackgroundColor; {
+    return [UIColor whiteColor];
+}
 
 @end
