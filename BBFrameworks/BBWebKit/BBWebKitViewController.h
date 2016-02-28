@@ -32,6 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (weak,nonatomic,nullable) id<BBWebKitViewControllerDelegate> delegate;
 
+/**
+ Set and get the theme used by the receiver.
+ 
+ The default is `[BBWebKitTheme defaultTheme]`.
+ 
+ @see BBWebKitTheme
+ */
 @property (strong,nonatomic,null_resettable) BBWebKitTheme *theme;
 
 /**
