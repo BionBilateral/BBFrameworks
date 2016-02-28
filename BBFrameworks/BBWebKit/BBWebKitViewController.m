@@ -15,10 +15,9 @@
 
 #import "BBWebKitViewController.h"
 #import "BBProgressNavigationBar.h"
-#import "BBWebKitTitleView+BBWebKitExtensionsPrivate.h"
+#import "BBWebKitTitleView.h"
 #import "UIImage+BBKitExtensions.h"
 #import "UIBarButtonItem+BBKitExtensions.h"
-#import "UIImage+BBKitExtensionsPrivate.h"
 #import "BBNetworkActivityIndicatorManager.h"
 #import "BBWebKitTheme.h"
 
@@ -37,8 +36,6 @@
 
 @property (strong,nonatomic) RACDisposable *URLRequestDisposable;
 
-+ (UIImage *)_defaultGoBackImage;
-+ (UIImage *)_defaultGoForwardImage;
 @end
 
 @implementation BBWebKitViewController
@@ -364,13 +361,6 @@
     [self didChangeValueForKey:@keypath(self,showNavigationToolbar)];
     
     [self.navigationController setToolbarHidden:!_showNavigationToolbar animated:animated];
-}
-#pragma mark ** Private Methods **
-+ (UIImage *)_defaultGoBackImage; {
-    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_back"];
-}
-+ (UIImage *)_defaultGoForwardImage; {
-    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_forward"];
 }
 
 @end

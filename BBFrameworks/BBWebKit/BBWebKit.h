@@ -20,7 +20,6 @@
 
 #if (TARGET_OS_IPHONE)
 #import "BBWebKitViewController.h"
-#import "BBWebKitTitleView.h"
 #import "BBWebKitTheme.h"
 #endif
 

@@ -16,7 +16,26 @@
 #import "WebViewRowViewController.h"
 
 #import <BBFrameworks/BBWebKit.h>
+#import <BBFrameworks/BBProgressNavigationBar.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
+@interface WebViewTheme : BBWebKitTheme
+
+@end
+
+@implementation WebViewTheme
+
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setTitleTextColor:[UIColor purpleColor]];
+    [self setURLTextColor:[UIColor redColor]];
+    
+    return self;
+}
+
+@end
 
 @interface WebViewRowViewController () <UITextFieldDelegate>
 @property (weak,nonatomic) IBOutlet UITextField *textField;
@@ -47,7 +66,16 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          @strongify(self);
-         [self BB_presentWebKitViewControllerForURLString:self.textField.text];
+         BBWebKitViewController *viewController = [[BBWebKitViewController alloc] init];
+         
+         [viewController setTheme:[[WebViewTheme alloc] init]];
+         [viewController loadURLString:self.textField.text];
+         
+         UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[BBProgressNavigationBar class] toolbarClass:Nil];
+         
+         [navigationController setViewControllers:@[viewController]];
+         
+         [self presentViewController:navigationController animated:YES completion:nil];
      }];
     
     [[[self.button.rac_command.executing

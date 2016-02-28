@@ -243,6 +243,7 @@
 		79239D0C1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79239D0A1B8022C1001AEB2E /* BBKitCGImageFunctions.m */; };
 		792A8DDD1C82C3480019B5C6 /* BBWebKitTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8DDC1C82C3480019B5C6 /* BBWebKitTheme.m */; };
 		792A8DDE1C82C3720019B5C6 /* BBWebKitTheme.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 792A8DDB1C82C3480019B5C6 /* BBWebKitTheme.h */; };
+		792A8DDF1C82DA040019B5C6 /* BBProgressNavigationBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79EF41211BCC6E4D0018D711 /* BBProgressNavigationBar.h */; };
 		792F15381B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
 		792F15391B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
 		792F153C1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -728,6 +729,7 @@
 				79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */,
 				7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
+				792A8DDF1C82DA040019B5C6 /* BBProgressNavigationBar.h in CopyFiles */,
 				792A8DDE1C82C3720019B5C6 /* BBWebKitTheme.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
@@ -1358,7 +1360,6 @@
 		799F9B9C1B6C9CC70067BAA8 /* NSViewController+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSViewController+BBKitExtensions.m"; path = "OSX/NSViewController+BBKitExtensions.m"; sourceTree = "<group>"; };
 		799F9B9F1B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+BBKitExtensions.h"; path = "OSX/NSWindow+BBKitExtensions.h"; sourceTree = "<group>"; };
 		799F9BA01B6C9EDE0067BAA8 /* NSWindow+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+BBKitExtensions.m"; path = "OSX/NSWindow+BBKitExtensions.m"; sourceTree = "<group>"; };
-		799F9BB51B6D7B260067BAA8 /* BBWebKitTitleView+BBWebKitExtensionsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BBWebKitTitleView+BBWebKitExtensionsPrivate.h"; path = "Private/BBWebKitTitleView+BBWebKitExtensionsPrivate.h"; sourceTree = "<group>"; };
 		799F9BB81B6D85170067BAA8 /* web_kit_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_kit_lock.png; sourceTree = "<group>"; };
 		799F9BB91B6D85170067BAA8 /* web_kit_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@2x.png"; sourceTree = "<group>"; };
 		799F9BBA1B6D85170067BAA8 /* web_kit_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_kit_lock@3x.png"; sourceTree = "<group>"; };
@@ -2298,7 +2299,6 @@
 				79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */,
 				79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */,
 				79B4FF9C1B363F55007B8629 /* BBWebKitTitleView.h */,
-				799F9BB51B6D7B260067BAA8 /* BBWebKitTitleView+BBWebKitExtensionsPrivate.h */,
 				79B4FF9D1B363F55007B8629 /* BBWebKitTitleView.m */,
 			);
 			path = BBWebKit;

@@ -19,21 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBWebKitTheme,WKWebView;
 
-/**
- BBWebKitTitleView is a UIView subclass that displays the document title and URL of its associated WKWebView. If the hasOnlySecureContent flag on the WKWebView is YES, the hasOnlySecureContentImage will be displayed to the left of the URL.
- 
- The feature set of this class was modeled after the in app browser used in the Twitter app.
- */
 @interface BBWebKitTitleView : UIView
 
 @property (strong,nonatomic) BBWebKitTheme *theme;
 
-/**
- Designated Initializer.
- 
- @param webKitView The web view associated with the receiver
- @return An initialized instance of the receiver
- */
+@property (copy,nonatomic,nullable) NSString *customTitle;
+
 - (instancetype)initWithWebKitView:(WKWebView *)webKitView NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithWebKitView: instead")));
