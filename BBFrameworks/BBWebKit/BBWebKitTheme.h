@@ -27,11 +27,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (copy,nonatomic,nullable) NSString *name;
 
+/**
+ Set and get the title font, which is used to render the title of the web view.
+ 
+ The default is `[UIFont boldSystemFontOfSize:15.0]`.
+ */
 @property (strong,nonatomic,null_resettable) UIFont *titleFont;
+/**
+ Set and get the title text color, which is used to render the title of the web view.
+ 
+ The default is `[UIColor blackColor]`.
+ */
 @property (strong,nonatomic,null_resettable) UIColor *titleTextColor;
+/**
+ Set and get the URL font, which is used to render the URL of the web view.
+ 
+ The default is `[UIFont systemFontOfSize:12.0]`.
+ */
 @property (strong,nonatomic,null_resettable) UIFont *URLFont;
+/**
+ Set and get the URL text color, which is used to render the URL of the web view.
+ 
+ The default is `[UIColor darkGrayColor]`.
+ */
 @property (strong,nonatomic,null_resettable) UIColor *URLTextColor;
 
+/**
+ Set and get the has only secure content image, which is rendered to the left of the URL if the web view `hasOnlySecureContent` property is YES. The image should be grayscale and will be rendered using `self.URLTextColor`.
+ 
+ The default is `@"web_kit_lock"` is the resources bundle.
+ */
 @property (strong,nonatomic,null_resettable) UIImage *hasOnlySecureContentImage;
 
 /**
@@ -42,13 +67,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the go back image, which is used as the image for the go back bar button item in the toolbar.
  
- The default is @"web_kit_go_back" in the resources bundle.
+ The default is `@"web_kit_go_back"` in the resources bundle.
  */
 @property (strong,nonatomic,null_resettable) UIImage *goBackImage;
 /**
  Set and get the go forward image, which is used as the image for the go forward bar button item in the toolbar.
  
- The default is @"web_kit_go_forward" in the resources bundle.
+ The default is `@"web_kit_go_forward"` in the resources bundle.
  */
 @property (strong,nonatomic,null_resettable) UIImage *goForwardImage;
 
