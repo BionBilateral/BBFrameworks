@@ -17,6 +17,11 @@
 #import "UIImage+BBKitExtensionsPrivate.h"
 
 @interface BBWebKitTheme ()
++ (UIFont *)_defaultTitleFont;
++ (UIColor *)_defaultTitleTextColor;
++ (UIFont *)_defaultURLFont;
++ (UIColor *)_defaultURLTextColor;
++ (UIImage *)_defaultHasOnlySecureContentImage;
 + (UIBarButtonItem *)_defaultDoneBarButtonItem;
 + (UIImage *)_defaultGoBackImage;
 + (UIImage *)_defaultGoForwardImage;
@@ -32,11 +37,37 @@
     if (!(self = [super init]))
         return nil;
     
+    _titleFont = [self.class _defaultTitleFont];
+    _titleTextColor = [self.class _defaultTitleTextColor];
+    _URLFont = [self.class _defaultURLFont];
+    _URLTextColor = [self.class _defaultURLTextColor];
+    
+    _hasOnlySecureContentImage = [self.class _defaultHasOnlySecureContentImage];
+    
     _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
+    
     _goBackImage = [self.class _defaultGoBackImage];
     _goForwardImage = [self.class _defaultGoForwardImage];
     
     return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    BBWebKitTheme *retval = [[[self class] alloc] init];
+    
+    [retval setTitleFont:self.titleFont];
+    [retval setTitleTextColor:self.titleTextColor];
+    [retval setURLFont:self.URLFont];
+    [retval setURLTextColor:self.URLTextColor];
+    
+    [retval setHasOnlySecureContentImage:self.hasOnlySecureContentImage];
+    
+    [retval setDoneBarButtonItem:self.doneBarButtonItem];
+    
+    [retval setGoBackImage:self.goBackImage];
+    [retval setGoForwardImage:self.goForwardImage];
+    
+    return retval;
 }
 
 + (instancetype)defaultTheme; {
@@ -50,9 +81,27 @@
     return kRetval;
 }
 
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont ?: [self.class _defaultTitleFont];
+}
+- (void)setTitleTextColor:(UIColor *)titleTextColor {
+    _titleTextColor = titleTextColor ?: [self.class _defaultTitleTextColor];
+}
+- (void)setURLFont:(UIFont *)URLFont {
+    _URLFont = URLFont ?: [self.class _defaultURLFont];
+}
+- (void)setURLTextColor:(UIColor *)URLTextColor {
+    _URLTextColor = URLTextColor ?: [self.class _defaultURLTextColor];
+}
+
+- (void)setHasOnlySecureContentImage:(UIImage *)hasOnlySecureContentImage {
+    _hasOnlySecureContentImage = hasOnlySecureContentImage ?: [self.class _defaultHasOnlySecureContentImage];
+}
+
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
     _doneBarButtonItem = doneBarButtonItem ?: [self.class _defaultDoneBarButtonItem];
 }
+
 - (void)setGoBackImage:(UIImage *)goBackImage {
     _goBackImage = goBackImage ?: [self.class _defaultGoBackImage];
 }
@@ -60,6 +109,21 @@
     _goForwardImage = goForwardImage ?: [self.class _defaultGoForwardImage];
 }
 
++ (UIFont *)_defaultTitleFont; {
+    return [UIFont boldSystemFontOfSize:15.0];
+}
++ (UIColor *)_defaultTitleTextColor; {
+    return [UIColor blackColor];
+}
++ (UIFont *)_defaultURLFont; {
+    return [UIFont systemFontOfSize:12.0];
+}
++ (UIColor *)_defaultURLTextColor; {
+    return [UIColor darkGrayColor];
+}
++ (UIImage *)_defaultHasOnlySecureContentImage; {
+    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_lock"];
+}
 + (UIBarButtonItem *)_defaultDoneBarButtonItem {
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
 }

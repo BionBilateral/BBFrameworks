@@ -20,12 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  BBWebKitTheme allows the client to customize the appearance of the BBWebKit classes without relying on the availability of the appearance proxy methods.
  */
-@interface BBWebKitTheme : NSObject
+@interface BBWebKitTheme : NSObject <NSCopying>
 
 /**
  Set and get the name of the receiver. Useful for debugging.
  */
 @property (copy,nonatomic,nullable) NSString *name;
+
+@property (strong,nonatomic,null_resettable) UIFont *titleFont;
+@property (strong,nonatomic,null_resettable) UIColor *titleTextColor;
+@property (strong,nonatomic,null_resettable) UIFont *URLFont;
+@property (strong,nonatomic,null_resettable) UIColor *URLTextColor;
+
+@property (strong,nonatomic,null_resettable) UIImage *hasOnlySecureContentImage;
 
 /**
  Set and get the done bar button item which dismisses the owning BBWebKitViewController when presented modally. The bar button item is displayed on the left hand side if the receiver does not have access to an instance of BBProgressNavigationBar, otherwise the bar button item is displayed on the right hand side.

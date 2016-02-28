@@ -70,6 +70,8 @@
     
     BBWebKitTitleView *titleView = [[BBWebKitTitleView alloc] initWithWebKitView:self.webView];
     
+    RAC(titleView,theme) = RACObserve(self, theme);
+    
     [titleView sizeToFit];
     
     RAC(titleView,customTitle) = RACObserve(self, customTitle);

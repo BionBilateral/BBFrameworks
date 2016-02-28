@@ -17,8 +17,9 @@
 #import "BBFoundation.h"
 #import "BBFrameworksFunctions.h"
 #import "BBFoundationGeometryFunctions.h"
-#import "UIImage+BBKitExtensionsPrivate.h"
 #import "UIImage+BBKitExtensions.h"
+#import "BBWebKitTheme.h"
+#import "BBFrameworksMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -32,17 +33,13 @@
 @property (weak,nonatomic) WKWebView *webView;
 
 @property (copy,nonatomic) NSString *customTitle;
-
-+ (UIFont *)_defaultTitleFont;
-+ (UIColor *)_defaultTitleTextColor;
-+ (UIFont *)_defaultURLFont;
-+ (UIColor *)_defaultURLTextColor;
-+ (UIImage *)_defaultSecureContentImage;
 @end
 
 @implementation BBWebKitTitleView
 #pragma mark *** Subclass Overrides ***
 - (void)layoutSubviews {
+    [super layoutSubviews];
+    
     CGRect rect = BBCGRectCenterInRectVertically(CGRectMake(0, 0, CGRectGetWidth(self.bounds), ceil(self.titleLabel.font.lineHeight) + ceil(self.urlLabel.font.lineHeight)), self.bounds);
     
     [self.titleLabel setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), ceil(self.titleLabel.font.lineHeight))];
@@ -54,13 +51,13 @@
         CGRect rect = BBCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), [self.urlLabel sizeThatFits:CGSizeZero].width, ceil(self.urlLabel.font.lineHeight)), self.bounds);
         CGFloat secureMarginX = 4.0;
         
-        if (CGRectGetWidth(self.bounds) - CGRectGetWidth(rect) < self.hasOnlySecureContentImage.size.width + secureMarginX) {
-            [self.secureImageView setFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), self.hasOnlySecureContentImage.size.width, self.hasOnlySecureContentImage.size.height)];
+        if (CGRectGetWidth(self.bounds) - CGRectGetWidth(rect) < self.theme.hasOnlySecureContentImage.size.width + secureMarginX) {
+            [self.secureImageView setFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), self.theme.hasOnlySecureContentImage.size.width, self.theme.hasOnlySecureContentImage.size.height)];
             [self.urlLabel setFrame:CGRectMake(CGRectGetMaxX(self.secureImageView.frame) + secureMarginX, CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(self.bounds) - CGRectGetMaxX(self.secureImageView.frame) - secureMarginX, CGRectGetHeight(rect))];
         }
         else {
             [self.urlLabel setFrame:rect];
-            [self.secureImageView setFrame:CGRectMake(CGRectGetMinX(self.urlLabel.frame) - self.hasOnlySecureContentImage.size.width - secureMarginX, CGRectGetMinY(self.urlLabel.frame), self.hasOnlySecureContentImage.size.width, self.hasOnlySecureContentImage.size.height)];
+            [self.secureImageView setFrame:CGRectMake(CGRectGetMinX(self.urlLabel.frame) - self.theme.hasOnlySecureContentImage.size.width - secureMarginX, CGRectGetMinY(self.urlLabel.frame), self.theme.hasOnlySecureContentImage.size.width, self.theme.hasOnlySecureContentImage.size.height)];
         }
     }
 }
@@ -80,108 +77,86 @@
     
     NSParameterAssert(webKitView);
     
-    [self setWebView:webKitView];
+    _webView = webKitView;
+    _theme = [BBWebKitTheme defaultTheme];
     
     [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
-    _titleFont = [self.class _defaultTitleFont];
-    _titleTextColor = [self.class _defaultTitleTextColor];
-    _URLFont = [self.class _defaultURLFont];
-    _URLTextColor = [self.class _defaultURLTextColor];
-    _hasOnlySecureContentImage = [self.class _defaultSecureContentImage];
-    
     [self setTitleLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.titleLabel setFont:_titleFont];
-    [self.titleLabel setTextColor:_titleTextColor];
     [self addSubview:self.titleLabel];
     
     [self setUrlLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.urlLabel setTextAlignment:NSTextAlignmentCenter];
     [self.urlLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
-    [self.urlLabel setFont:_URLFont];
-    [self.urlLabel setTextColor:_URLTextColor];
     [self addSubview:self.urlLabel];
     
     [self setSecureImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
     [self addSubview:self.secureImageView];
     
-    @weakify(self);
+    BBWeakify(self);
     
-    RAC(self.titleLabel,text) = [[RACSignal combineLatest:@[RACObserve(self, customTitle),RACObserve(self.webView, title)] reduce:^id(NSString *customTitle, NSString *title){
-        return customTitle.length > 0 ? customTitle : (title.length > 0 ? title : NSLocalizedStringWithDefaultValue(@"WEB_KIT_TITLE_VIEW_TITLE_PLACEHOLDER", @"WebKit", BBFrameworksResourcesBundle(), @"Loading…", @"web kit title view title placeholder loading with ellipsis"));
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
-    RAC(self.urlLabel,text) = [[[RACObserve(self.webView, URL) map:^id(NSURL *value) {
-        return value.absoluteString;
-    }] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {
-        @strongify(self);
-        [self setNeedsLayout];
-    }];
-    RAC(self.secureImageView,hidden) = [[[RACObserve(self.webView, hasOnlySecureContent) not] deliverOn:[RACScheduler mainThreadScheduler]] doNext:^(id _) {
-        @strongify(self);
-        [self setNeedsLayout];
-    }];
-    RAC(self.secureImageView,image) =
-    [[[[RACSignal merge:@[RACObserve(self, hasOnlySecureContentImage),
-                          RACObserve(self, URLTextColor)]]
-       deliverOn:[RACScheduler mainThreadScheduler]]
-      map:^id(id _) {
-          @strongify(self);
-          if (self.hasOnlySecureContentImage &&
-              self.URLTextColor) {
-              
-              return [self.hasOnlySecureContentImage BB_imageByRenderingWithColor:self.URLTextColor];
-          }
-          else {
-              return nil;
-          }
-      }]
+    RAC(self.titleLabel,font) =
+    [[RACObserve(self, theme.titleFont)
+     deliverOn:[RACScheduler mainThreadScheduler]]
      doNext:^(id _) {
-         @strongify(self);
+         BBStrongify(self);
+         [self setNeedsLayout];
+     }];
+    
+    RAC(self.titleLabel,textColor) =
+    [RACObserve(self, theme.titleTextColor)
+      deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    RAC(self.titleLabel,text) =
+    [[RACSignal combineLatest:@[RACObserve(self, customTitle),RACObserve(self.webView, title)] reduce:^id(NSString *customTitle, NSString *title){
+        return customTitle.length > 0 ? customTitle : (title.length > 0 ? title : NSLocalizedStringWithDefaultValue(@"WEB_KIT_TITLE_VIEW_TITLE_PLACEHOLDER", @"WebKit", BBFrameworksResourcesBundle(), @"Loading…", @"web kit title view title placeholder loading with ellipsis"));
+        
+    }]
+     deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    RAC(self.urlLabel,font) =
+    [[RACObserve(self, theme.URLFont)
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     doNext:^(id _) {
+         BBStrongify(self);
+         [self setNeedsLayout];
+     }];
+    
+    RAC(self.urlLabel,textColor) =
+    [RACObserve(self, theme.URLTextColor)
+     deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    RAC(self.urlLabel,text) =
+    [[[RACObserve(self.webView, URL) map:^id(NSURL *value) {
+        return value.absoluteString;
+    }]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     doNext:^(id _) {
+        BBStrongify(self);
+        [self setNeedsLayout];
+    }];
+    
+    RAC(self.secureImageView,hidden) =
+    [[[RACObserve(self.webView, hasOnlySecureContent)
+       not]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     doNext:^(id _) {
+        BBStrongify(self);
+        [self setNeedsLayout];
+    }];
+    
+    RAC(self.secureImageView,image) =
+    [[[RACSignal combineLatest:@[RACObserve(self, theme.hasOnlySecureContentImage),RACObserve(self, theme.URLTextColor)] reduce:^id(UIImage *image, UIColor *color){
+        return [image BB_imageByRenderingWithColor:color];
+    }]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     doNext:^(id _) {
+         BBStrongify(self);
          [self setNeedsLayout];
      }];
     
     return self;
-}
-#pragma mark Properties
-- (void)setTitleFont:(UIFont *)titleFont {
-    _titleFont = titleFont ?: [self.class _defaultTitleFont];
-    
-    [self.titleLabel setFont:_titleFont];
-}
-- (void)setTitleTextColor:(UIColor *)titleTextColor {
-    _titleTextColor = titleTextColor ?: [self.class _defaultTitleTextColor];
-    
-    [self.titleLabel setTextColor:_titleTextColor];
-}
-- (void)setURLFont:(UIFont *)URLFont {
-    _URLFont = URLFont ?: [self.class _defaultURLFont];
-    
-    [self.urlLabel setFont:_URLFont];
-}
-- (void)setURLTextColor:(UIColor *)URLTextColor {
-    _URLTextColor = URLTextColor ?: [self.class _defaultURLTextColor];
-    
-    [self.urlLabel setTextColor:_URLTextColor];
-}
-- (void)setHasOnlySecureContentImage:(UIImage *)hasOnlySecureContentImage {
-    _hasOnlySecureContentImage = hasOnlySecureContentImage ?: [self.class _defaultSecureContentImage];
-}
-#pragma mark *** Private Methods ***
-+ (UIFont *)_defaultTitleFont; {
-    return [UIFont boldSystemFontOfSize:15.0];
-}
-+ (UIColor *)_defaultTitleTextColor; {
-    return [UIColor blackColor];
-}
-+ (UIFont *)_defaultURLFont; {
-    return [UIFont systemFontOfSize:12.0];
-}
-+ (UIColor *)_defaultURLTextColor; {
-    return [UIColor darkGrayColor];
-}
-+ (UIImage *)_defaultSecureContentImage; {
-    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_lock"];
 }
 
 @end

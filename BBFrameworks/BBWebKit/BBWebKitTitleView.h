@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class WKWebView;
+@class BBWebKitTheme,WKWebView;
 
 /**
  BBWebKitTitleView is a UIView subclass that displays the document title and URL of its associated WKWebView. If the hasOnlySecureContent flag on the WKWebView is YES, the hasOnlySecureContentImage will be displayed to the left of the URL.
@@ -26,36 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BBWebKitTitleView : UIView
 
-/**
- Set and get the font used to display the title.
- 
- The default is [UIFont boldSystemFontOfSize:15.0].
- */
-@property (strong,nonatomic,null_resettable) UIFont *titleFont UI_APPEARANCE_SELECTOR;
-/**
- Set and get the color used to display the title.
- 
- The default is [UIColor blackColor].
- */
-@property (strong,nonatomic,null_resettable) UIColor *titleTextColor UI_APPEARANCE_SELECTOR;
-
-/**
- Set and get the font used to display the URL.
- 
- The default is [UIFont systemFontOfSize:12.0].
- */
-@property (strong,nonatomic,null_resettable) UIFont *URLFont UI_APPEARANCE_SELECTOR;
-/**
- Set and get the color used to display the URL.
- 
- The default is [UIColor darkGrayColor].
- */
-@property (strong,nonatomic,null_resettable) UIColor *URLTextColor UI_APPEARANCE_SELECTOR;
-
-/**
- Set and get the secure content image of the receiver.
- */
-@property (strong,nonatomic,null_resettable) UIImage *hasOnlySecureContentImage UI_APPEARANCE_SELECTOR;
+@property (strong,nonatomic) BBWebKitTheme *theme;
 
 /**
  Designated Initializer.
