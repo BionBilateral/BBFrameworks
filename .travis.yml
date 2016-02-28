@@ -6,3 +6,6 @@ notifications:
         on_success: never
         on_failure: always
     slack: bionbilateral:15qGYNyGWgv1ukfTDtOrVHxq
+branches:
+    only:
+        - master
