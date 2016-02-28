@@ -64,11 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setShowNavigationToolbar:(BOOL)showNavigationToolbar animated:(BOOL)animated;
 
-/**
- Set and get the done bar button item which dismisses the receiver when presented modally. The bar button item is displayed on the left hand side if the receiver does not have access to an instance of BBProgressNavigationBar, otherwise the bar button item is displayed on the right hand side.
- */
-@property (strong,nonatomic,null_resettable) UIBarButtonItem *doneBarButtonItem;
-
 /*
  Instructs the managed `WKWebView` instance to load _URLString_.
  

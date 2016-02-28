@@ -54,7 +54,6 @@
     
     _showNavigationToolbar = YES;
     _showShareBarButtonItem = YES;
-    _doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
     _theme = [BBWebKitTheme defaultTheme];
     
     return self;
@@ -143,7 +142,7 @@
     }
     
     if (self.presentingViewController) {
-        UIBarButtonItem *doneItem = self.doneBarButtonItem;
+        UIBarButtonItem *doneItem = self.theme.doneBarButtonItem;
         
         [doneItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             return [RACSignal return:@YES];
@@ -363,9 +362,6 @@
     [self didChangeValueForKey:@keypath(self,showNavigationToolbar)];
     
     [self.navigationController setToolbarHidden:!_showNavigationToolbar animated:animated];
-}
-- (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
-    _doneBarButtonItem = doneBarButtonItem ?: [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
 }
 #pragma mark ** Private Methods **
 + (UIImage *)_defaultGoBackImage; {

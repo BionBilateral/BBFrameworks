@@ -17,6 +17,7 @@
 #import "UIImage+BBKitExtensionsPrivate.h"
 
 @interface BBWebKitTheme ()
++ (UIBarButtonItem *)_defaultDoneBarButtonItem;
 + (UIImage *)_defaultGoBackImage;
 + (UIImage *)_defaultGoForwardImage;
 @end
@@ -31,6 +32,7 @@
     if (!(self = [super init]))
         return nil;
     
+    _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
     _goBackImage = [self.class _defaultGoBackImage];
     _goForwardImage = [self.class _defaultGoForwardImage];
     
@@ -48,6 +50,9 @@
     return kRetval;
 }
 
+- (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
+    _doneBarButtonItem = doneBarButtonItem ?: [self.class _defaultDoneBarButtonItem];
+}
 - (void)setGoBackImage:(UIImage *)goBackImage {
     _goBackImage = goBackImage ?: [self.class _defaultGoBackImage];
 }
@@ -55,6 +60,9 @@
     _goForwardImage = goForwardImage ?: [self.class _defaultGoForwardImage];
 }
 
++ (UIBarButtonItem *)_defaultDoneBarButtonItem {
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
+}
 + (UIImage *)_defaultGoBackImage; {
     return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_back"];
 }

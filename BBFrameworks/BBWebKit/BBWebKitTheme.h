@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic,nullable) NSString *name;
 
 /**
+ Set and get the done bar button item which dismisses the owning BBWebKitViewController when presented modally. The bar button item is displayed on the left hand side if the receiver does not have access to an instance of BBProgressNavigationBar, otherwise the bar button item is displayed on the right hand side.
+ */
+@property (strong,nonatomic,null_resettable) UIBarButtonItem *doneBarButtonItem;
+
+/**
  Set and get the go back image, which is used as the image for the go back bar button item in the toolbar.
  
  The default is @"web_kit_go_back" in the resources bundle.
