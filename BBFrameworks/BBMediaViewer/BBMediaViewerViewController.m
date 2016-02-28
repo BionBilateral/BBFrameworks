@@ -48,6 +48,8 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.contentVC.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.contentVC.view}]];
+    
+    RAC(self.contentVC,theme) = RACObserve(self, theme);
 }
 
 - (void)setTheme:(BBMediaViewerTheme *)theme {

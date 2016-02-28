@@ -14,13 +14,59 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaViewerContentViewController.h"
+#import "BBMediaViewerTheme.h"
+#import "BBFrameworksMacros.h"
 
-@interface BBMediaViewerContentViewController ()
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
+@interface BBMediaViewerContentViewController () <UINavigationBarDelegate>
+@property (strong,nonatomic) UINavigationBar *navigationBar;
 @end
 
 @implementation BBMediaViewerContentViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
+    [self.navigationBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.navigationBar setDelegate:self];
+    [self.view addSubview:self.navigationBar];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.navigationBar}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][view]" options:0 metrics:nil views:@{@"top": self.topLayoutGuide, @"view": self.navigationBar}]];
+    
+    [self.navigationBar setItems:@[self.navigationItem]];
+    
+    BBWeakify(self);
+    
+    [[[RACObserve(self, theme.backgroundColor)
+     ignore:nil]
+     deliverOnMainThread]
+     subscribeNext:^(UIColor *value) {
+         BBStrongify(self);
+         [self.view setBackgroundColor:value];
+     }];
+    
+    [[[RACObserve(self, theme.doneBarButtonItem)
+     ignore:nil]
+     deliverOnMainThread]
+     subscribeNext:^(UIBarButtonItem *value) {
+         BBStrongify(self);
+         
+         [value setTarget:self];
+         [value setAction:@selector(_doneBarButtonItemAction:)];
+         
+         [self.navigationItem setRightBarButtonItems:@[value]];
+     }];
+}
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
+
+- (IBAction)_doneBarButtonItemAction:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
