@@ -294,9 +294,12 @@
 		7953FBCC1C5AF40B0067B15E /* AuthorizationStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FBCB1C5AF40B0067B15E /* AuthorizationStatusViewController.m */; };
 		7953FBCE1C5AF4740067B15E /* AuthorizationStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953FBCD1C5AF4740067B15E /* AuthorizationStatusViewController.xib */; };
 		796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */; };
-		7965A3EB1C82579200A197E2 /* NSString+BBBlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */; };
+		7965A3EB1C82579200A197E2 /* NSString+BBBlocksExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7965A3EC1C82579200A197E2 /* NSString+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EA1C82579200A197E2 /* NSString+BBBlocksExtensions.m */; };
 		7965A3ED1C82579200A197E2 /* NSString+BBBlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EA1C82579200A197E2 /* NSString+BBBlocksExtensions.m */; };
+		7965A3EF1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
+		7965A3F01C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
+		7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */; };
 		7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */; };
 		7987CAA41C0E9A96000C4086 /* BBMediaPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA11C0E9A96000C4086 /* BBMediaPickerTheme.m */; };
 		7987CAA81C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA61C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m */; };
@@ -721,6 +724,7 @@
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79EA2CAB1C7056080019ACF9 /* BBCore.h in CopyFiles */,
 				79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */,
+				7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
@@ -1235,6 +1239,7 @@
 		796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBFrameworksMacrosPrivate.h; sourceTree = "<group>"; };
 		7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		7965A3EA1C82579200A197E2 /* NSString+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBBlocksExtensions.m"; sourceTree = "<group>"; };
+		7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSStringBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
 		7987CA9E1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerDefaultTitleView.h; path = Private/BBMediaPickerDefaultTitleView.h; sourceTree = "<group>"; };
 		7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerDefaultTitleView.m; path = Private/BBMediaPickerDefaultTitleView.m; sourceTree = "<group>"; };
 		7987CAA01C0E9A96000C4086 /* BBMediaPickerTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerTheme.h; sourceTree = "<group>"; };
@@ -1801,6 +1806,7 @@
 				799C0C6B1B6082A400A3888A /* BBFrameworksNSSetBlocksExtensionsTestCase.m */,
 				0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */,
 				07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */,
+				7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */,
 			);
 			name = BBBlocks;
 			sourceTree = "<group>";
@@ -3786,6 +3792,7 @@
 				07B104DC1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m in Sources */,
 				79F941841B44E36600B385F0 /* Test.xcdatamodeld in Sources */,
 				07B3D8F41B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m in Sources */,
+				7965A3EF1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */,
 				79EA80FE1B3F0D6D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
 				79EA81001B3F0D6D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
 				07E3E5091B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */,
@@ -3887,6 +3894,7 @@
 				07B104DD1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m in Sources */,
 				79F941851B44E36900B385F0 /* Test.xcdatamodeld in Sources */,
 				07B3D8F51B60178800FA1853 /* BBFrameworksNSArrayBlocksExtensionsTestCase.m in Sources */,
+				7965A3F01C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */,
 				79EA81971B3F251D00D50B6B /* BBFrameworksCoreDataImportTests.m in Sources */,
 				79EA81991B3F251D00D50B6B /* BBFrameworksNSMutableArrayFoundationExtensionsTestCase.m in Sources */,
 				07E3E50A1B4597FD00925416 /* BBSnakeCaseToLlamaCaseValueTransformerTestCase.m in Sources */,

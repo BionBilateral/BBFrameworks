@@ -18,7 +18,7 @@
 @implementation NSString (BBBlocksExtensions)
 
 - (NSString *)BB_take:(NSInteger)length; {
-    if (self.length < length) {
+    if (length < self.length) {
         return [self substringToIndex:length];
     }
     else {
@@ -26,7 +26,7 @@
     }
 }
 - (NSString *)BB_drop:(NSInteger)length; {
-    if (self.length < length) {
+    if (length < self.length) {
         return [self substringWithRange:NSMakeRange(length, self.length - length)];
     }
     else {

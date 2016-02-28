@@ -23,14 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (BBBlocksExtensions)
 
 /**
- If `self.length` < `length`, then returns `[self substringToIndex:length]`, otherwise returns self.
+ If `length` < `self.length`, then returns `[self substringToIndex:length]`, otherwise returns self.
  
  @param length The length to which to create a substring
  @return The substring to length or self
  */
 - (NSString *)BB_take:(NSInteger)length;
 /**
- If `self.length` < `length`, then returns `[self substringWithRange:NSMakeRange(length, self.length - length)]`, otherwise returns self.
+ If `length` < `self.length`, then returns `[self substringWithRange:NSMakeRange(length, self.length - length)]`, otherwise returns self.
  
  @param length The length from which to return a substring
  @return The substring from length or self
