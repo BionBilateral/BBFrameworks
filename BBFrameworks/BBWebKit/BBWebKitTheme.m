@@ -23,6 +23,10 @@
 
 @implementation BBWebKitTheme
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p> name=\"%@\"",NSStringFromClass(self.class),self,self.name];
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
