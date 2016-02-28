@@ -241,6 +241,8 @@
 		7922E8AE1BD42D8800F85EDA /* BBMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7922E8A91BD42D8800F85EDA /* BBMoviePlayerView.m */; };
 		79239D0B1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79239D0A1B8022C1001AEB2E /* BBKitCGImageFunctions.m */; };
 		79239D0C1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 79239D0A1B8022C1001AEB2E /* BBKitCGImageFunctions.m */; };
+		792A8DDD1C82C3480019B5C6 /* BBWebKitTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 792A8DDC1C82C3480019B5C6 /* BBWebKitTheme.m */; };
+		792A8DDE1C82C3720019B5C6 /* BBWebKitTheme.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 792A8DDB1C82C3480019B5C6 /* BBWebKitTheme.h */; };
 		792F15381B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
 		792F15391B76A7160034A09A /* BBFrameworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 792F15371B76A7160034A09A /* BBFrameworks.m */; };
 		792F153C1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -726,6 +728,7 @@
 				79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */,
 				7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
+				792A8DDE1C82C3720019B5C6 /* BBWebKitTheme.h in CopyFiles */,
 				79F436661C120302002546E8 /* BBTimer.h in CopyFiles */,
 				796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */,
 				0730748D1C3AE258001FC8FE /* PHAsset+BBMediaPickerExtensions.h in CopyFiles */,
@@ -1139,6 +1142,8 @@
 		7927CF9B1B1AD2B90034288D /* BBThumbnailGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailGenerator.h; sourceTree = "<group>"; };
 		7927CF9C1B1AD2B90034288D /* BBThumbnailGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBThumbnailGenerator.m; sourceTree = "<group>"; };
 		7927CFA11B1AD2B90034288D /* BBThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailOperation.h; sourceTree = "<group>"; };
+		792A8DDB1C82C3480019B5C6 /* BBWebKitTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebKitTheme.h; sourceTree = "<group>"; };
+		792A8DDC1C82C3480019B5C6 /* BBWebKitTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebKitTheme.m; sourceTree = "<group>"; };
 		792F15371B76A7160034A09A /* BBFrameworks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworks.m; sourceTree = "<group>"; };
 		792F153A1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+BBCoreDataExtensions.h"; sourceTree = "<group>"; };
 		792F153B1B76ACFB0034A09A /* NSFetchRequest+BBCoreDataExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+BBCoreDataExtensions.m"; sourceTree = "<group>"; };
@@ -2287,6 +2292,8 @@
 			isa = PBXGroup;
 			children = (
 				79B4FFA61B363FC1007B8629 /* BBWebKit.h */,
+				792A8DDB1C82C3480019B5C6 /* BBWebKitTheme.h */,
+				792A8DDC1C82C3480019B5C6 /* BBWebKitTheme.m */,
 				79B4FFA01B363F55007B8629 /* BBWebKitViewControllerDelegate.h */,
 				79B4FF9E1B363F55007B8629 /* BBWebKitViewController.h */,
 				79B4FF9F1B363F55007B8629 /* BBWebKitViewController.m */,
@@ -3625,6 +3632,7 @@
 				79344C221C01324700BBA726 /* BBMediaViewerPDFPageLayer.m in Sources */,
 				07AEC8461B6BE68500013470 /* BBTextPhoneNumberValidator.m in Sources */,
 				79EA80C91B3F0CCD00D50B6B /* NSFileManager+BBFoundationExtensions.m in Sources */,
+				792A8DDD1C82C3480019B5C6 /* BBWebKitTheme.m in Sources */,
 				79344C261C01324700BBA726 /* BBMediaViewerPDFThumbnailCollectionViewCell.m in Sources */,
 				07AEC8441B6BE68500013470 /* BBTextCustomValidator.m in Sources */,
 				0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */,
