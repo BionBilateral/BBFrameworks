@@ -17,13 +17,34 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBWebKitTheme allows the client to customize the appearance of the BBWebKit classes without relying on the availability of the appearance proxy methods.
+ */
 @interface BBWebKitTheme : NSObject
 
+/**
+ Set and get the name of the receiver. Useful for debugging.
+ */
 @property (copy,nonatomic,nullable) NSString *name;
 
+/**
+ Set and get the go back image, which is used as the image for the go back bar button item in the toolbar.
+ 
+ The default is @"web_kit_go_back" in the resources bundle.
+ */
 @property (strong,nonatomic,null_resettable) UIImage *goBackImage;
+/**
+ Set and get the go forward image, which is used as the image for the go forward bar button item in the toolbar.
+ 
+ The default is @"web_kit_go_forward" in the resources bundle.
+ */
 @property (strong,nonatomic,null_resettable) UIImage *goForwardImage;
 
+/**
+ Get the default theme. BBWebKitViewController uses this theme by default.
+ 
+ @return The default theme
+ */
 + (instancetype)defaultTheme;
 
 @end
