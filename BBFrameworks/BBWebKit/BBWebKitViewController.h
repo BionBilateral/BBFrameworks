@@ -18,6 +18,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BBWebKitTheme;
+
 /**
  BBWebKitViewController is a UIViewController subclass that manages a WKWebView to display web content.
  */
@@ -29,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
  @see BBWebKitViewControllerDelegate
  */
 @property (weak,nonatomic,nullable) id<BBWebKitViewControllerDelegate> delegate;
+
+@property (strong,nonatomic,null_resettable) BBWebKitTheme *theme;
 
 /**
  Set and get the custom title of the receiver. If this is non-nil, the receiver's title will be set to this value. Otherwise the receiver's title tracks the title of the managed WKWebView.
@@ -64,32 +68,6 @@ NS_ASSUME_NONNULL_BEGIN
  Set and get the done bar button item which dismisses the receiver when presented modally. The bar button item is displayed on the left hand side if the receiver does not have access to an instance of BBProgressNavigationBar, otherwise the bar button item is displayed on the right hand side.
  */
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *doneBarButtonItem;
-
-/*
- Get the current go back image used for the corresponding toolbar item.
- 
- @return The current go back image
- */
-+ (UIImage *)goBackImage;
-/*
- Set the go back image to _image_, or the default go back image if _image_ is nil.
- 
- @param image The new go back image
- */
-+ (void)setGoBackImage:(nullable UIImage *)image;
-
-/*
- Get the current go forward image used for the corresponding toolbar item.
- 
- @return The current go forward image
- */
-+ (UIImage *)goForwardImage;
-/*
- Set the go forward image to _image_, or the default go forward image if _image_ is nil.
- 
- @param image The new go forward image
- */
-+ (void)setGoForwardImage:(nullable UIImage *)image;
 
 /*
  Instructs the managed `WKWebView` instance to load _URLString_.

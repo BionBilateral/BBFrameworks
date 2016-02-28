@@ -14,7 +14,48 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBWebKitTheme.h"
+#import "UIImage+BBKitExtensionsPrivate.h"
+
+@interface BBWebKitTheme ()
++ (UIImage *)_defaultGoBackImage;
++ (UIImage *)_defaultGoForwardImage;
+@end
 
 @implementation BBWebKitTheme
+
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    _goBackImage = [self.class _defaultGoBackImage];
+    _goForwardImage = [self.class _defaultGoForwardImage];
+    
+    return self;
+}
+
++ (instancetype)defaultTheme; {
+    static BBWebKitTheme *kRetval;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kRetval = [[self alloc] init];
+        
+        [kRetval setName:@"com.bionbilateral.bbwebkit.theme.default"];
+    });
+    return kRetval;
+}
+
+- (void)setGoBackImage:(UIImage *)goBackImage {
+    _goBackImage = goBackImage ?: [self.class _defaultGoBackImage];
+}
+- (void)setGoForwardImage:(UIImage *)goForwardImage {
+    _goForwardImage = goForwardImage ?: [self.class _defaultGoForwardImage];
+}
+
++ (UIImage *)_defaultGoBackImage; {
+    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_back"];
+}
++ (UIImage *)_defaultGoForwardImage; {
+    return [UIImage BB_imageInResourcesBundleNamed:@"web_kit_go_forward"];
+}
 
 @end

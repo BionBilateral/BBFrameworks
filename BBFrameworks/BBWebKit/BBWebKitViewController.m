@@ -20,6 +20,7 @@
 #import "UIBarButtonItem+BBKitExtensions.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
 #import "BBNetworkActivityIndicatorManager.h"
+#import "BBWebKitTheme.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <TUSafariActivity/TUSafariActivity.h>
@@ -43,13 +44,6 @@
 @implementation BBWebKitViewController
 
 #pragma mark ** Subclass Overrides **
-+ (void)initialize {
-    if (self == [BBWebKitViewController class]) {
-        [self setGoBackImage:[self _defaultGoBackImage]];
-        [self setGoForwardImage:[self _defaultGoForwardImage]];
-    }
-}
-
 - (BOOL)hidesBottomBarWhenPushed {
     return YES;
 }
@@ -61,6 +55,7 @@
     _showNavigationToolbar = YES;
     _showShareBarButtonItem = YES;
     _doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
+    _theme = [BBWebKitTheme defaultTheme];
     
     return self;
 }
@@ -170,8 +165,8 @@
         }
     }
     
-    UIBarButtonItem *goBackItem = [[UIBarButtonItem alloc] initWithImage:[self.class goBackImage] style:UIBarButtonItemStylePlain target:nil action:NULL];
-    UIBarButtonItem *goForwardItem = [[UIBarButtonItem alloc] initWithImage:[self.class goForwardImage] style:UIBarButtonItemStylePlain target:nil action:NULL];
+    UIBarButtonItem *goBackItem = [[UIBarButtonItem alloc] initWithImage:self.theme.goBackImage style:UIBarButtonItemStylePlain target:nil action:NULL];
+    UIBarButtonItem *goForwardItem = [[UIBarButtonItem alloc] initWithImage:self.theme.goForwardImage style:UIBarButtonItemStylePlain target:nil action:NULL];
     UIBarButtonItem *stopItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:nil action:NULL];
     UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:NULL];
     
@@ -346,22 +341,6 @@
     }
 }
 #pragma mark ** Public Methods **
-static void *kGoBackImageKey = &kGoBackImageKey;
-+ (UIImage *)goBackImage; {
-    return objc_getAssociatedObject(self, kGoBackImageKey);
-}
-+ (void)setGoBackImage:(UIImage *)image; {
-    objc_setAssociatedObject(self, kGoBackImageKey, image ?: [self _defaultGoBackImage], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-static void *kGoForwardImageKey = &kGoForwardImageKey;
-+ (UIImage *)goForwardImage; {
-    return objc_getAssociatedObject(self, kGoForwardImageKey);
-}
-+ (void)setGoForwardImage:(UIImage *)image; {
-    objc_setAssociatedObject(self, kGoForwardImageKey, image ?: [self _defaultGoForwardImage], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (void)loadURLString:(NSString *)URLString; {
     [self loadURL:[NSURL URLWithString:URLString]];
 }
@@ -372,6 +351,9 @@ static void *kGoForwardImageKey = &kGoForwardImageKey;
     [self setURLRequest:URLRequest];
 }
 #pragma mark Properties
+- (void)setTheme:(BBWebKitTheme *)theme {
+    _theme = theme ?: [BBWebKitTheme defaultTheme];
+}
 - (void)setShowNavigationToolbar:(BOOL)showNavigationToolbar {
     [self setShowNavigationToolbar:showNavigationToolbar animated:NO];
 }

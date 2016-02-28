@@ -15,8 +15,17 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BBWebKitTheme : NSObject
 
+@property (copy,nonatomic,nullable) NSString *name;
 
+@property (strong,nonatomic,null_resettable) UIImage *goBackImage;
+@property (strong,nonatomic,null_resettable) UIImage *goForwardImage;
+
++ (instancetype)defaultTheme;
 
 @end
+
+NS_ASSUME_NONNULL_END
