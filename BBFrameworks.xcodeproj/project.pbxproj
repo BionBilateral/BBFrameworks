@@ -49,6 +49,8 @@
 		07604F0A1C84D58B0058F5C3 /* BBMediaViewerPageMovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F091C84D58B0058F5C3 /* BBMediaViewerPageMovieModel.m */; };
 		07604F0D1C84D67E0058F5C3 /* BBMediaViewerPageMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F0C1C84D67E0058F5C3 /* BBMediaViewerPageMovieViewController.m */; };
 		07604F101C84ECC80058F5C3 /* BBMediaViewerPageMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F0F1C84ECC80058F5C3 /* BBMediaViewerPageMovieView.m */; };
+		07604F131C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F121C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.m */; };
+		07604F161C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F151C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.m */; };
 		07605AB61B67D72B00333678 /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07605AB51B67D72B00333678 /* BBTextView.m */; };
 		07605AB71B67D7C800333678 /* BBTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605AB41B67D72B00333678 /* BBTextView.h */; };
 		07605ABE1B69556E00333678 /* BBMediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07605ABD1B69556E00333678 /* BBMediaPickerViewController.m */; };
@@ -919,6 +921,10 @@
 		07604F0C1C84D67E0058F5C3 /* BBMediaViewerPageMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageMovieViewController.m; path = Private/BBMediaViewerPageMovieViewController.m; sourceTree = "<group>"; };
 		07604F0E1C84ECC80058F5C3 /* BBMediaViewerPageMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageMovieView.h; path = Private/BBMediaViewerPageMovieView.h; sourceTree = "<group>"; };
 		07604F0F1C84ECC80058F5C3 /* BBMediaViewerPageMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageMovieView.m; path = Private/BBMediaViewerPageMovieView.m; sourceTree = "<group>"; };
+		07604F111C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageMovieToolbarContentView.h; path = Private/BBMediaViewerPageMovieToolbarContentView.h; sourceTree = "<group>"; };
+		07604F121C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageMovieToolbarContentView.m; path = Private/BBMediaViewerPageMovieToolbarContentView.m; sourceTree = "<group>"; };
+		07604F141C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerBottomToolbar.h; path = Private/BBMediaViewerBottomToolbar.h; sourceTree = "<group>"; };
+		07604F151C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerBottomToolbar.m; path = Private/BBMediaViewerBottomToolbar.m; sourceTree = "<group>"; };
 		07605AB41B67D72B00333678 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		07605AB51B67D72B00333678 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		07605ABB1B69551800333678 /* BBMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMediaPicker.h; sourceTree = "<group>"; };
@@ -1725,6 +1731,8 @@
 				07604F0C1C84D67E0058F5C3 /* BBMediaViewerPageMovieViewController.m */,
 				07604F0E1C84ECC80058F5C3 /* BBMediaViewerPageMovieView.h */,
 				07604F0F1C84ECC80058F5C3 /* BBMediaViewerPageMovieView.m */,
+				07604F111C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.h */,
+				07604F121C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.m */,
 			);
 			name = Movie;
 			sourceTree = "<group>";
@@ -2107,6 +2115,8 @@
 				79CAB9931C838C260044398A /* BBMediaViewerViewController.m */,
 				79CAB9991C838D780044398A /* BBMediaViewerContentViewController.h */,
 				79CAB99A1C838D780044398A /* BBMediaViewerContentViewController.m */,
+				07604F141C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.h */,
+				07604F151C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.m */,
 				798768FA1C83CB4D0040E1D1 /* Detail */,
 			);
 			path = BBMediaViewer;
@@ -3606,6 +3616,7 @@
 				07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */,
 				07B3D90C1B60373B00FA1853 /* BBFormDatePickerTableViewCell.m in Sources */,
 				798768FD1C83DA390040E1D1 /* BBMediaViewerPageModel.m in Sources */,
+				07604F161C84F0A20058F5C3 /* BBMediaViewerBottomToolbar.m in Sources */,
 				79239D0B1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */,
 				79EA80D71B3F0CF300D50B6B /* UIImage+BBKitExtensions.m in Sources */,
 				07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */,
@@ -3671,6 +3682,7 @@
 				07604F0A1C84D58B0058F5C3 /* BBMediaViewerPageMovieModel.m in Sources */,
 				078563B01BB461A900EEEFF5 /* BBKeyValueObservingWrapper.m in Sources */,
 				07AEC84A1B6BE68500013470 /* UITextView+BBValidationExtensions.m in Sources */,
+				07604F131C84EF120058F5C3 /* BBMediaViewerPageMovieToolbarContentView.m in Sources */,
 				79A6BB201BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */,
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
 				07604F101C84ECC80058F5C3 /* BBMediaViewerPageMovieView.m in Sources */,

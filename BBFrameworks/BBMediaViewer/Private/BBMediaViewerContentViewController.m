@@ -19,15 +19,21 @@
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerPageViewController.h"
 #import "BBMediaViewerPageModel.h"
+#import "BBMediaViewerBottomToolbar.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerContentViewController () <UINavigationBarDelegate,UIToolbarDelegate,UIPageViewControllerDataSource>
+@interface BBMediaViewerContentViewController () <UINavigationBarDelegate,UIToolbarDelegate,UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIGestureRecognizerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 @property (strong,nonatomic) UINavigationBar *navigationBar;
-@property (strong,nonatomic) UIToolbar *toolbar;
+@property (strong,nonatomic) BBMediaViewerBottomToolbar *toolbar;
+
+@property (strong,nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
+
+- (void)_setControlsHidden:(BOOL)controlsHidden animated:(BOOL)animated;
+- (void)_setBottomToolbarHidden:(BOOL)bottomToolbarHidden animated:(BOOL)animated;
 @end
 
 @implementation BBMediaViewerContentViewController
@@ -35,26 +41,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setPageViewController:[[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey: @8.0}]];
-    
-    id<BBMediaViewerMedia> firstMedia = [self.model mediaAtIndex:0];
-    
-    [self.pageViewController setViewControllers:@[[[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    [self.pageViewController setDataSource:self];
-    [self addChildViewController:self.pageViewController];
-    [self.pageViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
-    
     [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
     [self.navigationBar setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.navigationBar setDelegate:self];
     [self.view addSubview:self.navigationBar];
     
-    [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
+    [self setToolbar:[[BBMediaViewerBottomToolbar alloc] initWithFrame:CGRectZero]];
     [self.toolbar setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.toolbar setDelegate:self];
     [self.view addSubview:self.toolbar];
+    
+    [self setPageViewController:[[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey: @8.0}]];
+    
+    id<BBMediaViewerMedia> firstMedia = [self.model mediaAtIndex:0];
+    BBMediaViewerPageViewController *firstPageVC = [[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model];
+    
+    BBWeakify(self);
+    [self.pageViewController setViewControllers:@[firstPageVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setDataSource:self];
+    [self.pageViewController setDelegate:self];
+    [self addChildViewController:self.pageViewController];
+    [self.pageViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view insertSubview:self.pageViewController.view atIndex:0];
+    [self.pageViewController didMoveToParentViewController:self];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
@@ -65,9 +74,15 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.toolbar}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view][bottom]" options:0 metrics:nil views:@{@"view": self.toolbar, @"bottom": self.bottomLayoutGuide}]];
     
-    [self.navigationBar setItems:@[self.navigationItem]];
+    [self.toolbar setContentView:firstPageVC.bottomToolbarContentView];
     
-    BBWeakify(self);
+    [self setTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
+    [self.tapGestureRecognizer setNumberOfTapsRequired:1];
+    [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self.tapGestureRecognizer setDelegate:self];
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
+    
+    [self.navigationBar setItems:@[self.navigationItem]];
     
     [[[RACObserve(self.model, theme.backgroundColor)
      ignore:nil]
@@ -87,10 +102,24 @@
          
          [self.navigationItem setRightBarButtonItems:@[value]];
      }];
+    
+    [[self.tapGestureRecognizer
+      rac_gestureSignal]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         BOOL isHidden = self.navigationBar.alpha == 0.0;
+         
+         [self _setControlsHidden:!isHidden animated:YES];
+     }];
 }
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
     return [bar isEqual:self.navigationBar] ? UIBarPositionTopAttached : UIBarPositionBottom;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return ([otherGestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
+            [(UITapGestureRecognizer *)otherGestureRecognizer numberOfTapsRequired] == 2);
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -114,6 +143,19 @@
     return [[BBMediaViewerPageViewController alloc] initWithMedia:[self.model mediaAtIndex:index] parentModel:self.model];
 }
 
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+    [self _setBottomToolbarHidden:YES animated:YES];
+}
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    [self _setBottomToolbarHidden:NO animated:YES];
+    
+    if (completed) {
+        BBMediaViewerPageViewController *pageVC = pageViewController.viewControllers.firstObject;
+        
+        [self.toolbar setContentView:pageVC.bottomToolbarContentView];
+    }
+}
+
 - (instancetype)initWithModel:(BBMediaViewerModel *)model; {
     if (!(self = [super init]))
         return nil;
@@ -123,6 +165,32 @@
     _model = model;
     
     return self;
+}
+
+- (void)_setControlsHidden:(BOOL)controlsHidden animated:(BOOL)animated; {
+    void(^block)(void) = ^{
+        [self.navigationBar setAlpha:controlsHidden ? 0.0 : 1.0];
+        [self _setBottomToolbarHidden:controlsHidden animated:NO];
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:block completion:nil];
+    }
+    else {
+        block();
+    }
+}
+- (void)_setBottomToolbarHidden:(BOOL)bottomToolbarHidden animated:(BOOL)animated; {
+    void(^block)(void) = ^{
+        [self.toolbar setAlpha:bottomToolbarHidden ? 0.0 : 1.0];
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:block completion:nil];
+    }
+    else {
+        block();
+    }
 }
 
 @end

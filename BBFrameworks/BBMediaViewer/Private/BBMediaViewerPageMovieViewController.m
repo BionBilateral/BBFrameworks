@@ -16,9 +16,11 @@
 #import "BBMediaViewerPageMovieViewController.h"
 #import "BBMediaViewerPageMovieModel.h"
 #import "BBMediaViewerPageMovieView.h"
+#import "BBMediaViewerPageMovieToolbarContentView.h"
 
 @interface BBMediaViewerPageMovieViewController ()
 @property (strong,nonatomic) BBMediaViewerPageMovieView *movieView;
+@property (strong,nonatomic) BBMediaViewerPageMovieToolbarContentView *movieToolbarContentView;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPageMovieModel *model;
 @end
@@ -31,6 +33,8 @@
     [self setMovieView:[[BBMediaViewerPageMovieView alloc] initWithModel:self.model]];
     [self.movieView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.movieView];
+    
+    [self setMovieToolbarContentView:[[BBMediaViewerPageMovieToolbarContentView alloc] initWithModel:self.model]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.movieView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.movieView}]];
@@ -46,5 +50,9 @@
 }
 
 @synthesize model=_model;
+
+- (UIView *)bottomToolbarContentView {
+    return self.movieToolbarContentView;
+}
 
 @end
