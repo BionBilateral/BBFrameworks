@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)indexOfMedia:(id<BBMediaViewerMedia>)media;
 
 - (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media;
-- (void)downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
+- (void)downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
 
 @end
 

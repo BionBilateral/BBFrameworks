@@ -65,8 +65,8 @@
 - (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media; {
     return [self.delegate mediaViewerModel:self fileURLForMedia:media];
 }
-- (void)downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion; {
-    [self.delegate mediaViewerModel:self downloadForMedia:media completion:completion];
+- (void)downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion; {
+    [self.delegate mediaViewerModel:self downloadMedia:media completion:completion];
 }
 
 - (void)setTheme:(BBMediaViewerTheme *)theme {

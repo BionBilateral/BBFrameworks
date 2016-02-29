@@ -97,9 +97,9 @@
     }
     return nil;
 }
-- (void)mediaViewerModel:(BBMediaViewerModel *)model downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion {
-    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:downloadForMedia:completion:)]) {
-        [self.delegate mediaViewerViewController:self downloadForMedia:media completion:completion];
+- (void)mediaViewerModel:(BBMediaViewerModel *)model downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:downloadMedia:completion:)]) {
+        [self.delegate mediaViewerViewController:self downloadMedia:media completion:completion];
     }
 }
 

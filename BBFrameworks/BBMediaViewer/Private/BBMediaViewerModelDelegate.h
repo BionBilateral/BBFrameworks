@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BBMediaViewerModelDelegate <NSObject>
 @required
 - (NSURL *)mediaViewerModel:(BBMediaViewerModel *)model fileURLForMedia:(id<BBMediaViewerMedia>)media;
-- (void)mediaViewerModel:(BBMediaViewerModel *)model downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
+- (void)mediaViewerModel:(BBMediaViewerModel *)model downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
 @end
 
 NS_ASSUME_NONNULL_END

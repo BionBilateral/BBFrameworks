@@ -54,7 +54,7 @@
             loadImageBlock(fileURL);
         }
         else {
-            [self.parentModel downloadForMedia:self.media completion:^{
+            [self.parentModel downloadMedia:self.media completion:^{
                 loadImageBlock(fileURL);
             }];
         }
