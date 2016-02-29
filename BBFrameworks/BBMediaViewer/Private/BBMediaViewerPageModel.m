@@ -44,7 +44,10 @@
     NSString *filenameExtension = media.mediaViewerMediaURL.pathExtension;
     NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)filenameExtension, NULL);
     
-    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeGIF)) {
+        return BBMediaViewerPageModelTypeImageAnimated;
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
         return BBMediaViewerPageModelTypeImage;
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
