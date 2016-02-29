@@ -30,6 +30,7 @@
     [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.label setNumberOfLines:0];
+    [self.label setTextAlignment:NSTextAlignmentCenter];
     [self.label setText:[NSString stringWithFormat:@"%@\n%@",self.model.title,self.model.UTI]];
     [self.view addSubview:self.label];
     
