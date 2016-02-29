@@ -30,7 +30,7 @@
     [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.label setNumberOfLines:0];
-    [self.label setText:[NSString stringWithFormat:@"%@\n%@\n%@",self.model.URL.absoluteString,self.model.title,self.model.UTI]];
+    [self.label setText:[NSString stringWithFormat:@"%@\n%@",self.model.title,self.model.UTI]];
     [self.view addSubview:self.label];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|" options:0 metrics:nil views:@{@"view": self.label}]];

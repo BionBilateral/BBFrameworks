@@ -1,8 +1,8 @@
 //
-//  BBMediaViewerModel.m
+//  BBMediaViewerModelDataSource.h
 //  BBFrameworks
 //
-//  Created by William Towe on 2/28/16.
+//  Created by William Towe on 2/29/16.
 //  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,57 +13,17 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerModel.h"
-#import "BBMediaViewerTheme.h"
-#import "BBFrameworksMacros.h"
+#import <Foundation/Foundation.h>
+#import "BBMediaViewerMedia.h"
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+NS_ASSUME_NONNULL_BEGIN
 
-@interface BBMediaViewerModel ()
-@property (readwrite,strong,nonatomic) RACCommand *doneCommand;
+@class BBMediaViewerModel;
+
+@protocol BBMediaViewerModelDataSource <NSObject>
+@required
+- (NSInteger)numberOfMediaInMediaViewerModel:(BBMediaViewerModel *)model;
+- (id<BBMediaViewerMedia>)mediaViewerModel:(BBMediaViewerModel *)model mediaAtIndex:(NSInteger)index;
 @end
 
-@implementation BBMediaViewerModel
-
-- (instancetype)init {
-    if (!(self = [super init]))
-        return nil;
-    
-    _theme = [BBMediaViewerTheme defaultTheme];
-    
-    BBWeakify(self);
-    
-    _doneCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        BBStrongify(self);
-        return [RACSignal return:self];
-    }];
-    
-    return self;
-}
-
-- (NSInteger)numberOfMedia; {
-    return [self.dataSource numberOfMediaInMediaViewerModel:self];
-}
-- (id<BBMediaViewerMedia>)mediaAtIndex:(NSInteger)index; {
-    return [self.dataSource mediaViewerModel:self mediaAtIndex:index];
-}
-- (NSInteger)indexOfMedia:(id<BBMediaViewerMedia>)media; {
-    NSInteger retval = NSNotFound;
-    
-    for (NSInteger i=0; i<[self numberOfMedia]; i++) {
-        id<BBMediaViewerMedia> m = [self mediaAtIndex:i];
-        
-        if ([m isEqual:media]) {
-            retval = i;
-            break;
-        }
-    }
-    
-    return retval;
-}
-
-- (void)setTheme:(BBMediaViewerTheme *)theme {
-    _theme = theme ?: [BBMediaViewerTheme defaultTheme];
-}
-
-@end
+NS_ASSUME_NONNULL_END

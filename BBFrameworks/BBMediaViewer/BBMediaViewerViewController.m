@@ -21,7 +21,7 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerViewController ()
+@interface BBMediaViewerViewController () <BBMediaViewerModelDataSource>
 @property (strong,nonatomic) BBMediaViewerContentViewController *contentVC;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
@@ -38,6 +38,7 @@
         return nil;
     
     _model = [[BBMediaViewerModel alloc] init];
+    [_model setDataSource:self];
     
     return self;
 }
@@ -80,6 +81,13 @@
     [super viewWillDisappear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+- (NSInteger)numberOfMediaInMediaViewerModel:(BBMediaViewerModel *)model {
+    return [self.dataSource numberOfMediaInMediaViewerViewController:self];
+}
+- (id<BBMediaViewerMedia>)mediaViewerModel:(BBMediaViewerModel *)model mediaAtIndex:(NSInteger)index {
+    return [self.dataSource mediaViewerViewController:self mediaAtIndex:index];
 }
 
 @dynamic theme;

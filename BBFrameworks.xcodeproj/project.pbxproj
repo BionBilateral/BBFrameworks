@@ -1001,6 +1001,7 @@
 		07ED7E5A1BEA6AA9004D1697 /* BBFrameworksNSDictionaryBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSDictionaryBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
 		07FF892C1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		07FF892D1BE95A8000D5BA27 /* NSDictionary+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BBBlocksExtensions.m"; sourceTree = "<group>"; };
+		07FFB0D41C84AF46003098C8 /* BBMediaViewerModelDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerModelDataSource.h; path = Private/BBMediaViewerModelDataSource.h; sourceTree = "<group>"; };
 		21B43B4B9CAB0579395CC879 /* Pods-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3E8C44BB7D096FB8A7B3E9D2 /* libPods-OSXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OSXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F89BEF30AE7E177537A951A /* Pods-iOSDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSDemo/Pods-iOSDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -2051,6 +2052,7 @@
 				798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */,
 				79CAB98F1C82EB330044398A /* BBMediaViewerTheme.h */,
 				79CAB9901C82EB330044398A /* BBMediaViewerTheme.m */,
+				07FFB0D41C84AF46003098C8 /* BBMediaViewerModelDataSource.h */,
 				7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */,
 				7917FE2C1C83BE42004D412D /* BBMediaViewerModel.m */,
 				79CAB9971C838CFB0044398A /* BBMediaViewerViewControllerDataSource.h */,

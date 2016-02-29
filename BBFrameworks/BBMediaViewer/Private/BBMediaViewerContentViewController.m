@@ -28,14 +28,23 @@
 @property (strong,nonatomic) UIToolbar *toolbar;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
-
-- (NSInteger)_indexOfMedia:(id<BBMediaViewerMedia>)media;
 @end
 
 @implementation BBMediaViewerContentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setPageViewController:[[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey: @8.0}]];
+    
+    id<BBMediaViewerMedia> firstMedia = [self.model mediaAtIndex:0];
+    
+    [self.pageViewController setViewControllers:@[[[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setDataSource:self];
+    [self addChildViewController:self.pageViewController];
+    [self.pageViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:self.pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
     
     [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
     [self.navigationBar setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -46,6 +55,9 @@
     [self.toolbar setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.toolbar setDelegate:self];
     [self.view addSubview:self.toolbar];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.navigationBar}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][view]" options:0 metrics:nil views:@{@"top": self.topLayoutGuide, @"view": self.navigationBar}]];
@@ -82,10 +94,24 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    return nil;
+    BBMediaViewerPageViewController *pageVC = (BBMediaViewerPageViewController *)viewController;
+    NSInteger index = [self.model indexOfMedia:pageVC.model.media];
+    
+    if ((++index) == [self.model numberOfMedia]) {
+        return nil;
+    }
+    
+    return [[BBMediaViewerPageViewController alloc] initWithMedia:[self.model mediaAtIndex:index] parentModel:self.model];
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    return nil;
+    BBMediaViewerPageViewController *pageVC = (BBMediaViewerPageViewController *)viewController;
+    NSInteger index = [self.model indexOfMedia:pageVC.model.media];
+    
+    if ((--index) < 0) {
+        return nil;
+    }
+    
+    return [[BBMediaViewerPageViewController alloc] initWithMedia:[self.model mediaAtIndex:index] parentModel:self.model];
 }
 
 - (instancetype)initWithModel:(BBMediaViewerModel *)model; {
@@ -97,13 +123,6 @@
     _model = model;
     
     return self;
-}
-
-- (NSInteger)_indexOfMedia:(id<BBMediaViewerMedia>)media; {
-    NSInteger retval = NSNotFound;
-    
-    
-    return retval;
 }
 
 @end
