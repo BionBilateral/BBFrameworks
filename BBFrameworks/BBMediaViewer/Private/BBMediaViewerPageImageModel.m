@@ -15,6 +15,32 @@
 
 #import "BBMediaViewerPageImageModel.h"
 
+#import <FLAnimatedImage/FLAnimatedImage.h>
+
+#import <UIKit/UIKit.h>
+
+@interface BBMediaViewerPageImageModel ()
+@property (readwrite,strong,nonatomic) id image;
+@end
+
 @implementation BBMediaViewerPageImageModel
+
+- (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
+    if (!(self = [super initWithMedia:media parentModel:parentModel]))
+        return nil;
+    
+    if (self.URL.isFileURL) {
+        NSData *data = [NSData dataWithContentsOfURL:self.URL options:NSDataReadingMappedIfSafe error:NULL];
+        
+        if (self.type == BBMediaViewerPageModelTypeImageAnimated) {
+            _image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:data];
+        }
+        else {
+            _image = [[UIImage alloc] initWithData:data];
+        }
+    }
+    
+    return self;
+}
 
 @end

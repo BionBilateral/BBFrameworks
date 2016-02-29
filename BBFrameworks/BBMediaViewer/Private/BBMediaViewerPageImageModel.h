@@ -17,4 +17,6 @@
 
 @interface BBMediaViewerPageImageModel : BBMediaViewerPageModel
 
+@property (readonly,strong,nonatomic) id image;
+
 @end

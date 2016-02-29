@@ -15,12 +15,31 @@
 
 #import "BBMediaViewerPageImageViewController.h"
 #import "BBMediaViewerPageImageModel.h"
+#import "BBMediaViewerPageImageScrollView.h"
 
 @interface BBMediaViewerPageImageViewController ()
+@property (strong,nonatomic) BBMediaViewerPageImageScrollView *scrollView;
+
 @property (readwrite,strong,nonatomic) BBMediaViewerPageImageModel *model;
 @end
 
 @implementation BBMediaViewerPageImageViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setScrollView:[[BBMediaViewerPageImageScrollView alloc] initWithModel:self.model]];
+    [self.view addSubview:self.scrollView];
+}
+- (void)viewWillLayoutSubviews {
+    [self.scrollView setFrame:self.view.bounds];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.scrollView updateZoomScale];
+    [self.scrollView centerImageView];
+}
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
