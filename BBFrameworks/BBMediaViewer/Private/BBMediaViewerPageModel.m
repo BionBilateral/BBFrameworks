@@ -21,7 +21,7 @@
 @interface BBMediaViewerPageModel ()
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
 @property (readwrite,assign,nonatomic) BBMediaViewerPageModelType type;
-@property (weak,nonatomic) BBMediaViewerModel *parentModel;
+@property (readwrite,weak,nonatomic) BBMediaViewerModel *parentModel;
 @end
 
 @implementation BBMediaViewerPageModel

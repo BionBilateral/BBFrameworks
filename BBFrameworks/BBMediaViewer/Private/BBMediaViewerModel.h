@@ -15,6 +15,8 @@
 
 #import <Foundation/Foundation.h>
 #import "BBMediaViewerModelDataSource.h"
+#import "BBMediaViewerModelDelegate.h"
+#import "BBMediaViewerDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBMediaViewerModel : NSObject
 
 @property (weak,nonatomic,nullable) id<BBMediaViewerModelDataSource> dataSource;
+@property (weak,nonatomic,nullable) id<BBMediaViewerModelDelegate> delegate;
 
 @property (strong,nonatomic,null_resettable) BBMediaViewerTheme *theme;
 
@@ -32,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)numberOfMedia;
 - (id<BBMediaViewerMedia>)mediaAtIndex:(NSInteger)index;
 - (NSInteger)indexOfMedia:(id<BBMediaViewerMedia>)media;
+
+- (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media;
+- (void)downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
 
 @end
 

@@ -21,7 +21,7 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerViewController () <BBMediaViewerModelDataSource>
+@interface BBMediaViewerViewController () <BBMediaViewerModelDataSource,BBMediaViewerModelDelegate>
 @property (strong,nonatomic) BBMediaViewerContentViewController *contentVC;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
@@ -39,6 +39,7 @@
     
     _model = [[BBMediaViewerModel alloc] init];
     [_model setDataSource:self];
+    [_model setDelegate:self];
     
     return self;
 }
@@ -88,6 +89,18 @@
 }
 - (id<BBMediaViewerMedia>)mediaViewerModel:(BBMediaViewerModel *)model mediaAtIndex:(NSInteger)index {
     return [self.dataSource mediaViewerViewController:self mediaAtIndex:index];
+}
+
+- (NSURL *)mediaViewerModel:(BBMediaViewerModel *)model fileURLForMedia:(id<BBMediaViewerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:fileURLForMedia:)]) {
+        return [self.delegate mediaViewerViewController:self fileURLForMedia:media];
+    }
+    return nil;
+}
+- (void)mediaViewerModel:(BBMediaViewerModel *)model downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:downloadForMedia:completion:)]) {
+        [self.delegate mediaViewerViewController:self downloadForMedia:media completion:completion];
+    }
 }
 
 @dynamic theme;

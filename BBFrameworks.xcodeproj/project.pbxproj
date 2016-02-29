@@ -991,6 +991,8 @@
 		07CE80461B50654100F5729E /* BBPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButton.h; path = iOS/BBPickerButton.h; sourceTree = "<group>"; };
 		07CE80471B50654100F5729E /* BBPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBPickerButton.m; path = iOS/BBPickerButton.m; sourceTree = "<group>"; };
 		07CE804C1B50677600F5729E /* BBPickerButtonDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBPickerButtonDataSource.h; path = iOS/BBPickerButtonDataSource.h; sourceTree = "<group>"; };
+		07E2869F1C84C2BC00C3C6DD /* BBMediaViewerDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerDefines.h; sourceTree = "<group>"; };
+		07E286A01C84C78700C3C6DD /* BBMediaViewerModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerModelDelegate.h; path = Private/BBMediaViewerModelDelegate.h; sourceTree = "<group>"; };
 		07E312BE1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BBKeyValueObservingExtensions.h"; sourceTree = "<group>"; };
 		07E312BF1BB32BF200C71468 /* NSObject+BBKeyValueObservingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BBKeyValueObservingExtensions.m"; sourceTree = "<group>"; };
 		07E312C41BB32CBE00C71468 /* BBKeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObserving.h; sourceTree = "<group>"; };
@@ -2056,8 +2058,10 @@
 				79CAB98F1C82EB330044398A /* BBMediaViewerTheme.h */,
 				79CAB9901C82EB330044398A /* BBMediaViewerTheme.m */,
 				07FFB0D41C84AF46003098C8 /* BBMediaViewerModelDataSource.h */,
+				07E286A01C84C78700C3C6DD /* BBMediaViewerModelDelegate.h */,
 				7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */,
 				7917FE2C1C83BE42004D412D /* BBMediaViewerModel.m */,
+				07E2869F1C84C2BC00C3C6DD /* BBMediaViewerDefines.h */,
 				79CAB9971C838CFB0044398A /* BBMediaViewerViewControllerDataSource.h */,
 				79CAB9981C838D100044398A /* BBMediaViewerViewControllerDelegate.h */,
 				79CAB9921C838C260044398A /* BBMediaViewerViewController.h */,

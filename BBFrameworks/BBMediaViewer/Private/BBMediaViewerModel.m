@@ -62,6 +62,13 @@
     return retval;
 }
 
+- (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media; {
+    return [self.delegate mediaViewerModel:self fileURLForMedia:media];
+}
+- (void)downloadForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion; {
+    [self.delegate mediaViewerModel:self downloadForMedia:media completion:completion];
+}
+
 - (void)setTheme:(BBMediaViewerTheme *)theme {
     _theme = theme ?: [BBMediaViewerTheme defaultTheme];
 }
