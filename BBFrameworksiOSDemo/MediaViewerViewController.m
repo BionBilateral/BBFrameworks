@@ -78,6 +78,10 @@
     return retval;
 }
 
+- (void)mediaViewerViewControllerIsDone:(BBMediaViewerViewController *)viewController {
+    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)_systemButtonAction:(id)sender {
     QLPreviewController *viewController = [[QLPreviewController alloc] init];
     

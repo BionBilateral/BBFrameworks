@@ -17,11 +17,14 @@
 #import "BBMediaViewerTheme.h"
 #import "BBMediaViewerContentViewController.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerViewController ()
 @property (strong,nonatomic) BBMediaViewerContentViewController *contentVC;
+
+@property (strong,nonatomic) BBMediaViewerModel *model;
 @end
 
 @implementation BBMediaViewerViewController
@@ -30,7 +33,7 @@
     if (!(self = [super init]))
         return nil;
     
-    _theme = [BBMediaViewerTheme defaultTheme];
+    _model = [[BBMediaViewerModel alloc] init];
     
     return self;
 }
@@ -38,9 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:self.theme.backgroundColor];
-    
-    [self setContentVC:[[BBMediaViewerContentViewController alloc] init]];
+    [self setContentVC:[[BBMediaViewerContentViewController alloc] initWithModel:self.model]];
     [self addChildViewController:self.contentVC];
     [self.contentVC.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.contentVC.view];
@@ -49,11 +50,30 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.contentVC.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.contentVC.view}]];
     
-    RAC(self.contentVC,theme) = RACObserve(self, theme);
+    BBWeakify(self);
+    
+    [[RACObserve(self.model, theme.backgroundColor)
+     deliverOnMainThread]
+     subscribeNext:^(UIColor *value) {
+         BBStrongify(self);
+         [self.view setBackgroundColor:value];
+     }];
+    
+    [[self.model.doneCommand.executionSignals
+     concat]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         
+         [self.delegate mediaViewerViewControllerIsDone:self];
+     }];
 }
 
+@dynamic theme;
+- (BBMediaViewerTheme *)theme {
+    return self.model.theme;
+}
 - (void)setTheme:(BBMediaViewerTheme *)theme {
-    _theme = theme ?: [BBMediaViewerTheme defaultTheme];
+    [self.model setTheme:theme];
 }
 
 @end

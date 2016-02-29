@@ -189,6 +189,7 @@
 		791551631B3336ED009FA353 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551621B3336ED009FA353 /* LaunchViewController.xib */; };
 		791551661B333FEF009FA353 /* WebViewRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551651B333FEF009FA353 /* WebViewRowViewController.xib */; };
 		791551681B3340B9009FA353 /* TooltipsRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791551671B3340B9009FA353 /* TooltipsRowViewController.xib */; };
+		7917FE2D1C83BE42004D412D /* BBMediaViewerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7917FE2C1C83BE42004D412D /* BBMediaViewerModel.m */; };
 		79184C6C1B7041DD0044789F /* BBReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 79184C6A1B7041DD0044789F /* BBReachability.h */; };
 		79184C6D1B7041DD0044789F /* BBReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 79184C6B1B7041DD0044789F /* BBReachability.m */; };
 		79184C6E1B7041DD0044789F /* BBReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 79184C6B1B7041DD0044789F /* BBReachability.m */; };
@@ -1022,6 +1023,8 @@
 		791551641B33388D009FA353 /* TableViewControllerRowClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerRowClass.h; sourceTree = "<group>"; };
 		791551651B333FEF009FA353 /* WebViewRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewRowViewController.xib; sourceTree = "<group>"; };
 		791551671B3340B9009FA353 /* TooltipsRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TooltipsRowViewController.xib; sourceTree = "<group>"; };
+		7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerModel.h; path = Private/BBMediaViewerModel.h; sourceTree = "<group>"; };
+		7917FE2C1C83BE42004D412D /* BBMediaViewerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerModel.m; path = Private/BBMediaViewerModel.m; sourceTree = "<group>"; };
 		79184C6A1B7041DD0044789F /* BBReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBReachability.h; sourceTree = "<group>"; };
 		79184C6B1B7041DD0044789F /* BBReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBReachability.m; sourceTree = "<group>"; };
 		791996CD1B6EB3C500FC674A /* BBThumbnailAsyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBThumbnailAsyncOperation.h; sourceTree = "<group>"; };
@@ -2026,6 +2029,8 @@
 				79344BE61C01323A00BBA726 /* BBMediaViewer.h */,
 				79CAB98F1C82EB330044398A /* BBMediaViewerTheme.h */,
 				79CAB9901C82EB330044398A /* BBMediaViewerTheme.m */,
+				7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */,
+				7917FE2C1C83BE42004D412D /* BBMediaViewerModel.m */,
 				79CAB9971C838CFB0044398A /* BBMediaViewerViewControllerDataSource.h */,
 				79CAB9981C838D100044398A /* BBMediaViewerViewControllerDelegate.h */,
 				79CAB9921C838C260044398A /* BBMediaViewerViewController.h */,
@@ -3552,6 +3557,7 @@
 				07AEC84A1B6BE68500013470 /* UITextView+BBValidationExtensions.m in Sources */,
 				79A6BB201BAF29F000466EE4 /* NSDate+BBFoundationExtensions.m in Sources */,
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
+				7917FE2D1C83BE42004D412D /* BBMediaViewerModel.m in Sources */,
 				07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
 				075BCA991BDFE19200E9743C /* UIDevice+BBKitExtensions.m in Sources */,

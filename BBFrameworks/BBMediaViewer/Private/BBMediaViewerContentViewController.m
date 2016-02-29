@@ -16,11 +16,14 @@
 #import "BBMediaViewerContentViewController.h"
 #import "BBMediaViewerTheme.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerContentViewController () <UINavigationBarDelegate>
 @property (strong,nonatomic) UINavigationBar *navigationBar;
+
+@property (strong,nonatomic) BBMediaViewerModel *model;
 @end
 
 @implementation BBMediaViewerContentViewController
@@ -40,7 +43,7 @@
     
     BBWeakify(self);
     
-    [[[RACObserve(self, theme.backgroundColor)
+    [[[RACObserve(self.model, theme.backgroundColor)
      ignore:nil]
      deliverOnMainThread]
      subscribeNext:^(UIColor *value) {
@@ -48,14 +51,13 @@
          [self.view setBackgroundColor:value];
      }];
     
-    [[[RACObserve(self, theme.doneBarButtonItem)
+    [[[RACObserve(self.model, theme.doneBarButtonItem)
      ignore:nil]
      deliverOnMainThread]
      subscribeNext:^(UIBarButtonItem *value) {
          BBStrongify(self);
          
-         [value setTarget:self];
-         [value setAction:@selector(_doneBarButtonItemAction:)];
+         [value setRac_command:self.model.doneCommand];
          
          [self.navigationItem setRightBarButtonItems:@[value]];
      }];
@@ -65,8 +67,15 @@
     return UIBarPositionTopAttached;
 }
 
-- (IBAction)_doneBarButtonItemAction:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+- (instancetype)initWithModel:(BBMediaViewerModel *)model; {
+    if (!(self = [super init]))
+        return nil;
+    
+    NSParameterAssert(model);
+    
+    _model = model;
+    
+    return self;
 }
 
 @end

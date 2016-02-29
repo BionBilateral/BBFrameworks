@@ -15,6 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol BBMediaViewerViewControllerDelegate <NSObject>
+NS_ASSUME_NONNULL_BEGIN
 
+@class BBMediaViewerViewController;
+
+@protocol BBMediaViewerViewControllerDelegate <NSObject>
+@required
+- (void)mediaViewerViewControllerIsDone:(BBMediaViewerViewController *)viewController;
 @end
+
+NS_ASSUME_NONNULL_END
