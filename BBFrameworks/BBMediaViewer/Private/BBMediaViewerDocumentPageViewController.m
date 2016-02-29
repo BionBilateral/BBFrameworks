@@ -1,8 +1,8 @@
 //
-//  BBMediaViewerPageImageModel.m
+//  BBMediaViewerDocumentPageViewController.m
 //  BBFrameworks
 //
-//  Created by William Towe on 2/28/16.
+//  Created by William Towe on 2/29/16.
 //  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,54 +13,50 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerPageImageModel.h"
-#import "BBMediaViewerModel.h"
+#import "BBMediaViewerDocumentPageViewController.h"
+#import "BBMediaViewerPageDocumentModel.h"
 #import "BBFrameworksMacros.h"
 
-#import <FLAnimatedImage/FLAnimatedImage.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import <UIKit/UIKit.h>
+@interface BBMediaViewerDocumentPageViewController ()
+@property (strong,nonatomic) UIWebView *webView;
 
-@interface BBMediaViewerPageImageModel ()
-@property (readwrite,strong,nonatomic) id image;
+@property (readwrite,strong,nonatomic) BBMediaViewerPageDocumentModel *model;
 @end
 
-@implementation BBMediaViewerPageImageModel
+@implementation BBMediaViewerDocumentPageViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setWebView:[[UIWebView alloc] initWithFrame:CGRectZero]];
+    [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.webView setScalesPageToFit:YES];
+    [self.view addSubview:self.webView];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.webView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][view][bottom]" options:0 metrics:nil views:@{@"view": self.webView, @"top": self.topLayoutGuide, @"bottom": self.bottomLayoutGuide}]];
+    
+    BBWeakify(self);
+    [[[RACObserve(self.model, URLRequest)
+     ignore:nil]
+     deliverOnMainThread]
+     subscribeNext:^(NSURLRequest *value) {
+         BBStrongify(self);
+         [self.webView loadRequest:value];
+     }];
+}
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
         return nil;
     
-    BBWeakify(self);
-    void(^createImageBlock)(NSURL *) = ^(NSURL *URL){
-        BBStrongify(self);
-        NSData *data = [NSData dataWithContentsOfURL:URL options:NSDataReadingMappedIfSafe error:NULL];
-        
-        if (self.type == BBMediaViewerPageModelTypeImageAnimated) {
-            [self setImage:[[FLAnimatedImage alloc] initWithAnimatedGIFData:data]];
-        }
-        else {
-            [self setImage:[[UIImage alloc] initWithData:data]];
-        }
-    };
-    
-    if (self.URL.isFileURL) {
-        createImageBlock(self.URL);
-    }
-    else {
-        NSURL *fileURL = [self.parentModel fileURLForMedia:self.media];
-        
-        if ([fileURL checkResourceIsReachableAndReturnError:NULL]) {
-            createImageBlock(fileURL);
-        }
-        else {
-            [self.parentModel downloadMedia:self.media completion:^{
-                createImageBlock(fileURL);
-            }];
-        }
-    }
+    _model = [[BBMediaViewerPageDocumentModel alloc] initWithMedia:media parentModel:parentModel];
     
     return self;
 }
+
+@synthesize model=_model;
 
 @end

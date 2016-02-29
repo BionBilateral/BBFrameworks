@@ -53,6 +53,9 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
         return BBMediaViewerPageModelTypeMovie;
     }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, CFSTR("com.microsoft.powerpoint.ppt"))) {
+        return BBMediaViewerPageModelTypeDocument;
+    }
     else {
         return BBMediaViewerPageModelTypeUnknown;
     }

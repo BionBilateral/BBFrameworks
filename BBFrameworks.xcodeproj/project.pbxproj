@@ -44,6 +44,8 @@
 		075CECB41BC5A731000731BC /* NSString+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075CECB21BC5A731000731BC /* NSString+BBKitExtensions.m */; };
 		075CECB51BC5A731000731BC /* NSString+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 075CECB21BC5A731000731BC /* NSString+BBKitExtensions.m */; };
 		075CECB61BC5A775000731BC /* NSString+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */; };
+		07604F031C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F021C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.m */; };
+		07604F061C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07604F051C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.m */; };
 		07605AB61B67D72B00333678 /* BBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07605AB51B67D72B00333678 /* BBTextView.m */; };
 		07605AB71B67D7C800333678 /* BBTextView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605AB41B67D72B00333678 /* BBTextView.h */; };
 		07605ABE1B69556E00333678 /* BBMediaPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07605ABD1B69556E00333678 /* BBMediaPickerViewController.m */; };
@@ -904,6 +906,10 @@
 		075BCA981BDFE19200E9743C /* UIDevice+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BBKitExtensions.m"; path = "iOS/UIDevice+BBKitExtensions.m"; sourceTree = "<group>"; };
 		075CECB11BC5A731000731BC /* NSString+BBKitExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBKitExtensions.h"; sourceTree = "<group>"; };
 		075CECB21BC5A731000731BC /* NSString+BBKitExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBKitExtensions.m"; sourceTree = "<group>"; };
+		07604F011C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageDocumentModel.h; path = Private/BBMediaViewerPageDocumentModel.h; sourceTree = "<group>"; };
+		07604F021C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageDocumentModel.m; path = Private/BBMediaViewerPageDocumentModel.m; sourceTree = "<group>"; };
+		07604F041C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerDocumentPageViewController.h; path = Private/BBMediaViewerDocumentPageViewController.h; sourceTree = "<group>"; };
+		07604F051C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerDocumentPageViewController.m; path = Private/BBMediaViewerDocumentPageViewController.m; sourceTree = "<group>"; };
 		07605AB41B67D72B00333678 /* BBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBTextView.h; path = iOS/BBTextView.h; sourceTree = "<group>"; };
 		07605AB51B67D72B00333678 /* BBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBTextView.m; path = iOS/BBTextView.m; sourceTree = "<group>"; };
 		07605ABB1B69551800333678 /* BBMediaPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBMediaPicker.h; sourceTree = "<group>"; };
@@ -1690,6 +1696,17 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		07604F001C84D02A0058F5C3 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				07604F011C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.h */,
+				07604F021C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.m */,
+				07604F041C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.h */,
+				07604F051C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.m */,
+			);
+			name = Document;
+			sourceTree = "<group>";
+		};
 		0798750F1BD021A0005422B2 /* BBKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2096,6 +2113,7 @@
 				798768FF1C83DB430040E1D1 /* BBMediaViewerPageViewController.m */,
 				798769081C83DEA80040E1D1 /* Placeholder */,
 				798769011C83DC3A0040E1D1 /* Image */,
+				07604F001C84D02A0058F5C3 /* Document */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -3554,6 +3572,7 @@
 				078563AD1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */,
 				79EA80F41B3F0D4B00D50B6B /* BBMoviePlayerController.m in Sources */,
 				79EA80D41B3F0CF300D50B6B /* UIBarButtonItem+BBKitExtensions.m in Sources */,
+				07604F061C84D1140058F5C3 /* BBMediaViewerDocumentPageViewController.m in Sources */,
 				7987CACE1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionThumbnailView.m in Sources */,
 				791997101B6EB44E00FC674A /* BBThumbnailDocumentOperation.m in Sources */,
 				7987CAD01C0E9AE6000C4086 /* BBMediaPickerAssetModel.m in Sources */,
@@ -3605,6 +3624,7 @@
 				79EA80D61B3F0CF300D50B6B /* UIFont+BBKitExtensions.m in Sources */,
 				077656621B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */,
 				79EA80F31B3F0D4B00D50B6B /* BBMoviePlayerViewController.m in Sources */,
+				07604F031C84D06A0058F5C3 /* BBMediaViewerPageDocumentModel.m in Sources */,
 				794FB2561C55B9A800357ED3 /* BBKitFunctions.m in Sources */,
 				79F941681B437AE300B385F0 /* BBAddressBookGroup.m in Sources */,
 				79EA80FD1B3F0D5B00D50B6B /* BBTooltipView.m in Sources */,

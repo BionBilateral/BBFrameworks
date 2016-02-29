@@ -26,7 +26,8 @@ typedef NS_ENUM(NSInteger, BBMediaViewerPageModelType) {
     BBMediaViewerPageModelTypePDF,
     BBMediaViewerPageModelTypeHTML,
     BBMediaViewerPageModelTypePlainText,
-    BBMediaViewerPageModelTypeRTF
+    BBMediaViewerPageModelTypeRTF,
+    BBMediaViewerPageModelTypeDocument
 };
 
 @class BBMediaViewerModel;
