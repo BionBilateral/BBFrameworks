@@ -78,6 +78,13 @@
     return retval;
 }
 
+- (NSInteger)numberOfMediaInMediaViewerViewController:(BBMediaViewerViewController *)viewController {
+    return self.URLs.count;
+}
+- (id<BBMediaViewerMedia>)mediaViewerViewController:(BBMediaViewerViewController *)viewController mediaAtIndex:(NSInteger)index {
+    return self.URLs[index];
+}
+
 - (void)mediaViewerViewControllerIsDone:(BBMediaViewerViewController *)viewController {
     [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }

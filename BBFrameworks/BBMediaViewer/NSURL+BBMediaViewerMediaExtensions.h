@@ -1,5 +1,5 @@
 //
-//  BBMediaViewerViewControllerDataSource.h
+//  NSURL+BBMediaViewerMediaExtensions.h
 //  BBFrameworks
 //
 //  Created by William Towe on 2/28/16.
@@ -16,14 +16,6 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaViewerMedia.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface NSURL (BBMediaViewerMediaExtensions) <BBMediaViewerMedia>
 
-@class BBMediaViewerViewController;
-
-@protocol BBMediaViewerViewControllerDataSource <NSObject>
-@required
-- (NSInteger)numberOfMediaInMediaViewerViewController:(BBMediaViewerViewController *)viewController;
-- (id<BBMediaViewerMedia>)mediaViewerViewController:(BBMediaViewerViewController *)viewController mediaAtIndex:(NSInteger)index;
 @end
-
-NS_ASSUME_NONNULL_END

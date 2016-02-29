@@ -276,6 +276,7 @@
 		7965A3EF1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
 		7965A3F01C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
 		7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */; };
+		798768F91C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */; };
 		7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */; };
 		7987CAA41C0E9A96000C4086 /* BBMediaPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA11C0E9A96000C4086 /* BBMediaPickerTheme.m */; };
 		7987CAA81C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA61C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m */; };
@@ -1174,6 +1175,9 @@
 		7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		7965A3EA1C82579200A197E2 /* NSString+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBBlocksExtensions.m"; sourceTree = "<group>"; };
 		7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSStringBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
+		798768F61C83C3480040E1D1 /* BBMediaViewerMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerMedia.h; sourceTree = "<group>"; };
+		798768F71C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBMediaViewerMediaExtensions.h"; sourceTree = "<group>"; };
+		798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBMediaViewerMediaExtensions.m"; sourceTree = "<group>"; };
 		7987CA9E1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerDefaultTitleView.h; path = Private/BBMediaPickerDefaultTitleView.h; sourceTree = "<group>"; };
 		7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerDefaultTitleView.m; path = Private/BBMediaPickerDefaultTitleView.m; sourceTree = "<group>"; };
 		7987CAA01C0E9A96000C4086 /* BBMediaPickerTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerTheme.h; sourceTree = "<group>"; };
@@ -2027,6 +2031,9 @@
 			isa = PBXGroup;
 			children = (
 				79344BE61C01323A00BBA726 /* BBMediaViewer.h */,
+				798768F61C83C3480040E1D1 /* BBMediaViewerMedia.h */,
+				798768F71C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.h */,
+				798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */,
 				79CAB98F1C82EB330044398A /* BBMediaViewerTheme.h */,
 				79CAB9901C82EB330044398A /* BBMediaViewerTheme.m */,
 				7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */,
@@ -3462,6 +3469,7 @@
 			files = (
 				791996F71B6EB3C500FC674A /* BBThumbnailMovieOperation.m in Sources */,
 				79D5407A1B4B5EC9009ECE38 /* UIAlertController+BBKitExtensions.m in Sources */,
+				798768F91C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m in Sources */,
 				7922E8AE1BD42D8800F85EDA /* BBMoviePlayerView.m in Sources */,
 				791996EA1B6EB3C500FC674A /* BBThumbnailBaseOperation.m in Sources */,
 				07B3D90D1B60373B00FA1853 /* BBFormStepperTableViewCell.m in Sources */,
