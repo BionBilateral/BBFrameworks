@@ -1,8 +1,8 @@
 //
-//  BBMediaViewerPageViewController.m
+//  BBMediaViewerPageMovieViewController.m
 //  BBFrameworks
 //
-//  Created by William Towe on 2/28/16.
+//  Created by William Towe on 2/29/16.
 //  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,34 +13,38 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerPageViewController.h"
-#import "BBMediaViewerPageImageViewController.h"
-#import "BBMediaViewerPageModel.h"
-#import "BBMediaViewerPagePlaceholderViewController.h"
-#import "BBMediaViewerModel.h"
-#import "BBMediaViewerDocumentPageViewController.h"
 #import "BBMediaViewerPageMovieViewController.h"
+#import "BBMediaViewerPageMovieModel.h"
+#import "BBMediaViewerPageMovieView.h"
 
-@interface BBMediaViewerPageViewController ()
+@interface BBMediaViewerPageMovieViewController ()
+@property (strong,nonatomic) BBMediaViewerPageMovieView *movieView;
 
+@property (readwrite,strong,nonatomic) BBMediaViewerPageMovieModel *model;
 @end
 
-@implementation BBMediaViewerPageViewController
+@implementation BBMediaViewerPageMovieViewController
 
-- (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel; {
-    if (self.class == [BBMediaViewerPageViewController class]) {
-        switch ([BBMediaViewerPageModel typeForMedia:media]) {
-            case BBMediaViewerPageModelTypeImage:
-                return [[BBMediaViewerPageImageViewController alloc] initWithMedia:media parentModel:parentModel];
-            case BBMediaViewerPageModelTypeDocument:
-                return [[BBMediaViewerDocumentPageViewController alloc] initWithMedia:media parentModel:parentModel];
-            case BBMediaViewerPageModelTypeMovie:
-                return [[BBMediaViewerPageMovieViewController alloc] initWithMedia:media parentModel:parentModel];
-            default:
-                return [[BBMediaViewerPagePlaceholderViewController alloc] initWithMedia:media parentModel:parentModel];
-        }
-    }
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setMovieView:[[BBMediaViewerPageMovieView alloc] initWithModel:self.model]];
+    [self.movieView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:self.movieView];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.movieView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.movieView}]];
+}
+
+- (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
+    if (!(self = [super initWithMedia:media parentModel:parentModel]))
+        return nil;
+    
+    _model = [[BBMediaViewerPageMovieModel alloc] initWithMedia:media parentModel:parentModel];
+    
     return self;
 }
+
+@synthesize model=_model;
 
 @end
