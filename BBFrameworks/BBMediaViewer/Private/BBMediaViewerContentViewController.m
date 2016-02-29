@@ -17,14 +17,19 @@
 #import "BBMediaViewerTheme.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
+#import "BBMediaViewerPageViewController.h"
+#import "BBMediaViewerPageModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerContentViewController () <UINavigationBarDelegate,UIToolbarDelegate>
+@interface BBMediaViewerContentViewController () <UINavigationBarDelegate,UIToolbarDelegate,UIPageViewControllerDataSource>
+@property (strong,nonatomic) UIPageViewController *pageViewController;
 @property (strong,nonatomic) UINavigationBar *navigationBar;
 @property (strong,nonatomic) UIToolbar *toolbar;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
+
+- (NSInteger)_indexOfMedia:(id<BBMediaViewerMedia>)media;
 @end
 
 @implementation BBMediaViewerContentViewController
@@ -76,6 +81,13 @@
     return [bar isEqual:self.navigationBar] ? UIBarPositionTopAttached : UIBarPositionBottom;
 }
 
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    return nil;
+}
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    return nil;
+}
+
 - (instancetype)initWithModel:(BBMediaViewerModel *)model; {
     if (!(self = [super init]))
         return nil;
@@ -85,6 +97,13 @@
     _model = model;
     
     return self;
+}
+
+- (NSInteger)_indexOfMedia:(id<BBMediaViewerMedia>)media; {
+    NSInteger retval = NSNotFound;
+    
+    
+    return retval;
 }
 
 @end

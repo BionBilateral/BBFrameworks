@@ -277,6 +277,11 @@
 		7965A3F01C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
 		7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */; };
 		798768F91C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */; };
+		798768FD1C83DA390040E1D1 /* BBMediaViewerPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768FC1C83DA390040E1D1 /* BBMediaViewerPageModel.m */; };
+		798769001C83DB430040E1D1 /* BBMediaViewerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768FF1C83DB430040E1D1 /* BBMediaViewerPageViewController.m */; };
+		798769041C83DC660040E1D1 /* BBMediaViewerPageImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798769031C83DC660040E1D1 /* BBMediaViewerPageImageViewController.m */; };
+		798769071C83DC890040E1D1 /* BBMediaViewerPageImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 798769061C83DC890040E1D1 /* BBMediaViewerPageImageModel.m */; };
+		7987690B1C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987690A1C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.m */; };
 		7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */; };
 		7987CAA41C0E9A96000C4086 /* BBMediaPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA11C0E9A96000C4086 /* BBMediaPickerTheme.m */; };
 		7987CAA81C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7987CAA61C0E9ADD000C4086 /* BBMediaPickerAssetDefaultSelectedOverlayView.m */; };
@@ -1178,6 +1183,16 @@
 		798768F61C83C3480040E1D1 /* BBMediaViewerMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerMedia.h; sourceTree = "<group>"; };
 		798768F71C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBMediaViewerMediaExtensions.h"; sourceTree = "<group>"; };
 		798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBMediaViewerMediaExtensions.m"; sourceTree = "<group>"; };
+		798768FB1C83DA390040E1D1 /* BBMediaViewerPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageModel.h; path = Private/BBMediaViewerPageModel.h; sourceTree = "<group>"; };
+		798768FC1C83DA390040E1D1 /* BBMediaViewerPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageModel.m; path = Private/BBMediaViewerPageModel.m; sourceTree = "<group>"; };
+		798768FE1C83DB430040E1D1 /* BBMediaViewerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageViewController.h; path = Private/BBMediaViewerPageViewController.h; sourceTree = "<group>"; };
+		798768FF1C83DB430040E1D1 /* BBMediaViewerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageViewController.m; path = Private/BBMediaViewerPageViewController.m; sourceTree = "<group>"; };
+		798769021C83DC660040E1D1 /* BBMediaViewerPageImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageImageViewController.h; path = Private/BBMediaViewerPageImageViewController.h; sourceTree = "<group>"; };
+		798769031C83DC660040E1D1 /* BBMediaViewerPageImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageImageViewController.m; path = Private/BBMediaViewerPageImageViewController.m; sourceTree = "<group>"; };
+		798769051C83DC890040E1D1 /* BBMediaViewerPageImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPageImageModel.h; path = Private/BBMediaViewerPageImageModel.h; sourceTree = "<group>"; };
+		798769061C83DC890040E1D1 /* BBMediaViewerPageImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPageImageModel.m; path = Private/BBMediaViewerPageImageModel.m; sourceTree = "<group>"; };
+		798769091C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPagePlaceholderViewController.h; path = Private/BBMediaViewerPagePlaceholderViewController.h; sourceTree = "<group>"; };
+		7987690A1C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPagePlaceholderViewController.m; path = Private/BBMediaViewerPagePlaceholderViewController.m; sourceTree = "<group>"; };
 		7987CA9E1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaPickerDefaultTitleView.h; path = Private/BBMediaPickerDefaultTitleView.h; sourceTree = "<group>"; };
 		7987CA9F1C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaPickerDefaultTitleView.m; path = Private/BBMediaPickerDefaultTitleView.m; sourceTree = "<group>"; };
 		7987CAA01C0E9A96000C4086 /* BBMediaPickerTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerTheme.h; sourceTree = "<group>"; };
@@ -2044,6 +2059,7 @@
 				79CAB9931C838C260044398A /* BBMediaViewerViewController.m */,
 				79CAB9991C838D780044398A /* BBMediaViewerContentViewController.h */,
 				79CAB99A1C838D780044398A /* BBMediaViewerContentViewController.m */,
+				798768FA1C83CB4D0040E1D1 /* Detail */,
 			);
 			path = BBMediaViewer;
 			sourceTree = "<group>";
@@ -2060,6 +2076,39 @@
 				76E18D0A91AEB5D129F5F3EC /* Pods */,
 				B57C4002BFB6D5C1DBE48B35 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		798768FA1C83CB4D0040E1D1 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				798768FB1C83DA390040E1D1 /* BBMediaViewerPageModel.h */,
+				798768FC1C83DA390040E1D1 /* BBMediaViewerPageModel.m */,
+				798768FE1C83DB430040E1D1 /* BBMediaViewerPageViewController.h */,
+				798768FF1C83DB430040E1D1 /* BBMediaViewerPageViewController.m */,
+				798769081C83DEA80040E1D1 /* Placeholder */,
+				798769011C83DC3A0040E1D1 /* Image */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		798769011C83DC3A0040E1D1 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				798769051C83DC890040E1D1 /* BBMediaViewerPageImageModel.h */,
+				798769061C83DC890040E1D1 /* BBMediaViewerPageImageModel.m */,
+				798769021C83DC660040E1D1 /* BBMediaViewerPageImageViewController.h */,
+				798769031C83DC660040E1D1 /* BBMediaViewerPageImageViewController.m */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		798769081C83DEA80040E1D1 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				798769091C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.h */,
+				7987690A1C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.m */,
+			);
+			name = Placeholder;
 			sourceTree = "<group>";
 		};
 		7989C9CC1B1ADE65009B1CE9 /* BBFrameworksOSXDemo */ = {
@@ -3503,6 +3552,7 @@
 				7987CAA31C0E9A96000C4086 /* BBMediaPickerDefaultTitleView.m in Sources */,
 				07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */,
 				07B3D90C1B60373B00FA1853 /* BBFormDatePickerTableViewCell.m in Sources */,
+				798768FD1C83DA390040E1D1 /* BBMediaViewerPageModel.m in Sources */,
 				79239D0B1B8022C1001AEB2E /* BBKitCGImageFunctions.m in Sources */,
 				79EA80D71B3F0CF300D50B6B /* UIImage+BBKitExtensions.m in Sources */,
 				07CE802A1B4EDBC100F5729E /* BBTextField.m in Sources */,
@@ -3523,8 +3573,10 @@
 				07605AB61B67D72B00333678 /* BBTextView.m in Sources */,
 				79EA80CC1B3F0CCD00D50B6B /* NSURL+BBFoundationExtensions.m in Sources */,
 				79184C6D1B7041DD0044789F /* BBReachability.m in Sources */,
+				7987690B1C83DEC20040E1D1 /* BBMediaViewerPagePlaceholderViewController.m in Sources */,
 				791997061B6EB3C500FC674A /* BBThumbnailVimeoOperation.m in Sources */,
 				79F436641C11F0CF002546E8 /* BBTimer.m in Sources */,
+				798769041C83DC660040E1D1 /* BBMediaViewerPageImageViewController.m in Sources */,
 				79D5407B1B4B5EC9009ECE38 /* UIImage+BBKitExtensionsPrivate.m in Sources */,
 				7922E8AB1BD42D8800F85EDA /* BBMoviePlayerEmbeddedBottomView.m in Sources */,
 				07291E9D1BC5ACEA00CE7EE9 /* NSData+BBKitExtensions.m in Sources */,
@@ -3588,9 +3640,11 @@
 				79EA80FA1B3F0D5300D50B6B /* BBWebKitViewController.m in Sources */,
 				79D540911B4B69F9009ECE38 /* BBTokenDefaultTextAttachment.m in Sources */,
 				791997091B6EB3C500FC674A /* BBThumbnailYouTubeOperation.m in Sources */,
+				798769001C83DB430040E1D1 /* BBMediaViewerPageViewController.m in Sources */,
 				799C0C7C1B61B95B00A3888A /* BBAddressBookTableViewController.m in Sources */,
 				79EA80D31B3F0CF300D50B6B /* NSURL+BBKitExtensions.m in Sources */,
 				79EA80FC1B3F0D5B00D50B6B /* BBTooltipViewController.m in Sources */,
+				798769071C83DC890040E1D1 /* BBMediaViewerPageImageModel.m in Sources */,
 				7965A3EC1C82579200A197E2 /* NSString+BBBlocksExtensions.m in Sources */,
 				79EA80C81B3F0CCD00D50B6B /* NSData+BBFoundationExtensions.m in Sources */,
 				7987CACD1C0E9AE6000C4086 /* BBMediaPickerAssetCollectionTableViewCell.m in Sources */,
