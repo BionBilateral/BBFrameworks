@@ -23,6 +23,7 @@
 @interface MediaViewerViewController () <QLPreviewControllerDataSource,QLPreviewControllerDelegate,BBMediaViewerViewControllerDataSource,BBMediaViewerViewControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
+@property (weak,nonatomic) IBOutlet UIButton *customPushButton;
 
 @property (copy,nonatomic) NSArray *URLs;
 @property (copy,nonatomic) NSArray *customURLs;
@@ -55,6 +56,7 @@
     
     [self.systemButton addTarget:self action:@selector(_systemButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.customButton addTarget:self action:@selector(_customButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.customPushButton addTarget:self action:@selector(_customPushButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 + (NSString *)rowClassTitle {
@@ -86,7 +88,12 @@
 }
 
 - (void)mediaViewerViewControllerIsDone:(BBMediaViewerViewController *)viewController {
-    [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if (viewController.presentingViewController) {
+        [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [viewController.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)_systemButtonAction:(id)sender {
@@ -105,6 +112,14 @@
     [viewController setDelegate:self];
     
     [self presentViewController:viewController animated:YES completion:nil];
+}
+- (IBAction)_customPushButtonAction:(id)sender {
+    BBMediaViewerViewController *viewController = [[BBMediaViewerViewController alloc] init];
+    
+    [viewController setDataSource:self];
+    [viewController setDelegate:self];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

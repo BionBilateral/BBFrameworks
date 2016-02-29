@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MediaViewerViewController">
             <connections>
                 <outlet property="customButton" destination="tD3-C8-Jx0" id="dql-eo-8tW"/>
+                <outlet property="customPushButton" destination="j9e-wc-HTu" id="fmI-4R-qsm"/>
                 <outlet property="systemButton" destination="BKf-3k-sGo" id="y16-Q2-UaU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="nUx-FJ-fU7"/>
             </connections>
@@ -17,21 +19,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKf-3k-sGo">
-                    <rect key="frame" x="230" y="285" width="141" height="30"/>
+                    <rect key="frame" x="229.5" y="285" width="142" height="30"/>
                     <state key="normal" title="QLPreviewController">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tD3-C8-Jx0">
-                    <rect key="frame" x="246" y="323" width="109" height="30"/>
-                    <state key="normal" title="BBMediaViewer">
+                    <rect key="frame" x="218" y="323" width="164" height="30"/>
+                    <state key="normal" title="Present BBMediaViewer">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9e-wc-HTu">
+                    <rect key="frame" x="227" y="361" width="145" height="30"/>
+                    <state key="normal" title="Push BBMediaViewer"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="j9e-wc-HTu" firstAttribute="top" secondItem="tD3-C8-Jx0" secondAttribute="bottom" constant="8" id="8hr-YP-fZh"/>
                 <constraint firstAttribute="centerX" secondItem="tD3-C8-Jx0" secondAttribute="centerX" id="Agg-fd-Hw8"/>
+                <constraint firstItem="j9e-wc-HTu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LK0-eF-tcB"/>
                 <constraint firstItem="tD3-C8-Jx0" firstAttribute="top" secondItem="BKf-3k-sGo" secondAttribute="bottom" constant="8" id="ORQ-4k-2z8"/>
                 <constraint firstAttribute="centerX" secondItem="BKf-3k-sGo" secondAttribute="centerX" id="WmA-sT-yJr"/>
                 <constraint firstAttribute="centerY" secondItem="BKf-3k-sGo" secondAttribute="centerY" id="nzr-Sk-ETF"/>

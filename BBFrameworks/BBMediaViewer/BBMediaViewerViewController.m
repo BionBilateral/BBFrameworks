@@ -29,6 +29,10 @@
 
 @implementation BBMediaViewerViewController
 
+- (BOOL)hidesBottomBarWhenPushed {
+    return YES;
+}
+
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
@@ -66,6 +70,16 @@
          
          [self.delegate mediaViewerViewControllerIsDone:self];
      }];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 @dynamic theme;

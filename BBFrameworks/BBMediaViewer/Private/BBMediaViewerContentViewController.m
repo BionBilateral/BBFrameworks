@@ -20,8 +20,9 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerContentViewController () <UINavigationBarDelegate>
+@interface BBMediaViewerContentViewController () <UINavigationBarDelegate,UIToolbarDelegate>
 @property (strong,nonatomic) UINavigationBar *navigationBar;
+@property (strong,nonatomic) UIToolbar *toolbar;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
 @end
@@ -36,8 +37,16 @@
     [self.navigationBar setDelegate:self];
     [self.view addSubview:self.navigationBar];
     
+    [self setToolbar:[[UIToolbar alloc] initWithFrame:CGRectZero]];
+    [self.toolbar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.toolbar setDelegate:self];
+    [self.view addSubview:self.toolbar];
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.navigationBar}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][view]" options:0 metrics:nil views:@{@"top": self.topLayoutGuide, @"view": self.navigationBar}]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.toolbar}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view][bottom]" options:0 metrics:nil views:@{@"view": self.toolbar, @"bottom": self.bottomLayoutGuide}]];
     
     [self.navigationBar setItems:@[self.navigationItem]];
     
@@ -64,7 +73,7 @@
 }
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-    return UIBarPositionTopAttached;
+    return [bar isEqual:self.navigationBar] ? UIBarPositionTopAttached : UIBarPositionBottom;
 }
 
 - (instancetype)initWithModel:(BBMediaViewerModel *)model; {
