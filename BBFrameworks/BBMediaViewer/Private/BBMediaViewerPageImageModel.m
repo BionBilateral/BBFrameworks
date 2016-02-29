@@ -15,6 +15,7 @@
 
 #import "BBMediaViewerPageImageModel.h"
 #import "BBMediaViewerModel.h"
+#import "BBFrameworksMacros.h"
 
 #import <FLAnimatedImage/FLAnimatedImage.h>
 
@@ -30,7 +31,9 @@
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
         return nil;
     
+    BBWeakify(self);
     void(^loadImageBlock)(NSURL *) = ^(NSURL *URL){
+        BBStrongify(self);
         NSData *data = [NSData dataWithContentsOfURL:URL options:NSDataReadingMappedIfSafe error:NULL];
         
         if (self.type == BBMediaViewerPageModelTypeImageAnimated) {
