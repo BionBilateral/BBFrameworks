@@ -16,9 +16,13 @@
 #import "BBMediaViewerPagePDFDetailScrollView.h"
 #import "BBMediaViewerPagePDFDetailView.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerPagePDFDetailScrollView () <UIScrollViewDelegate>
 @property (strong,nonatomic) BBMediaViewerPagePDFDetailView *PDFView;
+@property (strong,nonatomic) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
 @property (strong,nonatomic) BBMediaViewerPagePDFDetailModel *model;
 @end
@@ -53,6 +57,36 @@
     [self addSubview:self.PDFView];
     
     [self setContentSize:_model.size];
+    
+    [self setDoubleTapGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL]];
+    [self.doubleTapGestureRecognizer setNumberOfTapsRequired:2];
+    [self.doubleTapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self addGestureRecognizer:self.doubleTapGestureRecognizer];
+    
+    BBWeakify(self);
+    [[self.doubleTapGestureRecognizer
+      rac_gestureSignal]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         
+         // zoom in
+         if (self.zoomScale == self.minimumZoomScale) {
+             CGPoint pointInView = [self.doubleTapGestureRecognizer locationInView:self.PDFView];
+             CGFloat newZoomScale = (self.minimumZoomScale + self.maximumZoomScale) / 2.0;
+             CGSize scrollViewSize = self.bounds.size;
+             CGFloat width = scrollViewSize.width / newZoomScale;
+             CGFloat height = scrollViewSize.height / newZoomScale;
+             CGFloat originX = pointInView.x - (width / 2.0);
+             CGFloat originY = pointInView.y - (height / 2.0);
+             CGRect rectToZoomTo = CGRectMake(originX, originY, width, height);
+             
+             [self zoomToRect:rectToZoomTo animated:YES];
+         }
+         // zoom out
+         else {
+             [self setZoomScale:self.minimumZoomScale animated:YES];
+         }
+     }];
     
     return self;
 }

@@ -34,12 +34,6 @@
 - (void)viewWillLayoutSubviews {
     [self.scrollView setFrame:self.view.bounds];
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.scrollView updateZoomScale];
-    [self.scrollView centerContentView];
-}
 
 - (instancetype)initWithModel:(BBMediaViewerPagePDFDetailModel *)model; {
     if (!(self = [super init]))

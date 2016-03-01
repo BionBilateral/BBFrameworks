@@ -15,10 +15,29 @@
 
 #import "BBMediaViewerPagePDFDetailLayer.h"
 
+#import <UIKit/UIKit.h>
+
 @implementation BBMediaViewerPagePDFDetailLayer
 
 + (CFTimeInterval)fadeDuration {
     return 0.0;
+}
+
+- (instancetype)init {
+    if (!(self = [super init]))
+        return nil;
+    
+    [self setLevelsOfDetail:16];
+    [self setLevelsOfDetailBias:15];
+    
+    CGFloat width = CGRectGetWidth([UIScreen mainScreen].bounds) * [UIScreen mainScreen].scale;
+    CGFloat height = CGRectGetHeight([UIScreen mainScreen].bounds) * [UIScreen mainScreen].scale;
+    CGFloat max = MAX(width, height);
+    CGFloat tileWidthHeight = max < 512.0 ? 512.0 : 1024.0;
+    
+    [self setTileSize:CGSizeMake(tileWidthHeight, tileWidthHeight)];
+    
+    return self;
 }
 
 @end

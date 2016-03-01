@@ -34,12 +34,6 @@
 - (void)viewWillLayoutSubviews {
     [self.scrollView setFrame:self.view.bounds];
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.scrollView updateZoomScale];
-    [self.scrollView centerImageView];
-}
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
