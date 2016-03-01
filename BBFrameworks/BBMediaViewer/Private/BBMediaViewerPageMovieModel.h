@@ -22,6 +22,8 @@ extern float const BBMediaViewerPageMovieModelRatePlay;
 extern float const BBMediaViewerPageMovieModelRatePause;
 extern float const BBMediaViewerPageMovieModelRateSlowForward;
 extern float const BBMediaViewerPageMovieModelRateFastForward;
+extern float const BBMediaViewerPageMovieModelRateSlowReverse;
+extern float const BBMediaViewerPageMovieModelRateFastReverse;
 
 @class RACSignal,RACCommand;
 
@@ -39,10 +41,14 @@ extern float const BBMediaViewerPageMovieModelRateFastForward;
 @property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readonly,strong,nonatomic) RACCommand *slowForwardCommand;
 @property (readonly,strong,nonatomic) RACCommand *fastForwardCommand;
+@property (readonly,strong,nonatomic) RACCommand *slowReverseCommand;
+@property (readonly,strong,nonatomic) RACCommand *fastReverseCommand;
 
 - (void)play;
 - (void)slowForward;
 - (void)fastForward;
+- (void)slowReverse;
+- (void)fastReverse;
 - (void)pause;
 - (void)stop;
 

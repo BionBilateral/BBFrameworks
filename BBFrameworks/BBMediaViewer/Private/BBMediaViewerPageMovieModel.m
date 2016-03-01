@@ -24,6 +24,8 @@ float const BBMediaViewerPageMovieModelRatePlay = 1.0;
 float const BBMediaViewerPageMovieModelRatePause = 0.0;
 float const BBMediaViewerPageMovieModelRateSlowForward = 0.5;
 float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
+float const BBMediaViewerPageMovieModelRateSlowReverse = -0.5;
+float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
 
 @interface BBMediaViewerPageMovieModel ()
 @property (readwrite,strong,nonatomic) AVPlayer *player;
@@ -33,6 +35,8 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readwrite,strong,nonatomic) RACCommand *slowForwardCommand;
 @property (readwrite,strong,nonatomic) RACCommand *fastForwardCommand;
+@property (readwrite,strong,nonatomic) RACCommand *slowReverseCommand;
+@property (readwrite,strong,nonatomic) RACCommand *fastReverseCommand;
 
 - (void)_seekToBeginningIfNecessary;
 @end
@@ -104,6 +108,23 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
         }];
     }];
     
+    _slowReverseCommand =
+    [[RACCommand alloc] initWithEnabled:_enabledSignal signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            if (self.currentPlaybackRate == BBMediaViewerPageMovieModelRateSlowReverse) {
+                [self play];
+            }
+            else {
+                [self slowReverse];
+            }
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
+    
     [[[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem]
        takeUntil:[self rac_willDeallocSignal]]
@@ -123,6 +144,12 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 }
 - (void)fastForward; {
     [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateFastForward];
+}
+- (void)slowReverse; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateSlowReverse];
+}
+- (void)fastReverse; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateFastReverse];
 }
 - (void)pause; {
     [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRatePause];

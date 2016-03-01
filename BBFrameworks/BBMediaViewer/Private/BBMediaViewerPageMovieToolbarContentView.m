@@ -33,6 +33,7 @@
 @property (strong,nonatomic) UIButton *playPauseButton;
 @property (strong,nonatomic) UIButton *slowForwardButton;
 @property (strong,nonatomic) UIButton *fastForwardButton;
+@property (strong,nonatomic) UIButton *slowReverseButton;
 
 @property (strong,nonatomic) NSDateComponentsFormatter *timeElapsedDateFormatter;
 @property (strong,nonatomic) NSDateComponentsFormatter *timeRemainingDateFormatter;
@@ -100,6 +101,13 @@
     [self.fastForwardButton setRac_command:self.model.fastForwardCommand];
     [self addSubview:self.fastForwardButton];
     
+    [self setSlowReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.slowReverseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
+    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.slowReverseButton setRac_command:self.model.slowReverseCommand];
+    [self addSubview:self.slowReverseButton];
+    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.timeElapsedLabel}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.timeElapsedLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.slider attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
@@ -117,6 +125,9 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-[view]" options:0 metrics:nil views:@{@"button": self.slowForwardButton, @"view": self.fastForwardButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fastForwardButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-[button]" options:0 metrics:nil views:@{@"button": self.playPauseButton, @"view": self.slowReverseButton}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.slowReverseButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     RAC(self.slider,enabled) =
     [self.model.enabledSignal
@@ -143,6 +154,13 @@
     [[currentPlaybackRateSignal
       map:^id(NSNumber *value) {
           return @(value.floatValue == BBMediaViewerPageMovieModelRateFastForward);
+      }]
+     deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    RAC(self.slowReverseButton,selected) =
+    [[currentPlaybackRateSignal
+      map:^id(NSNumber *value) {
+          return @(value.floatValue == BBMediaViewerPageMovieModelRateSlowReverse);
       }]
      deliverOn:[RACScheduler mainThreadScheduler]];
     
