@@ -177,7 +177,7 @@
          }
          
          [self.timeElapsedLabel setText:[self.timeElapsedDateFormatter stringFromTimeInterval:value.doubleValue]];
-         [self.timeRemainingLabel setText:[self.numberFormatter.minusSign stringByAppendingString:[self.timeRemainingDateFormatter stringFromTimeInterval:self.model.duration - value.doubleValue]]];
+         [self.timeRemainingLabel setText:[self.numberFormatter.negativePrefix stringByAppendingString:[self.timeRemainingDateFormatter stringFromTimeInterval:self.model.duration - value.doubleValue]]];
          
          if (!self.slider.isTracking) {
              [self.slider setValue:value.doubleValue / self.model.duration];
