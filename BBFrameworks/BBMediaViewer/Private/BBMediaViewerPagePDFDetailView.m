@@ -18,8 +18,6 @@
 #import "BBMediaViewerPagePDFDetailLayer.h"
 
 @interface BBMediaViewerPagePDFDetailView ()
-@property (readonly,nonatomic) CATiledLayer *layer;
-
 @property (strong,nonatomic) BBMediaViewerPagePDFDetailModel *model;
 @end
 
@@ -28,8 +26,6 @@
 + (Class)layerClass {
     return [BBMediaViewerPagePDFDetailLayer class];
 }
-
-@dynamic layer;
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
     [self.model drawInRect:self.bounds contextRef:ctx];
