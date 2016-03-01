@@ -27,8 +27,14 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface BBMediaViewerPageMovieToolbarContentView ()
+@property (strong,nonatomic) UILabel *timeElapsedLabel;
+@property (strong,nonatomic) UILabel *timeRemainingLabel;
 @property (strong,nonatomic) BBProgressSlider *slider;
 @property (strong,nonatomic) UIButton *playPauseButton;
+
+@property (strong,nonatomic) NSDateComponentsFormatter *timeElapsedDateFormatter;
+@property (strong,nonatomic) NSDateComponentsFormatter *timeRemainingDateFormatter;
+@property (strong,nonatomic) NSNumberFormatter *numberFormatter;
 
 @property (strong,nonatomic) BBMediaViewerPageMovieModel *model;
 @end
@@ -45,6 +51,18 @@
     
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
+    UIFont *font = [UIFont systemFontOfSize:12.0];
+    
+    [self setTimeElapsedLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.timeElapsedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.timeElapsedLabel setFont:font];
+    [self addSubview:self.timeElapsedLabel];
+    
+    [self setTimeRemainingLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.timeRemainingLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.timeRemainingLabel setFont:font];
+    [self addSubview:self.timeRemainingLabel];
+    
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
     [self.slider setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.slider];
@@ -53,54 +71,133 @@
     [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_play"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
     [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_pause"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.playPauseButton setRac_command:self.model.playPauseCommand];
     [self addSubview:self.playPauseButton];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|" options:0 metrics:nil views:@{@"view": self.slider}]];
+    [self setTimeElapsedDateFormatter:[[NSDateComponentsFormatter alloc] init]];
+    [self.timeElapsedDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+    
+    [self setTimeRemainingDateFormatter:[[NSDateComponentsFormatter alloc] init]];
+    [self.timeRemainingDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+    
+    [self setNumberFormatter:[[NSNumberFormatter alloc] init]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.timeElapsedLabel}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.timeElapsedLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.slider attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-|" options:0 metrics:nil views:@{@"view": self.timeRemainingLabel}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.timeRemainingLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.slider attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[left]-[view]-[right]" options:0 metrics:nil views:@{@"view": self.slider, @"left": self.timeElapsedLabel, @"right": self.timeRemainingLabel}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]" options:0 metrics:nil views:@{@"view": self.slider}]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[slider]-[view]-|" options:0 metrics:nil views:@{@"slider": self.slider, @"view": self.playPauseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.playPauseButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
-    RACSignal *enabledSignal =
-    [RACObserve(self.model.player, status)
-     map:^id(NSNumber *value) {
-         return @(value.integerValue == AVPlayerStatusReadyToPlay);
-     }];
-    
     RAC(self.slider,enabled) =
-    [enabledSignal
+    [self.model.enabledSignal
      deliverOn:[RACScheduler mainThreadScheduler]];
     
-    RAC(self.playPauseButton,enabled) =
-    [enabledSignal
+    RAC(self.playPauseButton,selected) =
+    [[RACObserve(self.model, currentPlaybackRate)
+      map:^id(NSNumber *value) {
+          return @(value.floatValue != BBMediaViewerPageMovieModelRatePause);
+      }]
      deliverOn:[RACScheduler mainThreadScheduler]];
     
     RAC(self.slider,progressRanges) =
-    [[[[RACSignal combineLatest:@[RACObserve(self.model.player.currentItem, duration),
-                                  RACObserve(self.model.player.currentItem, loadedTimeRanges)]]
-       filter:^BOOL(RACTuple *value) {
-           CMTime duration = [value.first CMTimeValue];
-           
-           return CMTIME_IS_VALID(duration);
+    [[[self.model.enabledSignal
+       ignore:@NO]
+       flattenMap:^RACStream *(id value) {
+           return [[RACSignal combineLatest:@[RACObserve(self.model.player.currentItem, duration),
+                                              RACObserve(self.model.player.currentItem, loadedTimeRanges)]]
+                   map:^id(RACTuple *value) {
+                       RACTupleUnpack(NSValue *durationValue, NSArray<NSValue *> *loadedTimeRanges) = value;
+                       NSTimeInterval duration = CMTimeGetSeconds(durationValue.CMTimeValue);
+                       
+                       return [[loadedTimeRanges BB_map:^id _Nullable(NSValue * _Nonnull object, NSInteger index) {
+                           CMTimeRange range = object.CMTimeRangeValue;
+                           NSTimeInterval start = CMTimeGetSeconds(range.start);
+                           NSTimeInterval end = start + CMTimeGetSeconds(range.duration);
+                           
+                           return @[@(start),@(end)];
+                       }] BB_map:^id _Nullable(NSArray<NSNumber *> * _Nonnull object, NSInteger index) {
+                           NSTimeInterval start = object.firstObject.floatValue / duration;
+                           NSTimeInterval end = object.lastObject.floatValue / duration;
+                           
+                           return @[@(start),@(end)];
+                       }];
+                   }];
        }]
-      map:^id(RACTuple *value) {
-          RACTupleUnpack(NSValue *durationValue, NSArray<NSValue *> *loadedTimeRanges) = value;
-          NSTimeInterval duration = CMTimeGetSeconds(durationValue.CMTimeValue);
-          
-          return [[loadedTimeRanges BB_map:^id _Nullable(NSValue * _Nonnull object, NSInteger index) {
-              CMTimeRange range = object.CMTimeRangeValue;
-              NSTimeInterval start = CMTimeGetSeconds(range.start);
-              NSTimeInterval end = start + CMTimeGetSeconds(range.duration);
-              
-              return @[@(start),@(end)];
-          }] BB_map:^id _Nullable(NSArray<NSNumber *> * _Nonnull object, NSInteger index) {
-              NSTimeInterval start = object.firstObject.floatValue / duration;
-              NSTimeInterval end = object.lastObject.floatValue / duration;
-              
-              return @[@(start),@(end)];
-          }];
-      }]
      deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    BBWeakify(self);
+    [[[[self.model.enabledSignal
+       ignore:@NO]
+       flattenMap:^RACStream *(id _) {
+           BBStrongify(self);
+           return [self.model periodicTimeObserverWithIntervalSignal:0.2];
+       }]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *value) {
+         BBStrongify(self);
+         if (value.doubleValue > 3600) {
+             [self.timeElapsedDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
+         }
+         else {
+             [self.timeElapsedDateFormatter setAllowedUnits:NSCalendarUnitMinute|NSCalendarUnitSecond];
+         }
+         
+         if (self.model.duration - value.doubleValue > 3600) {
+             [self.timeRemainingDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
+         }
+         else {
+             [self.timeRemainingDateFormatter setAllowedUnits:NSCalendarUnitMinute|NSCalendarUnitSecond];
+         }
+         
+         [self.timeElapsedLabel setText:[self.timeElapsedDateFormatter stringFromTimeInterval:value.doubleValue]];
+         [self.timeRemainingLabel setText:[self.numberFormatter.minusSign stringByAppendingString:[self.timeRemainingDateFormatter stringFromTimeInterval:self.model.duration - value.doubleValue]]];
+         
+         if (!self.slider.isTracking) {
+             [self.slider setValue:value.doubleValue / self.model.duration];
+         }
+     }];
+    
+    __block float currentPlaybackRate = 0.0;
+    
+    [[[[[self.slider
+         rac_signalForControlEvents:UIControlEventTouchDown]
+        map:^id(id _) {
+            BBStrongify(self);
+            return @(self.model.currentPlaybackRate);
+        }]
+       flattenMap:^RACStream *(NSNumber *rate) {
+           BBStrongify(self);
+           return [[[[[[self.slider
+                        rac_signalForControlEvents:UIControlEventValueChanged]
+                       deliverOn:[RACScheduler mainThreadScheduler]]
+                      map:^id(UISlider *slider) {
+                          return @(slider.value);
+                      }]
+                     takeUntil:[[self.slider
+                                 rac_signalForControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel]
+                                take:1]]
+                    initially:^{
+                        currentPlaybackRate = rate.floatValue;
+                        
+                        if (currentPlaybackRate != BBMediaViewerPageMovieModelRatePause) {
+                            [self.model pause];
+                        }
+                    }]
+                   finally:^{
+                       [self.model setCurrentPlaybackRate:currentPlaybackRate];
+                   }];
+       }]
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *value) {
+         BBStrongify(self);
+         [self.model setCurrentPlaybackTime:value.floatValue * self.model.duration];
+     }];
     
     return self;
 }

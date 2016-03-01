@@ -14,13 +14,23 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaViewerPageMovieModel.h"
+#import "BBFrameworksMacros.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AVFoundation/AVFoundation.h>
 
+float const BBMediaViewerPageMovieModelRatePlay = 1.0;
+float const BBMediaViewerPageMovieModelRatePause = 0.0;
+float const BBMediaViewerPageMovieModelRateSlowMotion = 0.5;
+float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
+
 @interface BBMediaViewerPageMovieModel ()
 @property (readwrite,strong,nonatomic) AVPlayer *player;
+
+@property (readwrite,strong,nonatomic) RACSignal *enabledSignal;
+
+@property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
 @end
 
 @implementation BBMediaViewerPageMovieModel
@@ -31,7 +41,101 @@
     
     _player = [AVPlayer playerWithURL:self.URL];
     
+    BBWeakify(self);
+    
+    _enabledSignal =
+    [RACSignal combineLatest:@[RACObserve(self.player, status),RACObserve(self.player.currentItem, duration)] reduce:^id(NSNumber *status, NSValue *duration){
+        NSNumber *retval = @(status.integerValue == AVPlayerStatusReadyToPlay && CMTIME_IS_NUMERIC(duration.CMTimeValue));
+        
+        return retval;
+    }];
+    
+    _playPauseCommand =
+    [[RACCommand alloc] initWithEnabled:_enabledSignal signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            if (self.currentPlaybackRate == BBMediaViewerPageMovieModelRatePause) {
+                [self play];
+            }
+            else {
+                [self pause];
+            }
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
+    
     return self;
+}
+
+- (void)play; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRatePlay];
+}
+- (void)slowMotion; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateSlowMotion];
+}
+- (void)fastForward; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateFastForward];
+}
+- (void)pause; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRatePause];
+}
+- (void)stop; {
+    [self pause];
+    [self setCurrentPlaybackTime:0.0];
+}
+
+- (RACSignal *)periodicTimeObserverWithIntervalSignal:(NSTimeInterval)interval; {
+    BBWeakify(self);
+    return
+    [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        BBStrongify(self);
+        id observer = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(interval, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
+            [subscriber sendNext:@(CMTimeGetSeconds(time))];
+        }];
+        
+        [subscriber sendNext:@0.0];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [self.player removeTimeObserver:observer];
+        }];
+    }]
+     takeUntil:[self rac_willDeallocSignal]];
+}
+
+- (NSTimeInterval)duration {
+    CMTime time = self.player.currentItem.duration;
+    
+    if (CMTIME_IS_VALID(time)) {
+        return CMTimeGetSeconds(time);
+    }
+    else {
+        return NAN;
+    }
+}
+
+@dynamic currentPlaybackRate;
+- (float)currentPlaybackRate {
+    return self.player.rate;
+}
+- (void)setCurrentPlaybackRate:(float)currentPlaybackRate {
+    if (currentPlaybackRate == BBMediaViewerPageMovieModelRatePause) {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    }
+    else {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    }
+    
+    [self.player setRate:currentPlaybackRate];
+}
+@dynamic currentPlaybackTime;
+- (NSTimeInterval)currentPlaybackTime {
+    return CMTimeGetSeconds(self.player.currentTime);
+}
+- (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
+    [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
 }
 
 @end

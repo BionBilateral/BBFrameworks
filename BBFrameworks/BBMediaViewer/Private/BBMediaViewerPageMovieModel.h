@@ -18,9 +18,33 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern float const BBMediaViewerPageMovieModelRatePlay;
+extern float const BBMediaViewerPageMovieModelRatePause;
+extern float const BBMediaViewerPageMovieModelRateSlowMotion;
+extern float const BBMediaViewerPageMovieModelRateFastForward;
+
+@class RACSignal,RACCommand;
+
 @interface BBMediaViewerPageMovieModel : BBMediaViewerPageModel
 
 @property (readonly,strong,nonatomic) AVPlayer *player;
+
+@property (readonly,nonatomic) NSTimeInterval duration;
+
+@property (assign,nonatomic) float currentPlaybackRate;
+@property (assign,nonatomic) NSTimeInterval currentPlaybackTime;
+
+@property (readonly,strong,nonatomic) RACSignal *enabledSignal;
+
+@property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
+
+- (void)play;
+- (void)slowMotion;
+- (void)fastForward;
+- (void)pause;
+- (void)stop;
+
+- (RACSignal *)periodicTimeObserverWithIntervalSignal:(NSTimeInterval)interval;
 
 @end
 
