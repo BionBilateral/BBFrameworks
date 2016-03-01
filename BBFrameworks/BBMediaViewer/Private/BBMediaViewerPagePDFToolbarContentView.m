@@ -16,6 +16,9 @@
 #import "BBMediaViewerPagePDFToolbarContentView.h"
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBMediaViewerPagePDFCollectionViewCell.h"
+#import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerPagePDFToolbarContentView () <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong,nonatomic) UICollectionView *collectionView;
@@ -31,13 +34,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaViewerPagePDFCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBMediaViewerPagePDFCollectionViewCell class]) forIndexPath:indexPath];
     
-    [cell setModel:[self.model pagePDFDetailForPage:indexPath.row]];
+    [cell setModel:[self.model pagePDFDetailForPage:indexPath.item + 1]];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    BBMediaViewerPagePDFCollectionViewCell *cell = (BBMediaViewerPagePDFCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
+    [self.model selectPagePDFDetail:cell.model];
 }
 
 - (instancetype)initWithModel:(BBMediaViewerPagePDFModel *)model; {
@@ -67,6 +72,14 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _collectionView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]|" options:0 metrics:@{@"height": @(_model.thumbnailSize.height)} views:@{@"view": _collectionView}]];
+    
+    BBWeakify(self);
+    [[RACObserve(self.model, selectedPage)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *value) {
+         BBStrongify(self);
+         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:value.integerValue inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+     }];
     
     return self;
 }

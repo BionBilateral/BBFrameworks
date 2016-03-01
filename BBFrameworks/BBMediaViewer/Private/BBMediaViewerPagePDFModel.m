@@ -18,11 +18,13 @@
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
 #import "BBThumbnail.h"
+#import "BBFoundationMacros.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface BBMediaViewerPagePDFModel ()
 @property (readwrite,assign,nonatomic) CGPDFDocumentRef PDFDocumentRef;
+@property (readwrite,assign,nonatomic) size_t selectedPage;
 @end
 
 @implementation BBMediaViewerPagePDFModel
@@ -64,7 +66,11 @@
 }
 
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page; {
-    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, ++page) parentModel:self];
+    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, BBBoundedValue(page, 1, self.numberOfPages)) parentModel:self];
+}
+
+- (void)selectPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail; {
+    [self setSelectedPage:pagePDFDetail.page];
 }
 
 - (size_t)numberOfPages {

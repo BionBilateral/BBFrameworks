@@ -61,7 +61,7 @@
     BBMediaViewerPagePDFDetailViewController *pageVC = (BBMediaViewerPagePDFDetailViewController *)viewController;
     long page = pageVC.model.page;
     
-    if ((--page) < 0) {
+    if ((--page) <= 0) {
         return nil;
     }
     
@@ -70,7 +70,9 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
     if (completed) {
+        BBMediaViewerPagePDFDetailViewController *pageVC = pageViewController.viewControllers.firstObject;
         
+        [self.model selectPagePDFDetail:pageVC.model];
     }
 }
 
