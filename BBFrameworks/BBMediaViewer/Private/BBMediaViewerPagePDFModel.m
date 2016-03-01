@@ -73,5 +73,8 @@
 - (size_t)numberOfPages {
     return CGPDFDocumentGetNumberOfPages(self.PDFDocumentRef);
 }
+- (CGSize)thumbnailSize {
+    return CGSizeMake(60, 60);
+}
 
 @end

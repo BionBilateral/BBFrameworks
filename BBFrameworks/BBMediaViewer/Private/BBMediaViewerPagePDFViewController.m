@@ -16,9 +16,11 @@
 #import "BBMediaViewerPagePDFViewController.h"
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBMediaViewerPagePDFDetailViewController.h"
+#import "BBMediaViewerPagePDFToolbarContentView.h"
 
 @interface BBMediaViewerPagePDFViewController () <UIPageViewControllerDataSource>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
+@property (strong,nonatomic) BBMediaViewerPagePDFToolbarContentView *PDFToolbarContentView;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPagePDFModel *model;
 @end
@@ -36,6 +38,8 @@
     [self.pageViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    
+    [self setPDFToolbarContentView:[[BBMediaViewerPagePDFToolbarContentView alloc] initWithModel:self.model]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
@@ -72,5 +76,9 @@
 }
 
 @synthesize model=_model;
+
+- (UIView *)bottomToolbarContentView {
+    return self.PDFToolbarContentView;
+}
 
 @end

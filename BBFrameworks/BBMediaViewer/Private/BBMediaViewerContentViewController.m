@@ -116,6 +116,10 @@
     return UIBarPositionTopAttached;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return (!CGRectContainsPoint(self.navigationBar.bounds, [touch locationInView:self.navigationBar]) &&
+            !CGRectContainsPoint(self.toolbar.bounds, [touch locationInView:self.toolbar]));
+}
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return ([otherGestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
             [(UITapGestureRecognizer *)otherGestureRecognizer numberOfTapsRequired] == 2);

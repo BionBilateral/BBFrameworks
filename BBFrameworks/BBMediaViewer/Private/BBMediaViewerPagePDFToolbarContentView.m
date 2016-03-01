@@ -48,21 +48,25 @@
     
     _model = model;
     
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [layout setMinimumInteritemSpacing:8.0];
     [layout setSectionInset:UIEdgeInsetsMake(0, 8.0, 0, 8.0)];
-    [layout setItemSize:CGSizeMake(60, 60)];
+    [layout setItemSize:_model.thumbnailSize];
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [_collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_collectionView setBackgroundColor:[UIColor clearColor]];
     [_collectionView registerClass:[BBMediaViewerPagePDFCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([BBMediaViewerPagePDFCollectionViewCell class])];
     [_collectionView setDataSource:self];
+    [_collectionView setDelegate:self];
+    [self addSubview:_collectionView];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _collectionView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _collectionView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]|" options:0 metrics:@{@"height": @(_model.thumbnailSize.height)} views:@{@"view": _collectionView}]];
     
     return self;
 }

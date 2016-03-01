@@ -16,9 +16,14 @@
 #import "BBMediaViewerPagePDFCollectionViewCell.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
 #import "BBThumbnail.h"
+#import "BBMediaViewerPagePDFModel.h"
+#import "BBKitFunctions.h"
+#import "BBFrameworksMacros.h"
 
 @interface BBMediaViewerPagePDFCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
+
+@property (strong,nonatomic) id<BBThumbnailOperation> thumbnailOperation;
 @end
 
 @implementation BBMediaViewerPagePDFCollectionViewCell
@@ -38,6 +43,36 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _thumbnailImageView}]];
     
     return self;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    [self setThumbnailOperation:nil];
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    [self.thumbnailImageView setTransform:selected ? CGAffineTransformMakeScale(1.2, 1.2) : CGAffineTransformIdentity];
+}
+
+- (void)setModel:(BBMediaViewerPagePDFDetailModel *)model {
+    _model = model;
+    
+    [self.thumbnailImageView setImage:nil];
+    
+    BBWeakify(self);
+    [_model.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:[_model.parentModel pageForPagePDFDetail:_model] completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
+        BBStrongify(self);
+        [self.thumbnailImageView setImage:image];
+    }];
+}
+
+- (void)setThumbnailOperation:(id<BBThumbnailOperation>)thumbnailOperation {
+    [_thumbnailOperation cancel];
+    
+    _thumbnailOperation = thumbnailOperation;
 }
 
 @end

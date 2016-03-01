@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic) size_t numberOfPages;
 
 @property (readonly,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
+@property (readonly,nonatomic) CGSize thumbnailSize;
 
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page;
 - (size_t)pageForPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail;
