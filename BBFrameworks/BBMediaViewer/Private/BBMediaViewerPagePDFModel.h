@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic) CGSize thumbnailSize;
 
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page;
-- (size_t)pageForPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail;
 
 @end
 

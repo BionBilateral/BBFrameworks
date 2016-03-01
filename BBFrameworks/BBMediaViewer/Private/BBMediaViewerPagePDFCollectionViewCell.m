@@ -63,7 +63,7 @@
     [self.thumbnailImageView setImage:nil];
     
     BBWeakify(self);
-    [_model.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:[_model.parentModel pageForPagePDFDetail:_model] completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
+    [_model.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
         BBStrongify(self);
         [self.thumbnailImageView setImage:image];
     }];

@@ -66,9 +66,6 @@
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page; {
     return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, ++page) parentModel:self];
 }
-- (size_t)pageForPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail; {
-    return CGPDFPageGetPageNumber(pagePDFDetail.PDFPageRef);
-}
 
 - (size_t)numberOfPages {
     return CGPDFDocumentGetNumberOfPages(self.PDFDocumentRef);

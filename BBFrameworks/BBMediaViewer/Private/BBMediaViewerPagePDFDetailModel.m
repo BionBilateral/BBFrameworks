@@ -78,4 +78,8 @@
     CGContextDrawPDFPage(contextRef, self.PDFPageRef);
 }
 
+- (size_t)page {
+    return CGPDFPageGetPageNumber(self.PDFPageRef);
+}
+
 @end

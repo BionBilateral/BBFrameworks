@@ -17,8 +17,9 @@
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBMediaViewerPagePDFDetailViewController.h"
 #import "BBMediaViewerPagePDFToolbarContentView.h"
+#import "BBMediaViewerPagePDFDetailModel.h"
 
-@interface BBMediaViewerPagePDFViewController () <UIPageViewControllerDataSource>
+@interface BBMediaViewerPagePDFViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 @property (strong,nonatomic) BBMediaViewerPagePDFToolbarContentView *PDFToolbarContentView;
 
@@ -34,6 +35,7 @@
     
     [self.pageViewController setViewControllers:@[[[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:0]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [self.pageViewController setDataSource:self];
+    [self.pageViewController setDelegate:self];
     [self addChildViewController:self.pageViewController];
     [self.pageViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.pageViewController.view];
@@ -47,7 +49,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     BBMediaViewerPagePDFDetailViewController *pageVC = (BBMediaViewerPagePDFDetailViewController *)viewController;
-    size_t page = [self.model pageForPagePDFDetail:pageVC.model];
+    size_t page = pageVC.model.page;
     
     if ((++page) == self.model.numberOfPages) {
         return nil;
@@ -57,13 +59,19 @@
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     BBMediaViewerPagePDFDetailViewController *pageVC = (BBMediaViewerPagePDFDetailViewController *)viewController;
-    long page = [self.model pageForPagePDFDetail:pageVC.model];
+    long page = pageVC.model.page;
     
     if ((--page) < 0) {
         return nil;
     }
     
     return [[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:page]];
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    if (completed) {
+        
+    }
 }
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {

@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BBMediaViewerPagePDFDetailModel : NSObject
 
 @property (readonly,assign,nonatomic) CGPDFPageRef PDFPageRef;
+@property (readonly,nonatomic) size_t page;
 @property (readonly,assign,nonatomic) CGSize size;
 
 @property (readonly,weak,nonatomic) BBMediaViewerPagePDFModel *parentModel;

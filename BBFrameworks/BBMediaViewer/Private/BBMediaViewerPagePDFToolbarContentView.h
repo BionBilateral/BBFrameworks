@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithModel:(BBMediaViewerPagePDFModel *)model;
 
+
 @end
 
 NS_ASSUME_NONNULL_END
