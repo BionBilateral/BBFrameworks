@@ -49,9 +49,7 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
     
     _enabledSignal =
     [RACSignal combineLatest:@[RACObserve(self.player, status),RACObserve(self.player.currentItem, duration)] reduce:^id(NSNumber *status, NSValue *duration){
-        NSNumber *retval = @(status.integerValue == AVPlayerStatusReadyToPlay && CMTIME_IS_NUMERIC(duration.CMTimeValue));
-        
-        return retval;
+        return @(status.integerValue == AVPlayerStatusReadyToPlay && CMTIME_IS_NUMERIC(duration.CMTimeValue));
     }];
     
     _playPauseCommand =
