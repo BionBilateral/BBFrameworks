@@ -32,6 +32,7 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readwrite,strong,nonatomic) RACCommand *slowForwardCommand;
+@property (readwrite,strong,nonatomic) RACCommand *fastForwardCommand;
 
 - (void)_seekToBeginningIfNecessary;
 @end
@@ -78,6 +79,23 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
             }
             else {
                 [self slowForward];
+            }
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
+    
+    _fastForwardCommand =
+    [[RACCommand alloc] initWithEnabled:_enabledSignal signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            if (self.currentPlaybackRate == BBMediaViewerPageMovieModelRateFastForward) {
+                [self play];
+            }
+            else {
+                [self fastForward];
             }
             
             [subscriber sendCompleted];

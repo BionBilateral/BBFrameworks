@@ -38,6 +38,7 @@ extern float const BBMediaViewerPageMovieModelRateFastForward;
 
 @property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readonly,strong,nonatomic) RACCommand *slowForwardCommand;
+@property (readonly,strong,nonatomic) RACCommand *fastForwardCommand;
 
 - (void)play;
 - (void)slowForward;
