@@ -51,16 +51,26 @@
     
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
+    [self setTimeElapsedDateFormatter:[[NSDateComponentsFormatter alloc] init]];
+    [self.timeElapsedDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+    
+    [self setTimeRemainingDateFormatter:[[NSDateComponentsFormatter alloc] init]];
+    [self.timeRemainingDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+    
+    [self setNumberFormatter:[[NSNumberFormatter alloc] init]];
+    
     UIFont *font = [UIFont systemFontOfSize:12.0];
     
     [self setTimeElapsedLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.timeElapsedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.timeElapsedLabel setFont:font];
+    [self.timeElapsedLabel setText:self.numberFormatter.positiveInfinitySymbol];
     [self addSubview:self.timeElapsedLabel];
     
     [self setTimeRemainingLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.timeRemainingLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.timeRemainingLabel setFont:font];
+    [self.timeRemainingLabel setText:self.numberFormatter.negativeInfinitySymbol];
     [self addSubview:self.timeRemainingLabel];
     
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
@@ -73,14 +83,6 @@
     [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_pause"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
     [self.playPauseButton setRac_command:self.model.playPauseCommand];
     [self addSubview:self.playPauseButton];
-    
-    [self setTimeElapsedDateFormatter:[[NSDateComponentsFormatter alloc] init]];
-    [self.timeElapsedDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
-    
-    [self setTimeRemainingDateFormatter:[[NSDateComponentsFormatter alloc] init]];
-    [self.timeRemainingDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
-    
-    [self setNumberFormatter:[[NSNumberFormatter alloc] init]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.timeElapsedLabel}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.timeElapsedLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.slider attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
