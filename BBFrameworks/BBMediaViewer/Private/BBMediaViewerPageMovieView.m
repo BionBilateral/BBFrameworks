@@ -15,10 +15,15 @@
 
 #import "BBMediaViewerPageMovieView.h"
 #import "BBMediaViewerPageMovieModel.h"
+#import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <AVFoundation/AVFoundation.h>
 
 @interface BBMediaViewerPageMovieView ()
+@property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
+
 @property (readonly,nonatomic) AVPlayerLayer *layer;
 
 @property (strong,nonatomic) BBMediaViewerPageMovieModel *model;
@@ -42,6 +47,28 @@
     
     [self.layer setVideoGravity:AVLayerVideoGravityResizeAspect];
     [self.layer setPlayer:_model.player];
+    
+    [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
+    [self.activityIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.activityIndicatorView setColor:[UIColor lightGrayColor]];
+    [self.activityIndicatorView setHidesWhenStopped:YES];
+    [self addSubview:self.activityIndicatorView];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.activityIndicatorView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.activityIndicatorView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    BBWeakify(self);
+    [[self.model.enabledSignal
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *value) {
+         BBStrongify(self);
+         if (value.boolValue) {
+             [self.activityIndicatorView stopAnimating];
+         }
+         else {
+             [self.activityIndicatorView startAnimating];
+         }
+     }];
     
     return self;
 }
