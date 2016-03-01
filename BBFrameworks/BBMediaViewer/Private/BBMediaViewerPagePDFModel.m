@@ -17,6 +17,7 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBThumbnail.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
@@ -33,6 +34,9 @@
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
         return nil;
+    
+    _thumbnailGenerator = [[BBThumbnailGenerator alloc] init];
+    [_thumbnailGenerator setCacheOptions:BBThumbnailGeneratorCacheOptionsMemory];
     
     BBWeakify(self);
     void(^createPDFBlock)(NSURL *) = ^(NSURL *URL){
@@ -60,7 +64,7 @@
 }
 
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page; {
-    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, ++page)];
+    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, ++page) parentModel:self];
 }
 - (size_t)pageForPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail; {
     return CGPDFPageGetPageNumber(pagePDFDetail.PDFPageRef);

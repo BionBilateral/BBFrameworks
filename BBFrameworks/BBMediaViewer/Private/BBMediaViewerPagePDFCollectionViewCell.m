@@ -1,5 +1,5 @@
 //
-//  BBMediaViewerPagePDFModel.h
+//  BBMediaViewerPagePDFCollectionViewCell.m
 //  BBFrameworks
 //
 //  Created by William Towe on 3/1/16.
@@ -13,22 +13,31 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerPageModel.h"
-#import <CoreGraphics/CGPDFPage.h>
+#import "BBMediaViewerPagePDFCollectionViewCell.h"
+#import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBThumbnail.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class BBMediaViewerPagePDFDetailModel,BBThumbnailGenerator;
-
-@interface BBMediaViewerPagePDFModel : BBMediaViewerPageModel
-
-@property (readonly,nonatomic) size_t numberOfPages;
-
-@property (readonly,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
-
-- (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page;
-- (size_t)pageForPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail;
-
+@interface BBMediaViewerPagePDFCollectionViewCell ()
+@property (strong,nonatomic) UIImageView *thumbnailImageView;
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation BBMediaViewerPagePDFCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setBackgroundColor:[UIColor clearColor]];
+    
+    _thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [_thumbnailImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_thumbnailImageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self addSubview:_thumbnailImageView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _thumbnailImageView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _thumbnailImageView}]];
+    
+    return self;
+}
+
+@end

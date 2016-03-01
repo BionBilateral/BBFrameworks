@@ -14,23 +14,27 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBMediaViewerPagePDFModel.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface BBMediaViewerPagePDFDetailModel ()
 @property (readwrite,assign,nonatomic) CGPDFPageRef PDFPageRef;
 @property (readwrite,assign,nonatomic) CGSize size;
+@property (readwrite,weak,nonatomic) BBMediaViewerPagePDFModel *parentModel;
 @end
 
 @implementation BBMediaViewerPagePDFDetailModel
 
-- (instancetype)initWithPDFPageRef:(CGPDFPageRef)PDFPageRef; {
+- (instancetype)initWithPDFPageRef:(CGPDFPageRef)PDFPageRef parentModel:(BBMediaViewerPagePDFModel *)parentModel; {
     if (!(self = [super init]))
         return nil;
     
     NSParameterAssert(PDFPageRef);
+    NSParameterAssert(parentModel);
     
     _PDFPageRef = PDFPageRef;
+    _parentModel = parentModel;
     
     CGRect rect = CGRectIntersection(CGPDFPageGetBoxRect(_PDFPageRef, kCGPDFCropBox), CGPDFPageGetBoxRect(_PDFPageRef, kCGPDFMediaBox));
     int rotationAngle = CGPDFPageGetRotationAngle(_PDFPageRef);

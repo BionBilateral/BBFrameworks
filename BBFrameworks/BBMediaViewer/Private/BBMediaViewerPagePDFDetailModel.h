@@ -19,12 +19,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BBMediaViewerPagePDFModel;
+
 @interface BBMediaViewerPagePDFDetailModel : NSObject
 
 @property (readonly,assign,nonatomic) CGPDFPageRef PDFPageRef;
 @property (readonly,assign,nonatomic) CGSize size;
 
-- (instancetype)initWithPDFPageRef:(CGPDFPageRef)PDFPageRef;
+@property (readonly,weak,nonatomic) BBMediaViewerPagePDFModel *parentModel;
+
+- (instancetype)initWithPDFPageRef:(CGPDFPageRef)PDFPageRef parentModel:(BBMediaViewerPagePDFModel *)parentModel;
 
 - (void)drawInRect:(CGRect)rect contextRef:(CGContextRef)contextRef;
 

@@ -65,6 +65,8 @@
 		07605AC01B6955C100333678 /* BBMediaPickerViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605ABC1B69556E00333678 /* BBMediaPickerViewController.h */; };
 		07605AC21B6956D900333678 /* BBMediaPickerViewControllerDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605AC11B6955EA00333678 /* BBMediaPickerViewControllerDelegate.h */; };
 		07605ACA1B69593D00333678 /* BBMediaPickerDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07605AC91B69593700333678 /* BBMediaPickerDefines.h */; };
+		076784CA1C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 076784C91C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.m */; };
+		076784CD1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 076784CC1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.m */; };
 		0776565F1B617C24000DD318 /* BBFoundationGeometryFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		077656601B617C83000DD318 /* BBFoundationGeometryFunctions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */; };
 		077656621B617DA1000DD318 /* BBFoundationGeometryFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */; };
@@ -953,6 +955,10 @@
 		07605ABD1B69556E00333678 /* BBMediaPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMediaPickerViewController.m; sourceTree = "<group>"; };
 		07605AC11B6955EA00333678 /* BBMediaPickerViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerViewControllerDelegate.h; sourceTree = "<group>"; };
 		07605AC91B69593700333678 /* BBMediaPickerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaPickerDefines.h; sourceTree = "<group>"; };
+		076784C81C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPagePDFToolbarContentView.h; path = Private/BBMediaViewerPagePDFToolbarContentView.h; sourceTree = "<group>"; };
+		076784C91C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPagePDFToolbarContentView.m; path = Private/BBMediaViewerPagePDFToolbarContentView.m; sourceTree = "<group>"; };
+		076784CB1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPagePDFCollectionViewCell.h; path = Private/BBMediaViewerPagePDFCollectionViewCell.h; sourceTree = "<group>"; };
+		076784CC1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBMediaViewerPagePDFCollectionViewCell.m; path = Private/BBMediaViewerPagePDFCollectionViewCell.m; sourceTree = "<group>"; };
 		0776565E1B617C24000DD318 /* BBFoundationGeometryFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFoundationGeometryFunctions.h; sourceTree = "<group>"; };
 		077656611B617DA1000DD318 /* BBFoundationGeometryFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFoundationGeometryFunctions.m; sourceTree = "<group>"; };
 		077656641B618589000DD318 /* NSOrderedSet+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+BBBlocksExtensions.h"; sourceTree = "<group>"; };
@@ -1749,6 +1755,10 @@
 				075A2B141C861F27001A6FB9 /* BBMediaViewerPagePDFDetailView.m */,
 				075A2B191C862A1A001A6FB9 /* BBMediaViewerPagePDFDetailLayer.h */,
 				075A2B1A1C862A1A001A6FB9 /* BBMediaViewerPagePDFDetailLayer.m */,
+				076784C81C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.h */,
+				076784C91C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.m */,
+				076784CB1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.h */,
+				076784CC1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.m */,
 			);
 			name = PDF;
 			sourceTree = "<group>";
@@ -3724,6 +3734,7 @@
 				7987CAE01C0E9E93000C4086 /* ALAsset+BBMediaPickerExtensions.m in Sources */,
 				07B3D90A1B60373B00FA1853 /* BBFormBooleanCheckmarkTableViewCell.m in Sources */,
 				791997031B6EB3C500FC674A /* BBThumbnailTextOperation.m in Sources */,
+				076784CA1C86302F00656EC0 /* BBMediaViewerPagePDFToolbarContentView.m in Sources */,
 				799C0C2A1B587C0C00A3888A /* BBFormField.m in Sources */,
 				79EA80C51B3F0CCD00D50B6B /* BBSnakeCaseToLlamaCaseValueTransformer.m in Sources */,
 				79EA80D51B3F0CF300D50B6B /* UIColor+BBKitExtensions.m in Sources */,
@@ -3735,6 +3746,7 @@
 				07CE80481B50654100F5729E /* BBPickerButton.m in Sources */,
 				07604F101C84ECC80058F5C3 /* BBMediaViewerPageMovieView.m in Sources */,
 				07FFB0D71C84B665003098C8 /* BBMediaViewerPageImageScrollView.m in Sources */,
+				076784CD1C86317100656EC0 /* BBMediaViewerPagePDFCollectionViewCell.m in Sources */,
 				7917FE2D1C83BE42004D412D /* BBMediaViewerModel.m in Sources */,
 				07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */,
 				79D540951B4B6E8D009ECE38 /* BBTokenTextView.m in Sources */,
