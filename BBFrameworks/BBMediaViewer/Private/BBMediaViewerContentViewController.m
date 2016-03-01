@@ -48,7 +48,6 @@
     
     [self setToolbar:[[BBMediaViewerBottomToolbar alloc] initWithFrame:CGRectZero]];
     [self.toolbar setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.toolbar setDelegate:self];
     [self.view addSubview:self.toolbar];
     
     [self setPageViewController:[[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey: @8.0}]];
@@ -114,7 +113,7 @@
 }
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-    return [bar isEqual:self.navigationBar] ? UIBarPositionTopAttached : UIBarPositionBottom;
+    return UIBarPositionTopAttached;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {

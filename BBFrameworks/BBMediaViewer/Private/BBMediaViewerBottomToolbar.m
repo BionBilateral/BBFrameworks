@@ -16,10 +16,28 @@
 #import "BBMediaViewerBottomToolbar.h"
 
 @interface BBMediaViewerBottomToolbar ()
-@property (strong,nonatomic) NSLayoutConstraint *heightConstraint;
+@property (strong,nonatomic) UIToolbar *toolbar;
 @end
 
 @implementation BBMediaViewerBottomToolbar
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+    [_toolbar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self addSubview:_toolbar];
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.toolbar setFrame:self.bounds];
+}
 
 - (void)setContentView:(UIView *)contentView {
     [_contentView removeFromSuperview];
@@ -27,21 +45,10 @@
     _contentView = contentView;
     
     if (_contentView) {
-        if (self.heightConstraint) {
-            [self removeConstraint:self.heightConstraint];
-            [self setHeightConstraint:nil];
-        }
-        
         [self addSubview:_contentView];
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _contentView}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _contentView}]];
-    }
-    else {
-        if (self.heightConstraint == nil) {
-            [self setHeightConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0]];
-            [self addConstraint:self.heightConstraint];
-        }
     }
 }
 

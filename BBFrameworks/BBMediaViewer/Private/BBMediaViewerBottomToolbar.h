@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BBMediaViewerBottomToolbar : UIToolbar
+@interface BBMediaViewerBottomToolbar : UIView
 
 @property (strong,nonatomic,nullable) UIView *contentView;
 
