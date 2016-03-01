@@ -57,9 +57,11 @@
     
     [self setTimeElapsedDateFormatter:[[NSDateComponentsFormatter alloc] init]];
     [self.timeElapsedDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+    [self.timeElapsedDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
     
     [self setTimeRemainingDateFormatter:[[NSDateComponentsFormatter alloc] init]];
     [self.timeRemainingDateFormatter setZeroFormattingBehavior:NSDateComponentsFormatterZeroFormattingBehaviorPad];
+    [self.timeRemainingDateFormatter setAllowedUnits:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond];
     
     [self setNumberFormatter:[[NSNumberFormatter alloc] init]];
     
