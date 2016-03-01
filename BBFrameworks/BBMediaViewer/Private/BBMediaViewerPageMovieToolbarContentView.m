@@ -122,22 +122,25 @@
     [self.model.enabledSignal
      deliverOn:[RACScheduler mainThreadScheduler]];
     
+    RACSignal *currentPlaybackRateSignal =
+    RACObserve(self.model, currentPlaybackRate);
+    
     RAC(self.playPauseButton,selected) =
-    [[RACObserve(self.model, currentPlaybackRate)
+    [[currentPlaybackRateSignal
       map:^id(NSNumber *value) {
           return @(value.floatValue != BBMediaViewerPageMovieModelRatePause);
       }]
      deliverOn:[RACScheduler mainThreadScheduler]];
     
     RAC(self.slowForwardButton,selected) =
-    [[RACObserve(self.model, currentPlaybackRate)
+    [[currentPlaybackRateSignal
       map:^id(NSNumber *value) {
           return @(value.floatValue == BBMediaViewerPageMovieModelRateSlowForward);
       }]
      deliverOn:[RACScheduler mainThreadScheduler]];
     
     RAC(self.fastForwardButton,selected) =
-    [[RACObserve(self.model, currentPlaybackRate)
+    [[currentPlaybackRateSignal
       map:^id(NSNumber *value) {
           return @(value.floatValue == BBMediaViewerPageMovieModelRateFastForward);
       }]
