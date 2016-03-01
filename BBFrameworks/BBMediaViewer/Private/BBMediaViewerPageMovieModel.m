@@ -22,7 +22,7 @@
 
 float const BBMediaViewerPageMovieModelRatePlay = 1.0;
 float const BBMediaViewerPageMovieModelRatePause = 0.0;
-float const BBMediaViewerPageMovieModelRateSlowMotion = 0.5;
+float const BBMediaViewerPageMovieModelRateSlowForward = 0.5;
 float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 
 @interface BBMediaViewerPageMovieModel ()
@@ -31,6 +31,9 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 @property (readwrite,strong,nonatomic) RACSignal *enabledSignal;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
+@property (readwrite,strong,nonatomic) RACCommand *slowForwardCommand;
+
+- (void)_seekToBeginningIfNecessary;
 @end
 
 @implementation BBMediaViewerPageMovieModel
@@ -40,6 +43,7 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
         return nil;
     
     _player = [AVPlayer playerWithURL:self.URL];
+    [_player setActionAtItemEnd:AVPlayerActionAtItemEndPause];
     
     BBWeakify(self);
     
@@ -67,14 +71,39 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
         }];
     }];
     
+    _slowForwardCommand =
+    [[RACCommand alloc] initWithEnabled:_enabledSignal signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            if (self.currentPlaybackRate == BBMediaViewerPageMovieModelRateSlowForward) {
+                [self play];
+            }
+            else {
+                [self slowForward];
+            }
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
+    
+    [[[[NSNotificationCenter defaultCenter]
+        rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem]
+       takeUntil:[self rac_willDeallocSignal]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self _seekToBeginningIfNecessary];
+     }];
+    
     return self;
 }
 
 - (void)play; {
     [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRatePlay];
 }
-- (void)slowMotion; {
-    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateSlowMotion];
+- (void)slowForward; {
+    [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateSlowForward];
 }
 - (void)fastForward; {
     [self setCurrentPlaybackRate:BBMediaViewerPageMovieModelRateFastForward];
@@ -108,7 +137,7 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 - (NSTimeInterval)duration {
     CMTime time = self.player.currentItem.duration;
     
-    if (CMTIME_IS_VALID(time)) {
+    if (CMTIME_IS_NUMERIC(time)) {
         return CMTimeGetSeconds(time);
     }
     else {
@@ -136,6 +165,14 @@ float const BBMediaViewerPageMovieModelRateFastForward = 2.0;
 }
 - (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
     [self.player seekToTime:CMTimeMakeWithSeconds(currentPlaybackTime, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
+}
+
+- (void)_seekToBeginningIfNecessary; {
+    if (CMTIME_IS_NUMERIC(self.player.currentItem.duration) &&
+        CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
+        
+        [self setCurrentPlaybackTime:0.0];
+    }
 }
 
 @end

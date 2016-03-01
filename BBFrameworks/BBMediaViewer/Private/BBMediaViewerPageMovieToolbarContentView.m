@@ -31,6 +31,8 @@
 @property (strong,nonatomic) UILabel *timeRemainingLabel;
 @property (strong,nonatomic) BBProgressSlider *slider;
 @property (strong,nonatomic) UIButton *playPauseButton;
+@property (strong,nonatomic) UIButton *slowForwardButton;
+@property (strong,nonatomic) UIButton *fastForwardButton;
 
 @property (strong,nonatomic) NSDateComponentsFormatter *timeElapsedDateFormatter;
 @property (strong,nonatomic) NSDateComponentsFormatter *timeRemainingDateFormatter;
@@ -79,10 +81,17 @@
     
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_play"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
-    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_player_pause"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
     [self.playPauseButton setRac_command:self.model.playPauseCommand];
     [self addSubview:self.playPauseButton];
+    
+    [self setSlowForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.slowForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
+    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.slowForwardButton setRac_command:self.model.slowForwardCommand];
+    [self addSubview:self.slowForwardButton];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.timeElapsedLabel}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.timeElapsedLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.slider attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
@@ -96,6 +105,9 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[slider]-[view]-|" options:0 metrics:nil views:@{@"slider": self.slider, @"view": self.playPauseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.playPauseButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-[view]" options:0 metrics:nil views:@{@"view": self.slowForwardButton, @"button": self.playPauseButton}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.slowForwardButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
     RAC(self.slider,enabled) =
     [self.model.enabledSignal
      deliverOn:[RACScheduler mainThreadScheduler]];
@@ -104,6 +116,13 @@
     [[RACObserve(self.model, currentPlaybackRate)
       map:^id(NSNumber *value) {
           return @(value.floatValue != BBMediaViewerPageMovieModelRatePause);
+      }]
+     deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    RAC(self.slowForwardButton,selected) =
+    [[RACObserve(self.model, currentPlaybackRate)
+      map:^id(NSNumber *value) {
+          return @(value.floatValue == BBMediaViewerPageMovieModelRateSlowForward);
       }]
      deliverOn:[RACScheduler mainThreadScheduler]];
     

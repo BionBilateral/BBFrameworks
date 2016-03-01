@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern float const BBMediaViewerPageMovieModelRatePlay;
 extern float const BBMediaViewerPageMovieModelRatePause;
-extern float const BBMediaViewerPageMovieModelRateSlowMotion;
+extern float const BBMediaViewerPageMovieModelRateSlowForward;
 extern float const BBMediaViewerPageMovieModelRateFastForward;
 
 @class RACSignal,RACCommand;
@@ -37,9 +37,10 @@ extern float const BBMediaViewerPageMovieModelRateFastForward;
 @property (readonly,strong,nonatomic) RACSignal *enabledSignal;
 
 @property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
+@property (readonly,strong,nonatomic) RACCommand *slowForwardCommand;
 
 - (void)play;
-- (void)slowMotion;
+- (void)slowForward;
 - (void)fastForward;
 - (void)pause;
 - (void)stop;
