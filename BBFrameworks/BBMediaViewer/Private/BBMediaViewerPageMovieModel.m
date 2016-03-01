@@ -125,6 +125,23 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
         }];
     }];
     
+    _fastReverseCommand =
+    [[RACCommand alloc] initWithEnabled:_enabledSignal signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            if (self.currentPlaybackRate == BBMediaViewerPageMovieModelRateFastReverse) {
+                [self play];
+            }
+            else {
+                [self fastReverse];
+            }
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
+    
     [[[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem]
        takeUntil:[self rac_willDeallocSignal]]

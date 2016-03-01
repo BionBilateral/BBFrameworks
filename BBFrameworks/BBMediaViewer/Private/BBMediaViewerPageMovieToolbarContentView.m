@@ -34,6 +34,7 @@
 @property (strong,nonatomic) UIButton *slowForwardButton;
 @property (strong,nonatomic) UIButton *fastForwardButton;
 @property (strong,nonatomic) UIButton *slowReverseButton;
+@property (strong,nonatomic) UIButton *fastReverseButton;
 
 @property (strong,nonatomic) NSDateComponentsFormatter *timeElapsedDateFormatter;
 @property (strong,nonatomic) NSDateComponentsFormatter *timeRemainingDateFormatter;
@@ -108,6 +109,13 @@
     [self.slowReverseButton setRac_command:self.model.slowReverseCommand];
     [self addSubview:self.slowReverseButton];
     
+    [self setFastReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.fastReverseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
+    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.fastReverseButton setRac_command:self.model.fastReverseCommand];
+    [self addSubview:self.fastReverseButton];
+    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": self.timeElapsedLabel}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.timeElapsedLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.slider attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
@@ -128,6 +136,9 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-[button]" options:0 metrics:nil views:@{@"button": self.playPauseButton, @"view": self.slowReverseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.slowReverseButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-[button]" options:0 metrics:nil views:@{@"button": self.slowReverseButton, @"view": self.fastReverseButton}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fastReverseButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     RAC(self.slider,enabled) =
     [self.model.enabledSignal
@@ -164,17 +175,22 @@
       }]
      deliverOn:[RACScheduler mainThreadScheduler]];
     
+    RAC(self.fastReverseButton,selected) =
+    [[currentPlaybackRateSignal
+      map:^id(NSNumber *value) {
+          return @(value.floatValue == BBMediaViewerPageMovieModelRateFastReverse);
+      }]
+     deliverOn:[RACScheduler mainThreadScheduler]];
+    
     RAC(self.slider,progressRanges) =
     [[[self.model.enabledSignal
        ignore:@NO]
        flattenMap:^RACStream *(id value) {
-           return [[RACSignal combineLatest:@[RACObserve(self.model.player.currentItem, duration),
-                                              RACObserve(self.model.player.currentItem, loadedTimeRanges)]]
-                   map:^id(RACTuple *value) {
-                       RACTupleUnpack(NSValue *durationValue, NSArray<NSValue *> *loadedTimeRanges) = value;
-                       NSTimeInterval duration = CMTimeGetSeconds(durationValue.CMTimeValue);
+           return [RACObserve(self.model.player.currentItem, loadedTimeRanges)
+                   map:^id(NSArray<NSValue *> *value) {
+                       NSTimeInterval duration = self.model.duration;
                        
-                       return [[loadedTimeRanges BB_map:^id _Nullable(NSValue * _Nonnull object, NSInteger index) {
+                       return [[value BB_map:^id _Nullable(NSValue * _Nonnull object, NSInteger index) {
                            CMTimeRange range = object.CMTimeRangeValue;
                            NSTimeInterval start = CMTimeGetSeconds(range.start);
                            NSTimeInterval end = start + CMTimeGetSeconds(range.duration);
