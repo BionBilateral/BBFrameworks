@@ -15,8 +15,11 @@
 
 #import "BBMediaViewerPagePDFDetailModel.h"
 
+#import <CoreGraphics/CoreGraphics.h>
+
 @interface BBMediaViewerPagePDFDetailModel ()
 @property (readwrite,assign,nonatomic) CGPDFPageRef PDFPageRef;
+@property (readwrite,assign,nonatomic) CGSize size;
 @end
 
 @implementation BBMediaViewerPagePDFDetailModel
@@ -25,9 +28,50 @@
     if (!(self = [super init]))
         return nil;
     
+    NSParameterAssert(PDFPageRef);
+    
     _PDFPageRef = PDFPageRef;
     
+    CGRect rect = CGRectIntersection(CGPDFPageGetBoxRect(_PDFPageRef, kCGPDFCropBox), CGPDFPageGetBoxRect(_PDFPageRef, kCGPDFMediaBox));
+    int rotationAngle = CGPDFPageGetRotationAngle(_PDFPageRef);
+    
+    switch (rotationAngle) {
+        case 90:
+        case 270: {
+            CGFloat width = CGRectGetWidth(rect);
+            CGFloat height = CGRectGetHeight(rect);
+            
+            rect.size.width = height;
+            rect.size.height = width;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    NSInteger width = CGRectGetWidth(rect);
+    NSInteger height = CGRectGetHeight(rect);
+    
+    if (width % 2 != 0) {
+        width--;
+    }
+    if (height % 2 != 0) {
+        height--;
+    }
+    
+    _size = CGSizeMake(width, height);
+    
     return self;
+}
+
+- (void)drawInRect:(CGRect)rect contextRef:(CGContextRef)contextRef; {
+    CGContextSetRGBFillColor(contextRef, 1.0, 1.0, 1.0, 1.0);
+    CGContextFillRect(contextRef, CGContextGetClipBoundingBox(contextRef));
+    CGContextTranslateCTM(contextRef, 0.0, CGRectGetHeight(rect));
+    CGContextScaleCTM(contextRef, 1.0, -1.0);
+    CGContextConcatCTM(contextRef, CGPDFPageGetDrawingTransform(self.PDFPageRef, kCGPDFCropBox, rect, 0, true));
+    CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+    CGContextDrawPDFPage(contextRef, self.PDFPageRef);
 }
 
 @end

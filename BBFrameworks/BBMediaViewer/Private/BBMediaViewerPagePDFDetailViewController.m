@@ -15,8 +15,11 @@
 
 #import "BBMediaViewerPagePDFDetailViewController.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBMediaViewerPagePDFDetailScrollView.h"
 
 @interface BBMediaViewerPagePDFDetailViewController ()
+@property (strong,nonatomic) BBMediaViewerPagePDFDetailScrollView *scrollView;
+
 @property (readwrite,strong,nonatomic) BBMediaViewerPagePDFDetailModel *model;
 @end
 
@@ -25,7 +28,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setScrollView:[[BBMediaViewerPagePDFDetailScrollView alloc] initWithModel:self.model]];
+    [self.view addSubview:self.scrollView];
+}
+- (void)viewWillLayoutSubviews {
+    [self.scrollView setFrame:self.view.bounds];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    [self.scrollView updateZoomScale];
+    [self.scrollView centerContentView];
 }
 
 - (instancetype)initWithModel:(BBMediaViewerPagePDFDetailModel *)model; {

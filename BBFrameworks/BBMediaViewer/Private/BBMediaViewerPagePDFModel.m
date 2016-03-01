@@ -60,7 +60,7 @@
 }
 
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page; {
-    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, page)];
+    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, ++page)];
 }
 - (size_t)pageForPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail; {
     return CGPDFPageGetPageNumber(pagePDFDetail.PDFPageRef);

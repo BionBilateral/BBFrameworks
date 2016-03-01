@@ -33,8 +33,8 @@
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
-    [self centerImageView];
     [self updateZoomScale];
+    [self centerImageView];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -133,7 +133,6 @@
     }
     
     CGRect scrollViewFrame = self.bounds;
-    
     CGFloat scaleWidth = scrollViewFrame.size.width / self.imageView.image.size.width;
     CGFloat scaleHeight = scrollViewFrame.size.height / self.imageView.image.size.height;
     CGFloat minScale = MIN(scaleWidth, scaleHeight);

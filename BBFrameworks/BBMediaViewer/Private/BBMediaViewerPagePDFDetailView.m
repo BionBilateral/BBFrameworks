@@ -1,5 +1,5 @@
 //
-//  BBMediaViewerPagePDFDetailModel.h
+//  BBMediaViewerPagePDFDetailView.m
 //  BBFrameworks
 //
 //  Created by William Towe on 3/1/16.
@@ -13,21 +13,35 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CGPDFPage.h>
-#import <CoreGraphics/CGContext.h>
+#import "BBMediaViewerPagePDFDetailView.h"
+#import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBMediaViewerPagePDFDetailLayer.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface BBMediaViewerPagePDFDetailView ()
+@property (readonly,nonatomic) CATiledLayer *layer;
 
-@interface BBMediaViewerPagePDFDetailModel : NSObject
-
-@property (readonly,assign,nonatomic) CGPDFPageRef PDFPageRef;
-@property (readonly,assign,nonatomic) CGSize size;
-
-- (instancetype)initWithPDFPageRef:(CGPDFPageRef)PDFPageRef;
-
-- (void)drawInRect:(CGRect)rect contextRef:(CGContextRef)contextRef;
-
+@property (strong,nonatomic) BBMediaViewerPagePDFDetailModel *model;
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation BBMediaViewerPagePDFDetailView
+
++ (Class)layerClass {
+    return [BBMediaViewerPagePDFDetailLayer class];
+}
+
+@dynamic layer;
+
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
+    [self.model drawInRect:self.bounds contextRef:ctx];
+}
+
+- (instancetype)initWithModel:(BBMediaViewerPagePDFDetailModel *)model; {
+    if (!(self = [super initWithFrame:CGRectZero]))
+        return nil;
+    
+    _model = model;
+    
+    return self;
+}
+
+@end
