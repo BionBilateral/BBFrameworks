@@ -31,6 +31,7 @@
     if (self.class == [BBMediaViewerPageViewController class]) {
         switch ([BBMediaViewerPageModel typeForMedia:media]) {
             case BBMediaViewerPageModelTypeImage:
+            case BBMediaViewerPageModelTypeImageAnimated:
                 return [[BBMediaViewerPageImageViewController alloc] initWithMedia:media parentModel:parentModel];
             case BBMediaViewerPageModelTypeDocument:
                 return [[BBMediaViewerDocumentPageViewController alloc] initWithMedia:media parentModel:parentModel];
