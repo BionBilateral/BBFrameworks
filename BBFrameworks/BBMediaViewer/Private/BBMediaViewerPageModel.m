@@ -56,7 +56,7 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
         return BBMediaViewerPageModelTypePDF;
     }
-    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, CFSTR("com.microsoft.powerpoint.ppt"))) {
+    else if ([[NSSet setWithArray:@[@"ppt",@"pptx",@"xls",@"xlsx",@"doc",@"docx"]] containsObject:filenameExtension.lowercaseString]) {
         return BBMediaViewerPageModelTypeDocument;
     }
     else {
