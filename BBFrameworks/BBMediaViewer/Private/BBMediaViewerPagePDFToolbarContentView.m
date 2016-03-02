@@ -81,7 +81,7 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_selectedPageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _collectionView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]-[view(height)]|" options:0 metrics:@{@"height": @(layout.sectionInset.top + _model.thumbnailSize.height + layout.sectionInset.bottom)} views:@{@"view": _collectionView, @"label": _selectedPageLabel}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label][view(height)]|" options:0 metrics:@{@"height": @(layout.sectionInset.top + _model.thumbnailSize.height + layout.sectionInset.bottom)} views:@{@"view": _collectionView, @"label": _selectedPageLabel}]];
     
     BBWeakify(self);
     

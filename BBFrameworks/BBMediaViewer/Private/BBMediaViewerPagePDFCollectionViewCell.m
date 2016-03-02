@@ -65,7 +65,7 @@
     [super setSelected:selected];
     
     [self.thumbnailImageView.layer setBorderWidth:selected ? 1.0 / [UIScreen mainScreen].scale : 0.0];
-    [self.thumbnailImageView setTransform:selected ? CGAffineTransformMakeScale(1.25, 1.25) : CGAffineTransformIdentity];
+    [self.thumbnailImageView setTransform:selected ? CGAffineTransformMakeScale(1.2, 1.2) : CGAffineTransformIdentity];
 }
 
 - (void)setModel:(BBMediaViewerPagePDFDetailModel *)model {
