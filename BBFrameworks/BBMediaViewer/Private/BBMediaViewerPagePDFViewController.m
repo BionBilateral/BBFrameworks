@@ -48,7 +48,9 @@
 }
 
 - (void)mediaViewerPagePDFModel:(BBMediaViewerPagePDFModel *)model didSelectPage:(size_t)page {
-    [self.pageViewController setViewControllers:@[[[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:page]]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    BBMediaViewerPagePDFDetailViewController *pageVC = self.pageViewController.viewControllers.firstObject;
+    
+    [self.pageViewController setViewControllers:@[[[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:page]]] direction:page < pageVC.model.page ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {

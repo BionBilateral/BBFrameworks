@@ -38,6 +38,7 @@
     _thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     [_thumbnailImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_thumbnailImageView setBackgroundColor:[UIColor whiteColor]];
+    [_thumbnailImageView.layer setBorderColor:self.tintColor.CGColor];
     [self.contentView addSubview:_thumbnailImageView];
     
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -63,6 +64,7 @@
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     
+    [self.thumbnailImageView.layer setBorderWidth:selected ? 1.0 / [UIScreen mainScreen].scale : 0.0];
     [self.thumbnailImageView setTransform:selected ? CGAffineTransformMakeScale(1.25, 1.25) : CGAffineTransformIdentity];
 }
 

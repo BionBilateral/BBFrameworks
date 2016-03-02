@@ -78,7 +78,13 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSNumber *value) {
          BBStrongify(self);
-         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:value.integerValue inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:value.integerValue inSection:0];
+         CGRect frame = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath].frame;
+         
+         if (!CGRectContainsRect(self.collectionView.frame, frame)) {
+             [self.collectionView scrollRectToVisible:frame animated:NO];
+         }
+         [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
      }];
     
     return self;
