@@ -72,7 +72,7 @@
          // zoom in
          if (self.zoomScale == self.minimumZoomScale) {
              CGPoint pointInView = [self.doubleTapGestureRecognizer locationInView:self.PDFView];
-             CGFloat newZoomScale = (self.minimumZoomScale + self.maximumZoomScale) / 2.0;
+             CGFloat newZoomScale = (self.minimumZoomScale + self.maximumZoomScale) / 3.0;
              CGSize scrollViewSize = self.bounds.size;
              CGFloat width = scrollViewSize.width / newZoomScale;
              CGFloat height = scrollViewSize.height / newZoomScale;
@@ -117,7 +117,7 @@
     CGFloat minScale = MIN(scaleWidth, scaleHeight);
     
     [self setMinimumZoomScale:minScale];
-    [self setMaximumZoomScale:MAX(minScale, 3.0)];
+    [self setMaximumZoomScale:MAX(minScale, 4.0)];
     [self setZoomScale:self.minimumZoomScale];
 }
 

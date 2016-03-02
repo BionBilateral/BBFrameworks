@@ -27,8 +27,8 @@
     if (!(self = [super init]))
         return nil;
     
-    [self setLevelsOfDetail:16];
-    [self setLevelsOfDetailBias:15];
+    [self setLevelsOfDetail:4];
+    [self setLevelsOfDetailBias:3];
     
     CGFloat width = CGRectGetWidth([UIScreen mainScreen].bounds) * [UIScreen mainScreen].scale;
     CGFloat height = CGRectGetHeight([UIScreen mainScreen].bounds) * [UIScreen mainScreen].scale;
