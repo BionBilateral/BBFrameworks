@@ -21,7 +21,7 @@
     return self;
 }
 - (NSString *)mediaViewerMediaTitle {
-    return self.lastPathComponent;
+    return self.lastPathComponent.stringByDeletingPathExtension;
 }
 
 @end

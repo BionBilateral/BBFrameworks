@@ -55,6 +55,8 @@
     id<BBMediaViewerMedia> firstMedia = [self.model mediaAtIndex:0];
     BBMediaViewerPageViewController *firstPageVC = [[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model];
     
+    [self.model selectPageModel:firstPageVC.model];
+    
     BBWeakify(self);
     [self.pageViewController setViewControllers:@[firstPageVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [self.pageViewController setDataSource:self];
@@ -80,6 +82,10 @@
     [self.tapGestureRecognizer setNumberOfTouchesRequired:1];
     [self.tapGestureRecognizer setDelegate:self];
     [self.view addGestureRecognizer:self.tapGestureRecognizer];
+    
+    RAC(self,title) =
+    [RACObserve(self.model, title)
+     deliverOnMainThread];
     
     [self.navigationBar setItems:@[self.navigationItem]];
     
@@ -154,6 +160,8 @@
     
     if (completed) {
         BBMediaViewerPageViewController *pageVC = pageViewController.viewControllers.firstObject;
+        
+        [self.model selectPageModel:pageVC.model];
         
         [self.toolbar setContentView:pageVC.bottomToolbarContentView];
     }

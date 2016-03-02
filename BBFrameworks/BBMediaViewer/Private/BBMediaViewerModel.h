@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaViewerTheme;
+@class BBMediaViewerTheme,BBMediaViewerPageModel;
 @class RACCommand;
 
 @interface BBMediaViewerModel : NSObject
@@ -30,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,null_resettable) BBMediaViewerTheme *theme;
 
+@property (readonly,copy,nonatomic) NSString *title;
+
+@property (readonly,strong,nonatomic) BBMediaViewerPageModel *selectedPageModel;
+
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 
 - (NSInteger)numberOfMedia;
@@ -38,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media;
 - (void)downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
+
+- (void)selectPageModel:(BBMediaViewerPageModel *)pageModel;
 
 @end
 

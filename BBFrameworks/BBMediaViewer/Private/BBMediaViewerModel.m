@@ -16,11 +16,16 @@
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerTheme.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerPageModel.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerModel ()
+@property (readwrite,copy,nonatomic) NSString *title;
 @property (readwrite,strong,nonatomic) RACCommand *doneCommand;
+
+@property (readwrite,strong,nonatomic) BBMediaViewerPageModel *selectedPageModel;
 @end
 
 @implementation BBMediaViewerModel
@@ -37,6 +42,14 @@
         BBStrongify(self);
         return [RACSignal return:self];
     }];
+    
+    RAC(self,title) =
+    [[RACObserve(self, selectedPageModel)
+      ignore:nil]
+     map:^id(BBMediaViewerPageModel *value) {
+         BBStrongify(self);
+         return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_TITLE_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ (%@ of %@)", @"media viewer title format"),value.title,[NSNumberFormatter localizedStringFromNumber:@([self indexOfMedia:value.media] + 1) numberStyle:NSNumberFormatterDecimalStyle],[NSNumberFormatter localizedStringFromNumber:@(self.numberOfMedia) numberStyle:NSNumberFormatterDecimalStyle]];
+     }];
     
     return self;
 }
@@ -67,6 +80,10 @@
 }
 - (void)downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion; {
     [self.delegate mediaViewerModel:self downloadMedia:media completion:completion];
+}
+
+- (void)selectPageModel:(BBMediaViewerPageModel *)pageModel; {
+    [self setSelectedPageModel:pageModel];
 }
 
 - (void)setTheme:(BBMediaViewerTheme *)theme {
