@@ -42,8 +42,8 @@
 }
 
 + (BBMediaViewerPageModelType)typeForMedia:(id<BBMediaViewerMedia>)media; {
-    NSString *filenameExtension = media.mediaViewerMediaURL.pathExtension;
-    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)filenameExtension, NULL);
+    NSURL *URL = media.mediaViewerMediaURL;
+    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
     
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeGIF)) {
         return BBMediaViewerPageModelTypeImageAnimated;
@@ -65,6 +65,12 @@
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF)) {
         return BBMediaViewerPageModelTypeRTF;
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
+             [URL.scheme isEqualToString:@"http"] ||
+             [URL.scheme isEqualToString:@"https"]) {
+        
+        return BBMediaViewerPageModelTypeHTML;
     }
     else if ([QLPreviewController canPreviewItem:media.mediaViewerMediaURL]) {
         return BBMediaViewerPageModelTypeDocument;

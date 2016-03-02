@@ -46,6 +46,7 @@
     
     [self setURLs:temp];
     
+    [temp insertObject:[NSURL URLWithString:@"http://www.cnn.com"] atIndex:0];
 //    [temp insertObject:[NSURL URLWithString:@"http://download.wavetlan.com/SVV/Media/HTTP/MP4/ConvertedFiles/Media-Convert/Unsupported/dw11222.mp4"] atIndex:0];
 //    [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
 //    [temp insertObject:[NSURL URLWithString:@"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4"] atIndex:0];

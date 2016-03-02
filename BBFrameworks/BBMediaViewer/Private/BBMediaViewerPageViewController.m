@@ -23,6 +23,7 @@
 #import "BBMediaViewerPagePDFViewController.h"
 #import "BBMediaViewerPageTextViewController.h"
 #import "BBMediaViewerPageRTFViewController.h"
+#import "BBMediaViewerPageHTMLViewController.h"
 
 @interface BBMediaViewerPageViewController ()
 
@@ -47,6 +48,8 @@
             case BBMediaViewerPageModelTypeRTF:
             case BBMediaViewerPageModelTypeRTFD:
                 return [[BBMediaViewerPageRTFViewController alloc] initWithMedia:media parentModel:parentModel];
+            case BBMediaViewerPageModelTypeHTML:
+                return [[BBMediaViewerPageHTMLViewController alloc] initWithMedia:media parentModel:parentModel];
             default:
                 return [[BBMediaViewerPagePlaceholderViewController alloc] initWithMedia:media parentModel:parentModel];
         }

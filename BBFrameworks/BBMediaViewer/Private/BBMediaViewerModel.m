@@ -75,11 +75,13 @@
     }];
     
     RAC(self,title) =
-    [[RACObserve(self, selectedPageModel)
+    [[[RACSignal combineLatest:@[[RACObserve(self, selectedPageModel) ignore:nil],
+                                 [RACObserve(self, selectedPageModel.title) ignore:nil]]]
       ignore:nil]
-     map:^id(BBMediaViewerPageModel *value) {
+     map:^id(RACTuple *value) {
          BBStrongify(self);
-         return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_TITLE_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ (%@ of %@)", @"media viewer title format"),value.title,[NSNumberFormatter localizedStringFromNumber:@([self indexOfMedia:value.media] + 1) numberStyle:NSNumberFormatterDecimalStyle],[NSNumberFormatter localizedStringFromNumber:@(self.numberOfMedia) numberStyle:NSNumberFormatterDecimalStyle]];
+         RACTupleUnpack(BBMediaViewerPageModel *model, NSString *title) = value;
+         return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_TITLE_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ (%@ of %@)", @"media viewer title format"),title,[NSNumberFormatter localizedStringFromNumber:@([self indexOfMedia:model.media] + 1) numberStyle:NSNumberFormatterDecimalStyle],[NSNumberFormatter localizedStringFromNumber:@(self.numberOfMedia) numberStyle:NSNumberFormatterDecimalStyle]];
      }];
     
     return self;
