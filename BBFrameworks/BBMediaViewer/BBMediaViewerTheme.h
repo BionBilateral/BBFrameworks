@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIColor *backgroundColor;
 
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *doneBarButtonItem;
+@property (strong,nonatomic,null_resettable) UIBarButtonItem *actionBarButtonItem;
 
 + (instancetype)defaultTheme;
 

@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger, BBMediaViewerPageModelType) {
 @property (readonly,nonatomic) NSURL *URL;
 @property (readonly,nonatomic) NSString *title;
 @property (readonly,nonatomic) NSString *UTI;
+@property (readonly,nonatomic) id activityItem;
 @property (readonly,weak,nonatomic) BBMediaViewerModel *parentModel;
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel;

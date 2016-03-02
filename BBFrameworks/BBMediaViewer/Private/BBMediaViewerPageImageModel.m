@@ -63,4 +63,8 @@
     return self;
 }
 
+- (id)activityItem {
+    return self.type == BBMediaViewerPageModelTypeImageAnimated ? [[UIImage alloc] initWithData:[(FLAnimatedImage *)self.image data]] : self.image;
+}
+
 @end

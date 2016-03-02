@@ -19,12 +19,14 @@
 #import "BBMediaViewerPageModel.h"
 #import "BBFrameworksFunctions.h"
 #import "BBThumbnail.h"
+#import "UIViewController+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerModel ()
 @property (readwrite,copy,nonatomic) NSString *title;
 @property (readwrite,strong,nonatomic) RACCommand *doneCommand;
+@property (readwrite,strong,nonatomic) RACCommand *actionCommand;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPageModel *selectedPageModel;
 @property (readwrite,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
@@ -43,9 +45,33 @@
     
     BBWeakify(self);
     
-    _doneCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    _doneCommand =
+    [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         BBStrongify(self);
         return [RACSignal return:self];
+    }];
+    
+    _actionCommand =
+    [[RACCommand alloc] initWithEnabled:[RACObserve(self, selectedPageModel) map:^id(BBMediaViewerPageModel *value) {
+        return @(value.activityItem != nil);
+    }] signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            UIActivityViewController *viewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.selectedPageModel.activityItem] applicationActivities:nil];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                [[UIViewController BB_viewControllerForPresenting] presentViewController:viewController animated:YES completion:nil];
+            }
+            else {
+                [viewController.popoverPresentationController setBarButtonItem:input];
+                
+                [[UIViewController BB_viewControllerForPresenting] presentViewController:viewController animated:YES completion:nil];
+            }
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
     }];
     
     RAC(self,title) =

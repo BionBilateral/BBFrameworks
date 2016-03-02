@@ -74,5 +74,8 @@
 - (NSString *)UTI {
     return (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.URL.pathExtension, NULL);
 }
+- (id)activityItem {
+    return self.URL;
+}
 
 @end

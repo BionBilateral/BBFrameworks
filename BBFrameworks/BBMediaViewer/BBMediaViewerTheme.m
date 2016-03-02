@@ -18,6 +18,7 @@
 @interface BBMediaViewerTheme ()
 + (UIColor *)_defaultBackgroundColor;
 + (UIBarButtonItem *)_defaultDoneBarButtonItem;
++ (UIBarButtonItem *)_defaultActionBarButtonItem;
 @end
 
 @implementation BBMediaViewerTheme
@@ -28,6 +29,7 @@
     
     _backgroundColor = [self.class _defaultBackgroundColor];
     _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
+    _actionBarButtonItem = [self.class _defaultActionBarButtonItem];
     
     return self;
 }
@@ -50,12 +52,18 @@
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
     _doneBarButtonItem = doneBarButtonItem ?: [self.class _defaultDoneBarButtonItem];
 }
+- (void)setActionBarButtonItem:(UIBarButtonItem *)actionBarButtonItem {
+    _actionBarButtonItem = actionBarButtonItem ?: [self.class _defaultActionBarButtonItem];
+}
 
 + (UIColor *)_defaultBackgroundColor; {
     return [UIColor whiteColor];
 }
 + (UIBarButtonItem *)_defaultDoneBarButtonItem; {
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
+}
++ (UIBarButtonItem *)_defaultActionBarButtonItem; {
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:NULL];
 }
 
 @end

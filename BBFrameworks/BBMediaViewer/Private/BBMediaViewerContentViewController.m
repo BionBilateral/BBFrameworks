@@ -105,6 +105,17 @@
          
          [value setRac_command:self.model.doneCommand];
          
+         [self.navigationItem setLeftBarButtonItems:@[value]];
+     }];
+    
+    [[[RACObserve(self.model, theme.actionBarButtonItem)
+     ignore:nil]
+     deliverOnMainThread]
+     subscribeNext:^(UIBarButtonItem *value) {
+         BBStrongify(self);
+         
+         [value setRac_command:self.model.actionCommand];
+         
          [self.navigationItem setRightBarButtonItems:@[value]];
      }];
     

@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
+@property (readonly,strong,nonatomic) RACCommand *actionCommand;
 
 - (NSInteger)numberOfMedia;
 - (id<BBMediaViewerMedia>)mediaAtIndex:(NSInteger)index;
