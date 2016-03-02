@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // TODO: WKWebView gained the ability to preview local documents in iOS 9+, use it instead
     [self setWebView:[[UIWebView alloc] initWithFrame:CGRectZero]];
     [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.webView setScalesPageToFit:YES];
