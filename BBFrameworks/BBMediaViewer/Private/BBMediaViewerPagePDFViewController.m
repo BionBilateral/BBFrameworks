@@ -61,7 +61,7 @@
     BBMediaViewerPagePDFDetailViewController *pageVC = (BBMediaViewerPagePDFDetailViewController *)viewController;
     long page = pageVC.model.page;
     
-    if ((--page) <= 0) {
+    if ((--page) < 0) {
         return nil;
     }
     

@@ -66,7 +66,7 @@
 }
 
 - (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page; {
-    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, BBBoundedValue(page, 1, self.numberOfPages)) parentModel:self];
+    return [[BBMediaViewerPagePDFDetailModel alloc] initWithPDFPageRef:CGPDFDocumentGetPage(self.PDFDocumentRef, ++page) parentModel:self];
 }
 
 - (void)selectPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail; {

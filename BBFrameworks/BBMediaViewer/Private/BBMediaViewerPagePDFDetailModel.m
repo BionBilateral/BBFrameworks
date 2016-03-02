@@ -79,7 +79,7 @@
 }
 
 - (size_t)page {
-    return CGPDFPageGetPageNumber(self.PDFPageRef);
+    return CGPDFPageGetPageNumber(self.PDFPageRef) - 1;
 }
 
 @end

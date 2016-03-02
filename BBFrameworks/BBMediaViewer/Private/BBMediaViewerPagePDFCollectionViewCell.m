@@ -54,7 +54,7 @@
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     
-    [self.thumbnailImageView setTransform:selected ? CGAffineTransformMakeScale(1.2, 1.2) : CGAffineTransformIdentity];
+    [self.thumbnailImageView setTransform:selected ? CGAffineTransformMakeScale(1.25, 1.25) : CGAffineTransformIdentity];
 }
 
 - (void)setModel:(BBMediaViewerPagePDFDetailModel *)model {

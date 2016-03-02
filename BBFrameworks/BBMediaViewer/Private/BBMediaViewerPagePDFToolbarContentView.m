@@ -34,7 +34,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BBMediaViewerPagePDFCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([BBMediaViewerPagePDFCollectionViewCell class]) forIndexPath:indexPath];
     
-    [cell setModel:[self.model pagePDFDetailForPage:indexPath.item + 1]];
+    [cell setModel:[self.model pagePDFDetailForPage:indexPath.item]];
     
     return cell;
 }
