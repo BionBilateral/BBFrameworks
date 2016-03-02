@@ -19,6 +19,7 @@
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBKitFunctions.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
 
 @interface BBMediaViewerPagePDFCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
@@ -75,7 +76,7 @@
     [self.activityIndicatorView startAnimating];
     
     BBWeakify(self);
-    [_model.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page + 1 completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
+    [_model.parentModel.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page + 1 completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
         BBStrongify(self);
         [self.thumbnailImageView setImage:image];
         [self.activityIndicatorView stopAnimating];

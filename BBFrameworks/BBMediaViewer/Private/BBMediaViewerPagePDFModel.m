@@ -17,7 +17,6 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
-#import "BBThumbnail.h"
 #import "BBFoundationMacros.h"
 
 #import <CoreGraphics/CoreGraphics.h>
@@ -36,9 +35,6 @@
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
         return nil;
-    
-    _thumbnailGenerator = [[BBThumbnailGenerator alloc] init];
-    [_thumbnailGenerator setCacheOptions:BBThumbnailGeneratorCacheOptionsMemory];
     
     BBWeakify(self);
     void(^createPDFBlock)(NSURL *) = ^(NSURL *URL){
