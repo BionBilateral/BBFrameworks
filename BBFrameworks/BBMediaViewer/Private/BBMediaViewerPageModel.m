@@ -17,6 +17,7 @@
 #import "BBMediaViewerModel.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <QuickLook/QuickLook.h>
 
 @interface BBMediaViewerPageModel ()
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
@@ -56,7 +57,7 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
         return BBMediaViewerPageModelTypePDF;
     }
-    else if ([[NSSet setWithArray:@[@"ppt",@"pptx",@"xls",@"xlsx",@"doc",@"docx"]] containsObject:filenameExtension.lowercaseString]) {
+    else if ([QLPreviewController canPreviewItem:media.mediaViewerMediaURL]) {
         return BBMediaViewerPageModelTypeDocument;
     }
     else {
