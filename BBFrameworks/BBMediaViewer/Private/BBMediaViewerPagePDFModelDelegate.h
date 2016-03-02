@@ -1,5 +1,5 @@
 //
-//  BBMediaViewerPagePDFModel.h
+//  BBMediaViewerPagePDFModelDelegate.h
 //  BBFrameworks
 //
 //  Created by William Towe on 3/1/16.
@@ -13,29 +13,11 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "BBMediaViewerPageModel.h"
-#import "BBMediaViewerPagePDFModelDelegate.h"
-#import <CoreGraphics/CGPDFPage.h>
+#import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@class BBMediaViewerPagePDFModel;
 
-@class BBMediaViewerPagePDFDetailModel,BBThumbnailGenerator;
-
-@interface BBMediaViewerPagePDFModel : BBMediaViewerPageModel
-
-@property (weak,nonatomic,nullable) id<BBMediaViewerPagePDFModelDelegate> delegate;
-
-@property (readonly,nonatomic) size_t numberOfPages;
-@property (readonly,assign,nonatomic) size_t selectedPage;
-
-@property (readonly,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
-@property (readonly,nonatomic) CGSize thumbnailSize;
-
-- (BBMediaViewerPagePDFDetailModel *)pagePDFDetailForPage:(size_t)page;
-
-- (void)selectPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail;
-- (void)selectPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail notifyDelegate:(BOOL)notifyDelegate;
-
+@protocol BBMediaViewerPagePDFModelDelegate <NSObject>
+@required
+- (void)mediaViewerPagePDFModel:(BBMediaViewerPagePDFModel *)model didSelectPage:(size_t)page;
 @end
-
-NS_ASSUME_NONNULL_END

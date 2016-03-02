@@ -70,7 +70,18 @@
 }
 
 - (void)selectPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail; {
+    [self selectPagePDFDetail:pagePDFDetail notifyDelegate:YES];
+}
+- (void)selectPagePDFDetail:(BBMediaViewerPagePDFDetailModel *)pagePDFDetail notifyDelegate:(BOOL)notifyDelegate; {
+    if (self.selectedPage == pagePDFDetail.page) {
+        return;
+    }
+    
     [self setSelectedPage:pagePDFDetail.page];
+    
+    if (notifyDelegate) {
+        [self.delegate mediaViewerPagePDFModel:self didSelectPage:self.selectedPage];
+    }
 }
 
 - (size_t)numberOfPages {

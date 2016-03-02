@@ -59,7 +59,7 @@
     
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [layout setMinimumInteritemSpacing:8.0];
-    [layout setSectionInset:UIEdgeInsetsMake(0, 8.0, 0, 8.0)];
+    [layout setSectionInset:UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)];
     [layout setItemSize:_model.thumbnailSize];
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
@@ -71,7 +71,7 @@
     [self addSubview:_collectionView];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _collectionView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]|" options:0 metrics:@{@"height": @(_model.thumbnailSize.height)} views:@{@"view": _collectionView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]|" options:0 metrics:@{@"height": @(layout.sectionInset.top + _model.thumbnailSize.height + layout.sectionInset.bottom)} views:@{@"view": _collectionView}]];
     
     BBWeakify(self);
     [[RACObserve(self.model, selectedPage)

@@ -19,7 +19,7 @@
 #import "BBMediaViewerPagePDFToolbarContentView.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
 
-@interface BBMediaViewerPagePDFViewController () <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+@interface BBMediaViewerPagePDFViewController () <BBMediaViewerPagePDFModelDelegate,UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
 @property (strong,nonatomic) BBMediaViewerPagePDFToolbarContentView *PDFToolbarContentView;
 
@@ -47,6 +47,10 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
 }
 
+- (void)mediaViewerPagePDFModel:(BBMediaViewerPagePDFModel *)model didSelectPage:(size_t)page {
+    [self.pageViewController setViewControllers:@[[[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:page]]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+}
+
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     BBMediaViewerPagePDFDetailViewController *pageVC = (BBMediaViewerPagePDFDetailViewController *)viewController;
     long page = pageVC.model.page;
@@ -72,7 +76,7 @@
     if (completed) {
         BBMediaViewerPagePDFDetailViewController *pageVC = pageViewController.viewControllers.firstObject;
         
-        [self.model selectPagePDFDetail:pageVC.model];
+        [self.model selectPagePDFDetail:pageVC.model notifyDelegate:NO];
     }
 }
 
@@ -81,6 +85,7 @@
         return nil;
     
     _model = [[BBMediaViewerPagePDFModel alloc] initWithMedia:media parentModel:parentModel];
+    [_model setDelegate:self];
     
     return self;
 }

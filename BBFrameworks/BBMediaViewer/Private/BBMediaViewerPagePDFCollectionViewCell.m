@@ -22,6 +22,7 @@
 
 @interface BBMediaViewerPagePDFCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
+@property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong,nonatomic) id<BBThumbnailOperation> thumbnailOperation;
 @end
@@ -36,11 +37,19 @@
     
     _thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     [_thumbnailImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_thumbnailImageView setContentMode:UIViewContentModeScaleAspectFit];
-    [self addSubview:_thumbnailImageView];
+    [_thumbnailImageView setBackgroundColor:[UIColor whiteColor]];
+    [self.contentView addSubview:_thumbnailImageView];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _thumbnailImageView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _thumbnailImageView}]];
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [_activityIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_activityIndicatorView setHidesWhenStopped:YES];
+    [self.contentView addSubview:_activityIndicatorView];
+    
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_thumbnailImageView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_thumbnailImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_activityIndicatorView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_activityIndicatorView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     return self;
 }
@@ -61,11 +70,13 @@
     _model = model;
     
     [self.thumbnailImageView setImage:nil];
+    [self.activityIndicatorView startAnimating];
     
     BBWeakify(self);
-    [_model.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
+    [_model.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page + 1 completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
         BBStrongify(self);
         [self.thumbnailImageView setImage:image];
+        [self.activityIndicatorView stopAnimating];
     }];
 }
 

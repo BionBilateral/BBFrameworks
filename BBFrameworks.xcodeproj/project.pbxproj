@@ -1526,6 +1526,7 @@
 		79F941641B436B3B00B385F0 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AddressBook.strings; sourceTree = "<group>"; };
 		79F941661B437AE300B385F0 /* BBAddressBookGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAddressBookGroup.h; sourceTree = "<group>"; };
 		79F941671B437AE300B385F0 /* BBAddressBookGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAddressBookGroup.m; sourceTree = "<group>"; };
+		79FDA0CF1C866A980057396D /* BBMediaViewerPagePDFModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBMediaViewerPagePDFModelDelegate.h; path = Private/BBMediaViewerPagePDFModelDelegate.h; sourceTree = "<group>"; };
 		A0FD8AC122EED9FA0C4080BB /* libPods-iOSDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A657DF113CD5106B6A2B3626 /* Pods-OSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OSXDemo/Pods-OSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1741,6 +1742,7 @@
 		075A2B031C8613A7001A6FB9 /* PDF */ = {
 			isa = PBXGroup;
 			children = (
+				79FDA0CF1C866A980057396D /* BBMediaViewerPagePDFModelDelegate.h */,
 				075A2B041C8613C8001A6FB9 /* BBMediaViewerPagePDFModel.h */,
 				075A2B051C8613C8001A6FB9 /* BBMediaViewerPagePDFModel.m */,
 				075A2B0D1C8619C3001A6FB9 /* BBMediaViewerPagePDFDetailModel.h */,
