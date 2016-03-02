@@ -57,6 +57,9 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
         return BBMediaViewerPageModelTypePDF;
     }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
+        return BBMediaViewerPageModelTypePlainText;
+    }
     else if ([QLPreviewController canPreviewItem:media.mediaViewerMediaURL]) {
         return BBMediaViewerPageModelTypeDocument;
     }
