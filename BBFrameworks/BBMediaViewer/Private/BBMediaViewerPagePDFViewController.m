@@ -49,7 +49,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     BBMediaViewerPagePDFDetailViewController *pageVC = (BBMediaViewerPagePDFDetailViewController *)viewController;
-    size_t page = pageVC.model.page;
+    long page = pageVC.model.page;
     
     if ((++page) == self.model.numberOfPages) {
         return nil;
