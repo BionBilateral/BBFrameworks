@@ -60,6 +60,12 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
         return BBMediaViewerPageModelTypePlainText;
     }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD)) {
+        return BBMediaViewerPageModelTypeRTFD;
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF)) {
+        return BBMediaViewerPageModelTypeRTF;
+    }
     else if ([QLPreviewController canPreviewItem:media.mediaViewerMediaURL]) {
         return BBMediaViewerPageModelTypeDocument;
     }
