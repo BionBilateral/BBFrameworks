@@ -17,10 +17,12 @@
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBMediaViewerPagePDFCollectionViewCell.h"
 #import "BBFrameworksMacros.h"
+#import "BBFrameworksFunctions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerPagePDFToolbarContentView () <UICollectionViewDataSource,UICollectionViewDelegate>
+@property (strong,nonatomic) UILabel *selectedPageLabel;
 @property (strong,nonatomic) UICollectionView *collectionView;
 
 @property (strong,nonatomic) BBMediaViewerPagePDFModel *model;
@@ -70,12 +72,32 @@
     [_collectionView setDelegate:self];
     [self addSubview:_collectionView];
     
+    _selectedPageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    [_selectedPageLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_selectedPageLabel setFont:[UIFont systemFontOfSize:12.0]];
+    [self addSubview:_selectedPageLabel];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]" options:0 metrics:nil views:@{@"view": _selectedPageLabel}]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_selectedPageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _collectionView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]|" options:0 metrics:@{@"height": @(layout.sectionInset.top + _model.thumbnailSize.height + layout.sectionInset.bottom)} views:@{@"view": _collectionView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]-[view(height)]|" options:0 metrics:@{@"height": @(layout.sectionInset.top + _model.thumbnailSize.height + layout.sectionInset.bottom)} views:@{@"view": _collectionView, @"label": _selectedPageLabel}]];
     
     BBWeakify(self);
-    [[RACObserve(self.model, selectedPage)
-     deliverOn:[RACScheduler mainThreadScheduler]]
+    
+    RACSignal *selectedPageSignal =
+    RACObserve(self.model, selectedPage);
+    
+    RAC(self.selectedPageLabel,text) =
+    [[selectedPageSignal
+     map:^id(NSNumber *value) {
+         BBStrongify(self);
+         return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_PDF_SELECTED_PAGE_LABEL_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ of %@", @"media viewer pdf selected page label format"),[NSNumberFormatter localizedStringFromNumber:@(value.longValue + 1) numberStyle:NSNumberFormatterDecimalStyle],[NSNumberFormatter localizedStringFromNumber:@(self.model.numberOfPages) numberStyle:NSNumberFormatterDecimalStyle]];
+     }]
+     deliverOnMainThread];
+    
+    [[selectedPageSignal
+     deliverOnMainThread]
      subscribeNext:^(NSNumber *value) {
          BBStrongify(self);
          NSIndexPath *indexPath = [NSIndexPath indexPathForItem:value.integerValue inSection:0];
