@@ -27,6 +27,7 @@
 @property (weak,nonatomic) WKWebView *webView;
 
 @property (readwrite,strong,nonatomic) RACCommand *goBackCommand;
+@property (readwrite,strong,nonatomic) RACCommand *goForwardCommand;
 @end
 
 @implementation BBMediaViewerPageHTMLModel
@@ -46,6 +47,18 @@
         BBStrongify(self);
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             [self.webView goBack];
+            
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
+    
+    _goForwardCommand =
+    [[RACCommand alloc] initWithEnabled:RACObserve(self.webView, canGoForward) signalBlock:^RACSignal *(id input) {
+        BBStrongify(self);
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [self.webView goForward];
             
             [subscriber sendCompleted];
             

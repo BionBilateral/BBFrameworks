@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,assign,nonatomic) double estimatedProgress;
 
 @property (readonly,strong,nonatomic) RACCommand *goBackCommand;
+@property (readonly,strong,nonatomic) RACCommand *goForwardCommand;
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel webView:(WKWebView *)webView;
 

@@ -24,6 +24,7 @@
 @interface BBMediaViewerPageHTMLToolbarContentView ()
 @property (strong,nonatomic) UIProgressView *progressView;
 @property (strong,nonatomic) UIButton *goBackButton;
+@property (strong,nonatomic) UIButton *goForwardButton;
 
 @property (strong,nonatomic) BBMediaViewerPageHTMLModel *model;
 @end
@@ -51,11 +52,20 @@
     [_goBackButton setRac_command:_model.goBackCommand];
     [self addSubview:_goBackButton];
     
+    _goForwardButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_goForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_goForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_go_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
+    [_goForwardButton setRac_command:_model.goForwardCommand];
+    [self addSubview:_goForwardButton];
+    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _progressView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]" options:0 metrics:nil views:@{@"view": _progressView}]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": _goBackButton}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress]-[view]-|" options:0 metrics:nil views:@{@"view": _goBackButton, @"progress": _progressView}]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[back]-[view]" options:0 metrics:nil views:@{@"back": _goBackButton, @"view": _goForwardButton}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress]-[view]-|" options:0 metrics:nil views:@{@"progress": _progressView, @"view": _goForwardButton}]];
     
     BBWeakify(self);
     [[[RACObserve(self.model, loading)
