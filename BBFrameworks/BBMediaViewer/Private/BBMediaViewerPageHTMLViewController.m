@@ -16,6 +16,7 @@
 #import "BBMediaViewerPageHTMLViewController.h"
 #import "BBMediaViewerPageHTMLModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerPageHTMLToolbarContentView.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -23,6 +24,7 @@
 
 @interface BBMediaViewerPageHTMLViewController ()
 @property (strong,nonatomic) WKWebView *webView;
+@property (strong,nonatomic) BBMediaViewerPageHTMLToolbarContentView *HTMLToolbarContentView;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPageHTMLModel *model;
 @end
@@ -32,9 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setWebView:[[WKWebView alloc] initWithFrame:CGRectZero]];
-    [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.webView];
+    
+    [self setHTMLToolbarContentView:[[BBMediaViewerPageHTMLToolbarContentView alloc] initWithModel:self.model]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.webView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.webView}]];
@@ -51,21 +53,24 @@
          
          [self.webView loadRequest:value];
      }];
-    
-    RAC(self.model,title) =
-    [RACObserve(self.webView, title)
-     ignore:nil];
 }
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
         return nil;
     
-    _model = [[BBMediaViewerPageHTMLModel alloc] initWithMedia:media parentModel:parentModel];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+    [_webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    _model = [[BBMediaViewerPageHTMLModel alloc] initWithMedia:media parentModel:parentModel webView:_webView];
     
     return self;
 }
 
 @synthesize model=_model;
+
+- (UIView *)bottomToolbarContentView {
+    return self.HTMLToolbarContentView;
+}
 
 @end
