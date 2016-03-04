@@ -16,6 +16,8 @@
 #import "BBMediaViewerPageRTFModel.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
+#import "BBFoundationFunctions.h"
+#import "UIAlertController+BBKitExtensions.h"
 
 #import <UIKit/UIKit.h>
 
@@ -45,8 +47,15 @@
             createImageBlock(fileURL);
         }
         else {
-            [self.parentModel downloadMedia:self.media completion:^{
-                createImageBlock(fileURL);
+            [self.parentModel downloadMedia:self.media completion:^(BOOL success, NSError *error){
+                BBDispatchMainAsync(^{
+                    if (success) {
+                        createImageBlock(fileURL);
+                    }
+                    else if (error) {
+                        [UIAlertController BB_presentAlertControllerWithError:error];
+                    }
+                });
             }];
         }
     }

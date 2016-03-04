@@ -18,6 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^BBMediaViewerDownloadCompletionBlock)(void);
+NS_ASSUME_NONNULL_BEGIN
+
+typedef void(^BBMediaViewerDownloadCompletionBlock)(BOOL success, NSError * _Nullable error);
+
+NS_ASSUME_NONNULL_END
 
 #endif

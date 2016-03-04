@@ -18,6 +18,8 @@
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
 #import "BBFoundationMacros.h"
+#import "UIAlertController+BBKitExtensions.h"
+#import "BBFoundationFunctions.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
@@ -52,8 +54,15 @@
             createPDFBlock(fileURL);
         }
         else {
-            [self.parentModel downloadMedia:self.media completion:^{
-                createPDFBlock(fileURL);
+            [self.parentModel downloadMedia:self.media completion:^(BOOL success, NSError *error){
+                BBDispatchMainAsync(^{
+                    if (success) {
+                        createPDFBlock(fileURL);
+                    }
+                    else if (error) {
+                        [UIAlertController BB_presentAlertControllerWithError:error];
+                    }
+                });
             }];
         }
     }
