@@ -18,18 +18,47 @@
 #import "BBFrameworksMacros.h"
 #import "UIImage+BBKitExtensionsPrivate.h"
 #import "UIImage+BBKitExtensions.h"
+#import "BBBlocks.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
+static CGFloat const kSubviewMargin = 8.0;
 
 @interface BBMediaViewerPageHTMLToolbarContentView ()
 @property (strong,nonatomic) UIProgressView *progressView;
 @property (strong,nonatomic) UIButton *goBackButton;
 @property (strong,nonatomic) UIButton *goForwardButton;
+@property (strong,nonatomic) NSArray<UIButton *> *buttons;
 
 @property (strong,nonatomic) BBMediaViewerPageHTMLModel *model;
 @end
 
 @implementation BBMediaViewerPageHTMLToolbarContentView
+
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(UIViewNoIntrinsicMetric, [self.progressView sizeThatFits:CGSizeZero].height + kSubviewMargin + [self.goBackButton sizeThatFits:CGSizeZero].height + kSubviewMargin);
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.progressView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), [self.progressView sizeThatFits:CGSizeZero].height)];
+    
+    CGFloat availableWidth = CGRectGetWidth(self.bounds) - [self.buttons BB_reduceFloatWithStart:0.0 block:^CGFloat(CGFloat sum, UIButton * _Nonnull object, NSInteger index) {
+        return sum + [object sizeThatFits:CGSizeZero].width;
+    }];
+    CGFloat buttonMargin = floor(availableWidth / (self.buttons.count + 1));
+    CGFloat frameX = buttonMargin;
+    CGFloat frameY = CGRectGetMaxY(self.progressView.frame) + kSubviewMargin;
+    
+    for (UIButton *button in self.buttons) {
+        CGSize size = [button sizeThatFits:CGSizeZero];
+        
+        [button setFrame:CGRectMake(frameX, frameY, size.width, size.height)];
+        
+        frameX = CGRectGetMaxX(button.frame) + buttonMargin;
+    }
+}
 
 - (instancetype)initWithModel:(BBMediaViewerPageHTMLModel *)model; {
     if (!(self = [super initWithFrame:CGRectZero]))
@@ -42,30 +71,20 @@
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    [_progressView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_progressView setTrackTintColor:[UIColor clearColor]];
     [self addSubview:_progressView];
     
     _goBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_goBackButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_goBackButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_go_back"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
     [_goBackButton setRac_command:_model.goBackCommand];
     [self addSubview:_goBackButton];
     
     _goForwardButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_goForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_goForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_go_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
     [_goForwardButton setRac_command:_model.goForwardCommand];
     [self addSubview:_goForwardButton];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _progressView}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]" options:0 metrics:nil views:@{@"view": _progressView}]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": _goBackButton}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress]-[view]-|" options:0 metrics:nil views:@{@"view": _goBackButton, @"progress": _progressView}]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[back]-[view]" options:0 metrics:nil views:@{@"back": _goBackButton, @"view": _goForwardButton}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress]-[view]-|" options:0 metrics:nil views:@{@"progress": _progressView, @"view": _goForwardButton}]];
+    _buttons = @[_goBackButton,_goForwardButton];
     
     BBWeakify(self);
     [[[RACObserve(self.model, loading)
