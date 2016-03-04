@@ -68,10 +68,12 @@
 }
     
 - (void)layoutSubviews {
-    [self.topBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, self.borderWidth)];
-    [self.leftBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, self.borderWidth, CGRectGetHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom)];
-    [self.bottomBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, CGRectGetHeight(self.bounds) - self.borderWidth - self.borderEdgeInsets.bottom, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, self.borderWidth)];
-    [self.rightBorderView setFrame:CGRectMake(CGRectGetWidth(self.bounds) - self.borderWidth - self.borderEdgeInsets.right, self.borderEdgeInsets.top, self.borderWidth, CGRectGetHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom)];
+    CGFloat borderWidth = self.borderWidth = self.window.screen.scale;
+    
+    [self.topBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth)];
+    [self.leftBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, borderWidth, CGRectGetHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom)];
+    [self.bottomBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, CGRectGetHeight(self.bounds) - borderWidth - self.borderEdgeInsets.bottom, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth)];
+    [self.rightBorderView setFrame:CGRectMake(CGRectGetWidth(self.bounds) - borderWidth - self.borderEdgeInsets.right, self.borderEdgeInsets.top, borderWidth, CGRectGetHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom)];
 }
 #else
 - (BOOL)isOpaque {
@@ -83,34 +85,36 @@
         NSRectFill(self.bounds);
     }
     
+    CGFloat borderWidth = self.borderWidth / self.window.screen.backingScaleFactor;
+    
     if (self.borderOptions & BBViewBorderOptionsTop) {
         [self.borderColor setFill];
         if (self.isFlipped) {
-            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, self.borderEdgeInsets.top, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, self.borderWidth));
+            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, self.borderEdgeInsets.top, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth));
         }
         else {
-            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, NSMaxY(self.bounds) - self.borderWidth, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, self.borderWidth));
+            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, NSMaxY(self.bounds) - borderWidth, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth));
         }
     }
     
     if (self.borderOptions & BBViewBorderOptionsLeft) {
         [self.borderColor setFill];
-        NSRectFill(NSMakeRect(self.borderEdgeInsets.left, self.borderEdgeInsets.top, self.borderWidth, NSHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom));
+        NSRectFill(NSMakeRect(self.borderEdgeInsets.left, self.borderEdgeInsets.top, borderWidth, NSHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom));
     }
     
     if (self.borderOptions & BBViewBorderOptionsBottom) {
         [self.borderColor setFill];
         if (self.isFlipped) {
-            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, NSMaxY(self.bounds) - self.borderWidth - self.borderEdgeInsets.bottom, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, self.borderWidth));
+            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, NSMaxY(self.bounds) - borderWidth - self.borderEdgeInsets.bottom, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth));
         }
         else {
-            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, self.borderEdgeInsets.bottom, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, self.borderWidth));
+            NSRectFill(NSMakeRect(self.borderEdgeInsets.left, self.borderEdgeInsets.bottom, NSWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth));
         }
     }
     
     if (self.borderOptions & BBViewBorderOptionsRight) {
         [self.borderColor setFill];
-        NSRectFill(NSMakeRect(NSMaxX(self.bounds) - self.borderWidth - self.borderEdgeInsets.right, self.borderEdgeInsets.top, self.borderWidth, NSHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom));
+        NSRectFill(NSMakeRect(NSMaxX(self.bounds) - borderWidth - self.borderEdgeInsets.right, self.borderEdgeInsets.top, borderWidth, NSHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom));
     }
 }
 #endif
