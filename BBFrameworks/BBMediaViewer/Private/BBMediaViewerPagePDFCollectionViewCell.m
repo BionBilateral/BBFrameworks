@@ -20,9 +20,13 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 @interface BBMediaViewerPagePDFCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
 @property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
+
+@property (strong,nonatomic) RACDisposable *thumbnailDisposable;
 @end
 
 @implementation BBMediaViewerPagePDFCollectionViewCell
@@ -56,6 +60,7 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     
+    [self setThumbnailDisposable:nil];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -68,8 +73,6 @@
 - (void)setModel:(BBMediaViewerPagePDFDetailModel *)model {
     _model = model;
     
-    [self.thumbnailImageView setImage:nil];
-    
     NSURL *URL = _model.parentModel.URL;
     
     if (!URL.isFileURL) {
@@ -80,8 +83,24 @@
         return;
     }
     
+    [self.thumbnailImageView setImage:nil];
     [self.activityIndicatorView startAnimating];
     
+    BBWeakify(self);
+    [self setThumbnailDisposable:
+     [[[_model requestThumbnailOfSize:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize)]
+     deliverOnMainThread]
+     subscribeNext:^(UIImage *value) {
+         BBStrongify(self);
+         [self.thumbnailImageView setImage:value];
+         [self.activityIndicatorView stopAnimating];
+     }]];
+}
+
+- (void)setThumbnailDisposable:(RACDisposable *)thumbnailDisposable {
+    [_thumbnailDisposable dispose];
+    
+    _thumbnailDisposable = thumbnailDisposable;
 }
 
 @end
