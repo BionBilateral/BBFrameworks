@@ -30,6 +30,7 @@
     _backgroundColor = [self.class _defaultBackgroundColor];
     _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
     _actionBarButtonItem = [self.class _defaultActionBarButtonItem];
+    _textEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 8.0);
     
     return self;
 }

@@ -15,6 +15,8 @@
 
 #import "BBMediaViewerPageTextViewController.h"
 #import "BBMediaViewerPageTextModel.h"
+#import "BBMediaViewerModel.h"
+#import "BBMediaViewerTheme.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -39,6 +41,10 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.textView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.textView}]];
+    
+    RAC(self.textView,textContainerInset) =
+    [RACObserve(self.model.parentModel, theme.textEdgeInsets)
+     deliverOnMainThread];
     
     RAC(self.textView,text) =
     [RACObserve(self.model, text)

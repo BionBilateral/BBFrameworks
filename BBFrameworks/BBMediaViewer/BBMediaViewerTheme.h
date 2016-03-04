@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *doneBarButtonItem;
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *actionBarButtonItem;
 
+@property (assign,nonatomic) UIEdgeInsets textEdgeInsets;
+
 + (instancetype)defaultTheme;
 
 @end
