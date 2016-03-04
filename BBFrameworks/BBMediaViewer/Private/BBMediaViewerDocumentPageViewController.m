@@ -19,8 +19,9 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerDocumentPageViewController ()
+@interface BBMediaViewerDocumentPageViewController () <UIWebViewDelegate>
 @property (strong,nonatomic) UIWebView *webView;
+@property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPageDocumentModel *model;
 @end
@@ -34,10 +35,20 @@
     [self setWebView:[[UIWebView alloc] initWithFrame:CGRectZero]];
     [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.webView setScalesPageToFit:YES];
+    [self.webView setDelegate:self];
     [self.view addSubview:self.webView];
+    
+    [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
+    [self.activityIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.activityIndicatorView setColor:[UIColor lightGrayColor]];
+    [self.activityIndicatorView setHidesWhenStopped:YES];
+    [self.view addSubview:self.activityIndicatorView];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.webView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][view][bottom]" options:0 metrics:nil views:@{@"view": self.webView, @"top": self.topLayoutGuide, @"bottom": self.bottomLayoutGuide}]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.activityIndicatorView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.activityIndicatorView}]];
     
     BBWeakify(self);
     [[[RACObserve(self.model, URLRequest)
@@ -47,6 +58,16 @@
          BBStrongify(self);
          [self.webView loadRequest:value];
      }];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [self.activityIndicatorView startAnimating];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.activityIndicatorView stopAnimating];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self.activityIndicatorView stopAnimating];
 }
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {

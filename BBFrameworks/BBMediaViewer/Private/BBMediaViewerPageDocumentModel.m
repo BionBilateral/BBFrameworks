@@ -15,6 +15,9 @@
 
 #import "BBMediaViewerPageDocumentModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
+#import "UIAlertController+BBKitExtensions.h"
+#import "BBFoundationFunctions.h"
 
 @interface BBMediaViewerPageDocumentModel ()
 @property (readwrite,copy,nonatomic) NSURLRequest *URLRequest;
@@ -34,6 +37,25 @@
     
     if (self.URL.isFileURL) {
         createURLRequestBlock(self.URL);
+    }
+    else {
+        NSURL *fileURL = [self.parentModel fileURLForMedia:self.media];
+        
+        if ([fileURL checkResourceIsReachableAndReturnError:NULL]) {
+            createURLRequestBlock(fileURL);
+        }
+        else {
+            [self.parentModel downloadMedia:self.media completion:^(BOOL success, NSError * _Nullable error) {
+                BBDispatchMainAsync(^{
+                    if (success) {
+                        createURLRequestBlock(fileURL);
+                    }
+                    else if (error) {
+                        [UIAlertController BB_alertControllerWithError:error];
+                    }
+                });
+            }];
+        }
     }
     
     return self;
