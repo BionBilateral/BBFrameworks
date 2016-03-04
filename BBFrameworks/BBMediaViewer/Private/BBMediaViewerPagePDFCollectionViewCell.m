@@ -15,7 +15,6 @@
 
 #import "BBMediaViewerPagePDFCollectionViewCell.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
-#import "BBThumbnail.h"
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBKitFunctions.h"
 #import "BBFrameworksMacros.h"
@@ -24,8 +23,6 @@
 @interface BBMediaViewerPagePDFCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
 @property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
-
-@property (strong,nonatomic) id<BBThumbnailOperation> thumbnailOperation;
 @end
 
 @implementation BBMediaViewerPagePDFCollectionViewCell
@@ -59,7 +56,6 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    [self setThumbnailOperation:nil];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -73,20 +69,19 @@
     _model = model;
     
     [self.thumbnailImageView setImage:nil];
+    
+    NSURL *URL = _model.parentModel.URL;
+    
+    if (!URL.isFileURL) {
+        URL = [_model.parentModel.parentModel fileURLForMedia:_model.parentModel.media];
+    }
+    
+    if (![URL checkResourceIsReachableAndReturnError:NULL]) {
+        return;
+    }
+    
     [self.activityIndicatorView startAnimating];
     
-    BBWeakify(self);
-    [_model.parentModel.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page + 1 completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
-        BBStrongify(self);
-        [self.thumbnailImageView setImage:image];
-        [self.activityIndicatorView stopAnimating];
-    }];
-}
-
-- (void)setThumbnailOperation:(id<BBThumbnailOperation>)thumbnailOperation {
-    [_thumbnailOperation cancel];
-    
-    _thumbnailOperation = thumbnailOperation;
 }
 
 @end

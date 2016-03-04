@@ -25,6 +25,7 @@
 
 @interface BBMediaViewerPagePDFModel ()
 @property (readwrite,assign,nonatomic) CGPDFDocumentRef PDFDocumentRef;
+@property (readwrite,assign,nonatomic) size_t numberOfPages;
 @property (readwrite,assign,nonatomic) size_t selectedPage;
 @end
 
@@ -89,11 +90,16 @@
     }
 }
 
-- (size_t)numberOfPages {
-    return CGPDFDocumentGetNumberOfPages(self.PDFDocumentRef);
-}
 - (CGSize)thumbnailSize {
     return CGSizeMake(60, 60);
+}
+
+- (void)setPDFDocumentRef:(CGPDFDocumentRef)PDFDocumentRef {
+    CGPDFDocumentRelease(_PDFDocumentRef);
+    
+    _PDFDocumentRef = PDFDocumentRef;
+    
+    [self setNumberOfPages:CGPDFDocumentGetNumberOfPages(_PDFDocumentRef)];
 }
 
 @end

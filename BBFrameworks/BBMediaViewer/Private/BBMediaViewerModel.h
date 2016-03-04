@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BBMediaViewerTheme,BBMediaViewerPageModel,BBThumbnailGenerator;
+@class BBMediaViewerTheme,BBMediaViewerPageModel;
 @class RACCommand;
 
 @interface BBMediaViewerModel : NSObject
@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,copy,nonatomic) NSString *title;
 
 @property (readonly,strong,nonatomic) BBMediaViewerPageModel *selectedPageModel;
-@property (readonly,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
 
 @property (readonly,strong,nonatomic) RACCommand *doneCommand;
 @property (readonly,strong,nonatomic) RACCommand *actionCommand;

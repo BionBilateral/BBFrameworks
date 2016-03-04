@@ -18,7 +18,6 @@
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerPageModel.h"
 #import "BBFrameworksFunctions.h"
-#import "BBThumbnail.h"
 #import "UIViewController+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -29,7 +28,6 @@
 @property (readwrite,strong,nonatomic) RACCommand *actionCommand;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPageModel *selectedPageModel;
-@property (readwrite,strong,nonatomic) BBThumbnailGenerator *thumbnailGenerator;
 @end
 
 @implementation BBMediaViewerModel
@@ -39,9 +37,6 @@
         return nil;
     
     _theme = [BBMediaViewerTheme defaultTheme];
-    
-    _thumbnailGenerator = [[BBThumbnailGenerator alloc] init];
-    [_thumbnailGenerator setCacheOptions:BBThumbnailGeneratorCacheOptionsMemory];
     
     BBWeakify(self);
     

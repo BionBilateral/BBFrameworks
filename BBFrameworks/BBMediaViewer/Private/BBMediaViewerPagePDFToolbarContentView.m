@@ -85,18 +85,29 @@
     
     BBWeakify(self);
     
+    RACSignal *numberOfPagesSignal =
+    RACObserve(self.model, numberOfPages);
     RACSignal *selectedPageSignal =
     RACObserve(self.model, selectedPage);
     
     RAC(self.selectedPageLabel,text) =
-    [[selectedPageSignal
-     map:^id(NSNumber *value) {
-         BBStrongify(self);
-         return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_PDF_SELECTED_PAGE_LABEL_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ of %@", @"media viewer pdf selected page label format"),[NSNumberFormatter localizedStringFromNumber:@(value.longValue + 1) numberStyle:NSNumberFormatterDecimalStyle],[NSNumberFormatter localizedStringFromNumber:@(self.model.numberOfPages) numberStyle:NSNumberFormatterDecimalStyle]];
-     }]
+    [[RACSignal combineLatest:@[numberOfPagesSignal,selectedPageSignal] reduce:^id(NSNumber *numberOfPages, NSNumber *selectedPage){
+        if (numberOfPages.longValue == 0) {
+            return [[[NSNumberFormatter alloc] init] nilSymbol];
+        }
+        else {
+            return [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_VIEWER_PDF_SELECTED_PAGE_LABEL_FORMAT", @"MediaViewer", BBFrameworksResourcesBundle(), @"%@ of %@", @"media viewer pdf selected page label format"),[NSNumberFormatter localizedStringFromNumber:@(selectedPage.longValue + 1) numberStyle:NSNumberFormatterDecimalStyle],[NSNumberFormatter localizedStringFromNumber:numberOfPages numberStyle:NSNumberFormatterDecimalStyle]];
+        }
+    }]
      deliverOnMainThread];
     
-    [[selectedPageSignal
+    [[[[[RACSignal combineLatest:@[numberOfPagesSignal,selectedPageSignal]]
+       filter:^BOOL(RACTuple *value) {
+           return [value.first longValue] > 0;
+       }]
+       reduceEach:^id(NSNumber *numberOfPages, NSNumber *selectedPage){
+           return selectedPage;
+       }]
      deliverOnMainThread]
      subscribeNext:^(NSNumber *value) {
          BBStrongify(self);
@@ -107,6 +118,13 @@
              [self.collectionView scrollRectToVisible:frame animated:NO];
          }
          [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+     }];
+    
+    [[numberOfPagesSignal
+     deliverOnMainThread]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.collectionView reloadData];
      }];
     
     return self;
