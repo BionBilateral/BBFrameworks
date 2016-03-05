@@ -16,6 +16,7 @@
 #import "MediaViewerViewController.h"
 
 #import <BBFrameworks/BBMediaViewer.h>
+#import <BBFrameworks/BBFoundation.h>
 #import <BBFrameworks/BBBlocks.h>
 
 #import <QuickLook/QuickLook.h>
@@ -27,6 +28,8 @@
 
 @property (copy,nonatomic) NSArray *URLs;
 @property (copy,nonatomic) NSArray *customURLs;
+
+- (NSURL *)_fileURLForMedia:(id<BBMediaViewerMedia>)media;
 @end
 
 @implementation MediaViewerViewController
@@ -46,7 +49,9 @@
     
     [self setURLs:temp];
     
-    [temp insertObject:[NSURL URLWithString:@"http://www.cnn.com"] atIndex:0];
+    [temp insertObject:[NSURL URLWithString:@"http://www.pdf995.com/samples/pdf.pdf"] atIndex:0];
+    [temp insertObject:[NSURL URLWithString:@"http://fzs.sve-mo.ba/sites/default/files/dokumenti-vijesti/sample.pdf"] atIndex:0];
+//    [temp insertObject:[NSURL URLWithString:@"http://www.cnn.com"] atIndex:0];
 //    [temp insertObject:[NSURL URLWithString:@"http://download.wavetlan.com/SVV/Media/HTTP/MP4/ConvertedFiles/Media-Convert/Unsupported/dw11222.mp4"] atIndex:0];
 //    [temp insertObject:[NSURL URLWithString:@"http://www.thebounce.ca/files/gc-cat.png"] atIndex:0];
 //    [temp insertObject:[NSURL URLWithString:@"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4"] atIndex:0];
@@ -96,6 +101,48 @@
     else {
         [viewController.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (NSURL *)mediaViewerViewController:(BBMediaViewerViewController *)viewController fileURLForMedia:(id<BBMediaViewerMedia>)media {
+    return [self _fileURLForMedia:media];
+}
+- (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion {
+    __block UIBackgroundTaskIdentifier backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+    
+    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:[media mediaViewerMediaURL] completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (location) {
+            NSURL *fileURL = [self _fileURLForMedia:media];
+            
+            [[NSFileManager defaultManager] removeItemAtURL:fileURL error:NULL];
+            [[NSFileManager defaultManager] moveItemAtURL:location toURL:fileURL error:NULL];
+            
+            completion(YES,nil);
+        }
+        else {
+            completion(NO,error);
+        }
+        
+        [[UIApplication sharedApplication] endBackgroundTask:backgroundTaskIdentifier];
+    }];
+    
+    backgroundTaskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [task cancel];
+        
+        [[UIApplication sharedApplication] endBackgroundTask:backgroundTaskIdentifier];
+    }];
+    
+    [task resume];
+}
+
+- (NSURL *)_fileURLForMedia:(id<BBMediaViewerMedia>)media; {
+    NSString *filename = [[media mediaViewerMediaURL].absoluteString BB_MD5String];
+    NSURL *directoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask].firstObject URLByAppendingPathComponent:@"media" isDirectory:YES];
+    
+    if (![directoryURL checkResourceIsReachableAndReturnError:NULL]) {
+        [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL withIntermediateDirectories:YES attributes:nil error:NULL];
+    }
+    
+    return [directoryURL URLByAppendingPathComponent:filename isDirectory:NO];
 }
 
 - (IBAction)_systemButtonAction:(id)sender {

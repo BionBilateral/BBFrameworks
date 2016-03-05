@@ -15,17 +15,18 @@
 
 #import "BBMediaViewerPagePDFCollectionViewCell.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
-#import "BBThumbnail.h"
 #import "BBMediaViewerPagePDFModel.h"
 #import "BBKitFunctions.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 @interface BBMediaViewerPagePDFCollectionViewCell ()
 @property (strong,nonatomic) UIImageView *thumbnailImageView;
 @property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
-@property (strong,nonatomic) id<BBThumbnailOperation> thumbnailOperation;
+@property (strong,nonatomic) RACDisposable *thumbnailDisposable;
 @end
 
 @implementation BBMediaViewerPagePDFCollectionViewCell
@@ -59,7 +60,7 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    [self setThumbnailOperation:nil];
+    [self setThumbnailDisposable:nil];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -72,21 +73,34 @@
 - (void)setModel:(BBMediaViewerPagePDFDetailModel *)model {
     _model = model;
     
+    NSURL *URL = _model.parentModel.URL;
+    
+    if (!URL.isFileURL) {
+        URL = [_model.parentModel.parentModel fileURLForMedia:_model.parentModel.media];
+    }
+    
+    if (![URL checkResourceIsReachableAndReturnError:NULL]) {
+        return;
+    }
+    
     [self.thumbnailImageView setImage:nil];
     [self.activityIndicatorView startAnimating];
     
     BBWeakify(self);
-    [_model.parentModel.parentModel.thumbnailGenerator generateThumbnailForURL:_model.parentModel.URL size:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize) page:_model.page + 1 completion:^(UIImage * _Nullable image, NSError * _Nullable error, BBThumbnailGeneratorCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSInteger page, NSTimeInterval time) {
-        BBStrongify(self);
-        [self.thumbnailImageView setImage:image];
-        [self.activityIndicatorView stopAnimating];
-    }];
+    [self setThumbnailDisposable:
+     [[[_model requestThumbnailOfSize:BBCGSizeAdjustedForMainScreenScale(_model.parentModel.thumbnailSize)]
+     deliverOnMainThread]
+     subscribeNext:^(UIImage *value) {
+         BBStrongify(self);
+         [self.thumbnailImageView setImage:value];
+         [self.activityIndicatorView stopAnimating];
+     }]];
 }
 
-- (void)setThumbnailOperation:(id<BBThumbnailOperation>)thumbnailOperation {
-    [_thumbnailOperation cancel];
+- (void)setThumbnailDisposable:(RACDisposable *)thumbnailDisposable {
+    [_thumbnailDisposable dispose];
     
-    _thumbnailOperation = thumbnailOperation;
+    _thumbnailDisposable = thumbnailDisposable;
 }
 
 @end

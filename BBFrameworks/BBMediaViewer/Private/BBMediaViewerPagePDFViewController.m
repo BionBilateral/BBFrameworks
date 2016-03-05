@@ -18,9 +18,13 @@
 #import "BBMediaViewerPagePDFDetailViewController.h"
 #import "BBMediaViewerPagePDFToolbarContentView.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
+#import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerPagePDFViewController () <BBMediaViewerPagePDFModelDelegate,UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 @property (strong,nonatomic) UIPageViewController *pageViewController;
+@property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong,nonatomic) BBMediaViewerPagePDFToolbarContentView *PDFToolbarContentView;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPagePDFModel *model;
@@ -32,8 +36,6 @@
     [super viewDidLoad];
     
     [self setPageViewController:[[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:@{UIPageViewControllerOptionInterPageSpacingKey: @8.0}]];
-    
-    [self.pageViewController setViewControllers:@[[[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:0]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [self.pageViewController setDataSource:self];
     [self.pageViewController setDelegate:self];
     [self addChildViewController:self.pageViewController];
@@ -41,10 +43,34 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
+    [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
+    [self.activityIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.activityIndicatorView setHidesWhenStopped:YES];
+    [self.activityIndicatorView setColor:[UIColor lightGrayColor]];
+    [self.view addSubview:self.activityIndicatorView];
+    
     [self setPDFToolbarContentView:[[BBMediaViewerPagePDFToolbarContentView alloc] initWithModel:self.model]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.pageViewController.view}]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.activityIndicatorView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.activityIndicatorView}]];
+    
+    [self.activityIndicatorView startAnimating];
+    
+    BBWeakify(self);
+    [[[RACObserve(self.model, numberOfPages)
+     filter:^BOOL(NSNumber *value) {
+         return value.longValue > 0;
+     }]
+      deliverOnMainThread]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self.pageViewController setViewControllers:@[[[BBMediaViewerPagePDFDetailViewController alloc] initWithModel:[self.model pagePDFDetailForPage:0]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+         
+         [self.activityIndicatorView stopAnimating];
+     }];
 }
 
 - (void)mediaViewerPagePDFModel:(BBMediaViewerPagePDFModel *)model didSelectPage:(size_t)page {

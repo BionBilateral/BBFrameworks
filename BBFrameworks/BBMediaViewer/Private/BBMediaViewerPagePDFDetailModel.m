@@ -15,6 +15,10 @@
 
 #import "BBMediaViewerPagePDFDetailModel.h"
 #import "BBMediaViewerPagePDFModel.h"
+#import "BBFrameworksMacros.h"
+#import "UIImage+BBKitExtensions.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import <CoreGraphics/CoreGraphics.h>
 
@@ -76,6 +80,42 @@
     CGContextConcatCTM(contextRef, CGPDFPageGetDrawingTransform(self.PDFPageRef, kCGPDFCropBox, rect, 0, true));
     CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
     CGContextDrawPDFPage(contextRef, self.PDFPageRef);
+}
+
+- (RACSignal *)requestThumbnailOfSize:(CGSize)size; {
+    BBWeakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        BBStrongify(self);
+        RACDisposable *retval = [[RACDisposable alloc] init];
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            if (retval.isDisposed) {
+                return;
+            }
+            
+            CGSize pageSize = CGPDFPageGetBoxRect(self.PDFPageRef, kCGPDFMediaBox).size;
+            
+            UIGraphicsBeginImageContextWithOptions(pageSize, NO, 0);
+            
+            CGContextRef contextRef = UIGraphicsGetCurrentContext();
+            
+            CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+            CGContextTranslateCTM(contextRef, 0, pageSize.height);
+            CGContextScaleCTM(contextRef, 1, -1);
+            CGContextDrawPDFPage(contextRef, self.PDFPageRef);
+            
+            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+            
+            UIGraphicsEndImageContext();
+            
+            UIImage *thumbnail = [image BB_imageByResizingToSize:size];
+            
+            [subscriber sendNext:thumbnail];
+            [subscriber sendCompleted];
+        });
+        
+        return retval;
+    }];
 }
 
 - (size_t)page {

@@ -18,11 +18,14 @@
 #import "BBMediaViewerModel.h"
 #import "BBMediaViewerPagePDFDetailModel.h"
 #import "BBFoundationMacros.h"
+#import "UIAlertController+BBKitExtensions.h"
+#import "BBFoundationFunctions.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface BBMediaViewerPagePDFModel ()
 @property (readwrite,assign,nonatomic) CGPDFDocumentRef PDFDocumentRef;
+@property (readwrite,assign,nonatomic) size_t numberOfPages;
 @property (readwrite,assign,nonatomic) size_t selectedPage;
 @end
 
@@ -52,8 +55,15 @@
             createPDFBlock(fileURL);
         }
         else {
-            [self.parentModel downloadMedia:self.media completion:^{
-                createPDFBlock(fileURL);
+            [self.parentModel downloadMedia:self.media completion:^(BOOL success, NSError *error){
+                BBDispatchMainAsync(^{
+                    if (success) {
+                        createPDFBlock(fileURL);
+                    }
+                    else if (error) {
+                        [UIAlertController BB_presentAlertControllerWithError:error];
+                    }
+                });
             }];
         }
     }
@@ -80,11 +90,16 @@
     }
 }
 
-- (size_t)numberOfPages {
-    return CGPDFDocumentGetNumberOfPages(self.PDFDocumentRef);
-}
 - (CGSize)thumbnailSize {
     return CGSizeMake(60, 60);
+}
+
+- (void)setPDFDocumentRef:(CGPDFDocumentRef)PDFDocumentRef {
+    CGPDFDocumentRelease(_PDFDocumentRef);
+    
+    _PDFDocumentRef = PDFDocumentRef;
+    
+    [self setNumberOfPages:CGPDFDocumentGetNumberOfPages(_PDFDocumentRef)];
 }
 
 @end

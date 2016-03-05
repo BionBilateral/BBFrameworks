@@ -20,6 +20,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaViewerPagePDFModel;
+@class RACSignal;
 
 @interface BBMediaViewerPagePDFDetailModel : NSObject
 
@@ -32,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithPDFPageRef:(CGPDFPageRef)PDFPageRef parentModel:(BBMediaViewerPagePDFModel *)parentModel;
 
 - (void)drawInRect:(CGRect)rect contextRef:(CGContextRef)contextRef;
+
+- (RACSignal *)requestThumbnailOfSize:(CGSize)size;
 
 @end
 
