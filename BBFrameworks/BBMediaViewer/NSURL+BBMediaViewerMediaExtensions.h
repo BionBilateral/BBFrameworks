@@ -16,6 +16,9 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaViewerMedia.h"
 
+/**
+ Category on NSURL adding BBMediaViewerMedia support.
+ */
 @interface NSURL (BBMediaViewerMediaExtensions) <BBMediaViewerMedia>
 
 @end

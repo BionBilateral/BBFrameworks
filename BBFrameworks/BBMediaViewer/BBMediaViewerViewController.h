@@ -21,11 +21,41 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaViewerTheme;
 
+/**
+ BBMediaViewerViewController is similar to `QLPreviewController`, displaying a collection of media objects. The following UTIs are supported:
+ 
+ - `kUTTypeImage`
+ - `kUTTypeGIF`, support provided by [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
+ - `kUTTypeMovie`
+ - `kUTTypePDF`
+ - `kUTTypePlainText`
+ - `kUTTypeRTFD`
+ - `kUTTypeRTF`
+ - `kUTTypeHTML`
+ - `kUTTypeURL`
+ 
+ As a fallback, any document type that `UIWebView` can display is also supported.
+ */
 @interface BBMediaViewerViewController : UIViewController
 
-@property (weak,nonatomic) id<BBMediaViewerViewControllerDataSource> dataSource;
-@property (weak,nonatomic) id<BBMediaViewerViewControllerDelegate> delegate;
+/**
+ Set and get the data source of the receiver.
+ 
+ @see BBMediaViewerViewControllerDataSource
+ */
+@property (weak,nonatomic,nullable) id<BBMediaViewerViewControllerDataSource> dataSource;
+/**
+ Set and get the delegate of the receiver.
+ 
+ @see BBMediaViewerViewControllerDelegate
+ */
+@property (weak,nonatomic,nullable) id<BBMediaViewerViewControllerDelegate> delegate;
 
+/**
+ Set and get the theme of the receiver.
+ 
+ The default is `[BBMediaViewerTheme defaultTheme]`.
+ */
 @property (strong,nonatomic,null_resettable) BBMediaViewerTheme *theme;
 
 @end

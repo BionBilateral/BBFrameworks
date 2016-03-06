@@ -17,7 +17,6 @@
 #import "BBMediaViewerModel.h"
 
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <QuickLook/QuickLook.h>
 
 @interface BBMediaViewerPageModel ()
 @property (readwrite,strong,nonatomic) id<BBMediaViewerMedia> media;
@@ -66,14 +65,15 @@
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF)) {
         return BBMediaViewerPageModelTypeRTF;
     }
+    else if (URL.isFileURL &&
+             [[NSSet setWithArray:@[@"doc",@"docx",@"ppt",@"pptx",@"xls",@"xlsx",@"key",@"numbers",@"pages"]] containsObject:URL.pathExtension.lowercaseString]) {
+        
+        return BBMediaViewerPageModelTypeDocument;
+    }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
-             [URL.scheme isEqualToString:@"http"] ||
-             [URL.scheme isEqualToString:@"https"]) {
+             UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeURL)) {
         
         return BBMediaViewerPageModelTypeHTML;
-    }
-    else if ([QLPreviewController canPreviewItem:media.mediaViewerMediaURL]) {
-        return BBMediaViewerPageModelTypeDocument;
     }
     else {
         return BBMediaViewerPageModelTypeUnknown;

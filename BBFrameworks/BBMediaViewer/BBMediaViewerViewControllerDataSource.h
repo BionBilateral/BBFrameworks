@@ -20,9 +20,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BBMediaViewerViewController;
 
+/**
+ Protocol describing the data source of the media viewer.
+ */
 @protocol BBMediaViewerViewControllerDataSource <NSObject>
 @required
+/**
+ Return the number of media objects to display.
+ 
+ @param viewController The media viewer that sent the message
+ @return The number of media
+ */
 - (NSInteger)numberOfMediaInMediaViewerViewController:(BBMediaViewerViewController *)viewController;
+/**
+ Return the media to display at the provided index.
+ 
+ @param viewController The media viewer that sent the message
+ @param index The media index
+ @return The media object
+ */
 - (id<BBMediaViewerMedia>)mediaViewerViewController:(BBMediaViewerViewController *)viewController mediaAtIndex:(NSInteger)index;
 @end
 

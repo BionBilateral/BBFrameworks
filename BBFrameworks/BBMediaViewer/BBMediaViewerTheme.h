@@ -17,17 +17,48 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ BBMediaViewerTheme allows the client to customize the appearance of the media viewer without relying on the appearance proxy methods.
+ */
 @interface BBMediaViewerTheme : NSObject
 
+/**
+ Set and get the name of the receiver. Useful for debugging.
+ */
 @property (copy,nonatomic,nullable) NSString *name;
 
+/**
+ Set and get the background color, which is used as the background color for all view controllers and the tint color for the blurred background when the transition delegate methods are implemented.
+ 
+ The default is `[UIColor whiteColor]`.
+ */
 @property (strong,nonatomic,null_resettable) UIColor *backgroundColor;
 
+/**
+ Set and get the done bar button item, which is displayed on the left of the navigation bar.
+ 
+ The default is a bar button item with the type `UIBarButtonSystemItemDone`.
+ */
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *doneBarButtonItem;
+/**
+ Set and get the action bar button item, which is displayed on the right of the navigation bar.
+ 
+ The default is a bar button item with the type `UIBarButtonSystemItemAction`.
+ */
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *actionBarButtonItem;
 
+/**
+ Set and get the edge insets used when displaying textual content.
+ 
+ The default is `UIEdgeInsetsMake(0, 8.0, 0, 8.0)`.
+ */
 @property (assign,nonatomic) UIEdgeInsets textEdgeInsets;
 
+/**
+ Get the default theme.
+ 
+ @return The default theme
+ */
 + (instancetype)defaultTheme;
 
 @end

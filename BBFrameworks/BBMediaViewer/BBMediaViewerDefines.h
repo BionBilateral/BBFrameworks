@@ -20,6 +20,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Typedef for a block that is invoked after a remote resource has been downloaded.
+ 
+ @param success YES if the file was downloaded successfully, otherwise NO
+ @param error Optionally, an error describing the reason the download failed
+ */
 typedef void(^BBMediaViewerDownloadCompletionBlock)(BOOL success, NSError * _Nullable error);
 
 NS_ASSUME_NONNULL_END

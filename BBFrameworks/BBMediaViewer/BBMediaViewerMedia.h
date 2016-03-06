@@ -17,10 +17,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Protocol defining media objects that are provided by the media viewer data source.
+ */
 @protocol BBMediaViewerMedia <NSObject>
 @required
+/**
+ Get the URL representing the media object. Local and remote URLs are supported. If a remote URL is returned, relevant delegate methods will be called to locate a local copy of the file and download it if necessary.
+ */
 @property (readonly,nonatomic) NSURL *mediaViewerMediaURL;
 @optional
+/**
+ Get the title for the media object. This title is displayed in the navigation bar for the selected media object. If the media object does not implement this method, `mediaViewerMediaURL.lastPathComponent` is used.
+ */
 @property (readonly,nonatomic) NSString *mediaViewerMediaTitle;
 @end
 
