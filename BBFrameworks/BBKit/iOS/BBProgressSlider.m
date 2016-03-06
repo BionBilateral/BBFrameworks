@@ -56,13 +56,18 @@
     [self.maximumTrackFillColor setFill];
     UIRectFill(trackRect);
     
-    if (self.progress > 0.0) {
+    if (self.progressRanges.count > 0) {
         CGRect trackRect = [self trackRectForBounds:self.bounds];
         CGFloat availableWidth = CGRectGetWidth(trackRect);
-        CGFloat width = ceil(availableWidth * self.progress);
         
         [self.progressFillColor setFill];
-        UIRectFill(CGRectMake(CGRectGetMinX(trackRect), CGRectGetMinY(trackRect), width, CGRectGetHeight(trackRect)));
+        
+        [self.progressRanges enumerateObjectsUsingBlock:^(NSArray<NSNumber *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            CGFloat startX = CGRectGetMinX(trackRect) + floorf(availableWidth * obj.firstObject.floatValue);
+            CGFloat width = startX + floorf(availableWidth * obj.lastObject.floatValue);
+            
+            UIRectFill(CGRectMake(startX, CGRectGetMinY(trackRect), width, CGRectGetHeight(trackRect)));
+        }];
     }
     
     CGRect thumbRect = [self thumbRectForBounds:self.bounds trackRect:trackRect value:self.value];
@@ -79,6 +84,20 @@
     }
     
     return retval;
+}
+
+@dynamic progress;
+- (float)progress {
+    return self.progressRanges.lastObject.lastObject.floatValue;
+}
+- (void)setProgress:(float)progress {
+    [self setProgressRanges:@[@[@0.0,@(progress)]]];
+}
+
+- (void)setProgressRanges:(NSArray<NSArray<NSNumber *> *> *)progressRanges {
+    _progressRanges = [progressRanges copy];
+    
+    [self setNeedsDisplay];
 }
 
 @synthesize minimumTrackFillColor=_minimumTrackFillColor;
@@ -113,7 +132,7 @@
     return [UIColor lightGrayColor];
 }
 + (UIColor *)_defaultProgressFillColor; {
-    return [UIColor whiteColor];
+    return [UIColor darkGrayColor];
 }
 
 @end

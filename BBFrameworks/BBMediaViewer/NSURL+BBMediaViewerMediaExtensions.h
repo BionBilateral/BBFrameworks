@@ -2,8 +2,8 @@
 //  NSURL+BBMediaViewerMediaExtensions.h
 //  BBFrameworks
 //
-//  Created by William Towe on 8/8/15.
-//  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
+//  Created by William Towe on 2/28/16.
+//  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -16,6 +16,9 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaViewerMedia.h"
 
+/**
+ Category on NSURL adding BBMediaViewerMedia support.
+ */
 @interface NSURL (BBMediaViewerMediaExtensions) <BBMediaViewerMedia>
 
 @end

@@ -2,8 +2,8 @@
 //  BBMediaViewerViewControllerDataSource.h
 //  BBFrameworks
 //
-//  Created by William Towe on 8/8/15.
-//  Copyright (c) 2015 Bion Bilateral, LLC. All rights reserved.
+//  Created by William Towe on 2/28/16.
+//  Copyright © 2016 Bion Bilateral, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -16,12 +16,30 @@
 #import <Foundation/Foundation.h>
 #import "BBMediaViewerMedia.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BBMediaViewerViewController;
 
+/**
+ Protocol describing the data source of the media viewer.
+ */
 @protocol BBMediaViewerViewControllerDataSource <NSObject>
 @required
-- (NSInteger)numberOfMediaInMediaViewer:(BBMediaViewerViewController *)mediaViewer;
-- (id<BBMediaViewerMedia>)mediaViewer:(BBMediaViewerViewController *)mediaViewer mediaAtIndex:(NSInteger)index;
-@optional
-- (id<BBMediaViewerMedia>)initialMediaForMediaViewer:(BBMediaViewerViewController *)mediaViewer;
+/**
+ Return the number of media objects to display.
+ 
+ @param viewController The media viewer that sent the message
+ @return The number of media
+ */
+- (NSInteger)numberOfMediaInMediaViewerViewController:(BBMediaViewerViewController *)viewController;
+/**
+ Return the media to display at the provided index.
+ 
+ @param viewController The media viewer that sent the message
+ @param index The media index
+ @return The media object
+ */
+- (id<BBMediaViewerMedia>)mediaViewerViewController:(BBMediaViewerViewController *)viewController mediaAtIndex:(NSInteger)index;
 @end
+
+NS_ASSUME_NONNULL_END

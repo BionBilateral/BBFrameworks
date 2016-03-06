@@ -1,5 +1,6 @@
 PODS:
   - ARChromeActivity (1.0.6)
+  - FLAnimatedImage (1.0.12)
   - MagicKit-BionBilateral (0.0.3)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -14,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - ARChromeActivity (~> 1.0.0)
+  - FLAnimatedImage (~> 1.0)
   - MagicKit-BionBilateral
   - ReactiveCocoa (~> 2.5)
   - ReactiveViewModel (~> 0.3)
@@ -21,6 +23,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ARChromeActivity: 5dcf9b9f09323761f992aff3525cdd777f83609d
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   MagicKit-BionBilateral: b4dfadb3c22ce3b6ccfcaf90829936fd79606b0a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999

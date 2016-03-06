@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
  Set and get the progress of the receiver.
  */
 @property (assign,nonatomic) float progress;
+/**
+ Set and get the progress ranges of the receiver, which should be an array containing arrays of two elements, the first being the start progress and the second being the end progress.
+ */
+@property (copy,nonatomic) NSArray<NSArray<NSNumber *> *> *progressRanges;
 
 /**
  Set and get the minimum track fill color.

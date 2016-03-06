@@ -12,6 +12,7 @@ target :iOSDemo do
   common_pods
   pod "TUSafariActivity", "~> 1.0.0"
   pod "ARChromeActivity", "~> 1.0.0"
+  pod "FLAnimatedImage", "~> 1.0"
   
   link_with ["BBFrameworksiOSDemo", "BBFrameworksTestsiOS"]
 end
