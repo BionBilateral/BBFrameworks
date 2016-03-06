@@ -166,6 +166,12 @@
 - (void)setBadgeForegroundColor:(NSColor *)badgeForegroundColor {
 #endif
     _badgeForegroundColor = badgeForegroundColor ?: [self.class _defaultBadgeForegroundColor];
+    
+#if (TARGET_OS_IPHONE)
+    [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
 }
 
 #if (TARGET_OS_IPHONE)
@@ -215,6 +221,13 @@
 - (void)setBadgeFont:(NSFont *)badgeFont {
 #endif
     _badgeFont = badgeFont ?: [self.class _defaultBadgeFont];
+    
+#if (TARGET_OS_IPHONE)
+    [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
+    [self invalidateIntrinsicContentSize];
 }
 - (void)setBadgeCornerRadius:(CGFloat)badgeCornerRadius {
     _badgeCornerRadius = (badgeCornerRadius < 0.0) ? [self.class _defaultBadgeCornerRadius] : badgeCornerRadius;
@@ -232,6 +245,11 @@
 #endif
     _badgeEdgeInsets = badgeEdgeInsets;
     
+#if (TARGET_OS_IPHONE)
+    [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
     [self invalidateIntrinsicContentSize];
 }
 #pragma mark ** Private Methods **
