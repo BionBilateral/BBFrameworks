@@ -144,17 +144,19 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBMediaViewer" do |subspec|
+    subspec.ios.dependency "FLAnimatedImage", "~> 1.0"
     subspec.ios.dependency "ReactiveCocoa", "~> 2.5"
     subspec.ios.dependency "ReactiveViewModel", "~> 0.3"
     
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     subspec.ios.dependency "BBFrameworks/BBKit"
-    subspec.ios.dependency "BBFrameworks/BBThumbnail"
     
     subspec.ios.source_files = "BBFrameworks/BBMediaViewer", "BBFrameworks/BBMediaViewer/Private"
     subspec.osx.source_files = "BBFrameworks/BBMediaViewer/BBMediaViewer.h"
     
     subspec.ios.private_header_files = "BBFrameworks/BBMediaViewer/Private/*.h"
+    
+    subspec.iso.frameworks = "AVFoundation", "MobileCoreServices", "WebKit"
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
