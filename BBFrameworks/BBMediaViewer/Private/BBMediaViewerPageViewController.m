@@ -31,6 +31,12 @@
 
 @implementation BBMediaViewerPageViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.view setBackgroundColor:[UIColor clearColor]];
+}
+
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel; {
     if (self.class == [BBMediaViewerPageViewController class]) {
         switch ([BBMediaViewerPageModel typeForMedia:media]) {

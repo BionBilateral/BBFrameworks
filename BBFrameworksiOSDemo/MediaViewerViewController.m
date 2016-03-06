@@ -107,6 +107,15 @@
     BBLogObject(media);
 }
 
+- (CGRect)mediaViewerViewController:(BBMediaViewerViewController *)viewController frameForMedia:(id<BBMediaViewerMedia>)media inSourceView:(UIView *__autoreleasing  _Nonnull *)sourceView {
+    *sourceView = self.customButton;
+    
+    return self.customButton.bounds;
+}
+- (UIView *)mediaViewerViewController:(BBMediaViewerViewController *)viewController transitionViewForMedia:(id<BBMediaViewerMedia>)media contentRect:(CGRect *)contentRect {
+    return self.customButton;
+}
+
 - (NSURL *)mediaViewerViewController:(BBMediaViewerViewController *)viewController fileURLForMedia:(id<BBMediaViewerMedia>)media {
     return [self _fileURLForMedia:media];
 }

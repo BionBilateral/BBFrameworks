@@ -41,8 +41,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
     [self setNavigationBar:[[UINavigationBar alloc] initWithFrame:CGRectZero]];
     [self.navigationBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.navigationBar setTranslucent:NO];
     [self.navigationBar setDelegate:self];
     [self.view addSubview:self.navigationBar];
     
@@ -88,14 +91,6 @@
      deliverOnMainThread];
     
     [self.navigationBar setItems:@[self.navigationItem]];
-    
-    [[[RACObserve(self.model, theme.backgroundColor)
-     ignore:nil]
-     deliverOnMainThread]
-     subscribeNext:^(UIColor *value) {
-         BBStrongify(self);
-         [self.view setBackgroundColor:value];
-     }];
     
     [[[RACObserve(self.model, theme.doneBarButtonItem)
      ignore:nil]

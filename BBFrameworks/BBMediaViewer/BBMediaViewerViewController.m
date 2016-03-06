@@ -18,10 +18,14 @@
 #import "BBMediaViewerContentViewController.h"
 #import "BBFrameworksMacros.h"
 #import "BBMediaViewerModel.h"
+#import "UIView+BBKitExtensions.h"
+#import "UIImage+BBKitExtensions.h"
+#import "BBMediaViewerPageModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface BBMediaViewerViewController () <BBMediaViewerModelDataSource,BBMediaViewerModelDelegate>
+@interface BBMediaViewerViewController () <BBMediaViewerModelDataSource,BBMediaViewerModelDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
+@property (strong,nonatomic) UIImageView *blurImageView;
 @property (strong,nonatomic) BBMediaViewerContentViewController *contentVC;
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
@@ -37,6 +41,8 @@
     if (!(self = [super init]))
         return nil;
     
+    [self setTransitioningDelegate:self];
+    
     _model = [[BBMediaViewerModel alloc] init];
     [_model setDataSource:self];
     [_model setDelegate:self];
@@ -47,23 +53,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
+    [self setBlurImageView:[[UIImageView alloc] initWithFrame:CGRectZero]];
+    [self.blurImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.blurImageView setContentMode:UIViewContentModeScaleAspectFill];
+    [self.blurImageView setClipsToBounds:YES];
+    [self.view addSubview:self.blurImageView];
+    
     [self setContentVC:[[BBMediaViewerContentViewController alloc] initWithModel:self.model]];
     [self addChildViewController:self.contentVC];
     [self.contentVC.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.contentVC.view];
     [self.contentVC didMoveToParentViewController:self];
     
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.blurImageView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.blurImageView}]];
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": self.contentVC.view}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": self.contentVC.view}]];
     
     BBWeakify(self);
-    
-    [[RACObserve(self.model, theme.backgroundColor)
-     deliverOnMainThread]
-     subscribeNext:^(UIColor *value) {
-         BBStrongify(self);
-         [self.view setBackgroundColor:value];
-     }];
     
     [[self.model.doneCommand.executionSignals
      concat]
@@ -106,6 +116,126 @@
 - (void)mediaViewerModel:(BBMediaViewerModel *)model downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion {
     if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:downloadMedia:completion:)]) {
         [self.delegate mediaViewerViewController:self downloadMedia:media completion:completion];
+    }
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self;
+}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self;
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+    return 0.4;
+}
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
+    UIView *fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey].view;
+    UIView *containerView = [transitionContext containerView];
+    BOOL isPresenting = [self.view isEqual:toView];
+    
+    if (isPresenting) {
+        [self.blurImageView setImage:[[[fromView BB_snapshotImageAfterScreenUpdates:YES] BB_imageByBlurringWithRadius:0.75] BB_imageByTintingWithColor:[self.theme.backgroundColor colorWithAlphaComponent:0.5]]];
+        
+        [containerView addSubview:toView];
+        [toView setFrame:containerView.bounds];
+    }
+    else {
+        [containerView insertSubview:toView atIndex:0];
+        [toView setFrame:containerView.bounds];
+    }
+    
+    if ([transitionContext isAnimated]) {
+        [self.blurImageView setAlpha:0.0];
+        
+        CGRect finalFrame = CGRectZero;
+        UIView *sourceView = nil;
+        
+        if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:frameForMedia:inSourceView:)]) {
+            CGRect frame = [self.delegate mediaViewerViewController:self frameForMedia:self.model.selectedPageModel.media inSourceView:&sourceView];
+            
+            if (!CGRectIsEmpty(frame)) {
+                if (sourceView != nil) {
+                    frame = [sourceView.window convertRect:[sourceView convertRect:frame toView:nil] toWindow:nil];
+                }
+                
+                finalFrame = [self.view convertRect:[self.view.window convertRect:frame fromWindow:nil] fromView:nil];
+            }
+        }
+        
+        UIView *snapshotView = [self.contentVC.view snapshotViewAfterScreenUpdates:YES];
+        UIView *imageSnapshotView = nil;
+        
+        if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:transitionViewForMedia:contentRect:)]) {
+            CGRect contentRect = CGRectZero;
+            UIView *transitionView = [self.delegate mediaViewerViewController:self transitionViewForMedia:self.model.selectedPageModel.media contentRect:&contentRect];
+            
+            if (CGRectIsEmpty(contentRect)) {
+                imageSnapshotView = [transitionView snapshotViewAfterScreenUpdates:YES];
+            }
+            else {
+                imageSnapshotView = [transitionView resizableSnapshotViewFromRect:contentRect afterScreenUpdates:YES withCapInsets:UIEdgeInsetsZero];
+            }
+        }
+        
+        [self.view addSubview:snapshotView];
+        [snapshotView setFrame:isPresenting ? finalFrame : self.view.bounds];
+        
+        if (imageSnapshotView != nil) {
+            [self.view addSubview:imageSnapshotView];
+            [imageSnapshotView setFrame:isPresenting ? finalFrame : self.view.bounds];
+        }
+        
+        if (isPresenting) {
+            [snapshotView setAlpha:0.0];
+            
+            if (!CGRectIsEmpty(finalFrame)) {
+                [snapshotView setFrame:finalFrame];
+                [imageSnapshotView setFrame:finalFrame];
+            }
+        }
+        else {
+            [imageSnapshotView setAlpha:0.0];
+        }
+        
+        if (!isPresenting) {
+            [self.blurImageView setAlpha:1.0];
+        }
+        
+        [self.contentVC.view setAlpha:0.0];
+        
+        BBWeakify(self);
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            BBStrongify(self);
+            [self.blurImageView setAlpha:isPresenting ? 1.0 : 0.0];
+            [snapshotView setAlpha:isPresenting ? 1.0 : 0.0];
+            [imageSnapshotView setAlpha:isPresenting ? 0.0 : 1.0];
+            
+            if (!CGRectIsEmpty(finalFrame)) {
+                [snapshotView setFrame:isPresenting ? self.view.bounds : finalFrame];
+                [imageSnapshotView setFrame:isPresenting ? self.view.bounds : finalFrame];
+            }
+        } completion:^(BOOL finished) {
+            BBStrongify(self);
+            if (isPresenting) {
+                [self.contentVC.view setAlpha:1.0];
+            }
+            
+            [snapshotView removeFromSuperview];
+            [imageSnapshotView removeFromSuperview];
+            
+            if (!isPresenting) {
+                [fromView removeFromSuperview];
+            }
+            
+            [transitionContext completeTransition:YES];
+        }];
+    }
+    else {
+        [fromView removeFromSuperview];
+        
+        [transitionContext completeTransition:YES];
     }
 }
 

@@ -26,6 +26,7 @@
         return nil;
     
     _toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+    [_toolbar setTranslucent:NO];
     [self addSubview:_toolbar];
     
     return self;
