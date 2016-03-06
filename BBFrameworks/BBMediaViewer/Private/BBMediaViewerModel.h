@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
 
 - (void)selectPageModel:(BBMediaViewerPageModel *)pageModel;
+- (void)selectPageModel:(BBMediaViewerPageModel *)pageModel notifyDelegate:(BOOL)notifyDelegate;
 
 @end
 

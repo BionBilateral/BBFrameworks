@@ -24,8 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 - (void)mediaViewerViewControllerDidFinish:(BBMediaViewerViewController *)viewController;
 @optional
+- (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController didSelectMedia:(id<BBMediaViewerMedia>)media;
+
 - (NSURL *)mediaViewerViewController:(BBMediaViewerViewController *)viewController fileURLForMedia:(id<BBMediaViewerMedia>)media;
 - (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

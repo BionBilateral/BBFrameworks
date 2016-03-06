@@ -91,6 +91,12 @@
     return [self.dataSource mediaViewerViewController:self mediaAtIndex:index];
 }
 
+- (void)mediaViewerModel:(BBMediaViewerModel *)model didSelectMedia:(id<BBMediaViewerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:didSelectMedia:)]) {
+        [self.delegate mediaViewerViewController:self didSelectMedia:media];
+    }
+}
+
 - (NSURL *)mediaViewerModel:(BBMediaViewerModel *)model fileURLForMedia:(id<BBMediaViewerMedia>)media {
     if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:fileURLForMedia:)]) {
         return [self.delegate mediaViewerViewController:self fileURLForMedia:media];

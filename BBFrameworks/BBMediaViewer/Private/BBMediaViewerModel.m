@@ -111,7 +111,14 @@
 }
 
 - (void)selectPageModel:(BBMediaViewerPageModel *)pageModel; {
+    [self selectPageModel:pageModel notifyDelegate:YES];
+}
+- (void)selectPageModel:(BBMediaViewerPageModel *)pageModel notifyDelegate:(BOOL)notifyDelegate; {
     [self setSelectedPageModel:pageModel];
+    
+    if (notifyDelegate) {
+        [self.delegate mediaViewerModel:self didSelectMedia:pageModel.media];
+    }
 }
 
 - (void)setTheme:(BBMediaViewerTheme *)theme {

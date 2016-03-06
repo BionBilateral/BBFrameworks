@@ -103,6 +103,10 @@
     }
 }
 
+- (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController didSelectMedia:(id<BBMediaViewerMedia>)media {
+    BBLogObject(media);
+}
+
 - (NSURL *)mediaViewerViewController:(BBMediaViewerViewController *)viewController fileURLForMedia:(id<BBMediaViewerMedia>)media {
     return [self _fileURLForMedia:media];
 }

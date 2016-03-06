@@ -55,7 +55,7 @@
     id<BBMediaViewerMedia> firstMedia = [self.model mediaAtIndex:0];
     BBMediaViewerPageViewController *firstPageVC = [[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model];
     
-    [self.model selectPageModel:firstPageVC.model];
+    [self.model selectPageModel:firstPageVC.model notifyDelegate:NO];
     
     BBWeakify(self);
     [self.pageViewController setViewControllers:@[firstPageVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
