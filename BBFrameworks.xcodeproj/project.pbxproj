@@ -295,6 +295,7 @@
 		7965A3EF1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
 		7965A3F01C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */; };
 		7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */; };
+		798006C11C8CBEC300DD86FE /* MediaViewer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 798006BF1C8CBEC300DD86FE /* MediaViewer.strings */; };
 		798768F91C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */; };
 		798768FD1C83DA390040E1D1 /* BBMediaViewerPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768FC1C83DA390040E1D1 /* BBMediaViewerPageModel.m */; };
 		798769001C83DB430040E1D1 /* BBMediaViewerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798768FF1C83DB430040E1D1 /* BBMediaViewerPageViewController.m */; };
@@ -1251,6 +1252,9 @@
 		7965A3E91C82579200A197E2 /* NSString+BBBlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BBBlocksExtensions.h"; sourceTree = "<group>"; };
 		7965A3EA1C82579200A197E2 /* NSString+BBBlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BBBlocksExtensions.m"; sourceTree = "<group>"; };
 		7965A3EE1C829B7300A197E2 /* BBFrameworksNSStringBlocksExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSStringBlocksExtensionsTestCase.m; sourceTree = "<group>"; };
+		798006C01C8CBEC300DD86FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MediaViewer.strings; sourceTree = "<group>"; };
+		798006C21C8CBEC800DD86FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MediaViewer.strings; sourceTree = "<group>"; };
+		798006C31C8CBEC900DD86FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MediaViewer.strings; sourceTree = "<group>"; };
 		798768F61C83C3480040E1D1 /* BBMediaViewerMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMediaViewerMedia.h; sourceTree = "<group>"; };
 		798768F71C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+BBMediaViewerMediaExtensions.h"; sourceTree = "<group>"; };
 		798768F81C83C4150040E1D1 /* NSURL+BBMediaViewerMediaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+BBMediaViewerMediaExtensions.m"; sourceTree = "<group>"; };
@@ -2936,6 +2940,7 @@
 		79EA80781B3F06ED00D50B6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				798006BF1C8CBEC300DD86FE /* MediaViewer.strings */,
 				79CE6A3E1B784F3600A0E969 /* Validation.strings */,
 				079875191BD03923005422B2 /* Keychain.strings */,
 				07BFFED91B419F1800DBC7EC /* MediaPlayer.strings */,
@@ -3422,6 +3427,7 @@
 				07BFFEDB1B419F1800DBC7EC /* MediaPlayer.strings in Resources */,
 				79ECB9211C02AE8D00BA132F /* media_viewer_slow_forward.png in Resources */,
 				799B960B1B6997550010E1CD /* media_picker_camera_roll@3x.png in Resources */,
+				798006C11C8CBEC300DD86FE /* MediaViewer.strings in Resources */,
 				0785E90F1BA7325500076BFC /* web_kit_go_back@2x.png in Resources */,
 				0785E9111BA7325500076BFC /* web_kit_go_forward.png in Resources */,
 				799B961E1B69C3450010E1CD /* media_picker_type_video@3x.png in Resources */,
@@ -4091,6 +4097,16 @@
 				072966431BEBE0F10018FB7E /* ja */,
 			);
 			name = WebKit.strings;
+			sourceTree = "<group>";
+		};
+		798006BF1C8CBEC300DD86FE /* MediaViewer.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				798006C01C8CBEC300DD86FE /* en */,
+				798006C21C8CBEC800DD86FE /* es */,
+				798006C31C8CBEC900DD86FE /* ja */,
+			);
+			name = MediaViewer.strings;
 			sourceTree = "<group>";
 		};
 		79B1C10A1BB67A43005A8A0D /* Foundation.strings */ = {
