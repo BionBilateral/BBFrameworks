@@ -70,7 +70,7 @@
      subscribeNext:^(id _) {
          BBStrongify(self);
          
-         [self.delegate mediaViewerViewControllerIsDone:self];
+         [self.delegate mediaViewerViewControllerDidFinish:self];
      }];
 }
 - (void)viewWillAppear:(BOOL)animated {

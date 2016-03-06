@@ -94,7 +94,7 @@
     return self.customURLs[index];
 }
 
-- (void)mediaViewerViewControllerIsDone:(BBMediaViewerViewController *)viewController {
+- (void)mediaViewerViewControllerDidFinish:(BBMediaViewerViewController *)viewController {
     if (viewController.presentingViewController) {
         [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
