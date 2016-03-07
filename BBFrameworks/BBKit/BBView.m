@@ -70,6 +70,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    if (self.window.screen == nil) {
+        return;
+    }
+    
     CGFloat borderWidth = self.borderWidth / self.window.screen.scale;
     
     [self.topBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth)];
@@ -85,6 +89,10 @@
     if (self.backgroundColor) {
         [self.backgroundColor setFill];
         NSRectFill(self.bounds);
+    }
+    
+    if (self.window.screen == nil) {
+        return;
     }
     
     CGFloat borderWidth = self.borderWidth / self.window.screen.backingScaleFactor;
