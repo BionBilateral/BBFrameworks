@@ -68,6 +68,8 @@
 }
     
 - (void)layoutSubviews {
+    [super layoutSubviews];
+    
     CGFloat borderWidth = self.borderWidth / self.window.screen.scale;
     
     [self.topBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth)];
