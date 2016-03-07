@@ -23,11 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSFileManager (BBFoundationExtensions)
 
 /**
- Returns the NSURL instance representing the application support directory, creating the directory if it does not exist.
+ Returns the NSURL instance representing the application support directory, creating the directory if it does not exist. On OSX, appends the bundle executable name to the returned URL (e.g. <application_support>/<bundle_executable>).
  
  @return The application support NSURL instance
  */
 - (NSURL *)BB_applicationSupportDirectoryURL;
+/**
+ Returns the NSURL instance representing the caches directory. On OSX, appends the bundle identifier to the returned URL (e.g. <caches>/<bundle_identifier>) and creates the directory if it does not already exist. On iOS, the base caches directory will always exist.
+ 
+ @return The caches NSURL instance
+ */
+- (NSURL *)BB_cachesDirectoryURL;
 
 @end
 

@@ -20,10 +20,10 @@
 @implementation NSFileManager (BBFoundationExtensions)
 
 - (NSURL *)BB_applicationSupportDirectoryURL; {
-    NSURL *retval = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
+    NSURL *retval = [self URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
     
 #if (!TARGET_OS_IPHONE)
-    retval = [retval URLByAppendingPathComponent:[NSBundle mainBundle].BB_bundleExecutable isDirectory:YES];
+    retval = [retval URLByAppendingPathComponent:[[NSBundle mainBundle] BB_bundleExecutable] isDirectory:YES];
 #endif
     
     if (![retval checkResourceIsReachableAndReturnError:NULL]) {
@@ -32,6 +32,23 @@
             BBLogObject(outError);
         }
     }
+    
+    return retval;
+}
+
+- (NSURL *)BB_cachesDirectoryURL; {
+    NSURL *retval = [self URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask].firstObject;
+    
+#if (!TARGET_OS_IPHONE)
+    retval = [retval URLByAppendingPathComponent:[[NSBundle mainBundle] BB_bundleIdentifier] isDirectory:YES];
+    
+    if (![retval checkResourceIsReachableAndReturnError:NULL]) {
+        NSError *outError;
+        if (![self createDirectoryAtURL:retval withIntermediateDirectories:NO attributes:nil error:&outError]) {
+            BBLogObject(outError);
+        }
+    }
+#endif
     
     return retval;
 }
