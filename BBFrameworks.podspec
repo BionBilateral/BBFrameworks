@@ -156,7 +156,7 @@ Pod::Spec.new do |spec|
     
     subspec.ios.private_header_files = "BBFrameworks/BBMediaViewer/Private/*.h"
     
-    subspec.iso.frameworks = "AVFoundation", "MobileCoreServices", "WebKit"
+    subspec.ios.frameworks = "AVFoundation", "MobileCoreServices", "WebKit"
   end
   
   spec.subspec "BBMediaPlayer" do |subspec|
