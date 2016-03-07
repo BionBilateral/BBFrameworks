@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSColor *)BB_colorWithHexadecimalString:(nullable NSString *)hexadecimalString;
 
 /**
- Creates and returns a new color by adjusting the bright of color by delta. Clamps the new brightness between 0.0 and 1.0.
+ Creates and returns a new color by adjusting the brightness of color by delta. Clamps the new brightness between 0.0 and 1.0.
  
  @param color The color to adjust
  @param delta The amount to adjust the brightness
