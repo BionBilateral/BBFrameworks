@@ -29,6 +29,59 @@ extern const struct BBHTTPMethod {
     __unsafe_unretained NSString *CONNECT;
 } BBHTTPMethod;
 
+/**
+ Struct containing string constants for supported HTTP header fields. See https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html for more information.
+ */
+extern const struct BBHTTPHeaderField {
+    __unsafe_unretained NSString *Accept;
+    __unsafe_unretained NSString *Accept_Charset;
+    __unsafe_unretained NSString *Accept_Encoding;
+    __unsafe_unretained NSString *Accept_Language;
+    __unsafe_unretained NSString *Accept_Ranges;
+    __unsafe_unretained NSString *Age;
+    __unsafe_unretained NSString *Allow;
+    __unsafe_unretained NSString *Authorization;
+    __unsafe_unretained NSString *Cache_Control;
+    __unsafe_unretained NSString *Connection;
+    __unsafe_unretained NSString *Content_Encoding;
+    __unsafe_unretained NSString *Content_Language;
+    __unsafe_unretained NSString *Content_Length;
+    __unsafe_unretained NSString *Content_Location;
+    __unsafe_unretained NSString *Content_MD5;
+    __unsafe_unretained NSString *Content_Range;
+    __unsafe_unretained NSString *Content_Type;
+    __unsafe_unretained NSString *Date;
+    __unsafe_unretained NSString *ETag;
+    __unsafe_unretained NSString *Expect;
+    __unsafe_unretained NSString *Expires;
+    __unsafe_unretained NSString *From;
+    __unsafe_unretained NSString *Host;
+    __unsafe_unretained NSString *If_Match;
+    __unsafe_unretained NSString *If_Modified_Since;
+    __unsafe_unretained NSString *If_None_Match;
+    __unsafe_unretained NSString *If_Range;
+    __unsafe_unretained NSString *If_Unmodified_Since;
+    __unsafe_unretained NSString *Last_Modified;
+    __unsafe_unretained NSString *Location;
+    __unsafe_unretained NSString *Max_Forwards;
+    __unsafe_unretained NSString *Pragma;
+    __unsafe_unretained NSString *Proxy_Authenticate;
+    __unsafe_unretained NSString *Proxy_Authorization;
+    __unsafe_unretained NSString *Range;
+    __unsafe_unretained NSString *Referer;
+    __unsafe_unretained NSString *Retry_After;
+    __unsafe_unretained NSString *Server;
+    __unsafe_unretained NSString *TE;
+    __unsafe_unretained NSString *Trailer;
+    __unsafe_unretained NSString *Transfer_Encoding;
+    __unsafe_unretained NSString *Upgrade;
+    __unsafe_unretained NSString *User_Agent;
+    __unsafe_unretained NSString *Vary;
+    __unsafe_unretained NSString *Via;
+    __unsafe_unretained NSString *Warning;
+    __unsafe_unretained NSString *WWW_Authenticate;
+} BBHTTPHeaderField;
+
 @interface NSURLRequest (BBFoundationExtensions)
 
 @end
