@@ -52,6 +52,13 @@
 }
 
 #if (TARGET_OS_IPHONE)
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    if (self.window.screen != nil) {
+        [self setNeedsLayout];
+    }
+}
 - (void)didAddSubview:(UIView *)subview {
     if (subview == self.topBorderView ||
         subview == self.leftBorderView ||
