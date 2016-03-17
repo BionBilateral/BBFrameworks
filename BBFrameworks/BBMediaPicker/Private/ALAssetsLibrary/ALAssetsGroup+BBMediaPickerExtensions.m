@@ -25,7 +25,9 @@
     return [self BB_assetAtIndex:index reverse:NO];
 }
 - (nullable ALAsset *)BB_assetAtIndex:(NSUInteger)index reverse:(BOOL)reverse; {
-    if ([self numberOfAssets] <= index) {
+    if ([self numberOfAssets] == 0 ||
+        index >= [self numberOfAssets]) {
+        
         return nil;
     }
     

@@ -129,7 +129,9 @@
 - (void)requestThumbnailImageOfSize:(CGSize)size thumbnailIndex:(NSUInteger)thumbnailIndex completion:(void(^)(UIImage * _Nullable  thumbnailImage))completion; {
     NSParameterAssert(completion);
     
-    if (self.countOfAssetModels <= thumbnailIndex) {
+    if (self.countOfAssetModels == 0 ||
+        thumbnailIndex >= self.countOfAssetModels) {
+        
         completion(nil);
         return;
     }

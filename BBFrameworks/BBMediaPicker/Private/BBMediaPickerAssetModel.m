@@ -58,7 +58,9 @@
     if (!(self = [super init]))
         return nil;
     
-    NSParameterAssert(asset);
+    if (asset == nil) {
+        return nil;
+    }
     
     [self setAsset:asset];
     [self setAssetCollectionModel:assetCollectionModel];
