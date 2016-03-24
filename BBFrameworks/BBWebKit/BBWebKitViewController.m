@@ -28,7 +28,7 @@
 #import <WebKit/WebKit.h>
 #import <objc/runtime.h>
 
-@interface BBWebKitViewController () <WKNavigationDelegate>
+@interface BBWebKitViewController () <WKUIDelegate,WKNavigationDelegate>
 @property (strong,nonatomic) WKWebView *webView;
 @property (weak,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
@@ -61,6 +61,7 @@
     
     [self setWebView:[[WKWebView alloc] initWithFrame:CGRectZero]];
     [self.webView setNavigationDelegate:self];
+    [self.webView setUIDelegate:self];
     [self.view addSubview:self.webView];
     
     @weakify(self);
@@ -337,6 +338,16 @@
     if ([self.delegate respondsToSelector:@selector(webKitViewController:didFinishNavigation:)]) {
         [self.delegate webKitViewController:self didFinishNavigation:navigation];
     }
+}
+#pragma mark WKUIDelegate
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    /**
+     This checks for links that would normally open in a new browser window. Instead we want to open them within our WKWebView instance. Load the request and return nil, preventing additional UI from being created.
+     */
+    if (navigationAction.targetFrame == nil) {
+        [webView loadRequest:navigationAction.request];
+    }
+    return nil;
 }
 #pragma mark ** Public Methods **
 - (void)loadURLString:(NSString *)URLString; {
