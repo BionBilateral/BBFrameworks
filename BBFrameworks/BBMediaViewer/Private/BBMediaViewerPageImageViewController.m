@@ -16,9 +16,14 @@
 #import "BBMediaViewerPageImageViewController.h"
 #import "BBMediaViewerPageImageModel.h"
 #import "BBMediaViewerPageImageScrollView.h"
+#import "BBFoundationGeometryFunctions.h"
+#import "BBFrameworksMacros.h"
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface BBMediaViewerPageImageViewController ()
 @property (strong,nonatomic) BBMediaViewerPageImageScrollView *scrollView;
+@property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @property (readwrite,strong,nonatomic) BBMediaViewerPageImageModel *model;
 @end
@@ -30,9 +35,30 @@
     
     [self setScrollView:[[BBMediaViewerPageImageScrollView alloc] initWithModel:self.model]];
     [self.view addSubview:self.scrollView];
+    
+    [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
+    [self.activityIndicatorView setHidesWhenStopped:YES];
+    [self.view addSubview:self.activityIndicatorView];
+    
+    BBWeakify(self);
+    [[RACObserve(self.model, downloading)
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *value) {
+         BBStrongify(self);
+         if (value.boolValue) {
+             [self.activityIndicatorView startAnimating];
+         }
+         else {
+             [self.activityIndicatorView stopAnimating];
+         }
+     }];
 }
 - (void)viewWillLayoutSubviews {
     [self.scrollView setFrame:self.view.bounds];
+    
+    CGSize size = [self.activityIndicatorView sizeThatFits:CGSizeZero];
+    
+    [self.activityIndicatorView setFrame:BBCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height),self.view.bounds)];
 }
 
 - (instancetype)initWithMedia:(id<BBMediaViewerMedia>)media parentModel:(BBMediaViewerModel *)parentModel {

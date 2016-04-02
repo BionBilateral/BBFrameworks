@@ -17,6 +17,7 @@
 
 @interface BBMediaViewerPageImageModel : BBMediaViewerPageModel
 
+@property (readonly,assign,nonatomic,getter=isDownloading) BOOL downloading;
 @property (readonly,strong,nonatomic) id image;
 
 @end

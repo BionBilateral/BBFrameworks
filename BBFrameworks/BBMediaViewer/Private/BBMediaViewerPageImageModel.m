@@ -24,6 +24,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BBMediaViewerPageImageModel ()
+@property (readwrite,assign,nonatomic,getter=isDownloading) BOOL downloading;
 @property (readwrite,strong,nonatomic) id image;
 @end
 
@@ -56,8 +57,13 @@
             createImageBlock(fileURL);
         }
         else {
+            [self setDownloading:YES];
+            
             [self.parentModel downloadMedia:self.media completion:^(BOOL success, NSError *error){
+                BBStrongify(self);
                 BBDispatchMainAsync(^{
+                    [self setDownloading:NO];
+                    
                     if (success) {
                         createImageBlock(fileURL);
                     }
