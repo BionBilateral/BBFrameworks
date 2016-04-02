@@ -45,6 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIApplication shareApplication].keyWindow.tintColor`.
  */
 @property (strong,nonatomic,null_resettable) UIColor *tintColor;
+/**
+ Set and get the highlight tint color, which is used to tint over the foregroundColor or tintColor for controls that can be highlighted (e.g. UIButton).
+ 
+ The default is `[UIColor colorWithWhite:0.0 alpha:0.5]`.
+ */
+@property (strong,nonatomic,null_resettable) UIColor *highlightTintColor;
 
 /**
  Set and get the done bar button item, which is displayed on the left of the navigation bar.
@@ -71,6 +77,12 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIColor lightGrayColor]`.
  */
 @property (strong,nonatomic,null_resettable) UIColor *movieProgressForegroundColor;
+/**
+ Set and get the font used to display the time elapsed and remaining for movie media.
+ 
+ The default is `[UIFont systemFontOfSize:12.0]`.
+ */
+@property (strong,nonatomic,null_resettable) UIFont *movieTimeElapsedRemainingFont;
 
 /**
  Set and get the edge insets used when displaying textual content.

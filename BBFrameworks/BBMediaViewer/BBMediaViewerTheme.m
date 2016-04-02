@@ -19,7 +19,9 @@
 + (UIColor *)_defaultBackgroundColor;
 + (UIColor *)_defaultForegroundColor;
 + (UIColor *)_defaultTintColor;
++ (UIColor *)_defaultHighlightTintColor;
 + (UIColor *)_defaultMovieProgressForegroundColor;
++ (UIFont *)_defaultMovieTimeElapsedRemainingFont;
 + (UIBarButtonItem *)_defaultDoneBarButtonItem;
 + (UIBarButtonItem *)_defaultActionBarButtonItem;
 @end
@@ -33,7 +35,9 @@
     _backgroundColor = [self.class _defaultBackgroundColor];
     _foregroundColor = [self.class _defaultForegroundColor];
     _tintColor = [self.class _defaultTintColor];
+    _highlightTintColor = [self.class _defaultHighlightTintColor];
     _movieProgressForegroundColor = [self.class _defaultMovieProgressForegroundColor];
+    _movieTimeElapsedRemainingFont = [self.class _defaultMovieTimeElapsedRemainingFont];
     _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
     _actionBarButtonItem = [self.class _defaultActionBarButtonItem];
     _textEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 8.0);
@@ -62,8 +66,14 @@
 - (void)setTintColor:(UIColor *)tintColor {
     _tintColor = tintColor ?: [self.class _defaultTintColor];
 }
+- (void)setHighlightTintColor:(UIColor *)highlightTintColor {
+    _highlightTintColor = highlightTintColor ?: [self.class _defaultHighlightTintColor];
+}
 - (void)setMovieProgressForegroundColor:(UIColor *)movieProgressForegroundColor {
     _movieProgressForegroundColor = movieProgressForegroundColor ?: [self.class _defaultMovieProgressForegroundColor];
+}
+- (void)setMovieTimeElapsedRemainingFont:(UIFont *)movieTimeElapsedRemainingFont {
+    _movieTimeElapsedRemainingFont = movieTimeElapsedRemainingFont ?: [self.class _defaultMovieTimeElapsedRemainingFont];
 }
 
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
@@ -80,10 +90,16 @@
     return [UIColor blackColor];
 }
 + (UIColor *)_defaultTintColor; {
-    return [UIApplication sharedApplication].keyWindow.tintColor;
+    return [UIApplication sharedApplication].keyWindow.rootViewController.view.tintColor;
+}
++ (UIColor *)_defaultHighlightTintColor; {
+    return [UIColor colorWithWhite:0.0 alpha:0.5];
 }
 + (UIColor *)_defaultMovieProgressForegroundColor; {
     return [UIColor lightGrayColor];
+}
++ (UIFont *)_defaultMovieTimeElapsedRemainingFont; {
+    return [UIFont systemFontOfSize:12.0];
 }
 + (UIBarButtonItem *)_defaultDoneBarButtonItem; {
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];

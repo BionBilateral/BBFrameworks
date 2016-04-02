@@ -67,7 +67,7 @@
     
     [self setNumberFormatter:[[NSNumberFormatter alloc] init]];
     
-    UIFont *font = [UIFont systemFontOfSize:12.0];
+    UIFont *font = self.model.parentModel.theme.movieTimeElapsedRemainingFont;
     
     [self setTimeElapsedLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.timeElapsedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -93,35 +93,45 @@
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
     [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
+    [self.playPauseButton setImage:[[self.playPauseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.playPauseButton setRac_command:self.model.playPauseCommand];
     [self addSubview:self.playPauseButton];
     
     [self setSlowForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.slowForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.slowForwardButton setImage:[[self.slowForwardButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
     [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
+    [self.slowForwardButton setImage:[[self.slowForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.slowForwardButton setRac_command:self.model.slowForwardCommand];
     [self addSubview:self.slowForwardButton];
     
     [self setFastForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.fastForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.fastForwardButton setImage:[[self.fastForwardButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
     [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
+    [self.fastForwardButton setImage:[[self.fastForwardButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.fastForwardButton setRac_command:self.model.fastForwardCommand];
     [self addSubview:self.fastForwardButton];
     
     [self setSlowReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.slowReverseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.slowReverseButton setImage:[[self.slowReverseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
     [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
+    [self.slowReverseButton setImage:[[self.slowReverseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.slowReverseButton setRac_command:self.model.slowReverseCommand];
     [self addSubview:self.slowReverseButton];
     
     [self setFastReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.fastReverseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.fastReverseButton setImage:[[self.fastReverseButton imageForState:UIControlStateNormal] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateNormal|UIControlStateHighlighted];
     [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
+    [self.fastReverseButton setImage:[[self.fastReverseButton imageForState:UIControlStateSelected] BB_imageByTintingWithColor:self.model.parentModel.theme.highlightTintColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.fastReverseButton setRac_command:self.model.fastReverseCommand];
     [self addSubview:self.fastReverseButton];
     
@@ -134,19 +144,21 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[left]-[view]-[right]" options:0 metrics:nil views:@{@"view": self.slider, @"left": self.timeElapsedLabel, @"right": self.timeRemainingLabel}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]" options:0 metrics:nil views:@{@"view": self.slider}]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[slider]-[view]-|" options:0 metrics:nil views:@{@"slider": self.slider, @"view": self.playPauseButton}]];
+    NSNumber *buttonSpacing = @16.0;
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[slider]-spacing-[view]-|" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"slider": self.slider, @"view": self.playPauseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.playPauseButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-[view]" options:0 metrics:nil views:@{@"view": self.slowForwardButton, @"button": self.playPauseButton}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-spacing-[view]" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"view": self.slowForwardButton, @"button": self.playPauseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.slowForwardButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-[view]" options:0 metrics:nil views:@{@"button": self.slowForwardButton, @"view": self.fastForwardButton}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-spacing-[view]" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"button": self.slowForwardButton, @"view": self.fastForwardButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fastForwardButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-[button]" options:0 metrics:nil views:@{@"button": self.playPauseButton, @"view": self.slowReverseButton}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-spacing-[button]" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"button": self.playPauseButton, @"view": self.slowReverseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.slowReverseButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-[button]" options:0 metrics:nil views:@{@"button": self.slowReverseButton, @"view": self.fastReverseButton}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[view]-spacing-[button]" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"button": self.slowReverseButton, @"view": self.fastReverseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fastReverseButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.playPauseButton attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     RAC(self.slider,enabled) =
