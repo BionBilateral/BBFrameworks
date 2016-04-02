@@ -85,6 +85,9 @@
     
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
     [self.slider setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.slider setMinimumTrackFillColor:self.model.parentModel.theme.tintColor];
+    [self.slider setMaximumTrackFillColor:self.model.parentModel.theme.foregroundColor];
+    [self.slider setProgressFillColor:self.model.parentModel.theme.movieProgressForegroundColor];
     [self addSubview:self.slider];
     
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];

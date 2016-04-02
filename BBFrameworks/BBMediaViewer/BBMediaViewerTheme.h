@@ -66,6 +66,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) BOOL showActionBarButtonItem;
 
 /**
+ Set and get the foreground color used to fill the movie progress slider during loading.
+ 
+ The default is `[UIColor lightGrayColor]`.
+ */
+@property (strong,nonatomic,null_resettable) UIColor *movieProgressForegroundColor;
+
+/**
  Set and get the edge insets used when displaying textual content.
  
  The default is `UIEdgeInsetsMake(0, 8.0, 0, 8.0)`.

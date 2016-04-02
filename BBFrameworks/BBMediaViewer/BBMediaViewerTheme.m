@@ -19,6 +19,7 @@
 + (UIColor *)_defaultBackgroundColor;
 + (UIColor *)_defaultForegroundColor;
 + (UIColor *)_defaultTintColor;
++ (UIColor *)_defaultMovieProgressForegroundColor;
 + (UIBarButtonItem *)_defaultDoneBarButtonItem;
 + (UIBarButtonItem *)_defaultActionBarButtonItem;
 @end
@@ -32,6 +33,7 @@
     _backgroundColor = [self.class _defaultBackgroundColor];
     _foregroundColor = [self.class _defaultForegroundColor];
     _tintColor = [self.class _defaultTintColor];
+    _movieProgressForegroundColor = [self.class _defaultMovieProgressForegroundColor];
     _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
     _actionBarButtonItem = [self.class _defaultActionBarButtonItem];
     _textEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 8.0);
@@ -60,6 +62,9 @@
 - (void)setTintColor:(UIColor *)tintColor {
     _tintColor = tintColor ?: [self.class _defaultTintColor];
 }
+- (void)setMovieProgressForegroundColor:(UIColor *)movieProgressForegroundColor {
+    _movieProgressForegroundColor = movieProgressForegroundColor ?: [self.class _defaultMovieProgressForegroundColor];
+}
 
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
     _doneBarButtonItem = doneBarButtonItem ?: [self.class _defaultDoneBarButtonItem];
@@ -76,6 +81,9 @@
 }
 + (UIColor *)_defaultTintColor; {
     return [UIApplication sharedApplication].keyWindow.tintColor;
+}
++ (UIColor *)_defaultMovieProgressForegroundColor; {
+    return [UIColor lightGrayColor];
 }
 + (UIBarButtonItem *)_defaultDoneBarButtonItem; {
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];
