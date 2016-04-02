@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
  Get the title for the media object. This title is displayed in the navigation bar for the selected media object. If the media object does not implement this method, `mediaViewerMediaURL.lastPathComponent` is used.
  */
 @property (readonly,nonatomic) NSString *mediaViewerMediaTitle;
+/**
+ Get the MIME type for the media object. If the receiver responds to this method, it will be used to determine the media type for display rather than inspecting the media URL itself.
+ */
+@property (readonly,nonatomic) NSString *mediaViewerMIMEType;
 @end
 
 NS_ASSUME_NONNULL_END

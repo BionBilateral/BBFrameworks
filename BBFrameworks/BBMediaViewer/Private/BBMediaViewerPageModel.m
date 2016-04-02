@@ -42,7 +42,14 @@
 
 + (BBMediaViewerPageModelType)typeForMedia:(id<BBMediaViewerMedia>)media; {
     NSURL *URL = media.mediaViewerMediaURL;
-    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
+    NSString *UTI = nil;
+    
+    if ([media respondsToSelector:@selector(mediaViewerMIMEType)]) {
+        UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)[media mediaViewerMIMEType], NULL);
+    }
+    else {
+        UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
+    }
     
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeGIF)) {
         return BBMediaViewerPageModelTypeImageAnimated;
@@ -87,7 +94,12 @@
     return [self.media respondsToSelector:@selector(mediaViewerMediaTitle)] ? self.media.mediaViewerMediaTitle : self.URL.lastPathComponent;
 }
 - (NSString *)UTI {
-    return (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.URL.pathExtension, NULL);
+    if ([self.media respondsToSelector:@selector(mediaViewerMIMEType)]) {
+        return (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)[self.media mediaViewerMIMEType], NULL);
+    }
+    else {
+        return (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)self.URL.pathExtension, NULL);
+    }
 }
 - (id)activityItem {
     return self.URL;
