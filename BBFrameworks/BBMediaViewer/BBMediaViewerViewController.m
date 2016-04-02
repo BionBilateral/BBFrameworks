@@ -33,6 +33,15 @@
 
 @implementation BBMediaViewerViewController
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    if ([self.delegate respondsToSelector:@selector(preferredStatusBarStyleForMediaViewerViewController:)]) {
+        return [self.delegate preferredStatusBarStyleForMediaViewerViewController:self];
+    }
+    else {
+        return UIStatusBarStyleDefault;
+    }
+}
+
 - (BOOL)hidesBottomBarWhenPushed {
     return YES;
 }

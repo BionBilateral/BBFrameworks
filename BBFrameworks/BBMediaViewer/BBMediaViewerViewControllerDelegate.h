@@ -33,6 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mediaViewerViewControllerDidFinish:(BBMediaViewerViewController *)viewController;
 @optional
 /**
+ Return the preferred status bar style for the media viewer view controller.
+ 
+ @param viewController The media viewer that sent the message
+ @return The status bar style
+ */
+- (UIStatusBarStyle)preferredStatusBarStyleForMediaViewerViewController:(BBMediaViewerViewController *)viewController;
+/**
  Called when the user swipes left or right to display another media object.
  
  @param viewController The media viewer that sent the message
