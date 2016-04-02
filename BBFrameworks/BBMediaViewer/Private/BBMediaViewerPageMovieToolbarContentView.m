@@ -21,6 +21,8 @@
 #import "BBFrameworksMacros.h"
 #import "BBFoundationDebugging.h"
 #import "BBBlocks.h"
+#import "BBMediaViewerModel.h"
+#import "BBMediaViewerTheme.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -71,12 +73,14 @@
     [self.timeElapsedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.timeElapsedLabel setFont:font];
     [self.timeElapsedLabel setText:self.numberFormatter.positiveInfinitySymbol];
+    [self.timeElapsedLabel setTextColor:self.model.parentModel.theme.foregroundColor];
     [self addSubview:self.timeElapsedLabel];
     
     [self setTimeRemainingLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
     [self.timeRemainingLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.timeRemainingLabel setFont:font];
     [self.timeRemainingLabel setText:self.numberFormatter.negativeInfinitySymbol];
+    [self.timeRemainingLabel setTextColor:self.model.parentModel.theme.foregroundColor];
     [self addSubview:self.timeRemainingLabel];
     
     [self setSlider:[[BBProgressSlider alloc] initWithFrame:CGRectZero]];
@@ -85,36 +89,36 @@
     
     [self setPlayPauseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.playPauseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateNormal];
-    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_play"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_pause"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
     [self.playPauseButton setRac_command:self.model.playPauseCommand];
     [self addSubview:self.playPauseButton];
     
     [self setSlowForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.slowForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
-    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.slowForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
     [self.slowForwardButton setRac_command:self.model.slowForwardCommand];
     [self addSubview:self.slowForwardButton];
     
     [self setFastForwardButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.fastForwardButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
-    [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.fastForwardButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_forward"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
     [self.fastForwardButton setRac_command:self.model.fastForwardCommand];
     [self addSubview:self.fastForwardButton];
     
     [self setSlowReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.slowReverseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
-    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.slowReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_slow_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
     [self.slowReverseButton setRac_command:self.model.slowReverseCommand];
     [self addSubview:self.slowReverseButton];
     
     [self setFastReverseButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [self.fastReverseButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:[UIColor blackColor]] forState:UIControlStateNormal];
-    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.tintColor] forState:UIControlStateSelected];
+    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.foregroundColor] forState:UIControlStateNormal];
+    [self.fastReverseButton setImage:[[UIImage BB_imageInResourcesBundleNamed:@"media_viewer_fast_reverse"] BB_imageByRenderingWithColor:self.model.parentModel.theme.tintColor] forState:UIControlStateSelected];
     [self.fastReverseButton setRac_command:self.model.fastReverseCommand];
     [self addSubview:self.fastReverseButton];
     

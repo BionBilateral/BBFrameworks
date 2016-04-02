@@ -17,6 +17,8 @@
 
 @interface BBMediaViewerTheme ()
 + (UIColor *)_defaultBackgroundColor;
++ (UIColor *)_defaultForegroundColor;
++ (UIColor *)_defaultTintColor;
 + (UIBarButtonItem *)_defaultDoneBarButtonItem;
 + (UIBarButtonItem *)_defaultActionBarButtonItem;
 @end
@@ -28,9 +30,12 @@
         return nil;
     
     _backgroundColor = [self.class _defaultBackgroundColor];
+    _foregroundColor = [self.class _defaultForegroundColor];
+    _tintColor = [self.class _defaultTintColor];
     _doneBarButtonItem = [self.class _defaultDoneBarButtonItem];
     _actionBarButtonItem = [self.class _defaultActionBarButtonItem];
     _textEdgeInsets = UIEdgeInsetsMake(0, 8.0, 0, 8.0);
+    _showActionBarButtonItem = YES;
     
     return self;
 }
@@ -49,6 +54,12 @@
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     _backgroundColor = backgroundColor ?: [self.class _defaultBackgroundColor];
 }
+- (void)setForegroundColor:(UIColor *)foregroundColor {
+    _foregroundColor = foregroundColor ?: [self.class _defaultForegroundColor];
+}
+- (void)setTintColor:(UIColor *)tintColor {
+    _tintColor = tintColor ?: [self.class _defaultTintColor];
+}
 
 - (void)setDoneBarButtonItem:(UIBarButtonItem *)doneBarButtonItem {
     _doneBarButtonItem = doneBarButtonItem ?: [self.class _defaultDoneBarButtonItem];
@@ -59,6 +70,12 @@
 
 + (UIColor *)_defaultBackgroundColor; {
     return [UIColor whiteColor];
+}
++ (UIColor *)_defaultForegroundColor; {
+    return [UIColor blackColor];
+}
++ (UIColor *)_defaultTintColor; {
+    return [UIApplication sharedApplication].keyWindow.tintColor;
 }
 + (UIBarButtonItem *)_defaultDoneBarButtonItem; {
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:NULL];

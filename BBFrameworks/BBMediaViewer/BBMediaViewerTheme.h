@@ -33,6 +33,18 @@ NS_ASSUME_NONNULL_BEGIN
  The default is `[UIColor whiteColor]`.
  */
 @property (strong,nonatomic,null_resettable) UIColor *backgroundColor;
+/**
+ Set and get the foreground color, which is used as the color for all controls (e.g. UILabel, UIButton, etc.).
+ 
+ The default is `[UIColor blackColor]`.
+ */
+@property (strong,nonatomic,null_resettable) UIColor *foregroundColor;
+/**
+ Set and get the tint color, which is used as the active color for controls that can be toggled (e.g. play/pause UIButton).
+ 
+ The default is `[UIApplication shareApplication].keyWindow.tintColor`.
+ */
+@property (strong,nonatomic,null_resettable) UIColor *tintColor;
 
 /**
  Set and get the done bar button item, which is displayed on the left of the navigation bar.
@@ -46,6 +58,12 @@ NS_ASSUME_NONNULL_BEGIN
  The default is a bar button item with the type `UIBarButtonSystemItemAction`.
  */
 @property (strong,nonatomic,null_resettable) UIBarButtonItem *actionBarButtonItem;
+/**
+ Set and get whether the action bar button item should be shown. If NO, only the done bar button item is shown on the right hand side of the navigation bar.
+ 
+ The default is YES.
+ */
+@property (assign,nonatomic) BOOL showActionBarButtonItem;
 
 /**
  Set and get the edge insets used when displaying textual content.

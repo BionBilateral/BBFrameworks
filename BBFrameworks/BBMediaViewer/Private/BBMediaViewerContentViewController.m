@@ -94,26 +94,29 @@
     
     [self.navigationBar setItems:@[self.navigationItem]];
     
-    [[[RACObserve(self.model, theme.doneBarButtonItem)
-     ignore:nil]
+    [[[RACSignal combineLatest:@[[RACObserve(self.model, theme.doneBarButtonItem) ignore:nil],
+                                 RACObserve(self.model, theme.showActionBarButtonItem),
+                                 [RACObserve(self.model, theme.actionBarButtonItem) ignore:nil]]]
      deliverOnMainThread]
-     subscribeNext:^(UIBarButtonItem *value) {
+     subscribeNext:^(RACTuple *value) {
          BBStrongify(self);
          
-         [value setRac_command:self.model.doneCommand];
+         RACTupleUnpack(UIBarButtonItem *doneBarButtonItem, NSNumber *showActionBarButtonItem, UIBarButtonItem *actionBarButtonItem) = value;
          
-         [self.navigationItem setLeftBarButtonItems:@[value]];
-     }];
-    
-    [[[RACObserve(self.model, theme.actionBarButtonItem)
-     ignore:nil]
-     deliverOnMainThread]
-     subscribeNext:^(UIBarButtonItem *value) {
-         BBStrongify(self);
-         
-         [value setRac_command:self.model.actionCommand];
-         
-         [self.navigationItem setRightBarButtonItems:@[value]];
+         if (showActionBarButtonItem.boolValue) {
+             [doneBarButtonItem setRac_command:self.model.doneCommand];
+             
+             [self.navigationItem setLeftBarButtonItems:@[doneBarButtonItem]];
+             
+             [actionBarButtonItem setRac_command:self.model.actionCommand];
+             
+             [self.navigationItem setRightBarButtonItems:@[actionBarButtonItem]];
+         }
+         else {
+             [doneBarButtonItem setRac_command:self.model.doneCommand];
+             
+             [self.navigationItem setRightBarButtonItems:@[doneBarButtonItem]];
+         }
      }];
     
     [[self.tapGestureRecognizer

@@ -18,6 +18,8 @@
 #import "BBMediaViewerPageImageScrollView.h"
 #import "BBFoundationGeometryFunctions.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
+#import "BBMediaViewerTheme.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -38,6 +40,7 @@
     
     [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
     [self.activityIndicatorView setHidesWhenStopped:YES];
+    [self.activityIndicatorView setColor:self.model.parentModel.theme.foregroundColor];
     [self.view addSubview:self.activityIndicatorView];
     
     BBWeakify(self);

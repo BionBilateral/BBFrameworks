@@ -16,6 +16,8 @@
 #import "BBMediaViewerPageMovieView.h"
 #import "BBMediaViewerPageMovieModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
+#import "BBMediaViewerTheme.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -50,7 +52,7 @@
     
     [self setActivityIndicatorView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]];
     [self.activityIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.activityIndicatorView setColor:[UIColor lightGrayColor]];
+    [self.activityIndicatorView setColor:self.model.parentModel.theme.foregroundColor];
     [self.activityIndicatorView setHidesWhenStopped:YES];
     [self addSubview:self.activityIndicatorView];
     
