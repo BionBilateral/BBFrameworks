@@ -32,6 +32,8 @@
 
 @property (strong,nonatomic) BBMediaViewerModel *model;
 
+@property (readwrite,assign,nonatomic) BOOL controlsHidden;
+
 - (void)_setControlsHidden:(BOOL)controlsHidden animated:(BOOL)animated;
 - (void)_setBottomToolbarHidden:(BOOL)bottomToolbarHidden animated:(BOOL)animated;
 @end
@@ -118,9 +120,8 @@
       rac_gestureSignal]
      subscribeNext:^(id _) {
          BBStrongify(self);
-         BOOL isHidden = self.navigationBar.alpha == 0.0;
-         
-         [self _setControlsHidden:!isHidden animated:YES];
+         [self setControlsHidden:!self.controlsHidden];
+         [self _setControlsHidden:self.controlsHidden animated:YES];
      }];
 }
 
@@ -186,6 +187,7 @@
 
 - (void)_setControlsHidden:(BOOL)controlsHidden animated:(BOOL)animated; {
     void(^block)(void) = ^{
+        [self.parentViewController setNeedsStatusBarAppearanceUpdate];
         [self.navigationBar setAlpha:controlsHidden ? 0.0 : 1.0];
         [self _setBottomToolbarHidden:controlsHidden animated:NO];
     };

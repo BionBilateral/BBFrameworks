@@ -41,6 +41,12 @@
         return UIStatusBarStyleDefault;
     }
 }
+- (BOOL)prefersStatusBarHidden {
+    return self.contentVC.controlsHidden;
+}
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationFade;
+}
 
 - (BOOL)hidesBottomBarWhenPushed {
     return YES;

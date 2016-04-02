@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBMediaViewerContentViewController : UIViewController
 
+@property (readonly,assign,nonatomic) BOOL controlsHidden;
+
 - (instancetype)initWithModel:(BBMediaViewerModel *)model;
 
 @end
