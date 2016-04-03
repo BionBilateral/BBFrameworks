@@ -142,6 +142,19 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
         }];
     }];
     
+    [[[[[RACSignal combineLatest:@[self.didBecomeActiveSignal,_enabledSignal] reduce:^id(id _, NSNumber *enabled){
+        return enabled;
+    }]
+     filter:^BOOL(NSNumber *value) {
+         return value.boolValue;
+     }]
+     take:1]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         [self play];
+     }];
+    
     [[[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem]
        takeUntil:[self rac_willDeallocSignal]]
