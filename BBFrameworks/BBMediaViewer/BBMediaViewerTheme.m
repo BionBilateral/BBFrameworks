@@ -32,6 +32,8 @@
     if (!(self = [super init]))
         return nil;
     
+    _transitionSnapshotBlurRadius = 0.75;
+    _transitionSnapshotTintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     _backgroundColor = [self.class _defaultBackgroundColor];
     _foregroundColor = [self.class _defaultForegroundColor];
     _tintColor = [self.class _defaultTintColor];

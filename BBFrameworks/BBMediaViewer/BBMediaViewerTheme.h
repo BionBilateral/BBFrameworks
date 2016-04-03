@@ -28,6 +28,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic,nullable) NSString *name;
 
 /**
+ When presented, the media viewer takes a snapshot of the view behind it and blurs it using this blur radius. The value is clamped between 0.0 and 1.0.
+ 
+ The default is 0.75.
+ */
+@property (assign,nonatomic) CGFloat transitionSnapshotBlurRadius;
+/**
+ When presented, the media viewer takes a snapshot of the view behind it and blurs it, then tints the blurred image using this color.
+ 
+ The default is `[UIColor colorWithWhite:1.0 alpha:0.5]`.
+ */
+@property (strong,nonatomic,nullable) UIColor *transitionSnapshotTintColor;
+
+/**
  Set and get the background color, which is used as the background color for all view controllers and the tint color for the blurred background when the transition delegate methods are implemented.
  
  The default is `[UIColor whiteColor]`.

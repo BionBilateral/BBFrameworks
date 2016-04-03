@@ -151,7 +151,13 @@
     BOOL isPresenting = [self.view isEqual:toView];
     
     if (isPresenting) {
-        [self.blurImageView setImage:[[[fromView BB_snapshotImageAfterScreenUpdates:YES] BB_imageByBlurringWithRadius:0.75] BB_imageByTintingWithColor:[self.theme.backgroundColor colorWithAlphaComponent:0.5]]];
+        UIImage *blurImage = [[fromView BB_snapshotImageAfterScreenUpdates:YES] BB_imageByBlurringWithRadius:self.theme.transitionSnapshotBlurRadius];
+        
+        if (self.theme.transitionSnapshotTintColor != nil) {
+            blurImage = [blurImage BB_imageByTintingWithColor:self.theme.transitionSnapshotTintColor];
+        }
+        
+        [self.blurImageView setImage:blurImage];
         
         [containerView addSubview:toView];
         [toView setFrame:containerView.bounds];
