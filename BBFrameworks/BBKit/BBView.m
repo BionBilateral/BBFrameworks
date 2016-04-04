@@ -81,7 +81,7 @@
         return;
     }
     
-    CGFloat borderWidth = self.borderWidth / self.window.screen.scale;
+    CGFloat borderWidth = self.respectScreenScale ? self.borderWidth : self.borderWidth / self.window.screen.scale;
     
     [self.topBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, CGRectGetWidth(self.bounds) - self.borderEdgeInsets.left - self.borderEdgeInsets.right, borderWidth)];
     [self.leftBorderView setFrame:CGRectMake(self.borderEdgeInsets.left, self.borderEdgeInsets.top, borderWidth, CGRectGetHeight(self.bounds) - self.borderEdgeInsets.top - self.borderEdgeInsets.bottom)];
@@ -102,7 +102,7 @@
         return;
     }
     
-    CGFloat borderWidth = self.borderWidth / self.window.screen.backingScaleFactor;
+    CGFloat borderWidth = self.respectScreenScale ? self.borderWidth : self.borderWidth / self.window.screen.backingScaleFactor;
     
     if (self.borderOptions & BBViewBorderOptionsTop) {
         [self.borderColor setFill];
@@ -136,6 +136,20 @@
 }
 #endif
 
+- (void)setRespectScreenScale:(BOOL)respectScreenScale {
+    if (_respectScreenScale == respectScreenScale) {
+        return;
+    }
+    
+    _respectScreenScale = respectScreenScale;
+    
+#if (TARGET_OS_IPHONE)
+    [self setNeedsLayout];
+#else
+    [self setNeedsDisplay:YES];
+#endif
+}
+    
 - (void)setBorderOptions:(BBViewBorderOptions)borderOptions {
     _borderOptions = borderOptions;
     

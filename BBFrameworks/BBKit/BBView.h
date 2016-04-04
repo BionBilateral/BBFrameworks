@@ -71,6 +71,13 @@ typedef NS_OPTIONS(NSInteger, BBViewBorderOptions) {
 #endif
 
 /**
+ If YES, the borderWidth is adjusted based on the screen scale. Meaning, a borderWidth of 1.0 becomes 2.0 on a retina screen.
+ 
+ The default is NO.
+ */
+@property (assign,nonatomic) BOOL respectScreenScale;
+
+/**
  Set and get the border options of the receiver.
  
  @see BBViewBorderOptions
