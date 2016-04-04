@@ -30,6 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)BB_hasAlpha;
 
 /**
+ Returns a resizable image drawn as 1x1 with the provided color.
+ 
+ @param color The color to use when filling the image
+ @return The resizable image
+ */
++ (UIImage *)BB_resizableImageWithColor:(UIColor *)color;
+
+/**
  Creates and returns a UIImage by resizing _image_ to _size_ while maintaining its aspect ratio.
  
  @param image The UIImage to resize

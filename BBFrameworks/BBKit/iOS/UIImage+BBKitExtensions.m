@@ -30,6 +30,19 @@
     return BBKitCGImageHasAlpha(self.CGImage);
 }
 
++ (UIImage *)BB_resizableImageWithColor:(UIColor *)color; {
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), NO, 0);
+    
+    [color setFill];
+    UIRectFill(CGRectMake(0, 0, 1, 1));
+    
+    UIImage *retval = [UIGraphicsGetImageFromCurrentImageContext() resizableImageWithCapInsets:UIEdgeInsetsZero];
+    
+    UIGraphicsEndImageContext();
+    
+    return retval;
+}
+
 + (UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size; {
     CGSize destSize = BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(image.CGImage, size, true);
     CGAffineTransform transform = [image BB_imageTransformForDestinationSize:destSize];

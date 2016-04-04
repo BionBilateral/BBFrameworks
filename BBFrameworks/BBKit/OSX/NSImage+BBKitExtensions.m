@@ -27,6 +27,23 @@
     return BBKitCGImageHasAlpha([self CGImageForProposedRect:NULL context:nil hints:nil]);
 }
 
++ (NSImage *)BB_resizableImageWithColor:(NSColor *)color; {
+    NSParameterAssert(color);
+    
+    NSImage *retval = [[NSImage alloc] initWithSize:NSMakeSize(1, 1)];
+    
+    [retval setResizingMode:NSImageResizingModeTile];
+    
+    [retval lockFocus];
+    
+    [color setFill];
+    NSRectFill(NSMakeRect(0, 0, 1, 1));
+    
+    [retval unlockFocus];
+    
+    return retval;
+}
+
 + (NSImage *)BB_imageByResizingImage:(NSImage *)image toSize:(NSSize)size; {
     CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSize([image CGImageForProposedRect:NULL context:nil hints:nil], NSSizeToCGSize(size));
     NSImage *retval = [[NSImage alloc] initWithCGImage:imageRef size:NSZeroSize];
