@@ -116,6 +116,15 @@
     return [self.dataSource mediaViewerViewController:self mediaAtIndex:index];
 }
 
+- (id<BBMediaViewerMedia>)initiallySelectedMediaForMediaViewerModel:(BBMediaViewerModel *)model {
+    if ([self.delegate respondsToSelector:@selector(initiallySelectedMediaForMediaViewerViewController:)]) {
+        return [self.delegate initiallySelectedMediaForMediaViewerViewController:self];
+    }
+    else {
+        return [self.model mediaAtIndex:0];
+    }
+}
+
 - (void)mediaViewerModel:(BBMediaViewerModel *)model didSelectMedia:(id<BBMediaViewerMedia>)media {
     if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:didSelectMedia:)]) {
         [self.delegate mediaViewerViewController:self didSelectMedia:media];

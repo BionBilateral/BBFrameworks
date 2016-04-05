@@ -57,7 +57,7 @@
     
     [self setPageViewController:[[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey: @8.0}]];
     
-    id<BBMediaViewerMedia> firstMedia = [self.model mediaAtIndex:0];
+    id<BBMediaViewerMedia> firstMedia = [self.model.delegate initiallySelectedMediaForMediaViewerModel:self.model];
     BBMediaViewerPageViewController *firstPageVC = [[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model];
     
     [self.model selectPageModel:firstPageVC.model notifyDelegate:NO];

@@ -40,6 +40,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (UIStatusBarStyle)preferredStatusBarStyleForMediaViewerViewController:(BBMediaViewerViewController *)viewController;
 /**
+ Return the initially selected media for the media viewer. The returned media will be the first one displayed. If the delegate does not implement this method, the media at index 0 will be used.
+ 
+ @param viewController The media viewer that sent the message
+ @return The initially selected media
+ */
+- (id<BBMediaViewerMedia>)initiallySelectedMediaForMediaViewerViewController:(BBMediaViewerViewController *)viewController;
+/**
  Called when the user swipes left or right to display another media object.
  
  @param viewController The media viewer that sent the message
