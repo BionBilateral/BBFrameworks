@@ -32,7 +32,7 @@
 @end
 
 @implementation BBMediaViewerViewController
-
+#pragma mark *** Subclass Overrides ***
 - (UIStatusBarStyle)preferredStatusBarStyle {
     if ([self.delegate respondsToSelector:@selector(preferredStatusBarStyleForMediaViewerViewController:)]) {
         return [self.delegate preferredStatusBarStyleForMediaViewerViewController:self];
@@ -108,14 +108,14 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
-
+#pragma mark BBMediaViewerModelDataSource
 - (NSInteger)numberOfMediaInMediaViewerModel:(BBMediaViewerModel *)model {
     return [self.dataSource numberOfMediaInMediaViewerViewController:self];
 }
 - (id<BBMediaViewerMedia>)mediaViewerModel:(BBMediaViewerModel *)model mediaAtIndex:(NSInteger)index {
     return [self.dataSource mediaViewerViewController:self mediaAtIndex:index];
 }
-
+#pragma mark BBMediaViewerModelDelegate
 - (id<BBMediaViewerMedia>)initiallySelectedMediaForMediaViewerModel:(BBMediaViewerModel *)model {
     if ([self.delegate respondsToSelector:@selector(initiallySelectedMediaForMediaViewerViewController:)]) {
         return [self.delegate initiallySelectedMediaForMediaViewerViewController:self];
@@ -142,14 +142,14 @@
         [self.delegate mediaViewerViewController:self downloadMedia:media completion:completion];
     }
 }
-
+#pragma mark UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     return self;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     return self;
 }
-
+#pragma mark UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 0.4;
 }
@@ -268,7 +268,11 @@
         [transitionContext completeTransition:YES];
     }
 }
-
+#pragma mark *** Public Methods ***
+- (void)reloadData; {
+    [self.contentVC reloadData];
+}
+#pragma mark Properties
 @dynamic theme;
 - (BBMediaViewerTheme *)theme {
     return self.model.theme;

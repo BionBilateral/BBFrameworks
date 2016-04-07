@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithModel:(BBMediaViewerModel *)model;
 
+- (void)reloadData;
+
 @end
 
 NS_ASSUME_NONNULL_END

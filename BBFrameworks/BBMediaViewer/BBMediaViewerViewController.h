@@ -58,6 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) BBMediaViewerTheme *theme;
 
+/**
+ Causes the receiver to reload data from its data source. This will cause the `initiallySelectedMediaForMediaViewerViewController:` method to be called again, if the delegate implements it.
+ */
+- (void)reloadData;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -39,7 +39,7 @@
 @end
 
 @implementation BBMediaViewerContentViewController
-
+#pragma mark *** Subclass Overrides ***
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -127,11 +127,11 @@
          [self _setControlsHidden:self.controlsHidden animated:YES];
      }];
 }
-
+#pragma mark UIBarPositioningDelegate
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
     return UIBarPositionTopAttached;
 }
-
+#pragma mark UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return (!CGRectContainsPoint(self.navigationBar.bounds, [touch locationInView:self.navigationBar]) &&
             !CGRectContainsPoint(self.toolbar.bounds, [touch locationInView:self.toolbar]));
@@ -140,7 +140,7 @@
     return ([otherGestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
             [(UITapGestureRecognizer *)otherGestureRecognizer numberOfTapsRequired] == 2);
 }
-
+#pragma mark UIPageViewControllerDataSource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     BBMediaViewerPageViewController *pageVC = (BBMediaViewerPageViewController *)viewController;
     NSInteger index = [self.model indexOfMedia:pageVC.model.media];
@@ -161,7 +161,7 @@
     
     return [[BBMediaViewerPageViewController alloc] initWithMedia:[self.model mediaAtIndex:index] parentModel:self.model];
 }
-
+#pragma mark UIPageViewControllerDelegate
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
     [self _setBottomToolbarHidden:YES animated:YES];
 }
@@ -176,7 +176,7 @@
         [self.toolbar setContentView:pageVC.bottomToolbarContentView];
     }
 }
-
+#pragma mark *** Public Methods ***
 - (instancetype)initWithModel:(BBMediaViewerModel *)model; {
     if (!(self = [super init]))
         return nil;
@@ -188,6 +188,17 @@
     return self;
 }
 
+- (void)reloadData; {
+    id<BBMediaViewerMedia> firstMedia = [self.model.delegate initiallySelectedMediaForMediaViewerModel:self.model];
+    BBMediaViewerPageViewController *firstPageVC = [[BBMediaViewerPageViewController alloc] initWithMedia:firstMedia parentModel:self.model];
+    
+    [self.model selectPageModel:firstPageVC.model notifyDelegate:YES];
+    
+    [self.pageViewController setViewControllers:@[firstPageVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    [self.toolbar setContentView:firstPageVC.bottomToolbarContentView];
+}
+#pragma mark *** Private Methods ***
 - (void)_setControlsHidden:(BOOL)controlsHidden animated:(BOOL)animated; {
     void(^block)(void) = ^{
         [self.parentViewController setNeedsStatusBarAppearanceUpdate];
