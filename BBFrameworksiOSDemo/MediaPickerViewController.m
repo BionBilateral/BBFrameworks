@@ -60,6 +60,33 @@
 
 @end
 
+@interface AssetBackgroundView : UIView
+@property (strong,nonatomic) UILabel *label;
+@end
+
+@implementation AssetBackgroundView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setLabel:[[UILabel alloc] initWithFrame:CGRectZero]];
+    [self.label setFont:[UIFont boldSystemFontOfSize:30.0]];
+    [self.label setText:@"You don't have any media. Go add some!"];
+    [self.label setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:self.label];
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.label setFrame:self.bounds];
+}
+
+@end
+
 @interface MediaPickerViewController () <BBMediaPickerViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak,nonatomic) IBOutlet UIButton *systemButton;
 @property (weak,nonatomic) IBOutlet UIButton *customButton;
@@ -138,6 +165,7 @@
     BBMediaPickerTheme *theme = [[BBMediaPickerTheme alloc] init];
     
     [theme setAssetCollectionCellSubtitleColor:[UIColor orangeColor]];
+    [theme setAssetBackgroundViewClass:[AssetBackgroundView class]];
     
     [viewController setTheme:theme];
     

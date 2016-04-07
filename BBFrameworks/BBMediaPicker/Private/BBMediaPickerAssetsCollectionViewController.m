@@ -40,7 +40,10 @@
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellWithReuseIdentifier:NSStringFromClass([BBMediaPickerAssetCollectionViewCell class])];
     
     BBWeakify(self);
-    [[RACObserve(self.model, selectedAssetCollectionModel.countOfAssetModels)
+    
+    RACSignal *countOfAssetModelsForSelectedAssetCollectionModel = RACObserve(self.model, selectedAssetCollectionModel.countOfAssetModels);
+    
+    [[countOfAssetModelsForSelectedAssetCollectionModel
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
@@ -75,6 +78,24 @@
      subscribeNext:^(id _) {
          BBStrongify(self);
          [(UICollectionView *)self.collectionView setBackgroundColor:self.model.theme.assetBackgroundColor];
+         
+         if (self.model.theme.assetBackgroundViewClass == Nil) {
+             if (self.collectionView.backgroundView != nil) {
+                 [self.collectionView setBackgroundView:nil];
+             }
+         }
+         else {
+             UIView *backgroundView = [[self.model.theme.assetBackgroundViewClass alloc] initWithFrame:CGRectZero];
+             
+             RAC(backgroundView,hidden) =
+             [[countOfAssetModelsForSelectedAssetCollectionModel
+               map:^id(NSNumber *value) {
+                   return @(value.unsignedIntegerValue > 0);
+               }]
+              deliverOnMainThread];
+             
+             [self.collectionView setBackgroundView:backgroundView];
+         }
      }];
 }
 

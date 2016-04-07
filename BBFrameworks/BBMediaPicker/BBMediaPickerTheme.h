@@ -195,6 +195,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
 /**
+ Set and get the asset background view class, which is used as the `backgroundView` of the asset collection view and is only visible when the user has no assets in the selected asset collection. The Class should be a subclass of UIView.
+ 
+ The default is Nil.
+ */
+@property (strong,nonatomic,nullable) Class assetBackgroundViewClass;
+/**
  Set and get the asset minimum interitem spacing, which is used to set the minimumInteritemSpacing on the collection view layout of the collection view that displays assets.
  
  The default is 1.0.
