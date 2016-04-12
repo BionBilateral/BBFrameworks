@@ -44,6 +44,44 @@ typedef NS_ENUM(NSInteger, BBKeychainSecurityClass) {
 };
 
 /**
+ Enum describing the possible values that are used for the kSecAttrAccessible key, which controls when the keychain values can be accessed by the client. The default is BBKeychainAttributeAccessibleAfterFirstUnlock, which allows items to be accessed in the background after the user has unlocked their device.
+ */
+typedef NS_ENUM(NSInteger, BBKeychainAttributeAccessible) {
+    /**
+     Only allow access when the device is unlocked and client is in the foreground.
+     */
+    BBKeychainAttributeAccessibleWhenUnlocked,
+    /**
+     Allow access after the user has unlocked their device the first time between restarts. This is the most appropriate value for the majority of use cases and is used as the default.
+     */
+    BBKeychainAttributeAccessibleAfterFirstUnlock,
+    /**
+     Always allow access.
+     */
+    BBKeychainAttributeAccessibleAlways,
+    /**
+     Only allow access if the user has locked their device using a passcode. Values using this setting will not be transferred across devices using iCloud sync.
+     */
+    BBKeychainAttributeAccessibleWhenPasscodeSetThisDeviceOnly,
+    /**
+     See BBKeychainAttributeAccessibleWhenUnlocked. Values using this setting will not be transferred across devices using iCloud sync.
+     */
+    BBKeychainAttributeAccessibleWhenUnlockedThisDeviceOnly,
+    /**
+     See BBKeychainAttributeAccessibleAfterFirstUnlock. Values using this setting will not be transferred across devices using iCloud sync.
+     */
+    BBKeychainAttributeAccessibleAfterFirstUnlockThisDeviceOnly,
+    /**
+     See BBKeychainAttributeAccessibleAlways. Values using this setting will not be transferred across devices using iCloud sync.
+     */
+    BBKeychainAttributeAccessibleAlwaysThisDeviceOnly,
+    /**
+     Convenience value for the default, which is currently BBKeychainAttributeAccessibleAfterFirstUnlock.
+     */
+    BBKeychainAttributeAccessibleDefault = BBKeychainAttributeAccessibleAfterFirstUnlock
+};
+
+/**
  Error domain for errors returned by BBKeychain methods.
  */
 extern NSString *const BBKeychainErrorDomain;
@@ -118,7 +156,7 @@ extern NSString *const BBKeychainAccountKeyWhere;
  */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account error:(NSError **)error;
 /**
- Attempts to set the provided password for the provided service and account, returning a boolean to indicate success or failure.
+ Calls `[self setPassword:forService:account:keychainSecurityClass:keychainAttributeAccessible:error:]`, passing password, service, account, keychainSecurityClass, BBKeychainAttributeAccessibleDefault, and error respectively.
  
  @param password The password to set
  @param service The service for which to set password
@@ -128,6 +166,18 @@ extern NSString *const BBKeychainAccountKeyWhere;
  @return YES if the password was set, otherwise NO
  */
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error;
+/**
+ Attempts to set the provided password for the provided service and account, returning a boolean to indicate success or failure.
+ 
+ @param password The password to set
+ @param service The service for which to set password
+ @param account The account for which to set password
+ @param keychainSecurityClass The security class for which to set the password
+ @param keychainAttributeAccessible The accessible attribute to assign to the password
+ @param error If the call fails, an error providing information about the reason for failure
+ @return YES if the password was set, otherwise NO
+ */
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass keychainAttributeAccessible:(BBKeychainAttributeAccessible)keychainAttributeAccessible error:(NSError **)error;
 
 /**
  Calls [self deletePasswordForService:account:keychainSecurityClass:error:] passing service, account, BBKeychainSecurityClassGenericPassword, and error respectively.

@@ -40,6 +40,7 @@ static NSString *BBKeychainSecClassForKeychainSecurityClass(BBKeychainSecurityCl
         case BBKeychainSecurityClassKey:
             return (__bridge NSString *)kSecClassKey;
         default:
+            NSCAssert(NO, @"unknown keychain security class %@",@(keychainSecurityClass));
             return nil;
     }
 }
@@ -62,6 +63,28 @@ static NSDictionary *BBKeychainQueryDictionaryForServiceAndAccount(NSString *ser
     }
     
     return [query copy];
+}
+
+static NSString *BBKeychainSecAttrAccessibleForKeychainAttributeAccessible(BBKeychainAttributeAccessible keychainAttributeAccessible) {
+    switch (keychainAttributeAccessible) {
+        case BBKeychainAttributeAccessibleAlways:
+            return (__bridge NSString *)kSecAttrAccessibleAlways;
+        case BBKeychainAttributeAccessibleWhenUnlocked:
+            return (__bridge NSString *)kSecAttrAccessibleWhenUnlocked;
+        case BBKeychainAttributeAccessibleAfterFirstUnlock:
+            return (__bridge NSString *)kSecAttrAccessibleAfterFirstUnlock;
+        case BBKeychainAttributeAccessibleAlwaysThisDeviceOnly:
+            return (__bridge NSString *)kSecAttrAccessibleAlwaysThisDeviceOnly;
+        case BBKeychainAttributeAccessibleWhenUnlockedThisDeviceOnly:
+            return (__bridge NSString *)kSecAttrAccessibleWhenUnlockedThisDeviceOnly;
+        case BBKeychainAttributeAccessibleWhenPasscodeSetThisDeviceOnly:
+            return (__bridge NSString *)kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly;
+        case BBKeychainAttributeAccessibleAfterFirstUnlockThisDeviceOnly:
+            return (__bridge NSString *)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly;
+        default:
+            NSCAssert(NO, @"unknown keychain attribute accessible %@",@(keychainAttributeAccessible));
+            return nil;
+    }
 }
 
 static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
@@ -163,11 +186,16 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     return [self setPassword:password forService:service account:account keychainSecurityClass:BBKeychainSecurityClassGenericPassword error:error];
 }
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass error:(NSError **)error; {
+    return [self setPassword:password forService:service account:account keychainSecurityClass:keychainSecurityClass keychainAttributeAccessible:BBKeychainAttributeAccessibleDefault error:error];
+}
++ (BOOL)setPassword:(NSString *)password forService:(NSString *)service account:(NSString *)account keychainSecurityClass:(BBKeychainSecurityClass)keychainSecurityClass keychainAttributeAccessible:(BBKeychainAttributeAccessible)keychainAttributeAccessible error:(NSError **)error; {
     NSParameterAssert(password);
     NSParameterAssert(service);
     NSParameterAssert(account);
     
     NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, keychainSecurityClass) mutableCopy];
+    
+    [query setObject:BBKeychainSecAttrAccessibleForKeychainAttributeAccessible(keychainAttributeAccessible) forKey:(__bridge id)kSecAttrAccessible];
     
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
     
