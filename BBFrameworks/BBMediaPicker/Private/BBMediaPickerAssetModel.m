@@ -49,6 +49,10 @@
 - (BBMediaPickerAssetMediaType)mediaAssetType {
     return self.mediaType;
 }
+    
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p> identifier=%@",NSStringFromClass(self.class),self,self.identifier];
+}
 
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
 - (instancetype)initWithAsset:(PHAsset *)asset assetCollectionModel:(nullable BBMediaPickerAssetCollectionModel *)assetCollectionModel; {
