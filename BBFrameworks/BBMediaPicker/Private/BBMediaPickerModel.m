@@ -408,7 +408,7 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     NSMutableArray *retval = [[NSMutableArray alloc] init];
     
     [[PHAsset fetchAssetsWithLocalIdentifiers:self.selectedAssetIdentifiers.array options:options] enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [retval addObject:obj];
+        [retval insertObject:obj atIndex:0];
     }];
     
     return [retval BB_map:^id _Nullable(PHAsset * _Nonnull object, NSInteger index) {
