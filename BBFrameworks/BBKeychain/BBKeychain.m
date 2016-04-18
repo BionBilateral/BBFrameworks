@@ -195,14 +195,13 @@ static NSError *BBKeychainErrorForOSStatus(OSStatus status) {
     
     NSMutableDictionary *query = [BBKeychainQueryDictionaryForServiceAndAccount(service, account, keychainSecurityClass) mutableCopy];
     
-    [query setObject:BBKeychainSecAttrAccessibleForKeychainAttributeAccessible(keychainAttributeAccessible) forKey:(__bridge id)kSecAttrAccessible];
-    
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
     
     if (status == errSecSuccess) {
-        status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)@{(__bridge id)kSecValueData: [password dataUsingEncoding:NSUTF8StringEncoding]});
+        status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)@{(__bridge id)kSecAttrAccessible: BBKeychainSecAttrAccessibleForKeychainAttributeAccessible(keychainAttributeAccessible), (__bridge id)kSecValueData: [password dataUsingEncoding:NSUTF8StringEncoding]});
     }
     else if (status == errSecItemNotFound) {
+        [query setObject:BBKeychainSecAttrAccessibleForKeychainAttributeAccessible(keychainAttributeAccessible) forKey:(__bridge id)kSecAttrAccessible];
         [query setObject:[password dataUsingEncoding:NSUTF8StringEncoding] forKey:(__bridge id)kSecValueData];
         
         status = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
