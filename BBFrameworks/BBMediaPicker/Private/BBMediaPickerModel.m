@@ -401,15 +401,18 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
 }
 - (NSArray<BBMediaPickerAssetModel *> *)selectedAssetModels {
 #if (BB_MEDIA_PICKER_USE_PHOTOS_FRAMEWORK)
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    
-    [options setWantsIncrementalChangeDetails:NO];
-    
     NSMutableArray *retval = [[NSMutableArray alloc] init];
     
-    [[PHAsset fetchAssetsWithLocalIdentifiers:self.selectedAssetIdentifiers.array options:options] enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [retval insertObject:obj atIndex:0];
-    }];
+    for (NSString *assetIdentifier in self.selectedAssetIdentifiers) {
+        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+        
+        [options setWantsIncrementalChangeDetails:NO];
+        [options setFetchLimit:1];
+        
+        PHAsset *asset = [PHAsset fetchAssetsWithLocalIdentifiers:@[assetIdentifier] options:options].firstObject;
+        
+        [retval addObject:asset];
+    }
     
     return [retval BB_map:^id _Nullable(PHAsset * _Nonnull object, NSInteger index) {
         return [[BBMediaPickerAssetModel alloc] initWithAsset:object assetCollectionModel:nil];
