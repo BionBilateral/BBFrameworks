@@ -118,7 +118,7 @@
 - (NSNumber *)kind {
     return (__bridge_transfer NSNumber *)ABRecordCopyValue(self.person, kABPersonKindProperty);
 }
-- (NSArray *)telephoneNumbers {
+- (NSArray *)phoneNumbers {
     ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonPhoneProperty);
     NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
     
