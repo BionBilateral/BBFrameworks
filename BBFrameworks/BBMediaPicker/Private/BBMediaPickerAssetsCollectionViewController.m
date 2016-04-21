@@ -28,6 +28,8 @@
 
 @interface BBMediaPickerAssetsCollectionViewController ()
 @property (strong,nonatomic) BBMediaPickerModel *model;
+
+@property (assign,nonatomic) BOOL hasPerformedSetup;
 @end
 
 @implementation BBMediaPickerAssetsCollectionViewController
@@ -97,6 +99,24 @@
              [self.collectionView setBackgroundView:backgroundView];
          }
      }];
+}
+- (void)viewWillLayoutSubviews {
+    if (!self.hasPerformedSetup) {
+        [self setHasPerformedSetup:YES];
+        
+        BBWeakify(self);
+        [[RACObserve(self.model, selectedAssetCollectionModel.countOfAssetModels)
+          deliverOnMainThread]
+         subscribeNext:^(id _) {
+             BBStrongify(self);
+             [self.collectionView reloadData];
+             
+             // scroll to the last item
+             if (self.model.selectedAssetCollectionModel.countOfAssetModels > 0) {
+                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+             }
+         }];
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
