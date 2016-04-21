@@ -114,6 +114,10 @@
     [_selectedOverlayView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_selectedOverlayView setAlpha:self.isSelected ? 1.0 : 0.0];
     
+    if ([_selectedOverlayView respondsToSelector:@selector(setTheme:)]) {
+        [_selectedOverlayView setTheme:self.model.assetCollectionModel.model.theme];
+    }
+    
     if ([_selectedOverlayView respondsToSelector:@selector(setAllowsMultipleSelection:)]) {
         [_selectedOverlayView setAllowsMultipleSelection:self.model.assetCollectionModel.model.allowsMultipleSelection];
     }
