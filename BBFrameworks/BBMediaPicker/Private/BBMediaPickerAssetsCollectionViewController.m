@@ -45,20 +45,8 @@
     
     RACSignal *countOfAssetModelsForSelectedAssetCollectionModel = RACObserve(self.model, selectedAssetCollectionModel.countOfAssetModels);
     
-    [[countOfAssetModelsForSelectedAssetCollectionModel
-     deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id _) {
-         BBStrongify(self);
-         [self.collectionView reloadData];
-         
-         // scroll to the last item
-         if (self.model.selectedAssetCollectionModel.countOfAssetModels > 0) {
-             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.model.selectedAssetCollectionModel.countOfAssetModels - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-         }
-     }];
-    
     [[RACObserve(self.model, selectedAssetIdentifiers)
-     deliverOn:[RACScheduler mainThreadScheduler]]
+     deliverOnMainThread]
      subscribeNext:^(id _) {
          BBStrongify(self);
          for (NSIndexPath *indexPath in self.collectionView.indexPathsForVisibleItems) {
@@ -76,7 +64,7 @@
      }];
     
     [[RACObserve(self.model, theme)
-     deliverOn:[RACScheduler mainThreadScheduler]]
+     deliverOnMainThread]
      subscribeNext:^(id _) {
          BBStrongify(self);
          [(UICollectionView *)self.collectionView setBackgroundColor:self.model.theme.assetBackgroundColor];
