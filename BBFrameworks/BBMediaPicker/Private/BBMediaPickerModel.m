@@ -218,7 +218,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         
         retval = NO;
         
-        NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedImages userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_IMAGES", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ images.", @"media picker error code maximum selected images"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedImages) numberStyle:NSNumberFormatterDecimalStyle]]}];
+        NSString *format = self.maximumSelectedImages == 1 ? NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_IMAGES_SINGLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ image.", @"media picker error code maximum selected images single") : NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_IMAGES_MULTIPLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ images.", @"media picker error code maximum selected images multiple");
+        NSString *title = [NSString stringWithFormat:format,[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedImages) numberStyle:NSNumberFormatterDecimalStyle]];
+        NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedImages userInfo:@{NSLocalizedDescriptionKey: title}];
         
         [self.delegate mediaPickerModel:self didError:error];
     }
@@ -233,7 +235,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         
         retval = NO;
         
-        NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedVideos userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_VIDEOS", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ videos.", @"media picker error code maximum selected videos"),[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedVideos) numberStyle:NSNumberFormatterDecimalStyle]]}];
+        NSString *format = self.maximumSelectedVideos == 1 ? NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_VIDEOS_SINGLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ video.", @"media picker error code maximum selected videos single") : NSLocalizedStringWithDefaultValue(@"MEDIA_PICKER_ERROR_CODE_MAXIMUM_SELECTED_VIDEOS_MULTIPLE", @"MediaPicker", BBFrameworksResourcesBundle(), @"You cannot select more than %@ videos.", @"media picker error code maximum selected videos multiple");
+        NSString *title = [NSString stringWithFormat:format,[NSNumberFormatter localizedStringFromNumber:@(self.maximumSelectedVideos) numberStyle:NSNumberFormatterDecimalStyle]];
+        NSError *error = [NSError errorWithDomain:BBMediaPickerErrorDomain code:BBMediaPickerErrorCodeMaximumSelectedVideos userInfo:@{NSLocalizedDescriptionKey: title}];
         
         [self.delegate mediaPickerModel:self didError:error];
     }
