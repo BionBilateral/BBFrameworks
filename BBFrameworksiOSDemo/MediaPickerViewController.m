@@ -21,6 +21,7 @@
 #import <BBFrameworks/BBKitColorMacros.h>
 
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <objc/runtime.h>
 
 @interface MediaPickerDoneButton : UIButton
 
@@ -127,6 +128,8 @@
 - (void)mediaPickerViewController:(BBMediaPickerViewController *)viewController didFinishPickingMedia:(NSArray<id<BBMediaPickerMedia>> *)media {
     BBLogObject(media);
     
+    [self.class setSelectedMediaPickerMedia:media];
+    
     if (viewController.presentingViewController) {
         [viewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
@@ -143,6 +146,15 @@
     else {
         [viewController.navigationController popToViewController:self animated:YES];
     }
+}
+#pragma mark *** Public Methods ***
+static void *selectedMediaPickerMediaKey = &selectedMediaPickerMediaKey;
+
++ (NSArray<id<BBMediaPickerMedia>> *)selectedMediaPickerMedia; {
+    return objc_getAssociatedObject(self, selectedMediaPickerMediaKey);
+}
++ (void)setSelectedMediaPickerMedia:(NSArray<id<BBMediaPickerMedia>> *)selectedMediaPickerMedia; {
+    objc_setAssociatedObject(self, selectedMediaPickerMediaKey, selectedMediaPickerMedia, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 #pragma mark *** Private Methods ***
 #pragma mark Actions

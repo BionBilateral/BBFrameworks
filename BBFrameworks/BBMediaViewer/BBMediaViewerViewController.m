@@ -142,6 +142,19 @@
         [self.delegate mediaViewerViewController:self downloadMedia:media completion:completion];
     }
 }
+
+- (BOOL)mediaViewerModel:(BBMediaViewerModel *)model shouldRequestAssetForMedia:(id<BBMediaViewerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:shouldRequestAssetForMedia:)]) {
+        return [self.delegate mediaViewerViewController:self shouldRequestAssetForMedia:media];
+    }
+    return NO;
+}
+- (AVAsset *)mediaViewerModel:(BBMediaViewerModel *)model assetForMedia:(id<BBMediaViewerMedia>)media {
+    return [self.delegate mediaViewerViewController:self assetForMedia:media];
+}
+- (void)mediaViewerModel:(BBMediaViewerModel *)model createAssetForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerCreateAssetCompletionBlock)completion {
+    [self.delegate mediaViewerViewController:self createAssetForMedia:media completion:completion];
+}
 #pragma mark UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     return self;

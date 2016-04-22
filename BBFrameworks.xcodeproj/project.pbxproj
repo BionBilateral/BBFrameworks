@@ -18,6 +18,7 @@
 		07148CAE1BC59BC300539136 /* CIImage+BBKitExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07148CAC1BC59BC300539136 /* CIImage+BBKitExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07148CAF1BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
 		07148CB01BC59BC300539136 /* CIImage+BBKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07148CAD1BC59BC300539136 /* CIImage+BBKitExtensions.m */; };
+		0718FAAC1CCAAAD70007D9ED /* BBMediaPickerMedia.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 799B96151B69BA5B0010E1CD /* BBMediaPickerMedia.h */; };
 		072800001B433E3400D68D05 /* BBAddressBook.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFB1B433E2C00D68D05 /* BBAddressBook.h */; };
 		072800011B433E3500D68D05 /* BBAddressBookManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0728FFFC1B433E2C00D68D05 /* BBAddressBookManager.h */; };
 		0728FFFE1B433E2C00D68D05 /* BBAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0728FFFD1B433E2C00D68D05 /* BBAddressBookManager.m */; };
@@ -744,6 +745,7 @@
 				7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */,
 				07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */,
 				79CAB9961C838CD20044398A /* BBMediaViewerTheme.h in CopyFiles */,
+				0718FAAC1CCAAAD70007D9ED /* BBMediaPickerMedia.h in CopyFiles */,
 				79CAB9951C838CC50044398A /* BBMediaViewerViewController.h in CopyFiles */,
 				792A8DDF1C82DA040019B5C6 /* BBProgressNavigationBar.h in CopyFiles */,
 				792A8DDE1C82C3720019B5C6 /* BBWebKitTheme.h in CopyFiles */,

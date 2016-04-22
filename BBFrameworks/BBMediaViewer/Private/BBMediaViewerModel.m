@@ -110,6 +110,16 @@
     [self.delegate mediaViewerModel:self downloadMedia:media completion:completion];
 }
 
+- (BOOL)shouldRequestAssetForMedia:(id<BBMediaViewerMedia>)media; {
+    return [self.delegate mediaViewerModel:self shouldRequestAssetForMedia:media];
+}
+- (AVAsset *)assetForMedia:(id<BBMediaViewerMedia>)media; {
+    return [self.delegate mediaViewerModel:self assetForMedia:media];
+}
+- (void)createAssetForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerCreateAssetCompletionBlock)completion; {
+    [self.delegate mediaViewerModel:self createAssetForMedia:media completion:completion];
+}
+
 - (void)selectPageModel:(BBMediaViewerPageModel *)pageModel; {
     [self selectPageModel:pageModel notifyDelegate:YES];
 }

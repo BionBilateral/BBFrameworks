@@ -72,6 +72,31 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
 
 /**
+ Called to determine whether the media viewer should request an AVAsset for the movie media. If the delegate does not implement this method or returns NO, the subsequent methods are not called.
+ 
+ @param viewController The media viewer that sent the message
+ @param media The media to examine
+ @return YES if the delegate will provide an AVAsset for the media, otherwise NO
+ */
+- (BOOL)mediaViewerViewController:(BBMediaViewerViewController *)viewController shouldRequestAssetForMedia:(id<BBMediaViewerMedia>)media;
+/**
+ Called if `mediaViewerViewController:shouldRequestAssetForMedia:` is implemented and returns YES. The delegate should return an AVAsset instance representing the media or nil if the AVAsset is not yet available. If the delegate returns nil, `mediaViewerViewController:createAssetForMedia:completion:` will be called.
+ 
+ @param viewController The media viewer that sent the message
+ @param media The media for which to return an AVAsset
+ @return The AVAsset representing media or nil
+ */
+- (nullable AVAsset *)mediaViewerViewController:(BBMediaViewerViewController *)viewController assetForMedia:(id<BBMediaViewerMedia>)media;
+/**
+ Called if `mediaViewerViewController:assetForMedia:` returns nil. The delegate should create the AVAsset and invoke the completion block when finished.
+ 
+ @param viewController The media viewer that sent the message
+ @param media The media for which to create an AVAsset
+ @param completion The completion block to invoke once the AVAsset has been created
+ */
+- (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController createAssetForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerCreateAssetCompletionBlock)completion;
+
+/**
  Called when the receiver is presented or dismissed modally to determine the frame from which to zoom to or from. The delegate should return a frame either in screen coordinates and leave `sourceView` nil, or set `sourceView` appropriately and return a frame in its coordinate space.
  
  @param viewController The media viewer that sent the message

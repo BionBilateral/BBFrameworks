@@ -28,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURL *)mediaViewerModel:(BBMediaViewerModel *)model fileURLForMedia:(id<BBMediaViewerMedia>)media;
 - (void)mediaViewerModel:(BBMediaViewerModel *)model downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
+
+- (BOOL)mediaViewerModel:(BBMediaViewerModel *)model shouldRequestAssetForMedia:(id<BBMediaViewerMedia>)media;
+- (nullable AVAsset *)mediaViewerModel:(BBMediaViewerModel *)model assetForMedia:(id<BBMediaViewerMedia>)media;
+- (void)mediaViewerModel:(BBMediaViewerModel *)model createAssetForMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerCreateAssetCompletionBlock)completion;
 @end
 
 NS_ASSUME_NONNULL_END

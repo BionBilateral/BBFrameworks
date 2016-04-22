@@ -17,6 +17,7 @@
 #define __BB_MEDIA_VIEWER_DEFINES__
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVAsset.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param error Optionally, an error describing the reason the download failed
  */
 typedef void(^BBMediaViewerDownloadCompletionBlock)(BOOL success, NSError * _Nullable error);
+/**
+ Typedef for a block that is invoked after an AVAsset for a piece of media has been created.
+ 
+ @param asset The asset or nil
+ @param error The error or nil
+ */
+typedef void(^BBMediaViewerCreateAssetCompletionBlock)(AVAsset * _Nullable asset, NSError * _Nullable error);
 
 NS_ASSUME_NONNULL_END
 

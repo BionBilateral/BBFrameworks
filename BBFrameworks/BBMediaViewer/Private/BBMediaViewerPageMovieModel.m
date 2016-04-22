@@ -15,6 +15,9 @@
 
 #import "BBMediaViewerPageMovieModel.h"
 #import "BBFrameworksMacros.h"
+#import "BBMediaViewerModel.h"
+#import "BBFoundationFunctions.h"
+#import "UIAlertController+BBKitExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -47,10 +50,36 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
     if (!(self = [super initWithMedia:media parentModel:parentModel]))
         return nil;
     
-    _player = [AVPlayer playerWithURL:self.URL];
+    _player = [[AVPlayer alloc] init];
     [_player setActionAtItemEnd:AVPlayerActionAtItemEndPause];
     
     BBWeakify(self);
+    
+    if ([self.parentModel shouldRequestAssetForMedia:self.media]) {
+        AVAsset *asset = [self.parentModel assetForMedia:self.media];
+        
+        if (asset == nil) {
+            [self.parentModel createAssetForMedia:self.media completion:^(AVAsset * _Nullable asset, NSError * _Nullable error) {
+                BBStrongify(self);
+                BBDispatchMainAsync(^{
+                    if (asset == nil) {
+                        if (error != nil) {
+                            [UIAlertController BB_presentAlertControllerWithError:error];
+                        }
+                    }
+                    else {
+                        [self.player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
+                    }
+                });
+            }];
+        }
+        else {
+            [_player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
+        }
+    }
+    else {
+        [_player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:self.URL]];
+    }
     
     _enabledSignal =
     [RACSignal combineLatest:@[RACObserve(self.player, status),RACObserve(self.player.currentItem, duration)] reduce:^id(NSNumber *status, NSValue *duration){
