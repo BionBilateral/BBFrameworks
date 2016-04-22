@@ -274,6 +274,7 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
         CMTimeCompare(self.player.currentTime, self.player.currentItem.duration) >= 0) {
         
         [self setCurrentPlaybackTime:0.0];
+        [self setCurrentPlaybackRate:0.0];
     }
 }
 
