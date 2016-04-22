@@ -240,7 +240,7 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
     CMTime time = self.player.currentItem.duration;
     
     if (CMTIME_IS_NUMERIC(time)) {
-        return ceil(CMTimeGetSeconds(time));
+        return floor(CMTimeGetSeconds(time));
     }
     else {
         return NAN;
