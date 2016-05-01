@@ -53,4 +53,10 @@
     return retval;
 }
 
+- (NSURL *)BB_documentDirectoryURL; {
+    NSURL *retval = [self URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].firstObject;
+    
+    return retval;
+}
+
 @end

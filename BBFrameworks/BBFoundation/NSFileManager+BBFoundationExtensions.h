@@ -34,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
  @return The caches NSURL instance
  */
 - (NSURL *)BB_cachesDirectoryURL;
+/**
+ Returns the NSURL instance representing the document directory.
+ 
+ @return The document NSURL instance
+ */
+- (NSURL *)BB_documentDirectoryURL;
 
 @end
 
