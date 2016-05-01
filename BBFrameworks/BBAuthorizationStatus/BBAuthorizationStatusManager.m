@@ -48,7 +48,7 @@
         }
 #endif
         else {
-            BBDispatchMainSyncSafe(^{
+            BBDispatchMainAsync(^{
                 self.locationCompletionBlock(self.locationAuthorizationStatus,nil);
             });
             
@@ -57,7 +57,7 @@
         }
     }
     else {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             self.locationCompletionBlock(self.locationAuthorizationStatus,nil);
         });
         
@@ -67,7 +67,7 @@
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     BBLogObject(error);
-    BBDispatchMainSyncSafe(^{
+    BBDispatchMainAsync(^{
         self.locationCompletionBlock(self.locationAuthorizationStatus,error);
     });
     
@@ -88,7 +88,7 @@
     NSParameterAssert(completion);
     
     if (self.locationAuthorizationStatus == authorization) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.locationAuthorizationStatus,nil);
         });
         return;
@@ -102,7 +102,7 @@
 }
 - (void)requestCalendarAuthorizationWithCompletion:(void(^)(BBCalendarAuthorizationStatus status, NSError * _Nullable error))completion; {
     if (self.calendarAuthorizationStatus == BBCalendarAuthorizationStatusAuthorized) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.calendarAuthorizationStatus,nil);
         });
         return;
@@ -111,14 +111,14 @@
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.calendarAuthorizationStatus,error);
         });
     }];
 }
 - (void)requestReminderAuthorizationWithCompletion:(void(^)(BBReminderAuthorizationStatus status, NSError * _Nullable error))completion; {
     if (self.reminderAuthorizationStatus == BBReminderAuthorizationStatusAuthorized) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.reminderAuthorizationStatus,nil);
         });
         return;
@@ -127,7 +127,7 @@
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     
     [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.reminderAuthorizationStatus,error);
         });
     }];
@@ -135,35 +135,35 @@
 #if (TARGET_OS_IPHONE)
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(BBPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion; {
     if (self.photoLibraryAuthorizationStatus == BBPhotoLibraryAuthorizationStatusAuthorized) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.photoLibraryAuthorizationStatus,nil);
         });
         return;
     }
     
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion((BBPhotoLibraryAuthorizationStatus)status,nil);
         });
     }];
 }
 - (void)requestCameraAuthorizationWithCompletion:(void(^)(BBCameraAuthorizationStatus status, NSError * _Nullable error))completion; {
     if (self.cameraAuthorizationStatus == BBCameraAuthorizationStatusAuthorized) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.cameraAuthorizationStatus,nil);
         });
         return;
     }
     
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.cameraAuthorizationStatus,nil);
         });
     }];
 }
 - (void)requestAddressBookAuthorizationWithCompletion:(void(^)(BBAddressBookAuthorizationStatus status, NSError * _Nullable error))completion; {
     if (self.addressBookAuthorizationStatus == BBAddressBookAuthorizationStatusAuthorized) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.addressBookAuthorizationStatus,nil);
         });
         return;
@@ -175,7 +175,7 @@
     if (addressBookRef == NULL) {
         NSError *outError = (__bridge NSError *)outErrorRef;
         
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.addressBookAuthorizationStatus,outError);
         });
         return;
@@ -184,7 +184,7 @@
     ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
         NSError *outError = (__bridge NSError *)error;
         
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.addressBookAuthorizationStatus,outError);
         });
         
@@ -193,14 +193,14 @@
 }
 - (void)requestMicrophoneAuthorizationWithCompletion:(void(^)(BBMicrophoneAuthorizationStatus status, NSError * _Nullable error))completion; {
     if (self.microphoneAuthorizationStatus == BBMicrophoneAuthorizationStatusAuthorized) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.microphoneAuthorizationStatus,nil);
         });
         return;
     }
     
     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-        BBDispatchMainSyncSafe(^{
+        BBDispatchMainAsync(^{
             completion(self.microphoneAuthorizationStatus,nil);
         });
     }];
