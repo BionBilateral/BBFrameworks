@@ -114,7 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (readonly,nonatomic,nullable) NSArray<NSString *> *phoneNumbers;
 /**
- Get the phoneNumbers property, stripped of all formatting. For example, (123) 456-7890 would be transormed into 1234567890.
+ Get the phoneNumbers property, stripped of all formatting. For example, (123) 456-7890 would be transformed into 1234567890.
  */
 @property (readonly,nonatomic,nullable) NSArray<NSString *> *phoneNumbersUnformatted;
 /**
