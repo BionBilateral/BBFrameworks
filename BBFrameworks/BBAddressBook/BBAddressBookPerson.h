@@ -114,6 +114,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (readonly,nonatomic,nullable) NSArray<NSString *> *phoneNumbers;
 /**
+ Get the phoneNumbers property, stripped of all formatting. For example, (123) 456-7890 would be transormed into 1234567890.
+ */
+@property (readonly,nonatomic,nullable) NSArray<NSString *> *phoneNumbersUnformatted;
+/**
  Get the instant messages, which will be an array of NSDictionary objects. This corresponds to kABPersonInstantMessageProperty.
  */
 @property (readonly,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *instantMessages;
