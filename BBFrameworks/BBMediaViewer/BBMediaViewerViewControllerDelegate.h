@@ -53,6 +53,18 @@ NS_ASSUME_NONNULL_BEGIN
  @param media The media object that was selected
  */
 - (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController didSelectMedia:(id<BBMediaViewerMedia>)media;
+/**
+ Called after the user selects media to determine the title that should be displayed in the navigation bar. If the delegate does not implement this method or returns nil, the following format is used:
+ 
+ <media.mediaViewerMediaTitle | media.mediaViewerMediaURL.lastPathComponent> (<index of media + 1> of <count of media>)
+ 
+ For example, "image.png (1 of 2)".
+ 
+ @param viewController The media viewer that sent the message
+ @param media The media object that was selected
+ @return The custom display title or nil
+ */
+- (nullable NSString *)mediaViewerViewController:(BBMediaViewerViewController *)viewController displayTitleForSelectedMedia:(id<BBMediaViewerMedia>)media;
 
 /**
  Called for certain media types when the originally provided media object represents a remote resource. The delegate should return the file URL for the media object.

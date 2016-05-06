@@ -131,6 +131,13 @@
     }
 }
 
+- (NSString *)mediaViewerModel:(BBMediaViewerModel *)model displayTitleForSelectedMedia:(id<BBMediaViewerMedia>)media {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:displayTitleForSelectedMedia:)]) {
+        return [self.delegate mediaViewerViewController:self displayTitleForSelectedMedia:media];
+    }
+    return nil;
+}
+
 - (NSURL *)mediaViewerModel:(BBMediaViewerModel *)model fileURLForMedia:(id<BBMediaViewerMedia>)media {
     if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:fileURLForMedia:)]) {
         return [self.delegate mediaViewerViewController:self fileURLForMedia:media];

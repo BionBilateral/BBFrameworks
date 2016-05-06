@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (id<BBMediaViewerMedia>)initiallySelectedMediaForMediaViewerModel:(BBMediaViewerModel *)model;
 
 - (void)mediaViewerModel:(BBMediaViewerModel *)model didSelectMedia:(id<BBMediaViewerMedia>)media;
+- (nullable NSString *)mediaViewerModel:(BBMediaViewerModel *)model displayTitleForSelectedMedia:(id<BBMediaViewerMedia>)media;
 
 - (NSURL *)mediaViewerModel:(BBMediaViewerModel *)model fileURLForMedia:(id<BBMediaViewerMedia>)media;
 - (void)mediaViewerModel:(BBMediaViewerModel *)model downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;

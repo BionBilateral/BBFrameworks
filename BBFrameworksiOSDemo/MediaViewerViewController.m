@@ -107,6 +107,12 @@
     BBLogObject(media);
 }
 
+- (NSString *)mediaViewerViewController:(BBMediaViewerViewController *)viewController displayTitleForSelectedMedia:(id<BBMediaViewerMedia>)media {
+    NSInteger index = [self.customURLs indexOfObject:media];
+    
+    return [NSString stringWithFormat:@"%@ of %@",@(index + 1),@(self.customURLs.count)];
+}
+
 - (CGRect)mediaViewerViewController:(BBMediaViewerViewController *)viewController frameForMedia:(id<BBMediaViewerMedia>)media inSourceView:(UIView *__autoreleasing  _Nonnull *)sourceView {
     *sourceView = self.customButton;
     
