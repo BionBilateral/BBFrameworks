@@ -292,6 +292,9 @@
 - (void)reloadData; {
     [self.contentVC reloadData];
 }
+- (void)reloadCurrentMedia; {
+    [self.contentVC reloadCurrentMedia];
+}
 #pragma mark Properties
 @dynamic theme;
 - (BBMediaViewerTheme *)theme {

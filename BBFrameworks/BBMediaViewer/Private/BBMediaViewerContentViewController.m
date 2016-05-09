@@ -198,6 +198,17 @@
     
     [self.toolbar setContentView:firstPageVC.bottomToolbarContentView];
 }
+- (void)reloadCurrentMedia; {
+    NSInteger index = [self.model indexOfMedia:self.model.selectedPageModel.media];
+    id<BBMediaViewerMedia> media = [self.model mediaAtIndex:index];
+    BBMediaViewerPageViewController *pageVC = [[BBMediaViewerPageViewController alloc] initWithMedia:media parentModel:self.model];
+    
+    [self.model selectPageModel:pageVC.model notifyDelegate:NO];
+    
+    [self.pageViewController setViewControllers:@[pageVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    [self.toolbar setContentView:pageVC.bottomToolbarContentView];
+}
 #pragma mark *** Private Methods ***
 - (void)_setControlsHidden:(BOOL)controlsHidden animated:(BOOL)animated; {
     void(^block)(void) = ^{

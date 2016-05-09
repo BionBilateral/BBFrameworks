@@ -62,6 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
  Causes the receiver to reload data from its data source. This will cause the `initiallySelectedMediaForMediaViewerViewController:` method to be called again, if the delegate implements it.
  */
 - (void)reloadData;
+/**
+ Causes the receiver to reload the current media. It will refetch the media object from its data source.
+ */
+- (void)reloadCurrentMedia;
 
 @end
 
