@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (id<BBMediaViewerMedia>)mediaAtIndex:(NSInteger)index;
 - (NSInteger)indexOfMedia:(id<BBMediaViewerMedia>)media;
 
+- (void)reportError:(NSError *)error;
+
 - (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media;
 - (void)downloadMedia:(id<BBMediaViewerMedia>)media completion:(BBMediaViewerDownloadCompletionBlock)completion;
 

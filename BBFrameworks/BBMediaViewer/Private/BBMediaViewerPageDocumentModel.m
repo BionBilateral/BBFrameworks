@@ -51,7 +51,7 @@
                         createURLRequestBlock(fileURL);
                     }
                     else if (error) {
-                        [UIAlertController BB_alertControllerWithError:error];
+                        [self.parentModel reportError:error];
                     }
                 });
             }];

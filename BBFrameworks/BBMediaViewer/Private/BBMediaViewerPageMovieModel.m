@@ -64,7 +64,7 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
                 BBDispatchMainAsync(^{
                     if (asset == nil) {
                         if (error != nil) {
-                            [UIAlertController BB_presentAlertControllerWithError:error];
+                            [self.parentModel reportError:error];
                         }
                     }
                     else {

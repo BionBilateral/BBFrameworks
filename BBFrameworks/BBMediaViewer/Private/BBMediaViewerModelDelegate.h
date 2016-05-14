@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BBMediaViewerModelDelegate <NSObject>
 @required
+- (void)mediaViewerModel:(BBMediaViewerModel *)model didError:(NSError *)error;
+
 - (id<BBMediaViewerMedia>)initiallySelectedMediaForMediaViewerModel:(BBMediaViewerModel *)model;
 
 - (void)mediaViewerModel:(BBMediaViewerModel *)model didSelectMedia:(id<BBMediaViewerMedia>)media;

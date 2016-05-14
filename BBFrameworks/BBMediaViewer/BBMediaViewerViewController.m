@@ -116,6 +116,12 @@
     return [self.dataSource mediaViewerViewController:self mediaAtIndex:index];
 }
 #pragma mark BBMediaViewerModelDelegate
+- (void)mediaViewerModel:(BBMediaViewerModel *)model didError:(NSError *)error {
+    if ([self.delegate respondsToSelector:@selector(mediaViewerViewController:didError:)]) {
+        [self.delegate mediaViewerViewController:self didError:error];
+    }
+}
+
 - (id<BBMediaViewerMedia>)initiallySelectedMediaForMediaViewerModel:(BBMediaViewerModel *)model {
     if ([self.delegate respondsToSelector:@selector(initiallySelectedMediaForMediaViewerViewController:)]) {
         return [self.delegate initiallySelectedMediaForMediaViewerViewController:self];

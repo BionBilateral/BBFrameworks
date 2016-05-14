@@ -105,6 +105,10 @@
     return retval;
 }
 
+- (void)reportError:(NSError *)error; {
+    [self.delegate mediaViewerModel:self didError:error];
+}
+
 - (NSURL *)fileURLForMedia:(id<BBMediaViewerMedia>)media; {
     return [self.delegate mediaViewerModel:self fileURLForMedia:media];
 }

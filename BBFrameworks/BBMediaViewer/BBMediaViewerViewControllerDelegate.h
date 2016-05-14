@@ -33,6 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mediaViewerViewControllerDidFinish:(BBMediaViewerViewController *)viewController;
 @optional
 /**
+ Called when the media viewer generates an error. The client can display it to the user or ignore it.
+ 
+ @param viewController The media viewer that sent the message
+ @param error The error that was generated
+ */
+- (void)mediaViewerViewController:(BBMediaViewerViewController *)viewController didError:(NSError *)error;
+/**
  Return the preferred status bar style for the media viewer view controller.
  
  @param viewController The media viewer that sent the message

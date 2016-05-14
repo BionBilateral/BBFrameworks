@@ -53,7 +53,7 @@
                         createImageBlock(fileURL);
                     }
                     else if (error) {
-                        [UIAlertController BB_presentAlertControllerWithError:error];
+                        [self.parentModel reportError:error];
                     }
                 });
             }];
