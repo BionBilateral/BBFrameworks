@@ -146,7 +146,7 @@
     
     NSNumber *buttonSpacing = @16.0;
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[slider]-spacing-[view]-|" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"slider": self.slider, @"view": self.playPauseButton}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[slider]-spacing-[view]-spacing-|" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"slider": self.slider, @"view": self.playPauseButton}]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.playPauseButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button]-spacing-[view]" options:0 metrics:@{@"spacing": buttonSpacing} views:@{@"view": self.slowForwardButton, @"button": self.playPauseButton}]];
