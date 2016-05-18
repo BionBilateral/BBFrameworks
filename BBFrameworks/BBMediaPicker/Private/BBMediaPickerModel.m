@@ -378,6 +378,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
             PHFetchOptions *options = [[PHFetchOptions alloc] init];
             
             [options setWantsIncrementalChangeDetails:NO];
+            if ([options respondsToSelector:@selector(setFetchLimit:)]) {
+                [options setFetchLimit:1];
+            }
             
             PHAsset *asset = [PHAsset fetchAssetsWithLocalIdentifiers:@[identifier] options:options].firstObject;
             
@@ -411,7 +414,9 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
         PHFetchOptions *options = [[PHFetchOptions alloc] init];
         
         [options setWantsIncrementalChangeDetails:NO];
-        [options setFetchLimit:1];
+        if ([options respondsToSelector:@selector(setFetchLimit:)]) {
+            [options setFetchLimit:1];
+        }
         
         PHAsset *asset = [PHAsset fetchAssetsWithLocalIdentifiers:@[assetIdentifier] options:options].firstObject;
         
