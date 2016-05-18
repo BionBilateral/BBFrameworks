@@ -112,6 +112,7 @@
     [retval setSelectionBorderWidth:self.selectionBorderWidth];
     
     [retval setAssetCollectionBackgroundColor:self.assetCollectionBackgroundColor];
+    [retval setAssetCollectionScrollViewIndicatorStyle:self.assetCollectionScrollViewIndicatorStyle];
     [retval setAssetCollectionCellBackgroundColor:self.assetCollectionCellBackgroundColor];
     [retval setAssetCollectionCellTitleFont:self.assetCollectionCellTitleFont];
     [retval setAssetCollectionCellTitleColor:self.assetCollectionCellTitleColor];
@@ -129,6 +130,7 @@
     [retval setAssetCollectionPopoverArrowWidth:self.assetCollectionPopoverArrowWidth];
     
     [retval setAssetBackgroundColor:self.assetBackgroundColor];
+    [retval setAssetScrollViewIndicatorStyle:self.assetScrollViewIndicatorStyle];
     [retval setAssetMinimumInteritemSpacing:self.assetMinimumInteritemSpacing];
     [retval setAssetMinimumLineSpacing:self.assetMinimumLineSpacing];
     [retval setAssetSelectedOverlayViewClass:self.assetSelectedOverlayViewClass];
