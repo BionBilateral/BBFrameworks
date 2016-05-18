@@ -40,6 +40,7 @@
      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
+         [self.tableView setIndicatorStyle:self.model.theme.assetCollectionScrollViewIndicatorStyle];
          [self.tableView setTintColor:self.model.theme.assetCollectionCellCheckmarkColor];
          [self.tableView setSeparatorColor:self.model.theme.assetCollectionSeparatorColor];
          [self.tableView setSeparatorInset:self.model.theme.assetCollectionSeparatorEdgeInsets];

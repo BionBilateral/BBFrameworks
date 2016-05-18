@@ -68,6 +68,7 @@
      subscribeNext:^(id _) {
          BBStrongify(self);
          [(UICollectionView *)self.collectionView setBackgroundColor:self.model.theme.assetBackgroundColor];
+         [self.collectionView setIndicatorStyle:self.model.theme.assetScrollViewIndicatorStyle];
          
          if (self.model.theme.assetBackgroundViewClass == Nil) {
              if (self.collectionView.backgroundView != nil) {

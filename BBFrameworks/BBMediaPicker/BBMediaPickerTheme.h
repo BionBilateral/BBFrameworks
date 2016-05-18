@@ -104,6 +104,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetCollectionCellBackgroundColor;
 /**
+ Set and get the asset collection scroll view indicator style. It might be useful to set this to ensure the scroll view indicator is still visible when other properties are customized.
+ */
+@property (assign,nonatomic) UIScrollViewIndicatorStyle assetCollectionScrollViewIndicatorStyle;
+/**
  Set and get the asset collection cell title font, which is used to display the name of the asset collection.
  
  The default is [UIFont systemFontOfSize:17.0].
@@ -194,6 +198,10 @@ NS_ASSUME_NONNULL_BEGIN
  The default is [UIColor whiteColor].
  */
 @property (strong,nonatomic,null_resettable) UIColor *assetBackgroundColor;
+/**
+ Set and get the asset scroll view indicator style. It might be useful to set this to ensure the scroll view indicator is still visible when other properties are customized.
+ */
+@property (assign,nonatomic) UIScrollViewIndicatorStyle assetScrollViewIndicatorStyle;
 /**
  Set and get the asset background view class, which is used as the `backgroundView` of the asset collection view and is only visible when the user has no assets in the selected asset collection. The Class should be a subclass of UIView.
  
