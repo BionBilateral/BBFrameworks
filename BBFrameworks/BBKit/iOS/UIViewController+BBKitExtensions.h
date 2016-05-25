@@ -36,6 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIViewController *)BB_viewControllerForPresenting;
 
 /**
+ Recursively dismisses the presented view controller until there are no view controllers being presented, with optional animation. If non-nil, the provided completion block is invoked after the final view controller is dismissed.
+ 
+ @param animated Whether to animate the recursive dismissal
+ @param completion The completion block to invoke after the final view controller is dismissed
+ */
+- (void)BB_recursivelyDismissViewControllerAnimated:(BOOL)animated completion:(void(^ _Nullable)(void))completion;
+
+/**
  Creates and returns an array of the receiver's child view controllers recursively.
  
  For each child view controller in the receiver, the child view controller is added to the return array followed by the array of recursive child view controllers.

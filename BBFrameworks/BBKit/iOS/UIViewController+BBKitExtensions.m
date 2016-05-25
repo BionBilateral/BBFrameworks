@@ -30,6 +30,52 @@
     return retval;
 }
 
+- (void)BB_recursivelyDismissViewControllerAnimated:(BOOL)animated completion:(void(^ _Nullable)(void))completion; {
+    /**
+     Track the view controller that is presenting something.
+     */
+    __block UIViewController *presentingViewController = self;
+    /**
+     This reference is needed to avoid a retain cycle. Both __block and __weak are required.
+     */
+    __block __weak void(^weakBlock)(void) = nil;
+    /**
+     The original block reference.
+     */
+    void(^block)(void) = ^{
+        /**
+         If there is nothing left to dismiss, invoke the completion block if non-nil.
+         */
+        if (presentingViewController == nil) {
+            if (completion != nil) {
+                completion();
+            }
+        }
+        /**
+         Otherwise recurse, make a strong reference to weakBlock so it won't be deallocated during the dismiss animation, update the reference to presentingViewController after the dismiss animation and invoke strongBlock.
+         */
+        else {
+            void(^strongBlock)(void) = weakBlock;
+            
+            [presentingViewController dismissViewControllerAnimated:animated completion:^{
+                presentingViewController = presentingViewController.presentingViewController;
+                
+                strongBlock();
+            }];
+        }
+    };
+    
+    /**
+     Assign to weakBlock, which we reference within the original declaration of block to avoid retain cycle.
+     */
+    weakBlock = block;
+    
+    /**
+     Invoke the original block the first time.
+     */
+    block();
+}
+
 - (NSArray *)BB_recursiveChildViewControllers; {
     NSMutableOrderedSet *retval = [[NSMutableOrderedSet alloc] init];
     

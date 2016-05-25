@@ -134,6 +134,7 @@
 		07B26DE51BB4451D00CB7BAD /* BBKeyValueObservingDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B26DE31BB4447300CB7BAD /* BBKeyValueObservingDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B26DF11BB44FAE00CB7BAD /* BBKeyValueObservingToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B26DF21BB454EE00CB7BAD /* BBKeyValueObservingToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */; };
+		07B3CB9E1CF618390040BE98 /* KitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B3CB9D1CF618390040BE98 /* KitViewController.m */; };
 		07B3D8E51B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */; };
 		07B3D8E61B5EA7E500FA1853 /* BBTooltipAttachmentView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */; };
 		07B3D8E71B5EA7E600FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */; };
@@ -1027,6 +1028,8 @@
 		07B104DB1BC6C32B00C2388F /* BBFrameworksNSParagraphStyleKitExtensionsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFrameworksNSParagraphStyleKitExtensionsTestCase.m; sourceTree = "<group>"; };
 		07B26DE31BB4447300CB7BAD /* BBKeyValueObservingDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObservingDefines.h; sourceTree = "<group>"; };
 		07B26DF01BB44FAE00CB7BAD /* BBKeyValueObservingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBKeyValueObservingToken.h; sourceTree = "<group>"; };
+		07B3CB9C1CF618390040BE98 /* KitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KitViewController.h; sourceTree = "<group>"; };
+		07B3CB9D1CF618390040BE98 /* KitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KitViewController.m; sourceTree = "<group>"; };
 		07B3D8E21B5EA58C00FA1853 /* BBTooltipAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTooltipAttachmentView.h; sourceTree = "<group>"; };
 		07B3D8E31B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BBTooltipAttachmentViewExtensions.h"; sourceTree = "<group>"; };
 		07B3D8E41B5EA5C500FA1853 /* UIView+BBTooltipAttachmentViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BBTooltipAttachmentViewExtensions.m"; sourceTree = "<group>"; };
@@ -2629,6 +2632,8 @@
 				7915515D1B3335E7009FA353 /* TableViewController.m */,
 				79DD3E7A1B3345F700EF4E44 /* BaseRowViewController.h */,
 				79DD3E7B1B3345F700EF4E44 /* BaseRowViewController.m */,
+				07B3CB9C1CF618390040BE98 /* KitViewController.h */,
+				07B3CB9D1CF618390040BE98 /* KitViewController.m */,
 				79344C4C1C0132FA00BBA726 /* MediaViewerViewController.h */,
 				79344C4D1C0132FA00BBA726 /* MediaViewerViewController.m */,
 				79344C4E1C0132FA00BBA726 /* MediaViewerViewController.xib */,
@@ -3689,6 +3694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CE802D1B4EE78800F5729E /* FormViewController.m in Sources */,
+				07B3CB9E1CF618390040BE98 /* KitViewController.m in Sources */,
 				79BE2B6E1B64957600ADE997 /* TransitionViewController.m in Sources */,
 				79BE2B721B64960100ADE997 /* TransitionChildViewController.m in Sources */,
 				799C0C641B5C7E1400A3888A /* FormTableViewFooterView.m in Sources */,
