@@ -34,7 +34,7 @@
     /**
      Track the view controller that is presenting something.
      */
-    __block UIViewController *presentingViewController = self;
+    __block UIViewController *viewController = self.presentedViewController == nil ? self.presentingViewController : self;
     /**
      This reference is needed to avoid a retain cycle. Both __block and __weak are required.
      */
@@ -46,30 +46,28 @@
         /**
          If there is nothing left to dismiss, invoke the completion block if non-nil.
          */
-        if (presentingViewController == nil) {
+        if (viewController == nil) {
             if (completion != nil) {
                 completion();
             }
         }
         /**
-         Otherwise recurse, make a strong reference to weakBlock so it won't be deallocated during the dismiss animation, update the reference to presentingViewController after the dismiss animation and invoke strongBlock.
+         Otherwise recurse, make a strong reference to weakBlock so it won't be deallocated during the dismiss animation, update the reference to presentingViewController and invoke strongBlock within the completion block.
          */
         else {
             void(^strongBlock)(void) = weakBlock;
             
-            [presentingViewController dismissViewControllerAnimated:animated completion:^{
-                presentingViewController = presentingViewController.presentingViewController;
-                
+            viewController = viewController.presentingViewController;
+            
+            [viewController dismissViewControllerAnimated:animated completion:^{
                 strongBlock();
             }];
         }
     };
-    
     /**
      Assign to weakBlock, which we reference within the original declaration of block to avoid retain cycle.
      */
     weakBlock = block;
-    
     /**
      Invoke the original block the first time.
      */
