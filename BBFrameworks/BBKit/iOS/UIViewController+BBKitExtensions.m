@@ -52,14 +52,14 @@
             }
         }
         /**
-         Otherwise recurse, make a strong reference to weakBlock so it won't be deallocated during the dismiss animation, update the reference to presentingViewController and invoke strongBlock within the completion block.
+         Otherwise recurse, make a strong reference to weakBlock so it won't be deallocated during the dismiss animation, update the reference to viewController after the dismiss animation and invoke strongBlock within the completion block.
          */
         else {
             void(^strongBlock)(void) = weakBlock;
             
-            viewController = viewController.presentingViewController;
-            
             [viewController dismissViewControllerAnimated:animated completion:^{
+                viewController = viewController.presentingViewController;
+                
                 strongBlock();
             }];
         }
