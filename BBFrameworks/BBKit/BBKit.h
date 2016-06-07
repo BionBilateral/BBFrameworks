@@ -30,6 +30,7 @@
 #import "NSParagraphStyle+BBKitExtensions.h"
 #if (TARGET_OS_IPHONE)
 #import "UIImage+BBKitExtensions.h"
+#import "UINavigationController+BBKitExtensions.h"
 #import "UIView+BBKitExtensions.h"
 #import "UIViewController+BBKitExtensions.h"
 #import "UIFont+BBKitExtensions.h"
