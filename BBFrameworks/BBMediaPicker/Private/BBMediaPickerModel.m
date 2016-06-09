@@ -270,6 +270,11 @@ static NSString *const kNotificationAuthorizationStatusDidChange = @"kNotificati
     
     [self.delegate mediaPickerModel:self didDeselectMedia:assetModel];
 }
+- (void)deselectAllAssetModels; {
+    for (BBMediaPickerAssetModel *assetModel in self.selectedAssetModels) {
+        [self deselectAssetModel:assetModel];
+    }
+}
 #pragma mark Properties
 - (void)setHidesEmptyAssetCollections:(BOOL)hidesEmptyAssetCollections {
     if (_hidesEmptyAssetCollections == hidesEmptyAssetCollections) {

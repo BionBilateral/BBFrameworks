@@ -142,6 +142,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param media The media to select
  */
 - (void)selectMedia:(id<BBMediaPickerMedia>)media;
+/**
+ Deselects all selected media, so the client can clear all selection programmatically if needed. If there is no selection, does nothing.
+ */
+- (void)deselectAllMedia;
 
 @end
 

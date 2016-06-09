@@ -65,6 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel;
 - (void)selectAssetModel:(BBMediaPickerAssetModel *)assetModel notifyDelegate:(BOOL)notifyDelegate;
 - (void)deselectAssetModel:(BBMediaPickerAssetModel *)assetModel;
+- (void)deselectAllAssetModels;
 
 @end
 
