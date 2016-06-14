@@ -19,7 +19,33 @@
 #import <AddressBook/AddressBook.h>
 
 @interface BBAddressBookPerson ()
-@property (assign,nonatomic) ABRecordRef person;
+@property (readwrite,assign,nonatomic) ABRecordID recordID;
+@property (readwrite,strong,nonatomic,nullable) UIImage *image;
+@property (readwrite,strong,nonatomic,nullable) UIImage *thumbnailImage;
+@property (readwrite,copy,nonatomic,nullable) NSString *prefix;
+@property (readwrite,copy,nonatomic,nullable) NSString *firstName;
+@property (readwrite,copy,nonatomic,nullable) NSString *middleName;
+@property (readwrite,copy,nonatomic,nullable) NSString *lastName;
+@property (readwrite,copy,nonatomic,nullable) NSString *suffix;
+@property (readwrite,copy,nonatomic,nullable) NSString *fullName;
+@property (readwrite,copy,nonatomic,nullable) NSString *nickname;
+@property (readwrite,copy,nonatomic,nullable) NSString *organization;
+@property (readwrite,copy,nonatomic,nullable) NSString *jobTitle;
+@property (readwrite,copy,nonatomic,nullable) NSString *department;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSString *> *emails;
+@property (readwrite,copy,nonatomic) NSDate *birthday;
+@property (readwrite,copy,nonatomic,nullable) NSString *note;
+@property (readwrite,copy,nonatomic,nullable) NSDate *creationDate;
+@property (readwrite,copy,nonatomic,nullable) NSDate *modificationDate;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *addresses;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSDate *> *dates;
+@property (readwrite,copy,nonatomic,nullable) NSNumber *kind;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSString *> *phoneNumbers;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *instantMessages;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSString *> *URLStrings;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSString *> *relatedNames;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *socialProfiles;
+@property (readwrite,copy,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *alternateBirthdays;
 @end
 
 @implementation BBAddressBookPerson
@@ -30,147 +56,104 @@
     
     NSParameterAssert(person);
     
-    [self setPerson:person];
+    _recordID = ABRecordGetRecordID(person);
+    _image = [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize)];
+    _thumbnailImage = [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
+    _prefix = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonPrefixProperty);
+    _firstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    _middleName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonMiddleNameProperty);
+    _lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    _suffix = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonSuffixProperty);
+    _fullName = (__bridge_transfer NSString *)ABRecordCopyCompositeName(person);
+    _nickname = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonNicknameProperty);
+    _organization = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonOrganizationProperty);
+    _jobTitle = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonJobTitleProperty);
+    _department = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonDepartmentProperty);
+    _emails = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonEmailProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _birthday = (__bridge_transfer NSDate *)ABRecordCopyValue(person, kABPersonBirthdayProperty);
+    _note = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonNoteProperty);
+    _creationDate = (__bridge_transfer NSDate *)ABRecordCopyValue(person, kABPersonCreationDateProperty);
+    _modificationDate = (__bridge_transfer NSDate *)ABRecordCopyValue(person, kABPersonModificationDateProperty);
+    _addresses = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonAddressProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _dates = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonDateProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _kind = (__bridge_transfer NSNumber *)ABRecordCopyValue(person, kABPersonKindProperty);
+    _phoneNumbers = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _instantMessages = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonInstantMessageProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _URLStrings = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonURLProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _relatedNames = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonRelatedNamesProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _socialProfiles = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonSocialProfileProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
+    _alternateBirthdays = ({
+        ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonAlternateBirthdayProperty);
+        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        
+        CFRelease(valueRef);
+        
+        retval;
+    });
     
     return self;
 }
 
-- (ABRecordID)recordID {
-    return ABRecordGetRecordID(self.person);
-}
-
-- (UIImage *)image {
-    NSData *data = (__bridge_transfer NSData *)ABPersonCopyImageDataWithFormat(self.person, kABPersonImageFormatOriginalSize);
-    
-    return [UIImage imageWithData:data];
-}
-- (UIImage *)thumbnailImage {
-    NSData *data = (__bridge_transfer NSData *)ABPersonCopyImageDataWithFormat(self.person, kABPersonImageFormatThumbnail);
-    
-    return [UIImage imageWithData:data];
-}
-
-- (NSString *)prefix {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonPrefixProperty);
-}
-- (NSString *)firstName {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonFirstNameProperty);
-}
-- (NSString *)middleName {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonMiddleNameProperty);
-}
-- (NSString *)lastName {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonLastNameProperty);
-}
-- (NSString *)suffix {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonSuffixProperty);
-}
-- (NSString *)fullName {
-    return (__bridge_transfer NSString *)ABRecordCopyCompositeName(self.person);
-}
-- (NSString *)nickname {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonNicknameProperty);
-}
-- (NSString *)organization {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonOrganizationProperty);
-}
-- (NSString *)jobTitle {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonJobTitleProperty);
-}
-- (NSString *)department {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonDepartmentProperty);
-}
-- (NSArray *)emails {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonEmailProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSDate *)birthday {
-    return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonBirthdayProperty);
-}
-- (NSString *)note {
-    return (__bridge_transfer NSString *)ABRecordCopyValue(self.person, kABPersonNoteProperty);
-}
-- (NSDate *)creationDate {
-    return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonCreationDateProperty);
-}
-- (NSDate *)modificationDate {
-    return (__bridge_transfer NSDate *)ABRecordCopyValue(self.person, kABPersonModificationDateProperty);
-}
-- (NSArray *)addresses {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonAddressProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSArray *)dates {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonDateProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSNumber *)kind {
-    return (__bridge_transfer NSNumber *)ABRecordCopyValue(self.person, kABPersonKindProperty);
-}
-- (NSArray *)phoneNumbers {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonPhoneProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
 - (NSArray<NSString *> *)phoneNumbersUnformatted {
     return [self.phoneNumbers BB_map:^id _Nullable(NSString * _Nonnull object, NSInteger index) {
         return [[object componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     }];
-}
-- (NSArray *)instantMessages {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonInstantMessageProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSArray *)URLStrings {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonURLProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSArray *)relatedNames {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonRelatedNamesProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSArray *)socialProfiles {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonSocialProfileProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
-}
-- (NSArray *)alternateBirthdays {
-    ABMultiValueRef valueRef = ABRecordCopyValue(self.person, kABPersonAlternateBirthdayProperty);
-    NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
-    
-    CFRelease(valueRef);
-    
-    return retval;
 }
 
 @end
