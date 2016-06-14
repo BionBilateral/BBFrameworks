@@ -73,7 +73,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonEmailProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -85,7 +87,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonAddressProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -93,7 +97,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonDateProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -102,7 +108,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonPhoneProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -110,7 +118,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonInstantMessageProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -118,7 +128,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonURLProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -126,7 +138,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonRelatedNamesProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -134,7 +148,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonSocialProfileProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });
@@ -142,7 +158,9 @@
         ABMultiValueRef valueRef = ABRecordCopyValue(person, kABPersonAlternateBirthdayProperty);
         NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
         
-        CFRelease(valueRef);
+        if (valueRef != NULL) {
+            CFRelease(valueRef);
+        }
         
         retval;
     });

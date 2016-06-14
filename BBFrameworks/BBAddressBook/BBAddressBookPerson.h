@@ -136,7 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get the alternate birthdays, which will be an array of NSDictionary objects. This corresponds to kABPersonAlternateBirthdayProperty.
  */
-@property (readonly,copy,nonatomic,nullable) NSArray<NSDictionary<NSString *, id> *> *alternateBirthdays;
+@property (readonly,copy,nonatomic,nullable) NSArray<NSDictionary<NSString *, NSDateComponents *> *> *alternateBirthdays;
 
 /**
  Designated initializer.
