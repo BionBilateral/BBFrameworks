@@ -45,8 +45,7 @@
 
 + (UIImage *)BB_imageByResizingImage:(UIImage *)image toSize:(CGSize)size; {
     CGSize destSize = BBKitCGImageGetThumbnailSizeWithSizeMaintainingAspectRatio(image.CGImage, size, true);
-    CGAffineTransform transform = [image BB_imageTransformForDestinationSize:destSize];
-    CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(image.CGImage, size, transform, true);
+    CGImageRef imageRef = BBKitCGImageCreateThumbnailWithSizeTransformMaintainingAspectRatio(image.CGImage, destSize, CGAffineTransformIdentity, true);
     UIImage *retval = [UIImage imageWithCGImage:imageRef scale:image.scale orientation:image.imageOrientation];
     
     CGImageRelease(imageRef);
