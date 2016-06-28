@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.8.50"
+  spec.version = "1.8.51"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -21,6 +21,9 @@ Pod::Spec.new do |spec|
     
     subspec.ios.resource_bundles = {
       "BBFrameworksResources" => ["BBFrameworksResources/*.xib", "BBFrameworksResources/*.png", "BBFrameworksResources/*.lproj"]
+    }
+    subspec.osx.resource_bundles = {
+      "BBFrameworksResources" => ["BBFrameworksResources/*.lproj"]
     }
   end
   
