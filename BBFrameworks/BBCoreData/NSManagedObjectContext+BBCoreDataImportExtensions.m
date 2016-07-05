@@ -94,11 +94,16 @@ static void *kBB_defaultDateFormatterKey = &kBB_defaultDateFormatterKey;
         BBLog(@"created entity %@ with identity %@",entityName,identity);
     }
     
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    
     [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *JSONKey, id JSONValue, BOOL *stop) {
         NSString *const kPropertyKey = [propertyMapping entityPropertyKeyForJSONKey:JSONKey entityName:entityName];
-        id const kPropertyValue = [propertyMapping entityPropertyValueForEntityPropertyKey:kPropertyKey value:JSONValue entityName:entityName context:self];
         
-        [retval setValue:kPropertyValue forKey:kPropertyKey];
+        if (entityDescription.propertiesByName[kPropertyKey] != nil) {
+            id const kPropertyValue = [propertyMapping entityPropertyValueForEntityPropertyKey:kPropertyKey value:JSONValue entityName:entityName context:self];
+            [retval setValue:kPropertyValue forKey:kPropertyKey];
+        }
+        
     }];
     
     return retval;
