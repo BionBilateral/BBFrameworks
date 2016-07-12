@@ -34,6 +34,7 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
 @property (readwrite,strong,nonatomic) AVPlayer *player;
 
 @property (readwrite,strong,nonatomic) RACSignal *enabledSignal;
+@property (readwrite,strong,nonatomic) RACSignal *loadingSignal;
 
 @property (readwrite,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readwrite,strong,nonatomic) RACCommand *slowForwardCommand;
@@ -81,8 +82,23 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
         [_player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:self.URL]];
     }
     
+    RACSignal *statusSignal = [RACObserve(self.player, status)
+                               distinctUntilChanged];
+    
+    [[[statusSignal
+     filter:^BOOL(NSNumber *value) {
+         return value.integerValue == AVPlayerStatusFailed;
+     }]
+     deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         if (self.player.error != nil) {
+             [self.parentModel reportError:self.player.error];
+         }
+     }];
+    
     _enabledSignal =
-    [RACSignal combineLatest:@[RACObserve(self.player, status),RACObserve(self.player.currentItem, duration)] reduce:^id(NSNumber *status, NSValue *duration){
+    [RACSignal combineLatest:@[statusSignal,RACObserve(self.player.currentItem, duration)] reduce:^id(NSNumber *status, NSValue *duration){
         return @(status.integerValue == AVPlayerStatusReadyToPlay && CMTIME_IS_NUMERIC(duration.CMTimeValue));
     }];
     

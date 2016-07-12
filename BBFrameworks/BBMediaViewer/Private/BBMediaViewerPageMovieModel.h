@@ -37,6 +37,7 @@ extern float const BBMediaViewerPageMovieModelRateFastReverse;
 @property (assign,nonatomic) NSTimeInterval currentPlaybackTime;
 
 @property (readonly,strong,nonatomic) RACSignal *enabledSignal;
+@property (readonly,strong,nonatomic) RACSignal *loadingSignal;
 
 @property (readonly,strong,nonatomic) RACCommand *playPauseCommand;
 @property (readonly,strong,nonatomic) RACCommand *slowForwardCommand;
