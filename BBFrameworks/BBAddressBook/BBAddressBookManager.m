@@ -310,6 +310,24 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         }
     }];
 }
+#pragma mark Properties
+- (NSInteger)numberOfPeople {
+    if ([self.class authorizationStatus] != BBAddressBookManagerAuthorizationStatusAuthorized) {
+        BBLog(@"called %@ with authorization status %@, returning 0",NSStringFromSelector(_cmd),@([self.class authorizationStatus]));
+        return 0;
+    }
+    
+    NSInteger retval = 0;
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (addressBookRef != NULL) {
+        retval = ABAddressBookGetPersonCount(addressBookRef);
+        
+        CFRelease(addressBookRef);
+    }
+    
+    return retval;
+}
 #pragma mark *** Private Methods ***
 - (void)_createAddressBookIfNecessary; {
     if (_addressBook == NULL) {

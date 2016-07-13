@@ -53,6 +53,11 @@ extern NSString *const BBAddressBookManagerNotificationNameExternalChange;
 @interface BBAddressBookManager : NSObject
 
 /**
+ Get the number of people in the address book. If the user has not granted access, returns 0.
+ */
+@property (readonly,nonatomic) NSInteger numberOfPeople;
+
+/**
  Returns the current authorization status.
  
  @see BBAddressBookManagerAuthorizationStatus
