@@ -60,15 +60,15 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.activityIndicatorView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     BBWeakify(self);
-    [[self.model.enabledSignal
-     deliverOn:[RACScheduler mainThreadScheduler]]
+    [[self.model.loadingSignal
+      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSNumber *value) {
          BBStrongify(self);
          if (value.boolValue) {
-             [self.activityIndicatorView stopAnimating];
+             [self.activityIndicatorView startAnimating];
          }
          else {
-             [self.activityIndicatorView startAnimating];
+             [self.activityIndicatorView stopAnimating];
          }
      }];
     

@@ -18,6 +18,7 @@
 #import "BBMediaViewerModel.h"
 #import "BBFoundationFunctions.h"
 #import "UIAlertController+BBKitExtensions.h"
+#import "BBReachability.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -79,17 +80,19 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
         }
     }
     else {
-        [_player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:self.URL]];
+        if ([BBReachability reachabilityForInternetConnection].isReachable) {
+            [_player replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:self.URL]];
+        }
     }
     
     RACSignal *statusSignal = [RACObserve(self.player, status)
                                distinctUntilChanged];
     
     [[[statusSignal
-     filter:^BOOL(NSNumber *value) {
-         return value.integerValue == AVPlayerStatusFailed;
-     }]
-     deliverOn:[RACScheduler mainThreadScheduler]]
+       filter:^BOOL(NSNumber *value) {
+           return value.integerValue == AVPlayerStatusFailed;
+       }]
+      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
          if (self.player.error != nil) {
@@ -98,8 +101,13 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
      }];
     
     _enabledSignal =
-    [RACSignal combineLatest:@[statusSignal,RACObserve(self.player.currentItem, duration)] reduce:^id(NSNumber *status, NSValue *duration){
+    [RACSignal combineLatest:@[statusSignal,RACObserve(self.player, currentItem.duration)] reduce:^id(NSNumber *status, NSValue *duration){
         return @(status.integerValue == AVPlayerStatusReadyToPlay && CMTIME_IS_NUMERIC(duration.CMTimeValue));
+    }];
+    
+    _loadingSignal =
+    [RACSignal combineLatest:@[RACObserve(self.player, currentItem),statusSignal,RACObserve(self.player, currentItem.duration)] reduce:^id(AVPlayerItem *currentItem, NSNumber *status, NSValue *duration){
+        return @(currentItem != nil && status.integerValue == AVPlayerStatusUnknown && !CMTIME_IS_NUMERIC(duration.CMTimeValue));
     }];
     
     _playPauseCommand =
@@ -190,19 +198,28 @@ float const BBMediaViewerPageMovieModelRateFastReverse = -2.0;
     [[[[[RACSignal combineLatest:@[self.didBecomeActiveSignal,_enabledSignal] reduce:^id(id _, NSNumber *enabled){
         return enabled;
     }]
-     filter:^BOOL(NSNumber *value) {
-         return value.boolValue;
-     }]
-     take:1]
-     deliverOn:[RACScheduler mainThreadScheduler]]
+        filter:^BOOL(NSNumber *value) {
+            return value.boolValue;
+        }]
+       take:1]
+      deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id _) {
          BBStrongify(self);
          [self play];
      }];
     
+    [[self.didBecomeActiveSignal
+      deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id _) {
+         BBStrongify(self);
+         if (self.player.currentItem == nil) {
+             [self.parentModel reportError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet userInfo:@{NSURLErrorFailingURLErrorKey: self.URL}]];
+         }
+     }];
+    
     [[[[NSNotificationCenter defaultCenter]
-        rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem]
-       takeUntil:[self rac_willDeallocSignal]]
+       rac_addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem]
+      takeUntil:[self rac_willDeallocSignal]]
      subscribeNext:^(id _) {
          BBStrongify(self);
          [self _seekToBeginningIfNecessary];
