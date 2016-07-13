@@ -153,6 +153,7 @@ Pod::Spec.new do |spec|
     
     subspec.ios.dependency "BBFrameworks/BBBlocks"
     subspec.ios.dependency "BBFrameworks/BBKit"
+    subspec.ios.dependency "BBFrameworks/BBReachability"
     
     subspec.ios.source_files = "BBFrameworks/BBMediaViewer", "BBFrameworks/BBMediaViewer/Private"
     subspec.osx.source_files = "BBFrameworks/BBMediaViewer/BBMediaViewer.h"
