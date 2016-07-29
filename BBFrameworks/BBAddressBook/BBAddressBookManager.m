@@ -108,21 +108,25 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         return nil;
     }
     
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (addressBookRef == NULL) {
+        return nil;
+    }
+    
     NSMutableArray *retval = [[NSMutableArray alloc] init];
     
-    BBWeakify(self);
-    dispatch_sync(self.addressBookQueue, ^{
-        BBStrongify(self);
-        [self _createAddressBookIfNecessary];
+    for (NSNumber *recordID in recordIDs) {
+        ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(addressBookRef, recordID.intValue);
         
-        for (NSNumber *recordID in recordIDs) {
-            ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(self.addressBook, recordID.intValue);
-            
-            if (personRef) {
-                [retval addObject:[[BBAddressBookPerson alloc] initWithPerson:personRef]];
-            }
+        if (personRef == NULL) {
+            continue;
         }
-    });
+        
+        [retval addObject:[[BBAddressBookPerson alloc] initWithPerson:personRef]];
+    }
+    
+    CFRelease(addressBookRef);
     
     return [retval copy];
 }
