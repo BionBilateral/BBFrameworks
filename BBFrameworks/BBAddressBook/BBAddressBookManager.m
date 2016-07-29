@@ -78,7 +78,12 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     CFErrorRef errorRef;
     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, &errorRef);
     
-    if (addressBookRef) {
+    if (addressBookRef == NULL) {
+        BBDispatchMainAsync(^{
+            completion(NO,(__bridge NSError *)errorRef);
+        });
+    }
+    else {
         ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
             CFRelease(addressBookRef);
             
@@ -90,11 +95,6 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
                     completion(NO,(__bridge NSError *)error);
                 }
             });
-        });
-    }
-    else {
-        BBDispatchMainAsync(^{
-            completion(NO,(__bridge NSError *)errorRef);
         });
     }
 }
