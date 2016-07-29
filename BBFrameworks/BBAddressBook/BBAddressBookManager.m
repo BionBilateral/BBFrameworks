@@ -143,22 +143,27 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             });
         }
         else {
-            NSMutableArray *retval = [[NSMutableArray alloc] init];
+            dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+            dispatch_set_target_queue(queue, dispatch_get_global_queue(QOS_CLASS_UTILITY, 0));
             
-            for (NSNumber *recordID in recordIDs) {
-                ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(addressBookRef, recordID.intValue);
+            dispatch_async(queue, ^{
+                NSMutableArray *retval = [[NSMutableArray alloc] init];
                 
-                if (personRef == NULL) {
-                    continue;
+                for (NSNumber *recordID in recordIDs) {
+                    ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(addressBookRef, recordID.intValue);
+                    
+                    if (personRef == NULL) {
+                        continue;
+                    }
+                    
+                    [retval addObject:[[BBAddressBookPerson alloc] initWithPerson:personRef]];
                 }
                 
-                [retval addObject:[[BBAddressBookPerson alloc] initWithPerson:personRef]];
-            }
-            
-            CFRelease(addressBookRef);
-            
-            BBDispatchMainAsync(^{
-                completion(retval,nil);
+                CFRelease(addressBookRef);
+                
+                BBDispatchMainAsync(^{
+                    completion(retval,nil);
+                });
             });
         }
     }];
@@ -210,22 +215,27 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             });
         }
         else {
-            NSMutableArray *retval = [[NSMutableArray alloc] init];
+            dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+            dispatch_set_target_queue(queue, dispatch_get_global_queue(QOS_CLASS_UTILITY, 0));
             
-            for (NSNumber *recordID in recordIDs) {
-                ABRecordRef groupRef = ABAddressBookGetGroupWithRecordID(addressBookRef, recordID.intValue);
+            dispatch_async(queue, ^{
+                NSMutableArray *retval = [[NSMutableArray alloc] init];
                 
-                if (groupRef == NULL) {
-                    continue;
+                for (NSNumber *recordID in recordIDs) {
+                    ABRecordRef groupRef = ABAddressBookGetGroupWithRecordID(addressBookRef, recordID.intValue);
+                    
+                    if (groupRef == NULL) {
+                        continue;
+                    }
+                    
+                    [retval addObject:[[BBAddressBookGroup alloc] initWithGroup:groupRef]];
                 }
                 
-                [retval addObject:[[BBAddressBookGroup alloc] initWithGroup:groupRef]];
-            }
-            
-            CFRelease(addressBookRef);
-            
-            BBDispatchMainAsync(^{
-                completion(retval,nil);
+                CFRelease(addressBookRef);
+                
+                BBDispatchMainAsync(^{
+                    completion(retval,nil);
+                });
             });
         }
     }];
@@ -247,33 +257,38 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             });
         }
         else {
-            NSArray *peopleRefs;
+            dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+            dispatch_set_target_queue(queue, dispatch_get_global_queue(QOS_CLASS_UTILITY, 0));
             
-            if (sortDescriptors.count > 0) {
-                peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
-            }
-            else {
-                peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBookRef, NULL, ABPersonGetSortOrdering());
-            }
-            
-            NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
-                return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
-            }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
-                return obj.fullName.length > 0;
-            }];
-            
-            if (predicate) {
-                people = [people filteredArrayUsingPredicate:predicate];
-            }
-            
-            if (sortDescriptors.count > 0) {
-                people = [people sortedArrayUsingDescriptors:sortDescriptors];
-            }
-            
-            CFRelease(addressBookRef);
-            
-            BBDispatchMainAsync(^{
-                completion(people,nil);
+            dispatch_async(queue, ^{
+                NSArray *peopleRefs;
+                
+                if (sortDescriptors.count > 0) {
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
+                }
+                else {
+                    peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBookRef, NULL, ABPersonGetSortOrdering());
+                }
+                
+                NSArray *people = [[peopleRefs BB_map:^id(id obj, NSInteger idx) {
+                    return [[BBAddressBookPerson alloc] initWithPerson:(__bridge ABRecordRef)obj];
+                }] BB_filter:^BOOL(BBAddressBookPerson *obj, NSInteger idx) {
+                    return obj.fullName.length > 0;
+                }];
+                
+                if (predicate) {
+                    people = [people filteredArrayUsingPredicate:predicate];
+                }
+                
+                if (sortDescriptors.count > 0) {
+                    people = [people sortedArrayUsingDescriptors:sortDescriptors];
+                }
+                
+                CFRelease(addressBookRef);
+                
+                BBDispatchMainAsync(^{
+                    completion(people,nil);
+                });
             });
         }
     }];
@@ -292,21 +307,26 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             });
         }
         else {
-            NSArray *groupRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllGroups(addressBookRef);
-            NSArray *groups = [[groupRefs BB_map:^id(id object, NSInteger index) {
-                return [[BBAddressBookGroup alloc] initWithGroup:(__bridge ABRecordRef)object];
-            }] BB_filter:^BOOL(BBAddressBookGroup *object, NSInteger index) {
-                return object.name.length > 0;
-            }];
+            dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+            dispatch_set_target_queue(queue, dispatch_get_global_queue(QOS_CLASS_UTILITY, 0));
             
-            if (sortDescriptors.count > 0) {
-                groups = [groups sortedArrayUsingDescriptors:sortDescriptors];
-            }
-            
-            CFRelease(addressBookRef);
-            
-            BBDispatchMainAsync(^{
-                completion(groups,nil);
+            dispatch_async(queue, ^{
+                NSArray *groupRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllGroups(addressBookRef);
+                NSArray *groups = [[groupRefs BB_map:^id(id object, NSInteger index) {
+                    return [[BBAddressBookGroup alloc] initWithGroup:(__bridge ABRecordRef)object];
+                }] BB_filter:^BOOL(BBAddressBookGroup *object, NSInteger index) {
+                    return object.name.length > 0;
+                }];
+                
+                if (sortDescriptors.count > 0) {
+                    groups = [groups sortedArrayUsingDescriptors:sortDescriptors];
+                }
+                
+                CFRelease(addressBookRef);
+                
+                BBDispatchMainAsync(^{
+                    completion(groups,nil);
+                });
             });
         }
     }];
