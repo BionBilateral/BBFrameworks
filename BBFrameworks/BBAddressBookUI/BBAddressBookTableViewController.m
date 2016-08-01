@@ -49,15 +49,28 @@
     
     [self.navigationItem setRightBarButtonItems:@[cancelItem]];
     
+    [self.tableView setBackgroundView:({
+        UIActivityIndicatorView *retval = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        
+        [retval setColor:[UIColor darkGrayColor]];
+        [retval setHidesWhenStopped:YES];
+        
+        retval;
+    })];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setRowHeight:44.0];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BBAddressBookPersonTableViewCell class]) bundle:BBFrameworksResourcesBundle()] forCellReuseIdentifier:NSStringFromClass([BBAddressBookPersonTableViewCell class])];
     
     @weakify(self);
     [[RACObserve(self.viewModel, people)
      deliverOn:[RACScheduler mainThreadScheduler]]
-    subscribeNext:^(id _) {
+    subscribeNext:^(NSArray *value) {
         @strongify(self);
         [self.tableView reloadData];
+        
+        if (value.count > 0) {
+            [(UIActivityIndicatorView *)self.tableView.backgroundView stopAnimating];
+        }
     }];
     
     [[[self.viewModel.cancelCommand.executionSignals
@@ -73,6 +86,7 @@
     
     if (parent) {
         [self.viewModel setActive:YES];
+        [(UIActivityIndicatorView *)self.tableView.backgroundView startAnimating];
     }
 }
 
