@@ -430,12 +430,12 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }
 }
 - (void)_addressBookChanged; {
+    [self setAddressBook:NULL];
+    [self _createAddressBookIfNecessary];
+    
     BBWeakify(self);
     BBDispatchMainAsync(^{
         BBStrongify(self);
-        [self setAddressBook:NULL];
-        [self _createAddressBookIfNecessary];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
     });
 }
