@@ -69,7 +69,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     dispatch_set_target_queue(_addressBookQueue, dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0));
     
     _addressBookSyncQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.%p.addressBookSyncQueue",NSStringFromClass(self.class),self].UTF8String, DISPATCH_QUEUE_SERIAL);
-    dispatch_set_target_queue(_addressBookSyncQueue, dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0));
+    dispatch_set_target_queue(_addressBookSyncQueue, dispatch_get_global_queue(QOS_CLASS_UTILITY, 0));
     
     _addressBookSyncSemaphore = dispatch_semaphore_create(0);
     
@@ -354,16 +354,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 }
 #pragma mark *** Private Methods ***
 - (void)_createAddressBookIfNecessary; {
-    BBWeakify(self);
-    dispatch_async(self.addressBookSyncQueue, ^{
-        BBStrongify(self);
-        if (_addressBook == NULL) {
-            [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
-        }
-    });
+    if (_addressBook == NULL) {
+        [self setAddressBook:ABAddressBookCreateWithOptions(NULL, NULL)];
+    }
 }
 - (void)_requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion; {
-    BBWeakify(self);
     if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
         [self _createAddressBookIfNecessary];
         
@@ -375,22 +370,17 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     
     [self _createAddressBookIfNecessary];
     
-    BBDispatchMainAsync(^{
-        BBStrongify(self);
-        dispatch_async(self.addressBookQueue, ^{
-            ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
-                if (granted) {
-                    BBDispatchMainAsync(^{
-                        completion(YES,nil);
-                    });
-                }
-                else {
-                    BBDispatchMainAsync(^{
-                        completion(NO,(__bridge NSError *)error);
-                    });
-                }
+    ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
+        if (granted) {
+            BBDispatchMainAsync(^{
+                completion(YES,nil);
             });
-        });
+        }
+        else {
+            BBDispatchMainAsync(^{
+                completion(NO,(__bridge NSError *)error);
+            });
+        }
     });
 }
 - (void)_requestAuthorizationAndReturnAddressBookWithCompletion:(void(^)(ABAddressBookRef addressBookRef, NSError *error))completion; {
@@ -431,15 +421,13 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }
 }
 - (void)_addressBookChanged; {
+    [self setAddressBook:NULL];
+    [self _createAddressBookIfNecessary];
+    
     BBWeakify(self);
-    dispatch_async(self.addressBookSyncQueue, ^{
+    BBDispatchMainAsync(^{
         BBStrongify(self);
-        [self setAddressBook:NULL];
-        [self _createAddressBookIfNecessary];
-        
-        BBDispatchMainAsync(^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
-        });
+        [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
     });
 }
 - (void)_syncAddressBookPeopleAndGroups; {
@@ -486,7 +474,11 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 #pragma mark Properties
 - (void)setAddressBook:(ABAddressBookRef)addressBook {
     if (_addressBook != NULL) {
-        ABAddressBookUnregisterExternalChangeCallback(_addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
+        BBWeakify(self);
+        BBDispatchMainAsync(^{
+            BBStrongify(self);
+            ABAddressBookUnregisterExternalChangeCallback(_addressBook, &kAddressBookManagerCallback, (__bridge void *)self);
+        });
         
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         
