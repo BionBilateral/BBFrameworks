@@ -365,17 +365,18 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
 - (void)_requestAuthorizationWithCompletion:(void(^)(BOOL success, NSError *error))completion; {
     BBWeakify(self);
     if ([self.class authorizationStatus] == BBAddressBookManagerAuthorizationStatusAuthorized) {
+        [self _createAddressBookIfNecessary];
+        
         BBDispatchMainAsync(^{
-            [self _createAddressBookIfNecessary];
             completion(YES,nil);
         });
         return;
     }
     
+    [self _createAddressBookIfNecessary];
+    
     BBDispatchMainAsync(^{
         BBStrongify(self);
-        [self _createAddressBookIfNecessary];
-        
         dispatch_async(self.addressBookQueue, ^{
             ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
                 if (granted) {
@@ -430,13 +431,15 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
     }
 }
 - (void)_addressBookChanged; {
-    [self setAddressBook:NULL];
-    [self _createAddressBookIfNecessary];
-    
     BBWeakify(self);
-    BBDispatchMainAsync(^{
+    dispatch_async(self.addressBookSyncQueue, ^{
         BBStrongify(self);
-        [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
+        [self setAddressBook:NULL];
+        [self _createAddressBookIfNecessary];
+        
+        BBDispatchMainAsync(^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:BBAddressBookManagerNotificationNameExternalChange object:self];
+        });
     });
 }
 - (void)_syncAddressBookPeopleAndGroups; {
@@ -448,7 +451,8 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
             return;
         }
         
-        NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(self.addressBook, NULL, ABPersonGetSortOrdering());
+        ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+        NSArray *peopleRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBookRef, NULL, ABPersonGetSortOrdering());
         NSArray *people = [[peopleRefs BB_filter:^BOOL(id  _Nonnull object, NSInteger index) {
             ABRecordRef personRef = (__bridge ABRecordRef)object;
             NSString *fullName = (__bridge_transfer NSString *)ABRecordCopyCompositeName(personRef);
@@ -460,7 +464,7 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         
         [self setAddressBookPeople:people];
         
-        NSArray *groupRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllGroups(self.addressBook);
+        NSArray *groupRefs = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllGroups(addressBookRef);
         NSArray *groups = [[groupRefs BB_filter:^BOOL(id  _Nonnull object, NSInteger index) {
             ABRecordRef groupRef = (__bridge ABRecordRef)object;
             NSString *name = (__bridge_transfer NSString *)ABRecordCopyValue(groupRef, kABGroupNameProperty);
@@ -471,6 +475,8 @@ static void kAddressBookManagerCallback(ABAddressBookRef addressBook, CFDictiona
         }];
         
         [self setAddressBookGroups:groups];
+        
+        CFRelease(addressBookRef);
         
         [self setAddressBookNeedsSync:NO];
         
