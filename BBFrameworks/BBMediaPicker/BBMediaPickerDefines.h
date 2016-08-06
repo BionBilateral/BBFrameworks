@@ -75,7 +75,7 @@ typedef NS_ENUM(NSInteger, BBMediaPickerAuthorizationStatus) {
 /**
  Mask describing the types of media that should be displayed when using the library.
  */
-typedef NS_OPTIONS(NSInteger, BBMediaPickerMediaTypes) {
+typedef NS_OPTIONS(NSUInteger, BBMediaPickerMediaTypes) {
     /**
      Unknown media should be displayed.
      */

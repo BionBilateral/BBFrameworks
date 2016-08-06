@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Flags mask describing the status of the network connection.
  */
-typedef NS_OPTIONS(NSInteger, BBReachabilityFlags) {
+typedef NS_OPTIONS(NSUInteger, BBReachabilityFlags) {
     /**
      The flags could not be determined.
      */

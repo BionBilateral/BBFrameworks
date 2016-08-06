@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, BBThumbnailGeneratorCacheType) {
 /**
  Flags describing the cache type that is used to store generated thumbnails.
  */
-typedef NS_OPTIONS(NSInteger, BBThumbnailGeneratorCacheOptions) {
+typedef NS_OPTIONS(NSUInteger, BBThumbnailGeneratorCacheOptions) {
     /**
      Caching is not enabled, the thumbnail will be generated each time it is requested.
      */

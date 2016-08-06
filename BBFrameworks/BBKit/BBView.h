@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Options mask describing the border options of the receiver.
  */
-typedef NS_OPTIONS(NSInteger, BBViewBorderOptions) {
+typedef NS_OPTIONS(NSUInteger, BBViewBorderOptions) {
     /**
      No borders are drawn.
      */

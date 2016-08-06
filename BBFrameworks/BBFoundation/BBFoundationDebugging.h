@@ -25,7 +25,7 @@
 /**
  Options mask describing what log statements should show up.
  */
-typedef NS_OPTIONS(NSInteger, BBLogFlag) {
+typedef NS_OPTIONS(NSUInteger, BBLogFlag) {
     /**
      Only BBLogError() statements will show up.
      */
