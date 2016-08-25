@@ -71,7 +71,7 @@
     _jobTitle = (__bridge_transfer NSString *)ABRecordCopyValue(personRef, kABPersonJobTitleProperty);
     _emails = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonEmailProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -85,7 +85,7 @@
     _modificationDate = (__bridge_transfer NSDate *)ABRecordCopyValue(personRef, kABPersonModificationDateProperty);
     _addresses = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonAddressProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -95,7 +95,7 @@
     });
     _dates = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonDateProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -106,7 +106,7 @@
     _kind = (__bridge_transfer NSNumber *)ABRecordCopyValue(personRef, kABPersonKindProperty);
     _phoneNumbers = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonPhoneProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -116,7 +116,7 @@
     });
     _instantMessages = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonInstantMessageProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -126,7 +126,7 @@
     });
     _URLStrings = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonURLProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -136,7 +136,7 @@
     });
     _relatedNames = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonRelatedNamesProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -146,7 +146,7 @@
     });
     _socialProfiles = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonSocialProfileProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
@@ -156,7 +156,7 @@
     });
     _alternateBirthdays = ({
         ABMultiValueRef valueRef = ABRecordCopyValue(personRef, kABPersonAlternateBirthdayProperty);
-        NSArray *retval = (__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef);
+        NSArray *retval = [NSArray arrayWithArray:(__bridge_transfer NSArray *)ABMultiValueCopyArrayOfAllValues(valueRef)];
         
         if (valueRef != NULL) {
             CFRelease(valueRef);
