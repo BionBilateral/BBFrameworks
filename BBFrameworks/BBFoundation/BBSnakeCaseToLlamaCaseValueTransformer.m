@@ -36,14 +36,30 @@ NSString *const BBSnakeCaseToLlamaCaseValueTransformerName = @"BBSnakeCaseToLlam
         NSArray *comps = [[value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@"_"];
         NSMutableString *retval = [[NSMutableString alloc] init];
         
-        [comps enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-            if (idx == 0) {
-                [retval appendString:obj.lowercaseString];
-            }
-            else {
-                [retval appendString:obj.capitalizedString];
-            }
-        }];
+        /**
+         This covers the case of names already being in camel case, for example, without this special case @"firstName" -> @"firstname". We expect @"firstName" -> @"firstName".
+         
+         This also covers the case of @"First" -> @"first", as expected.
+         */
+        if (comps.count == 1 &&
+            [comps.firstObject rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet]].length > 0 &&
+            [comps.firstObject rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet]].location != 0) {
+            
+            [retval appendString:comps.firstObject];
+        }
+        /**
+         Otherwise, do the normal thing with each component.
+         */
+        else {
+            [comps enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
+                if (idx == 0) {
+                    [retval appendString:obj.lowercaseString];
+                }
+                else {
+                    [retval appendString:obj.capitalizedString];
+                }
+            }];
+        }
         
         return retval;
     }
