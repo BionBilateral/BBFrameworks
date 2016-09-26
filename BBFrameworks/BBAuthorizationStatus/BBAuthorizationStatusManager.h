@@ -21,7 +21,7 @@
 #if (TARGET_OS_IPHONE)
 #import <Photos/PHPhotoLibrary.h>
 #import <AVFoundation/AVCaptureDevice.h>
-#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVFoundation.h>
 #import <AddressBook/ABAddressBook.h>
 #endif
 

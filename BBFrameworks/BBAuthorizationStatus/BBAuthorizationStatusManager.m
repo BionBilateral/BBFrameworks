@@ -21,7 +21,6 @@
 #import <EventKit/EventKit.h>
 #if (TARGET_OS_IPHONE)
 #import <Photos/Photos.h>
-#import <AVFoundation/AVFoundation.h>
 #import <AddressBook/AddressBook.h>
 #endif
 
