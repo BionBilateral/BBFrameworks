@@ -291,6 +291,7 @@
 		7953FA3F1B31FA600005E3FD /* TooltipsRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FA3E1B31FA600005E3FD /* TooltipsRowViewController.m */; };
 		7953FBCC1C5AF40B0067B15E /* AuthorizationStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953FBCB1C5AF40B0067B15E /* AuthorizationStatusViewController.m */; };
 		7953FBCE1C5AF4740067B15E /* AuthorizationStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953FBCD1C5AF4740067B15E /* AuthorizationStatusViewController.xib */; };
+		7956998E1D9D6E5C00A8118A /* BBButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7924D4051D997B3700C43FB0 /* BBButton.h */; };
 		796262E31BF8048A00439C49 /* BBFrameworksMacrosPrivate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 796262E21BF8044400439C49 /* BBFrameworksMacrosPrivate.h */; };
 		796583E51C875DF4001B577E /* BBMediaViewerPageTextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 796583E41C875DF4001B577E /* BBMediaViewerPageTextModel.m */; };
 		796583E81C876239001B577E /* BBMediaViewerPageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 796583E71C876239001B577E /* BBMediaViewerPageTextViewController.m */; };
@@ -745,6 +746,7 @@
 			files = (
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79EA2CAB1C7056080019ACF9 /* BBCore.h in CopyFiles */,
+				7956998E1D9D6E5C00A8118A /* BBButton.h in CopyFiles */,
 				79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */,
 				0744F4B21D0722E30033D5F9 /* UINavigationController+BBKitExtensions.h in CopyFiles */,
 				7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */,

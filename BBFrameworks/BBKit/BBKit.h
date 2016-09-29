@@ -40,6 +40,7 @@
 #import "UIBezierPath+BBKitExtensions.h"
 
 #import "BBLabel.h"
+#import "BBButton.h"
 #import "BBTextField.h"
 #import "BBPickerButton.h"
 #import "BBDatePickerButton.h"
