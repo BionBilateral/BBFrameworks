@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.8.66"
+  spec.version = "1.8.67"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -91,7 +91,6 @@ Pod::Spec.new do |spec|
   
   spec.subspec "BBThumbnail" do |subspec|
     subspec.dependency "BBFrameworks/BBKit"
-    subspec.dependency "MagicKit-BionBilateral"
     
     subspec.source_files = "BBFrameworks/BBThumbnail", "BBFrameworks/BBThumbnail/Private"
     subspec.ios.source_files = "BBFrameworks/BBThumbnail/iOS", "BBFrameworks/BBThumbnail/iOS/Private"

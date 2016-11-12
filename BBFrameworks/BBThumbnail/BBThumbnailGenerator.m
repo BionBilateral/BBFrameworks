@@ -41,7 +41,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIApplication.h>
 #endif
-#import <MagicKit-BionBilateral/MagicKit.h>
 
 static NSString *const kCacheDirectoryName = @"BBThumbnailGenerator";
 static NSString *const kThumbnailCacheDirectoryName = @"thumbnails";
@@ -329,9 +328,6 @@ static NSTimeInterval const kDefaultTime = 1.0;
             if (URL.pathExtension.length > 0) {
                 UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
             }
-            else {
-                UTI = [GEMagicKit magicForFileAtURL:URL].uniformType;
-            }
             
             NSOperation<BBThumbnailOperation> *operation = thumbnailOperationForUTI(URL,UTI);
             
@@ -343,15 +339,7 @@ static NSTimeInterval const kDefaultTime = 1.0;
             }
         }
         else {
-            NSURL *downloadURL = [self downloadCacheURLForURL:URL];
-            
-            if ([downloadURL checkResourceIsReachableAndReturnError:NULL]) {
-                NSString *UTI = [GEMagicKit magicForFileAtURL:downloadURL].uniformType;
-                NSOperation<BBThumbnailOperation> *operation = thumbnailOperationForUTI(downloadURL,UTI);
-                
-                [retval setOperation:operation];
-            }
-            else if ([URL.host isEqualToString:@"www.youtube.com"] &&
+            if ([URL.host isEqualToString:@"www.youtube.com"] &&
                 self.youTubeAPIKey.length > 0) {
                 
                 [retval setOperation:[[BBThumbnailYouTubeOperation alloc] initWithURL:URL size:size APIKey:self.youTubeAPIKey completion:operationCompletionBlock]];
