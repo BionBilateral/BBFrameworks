@@ -17,8 +17,12 @@
 
 @implementation UIViewController (BBKitExtensions)
 
-+ (UIViewController *)BB_viewControllerForPresenting; {
++ (nullable UIViewController *)BB_viewControllerForPresenting; {
+#if (TARGET_OS_WATCH)
+    return nil;
+#else
     return [[UIApplication sharedApplication].keyWindow.rootViewController BB_viewControllerForPresenting];
+#endif
 }
 - (UIViewController *)BB_viewControllerForPresenting {
     UIViewController *retval = self;

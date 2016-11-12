@@ -69,12 +69,16 @@
     }
     
     if (self.isNetworkActivityIndicatorVisible) {
+#if (!TARGET_OS_WATCH)
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:self.isNetworkActivityIndicatorVisible];
+#endif
     }
     else {
         [self.timer invalidate];
         [self setTimer:[BBTimer scheduledTimerWithTimeInterval:0.17 block:^(BBTimer *timer){
+#if (!TARGET_OS_WATCH)
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:self.isNetworkActivityIndicatorVisible];
+#endif
         } userInfo:nil repeats:NO queue:nil]];
     }
 }

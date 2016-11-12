@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The view controller
  */
-+ (UIViewController *)BB_viewControllerForPresenting;
++ (nullable UIViewController *)BB_viewControllerForPresenting;
 /**
  Returns the view controller that should be used for modal presentation.
  
