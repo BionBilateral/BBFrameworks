@@ -18,7 +18,7 @@
 @implementation UIViewController (BBKitExtensions)
 
 + (nullable UIViewController *)BB_viewControllerForPresenting; {
-#if (TARGET_OS_WATCH)
+#ifdef BB_APP_EXTENSION
     return nil;
 #else
     return [[UIApplication sharedApplication].keyWindow.rootViewController BB_viewControllerForPresenting];
