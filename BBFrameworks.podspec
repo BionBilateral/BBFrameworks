@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.8.70"
+  spec.version = "1.8.71"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -32,9 +32,9 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBFoundation" do |subspec|
-      subspec.ios.deployment_target = "8.0"
-      subspec.osx.deployment_target = "10.10"
-      subspec.watchos.deployment_target = "3.0"
+    subspec.ios.deployment_target = "8.0"
+    subspec.osx.deployment_target = "10.10"
+    subspec.watchos.deployment_target = "3.0"
       
     subspec.dependency "BBFrameworks/BBCore"
     
@@ -42,9 +42,9 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBKeychain" do |subspec|
-      subspec.ios.deployment_target = "8.0"
-      subspec.osx.deployment_target = "10.10"
-      subspec.watchos.deployment_target = "3.0"
+    subspec.ios.deployment_target = "8.0"
+    subspec.osx.deployment_target = "10.10"
+    subspec.watchos.deployment_target = "3.0"
     
     subspec.dependency "BBFrameworks/BBCore"
     
@@ -54,9 +54,9 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBBlocks" do |subspec|
-      subspec.ios.deployment_target = "8.0"
-      subspec.osx.deployment_target = "10.10"
-      subspec.watchos.deployment_target = "3.0"
+    subspec.ios.deployment_target = "8.0"
+    subspec.osx.deployment_target = "10.10"
+    subspec.watchos.deployment_target = "3.0"
       
     subspec.dependency "BBFrameworks/BBCore"
     
@@ -72,6 +72,10 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBCoreData" do |subspec|
+    subspec.ios.deployment_target = "8.0"
+    subspec.osx.deployment_target = "10.10"
+    subspec.watchos.deployment_target = "3.0"  
+      
     subspec.dependency "BBFrameworks/BBFoundation"
     
     subspec.source_files = "BBFrameworks/BBCoreData", "BBFrameworks/BBCoreData/Private"
