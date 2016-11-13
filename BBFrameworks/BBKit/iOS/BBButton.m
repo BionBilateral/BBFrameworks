@@ -37,7 +37,10 @@ static CGFloat const kTitleBrightnessAdjustment = 0.5;
             break;
     }
     
-    switch (self.alignment) {
+    if (self.titleAlignment == BBButtonTitleAlignmentDefault &&
+        self.imageAlignment == BBButtonImageAlignmentDefault) {
+        
+        switch (self.alignment) {
             case BBButtonAlignmentRight: {
                 CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
                 CGSize imageViewSize = [self.imageView sizeThatFits:CGSizeZero];
@@ -47,7 +50,7 @@ static CGFloat const kTitleBrightnessAdjustment = 0.5;
                 [self.titleLabel setFrame:titleLabelRect];
                 [self.imageView setFrame:imageViewRect];
             }
-            break;
+                break;
             case BBButtonAlignmentCenterVertically: {
                 CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
                 CGSize imageViewSize = [self.imageView sizeThatFits:CGSizeZero];
@@ -58,41 +61,91 @@ static CGFloat const kTitleBrightnessAdjustment = 0.5;
                 [self.titleLabel setFrame:titleLabelRect];
                 [self.imageView setFrame:imageViewRect];
             }
-            break;
-        default:
-            break;
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        switch (self.titleAlignment) {
+            case BBButtonTitleAlignmentLeft: {
+                CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
+                CGRect titleLabelRect = BBCGRectCenterInRectVertically(CGRectMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, 0, titleLabelSize.width, titleLabelSize.height), self.bounds);
+                
+                [self.titleLabel setFrame:titleLabelRect];
+            }
+                break;
+            case BBButtonTitleAlignmentRight: {
+                CGSize titleLabelSize = [self.titleLabel sizeThatFits:CGSizeZero];
+                CGRect titleLabelRect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetWidth(self.bounds) - titleLabelSize.width - self.contentEdgeInsets.right - self.titleEdgeInsets.right, 0, titleLabelSize.width, titleLabelSize.height), self.bounds);
+                
+                [self.titleLabel setFrame:titleLabelRect];
+            }
+                break;
+            default:
+                break;
+        }
+        
+        switch (self.imageAlignment) {
+            case BBButtonImageAlignmentLeft: {
+                CGSize imageViewSize = [self.imageView sizeThatFits:CGSizeZero];
+                CGRect imageViewRect = BBCGRectCenterInRectVertically(CGRectMake(self.contentEdgeInsets.left - self.imageEdgeInsets.left, 0, imageViewSize.width, imageViewSize.height), self.bounds);
+                
+                [self.imageView setFrame:imageViewRect];
+            }
+                break;
+            case BBButtonImageAlignmentRight: {
+                CGSize imageViewSize = [self.imageView sizeThatFits:CGSizeZero];
+                CGRect imageViewRect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetWidth(self.bounds) - self.contentEdgeInsets.right - self.imageEdgeInsets.right, 0, imageViewSize.width, imageViewSize.height), self.bounds);
+                
+                [self.imageView setFrame:imageViewRect];
+            }
+                break;
+            default:
+                break;
+        }
     }
 }
 
 - (CGSize)intrinsicContentSize {
     CGSize retval = [super intrinsicContentSize];
     
-    switch (self.alignment) {
+    if (self.titleAlignment == BBButtonTitleAlignmentDefault &&
+        self.imageAlignment == BBButtonImageAlignmentDefault) {
+        
+        switch (self.alignment) {
             case BBButtonAlignmentCenterVertically:
-            retval.width = self.contentEdgeInsets.left;
-            retval.width += self.imageEdgeInsets.left;
-            retval.width += self.titleEdgeInsets.left;
-            retval.width += MAX([self.imageView sizeThatFits:CGSizeZero].width, [self.titleLabel sizeThatFits:CGSizeZero].width);
-            retval.width += self.imageEdgeInsets.right;
-            retval.width += self.titleEdgeInsets.right;
-            retval.width += self.contentEdgeInsets.right;
-            
-            retval.height = self.contentEdgeInsets.top;
-            retval.height += self.imageEdgeInsets.top;
-            retval.height += [self.imageView sizeThatFits:CGSizeZero].height;
-            retval.height += self.imageEdgeInsets.bottom;
-            retval.height += self.titleEdgeInsets.top;
-            retval.height += [self.titleLabel sizeThatFits:CGSizeZero].height;
-            retval.height += self.titleEdgeInsets.bottom;
-            retval.height += self.contentEdgeInsets.bottom;
-            break;
+                retval.width = self.contentEdgeInsets.left;
+                retval.width += self.imageEdgeInsets.left;
+                retval.width += self.titleEdgeInsets.left;
+                retval.width += MAX([self.imageView sizeThatFits:CGSizeZero].width, [self.titleLabel sizeThatFits:CGSizeZero].width);
+                retval.width += self.imageEdgeInsets.right;
+                retval.width += self.titleEdgeInsets.right;
+                retval.width += self.contentEdgeInsets.right;
+                
+                retval.height = self.contentEdgeInsets.top;
+                retval.height += self.imageEdgeInsets.top;
+                retval.height += [self.imageView sizeThatFits:CGSizeZero].height;
+                retval.height += self.imageEdgeInsets.bottom;
+                retval.height += self.titleEdgeInsets.top;
+                retval.height += [self.titleLabel sizeThatFits:CGSizeZero].height;
+                retval.height += self.titleEdgeInsets.bottom;
+                retval.height += self.contentEdgeInsets.bottom;
+                break;
             case BBButtonAlignmentRight:
-        default:
-            retval.width += self.titleEdgeInsets.left + self.titleEdgeInsets.right;
-            retval.width += self.imageEdgeInsets.left + self.imageEdgeInsets.right;
-            retval.height += self.titleEdgeInsets.top + self.titleEdgeInsets.bottom;
-            retval.height += self.imageEdgeInsets.top + self.imageEdgeInsets.bottom;
-            break;
+            default:
+                retval.width += self.titleEdgeInsets.left + self.titleEdgeInsets.right;
+                retval.width += self.imageEdgeInsets.left + self.imageEdgeInsets.right;
+                retval.height += self.titleEdgeInsets.top + self.titleEdgeInsets.bottom;
+                retval.height += self.imageEdgeInsets.top + self.imageEdgeInsets.bottom;
+                break;
+        }
+    }
+    else {
+        retval.width += self.titleEdgeInsets.left + self.titleEdgeInsets.right;
+        retval.width += self.imageEdgeInsets.left + self.imageEdgeInsets.right;
+        retval.height += self.titleEdgeInsets.top + self.titleEdgeInsets.bottom;
+        retval.height += self.imageEdgeInsets.top + self.imageEdgeInsets.bottom;
     }
     
     return retval;
@@ -142,6 +195,26 @@ static CGFloat const kTitleBrightnessAdjustment = 0.5;
     }
     
     _alignment = alignment;
+    
+    [self setNeedsLayout];
+    [self invalidateIntrinsicContentSize];
+}
+- (void)setTitleAlignment:(BBButtonTitleAlignment)titleAlignment {
+    if (_titleAlignment == titleAlignment) {
+        return;
+    }
+    
+    _titleAlignment = titleAlignment;
+    
+    [self setNeedsLayout];
+    [self invalidateIntrinsicContentSize];
+}
+- (void)setImageAlignment:(BBButtonImageAlignment)imageAlignment {
+    if (_imageAlignment == imageAlignment) {
+        return;
+    }
+    
+    _imageAlignment = imageAlignment;
     
     [self setNeedsLayout];
     [self invalidateIntrinsicContentSize];

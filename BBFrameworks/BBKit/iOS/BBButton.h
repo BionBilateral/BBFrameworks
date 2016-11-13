@@ -48,6 +48,42 @@ typedef NS_ENUM(NSInteger, BBButtonAlignment) {
 };
 
 /**
+ Enum describing the alignment of the title.
+ */
+typedef NS_ENUM(NSInteger, BBButtonTitleAlignment) {
+    /**
+     Use the default UIButton title alignment.
+     */
+    BBButtonTitleAlignmentDefault = 0,
+    /**
+     Align the title to the left edge of the button.
+     */
+    BBButtonTitleAlignmentLeft,
+    /**
+     Align the title to the right edge of the button.
+     */
+    BBButtonTitleAlignmentRight
+};
+
+/**
+ Enum describing the alignment of the image.
+ */
+typedef NS_ENUM(NSInteger, BBButtonImageAlignment) {
+    /**
+     Use the default UIButton image alignment.
+     */
+    BBButtonImageAlignmentDefault = 0,
+    /**
+     Align the image to the left edge of the button.
+     */
+    BBButtonImageAlignmentLeft,
+    /**
+     Align the image to the right edge of the button.
+     */
+    BBButtonImageAlignmentRight
+};
+
+/**
  BBButton is a subclass of UIButton that provides custom style and alignment options.
  */
 @interface BBButton : UIButton
@@ -64,5 +100,17 @@ typedef NS_ENUM(NSInteger, BBButtonAlignment) {
  @see BBButtonAlignment
  */
 @property (assign,nonatomic) BBButtonAlignment alignment;
+/**
+ Set and get the alignment of the title.
+ 
+ @see BBButtonTitleAlignment
+ */
+@property (assign,nonatomic) BBButtonTitleAlignment titleAlignment;
+/**
+ Set and get the alignment of the image.
+ 
+ @see BBButtonImageAlignment
+ */
+@property (assign,nonatomic) BBButtonImageAlignment imageAlignment;
 
 @end
