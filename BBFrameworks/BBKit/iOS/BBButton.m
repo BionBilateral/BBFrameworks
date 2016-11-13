@@ -96,7 +96,7 @@ static CGFloat const kTitleBrightnessAdjustment = 0.5;
                 break;
             case BBButtonImageAlignmentRight: {
                 CGSize imageViewSize = [self.imageView sizeThatFits:CGSizeZero];
-                CGRect imageViewRect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetWidth(self.bounds) - self.contentEdgeInsets.right - self.imageEdgeInsets.right, 0, imageViewSize.width, imageViewSize.height), self.bounds);
+                CGRect imageViewRect = BBCGRectCenterInRectVertically(CGRectMake(CGRectGetWidth(self.bounds) - imageViewSize.width - self.contentEdgeInsets.right - self.imageEdgeInsets.right, 0, imageViewSize.width, imageViewSize.height), self.bounds);
                 
                 [self.imageView setFrame:imageViewRect];
             }
