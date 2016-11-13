@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "BBFrameworks"
-  spec.version = "1.8.68"
+  spec.version = "1.8.69"
   spec.authors = {"William Towe" => "will@bionbilateral.com", "Jason Anderson" => "jason@bionbilateral.com", "Norm Barnard" => "norm@bionbilateral.com"}
   spec.license = {:type => "BSD", :file => "license.txt"}
   spec.homepage = "https://github.com/BionBilateral/BBFrameworks"
@@ -15,6 +15,8 @@ Pod::Spec.new do |spec|
   spec.default_subspecs = "BBCore", "BBFoundation", "BBBlocks", "BBKit"
   
   spec.subspec "BBCore" do |subspec|
+    subspec.watchos.deployment_target = "3.0"
+      
     subspec.source_files = "BBFrameworks"
     
     subspec.frameworks = "Foundation"
@@ -28,12 +30,16 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBFoundation" do |subspec|
+    subspec.watchos.deployment_target = "3.0"
+      
     subspec.dependency "BBFrameworks/BBCore"
     
     subspec.source_files = "BBFrameworks/BBFoundation"
   end
   
   spec.subspec "BBKeychain" do |subspec|
+    subspec.watchos.deployment_target = "3.0"
+    
     subspec.dependency "BBFrameworks/BBCore"
     
     subspec.source_files = "BBFrameworks/BBKeychain"
@@ -42,6 +48,8 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec "BBBlocks" do |subspec|
+    subspec.watchos.deployment_target = "3.0"
+      
     subspec.dependency "BBFrameworks/BBCore"
     
     subspec.source_files = "BBFrameworks/BBBlocks"
