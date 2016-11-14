@@ -121,8 +121,10 @@
                             [destEntities addObject:destEntity];
                         }
                     }
-                    else if ([destEntityIdentityOrDict isKindOfClass:[NSNumber class]]) {
-                        NSManagedObject *destEntity = [context BB_fetchEntityNamed:destEntityName predicate:[NSPredicate predicateWithFormat:@"%K == %@",[NSManagedObjectContext BB_defaultIdentityKey],value] sortDescriptors:nil limit:1 error:NULL].firstObject;
+                    else if ([destEntityIdentityOrDict isKindOfClass:[NSNumber class]] ||
+                             [destEntityIdentityOrDict isKindOfClass:[NSString class]]) {
+                        
+                        NSManagedObject *destEntity = [context BB_fetchEntityNamed:destEntityName predicate:[NSPredicate predicateWithFormat:@"%K == %@",[NSManagedObjectContext BB_defaultIdentityKey],destEntityIdentityOrDict] sortDescriptors:nil limit:1 error:NULL].firstObject;
                         
                         if (destEntity) {
                             [destEntities addObject:destEntity];
@@ -142,7 +144,9 @@
                 
                 retval = destEntity;
             }
-            else if ([value isKindOfClass:[NSNumber class]]) {
+            else if ([value isKindOfClass:[NSNumber class]] ||
+                     [value isKindOfClass:[NSString class]]) {
+                
                 NSManagedObject *destEntity = [context BB_fetchEntityNamed:destEntityName predicate:[NSPredicate predicateWithFormat:@"%K == %@",[NSManagedObjectContext BB_defaultIdentityKey],value] sortDescriptors:nil limit:1 error:NULL].firstObject;
                 
                 retval = destEntity;
