@@ -57,10 +57,13 @@
             [self.textField.rightView sizeToFit];
             [self.textField setRightViewMode:UITextFieldViewModeAlways];
         }
-        else {
+        else if (outError != nil) {
             [self.textField setRightView:[[BBValidationTextFieldErrorView alloc] initWithError:outError]];
             [self.textField.rightView sizeToFit];
             [self.textField setRightViewMode:UITextFieldViewModeAlways];
+        }
+        else {
+            [self.textField setRightView:nil];
         }
     }
 }

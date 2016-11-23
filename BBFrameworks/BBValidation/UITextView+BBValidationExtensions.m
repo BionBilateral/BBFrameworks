@@ -63,8 +63,11 @@
             
             [self setView:[self.textValidator textValidatorRightView]];
         }
-        else {
+        else if (outError != nil) {
             [self setView:[[BBValidationTextFieldErrorView alloc] initWithError:outError]];
+        }
+        else {
+            [self setView:nil];
         }
     }
 }
