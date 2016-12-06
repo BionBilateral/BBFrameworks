@@ -15,30 +15,64 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ Protocol describing a dynamic type view that can be passed to BB_registerDynamicTypeView:forTextStyle: and BB_unregisterDynamicTypeView:.
+ */
 @protocol BBDynamicTypeView <NSObject>
 @required
+/**
+ Sets the dynamic type font of the receiver. The receiver should then update itself and any dependent objects with the new value.
+ 
+ @param dynamicTypeFont The new dynamic type font
+ */
 - (void)BB_setDynamicTypeFont:(UIFont *)dynamicTypeFont;
 @end
 
+/**
+ Category on UILabel ensuring it conforms to the BBDynamicTypeView protocol.
+ */
 @interface UILabel (BBDynamicTypeExtensions) <BBDynamicTypeView>
-
 @end
 
+/**
+ Category on UIButton ensuring it conforms to the BBDynamicTypeView protocol.
+ */
 @interface UIButton (BBDynamicTypeExtensions) <BBDynamicTypeView>
-
 @end
 
+/**
+ Category on UITextField ensuring it conforms to the BBDynamicTypeView protocol.
+ */
 @interface UITextField (BBDynamicTypeExtensions) <BBDynamicTypeView>
-
 @end
 
+/**
+ Category on UITextView ensuring it conforms to the BBDynamicTypeView protocol.
+ */
 @interface UITextView (BBDynamicTypeExtensions) <BBDynamicTypeView>
-
 @end
 
+/**
+ Category on NSObject allowing objects conforming to the BBDynamicTypeView protocol to register and unregister for dynamic type notifications.
+ */
 @interface NSObject (BBDynamicTypeExtensions)
 
+/**
+ Register the dynamic type view for dynamic type notifications for the provided text style.
+ 
+ @param dynamicTypeView The dynamic type view to register
+ @param textStyle The text style to register for
+ */
 + (void)BB_registerDynamicTypeView:(id<BBDynamicTypeView>)dynamicTypeView forTextStyle:(UIFontTextStyle)textStyle;
+/**
+ Unregister the dynamic type view for dynamic type notifications.
+ 
+ @param dynamicTypeView The dynamic type view to unregister
+ */
 + (void)BB_unregisterDynamicTypeView:(id<BBDynamicTypeView>)dynamicTypeView;
 
 @end
+
+NS_ASSUME_NONNULL_END

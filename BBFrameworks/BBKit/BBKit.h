@@ -38,6 +38,7 @@
 #import "UIAlertController+BBKitExtensions.h"
 #import "UIDevice+BBKitExtensions.h"
 #import "UIBezierPath+BBKitExtensions.h"
+#import "NSObject+BBDynamicTypeExtensions.h"
 
 #import "BBLabel.h"
 #import "BBButton.h"

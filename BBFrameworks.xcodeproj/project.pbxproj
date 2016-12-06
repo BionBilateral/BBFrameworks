@@ -453,6 +453,7 @@
 		79C27EB31B3B9A8300C4AC28 /* ThumbnailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C27EB11B3B9A8300C4AC28 /* ThumbnailsViewController.xib */; };
 		79C27EB61B3B9C4400C4AC28 /* ThumbnailItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EB51B3B9C4400C4AC28 /* ThumbnailItemViewController.m */; };
 		79C27EC31B3BB8A100C4AC28 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C27EC21B3BB8A100C4AC28 /* MediaPlayerViewController.m */; };
+		79C41D361DF73A1200A507D0 /* NSObject+BBDynamicTypeExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79FAAC661DF61E130098F5F2 /* NSObject+BBDynamicTypeExtensions.h */; };
 		79C469ED1C7D61D90089575A /* BBProgressToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C469EC1C7D61D90089575A /* BBProgressToolbar.m */; };
 		79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79C469EB1C7D61D90089575A /* BBProgressToolbar.h */; };
 		79CAB9911C82EB330044398A /* BBMediaViewerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 79CAB9901C82EB330044398A /* BBMediaViewerTheme.m */; };
@@ -758,6 +759,7 @@
 				790DE0871B51B02A0029C004 /* BBDatePickerButton.h in CopyFiles */,
 				79EA2CAB1C7056080019ACF9 /* BBCore.h in CopyFiles */,
 				7956998E1D9D6E5C00A8118A /* BBButton.h in CopyFiles */,
+				79C41D361DF73A1200A507D0 /* NSObject+BBDynamicTypeExtensions.h in CopyFiles */,
 				79C469EE1C7D64F20089575A /* BBProgressToolbar.h in CopyFiles */,
 				0744F4B21D0722E30033D5F9 /* UINavigationController+BBKitExtensions.h in CopyFiles */,
 				7965A3F11C829BE200A197E2 /* NSString+BBBlocksExtensions.h in CopyFiles */,
