@@ -67,8 +67,18 @@
     
     [(id)dynamicTypeView BB_setDynamicTypeHelper:helper];
 }
++ (void)BB_registerDynamicTypeViews:(NSSet<id<BBDynamicTypeView>> *)dynamicTypeViews forTextStyle:(UIFontTextStyle)textStyle; {
+    for (id<BBDynamicTypeView> view in dynamicTypeViews) {
+        [self BB_registerDynamicTypeView:view forTextStyle:textStyle];
+    }
+}
 + (void)BB_unregisterDynamicTypeView:(id<BBDynamicTypeView>)dynamicTypeView; {
     [(id)dynamicTypeView BB_setDynamicTypeHelper:nil];
+}
++ (void)BB_unregisterDynamicTypeViews:(NSSet<id<BBDynamicTypeView>> *)dynamicTypeViews; {
+    for (id<BBDynamicTypeView> view in dynamicTypeViews) {
+        [self BB_unregisterDynamicTypeView:view];
+    }
 }
 
 @end

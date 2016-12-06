@@ -67,11 +67,24 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)BB_registerDynamicTypeView:(id<BBDynamicTypeView>)dynamicTypeView forTextStyle:(UIFontTextStyle)textStyle;
 /**
+ Registers the set of dynamic type views for dynamic type notifications for the provided text style.
+ 
+ @param dynamicTypeViews The set of dynamic type views to register
+ @param textStyle The text style to register for
+ */
++ (void)BB_registerDynamicTypeViews:(NSSet<id<BBDynamicTypeView>> *)dynamicTypeViews forTextStyle:(UIFontTextStyle)textStyle;
+/**
  Unregister the dynamic type view for dynamic type notifications.
  
  @param dynamicTypeView The dynamic type view to unregister
  */
 + (void)BB_unregisterDynamicTypeView:(id<BBDynamicTypeView>)dynamicTypeView;
+/**
+ Unregisters the set of dynamic type views for dynamic type notifications.
+ 
+ @param dynamicTypeViews The set of dynamic type views to unregister
+ */
++ (void)BB_unregisterDynamicTypeViews:(NSSet<id<BBDynamicTypeView>> *)dynamicTypeViews;
 
 @end
 
