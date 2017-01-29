@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^BBTimerCompletionBlock)(BBTimer *timer);
 
 /**
- BBTimer is a NSObject subclass that serves the same function as NSTimer, but does so using GCD. The main advantage of this approach is that BBTimer does create a retain cycle between the target and the timer as NSTimer does.
+ BBTimer is a NSObject subclass that serves the same function as NSTimer, but does so using GCD. The main advantage of this approach is that BBTimer does not create a retain cycle between the target and the timer as NSTimer does.
  */
 @interface BBTimer : NSObject
 
