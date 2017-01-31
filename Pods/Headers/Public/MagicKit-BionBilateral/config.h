@@ -1,1 +1,0 @@
-../../../MagicKit-BionBilateral/config.h
