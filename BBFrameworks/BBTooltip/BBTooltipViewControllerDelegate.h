@@ -34,7 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BBTooltipViewArrowStyle)tooltipViewController:(BBTooltipViewController *)viewController arrowStyleForTooltipAtIndex:(NSInteger)index;
 
+/**
+ Called to determine whether the client wants an accessory view displayed in the tooltip at the provided index. If the return value of this method is non-nil, the accessory view is displayed below the tooltip text and if it responds to setDisplayNextTooltipBlock: it must provide some way to execute the block (e.g. a button tap).
+ 
+ @param viewController The tooltip view controller that sent the message
+ @param index The index of the tooltip about to be displayed
+ @return The accessory view for the tooltip
+ */
 - (nullable UIView<BBTooltipAccessoryView> *)tooltipViewController:(BBTooltipViewController *)viewController accessoryViewForTooltipAtIndex:(NSInteger)index;
+
 /**
  Called immediately before the tooltip view controller is dismissed.
  
