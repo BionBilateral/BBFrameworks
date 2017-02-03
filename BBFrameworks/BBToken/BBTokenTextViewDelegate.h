@@ -131,7 +131,7 @@ typedef void(^BBTokenTextViewCompletionBlock)(NSArray<id<BBTokenCompletion> > *_
  @param index The index of the represented object where the completion would be inserted
  @return An array of objects conforming to BBTokenCompletion
  */
-- (NSArray *)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index;
+- (NSArray<id<BBTokenCompletion> > *)tokenTextView:(BBTokenTextView *)tokenTextView completionsForSubstring:(NSString *)substring indexOfRepresentedObject:(NSInteger)index;
 /**
  Call the provided completion block with an array of objects conforming to BBTokenCompletion, for the provided substring and index. If this method is implemented, it is preferred over `tokenTextView:completionsForSubstring:indexOfRepresentedObject:`.
  
