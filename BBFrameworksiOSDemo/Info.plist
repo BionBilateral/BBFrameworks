@@ -27,11 +27,37 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSCameraUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSContactsUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSHomeKitUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSMotionUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSSiriUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchViewController</string>
