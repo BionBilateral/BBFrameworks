@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the has only secure content image, which is rendered to the left of the URL if the web view `hasOnlySecureContent` property is YES. The image should be grayscale and will be rendered using `self.URLTextColor`.
  
- The default is `@"web_kit_lock"` is the resources bundle.
+ The default is `@"web_kit_lock"` in the resources bundle.
  */
 @property (strong,nonatomic,null_resettable) UIImage *hasOnlySecureContentImage;
 
