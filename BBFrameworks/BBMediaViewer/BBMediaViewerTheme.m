@@ -48,6 +48,26 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    BBMediaViewerTheme *retval = [[[self class] alloc] init];
+    
+    retval->_name = _name;
+    retval->_transitionSnapshotBlurRadius = _transitionSnapshotBlurRadius;
+    retval->_transitionSnapshotTintColor = _transitionSnapshotTintColor;
+    retval->_backgroundColor = _backgroundColor;
+    retval->_foregroundColor = _foregroundColor;
+    retval->_tintColor = _tintColor;
+    retval->_highlightTintColor = _highlightTintColor;
+    retval->_doneBarButtonItem = _doneBarButtonItem;
+    retval->_actionBarButtonItem = _actionBarButtonItem;
+    retval->_showActionBarButtonItem = _showActionBarButtonItem;
+    retval->_movieProgressForegroundColor = _movieProgressForegroundColor;
+    retval->_movieTimeElapsedRemainingFont = _movieTimeElapsedRemainingFont;
+    retval->_textEdgeInsets = _textEdgeInsets;
+    
+    return retval;
+}
+
 + (instancetype)defaultTheme; {
     static BBMediaViewerTheme *kRetval;
     static dispatch_once_t onceToken;

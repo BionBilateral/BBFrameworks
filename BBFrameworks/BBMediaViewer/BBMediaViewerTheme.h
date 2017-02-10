@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  BBMediaViewerTheme allows the client to customize the appearance of the media viewer without relying on the appearance proxy methods.
  */
-@interface BBMediaViewerTheme : NSObject
+@interface BBMediaViewerTheme : NSObject <NSCopying>
 
 /**
  Set and get the name of the receiver. Useful for debugging.
