@@ -50,7 +50,7 @@
     else {
         UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
     }
-    
+    NSLog(@"UTI: %@",UTI);
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeGIF)) {
         return BBMediaViewerPageModelTypeImageAnimated;
     }
@@ -78,7 +78,8 @@
         return BBMediaViewerPageModelTypeDocument;
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML) ||
-             UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeURL)) {
+             UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeURL) ||
+             [[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:NULL] firstMatchInString:URL.absoluteString options:0 range:NSMakeRange(0, URL.absoluteString.length)] != nil) {
         
         return BBMediaViewerPageModelTypeHTML;
     }
