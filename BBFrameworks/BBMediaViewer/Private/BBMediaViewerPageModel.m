@@ -50,7 +50,7 @@
     else {
         UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
     }
-    NSLog(@"UTI: %@",UTI);
+    
     if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeGIF)) {
         return BBMediaViewerPageModelTypeImageAnimated;
     }
