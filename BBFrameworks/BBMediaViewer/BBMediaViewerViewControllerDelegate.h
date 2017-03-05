@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  Protocol describing the delegate of the media viewer.
  */
 @protocol BBMediaViewerViewControllerDelegate <NSObject>
+
 @required
 /**
  Called when the user taps the done bar button item. The receiver should dismiss the media viewer or pop the containing navigation controller.
@@ -31,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param viewController The media viewer that sent the message
  */
 - (void)mediaViewerViewControllerDidFinish:(BBMediaViewerViewController *)viewController;
+
 @optional
 /**
  Called when the media viewer generates an error. The client can display it to the user or ignore it.
