@@ -81,6 +81,7 @@
 		0776566B1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */; };
 		0776566C1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0776566A1B618948000DD318 /* BBFrameworksNSOrderedSetBlocksExtensionsTestCase.m */; };
 		07798B381BC5AE1600A0D030 /* NSData+BBKitExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07291E9A1BC5ACEA00CE7EE9 /* NSData+BBKitExtensions.h */; };
+		077B762B1E6E1110005FC783 /* media in Resources */ = {isa = PBXBuildFile; fileRef = 79344C581C01343700BBA726 /* media */; };
 		078563AC1BB461A900EEEFF5 /* BBKeyValueObservingController.h in Headers */ = {isa = PBXBuildFile; fileRef = 078563A61BB461A900EEEFF5 /* BBKeyValueObservingController.h */; };
 		078563AD1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563A71BB461A900EEEFF5 /* BBKeyValueObservingController.m */; };
 		078563AE1BB461A900EEEFF5 /* BBKeyValueObservingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078563A71BB461A900EEEFF5 /* BBKeyValueObservingController.m */; };
@@ -2257,8 +2258,8 @@
 				79CAB9901C82EB330044398A /* BBMediaViewerTheme.m */,
 				07FFB0D41C84AF46003098C8 /* BBMediaViewerModelDataSource.h */,
 				07E286A01C84C78700C3C6DD /* BBMediaViewerModelDelegate.h */,
-				7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */,
 				7917FE2C1C83BE42004D412D /* BBMediaViewerModel.m */,
+				7917FE2B1C83BE42004D412D /* BBMediaViewerModel.h */,
 				07E2869F1C84C2BC00C3C6DD /* BBMediaViewerDefines.h */,
 				79CAB9971C838CFB0044398A /* BBMediaViewerViewControllerDataSource.h */,
 				79CAB9981C838D100044398A /* BBMediaViewerViewControllerDelegate.h */,
@@ -3385,6 +3386,7 @@
 				79C27EA21B3B8FE300C4AC28 /* RootWindowController.xib in Resources */,
 				7989C9D81B1ADE65009B1CE9 /* Images.xcassets in Resources */,
 				799F9BCF1B6DBF940067BAA8 /* APIKeys.plist in Resources */,
+				077B762B1E6E1110005FC783 /* media in Resources */,
 				79C27E9D1B3B8F7E00C4AC28 /* RootViewController.xib in Resources */,
 				79C27EAB1B3B956B00C4AC28 /* ViewsViewController.xib in Resources */,
 			);
